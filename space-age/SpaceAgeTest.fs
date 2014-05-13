@@ -4,7 +4,7 @@ open NUnit.Framework
 open SpaceAge
 
 [<TestFixture>]
-type SpaceAgeTests() =
+type SpaceAgeTest() =
     
     [<Test>]
     member tests.Age_in_seconds() =
