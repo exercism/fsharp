@@ -1,5 +1,0 @@
-sum-of-multiples
-difference-of-squares
-bob
-space-age
-gigasecond
