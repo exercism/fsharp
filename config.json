@@ -10,6 +10,9 @@
     "space-age",
     "gigasecond"
   ],
+  "deprecated": [
+
+  ],
   "ignore": [
 
   ]
