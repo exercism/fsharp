@@ -2,7 +2,7 @@
   "slug": "fsharp",
   "language": "F#",
   "repository": "https://github.com/exercism/xfsharp",
-  "active": false,
+  "active": true,
   "problems": [
     "sum-of-multiples",
     "difference-of-squares",
