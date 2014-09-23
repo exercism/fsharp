@@ -13,7 +13,7 @@ type BobTest() =
     [<Test>]
     [<Ignore>]
     member tests.Shouting() =
-        Assert.That(Bob("WATCH OUT!").hey(), Is.EqualTo("Woah, chill out!"))
+        Assert.That(Bob("WATCH OUT!").hey(), Is.EqualTo("Whoa, chill out!"))
 
     [<Test>]
     [<Ignore>]
@@ -28,12 +28,12 @@ type BobTest() =
     [<Test>]
     [<Ignore>]
     member tests.Forceful_questions() =
-        Assert.That(Bob("WHAT THE HELL WERE YOU THINKING?").hey(), Is.EqualTo("Woah, chill out!"))
+        Assert.That(Bob("WHAT THE HELL WERE YOU THINKING?").hey(), Is.EqualTo("Whoa, chill out!"))
 
     [<Test>]
     [<Ignore>]
     member tests.Shouting_numbers() =
-        Assert.That(Bob("1, 2, 3 GO!").hey(), Is.EqualTo("Woah, chill out!"))
+        Assert.That(Bob("1, 2, 3 GO!").hey(), Is.EqualTo("Whoa, chill out!"))
 
     [<Test>]
     [<Ignore>]
@@ -48,12 +48,12 @@ type BobTest() =
     [<Test>]
     [<Ignore>]
     member tests.Shouting_with_special_characters() =
-        Assert.That(Bob("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!").hey(), Is.EqualTo("Woah, chill out!"))
+        Assert.That(Bob("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!").hey(), Is.EqualTo("Whoa, chill out!"))
 
     [<Test>]
     [<Ignore>]
     member tests.Shouting_with_no_exlamation_mark() =
-        Assert.That(Bob("I HATE YOU").hey(), Is.EqualTo("Woah, chill out!"))
+        Assert.That(Bob("I HATE YOU").hey(), Is.EqualTo("Whoa, chill out!"))
 
     [<Test>]
     [<Ignore>]
