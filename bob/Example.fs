@@ -16,7 +16,7 @@ type Bob(statement: string) =
         match isSilence(this.Statement) with
             | true -> "Fine. Be that way!"
             | false -> (match isYelling(this.Statement) with
-                            | true -> "Woah, chill out!"
+                            | true -> "Whoa, chill out!"
                             | false -> (match isQuestion(this.Statement) with
                                             | true -> "Sure."
                                             | false -> "Whatever."))
