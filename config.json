@@ -18,7 +18,8 @@
     "binary",
     "hamming",
     "trinary",
-    "etl"
+    "etl",
+    "octal"
   ],
   "deprecated": [
 
