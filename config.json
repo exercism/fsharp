@@ -16,7 +16,8 @@
     "grains",
     "leap",
     "binary",
-    "hamming"
+    "hamming",
+    "trinary"
   ],
   "deprecated": [
 
