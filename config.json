@@ -14,7 +14,8 @@
     "robot-name",
     "bank-account",
     "grains",
-    "leap"
+    "leap",
+    "hamming"
   ],
   "deprecated": [
 
