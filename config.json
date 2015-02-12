@@ -22,7 +22,8 @@
     "octal",
     "pig-latin",
     "word-count",
-    "roman-numerals"
+    "roman-numerals",
+    "rna-transcription"
   ],
   "deprecated": [
 
