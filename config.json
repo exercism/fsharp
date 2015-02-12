@@ -15,7 +15,8 @@
     "bank-account",
     "grains",
     "leap",
-    "binary"
+    "binary",
+    "hamming"
   ],
   "deprecated": [
 
