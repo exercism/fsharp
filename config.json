@@ -21,7 +21,8 @@
     "etl",
     "octal",
     "pig-latin",
-    "word-count"
+    "word-count",
+    "roman-numerals"
   ],
   "deprecated": [
 
