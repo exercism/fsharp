@@ -20,7 +20,8 @@
     "trinary",
     "etl",
     "octal",
-    "pig-latin"
+    "pig-latin",
+    "word-count"
   ],
   "deprecated": [
 
