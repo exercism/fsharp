@@ -23,7 +23,8 @@
     "pig-latin",
     "word-count",
     "roman-numerals",
-    "rna-transcription"
+    "rna-transcription",
+    "accumulate"
   ],
   "deprecated": [
 
