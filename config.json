@@ -17,7 +17,8 @@
     "leap",
     "binary",
     "hamming",
-    "trinary"
+    "trinary",
+    "etl"
   ],
   "deprecated": [
 
