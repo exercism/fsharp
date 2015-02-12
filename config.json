@@ -19,7 +19,8 @@
     "hamming",
     "trinary",
     "etl",
-    "octal"
+    "octal",
+    "pig-latin"
   ],
   "deprecated": [
 
