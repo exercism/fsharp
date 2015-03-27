@@ -30,7 +30,8 @@
     "clock",
     "series",
     "strain",
-    "atbash-cipher"
+    "atbash-cipher",
+    "grade-school"
   ],
   "deprecated": [
 
