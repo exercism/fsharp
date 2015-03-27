@@ -29,7 +29,8 @@
     "anagram",
     "clock",
     "series",
-    "strain"
+    "strain",
+    "atbash-cipher"
   ],
   "deprecated": [
 
