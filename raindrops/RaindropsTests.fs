@@ -11,31 +11,28 @@ type RaindropsTests() =
     member tests.Non_primes_pass_through(number) =
         Raindrops().convert(number)
 
-    [<TestCase(3)>]
-    [<TestCase(6)>]
-    [<TestCase(9)>]
-    [<Ignore>]
+    [<TestCase(3, Ignore = true)>]
+    [<TestCase(6, Ignore = true)>]
+    [<TestCase(9, Ignore = true)>]
     member tests.Numbers_containing_3_as_a_prime_factor_give_pling(number) =
         Assert.That(Raindrops().convert(number), Is.EqualTo("Pling"))
 
-    [<TestCase(5)>]
-    [<TestCase(10)>]
-    [<TestCase(25)>]
-    [<Ignore>]
+    [<TestCase(5, Ignore = true)>]
+    [<TestCase(10, Ignore = true)>]
+    [<TestCase(25, Ignore = true)>]
     member tests.Numbers_containing_5_as_a_prime_factor_give_plang(number) =
         Assert.That(Raindrops().convert(number), Is.EqualTo("Plang"))
 
-    [<TestCase(7)>]
-    [<TestCase(14)>]
-    [<TestCase(49)>]
-    [<Ignore>]
+    [<TestCase(7, Ignore = true)>]
+    [<TestCase(14, Ignore = true)>]
+    [<TestCase(49, Ignore = true)>]
     member tests.Numbers_containing_7_as_a_prime_factor_give_plong(number) =
         Assert.That(Raindrops().convert(number), Is.EqualTo("Plong"))
 
-    [<TestCase(15, Result = "PlingPlang")>]
-    [<TestCase(21, Result = "PlingPlong")>]
-    [<TestCase(35, Result = "PlangPlong")>]
-    [<TestCase(105, Result = "PlingPlangPlong")>]
+    [<TestCase(15, Result = "PlingPlang", Ignore = true)>]
+    [<TestCase(21, Result = "PlingPlong", Ignore = true)>]
+    [<TestCase(35, Result = "PlangPlong", Ignore = true)>]
+    [<TestCase(105, Result = "PlingPlangPlong", Ignore = true)>]
     [<Ignore>]
     member tests.Numbers_containing_multiple_prime_factors_give_all_results_concatenated(number) =
         Raindrops().convert(number)

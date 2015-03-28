@@ -72,9 +72,8 @@ type SeriesTests() =
         let series = new Series(input)
         Assert.That(series.slices(5), Is.EqualTo(expected))
 
-    [<TestCase("01234", 6)>]
-    [<TestCase("01032987583", 19)>]
-    [<Ignore>]
+    [<TestCase("01234", 6, Ignore = true)>]
+    [<TestCase("01032987583", 19, Ignore = true)>]
     member tests.Slice_longer_than_input_is_not_allowed(input, slice) =
         let series = new Series(input)
         Assert.Throws<System.ArgumentException>(fun () -> series.slices(slice) |> ignore) |> ignore
