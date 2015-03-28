@@ -7,14 +7,13 @@ open Clock
 [<TestFixture>]
 type ClockTests() =
     [<TestCase(8, "08:00")>]
-    [<TestCase(9, "09:00")>]
+    [<TestCase(9, "09:00", Ignore = true)>]
     member tests.Prints_the_hour(hours, expected) =
         let clock = new Clock(hours)
         Assert.That(clock.ToString(), Is.EqualTo(expected))
 
-    [<TestCase(11, 9, "11:09")>]
-    [<TestCase(11, 19, "11:19")>]
-    [<Ignore>]
+    [<TestCase(11, 9, "11:09", Ignore = true)>]
+    [<TestCase(11, 19, "11:19", Ignore = true)>]
     member tests.Prints_past_the_hour(hours, minutes, expected) =
         let clock = new Clock(hours, minutes)
         Assert.That(clock.ToString(), Is.EqualTo(expected))
