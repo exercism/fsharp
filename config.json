@@ -36,7 +36,8 @@
     "acronym",
     "crypto-square",
     "linked-list",
-    "luhn"
+    "luhn",
+    "scrabble-score"
   ],
   "deprecated": [
 
