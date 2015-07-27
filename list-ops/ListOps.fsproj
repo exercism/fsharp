@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <Configuration>Debug</Configuration>
+        <Platform>x86</Platform>
+        <ProductVersion>8.0.30703</ProductVersion>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectGuid>{116CC2F9-F987-4B3D-915A-34CAC04A73DA}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <RootNamespace>ListOpsTest</RootNamespace>
+        <AssemblyName>ListOpsTest</AssemblyName>
+        <Name>ListOpsTest</Name>
+        <BuildOrder>
+            <BuildOrder>
+                <String>ListOpsTest.fs</String>
+            </BuildOrder>
+        </BuildOrder>
+        <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
+        <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
+        <OutputPath>bin</OutputPath>
+        <PlatformTarget>x86</PlatformTarget>
+        <Optimize>False</Optimize>
+        <Tailcalls>True</Tailcalls>
+        <MSBuildCommunityTasksPath>.</MSBuildCommunityTasksPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="mscorlib" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="FSharp.Core" />
+        <Reference Include="nunit.framework">
+            <HintPath>..\packages\NUnit.Runners\tools\nunit.framework.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="ListOps.fs" />
+        <Compile Include="ListOpsTest.fs" />
+    </ItemGroup>
+    <Choose>
+        <When Condition="'$(VisualStudioVersion)' == '11.0'">
+            <PropertyGroup>
+                <FSharpTargetsPath>$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.0\Framework\v4.0\Microsoft.FSharp.Targets</FSharpTargetsPath>
+            </PropertyGroup>
+        </When>
+        <Otherwise>
+            <PropertyGroup>
+               <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
+            </PropertyGroup>
+        </Otherwise>
+    </Choose>
+    <Target Name="NUnit">
+        <PropertyGroup>
+            <ExeLauncher Condition="('$(OS)' != 'Windows_NT')">mono</ExeLauncher>
+        </PropertyGroup>
+        <Exec Command="$(ExeLauncher) ..\packages\NUnit.Runners\tools\nunit-console.exe $(OutputPath)$(AssemblyName).dll"/>
+    </Target>
+
+    <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
+    <Target Name="AfterBuild" DependsOnTargets="NUnit"></Target>
+</Project>
