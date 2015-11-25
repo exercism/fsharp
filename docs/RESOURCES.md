@@ -1,8 +1,5 @@
-## Recommended Learning Resources
+## Linting
+F# projects (.fsproj) can be linted for further code analysis via a third party tool - [FSharpLint](https://github.com/fsprojects/FSharpLint).
 
-Exercism provides exercises and feedback but can be difficult to jump into for those learning F# for the first time. These resources can help you get started:
+To use this, just follow the directions from the wiki page to use the [command line tool](https://github.com/duckmatt/FSharpLint/wiki/Console-Application).
 
-* [StackOverflow - F#](http://stackoverflow.com/questions/tagged/f%23)
-* [F# For Fun and Profit](http://fsharpforfunandprofit.com/)
-* [Try F#](http://www.tryfsharp.org/Learn)
-* [F# Foundation](http://fsharp.org/)

@@ -1,9 +1,17 @@
-[F#](http://www.tryfsharp.org/Explore) is a strongly-typed, functional language that is part of Microsoft's .NET language stack.
+#### Mac
 
-## Installing F&#35;
+Install [Xamarin Studio](http://xamarin.com/download).
 
-#### Mac and Linux
-The [F# Foundation](http://fsharp.org/) has detailed instructions on different options to install F# on [Mac](http://fsharp.org/use/mac/) and [Linux](http://fsharp.org/use/linux/).
+While Xamarin is most known for creating iOS and Android applications, it's still a perfect IDE to create F# console
+or library projects which is all that's needed for Exercism.
+
+Once installed and running, click on new solution and you'll find the library project to select. Don't forget to click the
+lanugage drop down to select F# since it defaults to C#.
+
+![Xamarin New Project](/img/setup/fsharp/xamarin-fsharp.jpeg)
+
+#### Linux
+The [F# Foundation](http://fsharp.org/) has detailed instructions on different options to install F# on [Linux](http://fsharp.org/use/linux/).
 
 #### In Browser
 You can also create and share F# scripts in your browser at [Try F#](http://www.tryfsharp.org/Create). Silverlight plugin is required.
@@ -15,15 +23,13 @@ Install [Visual Studio Express for Windows Desktop](http://www.visualstudio.com/
 
 Install the [F# tools for Visual Studio](http://www.microsoft.com/en-us/download/details.aspx?id=41654).
 
-You can either start by creating your own project for working with the Exercism problems or if you have a **paid version** of Visual Studio you can download a Visual Studio solution that is al
-ready set up to work on the problems in as many languages as Visual Studio supports.
+You can either start by creating your own project for working with the Exercism problems or if you have a **paid version** of Visual Studio you can download a Visual Studio solution that is already set up to work on the problems in as many languages as Visual Studio supports.
 
-![Solution Explorer](/img/SolutionExplorer.png)
+![Solution Explorer](/img/setup/visualstudio/SolutionExplorer.png)
 
 The following instructions are for using the Visual Studio template with a **paid version** of Visual Studio.
 
-By default, Visual Studio does not allow you to organize F# files by folder. This is a problem because Exercism fetches the exercises to sub-folders. To get around this, install the Visual [F#
- Power Tools extension](http://fsprojects.github.io/VisualFSharpPowerTools/) which enables folder organization and makes writing F# code much easier in Visual Studio.
+By default, Visual Studio does not allow you to organize F# files by folder. This is a problem because Exercism fetches the exercises to sub-folders. To get around this, install the Visual [F# Power Tools extension](http://fsprojects.github.io/VisualFSharpPowerTools/) which enables folder organization and makes writing F# code much easier in Visual Studio.
 
 1. Download the [Exercism.io Visual Studio Template](https://github.com/rprouse/Exercism.VisualStudio) from GitHub by clicking the Download Zip button on the page.
 2. Unzip the template into your exercises directory, for example `C:\src\exercises`
@@ -40,9 +46,9 @@ By default, Visual Studio does not allow you to organize F# files by folder. Thi
 
 The NUnit NuGet package is included in the project, so you will not need to install it.
 
-Install the [NUnit Visual Studio Test Adapter](https://visualstudiogallery.msdn.microsoft.com/6ab922d0-21c0-4f06-ab5f-4ecd1fe7175d). This will allow you to run the tests from within Visual Stu
-dio. If you have ReSharper installed, you can also [run the tests using ReSharper](https://www.jetbrains.com/resharper/features/unit_testing.html).
+Install the [NUnit Visual Studio Test Adapter](https://visualstudiogallery.msdn.microsoft.com/6ab922d0-21c0-4f06-ab5f-4ecd1fe7175d). This will allow you to run the tests from within Visual Studio. If you have ReSharper installed, you can also [run the tests using ReSharper](https://www.jetbrains.com/resharper/features/unit_testing.html).
 
-![Test Explorer](/img/TestExplorer.png)
+![Test Explorer](/img/setup/visualstudio/TestExplorer.png)
 
 You can also run the tests from the command line by installing [NUnit 2.6.3](http://www.nunit.org/). See the instructions for C#.
+
