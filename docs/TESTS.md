@@ -5,13 +5,13 @@ After installing Visual Studio Express for Windows Desktop and the F# tools run 
 
 Click on "New Project" and you should see an entry for Visual F# and click on "Class Library".
 
-![New Project](/img/setup/fsharp/newProject.png)
+![New Project](http://x.exercism.io/v3/tracks/fsharp/docs/img/newProject.png)
 
 Install [NUnit](http://nunit.org/index.php?p=download) via NuGet package manager with the NUnit.Runners package. This will add the reference to the project.
 
-![NuGet Package Manager](/img/setup/fsharp/manageNugetPackages.png)
+![NuGet Package Manager](http://x.exercism.io/v3/tracks/fsharp/docs/img/manageNugetPackages.png)
 
-![Installing NUnit](/img/setup/fsharp/installingNunit.png)
+![Installing NUnit](http://x.exercism.io/v3/tracks/fsharp/docs/img/installingNunit.png)
 
 Drag and drop the test file of your chosen exercise into the project in Visual Studio. You can create your own Example file (or drag and drop the one included) and give the exercise a try.
 
@@ -28,7 +28,7 @@ Now you can have fun learning F# and run your code against the tests!
 ### Mac
 Xamarin Studio also ships with NUnit. From the new project dialog, just select an NUnit class library.
 
-![Xamarin NUnit](/img/setup/fsharp/xamarin-fsharp-nunit.jpeg)
+![Xamarin NUnit](http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp-nunit.jpeg)
 
 From here you can write NUnit tests right away. To run the tests open the `Unit Tests` pad within
 Xamarin (View -> Pads -> Unit Tests).
