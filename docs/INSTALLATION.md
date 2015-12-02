@@ -8,7 +8,7 @@ or library projects which is all that's needed for Exercism.
 Once installed and running, click on new solution and you'll find the library project to select. Don't forget to click the
 lanugage drop down to select F# since it defaults to C#.
 
-![Xamarin New Project](http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp.jpeg)
+![Xamarin New Project](http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp.jpg)
 
 #### Linux
 The [F# Foundation](http://fsharp.org/) has detailed instructions on different options to install F# on [Linux](http://fsharp.org/use/linux/).
