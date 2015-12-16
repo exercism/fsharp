@@ -1,4 +1,4 @@
-﻿module SumOfMultiplesTest
+module SumOfMultiplesTest
 
 open NUnit.Framework
 open SumOfMultiples
@@ -20,6 +20,16 @@ type SumOfMultiplesTest() =
     [<Ignore>]
     member tc.Sum_to_10() = 
         Assert.That(sumOfMultiples.To(10), Is.EqualTo(23))
+
+    [<Test>]
+    [<Ignore>]
+    member tc.Sum_to_100() = 
+        Assert.That(sumOfMultiples.To(100), Is.EqualTo(2318))
+
+    [<Test>]
+    [<Ignore>]
+    member tc.Sum_to_1000() = 
+        Assert.That(sumOfMultiples.To(1000), Is.EqualTo(233168))
 
     [<Test>]
     [<Ignore>]
