@@ -1,2 +1,6 @@
 bin/configlet
 bin/configlet.exe
+build/
+tools/
+.fake/
+TestResult.xml
