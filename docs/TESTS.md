@@ -7,7 +7,7 @@ Click on "New Project" and you should see an entry for Visual F# and click on "C
 
 ![New Project](http://x.exercism.io/v3/tracks/fsharp/docs/img/newProject.png)
 
-Install [NUnit](http://nunit.org/index.php?p=download) via NuGet package manager with the NUnit.Runners package. This will add the reference to the project.
+Install [NUnit](http://nunit.org/index.php?p=download) via NuGet package manager with the NUnit.Console package. This will add the reference to the project.
 
 ![NuGet Package Manager](http://x.exercism.io/v3/tracks/fsharp/docs/img/manageNugetPackages.png)
 
@@ -17,7 +17,7 @@ Drag and drop the test file of your chosen exercise into the project in Visual S
 
 Compile the project (Build -> Build Solution or F7) to generate the DLL file.
 
-If you installed the NUnit runner through NuGet, the runner will be located in the ```\packages\NUnit.Runners(version number)\tools``` folder where your project is.
+If you installed the NUnit runner through NuGet, the runner will be located in the ```\packages\NUnit.Console(version number)\tools``` folder where your project is.
 
 If you installed NUnit manually the runner will be in the ```Program Files (x86)\NUnit(version number)\bin``` folder.
 

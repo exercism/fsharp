@@ -50,5 +50,5 @@ Install the [NUnit Visual Studio Test Adapter](https://visualstudiogallery.msdn.
 
 ![Test Explorer](/img/setup/visualstudio/TestExplorer.png)
 
-You can also run the tests from the command line by installing [NUnit 2.6.3](http://www.nunit.org/). See the instructions for C#.
+You can also run the tests from the command line by installing [NUnit 3.0.x](http://www.nunit.org/). See the instructions for C#.
 

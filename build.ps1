@@ -2,7 +2,7 @@ $toolsDirectory = Join-Path $PSScriptRoot "tools"
 $nugetDirectory = Join-Path $toolsDirectory "nuget"
 $nugetExe = Join-Path $nugetDirectory "nuget.exe"
 $fakeExe = Join-Path $toolsDirectory "fake/tools/fake.exe"
-$nunitFrameworkDll = Join-Path $toolsDirectory "nunit/lib/nunit.framework.dll"
+$nunitFrameworkDll = Join-Path $toolsDirectory "nunit/lib/net45/nunit.framework.dll"
 $nunitConsoleExe = Join-Path $toolsDirectory "nunit.console/tools/nunit3-console.exe"
 
 If (!(Test-Path $nugetExe)) {   
@@ -22,7 +22,7 @@ If (!(Test-Path $fakeExe)) {
 	Throw "Could not find fake.exe"
 }
 
-& $nugetExe install NUnit -Version 2.6.4 -ExcludeVersion -OutputDirectory $toolsDirectory
+& $nugetExe install NUnit -Version 3.0.1  -ExcludeVersion -OutputDirectory $toolsDirectory
 If (!(Test-Path $nunitFrameworkDll)) {
 	Throw "Could not find nunit.framework.dll"
 }

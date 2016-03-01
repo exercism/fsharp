@@ -19,13 +19,13 @@ type LuhnTests() =
     member tests.Addends_subtracts_9_when_doubled_number_is_more_than_9() =
         Assert.That(Luhn(8631L).addends, Is.EqualTo([7; 6; 6; 1]))
 
-    [<TestCase(4913, Result = 2, Ignore = true)>]
-    [<TestCase(201773, Result = 1, Ignore = true)>]
+    [<TestCase(4913, ExpectedResult = 2, Ignore = true)>]
+    [<TestCase(201773, ExpectedResult = 1, Ignore = true)>]
     member tests.Checksum_adds_addends_together(number) =
         Luhn(number).checksum
 
-    [<TestCase(738, Result = false, Ignore = true)>]
-    [<TestCase(8739567, Result = true, Ignore = true)>]
+    [<TestCase(738, ExpectedResult = false, Ignore = true)>]
+    [<TestCase(8739567, ExpectedResult = true, Ignore = true)>]
     member tests.Number_is_valid_when_checksum_mod_10_is_zero(number) =
         Luhn(number).valid
 

@@ -9,7 +9,7 @@ open Fake.Testing.NUnit3
 let buildDir = getBuildParamOrDefault "buildDir" "./build/"
 let sourceDir = "./exercises/"
 let testDll = buildDir @@ "Tests.dll"
-let nunitFrameworkDll = "tools/NUnit/lib/nunit.framework.dll"
+let nunitFrameworkDll = "tools/NUnit/lib/net45/nunit.framework.dll"
 
 let exampleFiles() = !! (buildDir @@ "./**/Example.fs") |> List.ofSeq
 let testFiles() = !! (buildDir @@ "./**/*Test*.fs") |> List.ofSeq

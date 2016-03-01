@@ -5,9 +5,9 @@ open Raindrops
 
 [<TestFixture>]
 type RaindropsTests() =
-    [<TestCase(1, Result = "1")>]
-    [<TestCase(52, Result = "52", Ignore = true)>]
-    [<TestCase(12121, Result = "12121", Ignore = true)>]
+    [<TestCase(1, ExpectedResult = "1")>]
+    [<TestCase(52, ExpectedResult = "52", Ignore = true)>]
+    [<TestCase(12121, ExpectedResult = "12121", Ignore = true)>]
     member tests.Non_primes_pass_through(number) =
         Raindrops().convert(number)
 
@@ -29,10 +29,10 @@ type RaindropsTests() =
     member tests.Numbers_containing_7_as_a_prime_factor_give_plong(number) =
         Assert.That(Raindrops().convert(number), Is.EqualTo("Plong"))
 
-    [<TestCase(15, Result = "PlingPlang", Ignore = true)>]
-    [<TestCase(21, Result = "PlingPlong", Ignore = true)>]
-    [<TestCase(35, Result = "PlangPlong", Ignore = true)>]
-    [<TestCase(105, Result = "PlingPlangPlong", Ignore = true)>]
+    [<TestCase(15, ExpectedResult = "PlingPlang", Ignore = true)>]
+    [<TestCase(21, ExpectedResult = "PlingPlong", Ignore = true)>]
+    [<TestCase(35, ExpectedResult = "PlangPlong", Ignore = true)>]
+    [<TestCase(105, ExpectedResult = "PlingPlangPlong", Ignore = true)>]
     [<Ignore>]
     member tests.Numbers_containing_multiple_prime_factors_give_all_results_concatenated(number) =
         Raindrops().convert(number)
