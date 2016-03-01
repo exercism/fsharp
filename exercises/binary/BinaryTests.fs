@@ -6,13 +6,13 @@ open Binary
 [<TestFixture>]
 type BinaryTests() =
     
-    [<TestCase("1", Result = 1)>]
-    [<TestCase("10", Result = 2, Ignore = true)>]
-    [<TestCase("11", Result = 3, Ignore = true)>]
-    [<TestCase("100", Result = 4, Ignore = true)>]
-    [<TestCase("1001", Result = 9, Ignore = true)>]
-    [<TestCase("11010", Result = 26, Ignore = true)>]
-    [<TestCase("10001101000", Result = 1128, Ignore = true)>]
+    [<TestCase("1", ExpectedResult = 1)>]
+    [<TestCase("10", ExpectedResult = 2, Ignore = true)>]
+    [<TestCase("11", ExpectedResult = 3, Ignore = true)>]
+    [<TestCase("100", ExpectedResult = 4, Ignore = true)>]
+    [<TestCase("1001", ExpectedResult = 9, Ignore = true)>]
+    [<TestCase("11010", ExpectedResult = 26, Ignore = true)>]
+    [<TestCase("10001101000", ExpectedResult = 1128, Ignore = true)>]
     member tests.Binary_converts_to_decimal(input) =
         Binary(input).toDecimal()
 

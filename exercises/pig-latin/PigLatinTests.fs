@@ -6,18 +6,18 @@ open PigLatin
 [<TestFixture>]
 type PigLatinTests() =
     
-    [<TestCase("apple", Result = "appleay")>]
-    [<TestCase("ear", Result = "earay", Ignore = true)>]
-    [<TestCase("igloo", Result = "iglooay", Ignore = true)>]
-    [<TestCase("object", Result = "objectay", Ignore = true)>]
-    [<TestCase("under", Result = "underay", Ignore = true)>]
+    [<TestCase("apple", ExpectedResult = "appleay")>]
+    [<TestCase("ear", ExpectedResult = "earay", Ignore = true)>]
+    [<TestCase("igloo", ExpectedResult = "iglooay", Ignore = true)>]
+    [<TestCase("object", ExpectedResult = "objectay", Ignore = true)>]
+    [<TestCase("under", ExpectedResult = "underay", Ignore = true)>]
     member tests.Ay_is_added_to_words_that_start_with_vowels(word) =
         PigLatin().translate(word)
 
-    [<TestCase("pig", Result = "igpay", Ignore = true)>]
-    [<TestCase("koala", Result = "oalakay", Ignore = true)>]
-    [<TestCase("yellow", Result = "ellowyay", Ignore = true)>]
-    [<TestCase("xenon", Result = "enonxay", Ignore = true)>]
+    [<TestCase("pig", ExpectedResult = "igpay", Ignore = true)>]
+    [<TestCase("koala", ExpectedResult = "oalakay", Ignore = true)>]
+    [<TestCase("yellow", ExpectedResult = "ellowyay", Ignore = true)>]
+    [<TestCase("xenon", ExpectedResult = "enonxay", Ignore = true)>]
     member tests.First_letter_and_ay_are_moved_to_the_end_of_words_that_start_with_consonants(word) =
         PigLatin().translate(word)
 

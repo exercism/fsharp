@@ -9,43 +9,43 @@ type CryptoSquareTests() =
     [<Test>]
     member tests.Strange_characters_are_stripped_during_normalization() =
         let crypto = new CryptoSquare("s#$%^&plunk")
-        Assert.That(crypto.normalizePlaintext, Is.EqualTo("splunk"))
+        Assert.That<string>(crypto.normalizePlaintext, Is.EqualTo("splunk"))
 
     [<Test>]
     [<Ignore>]
     member tests.Letters_are_lowercased_during_normalization() =
         let crypto = new CryptoSquare("WHOA HEY!")
-        Assert.That(crypto.normalizePlaintext, Is.EqualTo("whoahey"))
+        Assert.That<string>(crypto.normalizePlaintext, Is.EqualTo("whoahey"))
 
     [<Test>]
     [<Ignore>]
     member tests.Numbers_are_kept_during_normalization() =
         let crypto = new CryptoSquare("1, 2, 3, GO!")
-        Assert.That(crypto.normalizePlaintext, Is.EqualTo("123go"))
+        Assert.That<string>(crypto.normalizePlaintext, Is.EqualTo("123go"))
 
     [<Test>]
     [<Ignore>]
     member tests.Smallest_square_size_is_2() =
         let crypto = new CryptoSquare("1234")
-        Assert.That(crypto.size, Is.EqualTo(2))
+        Assert.That<int>(crypto.size, Is.EqualTo(2))
 
     [<Test>]
     [<Ignore>]
     member tests.Size_of_text_whose_length_is_a_perfect_square_is_its_square_root() =
         let crypto = new CryptoSquare("123456789")
-        Assert.That(crypto.size, Is.EqualTo(3))
+        Assert.That<int>(crypto.size, Is.EqualTo(3))
 
     [<Test>]
     [<Ignore>]
     member tests.Size_of_text_whose_length_is_not_a_perfect_square_is_next_biggest_square_root() =
         let crypto = new CryptoSquare("123456789abc")
-        Assert.That(crypto.size, Is.EqualTo(4))
+        Assert.That<int>(crypto.size, Is.EqualTo(4))
 
     [<Test>]
     [<Ignore>]
     member tests.Size_is_determined_by_normalized_text() =
         let crypto = new CryptoSquare("Oh hey, this is nuts!")
-        Assert.That(crypto.size, Is.EqualTo(4))
+        Assert.That<int>(crypto.size, Is.EqualTo(4))
 
     [<Test>]
     [<Ignore>]
