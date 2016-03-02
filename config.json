@@ -37,7 +37,8 @@
     "crypto-square",
     "linked-list",
     "luhn",
-    "scrabble-score"
+    "scrabble-score",
+    "kindergarten-garden"
   ],
   "deprecated": [
 
