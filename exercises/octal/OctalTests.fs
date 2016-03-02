@@ -3,7 +3,6 @@
 open NUnit.Framework
 open Octal
 
-[<TestFixture>]
 type OctalTests() =
     
     [<TestCase("1", ExpectedResult = 1)>]

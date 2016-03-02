@@ -4,7 +4,6 @@ open System
 open NUnit.Framework
 open Series
 
-[<TestFixture>]
 type SeriesTests() =
     static member SliceOneTestData = 
         [| 

@@ -3,7 +3,6 @@
 open NUnit.Framework
 open RomanNumeral
 
-[<TestFixture>]
 type RomanNumeralTests() =
     
     [<TestCase(0, ExpectedResult = "")>]

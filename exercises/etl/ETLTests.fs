@@ -3,7 +3,6 @@
 open NUnit.Framework
 open ETL
 
-[<TestFixture>]
 type ETLTests() =
 
     [<Test>]

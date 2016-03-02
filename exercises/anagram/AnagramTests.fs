@@ -4,7 +4,6 @@ open System
 open NUnit.Framework
 open Anagram
 
-[<TestFixture>]
 type AnagramTests() =
     [<Test>]
     member tests.No_matches() =

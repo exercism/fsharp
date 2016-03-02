@@ -3,7 +3,6 @@
 open NUnit.Framework
 open Binary
 
-[<TestFixture>]
 type BinaryTests() =
     
     [<TestCase("1", ExpectedResult = 1)>]

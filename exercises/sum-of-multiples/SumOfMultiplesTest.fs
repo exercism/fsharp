@@ -3,7 +3,6 @@ module SumOfMultiplesTest
 open NUnit.Framework
 open SumOfMultiples
 
-[<TestFixture>]
 type SumOfMultiplesTest() =
     [<Test>]
     member tc.Sum_to_1() =

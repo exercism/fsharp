@@ -3,7 +3,6 @@
 open NUnit.Framework
 open SpaceAge
 
-[<TestFixture>]
 type SpaceAgeTest() =
     
     [<Test>]

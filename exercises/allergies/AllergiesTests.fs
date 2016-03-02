@@ -4,7 +4,6 @@ open System
 open NUnit.Framework
 open Allergies
 
-[<TestFixture>]
 type AllergiesTests() =
 
     [<Test>]

@@ -3,7 +3,6 @@
 open NUnit.Framework
 open Bob
 
-[<TestFixture>]
 type BobTest() =
     
     [<Test>]

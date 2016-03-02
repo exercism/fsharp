@@ -3,7 +3,6 @@ module CryptoSquareTests
 open NUnit.Framework
 open CryptoSquare
 
-[<TestFixture>]
 type CryptoSquareTests() =
 
     [<Test>]

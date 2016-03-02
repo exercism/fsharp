@@ -3,7 +3,6 @@ module AtbastTests
 open NUnit.Framework
 open Atbash
 
-[<TestFixture>]
 type AtbashTests() =
     [<TestCase("no", ExpectedResult = "ml")>]
     [<TestCase("yes", ExpectedResult = "bvh", Ignore = true)>]

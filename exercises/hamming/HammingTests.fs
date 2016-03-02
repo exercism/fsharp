@@ -3,7 +3,6 @@
 open NUnit.Framework
 open Hamming
 
-[<TestFixture>]
 type HammingTests() =
 
     [<Test>]

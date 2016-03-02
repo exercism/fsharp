@@ -3,7 +3,6 @@
 open NUnit.Framework
 open DifferenceOfSquares
 
-[<TestFixture>]
 type DifferenceOfSquaresTests() =
     
     [<Test>]
