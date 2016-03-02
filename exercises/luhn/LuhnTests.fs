@@ -3,7 +3,6 @@ module LuhnTests
 open NUnit.Framework
 open Luhn
 
-[<TestFixture>]
 type LuhnTests() =    
     [<Test>]
     member tests.Check_digit_is_the_rightmost_digit() =

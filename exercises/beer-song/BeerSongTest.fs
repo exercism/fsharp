@@ -3,7 +3,6 @@
 open NUnit.Framework
 open BeerSong
 
-[<TestFixture>]
 type BeerSongTest() = 
     let beersong = BeerSong()
 

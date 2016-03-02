@@ -3,7 +3,6 @@ module StrainTests
 open System.Collections.Specialized
 open NUnit.Framework
 
-[<TestFixture>]
 type StrainTests() =
     [<Test>]
     member tests.Empty_keep() =

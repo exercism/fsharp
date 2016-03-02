@@ -3,7 +3,6 @@
 open NUnit.Framework
 open RobotName
 
-[<TestFixture>]
 type RobotNameTest() =
     let robot = RobotName()
 

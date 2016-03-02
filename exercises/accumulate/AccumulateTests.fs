@@ -4,7 +4,6 @@ open System
 open NUnit.Framework
 open Accumulate
 
-[<TestFixture>]
 type AccumulateTests() =
 
     let accum = Accumulate()

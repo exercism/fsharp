@@ -3,7 +3,6 @@
 open NUnit.Framework
 open BankAccount
 
-[<TestFixture>]
 type BankAccountTest() =
     let account = BankAccount()
 

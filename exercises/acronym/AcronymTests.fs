@@ -3,7 +3,6 @@ module AcronymTests
 open NUnit.Framework
 open Acronym
 
-[<TestFixture>]
 type AcronymTests() =
 
     [<Test>]

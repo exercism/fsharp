@@ -3,7 +3,6 @@
 open NUnit.Framework
 open Gigasecond
 
-[<TestFixture>]
 type GigasecondTest() =
     
     [<Test>]

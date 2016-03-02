@@ -3,7 +3,6 @@
 open NUnit.Framework
 open PigLatin
 
-[<TestFixture>]
 type PigLatinTests() =
     
     [<TestCase("apple", ExpectedResult = "appleay")>]

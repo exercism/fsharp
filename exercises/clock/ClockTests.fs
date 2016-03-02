@@ -4,7 +4,6 @@ open System
 open NUnit.Framework
 open Clock
 
-[<TestFixture>]
 type ClockTests() =
     [<TestCase(8, "08:00")>]
     [<TestCase(9, "09:00", Ignore = true)>]
