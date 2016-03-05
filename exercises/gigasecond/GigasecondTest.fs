@@ -12,14 +12,14 @@ type GigasecondTest() =
         Assert.That<System.DateTime>(gigasecond.Date, Is.EqualTo(System.DateTime(2043, 1, 1, 1, 46, 40, System.DateTimeKind.Utc)))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Another_date() =
         let gigasecond = Gigasecond(System.DateTime(1977, 6, 13, 0, 0, 0, System.DateTimeKind.Utc))
 
         Assert.That<System.DateTime>(gigasecond.Date, Is.EqualTo(System.DateTime(2009, 2, 19, 1, 46, 40, System.DateTimeKind.Utc)))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Yet_another_date() =
         let gigasecond = Gigasecond(System.DateTime(1959, 7, 19, 0, 0, 0, System.DateTimeKind.Utc))
 

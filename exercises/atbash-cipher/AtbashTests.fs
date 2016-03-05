@@ -5,11 +5,11 @@ open Atbash
 
 type AtbashTests() =
     [<TestCase("no", ExpectedResult = "ml")>]
-    [<TestCase("yes", ExpectedResult = "bvh", Ignore = true)>]
-    [<TestCase("OMG", ExpectedResult = "lnt", Ignore = true)>]
-    [<TestCase("mindblowingly", ExpectedResult = "nrmwy oldrm tob", Ignore = true)>]
-    [<TestCase("Testing, 1 2 3, testing.", ExpectedResult = "gvhgr mt123 gvhgr mt", Ignore = true)>]
-    [<TestCase("Truth is fiction.", ExpectedResult = "gifgs rhurx grlm", Ignore = true)>]
-    [<TestCase("The quick brown fox jumps over the lazy dog.", ExpectedResult = "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt", Ignore = true)>]
+    [<TestCase("yes", ExpectedResult = "bvh", Ignore = "Remove to run test case")>]
+    [<TestCase("OMG", ExpectedResult = "lnt", Ignore = "Remove to run test case")>]
+    [<TestCase("mindblowingly", ExpectedResult = "nrmwy oldrm tob", Ignore = "Remove to run test case")>]
+    [<TestCase("Testing, 1 2 3, testing.", ExpectedResult = "gvhgr mt123 gvhgr mt", Ignore = "Remove to run test case")>]
+    [<TestCase("Truth is fiction.", ExpectedResult = "gifgs rhurx grlm", Ignore = "Remove to run test case")>]
+    [<TestCase("The quick brown fox jumps over the lazy dog.", ExpectedResult = "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt", Ignore = "Remove to run test case")>]
     member tests.Encodes_words_using_atbash_cipher(words) =        
         Atbash().encode(words)

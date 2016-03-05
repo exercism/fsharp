@@ -14,13 +14,13 @@ type AllergiesTests() =
         Assert.That(allergies.allergicTo(Allergen.Strawberries), Is.False)
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_eggs() =
         let allergies = Allergies(1);
         Assert.That(allergies.allergicTo(Allergen.Eggs), Is.True)
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_eggs_in_addition_to_other_stuff() =
         let allergies = Allergies(5);
         Assert.That(allergies.allergicTo(Allergen.Eggs), Is.True);
@@ -28,38 +28,38 @@ type AllergiesTests() =
         Assert.That(allergies.allergicTo(Allergen.Strawberries), Is.False)
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.No_allergies_at_all() =
         let allergies = Allergies(0);
         Assert.That(allergies.list(), Is.Empty)
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_just_eggs() =
         let allergies = Allergies(1);
         Assert.That(allergies.list(), Is.EqualTo([Allergen.Eggs]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_just_peanuts() =
         let allergies = Allergies(2);
         Assert.That(allergies.list(), Is.EqualTo([Allergen.Peanuts]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_eggs_and_peanuts() =
         let allergies = Allergies(3);
         Assert.That(allergies.list(), Is.EqualTo([Allergen.Eggs; Allergen.Peanuts]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_lots_of_stuff() =
         let allergies = Allergies(248);
         Assert.That(allergies.list(),
             Is.EqualTo([Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Allergic_to_everything() =
         let allergies = Allergies(255);
         Assert.That(allergies.list(),
@@ -73,7 +73,7 @@ type AllergiesTests() =
                         Allergen.Cats]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Ignore_non_allergen_score_parts() =
         let allergies = Allergies(509);
         Assert.That(allergies.list(),

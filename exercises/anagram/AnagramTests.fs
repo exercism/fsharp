@@ -13,7 +13,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Detect_simple_anagram() =
         let detector = new Anagram("ant")
         let words = ["tan"; "stand"; "at"]
@@ -21,7 +21,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Detect_multiple_anagrams() =
         let detector = new Anagram("master");
         let words = ["stream"; "pigeon"; "maters"];
@@ -29,7 +29,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results));
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Does_not_confuse_different_duplicates() =
         let detector = new Anagram("galea");
         let words = ["eagle"];
@@ -37,7 +37,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results));
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Identical_word_is_not_anagram() =
         let detector = new Anagram("corn");
         let words = ["corn"; "dark"; "Corn"; "rank"; "CORN"; "cron"; "park"];
@@ -45,7 +45,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results));
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Eliminate_anagrams_with_same_checksum() =
         let detector = new Anagram("mass");
         let words = ["last"];
@@ -53,7 +53,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results));
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Eliminate_anagram_subsets() =
         let detector = new Anagram("good");
         let words = ["dog"; "goody"];
@@ -61,7 +61,7 @@ type AnagramTests() =
         Assert.That(detector.Match(words), Is.EquivalentTo(results));
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Detect_anagrams() =
         let detector = new Anagram("allergy");
         let words = ["gallery"; "ballerina"; "regally"; "clergy"; "largely"; "leading"];
@@ -70,7 +70,7 @@ type AnagramTests() =
         Assert.That(enumerable, Is.EquivalentTo(results));
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Anagrams_are_case_insensitive() =
         let detector = new Anagram("Orchestra");
         let words = ["cashregister"; "Carthorse"; "radishes"];

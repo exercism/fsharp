@@ -25,7 +25,7 @@ type SeriesTests() =
         |]
 
     [<TestCaseSource("SliceTwoTestData")>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Series_of_two_splits_to_two_digits(testData: string * int list list) =
         let input, expected = testData
         let series = new Series(input)
@@ -39,7 +39,7 @@ type SeriesTests() =
         |]
 
     [<TestCaseSource("SliceThreeTestData")>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Series_of_three_splits_to_three_digits(testData: string * int list list) =
         let input, expected = testData
         let series = new Series(input)
@@ -52,7 +52,7 @@ type SeriesTests() =
         |]
 
     [<TestCaseSource("SliceFourTestData")>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Series_of_four_splits_to_four_digits(testData: string * int list list) =
         let input, expected = testData
         let series = new Series(input)
@@ -65,14 +65,14 @@ type SeriesTests() =
         |]
 
     [<TestCaseSource("SliceFiveTestData")>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Series_of_five_splits_to_five_digits(testData: string * int list list) =
         let input, expected = testData
         let series = new Series(input)
         Assert.That(series.slices(5), Is.EqualTo(expected))
 
-    [<TestCase("01234", 6, Ignore = true)>]
-    [<TestCase("01032987583", 19, Ignore = true)>]
+    [<TestCase("01234", 6, Ignore = "Remove to run test case")>]
+    [<TestCase("01032987583", 19, Ignore = "Remove to run test case")>]
     member tests.Slice_longer_than_input_is_not_allowed(input, slice) =
         let series = new Series(input)
         Assert.Throws<System.ArgumentException>(fun () -> series.slices(slice) |> ignore) |> ignore
