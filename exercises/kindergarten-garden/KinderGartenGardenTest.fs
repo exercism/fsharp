@@ -12,26 +12,26 @@ type KinderGartenGardenTest() =
         Assert.That(actual, Is.Empty)
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Alice() =
         Assert.That(defaultGarden "RC\nGG" |> lookupPlants "Alice", Is.EqualTo([Plant.Radishes; Plant.Clover; Plant.Grass; Plant.Grass]))
         Assert.That(defaultGarden "VC\nRC" |> lookupPlants "Alice", Is.EqualTo([Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Clover]))
     
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Small_garden() =
         let garden = defaultGarden "VVCG\nVVRC"
         Assert.That(lookupPlants "Bob" garden, Is.EqualTo([Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Clover]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Medium_garden() =
         let garden = defaultGarden "VVCCGG\nVVCCGG"
         Assert.That(lookupPlants "Bob" garden, Is.EqualTo([Plant.Clover; Plant.Clover; Plant.Clover; Plant.Clover]))
         Assert.That(lookupPlants "Charlie" garden, Is.EqualTo([Plant.Grass; Plant.Grass; Plant.Grass; Plant.Grass]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Full_garden() =
         let garden = defaultGarden "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
         Assert.That(lookupPlants "Alice" garden, Is.EqualTo([Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]))
@@ -48,7 +48,7 @@ type KinderGartenGardenTest() =
         Assert.That(lookupPlants "Larry" garden, Is.EqualTo([Plant.Grass; Plant.Violets; Plant.Clover; Plant.Violets]))
     
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Surprise_garden() =
         let garden = garden ["Samantha"; "Patricia"; "Xander"; "Roger"] "VCRRGVRG\nRVGCCGCV"
         Assert.That(lookupPlants "Patricia" garden, Is.EqualTo([Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Violets]))

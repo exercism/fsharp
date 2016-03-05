@@ -11,19 +11,19 @@ type RobotNameTest() =
         StringAssert.IsMatch(@"\w{2}\d{3}", robot.Name)
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.``Name is the same each time``() =
         Assert.That(robot.Name, Is.EqualTo(robot.Name))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member this.``Different robots have different names``() =
         let robot2 = RobotName()
 
         Assert.That(robot.Name, Is.Not.EqualTo(robot2.Name))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member this.``Can reset the name``() =
         let originalName = robot.Name
         

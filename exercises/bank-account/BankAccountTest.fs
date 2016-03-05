@@ -13,7 +13,7 @@ type BankAccountTest() =
         Assert.That(account.getBalance(), Is.EqualTo(0.0))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Check_basic_balance() =
         account.openAccount() |> ignore
 
@@ -27,7 +27,7 @@ type BankAccountTest() =
         Assert.That(updatedBalance, Is.EqualTo(10.0))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Balance_can_increment_or_decrement() =
         account.openAccount() |> ignore
 
@@ -46,7 +46,7 @@ type BankAccountTest() =
         Assert.That(subtractedBalance, Is.EqualTo(-5.0))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Account_can_be_closed() =
         account.openAccount() |> ignore
 

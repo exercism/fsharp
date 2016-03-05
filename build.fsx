@@ -6,40 +6,45 @@ open Fake.FscHelper
 open Fake.Testing.NUnit3
 
 // Properties
-let buildDir = getBuildParamOrDefault "buildDir" "./build/"
 let sourceDir = "./exercises/"
-let testDll = buildDir @@ "Tests.dll"
+let buildDir = getBuildParamOrDefault "buildDir" "./build/"
+let buildExampleDir = buildDir @@ "example"
+let buildTestDir = buildDir @@ "test"
+let exampleDll = buildExampleDir @@ "example.dll"
+let testDll = buildTestDir @@ "test.dll"
 let nunitFrameworkDll = "tools/NUnit/lib/net45/nunit.framework.dll"
 
-let exampleFiles() = !! (buildDir @@ "./**/Example.fs") |> List.ofSeq
-let testFiles() = !! (buildDir @@ "./**/*Test*.fs") |> List.ofSeq
-let buildSourceFiles() = exampleFiles() @ testFiles() 
-  
-// Targets
-Target "Clean" (fun _ ->
-    CleanDir buildDir
-)
+let exampleFiles dir = !! (dir @@ "./**/Example.fs") |> List.ofSeq
+let testFiles dir = !! (dir @@ "./**/*Test*.fs") |> List.ofSeq
+let sourceFiles dir = exampleFiles dir @ testFiles dir
 
-Target "CopySource" (fun _ ->
-    CopyDir buildDir sourceDir allFiles
-)
+let exampleSourceFiles() = sourceFiles buildExampleDir
+let testSourceFiles() = sourceFiles buildTestDir
 
-Target "ModifySource" (fun _ ->
-    buildSourceFiles()
-    |> ReplaceInFiles [("[<Ignore>]", ""); ("; Ignore", ""); (", Ignore = true", "")]
-)
-
-Target "Build" (fun _ ->
-  buildSourceFiles()
-  |> List.ofSeq
-  |> Fsc (fun p ->
-           { p with Output = testDll
+let compile output files =
+    files
+    |> Fsc (fun p ->
+           { p with Output = output
                     References = [nunitFrameworkDll]
                     FscTarget = Library })
+
+// Targets
+Target "CleanExamples" (fun _ -> CleanDir buildExampleDir)
+Target "CleanTests"    (fun _ -> CleanDir buildTestDir)
+
+Target "CopyExamples" (fun _ -> CopyDir buildExampleDir sourceDir allFiles)
+Target "CopyTests"    (fun _ -> CopyDir buildTestDir sourceDir allFiles)
+
+Target "PrepareTests" (fun _ ->
+    testSourceFiles()
+    |> ReplaceInFiles [("[<Ignore(\"Remove to run test\")>]", ""); (", Ignore = \"Remove to run test case\"", "")]
 )
 
+Target "CompileExamples" (fun _ -> exampleSourceFiles() |> compile exampleDll)
+Target "CompileTests"    (fun _ -> testSourceFiles() |> compile testDll)
+
 Target "Test" (fun _ ->
-    Copy buildDir [nunitFrameworkDll]
+    Copy buildTestDir [nunitFrameworkDll]
     
     [testDll]
     |> NUnit3 (fun p -> 
@@ -47,13 +52,21 @@ Target "Test" (fun _ ->
             ShadowCopy = false })
 )
 
+Target "Build" (fun _ -> ())
 Target "Default" (fun _ -> ())
   
-"Clean"
-    ==> "CopySource"
-    ==> "ModifySource"    
-    ==> "Build"    
+"CleanExamples"
+    ==> "CopyExamples"  
+    ==> "CompileExamples"
+    ==> "Build"
+
+"CleanTests"
+    ==> "CopyTests"
+    ==> "PrepareTests" 
+    ==> "CompileTests"  
     ==> "Test"
-    ==> "Default"
+  
+"Build" ==> "Default"
+"Test" ==> "Default"
   
 RunTargetOrDefault "Default"

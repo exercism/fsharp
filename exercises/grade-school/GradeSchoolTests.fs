@@ -10,7 +10,7 @@ type GradeSchoolTests() =
         Assert.That(school.roster, Has.Count.EqualTo(0))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.adding_a_student_adds_them_to_the_roster_for_the_given_grade() =
         let school = new School()
         school.add("Aimee", 2) |> ignore
@@ -18,7 +18,7 @@ type GradeSchoolTests() =
         Assert.That(school.roster.[2], Is.EqualTo(expected))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.adding_more_students_to_the_same_grade_adds_them_to_the_roster() =
         let school = new School()
         school.add("Blair", 2) |> ignore
@@ -28,7 +28,7 @@ type GradeSchoolTests() =
         Assert.That(school.roster.[2], Is.EqualTo(expected))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.adding_students_to_different_grades_adds_them_to_the_roster() =
         let school = new School()
         school.add("Chelsea", 3) |> ignore
@@ -37,7 +37,7 @@ type GradeSchoolTests() =
         Assert.That(school.roster.[7], Is.EqualTo(["Logan"]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Grade_returns_the_students_in_that_grade_in_alphabetical_order() =
         let school = new School()
         school.add("Franklin", 5) |> ignore
@@ -47,13 +47,13 @@ type GradeSchoolTests() =
         Assert.That(school.grade(5), Is.EqualTo(expected))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Grade_returns_an_empty_list_if_there_are_no_students_in_that_grade() =
         let school = new School()
         Assert.That(school.grade(1), Is.EqualTo([]))
 
     [<Test>]
-    [<Ignore>]
+    [<Ignore("Remove to run test")>]
     member tests.Student_names_in_each_grade_in_roster_are_sorted() =
         let school = new School()
         school.add("Jennifer", 4) |> ignore
