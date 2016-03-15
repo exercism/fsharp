@@ -16,7 +16,7 @@ type CryptoSquare(input) =
         seq
         |> Seq.collect(fun s -> s |> Seq.mapi(fun i e -> (i, e)))
         |> Seq.groupBy(fst)
-        |> Seq.map(fun (i, s) -> s |> Seq.map snd |> charsToString)    
+        |> Seq.map(fun (_, s) -> s |> Seq.map snd |> charsToString)    
 
     member this.size() = this.normalizePlaintext() |> String.length |> float |> Math.Sqrt |> ceil |> int
     member this.normalizePlaintext() = seq { for c in input do if Char.IsLetterOrDigit c then yield Char.ToLowerInvariant c } |> charsToString
