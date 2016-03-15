@@ -5,10 +5,12 @@ type RobotName() =
     let random = System.Random()
 
     let generateRandomChar() = 
-        alphabet.Chars(random.Next(25)).ToString()
+        let index = random.Next(25)
+        alphabet.Substring(index, 1)
 
     let generateName() =
-        generateRandomChar() + generateRandomChar() + random.Next(100, 999).ToString()
+        let number = random.Next(100, 999)
+        generateRandomChar() + generateRandomChar() + string number
 
     let mutable name = generateName()
 
