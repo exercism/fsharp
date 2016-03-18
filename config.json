@@ -45,6 +45,7 @@
     "binary-search-tree",
     "nucleotide-count",
     "largest-series-product",
+    "matrix",
     "diamond"
   ],
   "deprecated": [
