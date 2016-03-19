@@ -50,6 +50,7 @@
     "sieve",
     "wordy",
     "nth-prime",
+    "palindrome-products",
     "diamond"
   ],
   "deprecated": [
