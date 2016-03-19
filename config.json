@@ -49,6 +49,7 @@
     "twelve-days",
     "sieve",
     "wordy",
+    "nth-prime",
     "diamond"
   ],
   "deprecated": [
