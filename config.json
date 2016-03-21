@@ -52,6 +52,7 @@
     "nth-prime",
     "palindrome-products",
     "pascals-triangle",
+    "pythagorean-triplet",
     "diamond"
   ],
   "deprecated": [
