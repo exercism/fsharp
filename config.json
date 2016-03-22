@@ -54,6 +54,7 @@
     "pascals-triangle",
     "pythagorean-triplet",
     "ocr-numbers",
+    "simple-linked-list",
     "diamond"
   ],
   "deprecated": [
