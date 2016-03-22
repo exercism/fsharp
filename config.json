@@ -55,6 +55,7 @@
     "pythagorean-triplet",
     "ocr-numbers",
     "simple-linked-list",
+    "robot-simulator",
     "diamond"
   ],
   "deprecated": [
