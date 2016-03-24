@@ -3,37 +3,22 @@ module SumOfMultiplesTest
 open NUnit.Framework
 open SumOfMultiples
 
-type SumOfMultiplesTest() =
-    [<Test>]
-    member tc.Sum_to_1() =
-        Assert.That(SumOfMultiples().To(0), Is.EqualTo(0))
+[<Test>]
+let ``Sum to 1``() =
+    Assert.That(sumOfMultiples [3; 5] 0, Is.EqualTo(0))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tc.Sum_to_3() =
-        Assert.That(SumOfMultiples().To(3), Is.EqualTo(0))
+[<Test>]
+let ``Sum to 3``() =
+    Assert.That(sumOfMultiples [3; 5] 3, Is.EqualTo(0))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tc.Sum_to_10() =
-        Assert.That(SumOfMultiples().To(10), Is.EqualTo(23))
+[<Test>]
+let ``Sum to 10``() =
+    Assert.That(sumOfMultiples [3; 5] 10, Is.EqualTo(23))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tc.Sum_to_100() =
-        Assert.That(SumOfMultiples().To(100), Is.EqualTo(2318))
+[<Test>]
+let ``Sum to 20``() =
+    Assert.That(sumOfMultiples [7; 13; 17] 20, Is.EqualTo(51))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tc.Sum_to_1000() =
-        Assert.That(SumOfMultiples().To(1000), Is.EqualTo(233168))
-
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tc.Configurable_7_13_17_to_20() =
-        Assert.That(SumOfMultiples([7; 13; 17]).To(20), Is.EqualTo(51))
-
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tc.Configurable_43_47_to_10000() =
-        Assert.That(SumOfMultiples([43; 47]).To(10000), Is.EqualTo(2203160))
+[<Test>]
+let ``Sum to 10000``() =
+    Assert.That(sumOfMultiples [43; 47] 10000, Is.EqualTo(2203160))
