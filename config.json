@@ -57,6 +57,7 @@
     "simple-linked-list",
     "robot-simulator",
     "prime-factors",
+    "saddle-points",
     "diamond"
   ],
   "deprecated": [
