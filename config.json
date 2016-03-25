@@ -59,6 +59,7 @@
     "prime-factors",
     "saddle-points",
     "secret-handshake",
+    "simple-cipher",
     "diamond"
   ],
   "deprecated": [
