@@ -58,6 +58,7 @@
     "robot-simulator",
     "prime-factors",
     "saddle-points",
+    "secret-handshake",
     "diamond"
   ],
   "deprecated": [
