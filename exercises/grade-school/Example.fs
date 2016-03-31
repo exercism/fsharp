@@ -1,10 +1,15 @@
 ﻿module School
 
-type School() =
+let empty = Map.empty<int, string list>
 
-    let mutable rosterMap : Map<int, string list> = Map.empty
+let add student grade school = 
+    match Map.tryFind grade school with
+    | Some existing -> Map.add grade (student :: existing |> List.sort) school
+    | None -> Map.add grade [student] school
 
-    member this.roster = rosterMap
-    member this.grade(mark:int) = if this.roster.ContainsKey(mark) then this.roster.[mark] else []
-    member this.add(student:string, mark:int): unit = 
-        rosterMap <- Map.add mark (student :: this.grade mark |> List.sort) rosterMap
+let roster school = school |> Map.toSeq
+
+let grade number school = 
+    match Map.tryFind number school with
+    | Some students -> students
+    | None -> []
