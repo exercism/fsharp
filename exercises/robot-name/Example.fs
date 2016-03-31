@@ -1,22 +1,19 @@
 ﻿module RobotName
 
-type RobotName() =
-    let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    let random = System.Random()
+let random = System.Random()
 
-    let generateRandomChar() = 
-        let index = random.Next(25)
-        alphabet.Substring(index, 1)
+type Robot() =
+    let letters = ['A'..'Z']
+    let digits = ['0'..'9']
 
-    let generateName() =
-        let number = random.Next(100, 999)
-        generateRandomChar() + generateRandomChar() + string number
+    let NumberOfLetters = 2;
+    let NumberOfDigits = 3    
 
-    let mutable name = generateName()
-
-    member this.Name
-        with get() = name
-        and set(value) = name <- value
-
-    member this.Reset() =
-        this.Name <- generateName()
+    let takeRandomElements xs length = List.init length (fun _ -> List.item (random.Next(List.length xs)) xs)
+    let generateRandomString chars length = new System.String(takeRandomElements chars length |> List.toArray)
+    let generateLetters() = generateRandomString letters NumberOfLetters
+    let generateDigits() = generateRandomString digits NumberOfDigits
+    let generateName() = generateLetters() + generateDigits()
+    
+    member val Name = generateName() with get, set
+    member this.Reset() = this.Name <- generateName()

@@ -3,30 +3,28 @@
 open NUnit.Framework
 open RobotName
 
-type RobotNameTest() =
-    let robot = RobotName()
-
-    [<Test>]
-    member tests.``Robot has a name``() =
-        StringAssert.IsMatch(@"\w{2}\d{3}", robot.Name)
-
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.``Name is the same each time``() =
-        Assert.That(robot.Name, Is.EqualTo(robot.Name))
-
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member this.``Different robots have different names``() =
-        let robot2 = RobotName()
-
-        Assert.That(robot.Name, Is.Not.EqualTo(robot2.Name))
-
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member this.``Can reset the name``() =
-        let originalName = robot.Name
-        
-        robot.Reset()
-
-        Assert.That(originalName, Is.Not.EqualTo(robot.Name))
+[<Test>]
+let ``Robot has a name`` () =     
+    let robot = new Robot()
+    StringAssert.IsMatch(@"\w{2}\d{3}", robot.Name)
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Name is the same each time`` () =     
+    let robot = new Robot()
+    Assert.That(robot.Name, Is.EqualTo(robot.Name))
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Different robots have different names`` () = 
+    let robot = new Robot()
+    let robot2 = new Robot()
+    Assert.That(robot.Name, Is.Not.EqualTo(robot2.Name))
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Can reset the name`` () =  
+    let robot = new Robot()
+    let originalName = robot.Name
+    robot.Reset()
+    Assert.That(originalName, Is.Not.EqualTo(robot.Name))
