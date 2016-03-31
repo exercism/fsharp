@@ -1,56 +1,31 @@
 ﻿module SpaceAge
 
-let EARTH_ORBIT_IN_SECONDS = 31557600m
+open System
 
-type Planets =
+type Planet = 
+    | Mercury
+    | Venus
     | Earth
     | Mars
-    | Venus
-    | Mercury
     | Jupiter
     | Saturn
-    | Uranus
     | Neptune
+    | Uranus
 
-type SpaceAge(seconds: decimal) =
-    let periodOfEarthYearToPlanet = 
-        [
-            Planets.Earth, 1m;
-            Planets.Mercury, 0.2408467m;
-            Planets.Venus, 0.61519726m;
-            Planets.Mars, 1.8808158m;
-            Planets.Jupiter, 11.862615m;
-            Planets.Saturn, 29.447498m;
-            Planets.Neptune, 164.79132m;
-            Planets.Uranus, 84.016846m;
-        ]
-        |> Map.ofList
+let secondsOnEarth = 31557600m    
 
-    let calculateAge(periodInEarthYears: decimal) =
-        System.Math.Round(seconds / (EARTH_ORBIT_IN_SECONDS * periodInEarthYears), 2)
+let planetPeriods = 
+    [Mercury, 0.2408467m;
+     Venus,   0.61519726m;
+     Earth,   1.0m;
+     Mars,    1.8808158m;
+     Jupiter, 11.862615m;
+     Saturn,  29.447498m;
+     Uranus,  84.016846m;
+     Neptune, 164.79132m] 
+    |> Map.ofList
 
-    member this.Seconds = seconds
-
-    member this.onEarth() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Earth])
-
-    member this.onMercury() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Mercury])
-
-    member this.onVenus() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Venus])
-
-    member this.onMars() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Mars])
-
-    member this.onJupiter() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Jupiter])
-
-    member this.onSaturn() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Saturn])
-
-    member this.onNeptune() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Neptune])
-
-    member this.onUranus() =
-        calculateAge(periodOfEarthYearToPlanet.[Planets.Uranus])
+let spaceAge planet (seconds: decimal) = 
+    let yearsUsingPeriod (period:decimal) = Math.Round((seconds / period) / secondsOnEarth, 2)
+        
+    yearsUsingPeriod planetPeriods.[planet]
