@@ -1,26 +1,22 @@
 ﻿module Triangle
 
+open System
+
 type TriangleKind =
     | Equilateral
     | Isosceles
     | Scalene
 
-type Triangle(side1: decimal, side2: decimal, side3: decimal) =
-    let hasSidesAsZeroes() = 
-        side1 = 0m && side2 = 0m && side3 = 0m
+let kind (x: decimal) (y: decimal) (z: decimal) = 
+    let hasZeroSides = x = 0m && y = 0m && z = 0m
+    let hasNegativeSide = x < 0m || y < 0m || z < 0m
+    let violatesTriangleEquality = x + y <= z || x + z <= y || y + z <= x
 
-    let hasSidesLessThanZero() =
-        side1 < 0m || side2 < 0m || side3 < 0m
+    let isInvalid = hasZeroSides || hasNegativeSide || violatesTriangleEquality
+    let isEquilateral = x = y && y = z
+    let isIsosceles = x = y || y = z || x = z
 
-    let hasTriangleInequality() =
-        side1 + side2 <= side3 || side1 + side3 <= side2 || side2 + side3 <= side1
-
-    member this.Kind() =
-        if hasSidesAsZeroes() || hasSidesLessThanZero() || hasTriangleInequality() then invalidOp "Invalid sides for triangle."
-
-        Seq.distinct [side1; side2; side3]
-            |> Seq.length
-            |> function
-                | 1 -> TriangleKind.Equilateral
-                | 2 -> TriangleKind.Isosceles
-                | _ -> TriangleKind.Scalene
+    if   isInvalid     then invalidOp "Invalid triangle."
+    elif isEquilateral then TriangleKind.Equilateral
+    elif isIsosceles   then TriangleKind.Isosceles
+    else TriangleKind.Scalene
