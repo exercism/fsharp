@@ -2,25 +2,21 @@
 
 open NUnit.Framework
 open Gigasecond
-
-type GigasecondTest() =
+open System
     
-    [<Test>]
-    member tests.First_date() =
-        let gigasecond = Gigasecond(System.DateTime(2011, 4, 25, 0, 0, 0, System.DateTimeKind.Utc))
+[<Test>]
+let ``First date`` () =
+    let input = DateTime(2011, 4, 25)
+    Assert.That(gigasecond input, Is.EqualTo(DateTime(2043, 1, 1)))
 
-        Assert.That<System.DateTime>(gigasecond.Date, Is.EqualTo(System.DateTime(2043, 1, 1, 1, 46, 40, System.DateTimeKind.Utc)))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Another date`` () =
+    let input = DateTime(1977, 6, 13)
+    Assert.That(gigasecond input, Is.EqualTo(DateTime(2009, 2, 19)))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Another_date() =
-        let gigasecond = Gigasecond(System.DateTime(1977, 6, 13, 0, 0, 0, System.DateTimeKind.Utc))
-
-        Assert.That<System.DateTime>(gigasecond.Date, Is.EqualTo(System.DateTime(2009, 2, 19, 1, 46, 40, System.DateTimeKind.Utc)))
-
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Yet_another_date() =
-        let gigasecond = Gigasecond(System.DateTime(1959, 7, 19, 0, 0, 0, System.DateTimeKind.Utc))
-
-        Assert.That<System.DateTime>(gigasecond.Date, Is.EqualTo(System.DateTime(1991, 3, 27, 1, 46, 40, System.DateTimeKind.Utc)))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Yet another date`` () =
+    let input = DateTime(1959, 7, 19)
+    Assert.That(gigasecond input, Is.EqualTo(DateTime(1991, 3, 27)))
