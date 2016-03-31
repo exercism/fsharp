@@ -1,20 +1,12 @@
 ﻿module BankAccount
 
+let inline (|?) (a: 'a option) b = if a.IsSome then a.Value else b
+
 type BankAccount() =
-    member val Balance = Option<float>.None with get, set
-
-    member this.openAccount() =
-        this.Balance <- Some 0.0
-        this.Balance.Value
-
-    member this.closeAccount() =
-        this.Balance <- None
-
-    member this.getBalance() =
-        this.Balance.Value
-
-    member this.updateBalance(newBalance: float) =
-        let balance = this.Balance.Value
-        let updatedBalance = balance + newBalance
-
-        this.Balance <- Some updatedBalance
+    let mutable balance = Option<float>.None
+    
+    member this.openAccount() = balance <- Some(0.0)
+    member this.updateBalance change = balance <- Some(this.getBalance() + change)
+    member this.getBalance() = balance |? 0.0
+    member this.closeAccount() = balance <- Option<float>.None
+    member this.Balance = balance

@@ -3,53 +3,58 @@
 open NUnit.Framework
 open BankAccount
 
-type BankAccountTest() =
+[<Test>]
+let ``Returns empty balance after opening`` () =
     let account = BankAccount()
 
-    [<Test>]
-    member tests.Returns_empty_balance_after_opening() =
-        account.openAccount() |> ignore
+    account.openAccount() |> ignore
 
-        Assert.That(account.getBalance(), Is.EqualTo(0.0))
+    Assert.That(account.getBalance(), Is.EqualTo(0.0))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Check_basic_balance() =
-        account.openAccount() |> ignore
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Check basic balance`` () =
+    let account = BankAccount()
 
-        let openingBalance = account.getBalance()
+    account.openAccount() |> ignore
 
-        account.updateBalance(10.0)
+    let openingBalance = account.getBalance()
 
-        let updatedBalance = account.getBalance()
+    account.updateBalance(10.0)
 
-        Assert.That(openingBalance, Is.EqualTo(0.0))
-        Assert.That(updatedBalance, Is.EqualTo(10.0))
+    let updatedBalance = account.getBalance()
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Balance_can_increment_or_decrement() =
-        account.openAccount() |> ignore
+    Assert.That(openingBalance, Is.EqualTo(0.0))
+    Assert.That(updatedBalance, Is.EqualTo(10.0))
 
-        let openingBalance = account.getBalance()
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Balance can increment or decrement`` () =
+    let account = BankAccount()
 
-        account.updateBalance(10.0)
+    account.openAccount() |> ignore
 
-        let addedBalance = account.getBalance()
+    let openingBalance = account.getBalance()
 
-        account.updateBalance(-15.0)
+    account.updateBalance(10.0)
 
-        let subtractedBalance = account.getBalance()
+    let addedBalance = account.getBalance()
 
-        Assert.That(openingBalance, Is.EqualTo(0.0))
-        Assert.That(addedBalance, Is.EqualTo(10.0))
-        Assert.That(subtractedBalance, Is.EqualTo(-5.0))
+    account.updateBalance(-15.0)
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Account_can_be_closed() =
-        account.openAccount() |> ignore
+    let subtractedBalance = account.getBalance()
 
-        account.closeAccount()
+    Assert.That(openingBalance, Is.EqualTo(0.0))
+    Assert.That(addedBalance, Is.EqualTo(10.0))
+    Assert.That(subtractedBalance, Is.EqualTo(-5.0))
 
-        Assert.That(account.Balance, Is.EqualTo(Option<float>.None))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Account can be closed`` () =
+    let account = BankAccount()
+
+    account.openAccount() |> ignore
+
+    account.closeAccount()
+
+    Assert.That(account.Balance, Is.EqualTo(Option<float>.None))
