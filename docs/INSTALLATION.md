@@ -33,11 +33,11 @@ By default, Visual Studio does not allow you to organize F# files by folder. Thi
 
 1. Download the [Exercism.io Visual Studio Template](https://github.com/rprouse/Exercism.VisualStudio) from GitHub by clicking the Download Zip button on the page.
 2. Unzip the template into your exercises directory, for example `C:\src\exercises`
-2. Install the [Exercism CLI](http://help.exercism.io/installing-the-cli.html)
+2. Install the [Exercism CLI](http://exercism.io/cli)
 3. Open a command prompt to your exercise directory
 4. Add your API key to exercism `exercism configure --key=YOUR_API_KEY`
 5. Configure your source directory in exercism `exercism configure --dir=C:\src\exercises`
-6. [Fetch your first exercise](http://help.exercism.io/fetching-exercises.html) `exercism fetch fsharp`
+6. [Fetch your first exercise](http://exercism.io/how-it-works/newbie) `exercism fetch fsharp`
 7. Open the Exercism solution in Visual Studio
 8. Expand the Exercism.FSharp project
 9. Right click on the project and select **F# Power Tools | New Folder**. Enter the name for the **existing** exercise folder.
