@@ -5,7 +5,7 @@ open NUnit.Framework
 open SaddlePoints
 
 [<Test>]
-let ``Readme example``() =
+let ``Readme example`` () =
     let values = [ [ 9; 8; 7 ]; 
                    [ 5; 3; 2 ]; 
                    [ 6; 6; 7 ] ]
@@ -14,7 +14,7 @@ let ``Readme example``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``No saddle point``() =
+let ``No saddle point`` () =
     let values = [ [ 2; 1 ]; 
                    [ 1; 2 ] ]
     let actual = saddlePoints values
@@ -22,7 +22,7 @@ let ``No saddle point``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Saddle point``() =
+let ``Saddle point`` () =
     let values = [ [ 1; 2 ]; 
                    [ 3; 4 ] ]
     let actual = saddlePoints values
@@ -30,7 +30,7 @@ let ``Saddle point``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Another saddle point``() =
+let ``Another saddle point`` () =
     let values = [ [ 18;  3; 39; 19;  91 ]; 
                    [ 38; 10;  8; 77; 320 ]; 
                    [  3;  4;  8;  6;   7 ] ]
@@ -39,7 +39,7 @@ let ``Another saddle point``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Multiple saddle points``() =
+let ``Multiple saddle points`` () =
     let values = [ [ 4; 5; 4 ];
                    [ 3; 5; 5 ];
                    [ 1; 5; 4 ] ]

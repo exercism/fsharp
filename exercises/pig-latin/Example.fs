@@ -2,13 +2,12 @@
 
 open System.Text.RegularExpressions
 
-type PigLatin() =
-    let vowelRegex = Regex(@"(?<begin>^|\s+)(?<vowel>a|e|i|o|u|yt|xr)(?<rest>\w+)", RegexOptions.Compiled)
-    let consonantRegex = Regex(@"(?<begin>^|\s+)(?<consonant>ch|qu|thr|th|sch|yt|\wqu|\w)(?<rest>\w+)", RegexOptions.Compiled)
+let vowelRegex = Regex(@"(?<begin>^|\s+)(?<vowel>a|e|i|o|u|yt|xr)(?<rest>\w+)", RegexOptions.Compiled)
+let consonantRegex = Regex(@"(?<begin>^|\s+)(?<consonant>ch|qu|thr|th|sch|yt|\wqu|\w)(?<rest>\w+)", RegexOptions.Compiled)
 
-    let vowelReplacement = "${begin}${vowel}${rest}ay";
-    let consonantReplacement = "${begin}${rest}${consonant}ay";
+let vowelReplacement = "${begin}${vowel}${rest}ay";
+let consonantReplacement = "${begin}${rest}${consonant}ay";
 
-    member this.translate(input) = 
-        if vowelRegex.IsMatch input then vowelRegex.Replace(input, vowelReplacement)
-        else consonantRegex.Replace(input, consonantReplacement)
+let translate input = 
+    if vowelRegex.IsMatch input then vowelRegex.Replace(input, vowelReplacement)
+    else consonantRegex.Replace(input, consonantReplacement)

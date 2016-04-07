@@ -1,13 +1,13 @@
 ﻿module Trinary
 
-type Trinary(input: string) =
-    let rec toDecimalLoop acc input = 
-        if input = "" then acc
-        else 
-            let head = input.Chars 0
-            let tail = input.Substring 1
-            match head with
-                | '0' | '1' | '2' -> toDecimalLoop (acc * 3 + (int)head - (int)'0') tail
-                | _  -> 0   
+let isValid char = 
+    match char with
+    | '0' | '1' | '2' -> true
+    | _  -> false
 
-    member this.toDecimal() = toDecimalLoop 0 input
+let charToDecimal char = (int)char - (int)'0'
+
+let toDecimal(input: string) = 
+    let chars = input.ToCharArray()
+    if Array.forall isValid chars then Array.fold (fun acc c -> acc * 3 + charToDecimal c) 0 chars
+    else 0

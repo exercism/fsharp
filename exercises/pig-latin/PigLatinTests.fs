@@ -3,64 +3,62 @@
 open NUnit.Framework
 open PigLatin
 
-type PigLatinTests() =
-    
-    [<TestCase("apple", ExpectedResult = "appleay")>]
-    [<TestCase("ear", ExpectedResult = "earay", Ignore = "Remove to run test case")>]
-    [<TestCase("igloo", ExpectedResult = "iglooay", Ignore = "Remove to run test case")>]
-    [<TestCase("object", ExpectedResult = "objectay", Ignore = "Remove to run test case")>]
-    [<TestCase("under", ExpectedResult = "underay", Ignore = "Remove to run test case")>]
-    member tests.Ay_is_added_to_words_that_start_with_vowels(word) =
-        PigLatin().translate(word)
+[<TestCase("apple", ExpectedResult = "appleay")>]
+[<TestCase("ear", ExpectedResult = "earay", Ignore = "Remove to run test case")>]
+[<TestCase("igloo", ExpectedResult = "iglooay", Ignore = "Remove to run test case")>]
+[<TestCase("object", ExpectedResult = "objectay", Ignore = "Remove to run test case")>]
+[<TestCase("under", ExpectedResult = "underay", Ignore = "Remove to run test case")>]
+let ``Ay is added to words that start with vowels`` (word) =
+    translate word
 
-    [<TestCase("pig", ExpectedResult = "igpay", Ignore = "Remove to run test case")>]
-    [<TestCase("koala", ExpectedResult = "oalakay", Ignore = "Remove to run test case")>]
-    [<TestCase("yellow", ExpectedResult = "ellowyay", Ignore = "Remove to run test case")>]
-    [<TestCase("xenon", ExpectedResult = "enonxay", Ignore = "Remove to run test case")>]
-    member tests.First_letter_and_ay_are_moved_to_the_end_of_words_that_start_with_consonants(word) =
-        PigLatin().translate(word)
+[<TestCase("pig", ExpectedResult = "igpay", Ignore = "Remove to run test case")>]
+[<TestCase("koala", ExpectedResult = "oalakay", Ignore = "Remove to run test case")>]
+[<TestCase("yellow", ExpectedResult = "ellowyay", Ignore = "Remove to run test case")>]
+[<TestCase("xenon", ExpectedResult = "enonxay", Ignore = "Remove to run test case")>]
+let ``First letter and ay are moved to the end of words that start with consonants`` (word) =
+    translate word
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Ch_is_treated_like_a_single_consonant() =
-        Assert.That(PigLatin().translate("chair"), Is.EqualTo("airchay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Ch is treated like a single consonant`` () =
+    Assert.That(translate "chair", Is.EqualTo("airchay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Qu_is_treated_like_a_single_consonant() =
-        Assert.That(PigLatin().translate("queen"), Is.EqualTo("eenquay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Qu is treated like a single consonant`` () =
+    Assert.That(translate "queen", Is.EqualTo("eenquay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Qu_and_a_single_preceding_consonant_are_treated_like_a_single_consonant() =
-        Assert.That(PigLatin().translate("square"), Is.EqualTo("aresquay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Qu and a single preceding consonant are treated like a single consonant`` () =
+    Assert.That(translate "square", Is.EqualTo("aresquay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Th_is_treated_like_a_single_consonant() =
-        Assert.That(PigLatin().translate("therapy"), Is.EqualTo("erapythay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Th is treated like a single consonant`` () =
+    Assert.That(translate "therapy", Is.EqualTo("erapythay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Thr_is_treated_like_a_single_consonant() =
-        Assert.That(PigLatin().translate("thrush"), Is.EqualTo("ushthray"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Thr is treated like a single consonant`` () =
+    Assert.That(translate "thrush", Is.EqualTo("ushthray"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Sch_is_treated_like_a_single_consonant() =
-        Assert.That(PigLatin().translate("school"), Is.EqualTo("oolschay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Sch is treated like a single consonant`` () =
+    Assert.That(translate "school", Is.EqualTo("oolschay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Yt_is_treated_like_a_single_vowel() =
-        Assert.That(PigLatin().translate("yttria"), Is.EqualTo("yttriaay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Yt is treated like a single vowel`` () =
+    Assert.That(translate "yttria", Is.EqualTo("yttriaay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Xr_is_treated_like_a_single_vowel() =
-        Assert.That(PigLatin().translate("xray"), Is.EqualTo("xrayay"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Xr is treated like a single vowel`` () =
+    Assert.That(translate "xray", Is.EqualTo("xrayay"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Phrases_are_translated() =
-        Assert.That(PigLatin().translate("quick fast run"), Is.EqualTo("ickquay astfay unray"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Phrases are translated`` () =
+    Assert.That(translate "quick fast run", Is.EqualTo("ickquay astfay unray"))

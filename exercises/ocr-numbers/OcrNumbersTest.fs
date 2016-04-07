@@ -5,7 +5,7 @@ open NUnit.Framework
 open OcrNumbers
 
 [<Test>]
-let ``Recognizes zero``() = 
+let ``Recognizes zero`` () = 
     let converted = convert (" _ " + "\n" +
                               "| |" + "\n" +
                               "|_|" + "\n" +
@@ -14,7 +14,7 @@ let ``Recognizes zero``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes one``() = 
+let ``Recognizes one`` () = 
     let converted = convert ("   " + "\n" +
                              "  |" + "\n" +
                              "  |" + "\n" +
@@ -23,7 +23,7 @@ let ``Recognizes one``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes two``() = 
+let ``Recognizes two`` () = 
     let converted = convert (" _ " + "\n" +
                              " _|" + "\n" +
                              "|_ " + "\n" +
@@ -32,7 +32,7 @@ let ``Recognizes two``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes three``() = 
+let ``Recognizes three`` () = 
     let converted = convert (" _ " + "\n" +
                              " _|" + "\n" +
                              " _|" + "\n" +
@@ -41,7 +41,7 @@ let ``Recognizes three``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes four``() = 
+let ``Recognizes four`` () = 
     let converted = convert ("   " + "\n" +
                              "|_|" + "\n" +
                              "  |" + "\n" +
@@ -50,7 +50,7 @@ let ``Recognizes four``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes five``() = 
+let ``Recognizes five`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_ " + "\n" +
                              " _|" + "\n" +
@@ -59,7 +59,7 @@ let ``Recognizes five``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes six``() = 
+let ``Recognizes six`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_ " + "\n" +
                              "|_|" + "\n" +
@@ -68,7 +68,7 @@ let ``Recognizes six``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes seven``() = 
+let ``Recognizes seven`` () = 
     let converted = convert (" _ " + "\n" +
                              "  |" + "\n" +
                              "  |" + "\n" +
@@ -77,7 +77,7 @@ let ``Recognizes seven``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes eight``() = 
+let ``Recognizes eight`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_|" + "\n" +
                              "|_|" + "\n" +
@@ -86,7 +86,7 @@ let ``Recognizes eight``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes nine``() = 
+let ``Recognizes nine`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_|" + "\n" +
                              " _|" + "\n" +
@@ -95,7 +95,7 @@ let ``Recognizes nine``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes garble``() = 
+let ``Recognizes garble`` () = 
     let converted = convert ("   " + "\n" +
                              "| |" + "\n" +
                              "| |" + "\n" +
@@ -104,7 +104,7 @@ let ``Recognizes garble``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes ten``() = 
+let ``Recognizes ten`` () = 
     let converted = convert ("    _ " + "\n" +
                              "  || |" + "\n" +
                              "  ||_|" + "\n" +
@@ -113,7 +113,7 @@ let ``Recognizes ten``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes 110101100``() = 
+let ``Recognizes 110101100`` () = 
     let converted = convert ("       _     _        _  _ " + "\n" +
                              "  |  || |  || |  |  || || |" + "\n" +
                              "  |  ||_|  ||_|  |  ||_||_|" + "\n" +
@@ -122,7 +122,7 @@ let ``Recognizes 110101100``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes numbers and garble``() = 
+let ``Recognizes numbers and garble`` () = 
     let converted = convert ("       _     _           _ " + "\n" +
                              "  |  || |  || |     || || |" + "\n" +
                              "  |  | _|  ||_|  |  ||_||_|" + "\n" +
@@ -131,7 +131,7 @@ let ``Recognizes numbers and garble``() =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Recognizes multiple rows``() = 
+let ``Recognizes multiple rows`` () = 
     let converted = convert ("    _  _ " + "\n" +
                              "  | _| _|" + "\n" +
                              "  ||_  _|" + "\n" +

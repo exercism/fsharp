@@ -5,17 +5,17 @@ open NUnit.Framework
 open Sieve
 
 [<Test>]
-let ``Finds first prime``() =
+let ``Finds first prime`` () =
     Assert.That(primesUpTo 2, Is.EqualTo([ 2 ]))
     
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Finds primes up to 10``() =
+let ``Finds primes up to 10`` () =
     Assert.That(primesUpTo 10, Is.EqualTo([ 2; 3; 5; 7 ]))
     
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Finds primes up to 1000``() =
+let ``Finds primes up to 1000`` () =
     Assert.That(primesUpTo 1000,
         Is.EqualTo(
             [

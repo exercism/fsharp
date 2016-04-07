@@ -2,24 +2,22 @@
 
 open NUnit.Framework
 open Octal
-
-type OctalTests() =
     
-    [<TestCase("1", ExpectedResult = 1)>]
-    [<TestCase("10", ExpectedResult = 8, Ignore = "Remove to run test case")>]
-    [<TestCase("17", ExpectedResult = 15, Ignore = "Remove to run test case")>]
-    [<TestCase("11", ExpectedResult = 9, Ignore = "Remove to run test case")>]
-    [<TestCase("130", ExpectedResult = 88, Ignore = "Remove to run test case")>]
-    [<TestCase("2047", ExpectedResult = 1063, Ignore = "Remove to run test case")>]
-    [<TestCase("7777", ExpectedResult = 4095, Ignore = "Remove to run test case")>]
-    [<TestCase("1234567", ExpectedResult = 342391, Ignore = "Remove to run test case")>]
-    member tests.Octal_converts_to_decimal(input) =
-        Octal(input).toDecimal()
+[<TestCase("1", ExpectedResult = 1)>]
+[<TestCase("10", ExpectedResult = 8, Ignore = "Remove to run test case")>]
+[<TestCase("17", ExpectedResult = 15, Ignore = "Remove to run test case")>]
+[<TestCase("11", ExpectedResult = 9, Ignore = "Remove to run test case")>]
+[<TestCase("130", ExpectedResult = 88, Ignore = "Remove to run test case")>]
+[<TestCase("2047", ExpectedResult = 1063, Ignore = "Remove to run test case")>]
+[<TestCase("7777", ExpectedResult = 4095, Ignore = "Remove to run test case")>]
+[<TestCase("1234567", ExpectedResult = 342391, Ignore = "Remove to run test case")>]
+let ``Octal converts to decimal`` (input) =
+    toDecimal input
 
-    [<TestCase("carrot", Ignore = "Remove to run test case")>]
-    [<TestCase("8", Ignore = "Remove to run test case")>]
-    [<TestCase("9", Ignore = "Remove to run test case")>]
-    [<TestCase("6789", Ignore = "Remove to run test case")>]
-    [<TestCase("abc1z", Ignore = "Remove to run test case")>]
-    member tests.Invalid_octal_is_decimal_0(input) =
-        Assert.That(Octal(input).toDecimal(), Is.EqualTo(0))
+[<TestCase("carrot", Ignore = "Remove to run test case")>]
+[<TestCase("8", Ignore = "Remove to run test case")>]
+[<TestCase("9", Ignore = "Remove to run test case")>]
+[<TestCase("6789", Ignore = "Remove to run test case")>]
+[<TestCase("abc1z", Ignore = "Remove to run test case")>]
+let ``Invalid octal is decimal 0`` (input) =
+    Assert.That(toDecimal input, Is.EqualTo(0))

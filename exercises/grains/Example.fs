@@ -1,8 +1,6 @@
 ﻿module Grains
 
-type Grains() =
-    member this.square(number: int) =
-        2I ** (number - 1)
+open System.Numerics
 
-    member this.total() =
-        [1I..64I] |> List.reduce(fun accumulator element -> accumulator + this.square(int element))
+let square (n:int) = 2I ** (n - 1)
+let total = [1..64] |> List.sumBy square

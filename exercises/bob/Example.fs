@@ -1,22 +1,15 @@
 ﻿module Bob
 
-type Bob(statement: string) =
-    let isSilence(statement: string) =
-        System.String.IsNullOrWhiteSpace(statement)
-    
-    let isYelling(statement: string) =
-        statement.ToUpper() = statement && System.Text.RegularExpressions.Regex.IsMatch(statement, "[a-zA-Z]+")
+open System
 
-    let isQuestion(statement: string) =
-        statement.EndsWith("?")
+let hey(input: string) = 
+    let isEmpty = String.IsNullOrWhiteSpace input
+    let isYell = Seq.exists Char.IsLetter input && input = input.ToUpperInvariant()
+    let isQuestion = input.EndsWith "?"
 
-    member this.Statement = statement
+    match input with 
+        | _ when isEmpty -> "Fine. Be that way!"
+        | _ when isYell -> "Whoa, chill out!"
+        | _ when isQuestion -> "Sure."
+        | _ -> "Whatever."
 
-    member this.hey() =
-        match isSilence(this.Statement) with
-            | true -> "Fine. Be that way!"
-            | false -> (match isYelling(this.Statement) with
-                            | true -> "Whoa, chill out!"
-                            | false -> (match isQuestion(this.Statement) with
-                                            | true -> "Sure."
-                                            | false -> "Whatever."))

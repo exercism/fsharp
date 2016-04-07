@@ -2,79 +2,77 @@
 
 open NUnit.Framework
 open Bob
-
-type BobTest() =
     
-    [<Test>]
-    member tests.Stating_something() =
-        Assert.That(Bob("Tom-ay-to, tom-aaaah-to.").hey(), Is.EqualTo("Whatever."))
+[<Test>]
+let ``Stating something`` () =
+    Assert.That(hey "Tom-ay-to, tom-aaaah-to.", Is.EqualTo("Whatever."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Shouting() =
-        Assert.That(Bob("WATCH OUT!").hey(), Is.EqualTo("Whoa, chill out!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Shouting`` () =
+    Assert.That(hey "WATCH OUT!", Is.EqualTo("Whoa, chill out!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Asking_a_question() =
-        Assert.That(Bob("Does this cryogenic chamber make me look fat?").hey(), Is.EqualTo("Sure."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Asking a question`` () =
+    Assert.That(hey "Does this cryogenic chamber make me look fat?", Is.EqualTo("Sure."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Asking_a_numeric_question() =
-        Assert.That(Bob("You are, what, like 15?").hey(), Is.EqualTo("Sure."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Asking a numeric question`` () =
+    Assert.That(hey "You are, what, like 15?", Is.EqualTo("Sure."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Forceful_questions() =
-        Assert.That(Bob("WHAT THE HELL WERE YOU THINKING?").hey(), Is.EqualTo("Whoa, chill out!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Forceful questions`` () =
+    Assert.That(hey "WHAT THE HELL WERE YOU THINKING?", Is.EqualTo("Whoa, chill out!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Shouting_numbers() =
-        Assert.That(Bob("1, 2, 3 GO!").hey(), Is.EqualTo("Whoa, chill out!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Shouting numbers`` () =
+    Assert.That(hey "1, 2, 3 GO!", Is.EqualTo("Whoa, chill out!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Only_numbers() =
-        Assert.That(Bob("1, 2, 3").hey(), Is.EqualTo("Whatever."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Only numbers`` () =
+    Assert.That(hey "1, 2, 3", Is.EqualTo("Whatever."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Question_only_with_numbers() =
-        Assert.That(Bob("4?").hey(), Is.EqualTo("Sure."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Question only with numbers`` () =
+    Assert.That(hey "4?", Is.EqualTo("Sure."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Shouting_with_special_characters() =
-        Assert.That(Bob("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!").hey(), Is.EqualTo("Whoa, chill out!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Shouting with special characters`` () =
+    Assert.That(hey "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!", Is.EqualTo("Whoa, chill out!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Shouting_with_no_exlamation_mark() =
-        Assert.That(Bob("I HATE YOU").hey(), Is.EqualTo("Whoa, chill out!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Shouting with no exlamation mark`` () =
+    Assert.That(hey "I HATE YOU", Is.EqualTo("Whoa, chill out!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Statement_containing_question_mark() =
-        Assert.That(Bob("Ending with ? means a question.").hey(), Is.EqualTo("Whatever."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Statement containing question mark`` () =
+    Assert.That(hey "Ending with ? means a question.", Is.EqualTo("Whatever."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Prattling_on() =
-        Assert.That(Bob("Wait! Hang on. Are you going to be OK?").hey(), Is.EqualTo("Sure."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Prattling on`` () =
+    Assert.That(hey "Wait! Hang on. Are you going to be OK?", Is.EqualTo("Sure."))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Silence() =
-        Assert.That(Bob("").hey(), Is.EqualTo("Fine. Be that way!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Silence`` () =
+    Assert.That(hey "", Is.EqualTo("Fine. Be that way!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Prolonged_silence() =
-        Assert.That(Bob("    ").hey(), Is.EqualTo("Fine. Be that way!"))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Prolonged silence`` () =
+    Assert.That(hey "    ", Is.EqualTo("Fine. Be that way!"))
 
-    [<Test>]
-    [<Ignore("Remove to run test")>]
-    member tests.Multiple_line_question() =
-        Assert.That(Bob("Does this cryogenic chamber make me look fat?\nno").hey(), Is.EqualTo("Whatever."))
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Multiple line question`` () =
+    Assert.That(hey "Does this cryogenic chamber make me look fat?\nno", Is.EqualTo("Whatever."))

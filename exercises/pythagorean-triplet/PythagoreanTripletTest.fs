@@ -18,18 +18,18 @@ let ``Can recognize a valid pythagorean`` (x: int) (y: int) (z: int) =
    
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Can create simple triplets``() =
+let ``Can create simple triplets`` () =
     let actual = pythagoreanTriplets 1 10
     Assert.That(actual, Is.EqualTo([triplet 3 4 5; triplet 6 8 10]))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Can create more triplets``() =
+let ``Can create more triplets`` () =
     let actual = pythagoreanTriplets 11 20
     Assert.That(actual, Is.EqualTo([triplet 12 16 20]))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Can create complex triplets``() =
+let ``Can create complex triplets`` () =
     let actual = pythagoreanTriplets 56 95
     Assert.That(actual, Is.EqualTo([triplet 57 76 95; triplet 60 63 87]))

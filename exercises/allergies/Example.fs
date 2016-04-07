@@ -12,11 +12,10 @@ type Allergen =
    | Pollen = 64
    | Cats = 128
 
-type Allergies(codedAllergies) =
+let allergicTo (allergen: Allergen) (codedAllergies: int) = codedAllergies &&& int allergen <> 0
 
-    member this.allergicTo(allergen: Allergen) = codedAllergies &&& int allergen <> 0
-
-    member this.list() = Enum.GetValues(typeof<Allergen>) 
-                         |> Seq.cast<Allergen> 
-                         |> List.ofSeq 
-                         |> List.filter this.allergicTo
+let allergies (codedAllergies: int) = 
+    Enum.GetValues(typeof<Allergen>) 
+    |> Seq.cast<Allergen> 
+    |> List.ofSeq 
+    |> List.filter (fun allergen -> allergicTo allergen codedAllergies)
