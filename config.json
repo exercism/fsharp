@@ -60,7 +60,8 @@
     "saddle-points",
     "secret-handshake",
     "simple-cipher",
-    "connect",
+    "food-chain",
+    "connect",    
     "diamond"
   ],
   "deprecated": [
