@@ -35,4 +35,4 @@ let ``Complicated word scores more`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Scores are case insensitive`` () =
-    Assert.That(score "MULTIBILLIONAIRE", Is.EqualTo(20))
+    Assert.That(score "OXYPHENBUTAZONE", Is.EqualTo(41))

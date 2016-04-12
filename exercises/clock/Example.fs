@@ -19,7 +19,7 @@ type Clock(hours, minutes) =
 
     override this.Equals(other) =
         match other with
-        | :? Clock as y -> (this.totalMinutes = y.totalMinutes)
+        | :? Clock as y -> this.normalizedHours = y.normalizedHours && this.normalizedMinutes = y.normalizedMinutes
         | _ -> false
  
     override this.GetHashCode() = hash this.totalMinutes
@@ -27,5 +27,8 @@ type Clock(hours, minutes) =
     interface System.IComparable with
       member this.CompareTo other =
           match other with
-          | :? Clock as y -> compare this.totalMinutes y.totalMinutes
+          | :? Clock as y -> 
+            let hoursCompared = compare this.normalizedHours y.normalizedHours
+            if hoursCompared = 0 then compare this.normalizedMinutes y.normalizedMinutes 
+            else hoursCompared
           | _ -> invalidArg "other" "Cannot compare objects of different types"

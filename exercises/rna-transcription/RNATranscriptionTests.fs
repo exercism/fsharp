@@ -1,7 +1,8 @@
 ﻿module RNATranscriptionTests
 
 open NUnit.Framework
-open Complement
+
+open RNATranscription
     
 [<Test>]
 let ``Rna complement of cytosine is guanine`` () =
@@ -26,28 +27,3 @@ let ``Rna complement of adenine is uracil`` () =
 [<Ignore("Remove to run test")>]
 let ``Rna complement`` () =
     Assert.That(toRna "ACGTGGTCTTAA", Is.EqualTo("UGCACCAGAAUU"))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Dna complement of cytosine is guanine`` () =
-    Assert.That(toDna "C", Is.EqualTo("G"))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Dna complement of guanine is cytosine`` () =
-    Assert.That(toDna "G", Is.EqualTo("C"))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Dna complement of uracil is adenine`` () =
-    Assert.That(toDna "U", Is.EqualTo("A"))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Dna complement of adenine is thymine`` () =
-    Assert.That(toDna "A", Is.EqualTo("T"))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Dna complement`` () =
-    Assert.That(toDna "UGAACCCGACAUG", Is.EqualTo("ACTTGGGCTGTAC"))
