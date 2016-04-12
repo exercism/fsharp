@@ -30,6 +30,13 @@ let ``Can add over an hour`` () =
     let added = clock.add(63)
     Assert.That(added.ToString(), Is.EqualTo("11:03"))
 
+[<Test>]    
+[<Ignore("Remove to run test")>]
+let ``Can add over more than one day`` () =
+    let clock = new Clock(10)
+    let added = clock.add(7224)
+    Assert.That(added.ToString(), Is.EqualTo("10:24"))
+
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can subtract minutes`` () =
@@ -82,4 +89,11 @@ let ``Sixty minutes is next hour`` () =
 let ``Clocks with same time are equal`` () =
     let clock1 = new Clock(14, 30)
     let clock2 = new Clock(14, 30)
+    Assert.That(clock1, Is.EqualTo(clock2))
+
+[<Test>]    
+[<Ignore("Remove to run test")>]
+let ``Overflown clocks with same time are equal`` () =
+    let clock1 = new Clock(14, 30)
+    let clock2 = new Clock(38, 30)
     Assert.That(clock1, Is.EqualTo(clock2))
