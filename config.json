@@ -63,6 +63,7 @@
     "secret-handshake",
     "simple-cipher",
     "food-chain",
+    "run-length-encoding",
     "connect",    
     "diamond"
   ],
