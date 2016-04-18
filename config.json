@@ -65,6 +65,7 @@
     "food-chain",
     "run-length-encoding",
     "connect",    
+    "bowling",
     "diamond"
   ],
   "deprecated": [
