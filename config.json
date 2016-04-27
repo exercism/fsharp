@@ -66,6 +66,7 @@
     "run-length-encoding",
     "connect",    
     "bowling",
+    "scale-generator",
     "diamond"
   ],
   "deprecated": [
