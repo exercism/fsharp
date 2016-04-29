@@ -70,6 +70,7 @@
     "circular-buffer",
     "house",
     "list-ops",
+    "parallel-letter-frequency",
     "diamond"
   ],
   "deprecated": [
