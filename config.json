@@ -68,6 +68,7 @@
     "bowling",
     "scale-generator",
     "circular-buffer",
+    "house",
     "diamond"
   ],
   "deprecated": [
