@@ -67,6 +67,7 @@
     "connect",    
     "bowling",
     "scale-generator",
+    "circular-buffer",
     "diamond"
   ],
   "deprecated": [
