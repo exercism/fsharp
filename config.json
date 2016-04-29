@@ -69,6 +69,7 @@
     "scale-generator",
     "circular-buffer",
     "house",
+    "list-ops",
     "diamond"
   ],
   "deprecated": [
