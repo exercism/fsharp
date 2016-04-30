@@ -72,7 +72,8 @@
     "list-ops",
     "parallel-letter-frequency",
     "phone-number",
-    "say",
+    "say",    
+    "sublist",
     "diamond"
   ],
   "deprecated": [
