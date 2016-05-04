@@ -44,14 +44,14 @@ let tens n =
         
         let (count, remainder) = quotRem (int64 n) 10L
         let countStr = Array.item ((int count) - 2)  values
-        let basesStr = Option.fold (fun acc item -> "-" + item) "" (bases (int remainder))
+        let basesStr = Option.fold (fun _ item -> "-" + item) "" (bases (int remainder))
         Some (countStr + basesStr)
 
 let hundreds n = 
     if n < 100L then tens (int n)
     else 
         let (count, remainder) = quotRem (int64 n) 100L
-        let tensStr = Option.fold (fun acc item -> " " + item) "" (tens (int remainder))
+        let tensStr = Option.fold (fun _ item -> " " + item) "" (tens (int remainder))
         Option.bind (fun item -> Some (item + " hundred" + tensStr)) (bases (int count))
 
 let chunk str n = Option.bind (fun item -> Some (item + " " + str)) (hundreds n)

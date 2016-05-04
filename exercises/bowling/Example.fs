@@ -17,7 +17,7 @@ let score game =
 
     let sumOfBallsInFrame frameIndex = roll frameIndex + roll (frameIndex + 1)
     
-    let folder (score, frameIndex) frame = 
+    let folder (score, frameIndex) _ = 
         if isStrike frameIndex then (score + 10 + strikeBonus frameIndex, frameIndex + 1)
         elif isSpare frameIndex then (score + 10 + spareBonus frameIndex, frameIndex + 2)
         else (score + sumOfBallsInFrame frameIndex, frameIndex + 2)
