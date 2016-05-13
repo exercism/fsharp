@@ -78,7 +78,8 @@
     "alphametics",
     "word-search",
     "diamond",
-    "forth"
+    "forth",
+    "rail-fence-cipher"
   ],
   "deprecated": [
 
