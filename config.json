@@ -80,7 +80,8 @@
     "diamond",
     "forth",
     "rail-fence-cipher",
-    "tournament"
+    "tournament",
+    "isogram"
   ],
   "deprecated": [
 
