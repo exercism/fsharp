@@ -79,7 +79,8 @@
     "word-search",
     "diamond",
     "forth",
-    "rail-fence-cipher"
+    "rail-fence-cipher",
+    "tournament"
   ],
   "deprecated": [
 
