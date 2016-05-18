@@ -81,7 +81,8 @@
     "forth",
     "rail-fence-cipher",
     "tournament",
-    "isogram"
+    "isogram",
+    "bracket-push"
   ],
   "deprecated": [
 
