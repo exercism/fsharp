@@ -82,7 +82,8 @@
     "rail-fence-cipher",
     "tournament",
     "isogram",
-    "bracket-push"
+    "bracket-push",
+    "custom-set"
   ],
   "deprecated": [
 
