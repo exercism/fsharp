@@ -84,7 +84,8 @@
     "isogram",
     "bracket-push",
     "custom-set",
-    "perfect-numbers"
+    "perfect-numbers",
+    "diffie-hellman"
   ],
   "deprecated": [
 
