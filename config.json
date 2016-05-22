@@ -83,7 +83,8 @@
     "tournament",
     "isogram",
     "bracket-push",
-    "custom-set"
+    "custom-set",
+    "perfect-numbers"
   ],
   "deprecated": [
 
