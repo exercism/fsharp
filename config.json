@@ -85,7 +85,8 @@
     "bracket-push",
     "custom-set",
     "perfect-numbers",
-    "diffie-hellman"
+    "diffie-hellman",
+    "change"
   ],
   "deprecated": [
 
