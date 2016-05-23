@@ -86,7 +86,8 @@
     "custom-set",
     "perfect-numbers",
     "diffie-hellman",
-    "change"
+    "change",
+    "minesweeper"
   ],
   "deprecated": [
 
