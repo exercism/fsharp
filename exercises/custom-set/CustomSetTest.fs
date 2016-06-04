@@ -32,27 +32,6 @@ let ``Detect if the element is in the set`` () =
 let ``Detect if the element is not in the set`` () =
     let actual = fromList [1; 2; 3]
     Assert.That(contains 4 actual, Is.False)
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Add to empty set`` () =
-    let actual = empty |> insert 3
-    let expected = fromList [3]
-    Assert.That(actual, Is.EqualTo(expected))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Add to non-empty set`` () =
-    let actual = fromList [1; 2; 4] |> insert 3
-    let expected = fromList [1; 2; 3; 4]
-    Assert.That(actual, Is.EqualTo(expected))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Adding an existing element does not change the set`` () =
-    let actual = fromList [1; 2; 3] |> insert 3
-    let expected = fromList [1; 2; 3]
-    Assert.That(actual, Is.EqualTo(expected))
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -130,6 +109,62 @@ let ``Sets are disjoint if they share no elements`` () =
     let left = fromList [1; 2]
     let right = fromList [3; 4]
     Assert.That(isDisjointFrom left right, Is.True)
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Empty sets are equal`` () =
+    let left = empty
+    let right = empty
+    Assert.That((left = right))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Empty set is not equal to non-empty set`` () =
+    let left = empty
+    let right = fromList [1; 2; 3]
+    Assert.That(left <> right)
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Non-empty set is not equal to empty set`` () =
+    let left = fromList [1; 2; 3]
+    let right = empty
+    Assert.That(left <> right)
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Sets with the same elements are equal`` () =
+    let left = fromList [1; 2]
+    let right = fromList [2; 1]
+    Assert.That((left = right))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Sets with different elements are not equal`` () =
+    let left = fromList [1; 2; 3]
+    let right = fromList [1; 2; 4]
+    Assert.That(left <> right)
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Add to empty set`` () =
+    let actual = empty |> insert 3
+    let expected = fromList [3]
+    Assert.That(actual, Is.EqualTo(expected))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Add to non-empty set`` () =
+    let actual = fromList [1; 2; 4] |> insert 3
+    let expected = fromList [1; 2; 3; 4]
+    Assert.That(actual, Is.EqualTo(expected))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Adding an existing element does not change the set`` () =
+    let actual = fromList [1; 2; 3] |> insert 3
+    let expected = fromList [1; 2; 3]
+    Assert.That(actual, Is.EqualTo(expected))
             
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -234,38 +269,3 @@ let ``Union of non-empty sets contains all unique elements`` () =
     let right = fromList [2; 3]
     let expected = fromList [3; 2; 1]
     Assert.That(union left right = expected)
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Empty sets are equal`` () =
-    let left = empty
-    let right = empty
-    Assert.That((left = right))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Empty set is not equal to non-empty set`` () =
-    let left = empty
-    let right = fromList [1; 2; 3]
-    Assert.That(left <> right)
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Non-empty set is not equal to empty set`` () =
-    let left = fromList [1; 2; 3]
-    let right = empty
-    Assert.That(left <> right)
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Sets with the same elements are equal`` () =
-    let left = fromList [1; 2]
-    let right = fromList [2; 1]
-    Assert.That((left = right))
-
-[<Test>]
-[<Ignore("Remove to run test")>]
-let ``Sets with different elements are not equal`` () =
-    let left = fromList [1; 2; 3]
-    let right = fromList [1; 2; 4]
-    Assert.That(left <> right)
