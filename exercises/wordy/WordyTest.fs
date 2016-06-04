@@ -25,7 +25,7 @@ let ``Can add large numbers`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can parse and solve subtraction problems`` () =
-    Assert.That(solve "What is 4 minus -12", Is.EqualTo(Some 16))
+    Assert.That(solve "What is 4 minus -12?", Is.EqualTo(Some 16))
     
 [<Test>]
 [<Ignore("Remove to run test")>]
