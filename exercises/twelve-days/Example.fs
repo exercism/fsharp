@@ -1,20 +1,68 @@
 ﻿module TwelveDaysSong
 
-let private allVerses = [|
-    "On the first day of Christmas my true love gave to me, a Partridge in a Pear Tree.\n";
-    "On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the fourth day of Christmas my true love gave to me, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the fifth day of Christmas my true love gave to me, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the sixth day of Christmas my true love gave to me, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the seventh day of Christmas my true love gave to me, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the eighth day of Christmas my true love gave to me, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the ninth day of Christmas my true love gave to me, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the tenth day of Christmas my true love gave to me, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the eleventh day of Christmas my true love gave to me, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-    "On the twelfth day of Christmas my true love gave to me, twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-|]
+let numberToStr = 
+    function
+    | 0  -> "a"
+    | 1  -> "and a"
+    | 2  -> "two"
+    | 3  -> "three"
+    | 4  -> "four"
+    | 5  -> "five"
+    | 6  -> "six"
+    | 7  -> "seven"
+    | 8  -> "eight"
+    | 9  -> "nine"
+    | 10 -> "ten"
+    | 11 -> "eleven"
+    | 12 -> "twelve"
+    | _  -> failwith "Invalid day"
 
-let verse number = Array.item (number - 1) allVerses
-let verses start stop = allVerses.[(start - 1)..(stop - 1)] |> Array.fold (fun acc x -> acc + x + "\n") ""
-let song = verses 1 (allVerses.Length)
+let countToStr = 
+    function
+    | 1  -> "first"
+    | 2  -> "second"
+    | 3  -> "third"
+    | 4  -> "fourth"
+    | 5  -> "fifth"
+    | 6  -> "sixth"
+    | 7  -> "seventh"
+    | 8  -> "eighth"
+    | 9  -> "ninth"
+    | 10  -> "tenth"
+    | 11 -> "eleventh"
+    | 12 -> "twelfth"
+    | _  -> failwith "Invalid count"
+
+let subject = 
+    function
+    | 0  -> "Partridge in a Pear Tree";
+    | 1  -> "Partridge in a Pear Tree";
+    | 2  -> "Turtle Doves"; 
+    | 3  -> "French Hens"; 
+    | 4  -> "Calling Birds"; 
+    | 5  -> "Gold Rings"; 
+    | 6  -> "Geese-a-Laying"; 
+    | 7  -> "Swans-a-Swimming";
+    | 8  -> "Maids-a-Milking";
+    | 9  -> "Ladies Dancing"; 
+    | 10 -> "Lords-a-Leaping"; 
+    | 11 -> "Pipers Piping";
+    | 12 -> "Drummers Drumming"
+    | _  -> failwith "Invalid subject"
+
+let subjectToStr number = sprintf "%s %s" (numberToStr number) (subject number)
+
+let verseBegin number = sprintf "On the %s day of Christmas my true love gave to me, " (countToStr number)
+
+let verseEnd = 
+    function
+    | 1 -> 
+        subjectToStr 0
+    | number -> 
+        [number .. -1 .. 1] 
+        |> List.map subjectToStr 
+        |> List.reduce (fun x y -> x + ", " + y)
+
+let verse number = sprintf "%s%s.\n" (verseBegin number) (verseEnd number)
+let verses start stop = List.fold (fun acc x -> acc + verse x + "\n") "" [start..stop]
+let song = verses 1 12
