@@ -4,6 +4,7 @@
   "repository": "https://github.com/exercism/xfsharp",
   "active": true,
   "problems": [
+    "hello-world",
     "sum-of-multiples",
     "difference-of-squares",
     "bob",
