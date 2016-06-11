@@ -92,7 +92,8 @@
     "dominoes",
     "poker",
     "two-bucket",
-    "protein-translation"
+    "protein-translation",
+    "binary-search"
   ],
   "deprecated": [
 
