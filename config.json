@@ -90,7 +90,8 @@
     "change",
     "minesweeper",
     "dominoes",
-    "poker"
+    "poker",
+    "two-bucket"
   ],
   "deprecated": [
 
