@@ -13,5 +13,6 @@ open Isogram
 [<TestCase("Heizölrückstoßabdämpfung", ExpectedResult = true, Ignore = "Remove to run test case")>]
 [<TestCase("the quick brown fox", ExpectedResult = false, Ignore = "Remove to run test case")>]
 [<TestCase("Emily Jung Schwartzkopf", ExpectedResult = true, Ignore = "Remove to run test case")>]
+[<TestCase("éléphant", ExpectedResult = false, Ignore = "Remove to run test case")>]
 let ``Isogram correctly detects isograms`` (actual: string) =
     isogram actual
