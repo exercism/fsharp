@@ -2,7 +2,6 @@
 #r "tools/FAKE/tools/FakeLib.dll"
 
 open Fake
-open Fake.FscHelper
 open Fake.Testing.NUnit3
 
 // Properties
@@ -23,10 +22,10 @@ let testSourceFiles() = sourceFiles buildTestDir
 
 let compile output files =
     files
-    |> Fsc (fun p ->
-           { p with Output = output
-                    References = [nunitFrameworkDll]
-                    FscTarget = Library })
+    |> FscHelper.compile 
+        [FscHelper.Out output
+         FscHelper.References [nunitFrameworkDll]
+         FscHelper.Target FscHelper.TargetType.Library]
 
 // Targets
 Target "CleanExamples" (fun _ -> CleanDir buildExampleDir)
@@ -40,8 +39,8 @@ Target "PrepareTests" (fun _ ->
     |> ReplaceInFiles [("[<Ignore(\"Remove to run test\")>]", ""); (", Ignore = \"Remove to run test case\"", "")]
 )
 
-Target "CompileExamples" (fun _ -> exampleSourceFiles() |> compile exampleDll)
-Target "CompileTests"    (fun _ -> testSourceFiles() |> compile testDll)
+Target "CompileExamples" (fun _ -> exampleSourceFiles() |> compile exampleDll |> ignore)
+Target "CompileTests"    (fun _ -> testSourceFiles() |> compile testDll |> ignore)
 
 Target "Test" (fun _ ->
     Copy buildTestDir [nunitFrameworkDll]
