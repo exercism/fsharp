@@ -7,4 +7,3 @@ let normalize str = str |> Seq.filter Char.IsLetter |> Seq.map Char.ToLower |> S
 let isogram str = 
     let normalized = normalize str
     Seq.length normalized = (normalized |> Seq.distinct |> Seq.length) 
-
