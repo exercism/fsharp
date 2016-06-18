@@ -1,41 +1,36 @@
 module Deque
 
-type Element<'a> = { value: 'a; mutable prev: Element<'a> Option; mutable next: Element<'a> Option }
+type Element<'a> = { value: 'a; mutable prev: Element<'a> option; mutable next: Element<'a> option }
+type Deque<'a> = { first: Element<'a> option; last: Element<'a> option }
 
-type Deque<'a>() =    
-   
-    let mutable first = Option<Element<'a>>.None
-    let mutable last  = Option<Element<'a>>.None
+let mkDeque = { first = None; last = None }
 
-    let addToEmpty newValue = 
-        let newElement = { value = newValue; prev = None; next = None }
-        last  <- Some newElement
-        first <- Some newElement
+let addToEmpty newValue deque = 
+    let newElement = { value = newValue; prev = None; next = None }
+    { deque with first = Some newElement; last = Some newElement }
 
-    member this.pop() =
-        match last with
-        | None -> failwith "Cannot pop from empty list"
-        | Some(x) ->
-            last <- x.prev
-            x.value
+let pop deque =
+    match deque.last with
+    | None -> failwith "Cannot pop from empty list"
+    | Some(x) -> x.value, { deque with last = x.prev }
 
-    member this.shift() =
-        match first with
-        | None -> failwith "Cannot shift from empty list"
-        | Some(x) ->
-            first <- x.next
-            x.value
+let shift deque =
+    match deque.first with
+    | None -> failwith "Cannot shift from empty list"
+    | Some(x) -> x.value, { deque with first = x.next }
         
-    member this.push(newValue: 'a) = 
-        match last with
-        | None -> addToEmpty newValue
-        | Some(x) ->     
-            last   <- Some { value = newValue; prev = last; next = x.next }
-            x.next <- last            
+let push newValue deque = 
+    match deque.last with
+    | None -> addToEmpty newValue deque
+    | Some(x) ->         
+        let last = Some { value = newValue; prev = deque.last; next = x.next }
+        x.next <- last            
+        { deque with last = last }
 
-    member this.unshift(newValue: 'a) =        
-        match first with
-        | None -> addToEmpty newValue
-        | Some(x) ->     
-            first  <- Some { value = newValue; prev = x.prev; next = first }
-            x.prev <- first
+let unshift newValue deque =        
+    match deque.first with
+    | None -> addToEmpty newValue deque
+    | Some(x) ->     
+        let first = Some { value = newValue; prev = x.prev; next = deque.first }
+        x.prev <- first
+        { deque with first = first }

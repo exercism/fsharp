@@ -2,33 +2,19 @@ module Clock
 
 open System
 
-type Clock(hours, minutes) =
+type Clock = { hours: int; minutes: int }
 
-    let modulo x y = (int)(((x % y) + y) % y)
+let modulo x y = (int)(((x % y) + y) % y)
 
-    new(hours) = Clock(hours, 0)
-        
-    member private this.totalMinutes = hours * 60 + minutes
-    member private this.normalizedHours = modulo ((double)this.totalMinutes / 60.0) 24.0
-    member private this.normalizedMinutes = modulo ((double)minutes) 60.0
-    
-    member this.add minutes = new Clock(this.normalizedHours, this.normalizedMinutes + minutes)
-    member this.subtract minutes = new Clock(this.normalizedHours, this.normalizedMinutes - minutes)
+let mkClock hours minutes =
+    let totalMinutes = hours * 60 + minutes
+    let normalizedHours = modulo ((double)totalMinutes / 60.0) 24.0
+    let normalizedMinutes = modulo ((double)minutes) 60.0
 
-    override this.ToString() = sprintf "%02i:%02i" this.normalizedHours this.normalizedMinutes
+    { hours = normalizedHours; minutes = normalizedMinutes }
 
-    override this.Equals(other) =
-        match other with
-        | :? Clock as y -> this.normalizedHours = y.normalizedHours && this.normalizedMinutes = y.normalizedMinutes
-        | _ -> false
- 
-    override this.GetHashCode() = hash this.totalMinutes
+let add minutes clock = mkClock clock.hours (clock.minutes + minutes)
 
-    interface System.IComparable with
-      member this.CompareTo other =
-          match other with
-          | :? Clock as y -> 
-            let hoursCompared = compare this.normalizedHours y.normalizedHours
-            if hoursCompared = 0 then compare this.normalizedMinutes y.normalizedMinutes 
-            else hoursCompared
-          | _ -> invalidArg "other" "Cannot compare objects of different types"
+let subtract minutes clock = mkClock clock.hours (clock.minutes - minutes)
+
+let display clock = sprintf "%02i:%02i" clock.hours clock.minutes
