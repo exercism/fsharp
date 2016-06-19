@@ -95,7 +95,8 @@
     "protein-translation",
     "binary-search",
     "zebra-puzzle",
-    "pov"
+    "pov",
+    "go-counting"
   ],
   "deprecated": [
 
