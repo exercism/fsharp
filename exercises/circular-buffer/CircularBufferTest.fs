@@ -67,7 +67,7 @@ let ``Reads back oldest item`` () =
         |> write '1'
         |> write '2'
 
-    let (val2, buffer2) = read buffer1
+    let (_, buffer2) = read buffer1
     let buffer3 = buffer2 |> write '3'
     let (val4, buffer4) = read buffer3
     let (val5, _) = read buffer4
@@ -121,10 +121,10 @@ let ``Alternate read and write into buffer overflow`` () =
     let buffer1 = mkCircularBuffer 5
     let buffer2 = List.fold (fun buffer value -> write value buffer) buffer1 ['1'..'3']
 
-    let (val3, buffer3) = read buffer2
-    let (val4, buffer4) = read buffer3    
+    let (_, buffer3) = read buffer2
+    let (_, buffer4) = read buffer3    
     let buffer5 = buffer4 |> write '4'
-    let (val6, buffer6) = read buffer5
+    let (_, buffer6) = read buffer5
 
     let buffer7 = 
         List.fold (fun buffer value -> write value buffer) buffer6 ['5'..'8']

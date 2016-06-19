@@ -69,7 +69,7 @@ let ``Push and pop can handle multiple values`` () =
 
     let (val', deque') = pop deque
     let (val'', deque'') = pop deque'
-    let (val''', deque''') = pop deque''
+    let (val''', _) = pop deque''
 
     Assert.That(val', Is.EqualTo(30))
     Assert.That(val'', Is.EqualTo(20))
@@ -86,7 +86,7 @@ let ``Unshift and shift can handle multiple values`` () =
 
     let (val', deque') = shift deque
     let (val'', deque'') = shift deque'
-    let (val''', deque''') = shift deque''
+    let (val''', _) = shift deque''
 
     Assert.That(val', Is.EqualTo(30))
     Assert.That(val'', Is.EqualTo(20))
