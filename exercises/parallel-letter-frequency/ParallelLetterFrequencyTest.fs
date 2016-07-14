@@ -75,6 +75,12 @@ let ``Numbers don't count`` () =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
+let ``Letters with and without diacritics are not the same letter`` () =
+    let freqs = frequency ["aä"]
+    Assert.That(freqs, Is.EqualTo(Map.ofList [('a', 1); ('ä', 1)]))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
 let ``All three anthems, together`` () =
     let freqs = frequency [odeAnDieFreude; wilhelmus; starSpangledBanner]
     Assert.That(Map.tryFind 'a' freqs, Is.EqualTo(Some 49))
