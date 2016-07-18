@@ -86,3 +86,11 @@ let ``All three anthems, together`` () =
     Assert.That(Map.tryFind 'a' freqs, Is.EqualTo(Some 49))
     Assert.That(Map.tryFind 't' freqs, Is.EqualTo(Some 56))
     Assert.That(Map.tryFind 'o' freqs, Is.EqualTo(Some 34))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Can handle large texts`` () =
+    let freqs = frequency (List.replicate 1000 [odeAnDieFreude; wilhelmus; starSpangledBanner] |> List.concat)
+    Assert.That(Map.tryFind 'a' freqs, Is.EqualTo(Some 49000))
+    Assert.That(Map.tryFind 't' freqs, Is.EqualTo(Some 56000))
+    Assert.That(Map.tryFind 'o' freqs, Is.EqualTo(Some 34000))
