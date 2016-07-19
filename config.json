@@ -96,7 +96,8 @@
     "binary-search",
     "zebra-puzzle",
     "pov",
-    "go-counting"
+    "go-counting",
+    "ledger"
   ],
   "deprecated": [
 
