@@ -97,7 +97,8 @@
     "zebra-puzzle",
     "pov",
     "go-counting",
-    "ledger"
+    "ledger",
+    "variable-length-quantity"
   ],
   "deprecated": [
 
