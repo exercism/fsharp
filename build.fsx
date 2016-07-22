@@ -44,11 +44,15 @@ Target "CompileTests"    (fun _ -> testSourceFiles() |> compile testDll |> ignor
 
 Target "Test" (fun _ ->
     Copy buildTestDir [nunitFrameworkDll]
-    
-    [testDll]
-    |> NUnit3 (fun p -> 
-        { p with
-            ShadowCopy = false })
+
+    if getEnvironmentVarAsBool "APPVEYOR" then
+        [testDll]
+        |> NUnit3 (fun p -> { p with ShadowCopy = false
+                                     ToolPath = @"C:\Tools\NUnit3\bin\nunit3-console.exe"
+                                     ResultSpecs = ["myresults.xml;format=AppVeyor"] })
+    else
+        [testDll]
+        |> NUnit3 (fun p -> { p with ShadowCopy = false })
 )
 
 Target "Build" (fun _ -> ())
