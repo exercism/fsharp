@@ -5,6 +5,7 @@ open NUnit.Framework
 open ListOps
 
 let big = 100000
+let bigList = [1 .. big]
 let odd x = x % 2 = 1
 
 [<Test>]
@@ -79,12 +80,12 @@ let ``foldl is not just foldr . flip`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldr as id`` () =
-    Assert.That(foldr (fun item acc -> item :: acc) [] [1 .. big], Is.EqualTo([1 .. big]))
+    Assert.That(foldr (fun item acc -> item :: acc) [] [1 .. big] = bigList, Is.True)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldr as append`` () =
-    Assert.That(foldr (fun item acc -> item :: acc) [100 .. big] [1 .. 99], Is.EqualTo([1 .. big]))
+    Assert.That(foldr (fun item acc -> item :: acc) [100 .. big] [1 .. 99] = bigList, Is.True)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -109,7 +110,7 @@ let ``append of non-empty lists`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``append of large lists`` () =
-    Assert.That(append [1 .. (big / 2)] [1 + big / 2 .. big], Is.EqualTo([1 .. big]))
+    Assert.That(append [1 .. (big / 2)] [1 + big / 2 .. big] = bigList, Is.True)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -124,4 +125,4 @@ let ``concat of list of lists`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``concat of large list of small lists`` () =
-    Assert.That(concat (map (fun x -> [x]) [1 .. big]), Is.EqualTo([1 .. big]))
+    Assert.That(concat (map (fun x -> [x]) [1 .. big]) = bigList, Is.True)
