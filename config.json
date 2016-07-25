@@ -16,11 +16,8 @@
     "bank-account",
     "grains",
     "leap",
-    "binary",
     "hamming",
-    "trinary",
     "etl",
-    "octal",
     "pig-latin",
     "word-count",
     "roman-numerals",
@@ -42,7 +39,6 @@
     "luhn",
     "scrabble-score",
     "kindergarten-garden",
-    "hexadecimal",
     "queen-attack",
     "meetup",
     "binary-search-tree",
@@ -99,10 +95,14 @@
     "go-counting",
     "ledger",
     "variable-length-quantity",
-    "markdown"
+    "markdown",
+    "all-your-base"
   ],
-  "deprecated": [
-
+  "deprecated": [    
+    "binary",
+    "octal",
+    "hexadecimal",
+    "trinary"
   ],
   "ignored": [
     "docs",
