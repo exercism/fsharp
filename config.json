@@ -98,7 +98,8 @@
     "pov",
     "go-counting",
     "ledger",
-    "variable-length-quantity"
+    "variable-length-quantity",
+    "markdown"
   ],
   "deprecated": [
 
