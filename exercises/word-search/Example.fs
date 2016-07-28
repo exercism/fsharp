@@ -12,14 +12,12 @@ let directions =
      
 let update (x, y) (dx, dy) = x + dx, y + dy
 
-let find (puzzle: string) (word: string) =
-    let chars = puzzle.Split('\n')
-
-    let width = chars.[0].Length
-    let height = chars.Length
+let find (puzzle: string list) (word: string) =
+    let width = puzzle.[0].Length
+    let height = puzzle.Length
 
     let findChar (x, y) = 
-        if x > 0 && x <= width && y > 0 && y <= height then Some chars.[y - 1].[x - 1]
+        if x > 0 && x <= width && y > 0 && y <= height then Some puzzle.[y - 1].[x - 1]
         else None
         
     let findWord start direction =

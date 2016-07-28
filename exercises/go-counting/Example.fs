@@ -40,12 +40,11 @@ let emptyNeighborCoordinates board (col, row) =
     neighborCoordinates board (col, row) 
     |> List.filter (isEmpty board)
 
-let mkBoard (input: string) = 
-    let rowsInput = input.Split '\n'
-    let rows = rowsInput.Length
-    let cols = rowsInput.[0].Length
+let mkBoard (input: string list) = 
+    let rows = input.Length
+    let cols = input.[0].Length
 
-    Array2D.init cols rows (fun col row -> charToColor rowsInput.[row].[col])
+    Array2D.init cols rows (fun col row -> charToColor input.[row].[col])
 
 let territoryOwner (board: Board) (coords: Set<Coord>) = 
     let uniqueNeighborColors = 

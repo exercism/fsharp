@@ -8,8 +8,6 @@ type MatchResult = { team: Team; result: Result }
 type TeamResults = { name: Team; played: int; wins: int; draws: int; losses: int; points: int }
 type Standings = Map<Team, TeamResults>
 
-let concat = List.reduce (fun x y -> x + "\n" + y) 
-
 let invertResult =
     function
     | Win  -> Loss
@@ -67,11 +65,10 @@ let formatTeamResult teamResult =
 let formatTable standings = 
     let header =  sprintf "%-30s | %2s | %2s | %2s | %2s | %2s" "Team" "MP" "W" "D" "L" "P"
     let teams = standings |> List.map formatTeamResult
-    header::teams |> concat
+    header::teams
     
-let tally (input: string) = 
-    input.Split '\n' 
-    |> List.ofArray
+let tally (input: string list) = 
+    input
     |> List.choose parseGame
     |> List.concat
     |> calculateStandings
