@@ -96,7 +96,8 @@
     "ledger",
     "variable-length-quantity",
     "markdown",
-    "all-your-base"
+    "all-your-base",
+    "rectangles"
   ],
   "deprecated": [    
     "binary",
