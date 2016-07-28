@@ -2,7 +2,7 @@
 
 type BankAccount = { balance: float option }
 
-let mkBankAccount = { balance = None }
+let mkBankAccount() = { balance = None }
 
 let openAccount bankAccount = { bankAccount with balance = Some 0.0 }
 
