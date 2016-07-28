@@ -6,15 +6,12 @@ open NUnit.Framework
 
 open GoCounting
 
-let concat = List.reduce (fun x y -> x + "\n" + y)
-
 let board5x5 =
     ["  B  ";
      " B B ";
      "B W B";
      " W W ";
      "  W  "]
-    |> concat
 
 let board9x9 =
     ["  B   B  ";
@@ -26,7 +23,6 @@ let board9x9 =
      "B B   B B";
      " W BBB W ";
      "   B B   "]
-    |> concat
 
 [<Test>]
 let ``5x5 territory for black`` () =
@@ -63,7 +59,7 @@ let ``5x5 non-territory (too high coordinate)`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Minimal board, no territories`` () =
-    let input = ["B"] |> concat
+    let input = ["B"]
     let expected = []
 
     Assert.That(territories input, Is.EqualTo(expected))
@@ -71,7 +67,7 @@ let ``Minimal board, no territories`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``One territory, covering the whole board`` () =
-    let input = [" "] |> concat
+    let input = [" "]
     let expected = [(None, [(0, 0)])] |> Map.ofList
 
     Assert.That(territories input, Is.EqualTo(expected))
@@ -79,7 +75,7 @@ let ``One territory, covering the whole board`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Two territories, rectangular board`` () =
-    let input = [" BW "; " BW "] |> concat
+    let input = [" BW "; " BW "]
     let expected = [(Some Black, [(0, 0); (0, 1)]);
                     (Some White, [(3, 0); (3, 1)])]
                    |> Map.ofList

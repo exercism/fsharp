@@ -4,8 +4,6 @@ open NUnit.Framework
 
 open WordSearch
 
-let formatPuzzle = List.reduce (fun x y -> x + "\n" + y)
-
 let puzzle = 
     ["jefblpepre";
      "camdcimgtc";
@@ -17,7 +15,6 @@ let puzzle =
      "alxhpburyi";
      "jalaycalmp";
      "clojurermt"]
-    |> formatPuzzle
 
 [<Test>]
 let ``Should find horizontal words written left-to-right`` () =
@@ -79,7 +76,6 @@ let ``Should be able to search differently-sized puzzles`` () =
         ["qwertyuiopz";
          "luamsicrexe";
          "abcdefghijk"]
-        |> formatPuzzle
 
     let actual = find differentSizePuzzle "exercism"    
     Assert.That(actual, Is.EqualTo(Some ((11, 2), (4, 2))))

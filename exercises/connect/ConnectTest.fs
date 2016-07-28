@@ -5,10 +5,7 @@ open System
 
 open Connect
 
-let makeBoard (board: string list) = 
-    board
-    |> List.map (fun x -> x.Replace(" ", ""))
-    |> List.reduce (fun x y -> x + "\n" + y)
+let makeBoard (board: string list) = board |> List.map (fun x -> x.Replace(" ", "")) 
 
 [<Test>]
 let ``Empty board has no winner`` () =

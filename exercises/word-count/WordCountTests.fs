@@ -109,12 +109,31 @@ let ``With free standing apostrophes`` () =
 [<Ignore("Remove to run test")>]
 let ``With apostrophes as quotes`` () =
     let phrase = "She said, 'let's meet at twelve o'clock'"
-    let counts = Map.ofSeq [("she", 1);
-                            ("said", 1);
-                            ("let's", 1);
-                            ("meet", 1);
-                            ("at", 1);
-                            ("twelve", 1);
+    let counts = Map.ofSeq [("she",     1);
+                            ("said",    1);
+                            ("let's",   1);
+                            ("meet",    1);
+                            ("at",      1);
+                            ("twelve",  1);
                             ("o'clock", 1)]
+
+    Assert.That(wordCount phrase, Is.EqualTo(counts))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``With multiple lines`` () =
+    let phrase = "Your time will come. You will face the same Evil, and you will defeat it."
+    let counts = Map.ofSeq [("and",    1);
+                            ("come",   1);
+                            ("defeat", 1);
+                            ("evil",   1);
+                            ("face",   1);
+                            ("it",     1);
+                            ("same",   1);
+                            ("the",    1);
+                            ("time",   1);
+                            ("will",   3);
+                            ("you",    2);
+                            ("your",   1)]
 
     Assert.That(wordCount phrase, Is.EqualTo(counts))

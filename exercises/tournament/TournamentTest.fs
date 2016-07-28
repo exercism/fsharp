@@ -4,8 +4,6 @@ open NUnit.Framework
 
 open Tournament
 
-let concat = List.reduce (fun x y -> x + "\n" + y) 
-
 [<Test>]
 let ``Correctly displays the tournament table`` () =
     let actual = 
@@ -15,7 +13,6 @@ let ``Correctly displays the tournament table`` () =
          "Courageous Californians;Blithering Badgers;loss";
          "Blithering Badgers;Devastating Donkeys;loss";
          "Αllegoric Alaskians;Courageous Californians;win"]
-        |> concat 
 
     let expected = 
         ["Team                           | MP |  W |  D |  L |  P";
@@ -23,7 +20,6 @@ let ``Correctly displays the tournament table`` () =
          "Αllegoric Alaskians            |  3 |  2 |  0 |  1 |  6";
          "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
          "Courageous Californians        |  3 |  0 |  1 |  2 |  1"]
-        |> concat 
 
     Assert.That(tally actual, Is.EqualTo(expected))
 
@@ -42,7 +38,6 @@ let ``Ignores incorrect input`` () =
          "Allegoric Alaskians;Courageous Californians;win";
          "Devastating Donkeys;Courageous Californians;draw";
          "Devastating Donkeys@Courageous Californians;draw"]
-        |> concat 
 
     let expected = 
         ["Team                           | MP |  W |  D |  L |  P";
@@ -50,7 +45,6 @@ let ``Ignores incorrect input`` () =
          "Allegoric Alaskians            |  3 |  2 |  0 |  1 |  6";
          "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
          "Courageous Californians        |  3 |  0 |  1 |  2 |  1"]
-        |> concat 
 
     Assert.That(tally actual, Is.EqualTo(expected))    
 
@@ -62,7 +56,6 @@ let ``Correctly displays another tournament table`` () =
          "Devastating Donkeys;Allegoric Alaskians;win";
          "Courageous Californians;Blithering Badgers;loss";
          "Allegoric Alaskians;Courageous Californians;win"]
-        |> concat 
 
     let expected = 
         ["Team                           | MP |  W |  D |  L |  P";
@@ -70,6 +63,5 @@ let ``Correctly displays another tournament table`` () =
          "Blithering Badgers             |  2 |  1 |  0 |  1 |  3";
          "Devastating Donkeys            |  1 |  1 |  0 |  0 |  3";
          "Courageous Californians        |  2 |  0 |  0 |  2 |  0"]
-        |> concat 
 
     Assert.That(tally actual, Is.EqualTo(expected))
