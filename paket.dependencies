@@ -1,0 +1,6 @@
+source https://www.nuget.org/api/v2/
+nuget FAKE
+nuget FParsec
+nuget FSharp.Core
+nuget NUnit
+nuget NUnit.ConsoleRunner

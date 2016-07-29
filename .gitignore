@@ -1,6 +1,9 @@
-bin/configlet
-bin/configlet.exe
+!bin/fetch-configlet
+bin/
 build/
+obj/
+packages/
 tools/
 .fake/
+.paket/paket.exe
 TestResult.xml

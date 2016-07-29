@@ -1,75 +1,58 @@
 // Include Fake library
-#r "tools/FAKE/tools/FakeLib.dll"
+#r "./packages/FAKE/tools/FakeLib.dll"
 
 open Fake
 open Fake.Testing.NUnit3
 
-// Properties
-let sourceDir = "./exercises/"
-let buildDir = getBuildParamOrDefault "buildDir" "./build/"
-let buildExampleDir = buildDir @@ "example"
-let buildTestDir = buildDir @@ "test"
-let exampleDll = buildExampleDir @@ "example.dll"
-let testDll = buildTestDir @@ "test.dll"
-let nunitFrameworkDll = "tools/NUnit/lib/net45/nunit.framework.dll"
+// Directories
+let buildDir  = "./build/"
+let sourceDir  = "./exercises/"
 
-let exampleFiles dir = !! (dir @@ "./**/Example.fs") |> List.ofSeq
-let testFiles dir = !! (dir @@ "./**/*Test*.fs") |> List.ofSeq
-let sourceFiles dir = exampleFiles dir @ testFiles dir
-
-let exampleSourceFiles() = sourceFiles buildExampleDir
-let testSourceFiles() = sourceFiles buildTestDir
-
-let compile output files =
-    files
-    |> FscHelper.compile 
-        [FscHelper.Out output
-         FscHelper.References [nunitFrameworkDll]
-         FscHelper.Target FscHelper.TargetType.Library]
+// Files
+let solutionFile = buildDir @@ "/exercises.fsproj"
+let compiledOutput = buildDir @@ "xfsharp.dll"
 
 // Targets
-Target "CleanExamples" (fun _ -> CleanDir buildExampleDir)
-Target "CleanTests"    (fun _ -> CleanDir buildTestDir)
-
-Target "CopyExamples" (fun _ -> CopyDir buildExampleDir sourceDir allFiles)
-Target "CopyTests"    (fun _ -> CopyDir buildTestDir sourceDir allFiles)
-
-Target "PrepareTests" (fun _ ->
-    testSourceFiles()
-    |> ReplaceInFiles [("[<Ignore(\"Remove to run test\")>]", ""); (", Ignore = \"Remove to run test case\"", "")]
+Target "Clean" (fun _ ->
+    CleanDirs [buildDir]
 )
 
-Target "CompileExamples" (fun _ -> exampleSourceFiles() |> compile exampleDll |> ignore)
-Target "CompileTests"    (fun _ -> testSourceFiles() |> compile testDll |> ignore)
+Target "Copy" (fun _ -> CopyDir buildDir sourceDir allFiles)
+
+Target "BuildUnchanged" (fun _ ->
+    MSBuildRelease buildDir "Build" [solutionFile]
+    |> Log "AppBuild-Output: "
+)
+
+Target "PrepareTests" (fun _ ->
+    !! (buildDir @@ "**/*Test.fs")
+    |> RegexReplaceInFilesWithEncoding ".*Remove to run test.*" "" System.Text.Encoding.UTF8
+)
+
+Target "BuildWithAllTests" (fun _ ->
+    MSBuildRelease buildDir "Build" [solutionFile]
+    |> Log "AppBuild-Output: "
+)
 
 Target "Test" (fun _ ->
-    Copy buildTestDir [nunitFrameworkDll]
-
     if getEnvironmentVarAsBool "APPVEYOR" then
-        [testDll]
-        |> NUnit3 (fun p -> { p with ShadowCopy = false
-                                     ToolPath = @"C:\Tools\NUnit3\bin\nunit3-console.exe"
-                                     ResultSpecs = ["myresults.xml;format=AppVeyor"] })
+        [compiledOutput]
+        |> NUnit3 (fun p -> { p with 
+                                ShadowCopy = false
+                                ToolPath = @"C:\Tools\NUnit3\bin\nunit3-console.exe"
+                                ResultSpecs = ["myresults.xml;format=AppVeyor"] })
     else
-        [testDll]
+        [compiledOutput]
         |> NUnit3 (fun p -> { p with ShadowCopy = false })
 )
 
-Target "Build" (fun _ -> ())
-Target "Default" (fun _ -> ())
-  
-"CleanExamples"
-    ==> "CopyExamples"  
-    ==> "CompileExamples"
-    ==> "Build"
+// Build order
+"Clean" 
+  ==> "Copy"
+  ==> "BuildUnchanged"
+  ==> "PrepareTests"
+  ==> "BuildWithAllTests"    
+  ==> "Test"
 
-"CleanTests"
-    ==> "CopyTests"
-    ==> "PrepareTests" 
-    ==> "CompileTests"  
-    ==> "Test"
-  
-"Build" ==> "Default"
-"Test" ==> "Default"
-  
-RunTargetOrDefault "Default"
+// start build
+RunTargetOrDefault "Test"
