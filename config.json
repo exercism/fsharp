@@ -97,7 +97,8 @@
     "variable-length-quantity",
     "markdown",
     "all-your-base",
-    "rectangles"
+    "rectangles",
+    "sgf-parsing"
   ],
   "deprecated": [    
     "binary",
