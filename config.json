@@ -114,6 +114,8 @@
     "flatten-array",
     "lens-person",
     "nucleotide-codons",
-    "paasio"
+    "paasio",
+    "point-mutations",
+    "counter"
   ]
 }
