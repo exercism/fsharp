@@ -98,7 +98,8 @@
     "markdown",
     "all-your-base",
     "rectangles",
-    "sgf-parsing"
+    "sgf-parsing",
+    "transpose"
   ],
   "deprecated": [    
     "binary",
