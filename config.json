@@ -99,7 +99,8 @@
     "all-your-base",
     "rectangles",
     "sgf-parsing",
-    "transpose"
+    "transpose",
+    "tree-building"
   ],
   "deprecated": [    
     "binary",
