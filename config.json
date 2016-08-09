@@ -100,7 +100,8 @@
     "rectangles",
     "sgf-parsing",
     "transpose",
-    "tree-building"
+    "tree-building",
+    "grep"
   ],
   "deprecated": [    
     "binary",
