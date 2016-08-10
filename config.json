@@ -101,7 +101,8 @@
     "sgf-parsing",
     "transpose",
     "tree-building",
-    "grep"
+    "grep",
+    "react"
   ],
   "deprecated": [    
     "binary",
