@@ -25,8 +25,10 @@ Target "BuildUnchanged" (fun _ ->
 )
 
 Target "PrepareTests" (fun _ ->
-    !! (buildDir @@ "**/*Test.fs")
-    |> RegexReplaceInFilesWithEncoding ".*Remove to run test.*" "" System.Text.Encoding.UTF8
+    let ignorePattern = "(\[<Ignore\(\"Remove to run test\"\)>]|, Ignore = \"Remove to run test case\")"
+
+    !! (buildDir @@ "**/*Test?.fs")
+    |> RegexReplaceInFilesWithEncoding ignorePattern "" System.Text.Encoding.UTF8
 )
 
 Target "BuildWithAllTests" (fun _ ->
