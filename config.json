@@ -1,6 +1,6 @@
 {
   "slug": "fsharp",
-  "language": "F#",
+  "language": "F#", 
   "repository": "https://github.com/exercism/xfsharp",
   "active": true,
   "problems": [
