@@ -103,7 +103,8 @@
     "tree-building",
     "grep",
     "react",
-    "hangman"
+    "hangman",
+    "error-handling"
   ],
   "deprecated": [    
     "binary",
