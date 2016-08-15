@@ -104,7 +104,8 @@
     "grep",
     "react",
     "hangman",
-    "error-handling"
+    "error-handling",
+    "dot-dsl"
   ],
   "deprecated": [    
     "binary",
