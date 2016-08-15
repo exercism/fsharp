@@ -56,3 +56,10 @@ let ``Pangram with mixed case and punctuation`` () =
 let ``Pangram with non ascii characters`` () =
     let input = "Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich."
     Assert.That(isPangram input, Is.True)
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Panagram in alphabet other than ASCII`` () =
+    let input = "Широкая электрификация южных губерний даст мощный толчок подъёму сельского хозяйства."
+    Assert.That(isPangram input, Is.False)
+    
