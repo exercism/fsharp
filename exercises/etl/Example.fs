@@ -1,6 +1,9 @@
 ﻿module ETL
 
-let transform (input:Map<int, string list>): Map<string, int> = 
-    let transformElement num acc (str:string) = Map.add (str.ToLowerInvariant()) num acc
-    Map.fold (fun acc num strings -> List.fold (transformElement num) acc strings) Map.empty input
-        
+let normalizeLetter (letter:string) = letter.ToLowerInvariant()
+
+let transformLetterWithScore score lettersWithScore (letter:string) = Map.add (normalizeLetter letter) score lettersWithScore
+
+let transformScoreWithLetters lettersWithScore score letters = List.fold (transformLetterWithScore score) lettersWithScore letters
+
+let transform scoresWithLetters: Map<string, int> = Map.fold transformScoreWithLetters Map.empty scoresWithLetters
