@@ -1,13 +1,24 @@
 ﻿module BankAccount
 
-type BankAccount = { balance: float option }
+type BankAccount = 
+    | Open of float
+    | Closed
 
-let mkBankAccount() = { balance = None }
+let mkBankAccount() = Closed
 
-let openAccount bankAccount = { bankAccount with balance = Some 0.0 }
+let openAccount =
+    function
+    | Open x -> Open x
+    | Closed -> Open 0.0
 
-let closeAccount bankAccount = { bankAccount with balance = None }
+let closeAccount x = Closed
 
-let getBalance bankAccount = bankAccount.balance
+let getBalance =
+    function
+    | Open x -> Some x
+    | Closed -> None
 
-let updateBalance change bankAccount = { bankAccount with balance = Option.map (fun current -> current + change) bankAccount.balance }
+let updateBalance change =
+    function
+    | Open x -> Open (x + change)
+    | Closed -> Closed
