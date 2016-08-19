@@ -107,6 +107,831 @@
     "error-handling",
     "dot-dsl"
   ],
+  "exercises": [
+    {
+      "slug": "hello-world",
+      "difficulty": 1,
+      "topics": [
+        "Text formatting",
+        "Optional values"
+      ]
+    },
+    {
+      "slug": "bob",
+      "difficulty": 1,
+      "topics": [
+        "Strings",
+        "Control-flow (if-else statements)"
+      ]
+    },
+    {
+      "slug": "leap",
+      "difficulty": 1,
+      "topics": [
+        "Integers"
+      ]
+    },
+    {
+      "slug": "gigasecond",
+      "difficulty": 1,
+      "topics": [
+        "Dates"
+      ]
+    },
+    {
+      "slug": "difference-of-squares",
+      "difficulty": 1,
+      "topics": [
+        "Integers"
+      ]
+    },
+    {
+      "slug": "rna-transcription",
+      "difficulty": 1,
+      "topics": [
+        "Strings",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "sum-of-multiples",
+      "difficulty": 1,
+      "topics": [
+        "Lists",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "space-age",
+      "difficulty": 1,
+      "topics": [
+        "Discriminated unions",
+        "Floating-point numbers"
+      ]
+    },
+    {
+      "slug": "bank-account",
+      "difficulty": 2,
+      "topics": [
+        "Optional values"
+      ]
+    },
+    {
+      "slug": "grains",
+      "difficulty": 2,
+      "topics": [
+        "Integers"
+      ]
+    },
+    {
+      "slug": "hamming",
+      "difficulty": 2,
+      "topics": [
+        "Strings",
+        "Filtering"
+      ]
+    },
+    {
+      "slug": "nucleotide-count",
+      "difficulty": 2,
+      "topics": [
+        "Maps",
+        "Strings"
+      ]
+    },
+    {
+      "slug": "accumulate",
+      "difficulty": 2,
+      "topics": [
+        "Recursion",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "raindrops",
+      "difficulty": 2,
+      "topics": [
+        "Text formatting",
+        "Filtering"
+      ]
+    },
+    {
+      "slug": "grade-school",
+      "difficulty": 2,
+      "topics": [
+        "Maps",
+        "Sorting"
+      ]
+    },
+    {
+      "slug": "pangram",
+      "difficulty": 2,
+      "topics": [
+        "Strings"
+      ]
+    },
+    {
+      "slug": "etl",
+      "difficulty": 2,
+      "topics": [
+        "Maps",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "clock",
+      "difficulty": 3,
+      "topics": [
+        "Time",
+        "Structural equality"
+      ]
+    },
+    {
+      "slug": "beer-song",
+      "difficulty": 3,
+      "topics": [
+        "Text formatting",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "triangle",
+      "difficulty": 3,
+      "topics": [
+        "Integers",
+        "Discriminated unions"
+      ]
+    },
+    {
+      "slug": "robot-name",
+      "difficulty": 3,
+      "topics": [
+        "Randomness",
+        "Strings"
+      ]
+    },
+    {
+      "slug": "error-handling",
+      "difficulty": 3,
+      "topics": [
+        "Exception handling",
+        "Discriminated unions",
+        "Optional values"
+      ]
+    },
+    {
+      "slug": "scrabble-score",
+      "difficulty": 3,
+      "topics": [
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "proverb",
+      "difficulty": 3,
+      "topics": [
+        "Text formatting",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "protein-translation",
+      "difficulty": 3,
+      "topics": [
+        "Strings",
+        "Lists",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "kindergarten-garden",
+      "difficulty": 3,
+      "topics": [
+        "Parsing",
+        "Enumerations"
+      ]
+    },
+    {
+      "slug": "queen-attack",
+      "difficulty": 3,
+      "topics": [
+        "Tuples"
+      ]
+    },
+    {
+      "slug": "strain",
+      "difficulty": 3,
+      "topics": [
+        "Sequences",
+        "Filtering"
+      ]
+    },
+    {
+      "slug": "isogram",
+      "difficulty": 3,
+      "topics": [
+        "Strings",
+        "Filtering"
+      ]
+    },
+    {
+      "slug": "sieve",
+      "difficulty": 3,
+      "topics": [
+        "Filtering",
+        "Mathematics"
+      ]
+    },
+    {
+      "slug": "phone-number",
+      "difficulty": 3,
+      "topics": [
+        "Parsing",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "perfect-numbers",
+      "difficulty": 3,
+      "topics": [
+        "Integers",
+        "Discriminated unions"
+      ]
+    },
+    {
+      "slug": "robot-simulator",
+      "difficulty": 3,
+      "topics": [
+        "Records",
+        "Tuples"
+      ]
+    },
+    {
+      "slug": "binary-search",
+      "difficulty": 3,
+      "topics": [
+        "Searching",
+        "Lists"
+      ]
+    },
+    {
+      "slug": "secret-handshake",
+      "difficulty": 3,
+      "topics": [
+        "Bitwise operations",
+        "Lists"
+      ]
+    },
+    {
+      "slug": "word-count",
+      "difficulty": 4,
+      "topics": [
+        "Strings",
+        "Maps",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "allergies",
+      "difficulty": 4,
+      "topics": [
+        "Enumerations",
+        "Bitwise operations",
+        "Filtering"
+      ]
+    },
+    {
+      "slug": "twelve-days",
+      "difficulty": 4,
+      "topics": [
+        "Text formatting",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "meetup",
+      "difficulty": 4,
+      "topics": [
+        "Dates"
+      ]
+    },
+    {
+      "slug": "anagram",
+      "difficulty": 4,
+      "topics": [
+        "Strings",
+        "Filtering"
+      ]
+    },
+    {
+      "slug": "series",
+      "difficulty": 4,
+      "topics": [
+        "Strings",
+        "Lists",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "simple-linked-list",
+      "difficulty": 4,
+      "topics": [
+        "Lists"
+      ]
+    },
+    {
+      "slug": "acronym",
+      "difficulty": 4,
+      "topics": [
+        "Strings",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "matrix",
+      "difficulty": 4,
+      "topics": [
+        "Matrices",
+        "Parsing"
+      ]
+    },
+    {
+      "slug": "all-your-base",
+      "difficulty": 4,
+      "topics": [
+        "Integers",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "largest-series-product",
+      "difficulty": 4,
+      "topics": [
+        "Strings",
+        "Integers",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "house",
+      "difficulty": 4,
+      "topics": [
+        "Text formatting",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "pythagorean-triplet",
+      "difficulty": 4,
+      "topics": [
+        "Records",
+        "Integers",
+        "Mathematics"
+      ]
+    },
+    {
+      "slug": "saddle-points",
+      "difficulty": 4,
+      "topics": [
+        "Matrices",
+        "Lists"
+      ]
+    },
+    {
+      "slug": "pascals-triangle",
+      "difficulty": 4,
+      "topics": [
+        "Recursion",
+        "Lists",
+        "Mathematics"
+      ]
+    },
+    {
+      "slug": "list-ops",
+      "difficulty": 4,
+      "topics": [
+        "Lists",
+        "Recursion"
+      ]
+    },
+    {
+      "slug": "prime-factors",
+      "difficulty": 4,
+      "topics": [
+        "Integers",
+        "Mathematics"
+      ]
+    },
+    {
+      "slug": "roman-numerals",
+      "difficulty": 5,
+      "topics": [
+        "Recursion",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "binary-search-tree",
+      "difficulty": 5,
+      "topics": [
+        "Searching",
+        "Trees"
+      ]
+    },
+    {
+      "slug": "ocr-numbers",
+      "difficulty": 5,
+      "topics": [
+        "Parsing",
+        "Pattern recognition"
+      ]
+    },
+    {
+      "slug": "dot-dsl",
+      "difficulty": 5,
+      "topics": [
+        "Domain-specific languages"
+      ]
+    },
+    {
+      "slug": "parallel-letter-frequency",
+      "difficulty": 5,
+      "topics": [
+        "Parallellism",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "linked-list",
+      "difficulty": 5,
+      "topics": [
+        "Lists"
+      ]
+    },
+    {
+      "slug": "simple-cipher",
+      "difficulty": 5,
+      "topics": [
+        "Strings",
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "tree-building",
+      "difficulty": 5,
+      "topics": [
+        "Trees",
+        "Refactoring"
+      ]
+    },
+    {
+      "slug": "scale-generator",
+      "difficulty": 5,
+      "topics": [
+        "Parsing",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "atbash-cipher",
+      "difficulty": 5,
+      "topics": [
+        "Strings",
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "food-chain",
+      "difficulty": 5,
+      "topics": [
+        "Text formatting",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "grep",
+      "difficulty": 5,
+      "topics": [
+        "Text formatting",
+        "Files",
+        "Searching"
+      ]
+    },
+    {
+      "slug": "custom-set",
+      "difficulty": 5,
+      "topics": [
+        "Sets"
+      ]
+    },
+    {
+      "slug": "crypto-square",
+      "difficulty": 5,
+      "topics": [
+        "Strings",
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "ledger",
+      "difficulty": 5,
+      "topics": [
+        "Globalization",
+        "Text formatting",
+        "Refactoring"
+      ]
+    },
+    {
+      "slug": "circular-buffer",
+      "difficulty": 5,
+      "topics": [
+        "Queues",
+        "Records"
+      ]
+    },
+    {
+      "slug": "luhn",
+      "difficulty": 5,
+      "topics": [
+        "Strings",
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "markdown",
+      "difficulty": 5,
+      "topics": [
+        "Parsing",
+        "Transforming",
+        "Refactoring"
+      ]
+    },
+    {
+      "slug": "run-length-encoding",
+      "difficulty": 5,
+      "topics": [
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "tournament",
+      "difficulty": 6,
+      "topics": [
+        "Text formatting",
+        "Parsing"
+      ]
+    },
+    {
+      "slug": "word-search",
+      "difficulty": 6,
+      "topics": [
+        "Searching",
+        "Tuples",
+        "Optional values"
+      ]
+    },
+    {
+      "slug": "bowling",
+      "difficulty": 6,
+      "topics": [
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "transpose",
+      "difficulty": 6,
+      "topics": [
+        "Strings",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "nth-prime",
+      "difficulty": 6,
+      "topics": [
+        "Mathematics"
+      ]
+    },
+    {
+      "slug": "palindrome-products",
+      "difficulty": 6,
+      "topics": [
+        "Strings",
+        "Tuples",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "pig-latin",
+      "difficulty": 6,
+      "topics": [
+        "Strings",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "rail-fence-cipher",
+      "difficulty": 6,
+      "topics": [
+        "Strings",
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "bracket-push",
+      "difficulty": 7,
+      "topics": [
+        "Parsing",
+        "Strings"
+      ]
+    },
+    {
+      "slug": "sublist",
+      "difficulty": 7,
+      "topics": [
+        "Lists",
+        "Recursion"
+      ]
+    },
+    {
+      "slug": "change",
+      "difficulty": 7,
+      "topics": [
+        "Integers",
+        "Recursion"
+      ]
+    },
+    {
+      "slug": "minesweeper",
+      "difficulty": 7,
+      "topics": [
+        "Parsing",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "diffie-hellman",
+      "difficulty": 7,
+      "topics": [
+        "Integers",
+        "Algorithms",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "dominoes",
+      "difficulty": 7,
+      "topics": [
+        "Lists",
+        "Tuples"
+      ]
+    },
+    {
+      "slug": "rectangles",
+      "difficulty": 7,
+      "topics": [
+        "Parsing",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "wordy",
+      "difficulty": 7,
+      "topics": [
+        "Parsing",
+        "Strings",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "hangman",
+      "difficulty": 8,
+      "topics": [
+        "Reactive programming"
+      ]
+    },
+    {
+      "slug": "zebra-puzzle",
+      "difficulty": 8,
+      "topics": [
+        "Logic"
+      ]
+    },
+    {
+      "slug": "poker",
+      "difficulty": 8,
+      "topics": [
+        "Discriminated unions",
+        "Parsing",
+        "Sorting",
+        "Games"
+      ]
+    },
+    {
+      "slug": "diamond",
+      "difficulty": 8,
+      "topics": [
+        "Text formatting",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "two-bucket",
+      "difficulty": 8,
+      "topics": [
+        "Logic"
+      ]
+    },
+    {
+      "slug": "connect",
+      "difficulty": 8,
+      "topics": [
+        "Parsing",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "say",
+      "difficulty": 8,
+      "topics": [
+        "Strings",
+        "Transforming",
+        "Text formatting"
+      ]
+    },
+    {
+      "slug": "react",
+      "difficulty": 9,
+      "topics": [
+        "Reactive programming"
+      ]
+    },
+    {
+      "slug": "variable-length-quantity",
+      "difficulty": 9,
+      "topics": [
+        "Bitwise operations",
+        "Algorithms"
+      ]
+    },
+    {
+      "slug": "go-counting",
+      "difficulty": 9,
+      "topics": [
+        "Parsing",
+        "Tuples",
+        "Optional values"
+      ]
+    },
+    {
+      "slug": "sgf-parsing",
+      "difficulty": 9,
+      "topics": [
+        "Parsing",
+        "Transforming"
+      ]
+    },
+    {
+      "slug": "zipper",
+      "difficulty": 10,
+      "topics": [
+        "Trees",
+        "Recursion",
+        "Searching"
+      ]
+    },
+    {
+      "slug": "forth",
+      "difficulty": 10,
+      "topics": [
+        "Parsing",
+        "Stacks"
+      ]
+    },
+    {
+      "slug": "pov",
+      "difficulty": 10,
+      "topics": [
+        "Graphs",
+        "Recursion",
+        "Searching"
+      ]
+    },
+    {
+      "slug": "alphametics",
+      "difficulty": 10,
+      "topics": [
+        "Parsing",
+        "Maps"
+      ]
+    }
+  ],
   "deprecated": [    
     "binary",
     "octal",
