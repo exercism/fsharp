@@ -1,4 +1,4 @@
-﻿module LeapYearTests
+﻿module LeapYearTest
 
 open NUnit.Framework
 open LeapYear

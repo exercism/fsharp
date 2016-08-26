@@ -1,4 +1,4 @@
-module DequeTests
+module DequeTest
 
 open NUnit.Framework
 open Deque

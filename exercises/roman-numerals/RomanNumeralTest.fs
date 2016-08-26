@@ -1,4 +1,4 @@
-﻿module RomanNumeralTests
+﻿module RomanNumeralTest
 
 open NUnit.Framework
 open RomanNumeral

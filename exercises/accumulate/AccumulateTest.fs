@@ -1,4 +1,4 @@
-﻿module AccumulateTests
+﻿module AccumulateTest
 
 open System
 open NUnit.Framework

@@ -1,4 +1,4 @@
-﻿module WordCountTests
+﻿module WordCountTest
 
 open NUnit.Framework
 open Phrase

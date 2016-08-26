@@ -1,4 +1,4 @@
-module AtbashTests
+module AtbashTest
 
 open NUnit.Framework
 open Atbash

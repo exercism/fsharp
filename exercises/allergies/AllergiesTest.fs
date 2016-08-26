@@ -1,4 +1,4 @@
-﻿module AllergiesTests
+﻿module AllergiesTest
 
 open System
 open NUnit.Framework

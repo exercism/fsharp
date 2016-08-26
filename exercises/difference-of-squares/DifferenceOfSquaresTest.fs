@@ -1,4 +1,4 @@
-﻿module DifferenceOfSquaresTests
+﻿module DifferenceOfSquaresTest
 
 open NUnit.Framework
 open DifferenceOfSquares

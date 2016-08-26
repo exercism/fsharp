@@ -1,4 +1,4 @@
-module ScrabbleScoreTests
+module ScrabbleScoreTest
 
 open NUnit.Framework
 open Scrabble

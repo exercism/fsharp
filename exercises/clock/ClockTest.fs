@@ -1,4 +1,4 @@
-module ClockTests
+module ClockTest
 
 open System
 open NUnit.Framework

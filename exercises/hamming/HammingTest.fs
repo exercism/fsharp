@@ -1,4 +1,4 @@
-﻿module HammingTests
+﻿module HammingTest
 
 open NUnit.Framework
 open Hamming

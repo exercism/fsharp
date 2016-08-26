@@ -1,4 +1,4 @@
-module GradeSchoolTests
+module GradeSchoolTest
 
 open NUnit.Framework
 open School
