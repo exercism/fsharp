@@ -1,4 +1,4 @@
-module AcronymTests
+module AcronymTest
 
 open NUnit.Framework
 open Acronym

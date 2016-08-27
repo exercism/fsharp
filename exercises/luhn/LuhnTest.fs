@@ -1,4 +1,4 @@
-module LuhnTests
+module LuhnTest
 
 open NUnit.Framework
 open Luhn

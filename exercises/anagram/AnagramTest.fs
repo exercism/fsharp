@@ -1,4 +1,4 @@
-module AnagramTests
+module AnagramTest
 
 open System
 open NUnit.Framework

@@ -1,4 +1,4 @@
-﻿module PigLatinTests
+﻿module PigLatinTest
 
 open NUnit.Framework
 open PigLatin

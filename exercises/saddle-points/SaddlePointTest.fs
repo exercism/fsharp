@@ -1,4 +1,4 @@
-﻿module SaddlePointTests
+﻿module SaddlePointTest
 
 open NUnit.Framework
 

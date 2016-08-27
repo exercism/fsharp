@@ -1,4 +1,4 @@
-﻿module RNATranscriptionTests
+﻿module RNATranscriptionTest
 
 open NUnit.Framework
 

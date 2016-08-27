@@ -1,4 +1,4 @@
-module CryptoSquareTests
+module CryptoSquareTest
 
 open NUnit.Framework
 open CryptoSquare

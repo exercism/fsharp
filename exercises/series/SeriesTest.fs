@@ -1,4 +1,4 @@
-module SeriesTests
+module SeriesTest
 
 open System
 open NUnit.Framework

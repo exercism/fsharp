@@ -1,4 +1,4 @@
-﻿module BobTests
+﻿module BobTest
 
 open NUnit.Framework
 open Bob

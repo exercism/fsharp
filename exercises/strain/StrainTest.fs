@@ -1,4 +1,4 @@
-module StrainTests
+module StrainTest
 
 open System.Collections.Specialized
 open NUnit.Framework

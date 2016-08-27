@@ -1,4 +1,4 @@
-﻿module SpaceAgeTests
+﻿module SpaceAgeTest
 
 open NUnit.Framework
 open SpaceAge

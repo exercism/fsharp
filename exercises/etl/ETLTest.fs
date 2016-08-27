@@ -1,4 +1,4 @@
-﻿module ETLTests
+﻿module ETLTest
 
 open NUnit.Framework
 open ETL
