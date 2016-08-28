@@ -35,27 +35,27 @@ let ``Returning Option<'T>`` () =
     Assert.That(failureResult, Is.EqualTo(None))
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
-// In that case, one usually defines a new discriminated union: Result<'T, 'TError>.
+// In that case, one usually defines a new discriminated union: Result<'TSuccess, 'TError>.
 // This discriminated union has two possible cases: Ok and Error, which contain data
-// of type 'T and 'TError respectively. Note that these types can be different, so
+// of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
 //
-// Note: F# 4.1 will include the Result<'T, 'TError> type.
+// Note: F# 4.1 will include the Result<'TSuccess, 'TError> type.
 // See: https://blogs.msdn.microsoft.com/dotnet/2016/07/25/a-peek-into-f-4-1/
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Returning Result<'TSuccess, 'TFailure>`` () =
+let ``Returning Result<'TSuccess, 'TError>`` () =
     let successResult = handleErrorByReturningResult "1"
     Assert.True((successResult = Ok 1))
     
     let failureResult = handleErrorByReturningResult "a"
     Assert.True((failureResult = Error "Could not convert input to integer"))
 
-// In the previous test, we defined a Result<'T, 'TError> type. The next step is
+// In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
 // becomes apparent when you try to do this, is that the output of one validation
-// function (which is of type Result<'T, 'TError>), cannot be used as the input of
-// another validation function (which expects a parameter of type 'T). 
+// function (which is of type Result<'TSuccess, 'TError>), cannot be used as the input of
+// another validation function (which expects a parameter of type 'TSuccess). 
 //
 // To solve this problem, you can use the railway-oriented programming model. In this
 // model, functions are likened to railway switches that have one or two input tracks 
@@ -65,7 +65,7 @@ let ``Returning Result<'TSuccess, 'TFailure>`` () =
 // you can never return to success track.
 //
 // In this test, your task is to write a function "bind", that allows you to combine
-// two functions that take a T' instance and return a Result<'T, 'TError> instance.
+// two functions that take a 'TSuccess instance and return a Result<'TSuccess, 'TError> instance.
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Using railway-oriented programming`` () =
