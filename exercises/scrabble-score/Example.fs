@@ -1,4 +1,4 @@
-﻿module Scrabble
+﻿module ScrabbleScore
 
 open System
 

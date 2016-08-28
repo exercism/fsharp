@@ -1,7 +1,7 @@
 module ScrabbleScoreTest
 
 open NUnit.Framework
-open Scrabble
+open ScrabbleScore
   
 [<Test>]
 let ``Empty word scores zero`` () =
