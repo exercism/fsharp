@@ -2,8 +2,8 @@
 
 open System
 
-type Result<'T, 'TError> =
-    | Ok of 'T
+type Result<'TSuccess, 'TError> =
+    | Ok of 'TSuccess
     | Error of 'TError
 
 let handleErrorByThrowingException() = failwith "An error occurred."
