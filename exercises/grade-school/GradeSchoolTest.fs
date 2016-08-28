@@ -1,7 +1,7 @@
 module GradeSchoolTest
 
 open NUnit.Framework
-open School
+open GradeSchool
 
 [<Test>]
 let ``Empty school has an empty roster`` () =
