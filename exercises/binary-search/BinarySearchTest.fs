@@ -29,19 +29,19 @@ let ``Should return None if a value is greater than the element in a single elem
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Should find an element in a longer array in less than log(n) accesses`` () =
+let ``Should find an element in a longer array`` () =
     let input = [6; 67; 123; 345; 456; 457; 490; 2002; 54321; 54322]
     Assert.That(binarySearch input 2002, Is.EqualTo(Some 7))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Should find elements at the beginning of an array in less than log(n) accesses`` () =
+let ``Should find elements at the beginning of an array`` () =
     let input = [6; 67; 123; 345; 456; 457; 490; 2002; 54321; 54322]
     Assert.That(binarySearch input 6, Is.EqualTo(Some 0))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Should find elements at the end of an array in less than log(n) accesses`` () =
+let ``Should find elements at the end of an array`` () =
     let input = [6; 67; 123; 345; 456; 457; 490; 2002; 54321; 54322]
     Assert.That(binarySearch input 54322, Is.EqualTo(Some 9))
 
