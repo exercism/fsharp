@@ -90,7 +90,7 @@ let ``Single zero`` () =
     let inputBase = 10
     let inputDigits = [0]
     let outputBase = 2
-    let outputDigits = None
+    let outputDigits = Some [0]
     Assert.That(rebase inputBase inputDigits outputBase, Is.EqualTo(outputDigits))
 
 [<Test>]
@@ -99,7 +99,7 @@ let ``Multiple zeros`` () =
     let inputBase = 10
     let inputDigits = [0; 0; 0]
     let outputBase = 2
-    let outputDigits = None
+    let outputDigits = Some [0]
     Assert.That(rebase inputBase inputDigits outputBase, Is.EqualTo(outputDigits))
 
 [<Test>]
@@ -108,7 +108,7 @@ let ``Leading zeros`` () =
     let inputBase = 7
     let inputDigits = [0; 6; 0]
     let outputBase = 10
-    let outputDigits = None
+    let outputDigits = Some [4; 2]
     Assert.That(rebase inputBase inputDigits outputBase, Is.EqualTo(outputDigits))
 
 [<Test>]

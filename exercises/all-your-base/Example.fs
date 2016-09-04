@@ -1,31 +1,25 @@
 ﻿module AllYourBase
 
-let swap (a, b) = b, a
+let toBase b n =
+    let rec loop n acc =
+        if n = 0 then acc else
+        let digit, n' = n % b, n / b
+        loop n' (digit::acc)
+    match loop n [] with
+    | [] -> Some [0]
+    | digits -> Some digits
 
-let divMod n d = 
-    let q = n / d
-    let r = n % d
-    (q, r)
+let fromBase b nums =
+    let rec loop acc = function
+    | [] -> Some acc
+    | digit::rest ->
+        if digit <  0 then None else
+        if digit >= b then None else
+        loop (acc * b + digit) rest
+    if nums = [] then None else loop 0 nums
 
-let fromDigits fromBase digits = 
-    let folder acc x = 
-        if x < 0 || x >= fromBase || (x = 0 && acc = Some 0) then None 
-        else Option.map (fun y -> y * fromBase + x) acc
-
-    if List.isEmpty digits then None
-    else List.fold folder (Some 0) digits
-
-let toDigits toBase n =
-    let unfolder x = 
-        if x = 0 then None
-        else Some (divMod x toBase |> swap)
-
-    List.unfold unfolder n |> List.rev
-
-let rebase inputBase inputDigits outputBase =
-    if inputBase < 2 || outputBase < 2 then 
-        None
-    else 
-        inputDigits 
-        |> fromDigits inputBase 
-        |> Option.map (toDigits outputBase)
+let rebase inB inDigits outB =
+    if inB < 2 || outB < 2 then None else
+    match fromBase inB inDigits with
+    | None -> None
+    | Some num -> toBase outB num
