@@ -57,4 +57,4 @@ let ``Stops translation of longer strand`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Throws for invalid codons`` () =
-    Assert.That((fun () -> translate "CARROT'" |> ignore), Throws.Exception)
+    Assert.That((fun () -> translate "CARROT'" |> List.ofSeq |> ignore), Throws.Exception)
