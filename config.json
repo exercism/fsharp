@@ -869,7 +869,9 @@
       "slug": "react",
       "difficulty": 9,
       "topics": [
-        "Reactive programming"
+        "Reactive programming",
+        "Classes",
+        "Events"
       ]
     },
     {

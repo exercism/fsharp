@@ -1,56 +1,67 @@
 ﻿module React
 
-[<AbstractClass>]
-type Cell() =
-    abstract Value : int with get, set
-    abstract Changed: IEvent<int>
+open System
+
+type Cell(ord: int, initialValue: int, changed: (Cell -> int -> unit)) = 
+    let changedEvent = new Event<int>()
+
+    member val Ord = ord    
+    member val Consumers = List.empty<int> with get,set
+    member val Producers = List.empty<Cell> with get,set
+    member val Compute = (fun values -> 0) with get,set
+
+    member val ChangedEvent = changedEvent
+    member val Changed = changedEvent.Publish
     
-type InputCell(initialValue: int) =
-    inherit Cell() 
+    member val FValue = initialValue with get, set
 
-    let mutable value = initialValue 
-    let changed = new Event<int>()    
+    member this.Value
+        with get() = this.FValue 
+        and set(newValue) = 
+            if this.FValue <> newValue then
+                this.FValue <- newValue
+                changed this newValue
 
-    override this.Changed = changed.Publish
-    
-    override this.Value 
-        with get() = value 
-        and set(newValue : int) = 
-            if value <> newValue then
-                value <- newValue
-                changed.Trigger(newValue)
+type Reactor() =
+    let mutable cells = List.empty<Cell>
 
-type ComputeCell(inputs: Cell list, compute: (int list -> int)) =
-    inherit Cell() 
+    let computeValue (producers: Cell list) (compute: (int list -> int)) = 
+        producers |> List.map (fun producer -> producer.FValue) |> compute
 
-    let computeValue() = inputs |> List.map (fun x -> x.Value) |> compute
+    let changed (cell: Cell) value = 
 
-    let mutable value = computeValue()
-    let changed = new Event<int>()
-    
-    let updateValue() =
-        let newValue = computeValue()
+        let rec aux needCheck =
+            function
+            | [] -> 
+                ()
+            | id::xs when Set.contains id needCheck ->
+                let consumer = List.item id cells                               
+                let newValue = computeValue consumer.Producers consumer.Compute
 
-        if newValue <> value then
-            value <- newValue        
-            changed.Trigger(newValue)        
+                if newValue <> consumer.Value then
+                    consumer.FValue <- newValue
+                    consumer.ChangedEvent.Trigger newValue
 
-    let subscribeToInputChanges() =
-        [for input in inputs do 
-            input.Changed.Add(fun _ -> updateValue())]
-        |> ignore
+                    aux (consumer.Consumers |> List.fold (fun acc consumer -> Set.add consumer acc) needCheck) xs                    
+                else
+                    aux needCheck xs
+            | id::xs -> 
+                aux needCheck xs
 
-    do        
-        subscribeToInputChanges()
+        aux (cell.Consumers |> set) [cell.Ord + 1 .. cells.Length - 1]            
 
-    override this.Changed = changed.Publish
+    let addCell value = 
+        let cell = new Cell(cells.Length, value, changed)
+        cells <- cells @ [cell]
+        cell
 
-    override this.Value 
-        with get() = value 
-        and set(v : int) = failwith "Cannot directly set value of compute cell"
+    member this.createInputCell value =
+        addCell value
 
-let mkInputCell value = new InputCell(value)
-let mkComputeCell (inputs: Cell list) (compute: (int list -> int)) = new ComputeCell(inputs, compute)
-
-let setValue value (cell: Cell) = cell.Value <- value
-let value (cell: Cell) = cell.Value
+    member this.createComputeCell (producers: Cell list) (compute: (int list -> int)) =
+        let value = computeValue producers compute
+        let cell = addCell value
+        cell.Producers <- producers
+        cell.Compute <- compute
+        cell.Producers |> List.iter (fun producer -> producer.Consumers <- producer.Consumers @ [cell.Ord])
+        cell
