@@ -88,6 +88,16 @@ let ``One file, several matches, print line numbers flag`` () =
     Assert.That(grep pattern flags files, Is.EqualTo(expected))
 
 [<Test>]
+let ``One file, several matches, match entire lines flag`` () =
+    let pattern = "may"
+    let flags = "-x"
+    let files = [midsummerNightFileName]
+
+    let expected = ""
+
+    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+
+[<Test>]
 [<Ignore("Remove to run test")>]
 let ``One file, one match, print file names flag`` () =
     let pattern = "Forbidden"
