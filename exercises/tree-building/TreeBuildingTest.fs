@@ -14,7 +14,6 @@ let ``One node`` () =
     Assert.That(buildTree input, Is.EqualTo(expected))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Three nodes in order`` () =
     let input = 
         [
@@ -26,7 +25,6 @@ let ``Three nodes in order`` () =
     Assert.That(buildTree input, Is.EqualTo(expected))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Three nodes in reverse order`` () =
     let input = 
         [
@@ -38,7 +36,6 @@ let ``Three nodes in reverse order`` () =
     Assert.That(buildTree input, Is.EqualTo(expected))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``More than two children`` () =
     let input = 
         [
@@ -51,7 +48,6 @@ let ``More than two children`` () =
     Assert.That(buildTree input, Is.EqualTo(expected))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Binary tree`` () =
     let input = 
         [
@@ -68,7 +64,6 @@ let ``Binary tree`` () =
     Assert.That(buildTree input, Is.EqualTo(expected))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Unbalanced tree`` () =
     let input =
         [
@@ -85,13 +80,11 @@ let ``Unbalanced tree`` () =
     Assert.That(buildTree input, Is.EqualTo(expected))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Empty input`` () =
     let input = []
     Assert.That((fun () -> buildTree input |> ignore), Throws.Exception)
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Root node has parent`` () =
     let input = 
         [ { RecordId = 0; ParentId =  1 };
@@ -99,13 +92,11 @@ let ``Root node has parent`` () =
     Assert.That((fun () -> buildTree input |> ignore), Throws.Exception)
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``No root node`` () =
     let input = [ { RecordId = 1; ParentId = -1 } ]
     Assert.That((fun () -> buildTree input |> ignore), Throws.Exception)
     
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Non-continuous`` () =
     let input = 
         [
@@ -117,7 +108,6 @@ let ``Non-continuous`` () =
     Assert.That((fun () -> buildTree input |> ignore), Throws.Exception)
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Cycle directly`` () =
     let input = 
         [
@@ -132,7 +122,6 @@ let ``Cycle directly`` () =
     Assert.That((fun () -> buildTree input |> ignore), Throws.Exception)
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Cycle indirectly`` () =
     let input = 
         [ 
@@ -147,7 +136,6 @@ let ``Cycle indirectly`` () =
     Assert.That((fun () -> buildTree input |> ignore), Throws.Exception)
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Higher id parent of lower id`` () =
     let input = 
         [ 
