@@ -1,7 +1,7 @@
-module WordProblemTest
+module WordyTest
 
 open NUnit.Framework
-open WordProblem
+open Wordy
 
 [<Test>]
 let ``Can parse and solve addition problems`` () =

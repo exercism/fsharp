@@ -1,4 +1,4 @@
-module WordProblem
+module Wordy
 
 open System
 open System.Text.RegularExpressions
