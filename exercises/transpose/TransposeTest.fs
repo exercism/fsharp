@@ -11,9 +11,9 @@ let ``Empty string`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
-let ``Two characters`` () = 
+[<Test>]
+let ``Two characters in a row`` () = 
     let input =
         "A1"
 
@@ -23,8 +23,20 @@ let ``Two characters`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
+let ``Two characters in a column`` () = 
+    let input =
+        "A\n" +
+        "1";
+
+    let expected = 
+        "A1"
+
+    Assert.That(transpose input, Is.EqualTo(expected))
+
+[<Ignore("Remove to run test")>]
+[<Test>]
 let ``Simple`` () = 
     let input =
         "ABC\n" +
@@ -37,8 +49,8 @@ let ``Simple`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``Single line`` () = 
     let input =
         "Single line."
@@ -59,8 +71,8 @@ let ``Single line`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``First line longer than second line`` () = 
     let input = 
         "The fourth line.\n" + 
@@ -86,8 +98,8 @@ let ``First line longer than second line`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``Second line longer than first line`` () = 
     let input = 
         "The first line.\n" + 
@@ -113,8 +125,8 @@ let ``Second line longer than first line`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``Square`` () = 
     let input = 
         "HEART\n" +
@@ -132,8 +144,8 @@ let ``Square`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``Rectangle`` () = 
     let input = 
         "FRACTURE\n" +
@@ -153,8 +165,8 @@ let ``Rectangle`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``Triangle`` () = 
     let input = 
         "T\n" +
@@ -174,8 +186,8 @@ let ``Triangle`` () =
 
     Assert.That(transpose input, Is.EqualTo(expected))
 
-[<Test>]
 [<Ignore("Remove to run test")>]
+[<Test>]
 let ``Many lines`` () = 
     let input = 
         "Chor. Two households, both alike in dignity,\n" +
@@ -246,6 +258,6 @@ let ``Many lines`` () =
         "          o  n\n" +
         "          v  d\n" +
         "          e  .\n" +
-        "          ,  "
+        "          ,"
     
     Assert.That(transpose input, Is.EqualTo(expected))
