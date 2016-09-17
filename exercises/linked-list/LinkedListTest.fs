@@ -1,17 +1,17 @@
-module DequeTest
+module LinkedListTest
 
 open NUnit.Framework
-open Deque
+open LinkedList
 
 [<Test>]
 let ``Push and pop are first in last out order`` () =
-    let deque = 
-        mkDeque
+    let linkedList = 
+        mkLinkedList
         |> push 10
         |> push 20
 
-    let (val', deque') = pop deque
-    let (val'', _) = pop deque'
+    let (val', linkedList') = pop linkedList
+    let (val'', _) = pop linkedList'
 
     Assert.That(val', Is.EqualTo(20))
     Assert.That(val'', Is.EqualTo(10))
@@ -19,13 +19,13 @@ let ``Push and pop are first in last out order`` () =
 [<Test>]  
 [<Ignore("Remove to run test")>]  
 let ``Push and shift are first in first out order`` () =
-    let deque = 
-        mkDeque
+    let linkedList = 
+        mkLinkedList
         |> push 10
         |> push 20
 
-    let (val', deque') = shift deque
-    let (val'', _) = shift deque'
+    let (val', linkedList') = shift linkedList
+    let (val'', _) = shift linkedList'
 
     Assert.That(val', Is.EqualTo(10))
     Assert.That(val'', Is.EqualTo(20))
@@ -33,13 +33,13 @@ let ``Push and shift are first in first out order`` () =
 [<Test>] 
 [<Ignore("Remove to run test")>]  
 let ``Unshift and shift are last in first out order`` () =
-    let deque = 
-        mkDeque
+    let linkedList = 
+        mkLinkedList
         |> unshift 10
         |> unshift 20
 
-    let (val', deque') = shift deque
-    let (val'', _) = shift deque'
+    let (val', linkedList') = shift linkedList
+    let (val'', _) = shift linkedList'
 
     Assert.That(val', Is.EqualTo(20))
     Assert.That(val'', Is.EqualTo(10))
@@ -47,13 +47,13 @@ let ``Unshift and shift are last in first out order`` () =
 [<Test>]    
 [<Ignore("Remove to run test")>]
 let ``Unshift and pop are last in last out order`` () =
-    let deque = 
-        mkDeque
+    let linkedList = 
+        mkLinkedList
         |> unshift 10
         |> unshift 20
 
-    let (val', deque') = pop deque
-    let (val'', _) = pop deque'
+    let (val', linkedList') = pop linkedList
+    let (val'', _) = pop linkedList'
 
     Assert.That(val', Is.EqualTo(10))
     Assert.That(val'', Is.EqualTo(20))
@@ -61,15 +61,15 @@ let ``Unshift and pop are last in last out order`` () =
 [<Test>]    
 [<Ignore("Remove to run test")>]
 let ``Push and pop can handle multiple values`` () =
-    let deque = 
-        mkDeque
+    let linkedList = 
+        mkLinkedList
         |> push 10
         |> push 20
         |> push 30
 
-    let (val', deque') = pop deque
-    let (val'', deque'') = pop deque'
-    let (val''', _) = pop deque''
+    let (val', linkedList') = pop linkedList
+    let (val'', linkedList'') = pop linkedList'
+    let (val''', _) = pop linkedList''
 
     Assert.That(val', Is.EqualTo(30))
     Assert.That(val'', Is.EqualTo(20))
@@ -78,15 +78,15 @@ let ``Push and pop can handle multiple values`` () =
 [<Test>]    
 [<Ignore("Remove to run test")>]
 let ``Unshift and shift can handle multiple values`` () =
-    let deque = 
-        mkDeque
+    let linkedList = 
+        mkLinkedList
         |> unshift 10
         |> unshift 20
         |> unshift 30
 
-    let (val', deque') = shift deque
-    let (val'', deque'') = shift deque'
-    let (val''', _) = shift deque''
+    let (val', linkedList') = shift linkedList
+    let (val'', linkedList'') = shift linkedList'
+    let (val''', _) = shift linkedList''
 
     Assert.That(val', Is.EqualTo(30))
     Assert.That(val'', Is.EqualTo(20))
@@ -94,27 +94,27 @@ let ``Unshift and shift can handle multiple values`` () =
 
 [<Test>]    
 [<Ignore("Remove to run test")>]
-let ``All methods of manipulating the deque can be used together`` () =
-    let deque = 
-        mkDeque
+let ``All methods of manipulating the linkedList can be used together`` () =
+    let linkedList = 
+        mkLinkedList
         |> push 10
         |> push 20
 
-    let (val', deque') = pop deque
+    let (val', linkedList') = pop linkedList
 
     Assert.That(val', Is.EqualTo(20))
 
-    let deque'' = push 30 deque'
-    let (val''', deque''') = shift deque''
+    let linkedList'' = push 30 linkedList'
+    let (val''', linkedList''') = shift linkedList''
 
     Assert.That(val''', Is.EqualTo(10))
 
-    let deque'''' = unshift 40 deque'''
-    let deque''''' = push 50 deque''''
+    let linkedList'''' = unshift 40 linkedList'''
+    let linkedList''''' = push 50 linkedList''''
 
-    let (val'''''', deque'''''') = shift deque'''''
-    let (val''''''', deque''''''') = pop deque''''''
-    let (val'''''''', _) = shift deque'''''''
+    let (val'''''', linkedList'''''') = shift linkedList'''''
+    let (val''''''', linkedList''''''') = pop linkedList''''''
+    let (val'''''''', _) = shift linkedList'''''''
         
     Assert.That(val'''''', Is.EqualTo(40))
     Assert.That(val''''''', Is.EqualTo(50))
