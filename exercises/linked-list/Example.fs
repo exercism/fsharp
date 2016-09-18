@@ -1,36 +1,36 @@
-module Deque
+module LinkedList
 
 type Element<'a> = { value: 'a; mutable prev: Element<'a> option; mutable next: Element<'a> option }
-type Deque<'a> = { first: Element<'a> option; last: Element<'a> option }
+type LinkedList<'a> = { first: Element<'a> option; last: Element<'a> option }
 
-let mkDeque = { first = None; last = None }
+let mkLinkedList = { first = None; last = None }
 
-let addToEmpty newValue deque = 
+let addToEmpty newValue linkedList = 
     let newElement = { value = newValue; prev = None; next = None }
-    { deque with first = Some newElement; last = Some newElement }
+    { linkedList with first = Some newElement; last = Some newElement }
 
-let pop deque =
-    match deque.last with
+let pop linkedList =
+    match linkedList.last with
     | None -> failwith "Cannot pop from empty list"
-    | Some(x) -> x.value, { deque with last = x.prev }
+    | Some(x) -> x.value, { linkedList with last = x.prev }
 
-let shift deque =
-    match deque.first with
+let shift linkedList =
+    match linkedList.first with
     | None -> failwith "Cannot shift from empty list"
-    | Some(x) -> x.value, { deque with first = x.next }
+    | Some(x) -> x.value, { linkedList with first = x.next }
         
-let push newValue deque = 
-    match deque.last with
-    | None -> addToEmpty newValue deque
+let push newValue linkedList = 
+    match linkedList.last with
+    | None -> addToEmpty newValue linkedList
     | Some(x) ->         
-        let last = Some { value = newValue; prev = deque.last; next = x.next }
+        let last = Some { value = newValue; prev = linkedList.last; next = x.next }
         x.next <- last            
-        { deque with last = last }
+        { linkedList with last = last }
 
-let unshift newValue deque =        
-    match deque.first with
-    | None -> addToEmpty newValue deque
+let unshift newValue linkedList =        
+    match linkedList.first with
+    | None -> addToEmpty newValue linkedList
     | Some(x) ->     
-        let first = Some { value = newValue; prev = x.prev; next = deque.first }
+        let first = Some { value = newValue; prev = x.prev; next = linkedList.first }
         x.prev <- first
-        { deque with first = first }
+        { linkedList with first = first }
