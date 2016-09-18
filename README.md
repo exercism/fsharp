@@ -13,3 +13,6 @@ Please see the [contributing guide](https://github.com/exercism/x-api/blob/maste
 The MIT License (MIT)
 
 Copyright (c) 2014 Katrina Owen, _@kytrinyx.com
+
+### F# icon
+The F# Software Foundation logo for F# is an asset of the F# Software Foundation. We have adapted it --changing the color-- with permission.
