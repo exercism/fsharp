@@ -48,10 +48,6 @@ Target "Test" (fun _ ->
         |> NUnit3 (fun p -> { p with ShadowCopy = false })
 )
 
-Target "CleanTest" (fun _ ->
-    DeleteFiles ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-)
-
 // Build order
 "Clean" 
   ==> "Copy"
@@ -59,7 +55,6 @@ Target "CleanTest" (fun _ ->
   ==> "PrepareTests"
   ==> "BuildWithAllTests"    
   ==> "Test"
-  ==> "CleanTest"
 
-// start build
-RunTargetOrDefault "CleanTest"
+// Start build
+RunTargetOrDefault "Test"

@@ -43,10 +43,16 @@ That Shepherd, who first taught the chosen Seed
 """
 
 [<OneTimeSetUp>]
-let init () =
+let setUp () =
     File.WriteAllText(iliadFileName, iliadContents)
     File.WriteAllText(midsummerNightFileName, midsummerNightContents)
     File.WriteAllText(paradiseLostFileName, paradiseLostContents)
+
+[<OneTimeTearDown>]
+let tearDown () =
+    File.Delete(iliadFileName)
+    File.Delete(midsummerNightFileName)
+    File.Delete(paradiseLostFileName)
 
 [<Test>]
 let ``One file, one match, no flags`` () =
