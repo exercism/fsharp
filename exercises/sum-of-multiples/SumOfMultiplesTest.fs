@@ -14,6 +14,11 @@ let ``Sum to 3`` () =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
+let ``Sum to 4`` () =
+    Assert.That(sumOfMultiples [3; 5] 4, Is.EqualTo(3))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
 let ``Sum to 10`` () =
     Assert.That(sumOfMultiples [3; 5] 10, Is.EqualTo(23))
 
