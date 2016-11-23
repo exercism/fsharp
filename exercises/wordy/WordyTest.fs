@@ -79,5 +79,5 @@ let ``Cubed is too advanced`` () =
     
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Irrelevent problems are not valid`` () =
+let ``Irrelevant problems are not valid`` () =
     Assert.That(solve "Who is the president of the United States?", Is.EqualTo(None))
