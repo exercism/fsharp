@@ -24,14 +24,14 @@ let ``Inserting same`` () =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Inserting greater()`` =
+let ``Inserting greater`` () =
     let tree = singleton 4 |> insert 5
     Assert.That(tree |> value, Is.EqualTo(4))
     Assert.That(tree |> right |> Option.map value, Is.EqualTo(Some 5))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Complex tree()`` =
+let ``Complex tree`` () =
     let tree = fromList [4; 2; 6; 1; 3; 7; 5]
     Assert.That(tree |> value, Is.EqualTo(4))
     Assert.That(tree |> left |> Option.map value, Is.EqualTo(2))
