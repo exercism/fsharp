@@ -34,12 +34,12 @@ let ``Inserting greater`` () =
 let ``Complex tree`` () =
     let tree = fromList [4; 2; 6; 1; 3; 7; 5]
     Assert.That(tree |> value, Is.EqualTo(4))
-    Assert.That(tree |> left |> Option.map value, Is.EqualTo(2))
+    Assert.That(tree |> left |> Option.map value, Is.EqualTo(Some 2))
     Assert.That(tree |> left |> Option.bind (fun x -> x |> left) |> Option.map value, Is.EqualTo(Some 1))
     Assert.That(tree |> left |> Option.bind (fun x -> x |> right) |> Option.map value, Is.EqualTo(Some 3))
-    Assert.That(tree |> right |> Option.map value, Is.EqualTo(6))
+    Assert.That(tree |> right |> Option.map value, Is.EqualTo(Some 6))
     Assert.That(tree |> right |> Option.bind (fun x -> x |> left) |> Option.map value, Is.EqualTo(Some 5))
-    Assert.That(tree |> right |> Option.bind (fun x -> x |> right) |> Option.map value, Is.EqualTo(7))
+    Assert.That(tree |> right |> Option.bind (fun x -> x |> right) |> Option.map value, Is.EqualTo(Some 7))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
