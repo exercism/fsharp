@@ -21,19 +21,19 @@ Target "Copy" (fun _ -> CopyDir buildDir sourceDir allFiles)
 
 Target "BuildUnchanged" (fun _ ->
     MSBuildRelease buildDir "Build" [solutionFile]
-    |> Log "AppBuild-Output: "
+    |> Log "Build unchanged: "
 )
 
 Target "PrepareTests" (fun _ ->
-    let ignorePattern = "(\[<Ignore\(\"Remove to run test\"\)>]|, Ignore = \"Remove to run test case\")"
+    let ignorePattern = "(\[<Ignore\(\"Remove to run test\"\)>\]|, Ignore = \"Remove to run test case\")"
 
-    !! (buildDir @@ "**/*Test?.fs")
+    !! (buildDir @@ "**/*Test.fs")
     |> RegexReplaceInFilesWithEncoding ignorePattern "" System.Text.Encoding.UTF8
 )
 
 Target "BuildWithAllTests" (fun _ ->
-    MSBuildRelease buildDir "Build" [solutionFile]
-    |> Log "AppBuild-Output: "
+    MSBuildRelease buildDir "Rebuild" [solutionFile]
+    |> Log "Build with tests: "
 )
 
 Target "Test" (fun _ ->
