@@ -13,18 +13,18 @@
       ]
     },
     {
+      "slug": "leap",
+      "difficulty": 1,
+      "topics": [
+        "Integers"
+      ]
+    },
+    {
       "slug": "bob",
       "difficulty": 1,
       "topics": [
         "Strings",
         "Control-flow (if-else statements)"
-      ]
-    },
-    {
-      "slug": "leap",
-      "difficulty": 1,
-      "topics": [
-        "Integers"
       ]
     },
     {
