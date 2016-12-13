@@ -5,10 +5,9 @@ Install [Xamarin Studio](http://xamarin.com/download).
 While Xamarin is most known for creating iOS and Android applications, it's still a perfect IDE to create F# console
 or library projects which is all that's needed for Exercism.
 
-Once installed and running, click on new solution and you'll find the library project to select. Don't forget to click the
-lanugage drop down to select F# since it defaults to C#.
+Once installed and running, you can validate the installation by starting Xamarin creating a new solution. On the left hand side select .NET, and on the right hand side select Library. Library should have a little button-shapped drop down box to it's right that says C#. Click it and you'll see you can also choose F#.
 
-![Xamarin New Project](http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp.jpg)
+<img alt="Xamarin New Projct" src="http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp.jpg" style="width:100%; height: 100%;">
 
 #### Linux
 The [F# Foundation](http://fsharp.org/) has detailed instructions on different options to install F# on [Linux](http://fsharp.org/use/linux/).

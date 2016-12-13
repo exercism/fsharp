@@ -28,7 +28,7 @@ Now you can have fun learning F# and run your code against the tests!
 ### Mac
 Xamarin Studio also ships with NUnit. From the new project dialog, just select an NUnit class library.
 
-![Xamarin NUnit](http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp-nunit.jpg)
+<img alt="Xamarin NUnit" src=" http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp-nunit.jpg" style="height: 100%; width: 100%;" />
 
 From here you can write NUnit tests right away. To run the tests open the `Unit Tests` pad within
 Xamarin (View -> Pads -> Unit Tests).
