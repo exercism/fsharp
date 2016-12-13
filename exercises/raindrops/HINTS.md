@@ -1,0 +1,2 @@
+## Hints
+- Think of this in a generic way. If you're familiar with the (fizz buzz)[https://en.wikipedia.org/wiki/Fizz_buzz] problem this is similar except there are three conditions instead of two. How would you implement this knowing that one day we might want to extend to four, five, or even ten types of raindrops?
