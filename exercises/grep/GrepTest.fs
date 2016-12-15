@@ -44,6 +44,7 @@ That Shepherd, who first taught the chosen Seed
 
 [<OneTimeSetUp>]
 let setUp () =
+    Directory.SetCurrentDirectory(Path.GetTempPath());
     File.WriteAllText(iliadFileName, iliadContents)
     File.WriteAllText(midsummerNightFileName, midsummerNightContents)
     File.WriteAllText(paradiseLostFileName, paradiseLostContents)
