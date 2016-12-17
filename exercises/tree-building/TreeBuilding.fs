@@ -11,7 +11,7 @@ let buildTree records =
     if List.isEmpty records' then failwith "Empty input"
     else
         let root = records'.[0]
-        if (root.ParentId = -1 |> not) then
+        if (root.ParentId = 0 |> not) then
             failwith "Root node is invalid"
         else
             if (root.RecordId = 0 |> not) then failwith "Root node is invalid"
@@ -20,14 +20,17 @@ let buildTree records =
                 let mutable leafs = []
 
                 for r in records' do
-                    if (r.ParentId > r.RecordId || r.ParentId = r.RecordId) then
+                    if (r.RecordId <> 0 && (r.ParentId > r.RecordId || r.ParentId = r.RecordId)) then
                         failwith "Nodes with invalid parents"
                     else
                         if r.RecordId <> prev + 1 then
                             failwith "Non-continuous list"
-                        else
+                        else                            
                             prev <- r.RecordId
-                            leafs <- (r.ParentId, r.RecordId) :: leafs
+                            if (r.RecordId = 0) then
+                                leafs <- (-1, r.RecordId) :: leafs
+                            else
+                                leafs <- (r.ParentId, r.RecordId) :: leafs
 
                 leafs <- List.rev leafs 
                 let root = leafs.[0]
