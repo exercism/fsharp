@@ -49,7 +49,7 @@ let ``With h6 header level`` () =
 [<Test>]
 let ``Unordered lists`` () =
     let input = "* Item 1\n* Item 2"
-    let expected = "<ul><li><p>Item 1</p></li><li><p>Item 2</p></li></ul>"
+    let expected = "<ul><li>Item 1</li><li>Item 2</li></ul>"
     Assert.That(parse input, Is.EqualTo(expected))
 
 [<Test>]
