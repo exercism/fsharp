@@ -4,3 +4,4 @@ nuget FParsec
 nuget FSharp.Core
 nuget NUnit
 nuget NUnit.ConsoleRunner
+github nunit/nunit-transforms nunit3-junit/nunit3-junit.xslt

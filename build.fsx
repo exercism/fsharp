@@ -6,11 +6,12 @@ open Fake.Testing.NUnit3
 
 // Directories
 let buildDir  = "./build/"
-let sourceDir  = "./exercises/"
+let sourceDir = "./exercises/"
 
 // Files
 let solutionFile = buildDir @@ "/exercises.fsproj"
 let compiledOutput = buildDir @@ "xfsharp.dll"
+let nunitToJunitTransformFile = "./paket-files" @@ "nunit" @@ "nunit-transforms" @@ "nunit3-junit" @@ "nunit3-junit.xslt"
 
 // Targets
 Target "Clean" (fun _ ->
@@ -42,6 +43,11 @@ Target "Test" (fun _ ->
         |> NUnit3 (fun p -> { p with 
                                 ShadowCopy = false
                                 ToolPath = "nunit3-console.exe" })
+    else if getEnvironmentVarAsBool "CIRCLECI" then
+        [compiledOutput]
+        |> NUnit3 (fun p -> { p with 
+                                ShadowCopy = false
+                                ResultSpecs = [sprintf "junit-results.xml;transform=%s" nunitToJunitTransformFile] })
     else
         [compiledOutput]
         |> NUnit3 (fun p -> { p with ShadowCopy = false })
