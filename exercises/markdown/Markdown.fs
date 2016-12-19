@@ -49,14 +49,8 @@ let rec parse (markdown: string) =
                else
                    __pos <- -1
                    
-           if not notusep then
-               html <- html + "<p>"
-
            html <- html + line 
 
-           if not notusep then
-               html <- html + "</p>"
-           
            html <- html + "</li>"          
 
        elif lines.[i].[0] = '#' then

@@ -1,6 +1,5 @@
 ﻿module Markdown
 
-open System
 open System.Text.RegularExpressions
 
 let openingTag tag = sprintf "<%s>" tag
@@ -27,15 +26,11 @@ let parseDelimited delimiter tag (markdown: string) =
 let parseBold   = parseDelimited "__" boldTag
 let parseItalic = parseDelimited "_"  italicTag
 
-let correctLine list (markdown: string) = 
-    if list && (startsWithTag boldTag markdown || startsWithTag italicTag markdown) then markdown
-    else wrapInTag paragraphTag markdown
-
 let parseText list (markdown: string) =
     markdown
     |> parseBold
     |> parseItalic
-    |> correctLine list
+    |> if list then id else wrapInTag paragraphTag
 
 let (|Header|_|) (list: bool) (markdown: string) = 
     let headerNumber = 
