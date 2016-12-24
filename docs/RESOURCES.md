@@ -10,6 +10,9 @@
 * The [F# slack account](https://fsharp.slack.com). To join, you have to [become a member of the F# foundation](http://fsharp.org/guides/slack/).
 * [/r/fsharp](https://www.reddit.com/r/fsharp) is the F# subreddit.
 
+### Videos
+* The [Community for F#](https://www.youtube.com/channel/UCCQPh0mSMaVpRcKUeWPotSA/feed) YouTube channel has got lots of F# videos.
+
 ### Books
 * [Beginning F# 4.0](https://books.google.nl/books?id=puQgDAAAQBAJ&redir_esc=y)
 * [Expert F# 4.0](https://books.google.nl/books?id=L_0PogEACAAJ&dq=isbn:1484207424&hl=en&sa=X&ved=0ahUKEwjs__-hi43RAhWIMFAKHUJPASwQ6AEIHDAA)
