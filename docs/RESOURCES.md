@@ -1,5 +1,17 @@
-## Linting
-F# projects (.fsproj) can be linted for further code analysis via a third party tool - [FSharpLint](https://github.com/fsprojects/FSharpLint).
+## Recommended Learning Resources
 
-To use this, just follow the directions from the wiki page to use the [command line tool](https://github.com/duckmatt/FSharpLint/wiki/Console-Application).
+### Blogs
+* Sergey Tihon's [F# Weekly blog](https://sergeytihon.wordpress.com/) is a weekly-updated website that lists recent F# news and articles.
+* Mark Seemann's [blog](http://blog.ploeh.dk/) also has lots of interesting F# articles, usually focusing on how to design your application.
 
+### Social media
+* [StackOverflow ](http://stackoverflow.com/questions/tagged/f%23) can be used to search for your problem and see if it has been answered already. You can also ask and answer questions.
+* The [F# channel](https://functionalprogramming.slack.com/messages/fsharp/) of the [functionalprogramming slack account](https://functionalprogramming.slack.com/). To join, go to [fpchat.com](http://fpchat.com/).
+* The [F# slack account](https://fsharp.slack.com). To join, you have to [become a member of the F# foundation](http://fsharp.org/guides/slack/).
+* [/r/fsharp](https://www.reddit.com/r/fsharp) is the F# subreddit.
+
+### Videos
+* The [Community for F#](https://www.youtube.com/channel/UCCQPh0mSMaVpRcKUeWPotSA/feed) YouTube channel has got lots of F# videos.
+
+### Books
+* [Expert F# 4.0](https://books.google.nl/books?id=L_0PogEACAAJ&dq=isbn:1484207424&hl=en&sa=X&ved=0ahUKEwjs__-hi43RAhWIMFAKHUJPASwQ6AEIHDAA)
