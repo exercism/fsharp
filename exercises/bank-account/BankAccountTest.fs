@@ -44,7 +44,8 @@ let ``Balance can increment or decrement`` () =
     Assert.That(subtractedBalance, Is.EqualTo(Some -5.0))
 
 [<Test>]
-[<Ignore("Remove to run test")>]let ``Account can be closed`` () =
+[<Ignore("Remove to run test")>]
+let ``Account can be closed`` () =
     let account = 
         mkBankAccount()
         |> openAccount
@@ -55,7 +56,6 @@ let ``Balance can increment or decrement`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Account can be updated from multiple threads`` () =
-
     let account = 
         mkBankAccount()
         |> openAccount
@@ -68,9 +68,9 @@ let ``Account can be updated from multiple threads`` () =
         }
 
     updateAccountAsync
-    |> List.replicate 20
+    |> List.replicate 1000
     |> Async.Parallel 
     |> Async.RunSynchronously
     |> ignore
 
-    Assert.That(account |> getBalance, Is.EqualTo(Some 20.0))
+    Assert.That(account |> getBalance, Is.EqualTo(Some 1000.0))
