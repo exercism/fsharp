@@ -20,10 +20,7 @@ let closeAccount (account: BankAccount) =
         account
     )
 
-let getBalance (account: BankAccount) = 
-    lock account.Lock (fun () ->
-        account.Balance
-    )
+let getBalance (account: BankAccount) = account.Balance
 
 let updateBalance change (account: BankAccount) = 
     lock account.Lock (fun () ->
