@@ -1,4 +1,4 @@
-## Learning F#
+## Learning F# 
 
 ### Websites
 * The [F# for Fun and Profit](http://fsharpforfunandprofit.com/) website has tons of great F# content. From a gentle introduction to the world of F# to more advanced concepts, it's all covered. Bonus: all content is also available as an [eBook](https://www.gitbook.com/book/swlaschin/fsharpforfunandprofit/details).
