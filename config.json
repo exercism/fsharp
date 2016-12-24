@@ -66,13 +66,6 @@
       ]
     },
     {
-      "slug": "bank-account",
-      "difficulty": 2,
-      "topics": [
-        "Optional values"
-      ]
-    },
-    {
       "slug": "grains",
       "difficulty": 2,
       "topics": [
@@ -555,6 +548,14 @@
         "Strings",
         "Algorithms",
         "Transforming"
+      ]
+    },
+    {
+      "slug": "bank-account",
+      "difficulty": 5,
+      "topics": [
+        "Optional values",
+        "Concurrency"
       ]
     },
     {

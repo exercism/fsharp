@@ -1,24 +1,29 @@
 ﻿module BankAccount
 
-type BankAccount = 
-    | Open of float
-    | Closed
+open System
 
-let mkBankAccount() = Closed
+type BankAccount() = 
+    member val Lock = new Object()
+    member val Balance: float option = None with get,set
 
-let openAccount =
-    function
-    | Open x -> Open x
-    | Closed -> Open 0.0
+let mkBankAccount() = BankAccount()
 
-let closeAccount x = Closed
+let openAccount (account: BankAccount) = 
+    lock account.Lock (fun () ->
+        account.Balance <- Some 0.0
+        account
+    )
 
-let getBalance =
-    function
-    | Open x -> Some x
-    | Closed -> None
+let closeAccount (account: BankAccount) = 
+    lock account.Lock (fun () ->
+        account.Balance <- None    
+        account
+    )
 
-let updateBalance change =
-    function
-    | Open x -> Open (x + change)
-    | Closed -> Closed
+let getBalance (account: BankAccount) = account.Balance
+
+let updateBalance change (account: BankAccount) = 
+    lock account.Lock (fun () ->
+        account.Balance <- Option.map ((+) change) account.Balance    
+        account
+    )
