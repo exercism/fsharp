@@ -1,6 +1,22 @@
-Exercism provides exercises and feedback but can be difficult to jump into for those learning F# for the first time. These resources can help you get started:
+## Recommended Learning Resources
 
-* [StackOverflow - F#](http://stackoverflow.com/questions/tagged/f%23)
-* [F# For Fun and Profit](http://fsharpforfunandprofit.com/)
-* [Try F#](http://www.tryfsharp.org/Learn)
-* [F# Foundation](http://fsharp.org/)
+### Websites
+* The [F# for Fun and Profit](http://fsharpforfunandprofit.com/) website has tons of great F# content. From a gentle introduction to the world of F# to more advanced concepts, it's all covered. Bonus: all content is also available as an [eBook](https://www.gitbook.com/book/swlaschin/fsharpforfunandprofit/details).
+* The [Try F#](http://www.tryfsharp.org/Learn) website has a great [interactive tutorial](http://www.tryfsharp.org/Learn/getting-started) that allows you to write, compile and execute F# code directly in the browser.
+* The [F# Foundation](http://fsharp.org/) is a non-profit organisation which aim is to promote F#. The website has lots of links to great F# content. Perhaps even more interesting is their [mentorship program](http://fsharp.org/mentorship/index.html), where you can apply to learn F# from an experienced F# mentor.
+* The [Community for F#](https://www.youtube.com/channel/UCCQPh0mSMaVpRcKUeWPotSA/feed) YouTube channel has got lots of F# videos.
+
+### Blogs
+* Sergey Tihon's [F# Weekly blog](https://sergeytihon.wordpress.com/) is a weekly-updated website that lists recent F# news and articles.
+* Mark Seemann's [blog](http://blog.ploeh.dk/) also has lots of interesting F# articles, usually focusing on how to design your application.
+
+### Social media
+* [StackOverflow ](http://stackoverflow.com/questions/tagged/f%23) can be used to search for your problem and see if it has been answered already. You can also ask and answer questions.
+* The [F# channel](https://functionalprogramming.slack.com/messages/fsharp/) of the [functionalprogramming slack account](https://functionalprogramming.slack.com/). To join, go to [fpchat.com](http://fpchat.com/).
+* The [F# slack account](https://fsharp.slack.com). To join, you have to [become a member of the F# foundation](http://fsharp.org/guides/slack/).
+* [/r/fsharp](https://www.reddit.com/r/fsharp) is the F# subreddit.
+
+### Books
+* [Beginning F# 4.0](https://books.google.nl/books?id=puQgDAAAQBAJ&redir_esc=y)
+* [Expert F# 4.0](https://books.google.nl/books?id=L_0PogEACAAJ&dq=isbn:1484207424&hl=en&sa=X&ved=0ahUKEwjs__-hi43RAhWIMFAKHUJPASwQ6AEIHDAA)
+* [Real-World Functional Programming](https://books.google.nl/books?id=KfooAQAAMAAJ&q=isbn:1933988924&dq=isbn:1933988924&hl=en&sa=X&ved=0ahUKEwj-4eCii43RAhWdYFAKHdmnAEIQ6AEIHDAA)
