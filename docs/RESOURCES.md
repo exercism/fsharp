@@ -14,6 +14,4 @@
 * The [Community for F#](https://www.youtube.com/channel/UCCQPh0mSMaVpRcKUeWPotSA/feed) YouTube channel has got lots of F# videos.
 
 ### Books
-* [Beginning F# 4.0](https://books.google.nl/books?id=puQgDAAAQBAJ&redir_esc=y)
 * [Expert F# 4.0](https://books.google.nl/books?id=L_0PogEACAAJ&dq=isbn:1484207424&hl=en&sa=X&ved=0ahUKEwjs__-hi43RAhWIMFAKHUJPASwQ6AEIHDAA)
-* [Real-World Functional Programming](https://books.google.nl/books?id=KfooAQAAMAAJ&q=isbn:1933988924&dq=isbn:1933988924&hl=en&sa=X&ved=0ahUKEwj-4eCii43RAhWdYFAKHdmnAEIQ6AEIHDAA)
