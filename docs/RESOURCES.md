@@ -12,6 +12,7 @@
 
 ### Videos
 * The [Community for F#](https://www.youtube.com/channel/UCCQPh0mSMaVpRcKUeWPotSA/feed) YouTube channel has got lots of F# videos.
+* There are several great [F# courses](https://www.pluralsight.com/search?q=*&categories=course&roles=software-development%7C&subjects=f%23) on PluralSight. The downside: PluralSight is a paid service, but you can request a [free trial](https://www.pluralsight.com/pricing).
 
 ### Books
 * [Expert F# 4.0](https://books.google.nl/books?id=L_0PogEACAAJ&dq=isbn:1484207424&hl=en&sa=X&ved=0ahUKEwjs__-hi43RAhWIMFAKHUJPASwQ6AEIHDAA)
