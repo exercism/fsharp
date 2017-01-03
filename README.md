@@ -1,6 +1,6 @@
 # xFSharp
 
-[![Build Status](https://travis-ci.org/exercism/xfsharp.svg?branch=master)](https://travis-ci.org/exercism/xfsharp) [![Build status](https://ci.appveyor.com/api/projects/status/7r5bbsonqonf7d8t/branch/master?svg=true)](https://ci.appveyor.com/project/ErikSchierboom/xfsharp-8gbdd/branch/master)
+[![Build Status](https://travis-ci.org/exercism/xfsharp.svg?branch=master)](https://travis-ci.org/exercism/xfsharp) [![Build status](https://ci.appveyor.com/api/projects/status/7r5bbsonqonf7d8t/branch/master?svg=true)](https://ci.appveyor.com/project/ErikSchierboom/xfsharp-8gbdd/branch/master) [![CircleCI](https://circleci.com/gh/exercism/xfsharp.svg?style=svg)](https://circleci.com/gh/exercism/xfsharp)
 
 Exercism exercises in F#
 
