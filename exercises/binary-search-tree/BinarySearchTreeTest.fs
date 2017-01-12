@@ -6,40 +6,40 @@ open BinarySearchTree
 [<Test>]
 let ``Data is retained`` () =
     let tree = singleton 4
-    Assert.That(tree |> value, Is.EqualTo(4))
+    Assert.That(tree |> value, Is.EqualTo(Some 4))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Inserting less`` () =
     let tree = singleton 4 |> insert 2
-    Assert.That(tree |> value, Is.EqualTo(4))
-    Assert.That(tree |> left |> Option.map value, Is.EqualTo(Some 2))
+    Assert.That(tree |> value, Is.EqualTo(Some 4))
+    Assert.That(tree |> left |> Option.bind value, Is.EqualTo(Some 2))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Inserting same`` () =
     let tree = singleton 4 |> insert 4
-    Assert.That(tree |> value, Is.EqualTo(4))
-    Assert.That(tree |> left |> Option.map value, Is.EqualTo(Some 4))
+    Assert.That(tree |> value, Is.EqualTo(Some 4))
+    Assert.That(tree |> left |> Option.bind value, Is.EqualTo(Some 4))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Inserting greater`` () =
     let tree = singleton 4 |> insert 5
-    Assert.That(tree |> value, Is.EqualTo(4))
-    Assert.That(tree |> right |> Option.map value, Is.EqualTo(Some 5))
+    Assert.That(tree |> value, Is.EqualTo(Some 4))
+    Assert.That(tree |> right |> Option.bind value, Is.EqualTo(Some 5))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Complex tree`` () =
     let tree = fromList [4; 2; 6; 1; 3; 7; 5]
-    Assert.That(tree |> value, Is.EqualTo(4))
-    Assert.That(tree |> left |> Option.map value, Is.EqualTo(Some 2))
-    Assert.That(tree |> left |> Option.bind (fun x -> x |> left) |> Option.map value, Is.EqualTo(Some 1))
-    Assert.That(tree |> left |> Option.bind (fun x -> x |> right) |> Option.map value, Is.EqualTo(Some 3))
-    Assert.That(tree |> right |> Option.map value, Is.EqualTo(Some 6))
-    Assert.That(tree |> right |> Option.bind (fun x -> x |> left) |> Option.map value, Is.EqualTo(Some 5))
-    Assert.That(tree |> right |> Option.bind (fun x -> x |> right) |> Option.map value, Is.EqualTo(Some 7))
+    Assert.That(tree |> value, Is.EqualTo(Some 4))
+    Assert.That(tree |> left |> Option.bind value, Is.EqualTo(Some 2))
+    Assert.That(tree |> left |> Option.bind (fun x -> x |> left) |> Option.bind value, Is.EqualTo(Some 1))
+    Assert.That(tree |> left |> Option.bind (fun x -> x |> right) |> Option.bind value, Is.EqualTo(Some 3))
+    Assert.That(tree |> right |> Option.bind value, Is.EqualTo(Some 6))
+    Assert.That(tree |> right |> Option.bind (fun x -> x |> left) |> Option.bind value, Is.EqualTo(Some 5))
+    Assert.That(tree |> right |> Option.bind (fun x -> x |> right) |> Option.bind value, Is.EqualTo(Some 7))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
