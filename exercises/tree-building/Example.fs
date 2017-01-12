@@ -5,6 +5,12 @@ type Tree =
     | Branch of int * Tree list
     | Leaf of int
 
+let recordId = function Branch (id, _) | Leaf id -> id
+
+let isBranch = function Branch _ -> true  | Leaf _ -> false
+
+let children = function Branch (_, children') -> children' | Leaf _ -> []
+
 let rootNodeRecordId = 0
 
 let addOrAppend key value map =
