@@ -70,10 +70,5 @@ let ``Triangles violating triangle inequality are illegal`` () =
 
 [<Test>]
 [<Ignore("Remove to run test")>]
-let ``Triangles violating triangle inequality are illegal 2`` () =
-    Assert.That((fun () -> kind 2m 4m 2m |> ignore), Throws.InvalidOperationException)
-
-[<Test>]
-[<Ignore("Remove to run test")>]
 let ``Triangles violating triangle inequality are illegal 3`` () =
     Assert.That((fun () -> kind 7m 3m 2m |> ignore), Throws.InvalidOperationException)
