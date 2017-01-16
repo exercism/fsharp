@@ -804,6 +804,14 @@
       ]
     },
     {
+      "slug": "alphametics",
+      "difficulty": 9,
+      "topics": [
+        "Parsing",
+        "Maps"
+      ]
+    },
+    {
       "slug": "zipper",
       "difficulty": 10,
       "topics": [
@@ -827,14 +835,6 @@
         "Graphs",
         "Recursion",
         "Searching"
-      ]
-    },
-    {
-      "slug": "alphametics",
-      "difficulty": 10,
-      "topics": [
-        "Parsing",
-        "Maps"
       ]
     }
   ],
