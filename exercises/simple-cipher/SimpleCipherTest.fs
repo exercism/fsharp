@@ -25,7 +25,7 @@ let ``Encode random uses randomly generated key`` () =
     let keys = List.init 100 (fun _ -> encodeRandom plainText |> fst)
     Assert.That(keys |> List.distinct, Is.EqualTo(keys))
 
-// Here we take advantage of the fact that plaintext of "aaa..." doesn't output
+// Here we take advantage of the fact that plaintext of "aaa..." outputs
 // the key. This is a critical problem with shift ciphers, some characters
 // will always output the key verbatim.
 [<Test>]
@@ -62,6 +62,7 @@ let ``Cipher is reversible given key`` () =
     Assert.That(encode key plainText |> decode key, Is.EqualTo(plainText))
     
 [<Test>]
+[<Ignore("Remove to run test")>]
 let ``Cipher can double shift encode`` () =
     let plainText = "iamapandabear"
     Assert.That(encode plainText plainText, Is.EqualTo("qayaeaagaciai"))
