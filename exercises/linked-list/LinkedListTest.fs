@@ -24,6 +24,7 @@ let ``Push and pop are first in last out order`` () =
     Assert.That(val2, Is.EqualTo(Some 10))
 
 [<Test>]
+[<Ignore("Remove to run test")>]
 let ``Shift returns None if the list is empty`` () =
     let linkedList = mkLinkedList ()
     let value = shift linkedList
