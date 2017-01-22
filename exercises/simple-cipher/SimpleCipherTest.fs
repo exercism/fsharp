@@ -62,6 +62,7 @@ let ``Cipher is reversible given key`` () =
     Assert.That(encode key plainText |> decode key, Is.EqualTo(plainText))
     
 [<Test>]
+[<Ignore("Remove to run test")>]
 let ``Cipher can double shift encode`` () =
     let plainText = "iamapandabear"
     Assert.That(encode plainText plainText, Is.EqualTo("qayaeaagaciai"))
