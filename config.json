@@ -796,6 +796,13 @@
       ]
     },
     {
+      "slug": "lens-person",
+      "difficulty": 9,
+      "topics": [
+        "Lenses"
+      ]
+    },
+    {
       "slug": "sgf-parsing",
       "difficulty": 9,
       "topics": [
@@ -850,7 +857,6 @@
   ],
   "foregone": [
     "flatten-array",
-    "lens-person",
     "nucleotide-codons",
     "paasio",
     "point-mutations",
