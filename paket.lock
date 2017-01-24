@@ -1,5 +1,6 @@
 NUGET
   remote: https://www.nuget.org/api/v2
+    Aether (8.1.2)
     FAKE (4.46.1)
     FParsec (1.0.2)
     FSharp.Core (4.0.0.1)
