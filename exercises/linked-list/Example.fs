@@ -12,19 +12,19 @@ let addToEmpty newValue linkedList =
 
 let pop linkedList =
     match linkedList.last with
-    | None -> None
+    | None -> failwith "Cannot pop from empty list"
     | Some oldLast ->
         linkedList.last <- oldLast.prev
         linkedList.last |> Option.iter (fun el -> el.next <- None)
-        Some oldLast.value
+        oldLast.value
 
 let shift linkedList =
     match linkedList.first with
-    | None -> None
+    | None -> failwith "Cannot shift from empty list"
     | Some oldFirst ->
         linkedList.first <- oldFirst.next
         linkedList.first |> Option.iter (fun el -> el.prev <- None)
-        Some oldFirst.value
+        oldFirst.value
 
 let push newValue linkedList =
     match linkedList.last with
