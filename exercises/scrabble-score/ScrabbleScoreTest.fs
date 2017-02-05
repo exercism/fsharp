@@ -36,3 +36,8 @@ let ``Complicated word scores more`` () =
 [<Ignore("Remove to run test")>]
 let ``Scores are case insensitive`` () =
     Assert.That(score "OXYPHENBUTAZONE", Is.EqualTo(41))
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Entire alphabet`` () =
+    Assert.That(score "abcdefghijklmnopqrstuvwxyz", Is.EqualTo(87))
