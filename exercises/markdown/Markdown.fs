@@ -26,10 +26,10 @@ let rec parse (markdown: string) =
 
                if __pos' > -1 then                                        
                    if __pos + 2 >= (line.Length - 1) then                     
-                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 2 .. __pos' - 1] + "</em>"
+                       line <- line.[0.. __pos - 1] + "<strong>" + line.[__pos + 2 .. __pos' - 1] + "</strong>"
                        __pos <- __pos' + 1
                    else
-                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 2 .. __pos' - 1] + "</em>" + line.[__pos' + 2 ..]
+                       line <- line.[0.. __pos - 1] + "<strong>" + line.[__pos + 2 .. __pos' - 1] + "</strong>" + line.[__pos' + 2 ..]
                        __pos <- __pos' + 1
                else
                    __pos <- -1
@@ -41,10 +41,10 @@ let rec parse (markdown: string) =
 
                if __pos' > -1 then                                        
                    if __pos + 1 >= (line.Length - 1) then                     
-                       line <- line.[0.. __pos - 1] + "<i>" + line.[__pos + 1 .. __pos' - 1] + "</i>"
+                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 1 .. __pos' - 1] + "</em>"
                        __pos <- __pos' + 1
                    else
-                       line <- line.[0.. __pos - 1] + "<i>" + line.[__pos + 1 .. __pos' - 1] + "</i>" + line.[__pos' + 1 ..]
+                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 1 .. __pos' - 1] + "</em>" + line.[__pos' + 1 ..]
                        __pos <- __pos' + 1
                else
                    __pos <- -1
@@ -75,10 +75,10 @@ let rec parse (markdown: string) =
 
                if __pos' > -1 then                                        
                    if __pos + 2 >= (line.Length - 1) then                     
-                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 2 .. __pos' - 1] + "</em>"
+                       line <- line.[0.. __pos - 1] + "<strong>" + line.[__pos + 2 .. __pos' - 1] + "</strong>"
                        __pos <- __pos' + 1
                    else
-                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 2 .. __pos' - 1] + "</em>" + line.[__pos' + 2 ..]
+                       line <- line.[0.. __pos - 1] + "<strong>" + line.[__pos + 2 .. __pos' - 1] + "</strong>" + line.[__pos' + 2 ..]
                        __pos <- __pos' + 1
                else
                    __pos <- -1
@@ -90,10 +90,10 @@ let rec parse (markdown: string) =
 
                if __pos' > -1 then                                        
                    if __pos + 1 >= (line.Length - 1) then                     
-                       line <- line.[0.. __pos - 1] + "<i>" + line.[__pos + 1 .. __pos' - 1] + "</i>"
+                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 1 .. __pos' - 1] + "</em>"
                        __pos <- __pos' + 1
                    else
-                       line <- line.[0.. __pos - 1] + "<i>" + line.[__pos + 1 .. __pos' - 1] + "</i>" + line.[__pos' + 1 ..]
+                       line <- line.[0.. __pos - 1] + "<em>" + line.[__pos + 1 .. __pos' - 1] + "</em>" + line.[__pos' + 1 ..]
                        __pos <- __pos' + 1
                else
                    __pos <- -1

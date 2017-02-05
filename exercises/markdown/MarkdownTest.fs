@@ -13,19 +13,19 @@ let ``Parses normal text as a paragraph`` () =
 [<Test>]
 let ``Parsing italics`` () =
     let input = "_This will be italic_"
-    let expected = "<p><i>This will be italic</i></p>"
+    let expected = "<p><em>This will be italic</em></p>"
     Assert.That(parse input, Is.EqualTo(expected))
 
 [<Test>]
 let ``Parsing bold text`` () =
     let input = "__This will be bold__"
-    let expected = "<p><em>This will be bold</em></p>"
+    let expected = "<p><strong>This will be bold</strong></p>"
     Assert.That(parse input, Is.EqualTo(expected))
 
 [<Test>]
 let ``Mixed normal, italics and bold text`` () =
     let input = "This will _be_ __mixed__"
-    let expected = "<p>This will <i>be</i> <em>mixed</em></p>"
+    let expected = "<p>This will <em>be</em> <strong>mixed</strong></p>"
     Assert.That(parse input, Is.EqualTo(expected))
 
 [<Test>]
@@ -55,5 +55,5 @@ let ``Unordered lists`` () =
 [<Test>]
 let ``With a little bit of everything`` () =
     let input = "# Header!\n* __Bold Item__\n* _Italic Item_"
-    let expected = "<h1>Header!</h1><ul><li><em>Bold Item</em></li><li><i>Italic Item</i></li></ul>"
+    let expected = "<h1>Header!</h1><ul><li><strong>Bold Item</strong></li><li><em>Italic Item</em></li></ul>"
     Assert.That(parse input, Is.EqualTo(expected))
