@@ -4,17 +4,28 @@ open System
 open NUnit.Framework
 open Clock
 
-[<TestCase(8, "08:00")>]
-[<TestCase(9, "09:00", Ignore = "Remove to run test case")>]
-let ``Prints the hour`` (hours: int, expected: string) =
-    let clock = mkClock hours 0
-    Assert.That(display clock, Is.EqualTo(expected))
+[<Test>]
+let ``Prints 8 o'clock`` () =
+    let clock = mkClock 8 0
+    Assert.That(display clock, Is.EqualTo("08:00"))
 
-[<TestCase(11, 9, "11:09", Ignore = "Remove to run test case")>]
-[<TestCase(11, 19, "11:19", Ignore = "Remove to run test case")>]
-let ``Prints past the hour`` (hours: int) (minutes: int) (expected: string) =
-    let clock = mkClock hours minutes
-    Assert.That(display clock, Is.EqualTo(expected))
+[<Test>]
+[<Ignore("Remove to run test")>]     
+let ``Prints 9 o'clock`` () =
+    let clock = mkClock 9 0
+    Assert.That(display clock, Is.EqualTo("09:00"))
+
+[<Test>]
+[<Ignore("Remove to run test")>]     
+let ``Can print single-digit minutes`` () =
+    let clock = mkClock 11 9
+    Assert.That(display clock, Is.EqualTo("11:09"))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Can print double-digit minutes`` () =
+    let clock = mkClock 11 19
+    Assert.That(display clock, Is.EqualTo("11:19"))
 
 [<Test>] 
 [<Ignore("Remove to run test")>]     
