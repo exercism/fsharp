@@ -1,19 +1,58 @@
 ﻿module NthPrimeTest
 
 open NUnit.Framework
-
 open NthPrime
 
-[<TestCase(1, ExpectedResult = 2)>]
-[<TestCase(2, ExpectedResult = 3, Ignore = "Remove to run test case")>]
-[<TestCase(3, ExpectedResult = 5, Ignore = "Remove to run test case")>]
-[<TestCase(4, ExpectedResult = 7, Ignore = "Remove to run test case")>]
-[<TestCase(5, ExpectedResult = 11, Ignore = "Remove to run test case")>]
-[<TestCase(6, ExpectedResult = 13, Ignore = "Remove to run test case")>]
-[<TestCase(7, ExpectedResult = 17, Ignore = "Remove to run test case")>]
-[<TestCase(8, ExpectedResult = 19, Ignore = "Remove to run test case")>]
-[<TestCase(1000, ExpectedResult = 7919, Ignore = "Remove to run test case")>]
-[<TestCase(10000, ExpectedResult = 104729, Ignore = "Remove to run test case")>]
-[<TestCase(10001, ExpectedResult = 104743, Ignore = "Remove to run test case")>]
-let ``Nth prime calculated`` (nth: int ) = 
-    nthPrime nth
+[<Test>]
+let ``First prime`` () =
+    Assert.That(nthPrime 1, Is.EqualTo(2))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Second prime`` () =
+    Assert.That(nthPrime 2, Is.EqualTo(3))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``Third prime`` () =
+    Assert.That(nthPrime 3, Is.EqualTo(5))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``4th prime`` () =
+    Assert.That(nthPrime 4, Is.EqualTo(7))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``5th prime`` () =
+    Assert.That(nthPrime 5, Is.EqualTo(11))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``6th prime`` () =
+    Assert.That(nthPrime 6, Is.EqualTo(13))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``7th prime`` () =
+    Assert.That(nthPrime 7, Is.EqualTo(17))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``8th prime`` () =
+    Assert.That(nthPrime 8, Is.EqualTo(19))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``1000th prime`` () =
+    Assert.That(nthPrime 1000, Is.EqualTo(7919))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``10000th prime`` () =
+    Assert.That(nthPrime 10000, Is.EqualTo(104729))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``10001th prime`` () =
+    Assert.That(nthPrime 10001, Is.EqualTo(104743))
