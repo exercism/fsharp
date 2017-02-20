@@ -1,5 +1,0 @@
-## Hints
-For this exercise the following F# features come in handy:
-- [Match Expressions](https://fsharpforfunandprofit.com/posts/match-expression/) Also known as pattern matching which is like a switch statement on steriods. It's a very powerful ability in the F# language and will come in handy in many of the exercises. While this example can be trivially solved with an if/else, pattern matching is more idiomatic.
-- [sprintf](https://fsharpforfunandprofit.com/posts/printf/) While F# supports string concatenation using sprintf leads to easier to read solutions and is also idiomatic
-- [defaultArg](https://msdn.microsoft.com/en-us/visualfsharpdocs/conceptual/operators.defaultarg%5B't%5D-function-%5Bfsharp%5D) Default arg is useful when extracting a value from an option type and providing a value when None is encountered.
