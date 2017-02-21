@@ -192,6 +192,63 @@ let ``One file, several matches, inverted flag`` () =
         "That Shepherd, who first taught the chosen Seed\n"
     
     Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``One file, case-insensitive and entire line flags`` () =
+    let pattern = "ATREUS"
+    let files = [iliadFileName]
+    let flags = "-i -x"
+    let expected = ""
+    
+    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``One file, case-insensitive and inverted flags`` () =
+    let pattern = "THE"
+    let files = [paradiseLostFileName]
+    let flags = "-i -v"
+    let expected =
+        "Of that Forbidden Tree, whose mortal tast\n" +
+        "With loss of Eden, till one greater Man\n" +
+        "Of Oreb, or of Sinai, didst inspire\n"
+
+    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``One file, inverted and entire line flags`` () =
+    let pattern = "the"
+    let files = [paradiseLostFileName]
+    let flags = "-v -x"
+    let expected =
+        "Of Mans First Disobedience, and the Fruit\n" +
+        "Of that Forbidden Tree, whose mortal tast\n" +
+        "Brought Death into the World, and all our woe,\n" +
+        "With loss of Eden, till one greater Man\n" +
+        "Restore us, and regain the blissful Seat,\n" +
+        "Sing Heav'nly Muse, that on the secret top\n" +
+        "Of Oreb, or of Sinai, didst inspire\n" +
+        "That Shepherd, who first taught the chosen Seed\n"
+
+    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+
+[<Test>]
+[<Ignore("Remove to run test")>]
+let ``One file, case-insensitive, inverted and entire line flags`` () =
+    let pattern = "if i rEFuse To Wed DeMETrius."
+    let files = [midsummerNightFileName]
+    let flags = "-i -v -x"
+    let expected =
+        "I do entreat your grace to pardon me.\n" +
+        "I know not by what power I am made bold,\n" +
+        "Nor how it may concern my modesty,\n" +
+        "In such a presence here to plead my thoughts;\n" +
+        "But I beseech your grace that I may know\n" +
+        "The worst that may befall me in this case,\n"
+
+    Assert.That(grep pattern flags files, Is.EqualTo(expected))
 
 [<TestCase("", Ignore = "Remove to run test case")>]
 [<TestCase("-n", Ignore = "Remove to run test case")>]
