@@ -80,12 +80,12 @@ let ``foldl is not just foldr . flip`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldr as id`` () =
-    Assert.That(foldr (fun item acc -> item :: acc) [] [1 .. big] = bigList, Is.True)
+    Assert.That(foldr (fun item acc -> item :: acc) [1 .. big] [] = bigList, Is.True)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldr as append`` () =
-    Assert.That(foldr (fun item acc -> item :: acc) [100 .. big] [1 .. 99] = bigList, Is.True)
+    Assert.That(foldr (fun item acc -> item :: acc) [1 .. 99] [100 .. big] = bigList, Is.True)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
