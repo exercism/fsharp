@@ -851,10 +851,6 @@
     "hexadecimal",
     "trinary"
   ],
-  "ignored": [
-    "docs",
-    "img"
-  ],
   "foregone": [
     "flatten-array",
     "nucleotide-codons",
