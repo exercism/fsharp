@@ -845,7 +845,7 @@
       ]
     }
   ],
-  "deprecated": [    
+  "deprecated": [
     "binary",
     "octal",
     "hexadecimal",
