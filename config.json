@@ -845,15 +845,11 @@
       ]
     }
   ],
-  "deprecated": [    
+  "deprecated": [
     "binary",
     "octal",
     "hexadecimal",
     "trinary"
-  ],
-  "ignored": [
-    "docs",
-    "img"
   ],
   "foregone": [
     "flatten-array",
