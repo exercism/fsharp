@@ -6,5 +6,5 @@ os:
 
 script:
   - ./bin/fetch-configlet
-  - ./bin/configlet .
+  - ./bin/configlet lint .
   - ./build.sh
