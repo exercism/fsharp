@@ -1,7 +1,5 @@
 {
-  "slug": "fsharp",
   "language": "F#",
-  "repository": "https://github.com/exercism/fsharp",
   "active": true,
   "exercises": [
     {
