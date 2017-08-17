@@ -12,7 +12,7 @@ let ``No name given`` () =
 [<Ignore("Remove to run test")>]
 let ``A name given`` () =
     Assert.That(getResponse (Some "Alice"), Is.EqualTo("One for Alice, one for me."))
-	
+
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Another name given`` () =
