@@ -46,6 +46,17 @@
         "Transforming"
       ]
     },
+	{
+      "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
+      "slug": "two-fer",
+      "core": true,
+      "unlocked_by": "null",
+      "difficulty": 1,
+      "topics": [
+        "Strings",
+        "Optional values"
+      ]
+    },
     {
       "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
       "slug": "space-age",
@@ -181,8 +192,8 @@
     {
       "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
       "slug": "binary-search-tree",
-      "core": true,
-      "unlocked_by": null,
+      "core": false,
+      "unlocked_by": "two-fer",
       "difficulty": 5,
       "topics": [
         "Searching",
@@ -769,7 +780,7 @@
       "uuid": "cb629d30-0351-4023-bd51-423267164c24",
       "slug": "bank-account",
       "core": false,
-      "unlocked_by": "binary-search-tree",
+      "unlocked_by": "two-fer",
       "difficulty": 5,
       "topics": [
         "Optional values",
@@ -1125,7 +1136,7 @@
       "uuid": "5369eea9-00c8-4044-b272-1ce8d0590ecf",
       "slug": "zipper",
       "core": false,
-      "unlocked_by": "binary-search-tree",
+      "unlocked_by": "two-fer",
       "difficulty": 10,
       "topics": [
         "Trees",
@@ -1148,7 +1159,7 @@
       "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
       "slug": "pov",
       "core": false,
-      "unlocked_by": "binary-search-tree",
+      "unlocked_by": "two-fer",
       "difficulty": 10,
       "topics": [
         "Graphs",
