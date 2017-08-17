@@ -46,6 +46,17 @@
         "Transforming"
       ]
     },
+	{
+      "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
+      "slug": "two-fer",
+      "core": true,
+      "unlocked_by": "null",
+      "difficulty": 1,
+      "topics": [
+        "Strings",
+        "Optional values"
+      ]
+    },
     {
       "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
       "slug": "space-age",
