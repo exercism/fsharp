@@ -11,9 +11,9 @@ let ``No name given`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``A name given`` () =
-    Assert.That(getResponse (Some "Alice")), Is.EqualTo("One for Alice, one for me."))
+    Assert.That(getResponse (Some "Alice"), Is.EqualTo("One for Alice, one for me."))
 	
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Another name given`` () =
-    Assert.That(getResponse (Some "Bob")), Is.EqualTo("One for Bob, one for me."))
+    Assert.That(getResponse (Some "Bob"), Is.EqualTo("One for Bob, one for me."))
