@@ -21,5 +21,8 @@ For example, if you're submitting `bob.cs` for the Bob exercise, the submit comm
 ## Source
 This is an exercise to introduce users to basic programming constructs, just after Hello World. [https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
 
+## Hints
+- Input for the problem is passed an Option. If you're not familiar with options in F# you can read more about them [here](https://fsharpforfunandprofit.com/posts/the-option-type/).
+
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
