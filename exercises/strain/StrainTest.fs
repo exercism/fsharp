@@ -3,15 +3,6 @@ module StrainTest
 open System.Collections.Specialized
 open NUnit.Framework
 
-// Note: to add your own functions to an existing module, just put your 
-// functions in a module matching the existing module name. Your code
-// should thus look something like this:
-
-// module Seq
-//
-// let keep pred xs = ???
-// let discard pred xs = ???
-
 [<Test>]
 let ``Empty keep`` () =
     Assert.That([] |> Seq.keep (fun x -> x < 10), Is.EqualTo([]))
