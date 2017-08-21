@@ -1,22 +1,7 @@
 ﻿module RobotName
 
-let random = System.Random()
+let mkRobot() = failwith "You need to implement this function."
 
-type Robot = { name: string }
+let name robot = failwith "You need to implement this function."
 
-let letters = ['A'..'Z']
-let digits = ['0'..'9']
-
-let NumberOfLetters = 2;
-let NumberOfDigits = 3    
-
-let takeRandomElements xs length = List.init length (fun _ -> List.item (random.Next(List.length xs)) xs)
-let generateRandomString chars length = new System.String(takeRandomElements chars length |> List.toArray)
-let generateLetters() = generateRandomString letters NumberOfLetters
-let generateDigits() = generateRandomString digits NumberOfDigits
-let generateName() = generateLetters() + generateDigits()
-
-let mkRobot() = { name = generateName() }
-
-let name robot = robot.name
-let reset _ = mkRobot()
+let reset robot = failwith "You need to implement this function."

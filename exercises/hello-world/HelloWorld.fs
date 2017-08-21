@@ -1,3 +1,3 @@
 ﻿module HelloWorld
 
-let hello = "Hello, World!"
+let hello: string = failwith "You need to implement this function."

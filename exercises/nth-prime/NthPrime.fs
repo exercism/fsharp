@@ -1,23 +1,3 @@
 ﻿module NthPrime
 
-open System
-
-let isPrime (n: int) = 
-    let r = Math.Floor(Math.Sqrt(n |> double)) |> int
-    r < 5 || Seq.init (r - 4) id |> Seq.forall (fun x -> n % (5 + x) <> 0)
-
-let rec possiblePrimes n = 
-    seq { 
-        yield n - 1
-        yield n + 1
-        yield! possiblePrimes (n + 6)
-    }
-    
-let primes = 
-    seq {
-        yield 2
-        yield 3
-        yield! Seq.filter isPrime (possiblePrimes 6)
-    }
-
-let nthPrime nth = Seq.item (nth - 1) primes
+let nthPrime nth = failwith "You need to implement this function."

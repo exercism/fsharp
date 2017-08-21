@@ -1,6 +1,3 @@
 ﻿module Pangram
 
-let isPangram (input: string) = 
-    let normalized = input.ToLowerInvariant()
-    
-    ['a'..'z'] |> List.forall (fun l -> normalized.Contains(l.ToString()))
+let isPangram input = failwith "You need to implement this function."

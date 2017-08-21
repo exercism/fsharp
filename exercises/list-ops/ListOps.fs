@@ -1,23 +1,17 @@
 ﻿module ListOps
 
-let rec foldl folder state list =
-    match list with
-    | [] -> state
-    | x::xs -> foldl folder (folder state x) xs
+let rec foldl folder state list = failwith "You need to implement this function."
 
-let rec foldr folder list state =
-    list
-    |> List.rev
-    |> foldl (fun acc item -> folder item acc) state
+let rec foldr folder list state = failwith "You need to implement this function."
 
-let length list = foldl (fun acc _ -> acc + 1) 0 list
+let length list = failwith "You need to implement this function."
 
-let reverse list = foldl (fun acc item -> item :: acc) [] list
+let reverse list = failwith "You need to implement this function."
 
-let map f list = foldr (fun item acc -> f item :: acc) list []
+let map f list = failwith "You need to implement this function."
 
-let filter f list = foldr (fun item acc -> if f item then item :: acc else acc) list []
+let filter f list = failwith "You need to implement this function."
 
-let append xs ys = foldr (fun item acc -> item :: acc) xs ys
+let append xs ys = failwith "You need to implement this function."
 
-let concat xs = foldr append xs []
+let concat xs = failwith "You need to implement this function."

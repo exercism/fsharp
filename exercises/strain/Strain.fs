@@ -1,5 +1,5 @@
 ﻿module Seq
 
-let keep pred xs = seq { for x in xs do if pred x then yield x }
+let keep pred xs = failwith "You need to implement this function."
 
-let discard pred = keep (not << pred)
+let discard pred xs = failwith "You need to implement this function."

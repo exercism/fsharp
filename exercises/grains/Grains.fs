@@ -2,5 +2,5 @@
 
 open System.Numerics
 
-let square (n:int) = 2I ** (n - 1)
-let total = [1..64] |> List.sumBy square
+let square n = failwith "You need to implement this function."
+let total: BigInteger = failwith "You need to implement this function."

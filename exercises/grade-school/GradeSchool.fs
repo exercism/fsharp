@@ -1,15 +1,9 @@
 ﻿module GradeSchool
 
-let empty = Map.empty<int, string list>
+let empty: Map<int, string list> = failwith "You need to implement this function."
 
-let add student grade school = 
-    match Map.tryFind grade school with
-    | Some existing -> Map.add grade (student :: existing |> List.sort) school
-    | None -> Map.add grade [student] school
+let add student grade school = failwith "You need to implement this function."
 
-let roster school = school |> Map.toSeq
+let roster school = failwith "You need to implement this function."
 
-let grade number school = 
-    match Map.tryFind number school with
-    | Some students -> students
-    | None -> []
+let grade number school = failwith "You need to implement this function."

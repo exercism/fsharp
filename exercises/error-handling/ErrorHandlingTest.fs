@@ -35,13 +35,10 @@ let ``Returning Option<'T>`` () =
     Assert.That(failureResult, Is.EqualTo(None))
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
-// In that case, one usually defines a new discriminated union: Result<'TSuccess, 'TError>.
+// In that case, one can use a different discriminated union: Result<'TSuccess, 'TError>.
 // This discriminated union has two possible cases: Ok and Error, which contain data
 // of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
-//
-// Note: F# 4.1 will include the Result<'TSuccess, 'TError> type.
-// See: https://blogs.msdn.microsoft.com/dotnet/2016/07/25/a-peek-into-f-4-1/
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Returning Result<'TSuccess, 'TError>`` () =

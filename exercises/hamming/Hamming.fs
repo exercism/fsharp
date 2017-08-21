@@ -1,6 +1,3 @@
 ﻿module Hamming
 
-let compute (strand1:string) (strand2:string) = 
-    Array.zip (strand1.ToCharArray()) (strand2.ToCharArray()) 
-    |> Array.filter (fun (c1, c2) -> c1 <> c2) 
-    |> Array.length
+let compute strand1 strand2 = failwith "You need to implement this function."

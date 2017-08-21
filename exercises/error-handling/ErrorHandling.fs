@@ -1,28 +1,11 @@
 ﻿module ErrorHandling
 
-open System
+let handleErrorByThrowingException() = ()
 
-type Result<'TSuccess, 'TError> =
-    | Ok of 'TSuccess
-    | Error of 'TError
+let handleErrorByReturningOption input = failwith "You need to implement this function."
 
-let handleErrorByThrowingException() = failwith "An error occurred."
+let handleErrorByReturningResult input = failwith "You need to implement this function."
 
-let handleErrorByReturningOption input = 
-    match Int32.TryParse input with
-    | true, value -> Some value
-    | false, _ -> None
+let bind switchFunction twoTrackInput = failwith "You need to implement this function."
 
-let handleErrorByReturningResult input = 
-    match Int32.TryParse input with
-    | true, value -> Ok value
-    | false, _    -> Error "Could not convert input to integer"
-
-let bind switchFunction twoTrackInput = 
-    match twoTrackInput with
-    | Ok s -> switchFunction s
-    | Error f -> Error f
-
-let cleanupDisposablesWhenThrowingException resource = 
-    use r = resource
-    failwith "Throw exception"
+let cleanupDisposablesWhenThrowingException resource = failwith "You need to implement this function."

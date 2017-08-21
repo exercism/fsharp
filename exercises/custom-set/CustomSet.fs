@@ -1,8 +1,8 @@
 ﻿module CustomSet
 
-type Set<'T> = { items: 'T list }
+type Set<'T> = ???
 
-let empty = { items = [] }
+let empty: Set<'T> = failwith "You need to implement this function."
 
 let singleton value = { items = [value] }
 
