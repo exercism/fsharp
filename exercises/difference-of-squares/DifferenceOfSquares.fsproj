@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="DifferenceOfSquares.fs" />
-    <Compile Include="DifferenceOfSquaresTests.fs" />
+    <Compile Include="DifferenceOfSquaresTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

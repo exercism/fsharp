@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="RunLengthEncoding.fs" />
-    <Compile Include="RunLengthEncodingTests.fs" />
+    <Compile Include="RunLengthEncodingTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="ScrabbleScore.fs" />
-    <Compile Include="ScrabbleScoreTests.fs" />
+    <Compile Include="ScrabbleScoreTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

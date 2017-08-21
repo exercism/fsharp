@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="TwoBucket.fs" />
-    <Compile Include="TwoBucketTests.fs" />
+    <Compile Include="TwoBucketTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

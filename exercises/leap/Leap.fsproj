@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Leap.fs" />
-    <Compile Include="LeapTests.fs" />
+    <Compile Include="LeapTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

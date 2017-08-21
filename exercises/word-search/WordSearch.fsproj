@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="WordSearch.fs" />
-    <Compile Include="WordSearchTests.fs" />
+    <Compile Include="WordSearchTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

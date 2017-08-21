@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="NthPrime.fs" />
-    <Compile Include="NthPrimeTests.fs" />
+    <Compile Include="NthPrimeTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

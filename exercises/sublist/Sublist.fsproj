@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Sublist.fs" />
-    <Compile Include="SublistTests.fs" />
+    <Compile Include="SublistTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

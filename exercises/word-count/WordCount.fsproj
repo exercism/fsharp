@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="WordCount.fs" />
-    <Compile Include="WordCountTests.fs" />
+    <Compile Include="WordCountTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

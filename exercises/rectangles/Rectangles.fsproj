@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Rectangles.fs" />
-    <Compile Include="RectanglesTests.fs" />
+    <Compile Include="RectanglesTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

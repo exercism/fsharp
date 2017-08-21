@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Minesweeper.fs" />
-    <Compile Include="MinesweeperTests.fs" />
+    <Compile Include="MinesweeperTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

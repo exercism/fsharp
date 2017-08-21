@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="GoCounting.fs" />
-    <Compile Include="GoCountingTests.fs" />
+    <Compile Include="GoCountingTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="AtbashCipher.fs" />
-    <Compile Include="AtbashCipherTests.fs" />
+    <Compile Include="AtbashCipherTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

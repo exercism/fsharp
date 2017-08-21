@@ -13,7 +13,7 @@ let projectTemplate =
 
   <ItemGroup>
     <Compile Include="{Exercise}.fs" />
-    <Compile Include="{Exercise}Tests.fs" />
+    <Compile Include="{Exercise}Test.fs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +45,7 @@ let createExerciseProject exercise =
     File.WriteAllText(projectFilePath, projectFileContents)
 
 let createStubFile exercise = 
-    let exampleFileName = "Example.fs"    
+    let exampleFileName = "Example.fs"
     let exampleFilePath = Path.Combine(exercise.Directory, exampleFileName)
 
     let stubFileName = sprintf "%s.fs" exercise.Name
@@ -55,9 +55,21 @@ let createStubFile exercise =
     | true  -> ()
     | false -> File.Copy(exampleFilePath, stubFilePath, false)
 
+let normalizeTestFileName exercise = 
+    let testsFileName = sprintf "%sTests.fs" exercise.Name
+    let testsFilePath = Path.Combine(exercise.Directory, testsFileName)
+
+    let testFileName = sprintf "%sTest.fs" exercise.Name
+    let testFilePath = Path.Combine(exercise.Directory, testFileName)
+
+    match File.Exists(testsFilePath) with
+    | true  -> File.Move(testsFilePath, testFilePath)
+    | false -> ()
+
 let convertExercise exercise =
     createExerciseProject exercise
     createStubFile exercise
+    normalizeTestFileName exercise
 
 let toExercise exerciseDirectory = 
     let slug = Path.GetFileName(exerciseDirectory)
@@ -66,9 +78,16 @@ let toExercise exerciseDirectory =
       Name = pascalCase slug
       Slug = slug }
 
+let exercisesDirectory = "./exercises"
+
 let exerciseDirectories = 
+    let objDirectory = Path.Combine(exercisesDirectory, "obj")
+
+    match Directory.Exists(objDirectory) with
+    | true  -> Directory.Delete(objDirectory, true)
+    | false -> ()
+
     Directory.EnumerateDirectories("./exercises")
-    |> Seq.filter ((<>) "obj")
 
 exerciseDirectories
 |> Seq.map toExercise

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="CircularBuffer.fs" />
-    <Compile Include="CircularBufferTests.fs" />
+    <Compile Include="CircularBufferTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

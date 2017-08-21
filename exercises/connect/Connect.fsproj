@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Connect.fs" />
-    <Compile Include="ConnectTests.fs" />
+    <Compile Include="ConnectTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

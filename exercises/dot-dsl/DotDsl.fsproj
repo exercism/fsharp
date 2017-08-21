@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="DotDsl.fs" />
-    <Compile Include="DotDslTests.fs" />
+    <Compile Include="DotDslTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

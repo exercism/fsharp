@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="NucleotideCount.fs" />
-    <Compile Include="NucleotideCountTests.fs" />
+    <Compile Include="NucleotideCountTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="BinarySearch.fs" />
-    <Compile Include="BinarySearchTests.fs" />
+    <Compile Include="BinarySearchTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

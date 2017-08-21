@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="ProteinTranslation.fs" />
-    <Compile Include="ProteinTranslationTests.fs" />
+    <Compile Include="ProteinTranslationTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="PythagoreanTriplet.fs" />
-    <Compile Include="PythagoreanTripletTests.fs" />
+    <Compile Include="PythagoreanTripletTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

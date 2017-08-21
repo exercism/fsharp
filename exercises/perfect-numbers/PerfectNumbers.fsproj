@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="PerfectNumbers.fs" />
-    <Compile Include="PerfectNumbersTests.fs" />
+    <Compile Include="PerfectNumbersTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

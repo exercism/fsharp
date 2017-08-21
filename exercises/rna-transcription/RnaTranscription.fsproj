@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="RnaTranscription.fs" />
-    <Compile Include="RnaTranscriptionTests.fs" />
+    <Compile Include="RnaTranscriptionTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="LinkedList.fs" />
-    <Compile Include="LinkedListTests.fs" />
+    <Compile Include="LinkedListTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

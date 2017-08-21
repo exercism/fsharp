@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="ScaleGenerator.fs" />
-    <Compile Include="ScaleGeneratorTests.fs" />
+    <Compile Include="ScaleGeneratorTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

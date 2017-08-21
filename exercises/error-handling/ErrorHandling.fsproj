@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="ErrorHandling.fs" />
-    <Compile Include="ErrorHandlingTests.fs" />
+    <Compile Include="ErrorHandlingTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

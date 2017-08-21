@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="React.fs" />
-    <Compile Include="ReactTests.fs" />
+    <Compile Include="ReactTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

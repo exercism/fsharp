@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="ParallelLetterFrequency.fs" />
-    <Compile Include="ParallelLetterFrequencyTests.fs" />
+    <Compile Include="ParallelLetterFrequencyTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

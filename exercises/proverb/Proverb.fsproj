@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Proverb.fs" />
-    <Compile Include="ProverbTests.fs" />
+    <Compile Include="ProverbTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="RailFenceCipher.fs" />
-    <Compile Include="RailFenceCipherTests.fs" />
+    <Compile Include="RailFenceCipherTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="Grep.fs" />
-    <Compile Include="GrepTests.fs" />
+    <Compile Include="GrepTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

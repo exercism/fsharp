@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="CustomSet.fs" />
-    <Compile Include="CustomSetTests.fs" />
+    <Compile Include="CustomSetTest.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Compile Include="VariableLengthQuantity.fs" />
-    <Compile Include="VariableLengthQuantityTests.fs" />
+    <Compile Include="VariableLengthQuantityTest.fs" />
   </ItemGroup>
 
   <ItemGroup>
