@@ -21,8 +21,8 @@ let ``Check basic balance`` () =
         |> updateBalance 10.0 
         |> getBalance
 
-    openingBalance |> should equal Some 0.0
-    updatedBalance |> should equal Some 10.0
+    openingBalance |> should equal (Some 0.0)
+    updatedBalance |> should equal (Some 10.0)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -40,9 +40,9 @@ let ``Balance can increment or decrement`` () =
         |> updateBalance -15.0
         |> getBalance
 
-    openingBalance |> should equal Some 0.0
-    addedBalance |> should equal Some 10.0
-    subtractedBalance |> should equal Some -5.0
+    openingBalance |> should equal (Some 0.0)
+    addedBalance |> should equal (Some 10.0)
+    subtractedBalance |> should equal (Some -5.0)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -52,7 +52,7 @@ let ``Account can be closed`` () =
         |> openAccount
         |> closeAccount
 
-    account |> getBalance |> should equal None
+    getBalance account |> should equal None
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -74,4 +74,4 @@ let ``Account can be updated from multiple threads`` () =
     |> Async.RunSynchronously
     |> ignore
 
-    account |> getBalance |> should equal Some 1000.0
+    getBalance account |> should equal (Some 1000.0)

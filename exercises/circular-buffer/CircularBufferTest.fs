@@ -2,6 +2,7 @@ module CircularBufferTest
 
 open NUnit.Framework
 open FsUnit
+open System
 
 open CircularBuffer
 
