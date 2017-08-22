@@ -39,50 +39,49 @@ type Exercise =
     { Directory: string
       Name: string
       Slug: string }
+    
+    member this.TestFilePath = Path.Combine(this.Directory, sprintf "%sTest.fs" this.Name)
+    member this.StubFilePath = Path.Combine(this.Directory, sprintf "%s.fs" this.Name)
+    member this.ExampleFilePath = Path.Combine(this.Directory, "Example.fs")
+    member this.ProgramFilePath = Path.Combine(this.Directory, "Program.fs")
+    member this.ProjectFilePath = Path.Combine(this.Directory, sprintf "%s.fsproj" this.Name)
 
 let createExerciseProject exercise =  
     let projectFileContents = projectTemplate.Replace("{Exercise}", exercise.Name)
-    let projectFileName = sprintf "%s.fsproj" exercise.Name
-    let projectFilePath = Path.Combine(exercise.Directory, projectFileName)
-    File.WriteAllText(projectFilePath, projectFileContents)
+    File.WriteAllText(exercise.ProjectFilePath, projectFileContents)
 
-let createStubFile exercise = 
-    let exampleFileName = "Example.fs"
-    let exampleFilePath = Path.Combine(exercise.Directory, exampleFileName)
-
-    let stubFileName = sprintf "%s.fs" exercise.Name
-    let stubFilePath = Path.Combine(exercise.Directory, stubFileName)
-
-    match File.Exists(stubFilePath) with
+let createStubFile (exercise: Exercise) = 
+    match File.Exists(exercise.StubFilePath) with
     | true  -> ()
-    | false -> File.Copy(exampleFilePath, stubFilePath, false)
+    | false -> File.Copy(exercise.ExampleFilePath, exercise.StubFilePath, false)
 
 let normalizeTestFileName exercise = 
     let testsFileName = sprintf "%sTests.fs" exercise.Name
     let testsFilePath = Path.Combine(exercise.Directory, testsFileName)
 
-    let testFileName = sprintf "%sTest.fs" exercise.Name
-    let testFilePath = Path.Combine(exercise.Directory, testFileName)
-
     match File.Exists(testsFilePath) with
-    | true  -> File.Move(testsFilePath, testFilePath)
+    | true  -> File.Move(testsFilePath, exercise.TestFilePath)
     | false -> ()
 
-let createProgramFile exercise = 
-    let programFilePath = Path.Combine(exercise.Directory, "Program.fs")
-    File.WriteAllText(programFilePath, "module Program = let [<EntryPoint>] main _ = 0")    
+let createProgramFile (exercise: Exercise) = 
+    File.WriteAllText(exercise.ProgramFilePath, "module Program = let [<EntryPoint>] main _ = 0")    
+
+let convertToFsUnit exercise =
+    ()
 
 let convertExercise exercise =
     createExerciseProject exercise
     createStubFile exercise
     createProgramFile exercise
     normalizeTestFileName exercise
+    convertToFsUnit exercise
 
 let toExercise exerciseDirectory = 
     let slug = Path.GetFileName(exerciseDirectory)
+    let name = pascalCase slug
 
     { Directory = exerciseDirectory
-      Name = pascalCase slug
+      Name = name
       Slug = slug }
 
 let exercisesDirectory = "./exercises"
