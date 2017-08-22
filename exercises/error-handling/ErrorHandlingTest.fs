@@ -44,10 +44,10 @@ let ``Returning Option<'T>`` () =
 [<Ignore("Remove to run test")>]
 let ``Returning Result<'TSuccess, 'TError>`` () =
     let successResult = handleErrorByReturningResult "1"
-    (successResult = Ok 1) |> should be true
+    (successResult = Ok 1) |> should be True
     
     let failureResult = handleErrorByReturningResult "a"
-    (failureResult = Error "Could not convert input to integer") |> should be true
+    (failureResult = Error "Could not convert input to integer") |> should be True
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -79,16 +79,16 @@ let ``Using railway-oriented programming`` () =
         >> bind validate3
 
     let firstValidationFailureResult = combinedValidation 1            
-    (firstValidationFailureResult = Error "Input less than or equal to five") |> should be true
+    (firstValidationFailureResult = Error "Input less than or equal to five") |> should be True
 
     let secondValidationFailureResult = combinedValidation 23          
-    (secondValidationFailureResult = Error "Input greater than or equal to ten") |> should be true
+    (secondValidationFailureResult = Error "Input greater than or equal to ten") |> should be True
 
     let thirdValidationFailureResult = combinedValidation 8        
-    (thirdValidationFailureResult = Error "Input is not odd") |> should be true
+    (thirdValidationFailureResult = Error "Input is not odd") |> should be True
 
     let successResult = combinedValidation 7        
-    (successResult = Ok 7) |> should be true
+    (successResult = Ok 7) |> should be True
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -98,4 +98,4 @@ let ``Cleaning up disposables when throwing exception`` () =
     let resource = new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-    resource.Disposed() |> should be true
+    resource.Disposed() |> should be True

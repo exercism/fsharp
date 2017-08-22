@@ -8,108 +8,108 @@ open CustomSet
 [<Test>]
 let ``Sets with no elements are empty`` () =
     let actual = empty
-    isEmpty actual |> should be true
+    isEmpty actual |> should be True
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Sets with elements are not empty`` () =
     let actual = singleton 1
-    isEmpty actual |> should be false
+    isEmpty actual |> should be False
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Nothing is contained in an empty set`` () =
     let actual = empty
-    contains 1 actual |> should be false
+    contains 1 actual |> should be False
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Detect if the element is in the set`` () =
     let actual = fromList [1; 2; 3]
-    contains 1 actual |> should be true
+    contains 1 actual |> should be True
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Detect if the element is not in the set`` () =
     let actual = fromList [1; 2; 3]
-    contains 4 actual |> should be false
+    contains 4 actual |> should be False
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Empty set is a subset of another empty set`` () =
     let left = empty
     let right = empty
-    isSubsetOf left right |> should be true
+    isSubsetOf left right |> should be True
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Empty set is a subset of non-empty set`` () =
     let left = empty
     let right = singleton 1
-    isSubsetOf left right |> should be true
+    isSubsetOf left right |> should be True
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Non-empty set is not a subset of empty set`` () =
     let left = singleton 1
     let right = empty
-    isSubsetOf left right |> should be false
+    isSubsetOf left right |> should be False
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Set is a subset of set with exact same elements`` () =
     let left = fromList [1; 2; 3]
     let right = fromList [1; 2; 3]
-    isSubsetOf left right |> should be true
+    isSubsetOf left right |> should be True
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Set is a subset of larger set with same elements`` () =
     let left = fromList [1; 2; 3]
     let right = fromList [4; 1; 2; 3]
-    isSubsetOf left right |> should be true
+    isSubsetOf left right |> should be True
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Set is not a subset of set that does not contain its elements`` () =
     let left = fromList [1; 2; 3]
     let right = fromList [4; 1; 3]
-    isSubsetOf left right |> should be false
+    isSubsetOf left right |> should be False
         
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``The empty set is disjoint with itself`` () =
     let left = empty
     let right = empty
-    isDisjointFrom left right |> should be true    
+    isDisjointFrom left right |> should be True    
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Empty set is disjoint with non-empty set`` () =
     let left = empty
     let right = singleton 1
-    isDisjointFrom left right |> should be true
+    isDisjointFrom left right |> should be True
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Non-empty set is disjoint with empty set`` () =
     let left = singleton 1
     let right = empty
-    isDisjointFrom left right |> should be true
+    isDisjointFrom left right |> should be True
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Sets are not disjoint if they share an element`` () =
     let left = fromList [1; 2]
     let right = fromList [2; 3]    
-    isDisjointFrom left right |> should be false
+    isDisjointFrom left right |> should be False
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Sets are disjoint if they share no elements`` () =
     let left = fromList [1; 2]
     let right = fromList [3; 4]
-    isDisjointFrom left right |> should be true
+    isDisjointFrom left right |> should be True
 
 [<Test>]
 [<Ignore("Remove to run test")>]

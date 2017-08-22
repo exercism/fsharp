@@ -81,12 +81,12 @@ let ``foldl is not just foldr . flip`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldr as id`` () =
-    foldr (fun item acc -> item :: acc) [1 .. big] [] = bigList |> should be true
+    foldr (fun item acc -> item :: acc) [1 .. big] [] = bigList |> should be True
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldr as append`` () =
-    foldr (fun item acc -> item :: acc) [1 .. 99] [100 .. big] = bigList |> should be true
+    foldr (fun item acc -> item :: acc) [1 .. 99] [100 .. big] = bigList |> should be True
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -111,7 +111,7 @@ let ``append of non-empty lists`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``append of large lists`` () =
-    append [1 .. (big / 2)] [1 + big / 2 .. big] = bigList |> should be true
+    append [1 .. (big / 2)] [1 + big / 2 .. big] = bigList |> should be True
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -126,4 +126,4 @@ let ``concat of list of lists`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``concat of large list of small lists`` () =
-    concat (map (fun x -> [x]) [1 .. big]) = bigList |> should be true
+    concat (map (fun x -> [x]) [1 .. big]) = bigList |> should be True
