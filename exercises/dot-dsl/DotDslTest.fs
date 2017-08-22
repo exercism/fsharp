@@ -1,6 +1,7 @@
-﻿module DotDslTest
+module DotDslTest
 
 open NUnit.Framework
+open FsUnit
 
 open DotDsl
 
@@ -8,9 +9,9 @@ open DotDsl
 let ``Empty graph`` () =
     let g = graph []
 
-    Assert.That(nodes g, Is.Empty)
-    Assert.That(edges g, Is.Empty)
-    Assert.That(attrs g, Is.Empty)
+    nodes g |> should be Empty
+    edges g |> should be Empty
+    attrs g |> should be Empty
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -19,9 +20,9 @@ let ``Graph with one node`` () =
                 node "a" []
             ]            
 
-    Assert.That(nodes g, Is.EqualTo([node "a" []]))
-    Assert.That(edges g, Is.Empty)
-    Assert.That(attrs g, Is.Empty)
+    nodes g |> should equal [node "a" []]
+    edges g |> should be Empty
+    attrs g |> should be Empty
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -30,9 +31,9 @@ let ``Graph with one node with keywords`` () =
                 node "a" [("color", "green")]
             ]            
 
-    Assert.That(nodes g, Is.EqualTo([node "a" [("color", "green")]]))
-    Assert.That(edges g, Is.Empty)
-    Assert.That(attrs g, Is.Empty)
+    nodes g |> should equal [node "a" [("color", "green")]]
+    edges g |> should be Empty
+    attrs g |> should be Empty
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -41,9 +42,9 @@ let ``Graph with one edge`` () =
                 edge "a" "b" []
             ]             
 
-    Assert.That(nodes g, Is.Empty)
-    Assert.That(edges g, Is.EqualTo([edge "a" "b" []]))
-    Assert.That(attrs g, Is.Empty)
+    nodes g |> should be Empty
+    edges g |> should equal [edge "a" "b" []]
+    attrs g |> should be Empty
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -52,9 +53,9 @@ let ``Graph with one attribute`` () =
                 attr "foo" "1"
             ]             
 
-    Assert.That(nodes g, Is.Empty)
-    Assert.That(edges g, Is.Empty)
-    Assert.That(attrs g, Is.EqualTo([attr "foo" "1"]))
+    nodes g |> should be Empty
+    edges g |> should be Empty
+    attrs g |> should equal [attr "foo" "1"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -70,6 +71,6 @@ let ``Graph with attributes`` () =
                 attr "bar" "true"
             ]             
 
-    Assert.That(nodes g, Is.EqualTo([node "a" [("color", "green")]; node "b" [("label", "Beta!")]; node "c" []]))
-    Assert.That(edges g, Is.EqualTo([edge "a" "b" [("color", "blue")]; edge "b" "c" []]))
-    Assert.That(attrs g, Is.EqualTo([attr "bar" "true"; attr "foo" "1"; attr "title" "Testing Attrs"]))
+    nodes g |> should equal [node "a" [("color", "green")]; node "b" [("label", "Beta!")]; node "c" []]
+    edges g |> should equal [edge "a" "b" [("color", "blue")]; edge "b" "c" []]
+    attrs g |> should equal [attr "bar" "true"; attr "foo" "1"; attr "title" "Testing Attrs"]

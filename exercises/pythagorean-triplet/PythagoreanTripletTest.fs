@@ -1,6 +1,7 @@
 module PythagoreanTripletTest
 
 open NUnit.Framework
+open FsUnit
 
 open PythagoreanTriplet
     
@@ -20,16 +21,16 @@ let ``Can recognize a valid pythagorean`` (x: int) (y: int) (z: int) =
 [<Ignore("Remove to run test")>]
 let ``Can create simple triplets`` () =
     let actual = pythagoreanTriplets 1 10
-    Assert.That(actual, Is.EqualTo([triplet 3 4 5; triplet 6 8 10]))
+    actual |> should equal [triplet 3 4 5; triplet 6 8 10]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can create more triplets`` () =
     let actual = pythagoreanTriplets 11 20
-    Assert.That(actual, Is.EqualTo([triplet 12 16 20]))
+    actual |> should equal [triplet 12 16 20]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can create complex triplets`` () =
     let actual = pythagoreanTriplets 56 95
-    Assert.That(actual, Is.EqualTo([triplet 57 76 95; triplet 60 63 87]))
+    actual |> should equal [triplet 57 76 95; triplet 60 63 87]

@@ -1,6 +1,7 @@
-﻿module HouseTest
+module HouseTest
 
 open NUnit.Framework
+open FsUnit
 
 open House
 
@@ -99,4 +100,4 @@ let expected =
 
 [<Test>]
 let ``Rhyme is correct`` () =
-    Assert.That(rhyme, Is.EqualTo(expected))
+    rhyme |> should equal expected

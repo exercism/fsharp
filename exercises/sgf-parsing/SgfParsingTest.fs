@@ -1,6 +1,7 @@
-﻿module SgfParsingTest
+module SgfParsingTest
 
 open NUnit.Framework
+open FsUnit
 
 open SgfParsing
 
@@ -24,63 +25,63 @@ let treeWithNoChildren node = mkTree (Map.ofList node) []
 let ``Empty value`` () =
     let input = "" 
     let expected = None
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Tree without nodes`` () =
     let input = "()"
     let expected = None
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Node without tree`` () =
     let input = ";"
     let expected = None
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Node without properties`` () =
     let input = "(;)"
     let expected = Some (treeWithNoChildren [])
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Single node tree`` () =
     let input = "(;A[B])"
     let expected = Some (treeWithNoChildren [("A", ["B"])])
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Properties without delimiter`` () =
     let input = "(;a)"
     let expected = None
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``All lowercase property`` () =
     let input = "(;a[b])"
     let expected = None
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Upper- and lowercase property`` () =
     let input = "(;Aa[b])"
     let expected = None
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Two nodes`` () =
     let input = "(;A[B];B[C])"
     let expected = Some (treeWithSingleChild [("A", ["B"])] (treeWithNoChildren [("B", ["C"])]))
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -89,18 +90,18 @@ let ``Two child trees`` () =
     let expected = Some (treeWithChildren [("A", ["B"])]
                             [ treeWithNoChildren [("B", ["C"])]; 
                               treeWithNoChildren [("C", ["D"])] ])
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Multiple properties`` () =
     let input = "(;A[b][c][d])"
     let expected = Some (treeWithNoChildren [("A", ["b"; "c"; "d"])])
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Escaped property`` () =
     let input = @"(;A[\]b\nc\nd\t\te\\ \n\]])"
     let expected = Some (treeWithNoChildren [("A", [@"]b c d  e\  ]"])])
-    Assert.That(parseSgf input, Is.EqualTo(expected))
+    parseSgf input |> should equal expected

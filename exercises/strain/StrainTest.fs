@@ -2,31 +2,32 @@ module StrainTest
 
 open System.Collections.Specialized
 open NUnit.Framework
+open FsUnit
 
 [<Test>]
 let ``Empty keep`` () =
-    Assert.That([] |> Seq.keep (fun x -> x < 10), Is.EqualTo([]))
+    [] |> Seq.keep (fun x -> x < 10) |> should equal []
 
 [<Test>]
 [<Ignore("Remove to run test")>]  
 let ``Keep everything`` () =
-    Assert.That(set [1; 2; 3] |> Seq.keep (fun x -> x < 10), Is.EqualTo(set [1; 2; 3]))
+    set [1; 2; 3] |> Seq.keep (fun x -> x < 10) |> should equal set [1; 2; 3]
 
 [<Test>]
 [<Ignore("Remove to run test")>] 
 let ``Keep first and last`` () =
-    Assert.That([|1; 2; 3|] |> Seq.keep (fun x -> x % 2 <> 0), Is.EqualTo([|1; 3|]))
+    [|1; 2; 3|] |> Seq.keep (fun x -> x % 2 <> 0) |> should equal [|1; 3|]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Keep neither first nor last`` () =
-    Assert.That([1; 2; 3; 4; 5] |> Seq.keep (fun x -> x % 2 = 0), Is.EqualTo([2; 4]))
+    [1; 2; 3; 4; 5] |> Seq.keep (fun x -> x % 2 = 0) |> should equal [2; 4]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Keep strings`` () =
     let words = "apple zebra banana zombies cherimoya zelot".Split(' ');
-    Assert.That(words |> Seq.keep (fun (x:string) -> x.StartsWith("z")), Is.EqualTo("zebra zombies zelot".Split(' ')))
+    words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> should equal "zebra zombies zelot".Split(' ')
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -41,33 +42,33 @@ let ``Keep arrays`` () =
                     [|1; 2; 5|]
                     |]
     let expected = [| [|5; 5; 5|]; [|5; 1; 2|]; [|1; 5; 2|]; [|1; 2; 5|] |]
-    Assert.That(actual |> Seq.keep (Array.exists ((=) 5)), Is.EqualTo(expected))
+    actual |> Seq.keep (Array.exists ((=) 5)) |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Empty discard`` () =
-    Assert.That([] |> Seq.discard (fun x -> x < 10), Is.EqualTo([]))
+    [] |> Seq.discard (fun x -> x < 10) |> should equal []
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Discard nothing`` () =
-    Assert.That(set [1; 2; 3] |> Seq.discard (fun x -> x > 10), Is.EqualTo(set [1; 2; 3]))
+    set [1; 2; 3] |> Seq.discard (fun x -> x > 10) |> should equal set [1; 2; 3]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Discard first and last`` () =
-    Assert.That([|1; 2; 3|] |> Seq.discard (fun x -> x % 2 <> 0), Is.EqualTo([|2|]))
+    [|1; 2; 3|] |> Seq.discard (fun x -> x % 2 <> 0) |> should equal [|2|]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Discard neither first nor last`` () =
-    Assert.That([1; 2; 3; 4; 5] |> Seq.discard (fun x -> x % 2 = 0), Is.EqualTo([1; 3; 5]))
+    [1; 2; 3; 4; 5] |> Seq.discard (fun x -> x % 2 = 0) |> should equal [1; 3; 5]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Discard strings`` () =
     let words = "apple zebra banana zombies cherimoya zelot".Split(' ')
-    Assert.That(words |> Seq.discard (fun (x:string) -> x.StartsWith("z")), Is.EqualTo("apple banana cherimoya".Split(' ')))
+    words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> should equal "apple banana cherimoya".Split(' ')
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -82,4 +83,4 @@ let ``Discard arrays`` () =
                     [|1; 2; 5|]
                     |]
     let expected = [| [|1; 2; 3|]; [|2; 1; 2|]; [|2; 2; 1|] |]
-    Assert.That(actual |> Seq.discard (Array.exists ((=) 5)), Is.EqualTo(expected))
+    actual |> Seq.discard (Array.exists ((=) 5)) |> should equal expected

@@ -1,6 +1,7 @@
-﻿module ZipperTest
+module ZipperTest
 
 open NUnit.Framework
+open FsUnit
 
 open Zipper
 
@@ -16,39 +17,39 @@ let t4 = tree 1 (leaf 2)                 (leaf 4)
 
 [<Test>]
 let ``Data is retained``() =
-    Assert.That(toTree (fromTree t1), Is.EqualTo(t1))
+    toTree (fromTree t1) |> should equal t1
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``left, right and value``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> right |> Option.get |> value, Is.EqualTo(3))
+    t1 |> fromTree |> left |> Option.get |> right |> Option.get |> value |> should equal 3
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Dead end``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> left, Is.EqualTo(None))
+    t1 |> fromTree |> left |> Option.get |> left |> should equal None
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Tree from deep focus``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> right |> Option.get |> toTree, Is.EqualTo(t1))
+    t1 |> fromTree |> left |> Option.get |> right |> Option.get |> toTree |> should equal t1
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``setValue``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> setValue 5 |> toTree, Is.EqualTo(t2))
+    t1 |> fromTree |> left |> Option.get |> setValue 5 |> toTree |> should equal t2
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``setLeft with Some``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> setLeft (tree 5 None None |> Some) |> toTree, Is.EqualTo(t3))
+    t1 |> fromTree |> left |> Option.get |> setLeft (tree 5 None None |> Some) |> toTree |> should equal t3
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``setRight with None``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> setRight None |> toTree, Is.EqualTo(t4))
+    t1 |> fromTree |> left |> Option.get |> setRight None |> toTree |> should equal t4
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Different paths to same zipper``() =
-    Assert.That(t1 |> fromTree |> left |> Option.get |> up |> Option.get |> right, Is.EqualTo(t1 |> fromTree |> right))
+    t1 |> fromTree |> left |> Option.get |> up |> Option.get |> right |> should equal t1 |> fromTree |> right

@@ -2,6 +2,7 @@ module SeriesTest
 
 open System
 open NUnit.Framework
+open FsUnit
 open Series
 
 type SeriesTests () =
@@ -14,7 +15,7 @@ type SeriesTests () =
     [<TestCaseSource("SliceOneTestData")>]
     member this.``Series of one splits to one digit`` (testData: string * int list list) =
         let input, expected = testData
-        Assert.That(slices input 1, Is.EqualTo(expected))
+        slices input 1 |> should equal expected
 
     static member SliceTwoTestData =
         [| 
@@ -27,7 +28,7 @@ type SeriesTests () =
     [<Ignore("Remove to run test")>]  
     member this.``Series of two splits to two digits`` (testData: string * int list list) =
         let input, expected = testData
-        Assert.That(slices input 2, Is.EqualTo(expected))
+        slices input 2 |> should equal expected
 
     static member SliceThreeTestData =
         [| 
@@ -40,7 +41,7 @@ type SeriesTests () =
     [<Ignore("Remove to run test")>]
     member this.``Series of three splits to three digits`` (testData: string * int list list) =
         let input, expected = testData
-        Assert.That(slices input 3, Is.EqualTo(expected))
+        slices input 3 |> should equal expected
 
     static member SliceFourTestData =
         [| 
@@ -52,7 +53,7 @@ type SeriesTests () =
     [<Ignore("Remove to run test")>]
     member this.``Series of four splits to four digits`` (testData: string * int list list) =
         let input, expected = testData
-        Assert.That(slices input 4, Is.EqualTo(expected))
+        slices input 4 |> should equal expected
 
     static member SliceFiveTestData =
         [| 
@@ -64,9 +65,9 @@ type SeriesTests () =
     [<Ignore("Remove to run test")>]
     member this.``Series of five splits to five digits`` (testData: string * int list list) =
         let input, expected = testData
-        Assert.That(slices input 5, Is.EqualTo(expected))
+        slices input 5 |> should equal expected
 
     [<TestCase("01234", 6, Ignore = "Remove to run test case")>]
     [<TestCase("01032987583", 19, Ignore = "Remove to run test case")>]
     member this.``Slice longer than input is not allowed`` (input, slice) =
-        Assert.That((fun () -> slices input slice |> ignore), Throws.Exception)
+        (fun () -> slices input slice |> ignore) |> should throw typeof<Exception>

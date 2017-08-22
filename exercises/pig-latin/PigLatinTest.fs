@@ -1,6 +1,7 @@
-﻿module PigLatinTest
+module PigLatinTest
 
 open NUnit.Framework
+open FsUnit
 open PigLatin
 
 [<TestCase("apple", ExpectedResult = "appleay")>]
@@ -21,44 +22,44 @@ let ``First letter and ay are moved to the end of words that start with consonan
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Ch is treated like a single consonant`` () =
-    Assert.That(translate "chair", Is.EqualTo("airchay"))
+    translate "chair" |> should equal "airchay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Qu is treated like a single consonant`` () =
-    Assert.That(translate "queen", Is.EqualTo("eenquay"))
+    translate "queen" |> should equal "eenquay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Qu and a single preceding consonant are treated like a single consonant`` () =
-    Assert.That(translate "square", Is.EqualTo("aresquay"))
+    translate "square" |> should equal "aresquay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Th is treated like a single consonant`` () =
-    Assert.That(translate "therapy", Is.EqualTo("erapythay"))
+    translate "therapy" |> should equal "erapythay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Thr is treated like a single consonant`` () =
-    Assert.That(translate "thrush", Is.EqualTo("ushthray"))
+    translate "thrush" |> should equal "ushthray"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Sch is treated like a single consonant`` () =
-    Assert.That(translate "school", Is.EqualTo("oolschay"))
+    translate "school" |> should equal "oolschay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Yt is treated like a single vowel`` () =
-    Assert.That(translate "yttria", Is.EqualTo("yttriaay"))
+    translate "yttria" |> should equal "yttriaay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Xr is treated like a single vowel`` () =
-    Assert.That(translate "xray", Is.EqualTo("xrayay"))
+    translate "xray" |> should equal "xrayay"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Phrases are translated`` () =
-    Assert.That(translate "quick fast run", Is.EqualTo("ickquay astfay unray"))
+    translate "quick fast run" |> should equal "ickquay astfay unray"

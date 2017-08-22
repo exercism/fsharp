@@ -1,6 +1,7 @@
-﻿module WordCountTest
+module WordCountTest
 
 open NUnit.Framework
+open FsUnit
 open Phrase
 
 [<Test>]
@@ -8,7 +9,7 @@ let ``Count one word`` () =
     let phrase = "word"
     let counts = Map.ofSeq [("word", 1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -18,7 +19,7 @@ let ``Count one of each`` () =
                             ("of",   1);
                             ("each", 1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -30,7 +31,7 @@ let ``Count multiple occurrences`` () =
                             ("red",  1);
                             ("blue", 1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -43,7 +44,7 @@ let ``Count everything just once`` () =
                             ("and",    1);
                             ("men",    1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -55,7 +56,7 @@ let ``Ignore punctuation`` () =
                             ("java",       1);
                             ("javascript", 1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -65,7 +66,7 @@ let ``Handles cramped list`` () =
                             ("two",   1);
                             ("three", 1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -75,7 +76,7 @@ let ``Include numbers`` () =
                             ("1",       1);
                             ("2",       1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -83,7 +84,7 @@ let ``Normalize case`` () =
     let phrase = "go Go GO"
     let counts = Map.ofSeq [("go", 3)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -95,7 +96,7 @@ let ``With apostrophes`` () =
                             ("then",  1);
                             ("cry",   1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -103,7 +104,7 @@ let ``With free standing apostrophes`` () =
     let phrase = "go ' Go '' GO"
     let counts = Map.ofSeq [("go", 3)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -117,7 +118,7 @@ let ``With apostrophes as quotes`` () =
                             ("twelve",  1);
                             ("o'clock", 1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -136,4 +137,4 @@ let ``With multiple lines`` () =
                             ("you",    2);
                             ("your",   1)]
 
-    Assert.That(wordCount phrase, Is.EqualTo(counts))
+    wordCount phrase |> should equal counts

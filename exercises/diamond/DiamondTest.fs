@@ -1,8 +1,9 @@
-﻿module DiamondTest
+module DiamondTest
 
 open Diamond
 open System
 open NUnit.Framework
+open FsUnit
 
 type DiamondTest() =
     let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
@@ -19,7 +20,7 @@ type DiamondTest() =
         let rows = actual |> split
         let firstRowCharacters = rows |> Seq.head |> trim
     
-        Assert.That(firstRowCharacters, Is.EqualTo("A"))
+        firstRowCharacters |> should equal "A"
 
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -27,8 +28,8 @@ type DiamondTest() =
         let actual = make letter
         let rows = actual |> split
         let symmetric (row:string) = leadingSpaces row = trailingSpaces row
-    
-        Assert.That(rows, Is.All.Matches(symmetric))
+
+        rows |> Array.forall (should be symmetric)
 
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -44,7 +45,7 @@ type DiamondTest() =
             |> Seq.map Seq.head
             |> Seq.toList
 
-        Assert.That(expected, Is.EqualTo(firstNonSpaceLetters))
+        expected |> should equal firstNonSpaceLetters
 
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -63,7 +64,7 @@ type DiamondTest() =
             |> Seq.takeWhile (fun x -> not (x.Contains(string letter)))
             |> List.ofSeq
 
-        Assert.That(top, Is.EqualTo(bottom))
+        top |> should equal bottom
     
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -74,7 +75,7 @@ type DiamondTest() =
         let expected = rows.Length
         let correctWidth (x:string) = x.Length = expected
 
-        Assert.That(rows, Is.All.Matches(correctWidth))
+        rows |> Array.forall (should be correctWidth)
 
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -91,7 +92,7 @@ type DiamondTest() =
             let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
             twoCharacters && identicalCharacters
 
-        Assert.That(rows, Is.All.Matches(twoIdenticalLetters))
+        rows |> Array.forall (should be twoIdenticalLetters)
 
     [<TestCaseSource("Letters")>]    
     [<Ignore("Remove to run test")>]
@@ -116,6 +117,6 @@ type DiamondTest() =
             |> Seq.take spaceCounts.Length
             |> Seq.toList
 
-        Assert.That(spaceCounts, Is.EqualTo(expected))
+        spaceCounts |> should equal expected
 
     static member Letters = [| 'A' .. 'Z' |]

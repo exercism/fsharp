@@ -1,6 +1,7 @@
-﻿module PovTest
+module PovTest
 
 open NUnit.Framework
+open FsUnit
 
 open Pov
 
@@ -37,50 +38,50 @@ let cousins' = mkGraph x [
 
 [<Test>]
 let ``Reparent singleton`` () =
-    Assert.That(fromPOV x singleton, Is.EqualTo(Some singleton'))
+    fromPOV x singleton |> should equal Some singleton'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent flat`` () =
-    Assert.That(fromPOV x flat, Is.EqualTo(Some flat'))
+    fromPOV x flat |> should equal Some flat'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent nested`` () =
-    Assert.That(fromPOV x nested, Is.EqualTo(Some nested'))
+    fromPOV x nested |> should equal Some nested'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent kids`` () =
-    Assert.That(fromPOV x kids, Is.EqualTo(Some kids'))
+    fromPOV x kids |> should equal Some kids'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent cousins`` () =
-    Assert.That(fromPOV x cousins, Is.EqualTo(Some cousins'))
+    fromPOV x cousins |> should equal Some cousins'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent from POV of non-existent node`` () =
-    Assert.That(fromPOV x (leaf "foo"), Is.EqualTo(None))
+    fromPOV x (leaf "foo") |> should equal None
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Should not be able to find a missing node`` () =
     let nodes = [singleton; flat; kids; nested; cousins] |> List.map (fromPOV "NOT THERE")
-    Assert.That(nodes, Is.All.EqualTo(None))
+    nodes |> List.forall (should equal None)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Cannot trace between un-connected nodes`` () =
-    Assert.That(tracePathBetween x "NOT THERE" cousins, Is.EqualTo(None))
+    tracePathBetween x "NOT THERE" cousins |> should equal None
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can trace a path from x to cousin`` () = 
-    Assert.That(tracePathBetween x "cousin-1" cousins, Is.EqualTo(Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]))
+    tracePathBetween x "cousin-1" cousins |> should equal Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can trace from a leaf to a leaf`` () =
-    Assert.That(tracePathBetween "kid-a" "cousin-0" cousins, Is.EqualTo(Some ["kid-a"; "x"; "parent"; "grandparent"; "uncle"; "cousin-0"]))
+    tracePathBetween "kid-a" "cousin-0" cousins |> should equal Some ["kid-a"; "x"; "parent"; "grandparent"; "uncle"; "cousin-0"]

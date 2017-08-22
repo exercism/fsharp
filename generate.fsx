@@ -1,5 +1,6 @@
 open System
 open System.IO
+open System.Text.RegularExpressions
 
 let projectTemplate = 
     """
@@ -26,6 +27,8 @@ let projectTemplate =
 
 </Project>
 """
+
+let regexReplace pattern (replacement: string) (str: string) = Regex.Replace(str, pattern, replacement)
 
 let upperCaseFirst (str: string) =
     Char.ToUpper(str.[0]).ToString() + str.[1..]
@@ -66,8 +69,25 @@ let normalizeTestFileName exercise =
 let createProgramFile (exercise: Exercise) = 
     File.WriteAllText(exercise.ProgramFilePath, "module Program = let [<EntryPoint>] main _ = 0")    
 
-let convertToFsUnit exercise =
-    ()
+let convertToFsUnit (exercise: Exercise) =
+    let testFileContents = File.ReadAllText(exercise.TestFilePath)
+
+    let updatedTestFileContents =
+        testFileContents
+        |> if testFileContents.Contains("FsUnit") then id else regexReplace "open NUnit.Framework" "open NUnit.Framework\nopen FsUnit"
+        |> regexReplace "Assert\.That\((.+), Is\.(EqualTo|EquivalentTo)\((.+)\)\)" "$1 |> should equal $3"
+        |> regexReplace "Assert\.That\((.+), Is\.Not\.(EqualTo|EquivalentTo)\((.+)\)\)" "$1 |> should not' )equal $3)"
+        |> regexReplace "Assert\.That\((.+) = (.+)\)" "$1 |> should equal $2"
+        |> regexReplace "Assert\.That\((.+) <> (.+)\)" "$1 |> should not' (equal $2)"
+        |> regexReplace "Assert\.That\((.+), Throws\.(.+)\)" "$1 |> should throw typeof<$2>"
+        |> regexReplace "Assert\.That\((.+), Is.True\)" "$1 |> should be true"
+        |> regexReplace "Assert\.That\((.+), Is.False\)" "$1 |> should be false"
+        |> regexReplace "Assert\.True\((.+)\)" "$1 |> should be true"
+        |> regexReplace "Assert\.False\((.+)\)" "$1 |> should be false"
+        |> regexReplace "Assert\.That\((.+), Is.Empty\)" "$1 |> should be Empty"
+        |> regexReplace "Assert\.That\((.+), Has\.Length\.EqualTo\((.+)\)\)" "$1 |> should haveLength $2"
+
+    File.WriteAllText(exercise.TestFilePath, updatedTestFileContents)    
 
 let convertExercise exercise =
     createExerciseProject exercise

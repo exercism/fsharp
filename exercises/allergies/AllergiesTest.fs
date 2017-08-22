@@ -1,74 +1,79 @@
-﻿module AllergiesTest
+module AllergiesTest
 
 open System
 open NUnit.Framework
+open FsUnit
 open Allergies
 
 [<Test>]
 let ``No allergies means not allergic`` () =
-    Assert.That(allergicTo Allergen.Peanuts 0, Is.False)
-    Assert.That(allergicTo Allergen.Cats 0, Is.False)
-    Assert.That(allergicTo Allergen.Strawberries 0, Is.False)
+    allergicTo Allergen.Peanuts 0 |> should be false
+    allergicTo Allergen.Cats 0 |> should be false
+    allergicTo Allergen.Strawberries 0 |> should be false
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to eggs`` () =
-    Assert.That(allergicTo Allergen.Eggs 1, Is.True)
+    allergicTo Allergen.Eggs 1 |> should be true
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to eggs in addition to other stuff`` () =
-    Assert.That(allergicTo Allergen.Eggs 5, Is.True)
-    Assert.That(allergicTo Allergen.Shellfish 5, Is.True)
-    Assert.That(allergicTo Allergen.Strawberries 5, Is.False)
+    allergicTo Allergen.Eggs 5 |> should be true
+    allergicTo Allergen.Shellfish 5 |> should be true
+    allergicTo Allergen.Strawberries 5 |> should be false
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``No allergies at all`` () =
-    Assert.That(allergies 0, Is.Empty)
+    allergies 0 |> should be Empty
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to just eggs`` () =
-    Assert.That(allergies 1, Is.EqualTo([Allergen.Eggs]))
+    allergies 1 |> should equal [Allergen.Eggs]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to just peanuts`` () =
-    Assert.That(allergies 2, Is.EqualTo([Allergen.Peanuts]))
+    allergies 2 |> should equal [Allergen.Peanuts]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to eggs and peanuts`` () =
-    Assert.That(allergies 3, Is.EqualTo([Allergen.Eggs; Allergen.Peanuts]))
+    allergies 3 |> should equal [Allergen.Eggs; Allergen.Peanuts]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to lots of stuff`` () =
-    Assert.That(allergies 248,
-        Is.EqualTo([Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]))
+    allergies 248 |> should equal 
+        [ Allergen.Strawberries; 
+          Allergen.Tomatoes;
+          Allergen.Chocolate;
+          Allergen.Pollen;
+          Allergen.Cats ]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to everything`` () =
-    Assert.That(allergies 255,
-        Is.EqualTo([Allergen.Eggs;
-                    Allergen.Peanuts;
-                    Allergen.Shellfish;
-                    Allergen.Strawberries;
-                    Allergen.Tomatoes;
-                    Allergen.Chocolate;
-                    Allergen.Pollen;
-                    Allergen.Cats]))
+    allergies 255 |> should equal 
+        [ Allergen.Eggs;
+          Allergen.Peanuts;
+          Allergen.Shellfish;
+          Allergen.Strawberries;
+          Allergen.Tomatoes;
+          Allergen.Chocolate;
+          Allergen.Pollen;
+          Allergen.Cats ]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Ignore non allergen score parts`` () =
-    Assert.That(allergies 509,
-        Is.EqualTo([Allergen.Eggs;
-                    Allergen.Shellfish;
-                    Allergen.Strawberries;
-                    Allergen.Tomatoes;
-                    Allergen.Chocolate;
-                    Allergen.Pollen;
-                    Allergen.Cats]))
+    allergies 509  |> should equal 
+        [ Allergen.Eggs;
+          Allergen.Shellfish;
+          Allergen.Strawberries;
+          Allergen.Tomatoes;
+          Allergen.Chocolate;
+          Allergen.Pollen;
+          Allergen.Cats ]

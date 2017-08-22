@@ -1,6 +1,7 @@
-﻿module GrepTest
+module GrepTest
 
 open NUnit.Framework
+open FsUnit
 
 open Grep
 
@@ -64,7 +65,7 @@ let ``One file, one match, no flags`` () =
     let expected = 
         "Of Atreus, Agamemnon, King of men.\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -76,7 +77,7 @@ let ``One file, one match, print line numbers flag`` () =
     let expected = 
         "2:Of that Forbidden Tree, whose mortal tast\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -88,7 +89,7 @@ let ``One file, one match, case-insensitive flag`` () =
     let expected = 
         "Of that Forbidden Tree, whose mortal tast\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -100,7 +101,7 @@ let ``One file, one match, print file names flag`` () =
     let expected = 
         sprintf "%s\n" paradiseLostFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -112,7 +113,7 @@ let ``One file, one match, match entire lines flag`` () =
     let expected = 
         "With loss of Eden, till one greater Man\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -123,7 +124,7 @@ let ``One file, one match, multiple flags`` () =
     let expected = 
         "9:Of Atreus, Agamemnon, King of men.\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -137,7 +138,7 @@ let ``One file, several matches, no flags`` () =
         "But I beseech your grace that I may know\n" +
         "The worst that may befall me in this case,\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -151,7 +152,7 @@ let ``One file, several matches, print line numbers flag`` () =
         "5:But I beseech your grace that I may know\n" +
         "6:The worst that may befall me in this case,\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -162,7 +163,7 @@ let ``One file, several matches, match entire lines flag`` () =
 
     let expected = ""
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -175,7 +176,7 @@ let ``One file, several matches, case-insensitive flag`` () =
         "Achilles sing, O Goddess! Peleus' son;\n" + 
         "The noble Chief Achilles from the son\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -191,7 +192,7 @@ let ``One file, several matches, inverted flag`` () =
         "Sing Heav'nly Muse, that on the secret top\n" + 
         "That Shepherd, who first taught the chosen Seed\n"
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -201,7 +202,7 @@ let ``One file, case-insensitive and entire line flags`` () =
     let flags = "-i -x"
     let expected = ""
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -214,7 +215,7 @@ let ``One file, case-insensitive and inverted flags`` () =
         "With loss of Eden, till one greater Man\n" +
         "Of Oreb, or of Sinai, didst inspire\n"
 
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -232,7 +233,7 @@ let ``One file, inverted and entire line flags`` () =
         "Of Oreb, or of Sinai, didst inspire\n" +
         "That Shepherd, who first taught the chosen Seed\n"
 
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -248,7 +249,7 @@ let ``One file, case-insensitive, inverted and entire line flags`` () =
         "But I beseech your grace that I may know\n" +
         "The worst that may befall me in this case,\n"
 
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<TestCase("", Ignore = "Remove to run test case")>]
 [<TestCase("-n", Ignore = "Remove to run test case")>]
@@ -261,7 +262,7 @@ let ``One file, no matches, various flags`` (flags) =
     let files = [iliadFileName]
     let expected = ""
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -273,7 +274,7 @@ let ``Multiple files, one match, no flags`` () =
     let expected = 
         sprintf "%s:Of Atreus, Agamemnon, King of men.\n" iliadFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -287,7 +288,7 @@ let ``Multiple files, several matches, no flags`` () =
         sprintf "%s:But I beseech your grace that I may know\n" midsummerNightFileName +
         sprintf "%s:The worst that may befall me in this case,\n" midsummerNightFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -302,7 +303,7 @@ let ``Multiple files, several matches, print line numbers flag`` () =
         sprintf "%s:2:Of that Forbidden Tree, whose mortal tast\n" paradiseLostFileName +
         sprintf "%s:6:Sing Heav'nly Muse, that on the secret top\n" paradiseLostFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -315,7 +316,7 @@ let ``Multiple files, several matches, print file names flag`` () =
         sprintf "%s\n" iliadFileName +
         sprintf "%s\n" paradiseLostFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -336,7 +337,7 @@ let ``Multiple files, several matches, case-insensitive flag`` () =
         sprintf "%s:Restore us, and regain the blissful Seat,\n" paradiseLostFileName +
         sprintf "%s:Sing Heav'nly Muse, that on the secret top\n" paradiseLostFileName 
             
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -350,7 +351,7 @@ let ``Multiple files, several matches, inverted flag`` () =
         sprintf "%s:The noble Chief Achilles from the son\n" iliadFileName +
         sprintf "%s:If I refuse to wed Demetrius.\n" midsummerNightFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -362,7 +363,7 @@ let ``Multiple files, one match, match entire lines flag`` () =
     let expected = 
         sprintf "%s:But I beseech your grace that I may know\n" midsummerNightFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -373,7 +374,7 @@ let ``Multiple files, one match, multiple flags`` () =
     let expected = 
         sprintf "%s:4:With loss of Eden, till one greater Man\n" paradiseLostFileName
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected
 
 [<TestCase("", Ignore = "Remove to run test case")>]
 [<TestCase("-n", Ignore = "Remove to run test case")>]
@@ -387,4 +388,4 @@ let ``Multiple files, no matches, various flags`` (flags) =
 
     let expected = ""
     
-    Assert.That(grep pattern flags files, Is.EqualTo(expected))
+    grep pattern flags files |> should equal expected

@@ -1,6 +1,7 @@
 module RaindropsTest
     
 open NUnit.Framework
+open FsUnit
 open Raindrops
 
 [<TestCase(1, ExpectedResult = "1")>]
@@ -13,19 +14,19 @@ let ``Non primes pass through`` (number) =
 [<TestCase(6, Ignore = "Remove to run test case")>]
 [<TestCase(9, Ignore = "Remove to run test case")>]
 let ``Numbers containing 3 as a prime factor give pling`` (number) =
-    Assert.That(convert number, Is.EqualTo("Pling"))
+    convert number |> should equal "Pling"
 
 [<TestCase(5, Ignore = "Remove to run test case")>]
 [<TestCase(10, Ignore = "Remove to run test case")>]
 [<TestCase(25, Ignore = "Remove to run test case")>]
 let ``Numbers containing 5 as a prime factor give plang`` (number) =
-    Assert.That(convert number, Is.EqualTo("Plang"))
+    convert number |> should equal "Plang"
 
 [<TestCase(7, Ignore = "Remove to run test case")>]
 [<TestCase(14, Ignore = "Remove to run test case")>]
 [<TestCase(49, Ignore = "Remove to run test case")>]
 let ``Numbers containing 7 as a prime factor give plong`` (number) =
-    Assert.That(convert number, Is.EqualTo("Plong"))
+    convert number |> should equal "Plong"
 
 [<TestCase(15, ExpectedResult = "PlingPlang", Ignore = "Remove to run test case")>]
 [<TestCase(21, ExpectedResult = "PlingPlong", Ignore = "Remove to run test case")>]

@@ -1,29 +1,30 @@
-﻿module RNATranscriptionTest
+module RNATranscriptionTest
 
 open NUnit.Framework
+open FsUnit
 
 open RNATranscription
     
 [<Test>]
 let ``Rna complement of cytosine is guanine`` () =
-    Assert.That(toRna "C", Is.EqualTo("G"))
+    toRna "C" |> should equal "G"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Rna complement of guanine is cytosine`` () =
-    Assert.That(toRna "G", Is.EqualTo("C"))
+    toRna "G" |> should equal "C"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Rna complement of thymine is adenine`` () =
-    Assert.That(toRna "T", Is.EqualTo("A"))
+    toRna "T" |> should equal "A"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Rna complement of adenine is uracil`` () =
-    Assert.That(toRna "A", Is.EqualTo("U"))
+    toRna "A" |> should equal "U"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Rna complement`` () =
-    Assert.That(toRna "ACGTGGTCTTAA", Is.EqualTo("UGCACCAGAAUU"))
+    toRna "ACGTGGTCTTAA" |> should equal "UGCACCAGAAUU"

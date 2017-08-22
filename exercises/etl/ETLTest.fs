@@ -1,27 +1,28 @@
-﻿module ETLTest
+module ETLTest
 
 open NUnit.Framework
+open FsUnit
 open ETL
 
 [<Test>]
 let ``Transforms one value`` () =
     let old = [(1, ["A"])] |> Map.ofSeq
     let expected = [("a", 1)] |> Map.ofSeq
-    Assert.That(transform old, Is.EqualTo(expected))
+    transform old |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Transforms multiple values`` () =
     let old = [(1, ["A"; "E"; "I"; "O"; "U"])] |> Map.ofSeq
     let expected = [("a", 1); ("e", 1); ("i", 1); ("o", 1); ("u", 1)] |> Map.ofSeq
-    Assert.That(transform old, Is.EqualTo(expected))
+    transform old |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Transforms multiple keys`` () =
     let old = [(1, ["A"; "E"]); (2, ["D"; "G"])] |> Map.ofSeq
     let expected = [("a", 1); ("e", 1); ("d", 2); ("g", 2); ] |> Map.ofSeq
-    Assert.That(transform old, Is.EqualTo(expected))
+    transform old |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -38,4 +39,4 @@ let ``Transforms a full dataset`` () =
                     ("j", 8);  ("k", 5);  ("l", 1);  ("m", 3);  ("n", 1);  ("o", 1);  ("p", 3);  ("q", 10);  ("r", 1); 
                     ("s", 1);  ("t", 1);  ("u", 1);  ("v", 4);  ("w", 4);  ("x", 8);  ("y", 4);  ("z", 10 )] |> Map.ofSeq
 
-    Assert.That(transform old, Is.EqualTo(expected))
+    transform old |> should equal expected

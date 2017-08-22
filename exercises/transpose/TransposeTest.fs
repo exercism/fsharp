@@ -1,6 +1,7 @@
-﻿module TransposeTest
+module TransposeTest
 
 open NUnit.Framework
+open FsUnit
 
 open Transpose
 
@@ -9,7 +10,7 @@ let ``Empty string`` () =
     let input = ""
     let expected = ""
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -21,7 +22,7 @@ let ``Two characters in a row`` () =
         "A\n" +
         "1"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -33,7 +34,7 @@ let ``Two characters in a column`` () =
     let expected = 
         "A1"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -47,7 +48,7 @@ let ``Simple`` () =
         "B2\n" +
         "C3"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -69,7 +70,7 @@ let ``Single line`` () =
         "e\n" +
         "."
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -96,7 +97,7 @@ let ``First line longer than second line`` () =
         "e.\n" +
         "."
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -123,7 +124,7 @@ let ``Second line longer than first line`` () =
         ".e\n" +
         " ."
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -142,7 +143,7 @@ let ``Square`` () =
         "RESIN\n" +
         "TREND"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -163,7 +164,7 @@ let ``Rectangle`` () =
         "RENT\n"+ 
         "EDGE"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -184,7 +185,7 @@ let ``Triangle`` () =
         "    ER\n" + 
         "     R"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
 [<Test>]
@@ -260,4 +261,4 @@ let ``Many lines`` () =
         "          e  .\n" +
         "          ,"
     
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected

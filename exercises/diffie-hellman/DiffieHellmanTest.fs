@@ -1,8 +1,9 @@
-﻿module DiffieHellmanTest
+module DiffieHellmanTest
 
 open System.Numerics
 
 open NUnit.Framework
+open FsUnit
 
 open DiffieHellman
 
@@ -10,7 +11,7 @@ open DiffieHellman
 let ``Private key in range`` () =   
     let primeP = 23I
     let privateKeys = [for _ in 0 .. 10 -> privateKey primeP]
-    Assert.That(privateKeys, Is.All.InRange(1I, primeP - 1I))
+    privateKeys |> List.forall (fun x -> x |> should be greaterThanOrEqualTo 1I && x |> should be lessThanOrEqualTo primeP - 1I)
 
 // Note: due to the nature of randomness, there is always a chance that this test fails
 // Be sure to check the actual generated values
@@ -19,7 +20,7 @@ let ``Private key in range`` () =
 let ``Private key randomly generated`` () =   
     let primeP = 7919I
     let privateKeys = [for _ in 0 .. 5 -> privateKey primeP]
-    Assert.That(privateKeys.Length, Is.EqualTo(privateKeys |> List.distinct |> List.length))
+    privateKeys.Length |> should equal privateKeys |> List.distinct |> List.length
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -29,7 +30,7 @@ let ``Public key correctly calculated`` () =
     let privateKey = 6I
 
     let actual = publicKey primeP primeG privateKey    
-    Assert.That(actual, Is.EqualTo(8I))
+    actual |> should equal 8I
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -39,7 +40,7 @@ let ``Secret key correctly calculated`` () =
     let privateKey = 6I
 
     let actual = secret primeP publicKey privateKey
-    Assert.That(actual, Is.EqualTo(2I))
+    actual |> should equal 2I
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -49,7 +50,7 @@ let ``Secret key correctly calculated when using large primes`` () =
     let privateKey = 2483479393625932939911081304356888505153797135447327501792696199190469015215177630758617902200417377685436170904594686456961202706692908603181062371925882I
     let expected = 70900735223964890815905879227737819348808518698920446491346508980461201746567735331455825644429877946556431095820785835497384849778344216981228226252639932672153547963980483673419756271345828771971984887453014488572245819864454136618980914729839523581263886740821363010486083940557620831348661126601106717071I
     let actual = secret primeP publicKey privateKey
-    Assert.That(actual, Is.EqualTo(expected))
+    actual |> should equal expected
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -66,4 +67,4 @@ let ``Test exchange`` () =
     let secretA = secret primeP publicKeyB privateKeyA
     let secretB = secret primeP publicKeyA privateKeyB
 
-    Assert.That(secretA, Is.EqualTo(secretB))
+    secretA |> should equal secretB

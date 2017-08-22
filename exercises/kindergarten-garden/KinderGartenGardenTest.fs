@@ -1,55 +1,56 @@
-﻿module KinderGartenGardenTest
+module KinderGartenGardenTest
 
 open NUnit.Framework
+open FsUnit
 open KinderGartenGarden
 
 [<Test>]
 let ``Missing child`` () =
     let garden = defaultGarden "RC\nGG"
     let actual = lookupPlants "Potter" garden
-    Assert.That(actual, Is.Empty)
+    actual |> should be Empty
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Alice`` () =
-    Assert.That(defaultGarden "RC\nGG" |> lookupPlants "Alice", Is.EqualTo([Plant.Radishes; Plant.Clover; Plant.Grass; Plant.Grass]))
-    Assert.That(defaultGarden "VC\nRC" |> lookupPlants "Alice", Is.EqualTo([Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Clover]))
+    defaultGarden "RC\nGG" |> lookupPlants "Alice" |> should equal [Plant.Radishes; Plant.Clover; Plant.Grass; Plant.Grass]
+    defaultGarden "VC\nRC" |> lookupPlants "Alice" |> should equal [Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Clover]
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Small garden`` () =
     let garden = defaultGarden "VVCG\nVVRC"
-    Assert.That(lookupPlants "Bob" garden, Is.EqualTo([Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Clover]))
+    lookupPlants "Bob" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Clover]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Medium garden`` () =
     let garden = defaultGarden "VVCCGG\nVVCCGG"
-    Assert.That(lookupPlants "Bob" garden, Is.EqualTo([Plant.Clover; Plant.Clover; Plant.Clover; Plant.Clover]))
-    Assert.That(lookupPlants "Charlie" garden, Is.EqualTo([Plant.Grass; Plant.Grass; Plant.Grass; Plant.Grass]))
+    lookupPlants "Bob" garden |> should equal [Plant.Clover; Plant.Clover; Plant.Clover; Plant.Clover]
+    lookupPlants "Charlie" garden |> should equal [Plant.Grass; Plant.Grass; Plant.Grass; Plant.Grass]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Full garden`` () =
     let garden = defaultGarden "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
-    Assert.That(lookupPlants "Alice" garden, Is.EqualTo([Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]))
-    Assert.That(lookupPlants "Alice" garden, Is.EqualTo([Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]))
-    Assert.That(lookupPlants "Bob" garden, Is.EqualTo([Plant.Clover; Plant.Grass; Plant.Clover; Plant.Clover]))
-    Assert.That(lookupPlants "David" garden, Is.EqualTo([Plant.Radishes; Plant.Violets; Plant.Clover; Plant.Radishes]))
-    Assert.That(lookupPlants "Eve" garden, Is.EqualTo([Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Grass]))
-    Assert.That(lookupPlants "Fred" garden, Is.EqualTo([Plant.Grass; Plant.Clover; Plant.Violets; Plant.Clover]))
-    Assert.That(lookupPlants "Ginny" garden, Is.EqualTo([Plant.Clover; Plant.Grass; Plant.Grass; Plant.Clover]))
-    Assert.That(lookupPlants "Harriet" garden, Is.EqualTo([Plant.Violets; Plant.Radishes; Plant.Radishes; Plant.Violets]))
-    Assert.That(lookupPlants "Ileana" garden, Is.EqualTo([Plant.Grass; Plant.Clover; Plant.Violets; Plant.Clover]))
-    Assert.That(lookupPlants "Joseph" garden, Is.EqualTo([Plant.Violets; Plant.Clover; Plant.Violets; Plant.Grass]))
-    Assert.That(lookupPlants "Kincaid" garden, Is.EqualTo([Plant.Grass; Plant.Clover; Plant.Clover; Plant.Grass]))
-    Assert.That(lookupPlants "Larry" garden, Is.EqualTo([Plant.Grass; Plant.Violets; Plant.Clover; Plant.Violets]))
+    lookupPlants "Alice" garden |> should equal [Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]
+    lookupPlants "Alice" garden |> should equal [Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]
+    lookupPlants "Bob" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Clover; Plant.Clover]
+    lookupPlants "David" garden |> should equal [Plant.Radishes; Plant.Violets; Plant.Clover; Plant.Radishes]
+    lookupPlants "Eve" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Grass]
+    lookupPlants "Fred" garden |> should equal [Plant.Grass; Plant.Clover; Plant.Violets; Plant.Clover]
+    lookupPlants "Ginny" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Grass; Plant.Clover]
+    lookupPlants "Harriet" garden |> should equal [Plant.Violets; Plant.Radishes; Plant.Radishes; Plant.Violets]
+    lookupPlants "Ileana" garden |> should equal [Plant.Grass; Plant.Clover; Plant.Violets; Plant.Clover]
+    lookupPlants "Joseph" garden |> should equal [Plant.Violets; Plant.Clover; Plant.Violets; Plant.Grass]
+    lookupPlants "Kincaid" garden |> should equal [Plant.Grass; Plant.Clover; Plant.Clover; Plant.Grass]
+    lookupPlants "Larry" garden |> should equal [Plant.Grass; Plant.Violets; Plant.Clover; Plant.Violets]
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Surprise garden`` () =
     let garden = garden ["Samantha"; "Patricia"; "Xander"; "Roger"] "VCRRGVRG\nRVGCCGCV"
-    Assert.That(lookupPlants "Patricia" garden, Is.EqualTo([Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Violets]))
-    Assert.That(lookupPlants "Roger" garden, Is.EqualTo([Plant.Radishes; Plant.Radishes; Plant.Grass; Plant.Clover]))
-    Assert.That(lookupPlants "Samantha" garden, Is.EqualTo([Plant.Grass; Plant.Violets; Plant.Clover; Plant.Grass]))
-    Assert.That(lookupPlants "Xander" garden, Is.EqualTo([Plant.Radishes; Plant.Grass; Plant.Clover; Plant.Violets]))
+    lookupPlants "Patricia" garden |> should equal [Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Violets]
+    lookupPlants "Roger" garden |> should equal [Plant.Radishes; Plant.Radishes; Plant.Grass; Plant.Clover]
+    lookupPlants "Samantha" garden |> should equal [Plant.Grass; Plant.Violets; Plant.Clover; Plant.Grass]
+    lookupPlants "Xander" garden |> should equal [Plant.Radishes; Plant.Grass; Plant.Clover; Plant.Violets]

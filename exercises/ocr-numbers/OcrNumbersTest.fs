@@ -1,6 +1,7 @@
-﻿module OcrNumbersTest
+module OcrNumbersTest
 
 open NUnit.Framework
+open FsUnit
 
 open OcrNumbers
 
@@ -10,7 +11,7 @@ let ``Recognizes zero`` () =
                               "| |" + "\n" +
                               "|_|" + "\n" +
                               "   ")
-    Assert.That(converted, Is.EqualTo("0"))
+    converted |> should equal "0"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -19,7 +20,7 @@ let ``Recognizes one`` () =
                              "  |" + "\n" +
                              "  |" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("1"))
+    converted |> should equal "1"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -28,7 +29,7 @@ let ``Recognizes two`` () =
                              " _|" + "\n" +
                              "|_ " + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("2"))
+    converted |> should equal "2"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -37,7 +38,7 @@ let ``Recognizes three`` () =
                              " _|" + "\n" +
                              " _|" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("3"))
+    converted |> should equal "3"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -46,7 +47,7 @@ let ``Recognizes four`` () =
                              "|_|" + "\n" +
                              "  |" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("4"))
+    converted |> should equal "4"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -55,7 +56,7 @@ let ``Recognizes five`` () =
                              "|_ " + "\n" +
                              " _|" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("5"))
+    converted |> should equal "5"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -64,7 +65,7 @@ let ``Recognizes six`` () =
                              "|_ " + "\n" +
                              "|_|" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("6"))
+    converted |> should equal "6"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -73,7 +74,7 @@ let ``Recognizes seven`` () =
                              "  |" + "\n" +
                              "  |" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("7"))
+    converted |> should equal "7"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -82,7 +83,7 @@ let ``Recognizes eight`` () =
                              "|_|" + "\n" +
                              "|_|" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("8"))
+    converted |> should equal "8"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -91,7 +92,7 @@ let ``Recognizes nine`` () =
                              "|_|" + "\n" +
                              " _|" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("9"))
+    converted |> should equal "9"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -100,7 +101,7 @@ let ``Recognizes garble`` () =
                              "| |" + "\n" +
                              "| |" + "\n" +
                              "   ")
-    Assert.That(converted, Is.EqualTo("?"))
+    converted |> should equal "?"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -109,7 +110,7 @@ let ``Recognizes ten`` () =
                              "  || |" + "\n" +
                              "  ||_|" + "\n" +
                              "       ")
-    Assert.That(converted, Is.EqualTo("10"))
+    converted |> should equal "10"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -118,7 +119,7 @@ let ``Recognizes 110101100`` () =
                              "  |  || |  || |  |  || || |" + "\n" +
                              "  |  ||_|  ||_|  |  ||_||_|" + "\n" +
                              "                            ")
-    Assert.That(converted, Is.EqualTo("110101100"))
+    converted |> should equal "110101100"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -127,7 +128,7 @@ let ``Recognizes numbers and garble`` () =
                              "  |  || |  || |     || || |" + "\n" +
                              "  |  | _|  ||_|  |  ||_||_|" + "\n" +
                              "                            ")
-    Assert.That(converted, Is.EqualTo("11?10?1?0"))
+    converted |> should equal "11?10?1?0"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -144,4 +145,4 @@ let ``Recognizes multiple rows`` () =
                              "  ||_||_|" + "\n" +
                              "  ||_| _|" + "\n" +
                              "          ")
-    Assert.That(converted, Is.EqualTo("123,456,789"))
+    converted |> should equal "123,456,789"

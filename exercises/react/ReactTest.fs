@@ -1,6 +1,7 @@
-﻿module ReactTest
+module ReactTest
 
 open NUnit.Framework
+open FsUnit
 
 open React
 
@@ -9,9 +10,9 @@ let ``Setting the value of an input cell changes the observable value`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1
 
-  Assert.That(inputCell1.Value, Is.EqualTo(1))
+  inputCell1.Value |> should equal 1
   inputCell1.Value <- 2
-  Assert.That(inputCell1.Value, Is.EqualTo(2))
+  inputCell1.Value |> should equal 2
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -20,9 +21,9 @@ let ``The value of a compute is determined by the value of the dependencies`` ()
   let inputCell1 = reactor.createInputCell 1    
   let computeCell1 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] + 1)
 
-  Assert.That(computeCell1.Value, Is.EqualTo(2))  
+  computeCell1.Value |> should equal 2  
   inputCell1.Value <- 2
-  Assert.That(computeCell1.Value, Is.EqualTo(3))
+  computeCell1.Value |> should equal 3
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -33,9 +34,9 @@ let ``Compute cells can depend on other compute cells`` () =
   let computeCell2 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] - 1)
   let computeCell3 = reactor.createComputeCell [computeCell1; computeCell2] (fun values -> values.[0] * values.[1])
   
-  Assert.That(computeCell3.Value, Is.EqualTo(0))  
+  computeCell3.Value |> should equal 0  
   inputCell1.Value <- 3
-  Assert.That(computeCell3.Value, Is.EqualTo(8))
+  computeCell3.Value |> should equal 8
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -46,9 +47,9 @@ let ``Compute cells can have callbacks`` () =
   let mutable observed = []
   computeCell1.Changed.Add(fun value -> observed <- observed @ [value]) |> ignore
   
-  Assert.That(observed, Is.EqualTo([]))
+  observed |> should equal []
   inputCell1.Value <- 2
-  Assert.That(observed, Is.EqualTo([3]))
+  observed |> should equal [3]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -60,11 +61,11 @@ let ``Callbacks only trigger on change`` () =
   computecell1.Changed.Add(fun value -> observerCalled <- observerCalled + 1) |> ignore
 
   inputCell1.Value <- 1
-  Assert.That(observerCalled, Is.EqualTo(0))
+  observerCalled |> should equal 0
   inputCell1.Value <- 2
-  Assert.That(observerCalled, Is.EqualTo(0))
+  observerCalled |> should equal 0
   inputCell1.Value <- 3
-  Assert.That(observerCalled, Is.EqualTo(1))
+  observerCalled |> should equal 1
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -80,13 +81,13 @@ let ``Callbacks can be removed`` () =
   computeCell1.Changed.Add(fun value -> observed2 <- observed2 @ [value]) |> ignore
     
   inputCell1.Value <- 2
-  Assert.That(observed1, Is.EqualTo([3]))  
-  Assert.That(observed2, Is.EqualTo([3]))
+  observed1 |> should equal [3]  
+  observed2 |> should equal [3]
 
   computeCell1.Changed.RemoveHandler changedHandler1
   inputCell1.Value <- 3
-  Assert.That(observed1, Is.EqualTo([3]))  
-  Assert.That(observed2, Is.EqualTo([3; 4]))
+  observed1 |> should equal [3]  
+  observed2 |> should equal [3; 4]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -100,4 +101,4 @@ let ``Callbacks should only be called once even if multiple dependencies have ch
   let mutable changed4 = 0
   computeCell4.Changed.Add(fun value -> changed4 <- changed4 + 1) |> ignore
   inputCell1.Value <- 3
-  Assert.That(changed4, Is.EqualTo(1))  
+  changed4 |> should equal 1  

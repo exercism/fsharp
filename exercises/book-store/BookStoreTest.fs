@@ -1,64 +1,65 @@
-﻿module BookStoreTest
+module BookStoreTest
 
 open System
 open NUnit.Framework
+open FsUnit
 open BookStore
 
 [<Test>]
 let ``Basket with single book`` () =
-    Assert.That(calculateTotalCost [1], Is.EqualTo(8))
+    calculateTotalCost [1] |> should equal 8
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with two of same book`` () =
-    Assert.That(calculateTotalCost [2; 2], Is.EqualTo(16))
+    calculateTotalCost [2; 2] |> should equal 16
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Empty basket`` () =
-    Assert.That(calculateTotalCost [], Is.EqualTo(0))
+    calculateTotalCost [] |> should equal 0
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with two different books`` () =
-    Assert.That(calculateTotalCost [1; 2], Is.EqualTo(15.2))
+    calculateTotalCost [1; 2] |> should equal 15.2
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with three different books`` () =
-    Assert.That(calculateTotalCost [1; 2; 3], Is.EqualTo(21.6))
+    calculateTotalCost [1; 2; 3] |> should equal 21.6
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with four different books`` () =
-    Assert.That(calculateTotalCost [1; 2; 3; 4], Is.EqualTo(25.6))
+    calculateTotalCost [1; 2; 3; 4] |> should equal 25.6
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with five different books`` () =
-    Assert.That(calculateTotalCost [1; 2; 3; 4; 5], Is.EqualTo(30))
+    calculateTotalCost [1; 2; 3; 4; 5] |> should equal 30
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with eight books`` () =
-    Assert.That(calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 5], Is.EqualTo(51.20))
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 5] |> should equal 51.20
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with nine books`` () =
-    Assert.That(calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5], Is.EqualTo(55.60))
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5] |> should equal 55.60
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with ten books`` () =
-    Assert.That(calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5], Is.EqualTo(60))
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5] |> should equal 60
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with eleven books`` () =
-    Assert.That(calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1], Is.EqualTo(68))
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1] |> should equal 68
 
 [<Ignore("Remove to run test")>]
 [<Test>]
 let ``Basket with twelve books`` () =
-    Assert.That(calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1; 2], Is.EqualTo(75.20))
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1; 2] |> should equal 75.20

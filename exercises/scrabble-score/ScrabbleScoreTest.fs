@@ -1,43 +1,44 @@
 module ScrabbleScoreTest
 
 open NUnit.Framework
+open FsUnit
 open ScrabbleScore
   
 [<Test>]
 let ``Empty word scores zero`` () =
-    Assert.That(score "", Is.EqualTo(0))
+    score "" |> should equal 0
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Whitespace scores zero`` () =
-    Assert.That(score " \t\n", Is.EqualTo(0))
+    score " \t\n" |> should equal 0
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Scores very short word`` () =
-    Assert.That(score "a", Is.EqualTo(1))
+    score "a" |> should equal 1
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Scores other very short word`` () =
-    Assert.That(score "f", Is.EqualTo(4))
+    score "f" |> should equal 4
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Simple word scores the number of letters`` () =
-    Assert.That(score "street", Is.EqualTo(6))
+    score "street" |> should equal 6
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Complicated word scores more`` () =
-    Assert.That(score "quirky", Is.EqualTo(22))
+    score "quirky" |> should equal 22
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Scores are case insensitive`` () =
-    Assert.That(score "OXYPHENBUTAZONE", Is.EqualTo(41))
+    score "OXYPHENBUTAZONE" |> should equal 41
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Entire alphabet`` () =
-    Assert.That(score "abcdefghijklmnopqrstuvwxyz", Is.EqualTo(87))
+    score "abcdefghijklmnopqrstuvwxyz" |> should equal 87

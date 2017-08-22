@@ -1,60 +1,61 @@
-﻿module ProteinTranslationTest
+module ProteinTranslationTest
 
 open NUnit.Framework
+open FsUnit
 
 open ProteinTranslation
 
 [<TestCase("AUG")>]
 let ``Identifies Methionine codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Methionine"]))
+    translate codon |> should equal ["Methionine"]
     
 [<TestCase("UUU", Ignore = "Remove to run test case")>]
 [<TestCase("UUC", Ignore = "Remove to run test case")>]
 let ``Identifies Phenylalanine codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Phenylalanine"]))
+    translate codon |> should equal ["Phenylalanine"]
     
 [<TestCase("UUA", Ignore = "Remove to run test case")>]
 [<TestCase("UUG", Ignore = "Remove to run test case")>]
 let ``Identifies Leucine codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Leucine"]))
+    translate codon |> should equal ["Leucine"]
     
 [<TestCase("UCU", Ignore = "Remove to run test case")>]
 [<TestCase("UCC", Ignore = "Remove to run test case")>]
 [<TestCase("UCA", Ignore = "Remove to run test case")>]
 [<TestCase("UCG", Ignore = "Remove to run test case")>]
 let ``Identifies Serine codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Serine"]))
+    translate codon |> should equal ["Serine"]
     
 [<TestCase("UAU", Ignore = "Remove to run test case")>]
 [<TestCase("UAC", Ignore = "Remove to run test case")>]
 let ``Identifies Tyrosine codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Tyrosine"]))
+    translate codon |> should equal ["Tyrosine"]
     
 [<TestCase("UGU", Ignore = "Remove to run test case")>]
 [<TestCase("UGC", Ignore = "Remove to run test case")>]
 let ``Identifies Cysteine codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Cysteine"]))
+    translate codon |> should equal ["Cysteine"]
     
 [<TestCase("UGG", Ignore = "Remove to run test case")>] 
 let ``Identifies Tryptophan codons`` (codon) =
-    Assert.That(translate codon, Is.EqualTo(["Tryptophan"]))
+    translate codon |> should equal ["Tryptophan"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Translates rna strand into correct protein`` () =
-    Assert.That(translate "AUGUUUUGG", Is.EqualTo(["Methionine"; "Phenylalanine"; "Tryptophan"]))
+    translate "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Stops translation if stop codon present`` () =
-    Assert.That(translate "AUGUUUUAA", Is.EqualTo(["Methionine"; "Phenylalanine"]))
+    translate "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Stops translation of longer strand`` () =
-    Assert.That(translate "UGGUGUUAUUAAUGGUUU'", Is.EqualTo(["Tryptophan"; "Cysteine"; "Tyrosine"]))
+    translate "UGGUGUUAUUAAUGGUUU'" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Throws for invalid codons`` () =
-    Assert.That((fun () -> translate "CARROT'" |> List.ofSeq |> ignore), Throws.Exception)
+    (fun () -> translate "CARROT'" |> List.ofSeq |> ignore) |> should throw typeof<Exception>

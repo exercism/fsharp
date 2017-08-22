@@ -1,6 +1,7 @@
-﻿module RomanNumeralTest
+module RomanNumeralTest
 
 open NUnit.Framework
+open FsUnit
 open RomanNumeral
     
 [<TestCase(0, ExpectedResult = "")>]
