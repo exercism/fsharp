@@ -9,3 +9,4 @@ tools/
 paket-files
 TestResult.xml
 junit-results.xml
+.idea/
