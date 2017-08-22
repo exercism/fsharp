@@ -20,6 +20,7 @@ let projectTemplate =
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="NUnit" Version="3.7.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.8.0" />
+    <PackageReference Include="FsUnit" Version="3.0.0" />
   </ItemGroup>
 
 </Project>
