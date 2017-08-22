@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="CryptoSquare.fs" />
     <Compile Include="CryptoSquareTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

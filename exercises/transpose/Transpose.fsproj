@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Transpose.fs" />
     <Compile Include="TransposeTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="LinkedList.fs" />
     <Compile Include="LinkedListTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

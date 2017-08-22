@@ -14,6 +14,7 @@ let projectTemplate =
   <ItemGroup>
     <Compile Include="{Exercise}.fs" />
     <Compile Include="{Exercise}Test.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -67,9 +68,14 @@ let normalizeTestFileName exercise =
     | true  -> File.Move(testsFilePath, testFilePath)
     | false -> ()
 
+let createProgramFile exercise = 
+    let programFilePath = Path.Combine(exercise.Directory, "Program.fs")
+    File.WriteAllText(programFilePath, "module Program = let [<EntryPoint>] main _ = 0")    
+
 let convertExercise exercise =
     createExerciseProject exercise
     createStubFile exercise
+    createProgramFile exercise
     normalizeTestFileName exercise
 
 let toExercise exerciseDirectory = 

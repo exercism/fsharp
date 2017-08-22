@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="RunLengthEncoding.fs" />
     <Compile Include="RunLengthEncodingTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

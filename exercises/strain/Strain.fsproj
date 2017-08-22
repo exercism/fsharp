@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Strain.fs" />
     <Compile Include="StrainTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

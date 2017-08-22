@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="QueenAttack.fs" />
     <Compile Include="QueenAttackTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

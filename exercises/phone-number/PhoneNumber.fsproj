@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="PhoneNumber.fs" />
     <Compile Include="PhoneNumberTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

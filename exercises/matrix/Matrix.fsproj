@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Matrix.fs" />
     <Compile Include="MatrixTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

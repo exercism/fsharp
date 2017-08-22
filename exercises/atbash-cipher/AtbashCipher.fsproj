@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="AtbashCipher.fs" />
     <Compile Include="AtbashCipherTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

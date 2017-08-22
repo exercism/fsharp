@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="WordSearch.fs" />
     <Compile Include="WordSearchTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

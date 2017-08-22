@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="ProteinTranslation.fs" />
     <Compile Include="ProteinTranslationTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

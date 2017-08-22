@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Rectangles.fs" />
     <Compile Include="RectanglesTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

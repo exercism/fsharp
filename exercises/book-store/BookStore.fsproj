@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="BookStore.fs" />
     <Compile Include="BookStoreTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

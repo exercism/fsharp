@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="PigLatin.fs" />
     <Compile Include="PigLatinTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

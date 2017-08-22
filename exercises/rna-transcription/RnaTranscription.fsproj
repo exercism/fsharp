@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="RnaTranscription.fs" />
     <Compile Include="RnaTranscriptionTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

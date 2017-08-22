@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="PerfectNumbers.fs" />
     <Compile Include="PerfectNumbersTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Leap.fs" />
     <Compile Include="LeapTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

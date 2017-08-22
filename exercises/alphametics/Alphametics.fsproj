@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Alphametics.fs" />
     <Compile Include="AlphameticsTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

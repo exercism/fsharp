@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Zipper.fs" />
     <Compile Include="ZipperTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

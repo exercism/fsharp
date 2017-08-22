@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="ScrabbleScore.fs" />
     <Compile Include="ScrabbleScoreTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

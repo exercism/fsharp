@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Grep.fs" />
     <Compile Include="GrepTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="RailFenceCipher.fs" />
     <Compile Include="RailFenceCipherTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Triangle.fs" />
     <Compile Include="TriangleTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

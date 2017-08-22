@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="GradeSchool.fs" />
     <Compile Include="GradeSchoolTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

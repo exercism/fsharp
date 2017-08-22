@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="SaddlePoints.fs" />
     <Compile Include="SaddlePointsTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

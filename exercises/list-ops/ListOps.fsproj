@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="ListOps.fs" />
     <Compile Include="ListOpsTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

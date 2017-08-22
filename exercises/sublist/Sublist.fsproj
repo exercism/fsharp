@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="Sublist.fs" />
     <Compile Include="SublistTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

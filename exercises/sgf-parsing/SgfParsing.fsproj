@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="SgfParsing.fs" />
     <Compile Include="SgfParsingTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>

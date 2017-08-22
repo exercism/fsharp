@@ -10,6 +10,7 @@
   <ItemGroup>
     <Compile Include="CircularBuffer.fs" />
     <Compile Include="CircularBufferTest.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
