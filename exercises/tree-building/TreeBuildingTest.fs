@@ -2,6 +2,7 @@ module TreeBuildingTest
 
 open NUnit.Framework
 open FsUnit
+open System
 
 open TreeBuilding
 

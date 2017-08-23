@@ -14,14 +14,14 @@ let ``Robot has a name`` () =
 [<Ignore("Remove to run test")>]
 let ``Name is the same each time`` () =     
     let robot = mkRobot()
-    name robot |> should equal name robot
+    name robot |> should equal (name robot)
     
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Different robots have different names`` () = 
     let robot = mkRobot()
     let robot2 = mkRobot()
-    name robot |> should not' )equal name robot2)
+    name robot |> should not' (equal (name robot2))
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -29,4 +29,4 @@ let ``Can reset the name`` () =
     let robot = mkRobot()
     let originalName = name robot
     let resetRobot = reset robot
-    originalName |> should not' )equal name resetRobot)
+    originalName |> should not' (equal (name resetRobot))

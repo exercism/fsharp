@@ -2,6 +2,7 @@ module ErrorHandlingTest
 
 open NUnit.Framework
 open FsUnit
+open System
 
 open ErrorHandling
 
@@ -30,7 +31,7 @@ let ``Throwing exception`` () =
 [<Ignore("Remove to run test")>]
 let ``Returning Option<'T>`` () =
     let successResult = handleErrorByReturningOption "1"
-    successResult |> should equal Some 1
+    successResult |> should equal <| Some 1
     
     let failureResult = handleErrorByReturningOption "a"
     failureResult |> should equal None

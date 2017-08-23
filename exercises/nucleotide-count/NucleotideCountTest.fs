@@ -2,6 +2,7 @@ module NucleoTideCountTest
 
 open NUnit.Framework
 open FsUnit
+open System
 
 open NucleoTideCount
 
@@ -40,7 +41,7 @@ let ``Counts only thymidine`` () =
 [<Ignore("Remove to run test")>]
 let ``Validates nucleotides`` () =
     let strand = "GGTTGG"
-    (fun () -> count 'X' strand |> ignore) |> should throw typeof<Exceptionn>
+    (fun () -> count 'X' strand |> ignore) |> should throw typeof<Exception>
     
 [<Test>]
 [<Ignore("Remove to run test")>]

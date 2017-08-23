@@ -29,7 +29,7 @@ type DiamondTest() =
         let rows = actual |> split
         let symmetric (row:string) = leadingSpaces row = trailingSpaces row
 
-        rows |> Array.forall (should be symmetric)
+        rows |> Array.iter (fun x -> symmetric x |> should equal true)
 
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -75,7 +75,7 @@ type DiamondTest() =
         let expected = rows.Length
         let correctWidth (x:string) = x.Length = expected
 
-        rows |> Array.forall (should be correctWidth)
+        rows |> Array.iter (fun x -> correctWidth x |> should equal true)
 
     [<TestCaseSource("Letters")>]
     [<Ignore("Remove to run test")>]
@@ -92,7 +92,7 @@ type DiamondTest() =
             let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
             twoCharacters && identicalCharacters
 
-        rows |> Array.forall (should be twoIdenticalLetters)
+        rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
 
     [<TestCaseSource("Letters")>]    
     [<Ignore("Remove to run test")>]

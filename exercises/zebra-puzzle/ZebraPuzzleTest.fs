@@ -7,11 +7,11 @@ open ZebraPuzzle
 
 [<Test>]
 let ``Who drinks water?`` () =
-    let solution = solve
+    let solution = solve()
     whoDrinksWater solution |> should equal Norwegian
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Who owns the zebra?`` () =
-    let solution = solve
+    let solution = solve()
     whoOwnsZebra solution |> should equal Japanese

@@ -66,7 +66,7 @@ let ``foldl of non-empty list`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldl of huge list`` () =
-    foldl (+) 0 [1 .. big] |> should equal big * (big + 1) / 2
+    foldl (+) 0 [1 .. big] |> should equal (big * (big + 1) / 2)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -76,7 +76,7 @@ let ``foldl with non-commutative function`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``foldl is not just foldr . flip`` () =
-    foldl (fun acc item -> item :: acc) [] (List.ofSeq "asdf") |> should equal List.ofSeq "fdsa"
+    foldl (fun acc item -> item :: acc) [] (List.ofSeq "asdf") |> should equal (List.ofSeq "fdsa")
 
 [<Test>]
 [<Ignore("Remove to run test")>]

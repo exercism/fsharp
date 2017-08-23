@@ -7,17 +7,17 @@ open PhoneNumber
 
 [<Test>]
 let ``Cleans phone number`` () =
-    parsePhoneNumber "(123) 456-7890" |> should equal Some "1234567890"
+    parsePhoneNumber "(123) 456-7890" |> should equal <| Some "1234567890"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Cleans phone number with dots`` () =
-    parsePhoneNumber "123.456.7890" |> should equal Some "1234567890"
+    parsePhoneNumber "123.456.7890" |> should equal <| Some "1234567890"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Valid when 11 digits and first is 1`` () =
-    parsePhoneNumber "11234567890" |> should equal Some "1234567890"
+    parsePhoneNumber "11234567890" |> should equal <| Some "1234567890"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -47,9 +47,9 @@ let ``Invalid when no digits present`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Valid with leading characters`` () =
-    parsePhoneNumber "my parsePhoneNumber is 123 456 7890" |> should equal Some "1234567890"
+    parsePhoneNumber "my parsePhoneNumber is 123 456 7890" |> should equal <| Some "1234567890"
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Valid with trailing characters`` () =
-    parsePhoneNumber "123 456 7890 - bob" |> should equal Some "1234567890"
+    parsePhoneNumber "123 456 7890 - bob" |> should equal <| Some "1234567890"

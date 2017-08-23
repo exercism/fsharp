@@ -45,12 +45,12 @@ let ``No texts mean no letters`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``One letter`` () =
-    frequency ["a"] |> should equal Map.ofList [('a', 1)]
+    frequency ["a"] |> should equal (Map.ofList [('a', 1)])
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Case insensitivity`` () =
-    frequency ["aA"] |> should equal Map.ofList [('a', 2)]
+    frequency ["aA"] |> should equal (Map.ofList [('a', 2)])
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -60,7 +60,7 @@ let ``Many empty texts still mean no letters`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Many times the same text gives a predictable result`` () =
-    frequency (List.replicate 1000 "abc") |> should equal Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)]
+    frequency (List.replicate 1000 "abc") |> should equal (Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)])
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -78,20 +78,20 @@ let ``Numbers don't count`` () =
 [<Ignore("Remove to run test")>]
 let ``Letters with and without diacritics are not the same letter`` () =
     let freqs = frequency ["aä"]
-    freqs |> should equal Map.ofList [('a', 1); ('ä', 1)]
+    freqs |> should equal (Map.ofList [('a', 1); ('ä', 1)])
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``All three anthems, together`` () =
     let freqs = frequency [odeAnDieFreude; wilhelmus; starSpangledBanner]
-    Map.tryFind 'a' freqs |> should equal Some 49
-    Map.tryFind 't' freqs |> should equal Some 56
-    Map.tryFind 'o' freqs |> should equal Some 34
+    Map.tryFind 'a' freqs |> should equal <| Some 49
+    Map.tryFind 't' freqs |> should equal <| Some 56
+    Map.tryFind 'o' freqs |> should equal <| Some 34
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can handle large texts`` () =
     let freqs = frequency (List.replicate 1000 [odeAnDieFreude; wilhelmus; starSpangledBanner] |> List.concat)
-    Map.tryFind 'a' freqs |> should equal Some 49000
-    Map.tryFind 't' freqs |> should equal Some 56000
-    Map.tryFind 'o' freqs |> should equal Some 34000
+    Map.tryFind 'a' freqs |> should equal <| Some 49000
+    Map.tryFind 't' freqs |> should equal <| Some 56000
+    Map.tryFind 'o' freqs |> should equal <| Some 34000

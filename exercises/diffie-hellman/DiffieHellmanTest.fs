@@ -11,7 +11,8 @@ open DiffieHellman
 let ``Private key in range`` () =   
     let primeP = 23I
     let privateKeys = [for _ in 0 .. 10 -> privateKey primeP]
-    privateKeys |> List.forall (fun x -> x |> should be greaterThanOrEqualTo 1I && x |> should be lessThanOrEqualTo primeP - 1I)
+    privateKeys |> List.iter (fun x -> x |> should be (greaterThanOrEqualTo 1I))
+    privateKeys |> List.iter (fun x -> x |> should be (lessThanOrEqualTo (primeP - 1I)))
 
 // Note: due to the nature of randomness, there is always a chance that this test fails
 // Be sure to check the actual generated values
@@ -20,7 +21,7 @@ let ``Private key in range`` () =
 let ``Private key randomly generated`` () =   
     let primeP = 7919I
     let privateKeys = [for _ in 0 .. 5 -> privateKey primeP]
-    privateKeys.Length |> should equal privateKeys |> List.distinct |> List.length
+    privateKeys.Length |> should equal <| List.length (List.distinct privateKeys) 
     
 [<Test>]
 [<Ignore("Remove to run test")>]

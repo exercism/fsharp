@@ -7,40 +7,40 @@ open BinarySearchTree
 [<Test>]
 let ``Data is retained`` () =
     let tree = singleton 4
-    tree |> value |> should equal Some 4
+    tree |> value |> should equal <| Some 4
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Inserting less`` () =
     let tree = singleton 4 |> insert 2
-    tree |> value |> should equal Some 4
-    tree |> left |> Option.bind value |> should equal Some 2
+    tree |> value |> should equal <| Some 4
+    tree |> left |> Option.bind value |> should equal <| Some 2
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Inserting same`` () =
     let tree = singleton 4 |> insert 4
-    tree |> value |> should equal Some 4
-    tree |> left |> Option.bind value |> should equal Some 4
+    tree |> value |> should equal <| Some 4
+    tree |> left |> Option.bind value |> should equal <| Some 4
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Inserting greater`` () =
     let tree = singleton 4 |> insert 5
-    tree |> value |> should equal Some 4
-    tree |> right |> Option.bind value |> should equal Some 5
+    tree |> value |> should equal <| Some 4
+    tree |> right |> Option.bind value |> should equal <| Some 5
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Complex tree`` () =
     let tree = fromList [4; 2; 6; 1; 3; 7; 5]
-    tree |> value |> should equal Some 4
-    tree |> left |> Option.bind value |> should equal Some 2
-    tree |> left |> Option.bind (fun x -> x |> left) |> Option.bind value |> should equal Some 1
-    tree |> left |> Option.bind (fun x -> x |> right) |> Option.bind value |> should equal Some 3
-    tree |> right |> Option.bind value |> should equal Some 6
-    tree |> right |> Option.bind (fun x -> x |> left) |> Option.bind value |> should equal Some 5
-    tree |> right |> Option.bind (fun x -> x |> right) |> Option.bind value |> should equal Some 7
+    tree |> value |> should equal <| Some 4
+    tree |> left |> Option.bind value |> should equal <| Some 2
+    tree |> left |> Option.bind (fun x -> x |> left) |> Option.bind value |> should equal <| Some 1
+    tree |> left |> Option.bind (fun x -> x |> right) |> Option.bind value |> should equal <| Some 3
+    tree |> right |> Option.bind value |> should equal <| Some 6
+    tree |> right |> Option.bind (fun x -> x |> left) |> Option.bind value |> should equal <| Some 5
+    tree |> right |> Option.bind (fun x -> x |> right) |> Option.bind value |> should equal <| Some 7
 
 [<Test>]
 [<Ignore("Remove to run test")>]

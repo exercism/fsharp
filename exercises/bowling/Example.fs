@@ -9,7 +9,7 @@ let numberOfFrames = 10
 let maximumFrameScore = 10
 let minimumFrameScore = 0
 
-let newGame = Some []
+let newGame() = Some []
 
 let validatePins pins = 
     if pins < minimumFrameScore || pins > maximumFrameScore then 

@@ -2,6 +2,7 @@ module VariableLengthQuantityTest
 
 open NUnit.Framework
 open FsUnit
+open System
 
 open VariableLengthQuantity
 

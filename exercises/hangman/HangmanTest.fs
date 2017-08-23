@@ -15,7 +15,7 @@ let ``Initially 9 failures are allowed`` () =
 
     startGame game |> ignore
 
-    lastProgress |> should equal Busy 9
+    lastProgress |> should equal <| Busy 9
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -58,12 +58,12 @@ let ``Feeding a correct letter removes underscores`` () =
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 9
+    lastState.Value.progress |> should equal <| Busy 9
     lastState.Value.maskedWord |> should equal "___b__"
 
     makeGuess 'o' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 9
+    lastState.Value.progress |> should equal <| Busy 9
     lastState.Value.maskedWord |> should equal "_oob__"
     
 [<Test>]
@@ -79,12 +79,12 @@ let ``Feeding a correct letter twice counts as a failure`` () =
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 9
+    lastState.Value.progress |> should equal <| Busy 9
     lastState.Value.maskedWord |> should equal "___b__"
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 8
+    lastState.Value.progress |> should equal <| Busy 8
     lastState.Value.maskedWord |> should equal "___b__"
      
 [<Test>]
@@ -100,22 +100,22 @@ let ``Getting all the letters right makes for a win`` () =
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 8
+    lastState.Value.progress |> should equal <| Busy 8
     lastState.Value.maskedWord |> should equal "_____"
 
     makeGuess 'e' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 8
+    lastState.Value.progress |> should equal <| Busy 8
     lastState.Value.maskedWord |> should equal "_e___"
 
     makeGuess 'l' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 8
+    lastState.Value.progress |> should equal <| Busy 8
     lastState.Value.maskedWord |> should equal "_ell_"
 
     makeGuess 'o' game |> ignore
 
-    lastState.Value.progress |> should equal Busy 8
+    lastState.Value.progress |> should equal <| Busy 8
     lastState.Value.maskedWord |> should equal "_ello"
 
     makeGuess 'h' game |> ignore

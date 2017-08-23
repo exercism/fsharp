@@ -38,27 +38,27 @@ let cousins' = mkGraph x [
 
 [<Test>]
 let ``Reparent singleton`` () =
-    fromPOV x singleton |> should equal Some singleton'
+    fromPOV x singleton |> should equal <| Some singleton'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent flat`` () =
-    fromPOV x flat |> should equal Some flat'
+    fromPOV x flat |> should equal <| Some flat'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent nested`` () =
-    fromPOV x nested |> should equal Some nested'
+    fromPOV x nested |> should equal <| Some nested'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent kids`` () =
-    fromPOV x kids |> should equal Some kids'
+    fromPOV x kids |> should equal <| Some kids'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Reparent cousins`` () =
-    fromPOV x cousins |> should equal Some cousins'
+    fromPOV x cousins |> should equal <| Some cousins'
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -69,7 +69,7 @@ let ``Reparent from POV of non-existent node`` () =
 [<Ignore("Remove to run test")>]
 let ``Should not be able to find a missing node`` () =
     let nodes = [singleton; flat; kids; nested; cousins] |> List.map (fromPOV "NOT THERE")
-    nodes |> List.forall (should equal None)
+    nodes |> List.iter (should equal None)
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -79,9 +79,9 @@ let ``Cannot trace between un-connected nodes`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can trace a path from x to cousin`` () = 
-    tracePathBetween x "cousin-1" cousins |> should equal Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
+    tracePathBetween x "cousin-1" cousins |> should equal <| Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Can trace from a leaf to a leaf`` () =
-    tracePathBetween "kid-a" "cousin-0" cousins |> should equal Some ["kid-a"; "x"; "parent"; "grandparent"; "uncle"; "cousin-0"]
+    tracePathBetween "kid-a" "cousin-0" cousins |> should equal <| Some ["kid-a"; "x"; "parent"; "grandparent"; "uncle"; "cousin-0"]

@@ -23,14 +23,14 @@ let ``Empty board has no winner`` () =
 let ``1x1 board with black stone`` () =
     let lines = ["X"]
     let board = makeBoard lines  
-    resultFor board |> should equal Some Black
+    resultFor board |> should equal <| Some Black
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``1x1 board with white stone`` () =
     let lines = ["O"]
     let board = makeBoard lines  
-    resultFor board |> should equal Some White
+    resultFor board |> should equal <| Some White
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -41,7 +41,7 @@ let ``Convoluted path`` () =
                  "   . X X . . ";
                  "    O O O O O"]
     let board = makeBoard lines  
-    resultFor board |> should equal Some Black
+    resultFor board |> should equal <| Some Black
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -52,7 +52,7 @@ let ``Rectangle, black wins`` () =
                  "   X X O X ";
                  "    . O X ."]
     let board = makeBoard lines  
-    resultFor board |> should equal Some Black
+    resultFor board |> should equal <| Some Black
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -63,7 +63,7 @@ let ``Rectangle, white wins`` () =
                  "   X X O X ";
                  "    . O X ."]
     let board = makeBoard lines  
-    resultFor board |> should equal Some White
+    resultFor board |> should equal <| Some White
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -78,7 +78,7 @@ let ``Spiral, black wins`` () =
                  "OOOOOOOXO";
                  "XXXXXXXXO"]
     let board = makeBoard lines
-    resultFor board |> should equal Some Black
+    resultFor board |> should equal <| Some Black
 
 [<Test>]
 [<Ignore("Remove to run test")>]

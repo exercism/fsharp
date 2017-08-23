@@ -31,10 +31,10 @@ let ``Accumulate upcases`` () =
 [<Ignore("Remove to run test")>]
 let ``Accumulate reversed strings`` () =
     accumulate reverse (List.ofArray ("the quick brown fox etc".Split(' ')))
-    |> should equal (List.ofArray("eht kciuq nworb xof cte".Split(' '))
+    |> should equal (List.ofArray("eht kciuq nworb xof cte".Split(' ')))
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Accumulate within accumulate`` () =
-    accumulate (fun (x:string) -> String.Join(" ", accumulate (fun y -> x + y) ["1"; "2"; "3"])) ["a"; "b"; "c"]
+    accumulate (fun (x:string) -> String.concat " " (accumulate (fun y -> x + y) ["1"; "2"; "3"])) ["a"; "b"; "c"]
     |> should equal ["a1 a2 a3"; "b1 b2 b3"; "c1 c2 c3"]

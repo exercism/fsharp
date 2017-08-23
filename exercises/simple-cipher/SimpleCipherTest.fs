@@ -1,6 +1,7 @@
 module SimpleCipherTest
 
 open System
+open System.Text.RegularExpressions
 open NUnit.Framework
 open FsUnit
 
@@ -12,7 +13,7 @@ let key = "abcdefghij";
 [<Test>]
 let ``Encode random uses key made of letters`` () =
     let (key, _) = encodeRandom plainText
-    key |> should , Does.Match("[a-z]+"))
+    Regex.IsMatch(key, "[a-z]+") |> should equal true
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -33,7 +34,7 @@ let ``Encode random uses randomly generated key`` () =
 [<Ignore("Remove to run test")>]
 let ``Encode random can encode`` () =
     let (key, encoded) = encodeRandom "aaaaaaaaaa"
-    encoded |> should equal key.Substring(0, 10)
+    encoded |> should equal <| key.Substring(0, 10)
 
 [<Test>]
 [<Ignore("Remove to run test")>]

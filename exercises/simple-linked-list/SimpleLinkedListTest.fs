@@ -64,7 +64,7 @@ let ``Reverse`` (length: int) =
     let values = [1..length]
     let list = fromList values
     let reversed = reverse list
-    reversed |> toList |> should equal values |> List.rev
+    reversed |> toList |> should equal <| List.rev values 
     
 [<TestCase(1, Ignore = "Remove to run test case")>]
 [<TestCase(2, Ignore = "Remove to run test case")>]

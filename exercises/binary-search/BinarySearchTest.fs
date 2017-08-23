@@ -14,7 +14,7 @@ let ``Should return None when an empty array is searched`` () =
 [<Ignore("Remove to run test")>]
 let ``Should be able to find a value in a single element array with one access`` () =
     let input = [|6|]
-    binarySearch input 6 |> should equal Some 0
+    binarySearch input 6 |> should equal <| Some 0
     
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -32,19 +32,19 @@ let ``Should return None if a value is greater than the element in a single elem
 [<Ignore("Remove to run test")>]
 let ``Should find an element in a longer array`` () =
     let input = [|6; 67; 123; 345; 456; 457; 490; 2002; 54321; 54322|]
-    binarySearch input 2002 |> should equal Some 7
+    binarySearch input 2002 |> should equal <| Some 7
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Should find elements at the beginning of an array`` () =
     let input = [|6; 67; 123; 345; 456; 457; 490; 2002; 54321; 54322|]
-    binarySearch input 6 |> should equal Some 0
+    binarySearch input 6 |> should equal <| Some 0
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Should find elements at the end of an array`` () =
     let input = [|6; 67; 123; 345; 456; 457; 490; 2002; 54321; 54322|]
-    binarySearch input 54322 |> should equal Some 9
+    binarySearch input 54322 |> should equal <| Some 9
 
 [<Test>]
 [<Ignore("Remove to run test")>]

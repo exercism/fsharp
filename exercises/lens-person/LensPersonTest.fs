@@ -41,4 +41,4 @@ let ``Upper case born at street`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Set birth month`` () =
-    Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal DateTime(1984, 9, 12)
+    Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)

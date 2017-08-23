@@ -11,7 +11,7 @@ let ``Empty keep`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]  
 let ``Keep everything`` () =
-    set [1; 2; 3] |> Seq.keep (fun x -> x < 10) |> should equal set [1; 2; 3]
+    set [1; 2; 3] |> Seq.keep (fun x -> x < 10) |> should equal <| set [1; 2; 3]
 
 [<Test>]
 [<Ignore("Remove to run test")>] 
@@ -27,7 +27,7 @@ let ``Keep neither first nor last`` () =
 [<Ignore("Remove to run test")>]
 let ``Keep strings`` () =
     let words = "apple zebra banana zombies cherimoya zelot".Split(' ');
-    words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> should equal "zebra zombies zelot".Split(' ')
+    words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> should equal <| "zebra zombies zelot".Split(' ')
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -52,7 +52,7 @@ let ``Empty discard`` () =
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Discard nothing`` () =
-    set [1; 2; 3] |> Seq.discard (fun x -> x > 10) |> should equal set [1; 2; 3]
+    set [1; 2; 3] |> Seq.discard (fun x -> x > 10) |> should equal <| set [1; 2; 3]
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -68,7 +68,7 @@ let ``Discard neither first nor last`` () =
 [<Ignore("Remove to run test")>]
 let ``Discard strings`` () =
     let words = "apple zebra banana zombies cherimoya zelot".Split(' ')
-    words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> should equal "apple banana cherimoya".Split(' ')
+    words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> should equal <| "apple banana cherimoya".Split(' ')
 
 [<Test>]
 [<Ignore("Remove to run test")>]

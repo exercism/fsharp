@@ -2,6 +2,7 @@ module LargestSeriesProductTest
 
 open NUnit.Framework
 open FsUnit
+open System
 open LargestSeriesProduct
     
 [<TestCase("01234567890", 2, ExpectedResult = 72)>]
