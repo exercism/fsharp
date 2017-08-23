@@ -8,7 +8,7 @@ open RobotName
 [<Test>]
 let ``Robot has a name`` () =     
     let robot = mkRobot()
-    Regex.IsMatch(name robot, @"\w{2}\d{3}") |> should be True
+    Regex.IsMatch(name robot, @"\w{2}\d{3}") |> should equal true
     
 [<Test>]
 [<Ignore("Remove to run test")>]

@@ -8,7 +8,7 @@ open SimpleLinkedList
 [<Test>]
 let ``Empty list`` () =
     let list = nil
-    isNil list |> should be True
+    isNil list |> should equal true
 
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -20,7 +20,7 @@ let ``Single item list value`` () =
 [<Ignore("Remove to run test")>]
 let ``Single item list has no next item`` () =
     let list = create 1 nil
-    next list |> isNil |> should be True
+    next list |> isNil |> should equal true
         
 [<Test>]
 [<Ignore("Remove to run test")>]
@@ -38,7 +38,7 @@ let ``Two item list second value`` () =
 [<Ignore("Remove to run test")>]
 let ``Two item list second item has no next`` () =
     let list = create 2 (create 1 nil)
-    next list |> next |> isNil |> should be True
+    next list |> next |> isNil |> should equal true
         
 [<Test>]
 [<Ignore("Remove to run test")>]

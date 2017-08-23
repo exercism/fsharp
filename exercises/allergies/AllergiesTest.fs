@@ -7,21 +7,21 @@ open Allergies
 
 [<Test>]
 let ``No allergies means not allergic`` () =
-    allergicTo Allergen.Peanuts 0 |> should be False
-    allergicTo Allergen.Cats 0 |> should be False
-    allergicTo Allergen.Strawberries 0 |> should be False
+    allergicTo Allergen.Peanuts 0 |> should equal false
+    allergicTo Allergen.Cats 0 |> should equal false
+    allergicTo Allergen.Strawberries 0 |> should equal false
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to eggs`` () =
-    allergicTo Allergen.Eggs 1 |> should be True
+    allergicTo Allergen.Eggs 1 |> should equal true
 
 [<Test>]
 [<Ignore("Remove to run test")>]
 let ``Allergic to eggs in addition to other stuff`` () =
-    allergicTo Allergen.Eggs 5 |> should be True
-    allergicTo Allergen.Shellfish 5 |> should be True
-    allergicTo Allergen.Strawberries 5 |> should be False
+    allergicTo Allergen.Eggs 5 |> should equal true
+    allergicTo Allergen.Shellfish 5 |> should equal true
+    allergicTo Allergen.Strawberries 5 |> should equal false
 
 [<Test>]
 [<Ignore("Remove to run test")>]
