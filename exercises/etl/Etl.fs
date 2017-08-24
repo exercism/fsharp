@@ -1,3 +1,3 @@
 ﻿module ETL
 
-let transform scoresWithLetters = failwith "You need to implement this function."
+let transform (scoresWithLetters: Map<int, string list>): Map<string, int> = failwith "You need to implement this function."

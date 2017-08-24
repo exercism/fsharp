@@ -1,3 +1,3 @@
 ﻿module Bob
 
-let hey input = failwith "You need to implement this function."
+let hey (input: string): string = failwith "You need to implement this function."

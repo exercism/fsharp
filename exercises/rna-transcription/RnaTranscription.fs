@@ -1,3 +1,3 @@
 ﻿module RNATranscription
 
-let toRna dna = failwith "You need to implement this function."
+let toRna (dna: string): string = failwith "You need to implement this function."

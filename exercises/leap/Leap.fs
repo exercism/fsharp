@@ -1,3 +1,3 @@
 ﻿module LeapYear
 
-let isLeapYear year = failwith "You need to implement this function."
+let isLeapYear (year: int): bool = failwith "You need to implement this function."

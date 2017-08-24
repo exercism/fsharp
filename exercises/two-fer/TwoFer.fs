@@ -1,3 +1,3 @@
 ﻿module TwoFer
 
-let getResponse input = failwith "You need to implement this function."
+let getResponse (input: string option): string = failwith "You need to implement this function."
