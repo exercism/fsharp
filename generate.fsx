@@ -3,8 +3,7 @@ open System.IO
 open System.Text.RegularExpressions
 
 let projectTemplate = 
-    """
-<Project Sdk="Microsoft.NET.Sdk">
+    """<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
@@ -25,8 +24,7 @@ let projectTemplate =
     <PackageReference Include="FsUnit" Version="3.0.0" />
   </ItemGroup>
 
-</Project>
-"""
+</Project>"""
 
 let regexReplace pattern (replacement: string) (str: string) = Regex.Replace(str, pattern, replacement)
 
@@ -107,13 +105,13 @@ let toExercise exerciseDirectory =
 let exercisesDirectory = "./exercises"
 
 let exerciseDirectories = 
-    let objDirectory = Path.Combine(exercisesDirectory, "obj")
-
-    match Directory.Exists(objDirectory) with
-    | true  -> Directory.Delete(objDirectory, true)
-    | false -> ()
+    let isExerciseDirectory path = 
+        path <> "obj" && 
+        path <> "bin" &&
+        not (Path.GetFileName(path).StartsWith("."))
 
     Directory.EnumerateDirectories("./exercises")
+    |> Seq.filter isExerciseDirectory
 
 exerciseDirectories
 |> Seq.map toExercise
