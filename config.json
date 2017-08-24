@@ -102,17 +102,6 @@
       ]
     },
     {
-      "uuid": "30c3a38e-1e44-4711-887e-fca301c26c1b",
-      "slug": "clock",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "Time",
-        "Structural equality"
-      ]
-    },
-    {
       "uuid": "0ea0d92f-5510-4ba9-b419-3f5ad029b74f",
       "slug": "beer-song",
       "core": true,
@@ -121,6 +110,16 @@
       "topics": [
         "Text formatting",
         "Algorithms"
+      ]
+    },
+    {
+      "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
+      "slug": "queen-attack",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "Tuples"
       ]
     },
     {
@@ -135,13 +134,14 @@
       ]
     },
     {
-      "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
-      "slug": "queen-attack",
+      "uuid": "30c3a38e-1e44-4711-887e-fca301c26c1b",
+      "slug": "clock",
       "core": true,
       "unlocked_by": null,
       "difficulty": 3,
       "topics": [
-        "Tuples"
+        "Time",
+        "Structural equality"
       ]
     },
     {
