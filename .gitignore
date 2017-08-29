@@ -7,6 +7,5 @@ tools/
 .fake/
 .paket/paket.exe
 paket-files
-TestResult.xml
-junit-results.xml
 .idea/
+.vs/
