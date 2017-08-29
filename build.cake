@@ -27,7 +27,7 @@ Task("CopyExercises")
 Task("EnableAllTests")
     .IsDependentOn("CopyExercises")
     .Does(() => {
-        var skipRegex = new Regex(@"\[<Ignore\(""Remove to run test""\)>\]", RegexOptions.Compiled);
+        var skipRegex = new Regex(@"(\[<Ignore\(""Remove to run test""\)>\]|, Ignore = ""Remove to run test case"")", RegexOptions.Compiled);
         var testFiles = GetFiles(buildDir + "/*/*Test.fs");
 
         foreach (var testFile in testFiles) {
