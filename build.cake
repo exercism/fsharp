@@ -10,9 +10,6 @@ var buildDir  = "./build";
 var defaultSolutionPath     = buildDir + "/Exercises.Default.sln";
 var refactoringSolutionPath = buildDir + "/Exercises.Refactoring.sln";
 
-var defaultSolution     = ParseSolution(defaultSolutionPath);
-var refactoringSolution = ParseSolution(refactoringSolutionPath);
-
 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = System.Environment.ProcessorCount };
 
 Task("Clean")
@@ -45,13 +42,16 @@ Task("EnableAllTests")
 
 Task("TestRefactoringProjects")
     .IsDependentOn("EnableAllTests")
-    .Does(() => {        
+    .Does(() => {
+        var refactoringSolution = ParseSolution(refactoringSolutionPath);
         Parallel.ForEach(refactoringSolution.Projects, parallelOptions, (project) => DotNetCoreTest(project.Path.FullPath));
 });
 
 Task("ReplaceStubWithExample")
     .IsDependentOn("TestRefactoringProjects")
     .Does(() => {
+        var defaultSolution = ParseSolution(defaultSolutionPath);
+
         foreach (var project in defaultSolution.Projects) {
             var projectDir = project.Path.GetDirectory();
             var projectName = project.Path.GetFilenameWithoutExtension();
@@ -80,6 +80,7 @@ Task("AddPackagesUsedInExampleImplementations")
 Task("TestUsingExampleImplementation")
     .IsDependentOn("AddPackagesUsedInExampleImplementations")
     .Does(() => {
+        var defaultSolution = ParseSolution(defaultSolutionPath);
         Parallel.ForEach(defaultSolution.Projects, parallelOptions, (project) => DotNetCoreTest(project.Path.FullPath));
     });
 
