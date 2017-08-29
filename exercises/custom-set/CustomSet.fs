@@ -1,8 +1,8 @@
 ﻿module CustomSet
 
-type Set<'T> = ???
+// TODO: define the Set type
 
-let empty: Set<'T> = failwith "You need to implement this function."
+let empty = failwith "You need to implement this function."
 
 let singleton value = { items = [value] }
 

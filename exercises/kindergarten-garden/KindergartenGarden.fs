@@ -1,6 +1,6 @@
 ﻿module KinderGartenGarden
 
-type Plant = Violets | Radishes | Clover | Grass
+// TODO: define the Plant type
 
 let garden children windowSills = failwith "You need to implement this function."
 

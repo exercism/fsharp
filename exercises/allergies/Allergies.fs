@@ -2,15 +2,7 @@
 
 open System
 
-type Allergen = 
-   | Eggs
-   | Peanuts
-   | Shellfish
-   | Strawberries
-   | Tomatoes
-   | Chocolate
-   | Pollen
-   | Cats
+// TODO: define the Allergen type
 
 let allergicTo allergen codedAllergies = failwith "You need to implement this function."
 
