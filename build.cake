@@ -7,8 +7,7 @@ var target = Argument("target", "Default");
 var sourceDir = "./exercises";
 var buildDir  = "./build";
 
-var allSolutionPath         = buildDir + "/Exercises.sln";
-var refactoringSolutionPath = buildDir + "/Exercises.Refactoring.sln";
+var solutionPath = buildDir + "/Exercises.sln";
 
 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = System.Environment.ProcessorCount };
 
@@ -43,8 +42,12 @@ Task("EnableAllTests")
 Task("TestRefactoringProjects")
     .IsDependentOn("EnableAllTests")
     .Does(() => {
-        var refactoringSolution = ParseSolution(refactoringSolutionPath);
-        Parallel.ForEach(refactoringSolution.Projects, parallelOptions, (project) => DotNetCoreTest(project.Path.FullPath));
+        var refactoringProjects = 
+              GetFiles(buildDir + "/*/TreeBuilding.fsproj")
+            + GetFiles(buildDir + "/*/Ledger.fsproj")
+            + GetFiles(buildDir + "/*/Markdown.fsproj");
+
+        Parallel.ForEach(refactoringProjects, parallelOptions, (project) => DotNetCoreTest(project.FullPath));
 });
 
 Task("ReplaceStubWithExample")
@@ -66,16 +69,14 @@ Task("ReplaceStubWithExample")
 Task("AddPackagesUsedInExampleImplementations")
     .IsDependentOn("ReplaceStubWithExample")
     .Does(() => {
-        // These projects have a working default implementation, and have
-        // all the tests enabled. These should pass without any changes.
         var fparsecProjects = 
               GetFiles(buildDir + "/*/Alphametics.fsproj")
             + GetFiles(buildDir + "/*/SgfParsing.fsproj");
 
-    foreach (var fparsecProject in fparsecProjects) {
-        DotNetCoreTool(fparsecProject, "add", "package FParsec");
-    }
-});
+        foreach (var fparsecProject in fparsecProjects) {
+            DotNetCoreTool(fparsecProject, "add", "package FParsec");
+        }
+    });
 
 Task("TestUsingExampleImplementation")
     .IsDependentOn("AddPackagesUsedInExampleImplementations")
