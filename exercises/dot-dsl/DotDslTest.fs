@@ -1,7 +1,7 @@
 module DotDslTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open DotDsl
 

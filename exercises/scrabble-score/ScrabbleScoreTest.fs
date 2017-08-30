@@ -1,7 +1,7 @@
 module ScrabbleScoreTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open ScrabbleScore
   
 [<Fact>]

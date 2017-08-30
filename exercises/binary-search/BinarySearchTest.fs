@@ -1,7 +1,7 @@
 module BinarySearchTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open BinarySearch
 

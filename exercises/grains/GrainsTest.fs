@@ -1,7 +1,7 @@
 module GrainsTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Grains
     
 [<Fact>]

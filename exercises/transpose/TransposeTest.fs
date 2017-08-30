@@ -1,7 +1,7 @@
 module TransposeTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Transpose
 

@@ -1,7 +1,7 @@
 module BankAccountTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open BankAccount
 
 [<Fact>]

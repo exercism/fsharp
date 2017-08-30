@@ -1,7 +1,7 @@
 module MinesweeperTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Minesweeper
 

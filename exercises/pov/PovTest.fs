@@ -1,7 +1,7 @@
 module PovTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Pov
 

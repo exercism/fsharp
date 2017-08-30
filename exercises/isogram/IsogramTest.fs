@@ -1,7 +1,7 @@
 module IsogramTest
     
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Isogram
 

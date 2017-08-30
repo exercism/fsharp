@@ -1,7 +1,7 @@
 module AtbashTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Atbash
 
 [<Fact>]

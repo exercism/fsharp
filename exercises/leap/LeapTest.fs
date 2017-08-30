@@ -1,7 +1,7 @@
 module LeapYearTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open LeapYear
     
 [<Fact>]

@@ -1,7 +1,7 @@
 module ChangeTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Change
 

@@ -1,7 +1,7 @@
 module TwoBucketTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open TwoBucket
 

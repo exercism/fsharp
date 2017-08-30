@@ -1,7 +1,7 @@
 module ConnectTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open System
 
 open Connect

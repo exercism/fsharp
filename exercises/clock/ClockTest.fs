@@ -2,7 +2,7 @@ module ClockTest
 
 open System
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Clock
 
 [<Fact>]

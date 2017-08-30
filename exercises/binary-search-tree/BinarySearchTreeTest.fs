@@ -1,7 +1,7 @@
 module BinarySearchTreeTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open BinarySearchTree
 
 [<Fact>]

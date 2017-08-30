@@ -1,7 +1,7 @@
 module BeerSongTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open BeerSong
     
 [<Fact>]

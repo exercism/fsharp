@@ -1,7 +1,7 @@
 module OcrNumbersTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open OcrNumbers
 

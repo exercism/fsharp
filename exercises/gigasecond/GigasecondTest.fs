@@ -1,7 +1,7 @@
 module GigasecondTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Gigasecond
 open System
     

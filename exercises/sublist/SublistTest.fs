@@ -1,7 +1,7 @@
 module SublistTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Sublist
 

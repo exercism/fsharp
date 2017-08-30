@@ -1,7 +1,7 @@
 module ZebraPuzzleTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open ZebraPuzzle
 

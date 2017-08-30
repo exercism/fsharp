@@ -2,7 +2,7 @@ module AllergiesTest
 
 open System
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Allergies
 
 [<Fact>]

@@ -1,7 +1,7 @@
 module SumOfMultiplesTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open SumOfMultiples
 
 [<Fact>]

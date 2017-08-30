@@ -1,7 +1,7 @@
 module SimpleLinkedListTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open SimpleLinkedList
 

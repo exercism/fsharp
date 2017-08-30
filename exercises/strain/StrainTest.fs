@@ -2,7 +2,7 @@ module StrainTest
 
 open System.Collections.Specialized
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 [<Fact>]
 let ``Empty keep`` () =

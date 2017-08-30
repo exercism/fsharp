@@ -1,7 +1,7 @@
 module TriangleTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Triangle
 open System
 

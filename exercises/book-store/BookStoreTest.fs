@@ -2,7 +2,7 @@ module BookStoreTest
 
 open System
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open BookStore
 
 [<Fact>]

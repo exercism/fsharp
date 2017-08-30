@@ -1,7 +1,7 @@
 module PokerTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Poker
 

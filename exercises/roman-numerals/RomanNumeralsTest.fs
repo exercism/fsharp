@@ -1,7 +1,7 @@
 module RomanNumeralTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open RomanNumeral
     
 [<Theory(Skip = "Remove to run test")>]

@@ -1,7 +1,7 @@
 module CryptoSquareTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open CryptoSquare
 
 [<Fact>]

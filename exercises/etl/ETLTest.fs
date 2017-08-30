@@ -1,7 +1,7 @@
 module ETLTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open ETL
 
 [<Fact>]

@@ -1,7 +1,7 @@
 module WordCountTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Phrase
 
 [<Fact>]

@@ -2,7 +2,7 @@ module AccumulateTest
 
 open System
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Accumulate
 
 let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)

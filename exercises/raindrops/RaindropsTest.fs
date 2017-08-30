@@ -1,7 +1,7 @@
 module RaindropsTest
     
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Raindrops
 
 [<Theory(Skip = "Remove to run test")>]

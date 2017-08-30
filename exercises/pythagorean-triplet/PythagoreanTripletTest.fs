@@ -1,7 +1,7 @@
 module PythagoreanTripletTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open PythagoreanTriplet
     

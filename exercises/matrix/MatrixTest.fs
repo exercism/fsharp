@@ -1,7 +1,7 @@
 module MatrixTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Matrix
 

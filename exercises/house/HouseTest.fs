@@ -1,7 +1,7 @@
 module HouseTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open House
 

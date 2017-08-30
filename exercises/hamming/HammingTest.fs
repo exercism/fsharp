@@ -1,7 +1,7 @@
 module HammingTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Hamming
 
 [<Fact>]

@@ -1,7 +1,7 @@
 module RobotNameTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open System.Text.RegularExpressions
 open RobotName
 

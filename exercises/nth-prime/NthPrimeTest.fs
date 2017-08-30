@@ -1,7 +1,7 @@
 module NthPrimeTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open NthPrime
 
 [<Fact>]

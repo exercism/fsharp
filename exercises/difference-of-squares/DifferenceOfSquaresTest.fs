@@ -1,7 +1,7 @@
 module DifferenceOfSquaresTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open DifferenceOfSquares
     
 [<Fact>]

@@ -3,7 +3,7 @@ module GoCountingTest
 open System
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open GoCounting
 

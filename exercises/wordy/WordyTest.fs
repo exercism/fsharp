@@ -1,7 +1,7 @@
 module WordyTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Wordy
 
 [<Fact>]

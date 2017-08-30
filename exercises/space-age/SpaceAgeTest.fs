@@ -1,7 +1,7 @@
 module SpaceAgeTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open SpaceAge
     
 [<Fact>]

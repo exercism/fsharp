@@ -1,7 +1,7 @@
 module MarkdownTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Markdown
 

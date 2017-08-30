@@ -3,7 +3,7 @@ module DiamondTest
 open Diamond
 open System
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 type DiamondTest() =
     let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)

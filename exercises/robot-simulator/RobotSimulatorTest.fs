@@ -1,7 +1,7 @@
 module RobotSimulatorTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open RobotSimulator
 

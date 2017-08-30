@@ -1,7 +1,7 @@
 module ForthTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Forth
 

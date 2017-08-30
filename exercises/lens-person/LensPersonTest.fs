@@ -2,7 +2,7 @@ module LensPersonTest
 
 open System
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Aether
 open Aether.Operators
 open LensPerson

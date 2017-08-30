@@ -1,7 +1,7 @@
 module ProverbTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Proverb
 

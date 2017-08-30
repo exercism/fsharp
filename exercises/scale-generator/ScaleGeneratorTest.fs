@@ -1,7 +1,7 @@
 module ScaleGeneratorTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open ScaleGenerator
 

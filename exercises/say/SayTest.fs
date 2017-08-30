@@ -1,7 +1,7 @@
 module SayTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open Say
 

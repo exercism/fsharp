@@ -1,7 +1,7 @@
 module PascalsTriangleTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open PascalsTriangle
 

@@ -1,7 +1,7 @@
 module LargestSeriesProductTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open System
 open LargestSeriesProduct
     

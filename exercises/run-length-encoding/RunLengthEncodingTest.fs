@@ -1,7 +1,7 @@
 module RunLengthEncodingTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open System.Text
 
 open RunLengthEncoding

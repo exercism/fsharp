@@ -1,7 +1,7 @@
 module PrimeFactorsTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open PrimeFactors
 

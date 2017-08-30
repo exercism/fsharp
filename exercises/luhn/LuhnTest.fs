@@ -1,7 +1,7 @@
 module LuhnTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open Luhn
 
 [<Fact>]

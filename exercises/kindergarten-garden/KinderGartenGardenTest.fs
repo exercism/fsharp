@@ -1,7 +1,7 @@
 module KinderGartenGardenTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open KinderGartenGarden
 
 [<Fact>]

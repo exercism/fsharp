@@ -1,7 +1,7 @@
 module PigLatinTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 open PigLatin
 
 [<Theory(Skip = "Remove to run test")>]

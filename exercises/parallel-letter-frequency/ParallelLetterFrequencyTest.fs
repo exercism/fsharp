@@ -1,7 +1,7 @@
 module ParallelLetterFrequencyTest
 
 open Xunit
-open FsUnit
+open FsUnit.Xunit
 
 open ParallelLetterFrequency
 
