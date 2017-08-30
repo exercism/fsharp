@@ -40,7 +40,7 @@ let starSpangledBanner =
  
 [<Fact>]
 let ``No texts mean no letters`` () =
-    frequency [] |> should equal Map.empty
+    frequency [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``One letter`` () =
@@ -52,7 +52,7 @@ let ``Case insensitivity`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Many empty texts still mean no letters`` () =
-    frequency (List.replicate 10000 "  ") |> should equal Map.empty
+    frequency (List.replicate 10000 "  ") |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Many times the same text gives a predictable result`` () =
