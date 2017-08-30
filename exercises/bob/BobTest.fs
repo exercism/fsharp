@@ -1,6 +1,6 @@
 module BobTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open Bob
     

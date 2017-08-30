@@ -1,6 +1,6 @@
 module MarkdownTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Markdown

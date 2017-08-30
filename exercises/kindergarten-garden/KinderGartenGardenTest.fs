@@ -1,6 +1,6 @@
 module KinderGartenGardenTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open KinderGartenGarden
 

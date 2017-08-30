@@ -1,6 +1,6 @@
 module PigLatinTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open PigLatin
 

@@ -1,6 +1,6 @@
 module WordCountTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open Phrase
 

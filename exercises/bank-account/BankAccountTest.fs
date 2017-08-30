@@ -1,6 +1,6 @@
 module BankAccountTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open BankAccount
 

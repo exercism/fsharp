@@ -1,6 +1,6 @@
 module ForthTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Forth

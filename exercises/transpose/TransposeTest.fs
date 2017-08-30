@@ -1,6 +1,6 @@
 module TransposeTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Transpose

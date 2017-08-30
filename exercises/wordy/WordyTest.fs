@@ -1,6 +1,6 @@
 module WordyTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open Wordy
 

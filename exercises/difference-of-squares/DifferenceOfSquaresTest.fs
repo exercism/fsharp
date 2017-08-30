@@ -1,6 +1,6 @@
 module DifferenceOfSquaresTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open DifferenceOfSquares
     

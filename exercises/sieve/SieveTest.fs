@@ -1,6 +1,6 @@
 module SieveTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Sieve

@@ -1,7 +1,7 @@
 module LensPersonTest
 
 open System
-open NUnit.Framework
+open Xunit
 open FsUnit
 open Aether
 open Aether.Operators

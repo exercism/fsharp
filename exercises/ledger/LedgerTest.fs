@@ -1,6 +1,6 @@
 module LedgerTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Ledger

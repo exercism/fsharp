@@ -1,6 +1,6 @@
 module DominoesTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Dominoes

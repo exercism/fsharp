@@ -1,6 +1,6 @@
 module ScrabbleScoreTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open ScrabbleScore
   

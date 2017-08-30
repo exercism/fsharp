@@ -1,6 +1,6 @@
 module MinesweeperTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Minesweeper

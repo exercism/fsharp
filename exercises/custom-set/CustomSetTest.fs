@@ -1,6 +1,6 @@
 module CustomSetTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open CustomSet

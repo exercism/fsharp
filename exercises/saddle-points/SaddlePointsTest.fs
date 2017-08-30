@@ -1,6 +1,6 @@
 module SaddlePointTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open SaddlePoints

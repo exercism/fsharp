@@ -1,6 +1,6 @@
 module PokerTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Poker

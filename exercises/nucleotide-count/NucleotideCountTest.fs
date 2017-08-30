@@ -1,6 +1,6 @@
 module NucleoTideCountTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open System
 

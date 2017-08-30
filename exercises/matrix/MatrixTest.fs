@@ -1,6 +1,6 @@
 module MatrixTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Matrix

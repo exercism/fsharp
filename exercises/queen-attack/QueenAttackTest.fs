@@ -1,7 +1,7 @@
 module QueenAttackTest
 
 open System
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open QueenAttack

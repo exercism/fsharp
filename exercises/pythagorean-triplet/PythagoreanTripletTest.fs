@@ -1,6 +1,6 @@
 module PythagoreanTripletTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open PythagoreanTriplet

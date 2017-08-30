@@ -1,6 +1,6 @@
 module RobotSimulatorTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open RobotSimulator

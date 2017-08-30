@@ -2,7 +2,7 @@ module DiamondTest
 
 open Diamond
 open System
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 type DiamondTest() =

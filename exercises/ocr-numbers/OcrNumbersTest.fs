@@ -1,6 +1,6 @@
 module OcrNumbersTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open OcrNumbers

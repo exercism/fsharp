@@ -1,6 +1,6 @@
 module SecretHandshakeTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open SecretHandshake

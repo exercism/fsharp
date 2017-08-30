@@ -1,6 +1,6 @@
 module IsogramTest
     
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Isogram

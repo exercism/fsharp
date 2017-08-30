@@ -1,6 +1,6 @@
 module TournamentTest
     
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Tournament

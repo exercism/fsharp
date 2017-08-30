@@ -1,7 +1,7 @@
 module StrainTest
 
 open System.Collections.Specialized
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 [<Test>]

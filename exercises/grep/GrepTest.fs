@@ -1,6 +1,6 @@
 module GrepTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Grep

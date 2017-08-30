@@ -1,6 +1,6 @@
 module LeapYearTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open LeapYear
     

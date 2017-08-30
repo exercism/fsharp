@@ -1,6 +1,6 @@
 module PovTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Pov

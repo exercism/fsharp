@@ -1,6 +1,6 @@
 module LinkedListTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open LinkedList
 

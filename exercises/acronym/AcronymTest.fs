@@ -1,6 +1,6 @@
 module AcronymTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open Acronym
 

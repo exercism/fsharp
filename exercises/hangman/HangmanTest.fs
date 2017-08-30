@@ -1,6 +1,6 @@
 module HangmanTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Hangman

@@ -1,6 +1,6 @@
 module SimpleLinkedListTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open SimpleLinkedList

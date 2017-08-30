@@ -2,7 +2,7 @@ module SimpleCipherTest
 
 open System
 open System.Text.RegularExpressions
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open SimpleCipher

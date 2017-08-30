@@ -1,6 +1,6 @@
 module PerfectNumbersTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open PerfectNumbers

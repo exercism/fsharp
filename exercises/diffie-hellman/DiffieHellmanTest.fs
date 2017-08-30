@@ -2,7 +2,7 @@ module DiffieHellmanTest
 
 open System.Numerics
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open DiffieHellman

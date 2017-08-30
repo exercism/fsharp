@@ -1,7 +1,7 @@
 module MeetupTest
 
 open System
-open NUnit.Framework
+open Xunit
 open FsUnit
 
 open Meetup

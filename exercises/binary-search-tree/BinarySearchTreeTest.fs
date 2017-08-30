@@ -1,6 +1,6 @@
 module BinarySearchTreeTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open BinarySearchTree
 

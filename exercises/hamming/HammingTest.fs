@@ -1,6 +1,6 @@
 module HammingTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open Hamming
 

@@ -1,6 +1,6 @@
 module ETLTest
 
-open NUnit.Framework
+open Xunit
 open FsUnit
 open ETL
 
