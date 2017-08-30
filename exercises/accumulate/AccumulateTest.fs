@@ -9,7 +9,7 @@ let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
 
 [<Fact>]
 let ``Empty accumulation produces empty accumulation`` () =
-    accumulate (fun x -> x + 1) List.empty |> should equal List.empty
+    accumulate (fun x -> x + 1) List.empty |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Identity accumulation returns unmodified list`` () =

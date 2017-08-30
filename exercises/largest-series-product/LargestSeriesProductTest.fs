@@ -8,7 +8,7 @@ open LargestSeriesProduct
 [<Theory(Skip = "Remove to run test")>]
 [<InlineData("01234567890", 2, 72)>]
 [<InlineData("1027839564", 3, 270)>]
-let ``Gets the largest product``(digits: string) (seriesLength: int) (expected: string) =
+let ``Gets the largest product``(digits: string) (seriesLength: int) (expected: int) =
     largestProduct digits seriesLength |> should equal expected
 
     
