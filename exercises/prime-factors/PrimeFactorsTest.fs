@@ -7,7 +7,7 @@ open PrimeFactors
 
 [<Fact>]
 let ``Test 1`` () =
-    primeFactorsFor 1L |> should equal []
+    primeFactorsFor 1L |> should be Empty
     
 [<Fact(Skip = "Remove to run test")>]
 let ``Test 2`` () =

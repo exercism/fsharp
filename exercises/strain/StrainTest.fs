@@ -6,7 +6,7 @@ open FsUnit.Xunit
 
 [<Fact>]
 let ``Empty keep`` () =
-    [] |> Seq.keep (fun x -> x < 10) |> should equal []
+    [] |> Seq.keep (fun x -> x < 10) |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]  
 let ``Keep everything`` () =
@@ -41,7 +41,7 @@ let ``Keep arrays`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Empty discard`` () =
-    [] |> Seq.discard (fun x -> x < 10) |> should equal []
+    [] |> Seq.discard (fun x -> x < 10) |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Discard nothing`` () =

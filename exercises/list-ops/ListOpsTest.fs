@@ -23,7 +23,7 @@ let ``length of large list`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``reverse of empty list`` () =
-    reverse [] |> should equal []
+    reverse [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``reverse of non-empty list`` () =
@@ -31,7 +31,7 @@ let ``reverse of non-empty list`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``map of empty list`` () =
-    map ((+) 1) [] |> should equal []
+    map ((+) 1) [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``map of non-empty list`` () =
@@ -39,7 +39,7 @@ let ``map of non-empty list`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``filter of empty list`` () =
-    filter id [] |> should equal []
+    filter id [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``filter of normal list`` () =
@@ -75,7 +75,7 @@ let ``foldr as append`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``append of empty lists`` () =
-    append [] [] |> should equal []
+    append [] [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``append of empty and non-empty lists`` () =
@@ -95,7 +95,7 @@ let ``append of large lists`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``concat of no lists`` () =
-    concat [] |> should equal []
+    concat [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``concat of list of lists`` () =

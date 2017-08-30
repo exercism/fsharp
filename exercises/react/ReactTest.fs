@@ -44,7 +44,7 @@ let ``Compute cells can have callbacks`` () =
   let mutable observed = []
   computeCell1.Changed.Add(fun value -> observed <- observed @ [value]) |> ignore
   
-  observed |> should equal []
+  observed |> should be Empty
   inputCell1.Value <- 2
   observed |> should equal [3]
 

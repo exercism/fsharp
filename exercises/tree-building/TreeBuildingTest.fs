@@ -17,7 +17,7 @@ let ``One node`` () =
 
     isBranch tree |> should equal false
     recordId tree |> should equal 0    
-    children tree |> should equal []
+    children tree |> should be Empty
 
 [<Fact>]
 let ``Three nodes in order`` () =
