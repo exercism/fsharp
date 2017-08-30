@@ -7,22 +7,22 @@ open System
 
 open Rectangle
 
-[Fact]
+[<Fact>]
 let ``No rows`` () =
     let input = []
     rectangles input |> should equal 0
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``No columns`` () =
     let input = [""]
     rectangles input |> should equal 0
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``No rectangles`` () =
     let input = [" "]
     rectangles input |> should equal 0
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One rectangle`` () =
     let input = 
         [ "+-+";
@@ -30,7 +30,7 @@ let ``One rectangle`` () =
           "+-+" ]        
     rectangles input |> should equal 1
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``two rectangles without shared parts`` () =
     let input = 
         [ "  +-+";
@@ -40,7 +40,7 @@ let ``two rectangles without shared parts`` () =
           "+-+  " ]        
     rectangles input |> should equal 2
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Five rectangles with shared parts`` () =
     let input = 
         [ "  +-+";
@@ -50,7 +50,7 @@ let ``Five rectangles with shared parts`` () =
           "+-+-+" ]        
     rectangles input |> should equal 5
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Only complete rectangles are counted`` () =
     let input = 
         [ "  +-+";
@@ -60,7 +60,7 @@ let ``Only complete rectangles are counted`` () =
           "+-+-+" ]       
     rectangles input |> should equal 1
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Rectangles can be of different sizes`` () =
     let input =
          ["+------+----+";
@@ -70,7 +70,7 @@ let ``Rectangles can be of different sizes`` () =
           "+---+-------+" ]       
     rectangles input |> should equal 3
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Corner is required for a rectangle to be complete`` () =
     let input = 
         [ "+------+----+";
@@ -80,7 +80,7 @@ let ``Corner is required for a rectangle to be complete`` () =
           "+---+-------+" ]       
     rectangles input |> should equal 2
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Large input with many rectangles`` () =
     let input = 
         [ "+---+--+----+";

@@ -56,7 +56,7 @@ let tearDown () =
     File.Delete(midsummerNightFileName)
     File.Delete(paradiseLostFileName)
 
-[Fact]
+[<Fact>]
 let ``One file, one match, no flags`` () =
     let pattern = "Agamemnon"
     let flags = ""
@@ -67,7 +67,7 @@ let ``One file, one match, no flags`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, one match, print line numbers flag`` () =
     let pattern = "Forbidden"
     let flags = "-n"
@@ -78,7 +78,7 @@ let ``One file, one match, print line numbers flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, one match, case-insensitive flag`` () =
     let pattern = "Forbidden"
     let flags = "-i"
@@ -89,7 +89,7 @@ let ``One file, one match, case-insensitive flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, one match, print file names flag`` () =
     let pattern = "Forbidden"
     let flags = "-l"
@@ -100,7 +100,7 @@ let ``One file, one match, print file names flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, one match, match entire lines flag`` () =
     let pattern = "With loss of Eden, till one greater Man"
     let flags = "-x"
@@ -111,7 +111,7 @@ let ``One file, one match, match entire lines flag`` () =
     
     grep pattern flags files |> should equal expected
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, one match, multiple flags`` () =
     let pattern = "OF ATREUS, Agamemnon, KIng of MEN."
     let files = [iliadFileName]
@@ -121,7 +121,7 @@ let ``One file, one match, multiple flags`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, several matches, no flags`` () =
     let pattern = "may"
     let flags = ""
@@ -134,7 +134,7 @@ let ``One file, several matches, no flags`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, several matches, print line numbers flag`` () =
     let pattern = "may"
     let flags = "-n"
@@ -147,7 +147,7 @@ let ``One file, several matches, print line numbers flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, several matches, match entire lines flag`` () =
     let pattern = "may"
     let flags = "-x"
@@ -157,7 +157,7 @@ let ``One file, several matches, match entire lines flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, several matches, case-insensitive flag`` () =
     let pattern = "ACHILLES"
     let flags = "-i"
@@ -169,7 +169,7 @@ let ``One file, several matches, case-insensitive flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, several matches, inverted flag`` () =
     let pattern = "Of"
     let flags = "-v"
@@ -184,7 +184,7 @@ let ``One file, several matches, inverted flag`` () =
     
     grep pattern flags files |> should equal expected
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, case-insensitive and entire line flags`` () =
     let pattern = "ATREUS"
     let files = [iliadFileName]
@@ -193,7 +193,7 @@ let ``One file, case-insensitive and entire line flags`` () =
     
     grep pattern flags files |> should equal expected
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, case-insensitive and inverted flags`` () =
     let pattern = "THE"
     let files = [paradiseLostFileName]
@@ -205,7 +205,7 @@ let ``One file, case-insensitive and inverted flags`` () =
 
     grep pattern flags files |> should equal expected
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, inverted and entire line flags`` () =
     let pattern = "the"
     let files = [paradiseLostFileName]
@@ -222,7 +222,7 @@ let ``One file, inverted and entire line flags`` () =
 
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``One file, case-insensitive, inverted and entire line flags`` () =
     let pattern = "if i rEFuse To Wed DeMETrius."
     let files = [midsummerNightFileName]
@@ -237,12 +237,13 @@ let ``One file, case-insensitive, inverted and entire line flags`` () =
 
     grep pattern flags files |> should equal expected
 
-[<TestCase("", Ignore = "Remove to run test case")>]
-[<TestCase("-n", Ignore = "Remove to run test case")>]
-[<TestCase("-l", Ignore = "Remove to run test case")>]
-[<TestCase("-x", Ignore = "Remove to run test case")>]
-[<TestCase("-i", Ignore = "Remove to run test case")>]
-[<TestCase("-n -l -x -i", Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("")>]
+[<InlineData("-n")>]
+[<InlineData("-l")>]
+[<InlineData("-x")>]
+[<InlineData("-i")>]
+[<InlineData("-n -l -x -i")>]
 let ``One file, no matches, various flags`` (flags) =
     let pattern = "Gandalf"
     let files = [iliadFileName]
@@ -250,7 +251,7 @@ let ``One file, no matches, various flags`` (flags) =
     
     grep pattern flags files |> should equal expected
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, one match, no flags`` () =
     let pattern = "Agamemnon"
     let flags = ""
@@ -261,7 +262,7 @@ let ``Multiple files, one match, no flags`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, several matches, no flags`` () =
     let pattern = "may"
     let flags = ""
@@ -274,7 +275,7 @@ let ``Multiple files, several matches, no flags`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, several matches, print line numbers flag`` () =
     let pattern = "that"
     let flags = "-n"
@@ -288,7 +289,7 @@ let ``Multiple files, several matches, print line numbers flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, several matches, print file names flag`` () =
     let pattern = "who"
     let flags = "-l"
@@ -300,7 +301,7 @@ let ``Multiple files, several matches, print file names flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, several matches, case-insensitive flag`` () =
     let pattern = "TO"
     let flags = "-i"
@@ -320,7 +321,7 @@ let ``Multiple files, several matches, case-insensitive flag`` () =
             
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, several matches, inverted flag`` () =
     let pattern = "a"
     let flags = "-v"
@@ -333,7 +334,7 @@ let ``Multiple files, several matches, inverted flag`` () =
     
     grep pattern flags files |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, one match, match entire lines flag`` () =
     let pattern = "But I beseech your grace that I may know"
     let flags = "-x"
@@ -344,7 +345,7 @@ let ``Multiple files, one match, match entire lines flag`` () =
     
     grep pattern flags files |> should equal expected
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Multiple files, one match, multiple flags`` () =
     let pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN"
     let files = [iliadFileName; midsummerNightFileName; paradiseLostFileName]
@@ -354,12 +355,13 @@ let ``Multiple files, one match, multiple flags`` () =
     
     grep pattern flags files |> should equal expected
 
-[<TestCase("", Ignore = "Remove to run test case")>]
-[<TestCase("-n", Ignore = "Remove to run test case")>]
-[<TestCase("-l", Ignore = "Remove to run test case")>]
-[<TestCase("-x", Ignore = "Remove to run test case")>]
-[<TestCase("-i", Ignore = "Remove to run test case")>]
-[<TestCase("-n -l -x -i", Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("")>]
+[<InlineData("-n")>]
+[<InlineData("-l")>]
+[<InlineData("-x")>]
+[<InlineData("-i")>]
+[<InlineData("-n -l -x -i")>]
 let ``Multiple files, no matches, various flags`` (flags) =
     let pattern = "Frodo"
     let files = [iliadFileName; midsummerNightFileName; paradiseLostFileName]

@@ -5,15 +5,15 @@ open FsUnit
 
 open Sieve
 
-[Fact]
+[<Fact>]
 let ``Finds first prime`` () =
     primesUpTo 2 |> should equal [ 2 ]
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Finds primes up to 10`` () =
     primesUpTo 10 |> should equal [ 2; 3; 5; 7 ]
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Finds primes up to 1000`` () =
     primesUpTo 1000 |> should equal 
         [

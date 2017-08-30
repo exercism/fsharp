@@ -36,43 +36,43 @@ let cousins' = mkGraph x [
                             mkGraph "cousin-0" [];
                             mkGraph "cousin-1" []]]]]
 
-[Fact]
+[<Fact>]
 let ``Reparent singleton`` () =
     fromPOV x singleton |> should equal <| Some singleton'
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Reparent flat`` () =
     fromPOV x flat |> should equal <| Some flat'
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Reparent nested`` () =
     fromPOV x nested |> should equal <| Some nested'
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Reparent kids`` () =
     fromPOV x kids |> should equal <| Some kids'
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Reparent cousins`` () =
     fromPOV x cousins |> should equal <| Some cousins'
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Reparent from POV of non-existent node`` () =
     fromPOV x (leaf "foo") |> should equal None
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Should not be able to find a missing node`` () =
     let nodes = [singleton; flat; kids; nested; cousins] |> List.map (fromPOV "NOT THERE")
     nodes |> List.iter (should equal None)
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Cannot trace between un-connected nodes`` () =
     tracePathBetween x "NOT THERE" cousins |> should equal None
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Can trace a path from x to cousin`` () = 
     tracePathBetween x "cousin-1" cousins |> should equal <| Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Can trace from a leaf to a leaf`` () =
     tracePathBetween "kid-a" "cousin-0" cousins |> should equal <| Some ["kid-a"; "x"; "parent"; "grandparent"; "uncle"; "cousin-0"]

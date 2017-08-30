@@ -13,8 +13,9 @@ type DiamondTest() =
     let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny [|'A'..'Z'|])
 
     let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
-
-    [<TestCaseSource("Letters")>]
+    
+    [<Theory>]
+    [<MemberData("Letters")>]
     member this.``First row contains 'A'`` (letter:char) =
         let actual = make letter
         let rows = actual |> split
@@ -22,8 +23,8 @@ type DiamondTest() =
     
         firstRowCharacters |> should equal "A"
 
-    [<TestCaseSource("Letters")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [<MemberData("Letters")>]
     member this.``All rows must have symmetric contour`` (letter:char) =
         let actual = make letter
         let rows = actual |> split
@@ -31,8 +32,8 @@ type DiamondTest() =
 
         rows |> Array.iter (fun x -> symmetric x |> should equal true)
 
-    [<TestCaseSource("Letters")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [<MemberData("Letters")>]
     member this.``Top of figure has letters in correct order`` (letter:char) =
         let actual = make letter
 
@@ -47,8 +48,8 @@ type DiamondTest() =
 
         expected |> should equal firstNonSpaceLetters
 
-    [<TestCaseSource("Letters")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [<MemberData("Letters")>]
     member this.``Figure is symmetric around the horizontal axis`` (letter:char) =
         let actual = make letter
 
@@ -66,8 +67,8 @@ type DiamondTest() =
 
         top |> should equal bottom
     
-    [<TestCaseSource("Letters")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [<MemberData("Letters")>]
     member this.``Diamond has square shape`` (letter:char) =
         let actual = make letter
 
@@ -77,8 +78,8 @@ type DiamondTest() =
 
         rows |> Array.iter (fun x -> correctWidth x |> should equal true)
 
-    [<TestCaseSource("Letters")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [<MemberData("Letters")>]
     member this.``All rows except top and bottom have two identical letters`` (letter:char) =
         let actual = make letter
 
@@ -94,8 +95,8 @@ type DiamondTest() =
 
         rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
 
-    [<TestCaseSource("Letters")>]    
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [<MemberData("Letters")>]
     member this.``Bottom left corner spaces are triangle`` (letter:char) =
         let actual = make letter
 

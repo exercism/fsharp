@@ -5,19 +5,19 @@ open FsUnit
 
 open Proverb
 
-[Fact]
+[<Fact>]
 let ``Line one`` () =
     line 1 |> should equal "For want of a nail the shoe was lost."
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Line four`` () =
     line 4 |> should equal "For want of a rider the message was lost."
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Line seven`` () =
     line 7 |> should equal "And all for the want of a horseshoe nail."
     
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Proverb`` () =
     let expected =
         ["For want of a nail the shoe was lost.";

@@ -12,7 +12,8 @@ type SeriesTests () =
             ("92834", [[9]; [2]; [8]; [3]; [4]]) 
         |]
 
-    [<TestCaseSource("SliceOneTestData")>]
+    [<Theory>]
+    [MemberData("SliceOneTestData")]
     member this.``Series of one splits to one digit`` (testData: string * int list list) =
         let input, expected = testData
         slices input 1 |> should equal expected
@@ -24,8 +25,8 @@ type SeriesTests () =
             ("37103", [[3; 7]; [7; 1]; [1; 0]; [0; 3]])
         |]
 
-    [<TestCaseSource("SliceTwoTestData")>]
-    [<Ignore("Remove to run test")>]  
+    [<Theory(Skip = "Remove to run test")>]
+    [MemberData("SliceTwoTestData")]
     member this.``Series of two splits to two digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 2 |> should equal expected
@@ -37,8 +38,8 @@ type SeriesTests () =
             ("982347", [[9; 8; 2]; [8; 2; 3]; [2; 3; 4]; [3; 4; 7]])
         |]
 
-    [<TestCaseSource("SliceThreeTestData")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [MemberData("SliceThreeTestData")]
     member this.``Series of three splits to three digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 3 |> should equal expected
@@ -49,8 +50,8 @@ type SeriesTests () =
             ("91274", [[9; 1; 2; 7]; [1; 2; 7; 4]])
         |]
 
-    [<TestCaseSource("SliceFourTestData")>]
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [MemberData("SliceFourTestData")]
     member this.``Series of four splits to four digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 4 |> should equal expected
@@ -61,13 +62,14 @@ type SeriesTests () =
             ("81228", [[8; 1; 2; 2; 8]])
         |]
 
-    [<TestCaseSource("SliceFiveTestData")>]    
-    [<Ignore("Remove to run test")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [MemberData("SliceFiveTestData")]
     member this.``Series of five splits to five digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 5 |> should equal expected
 
-    [<TestCase("01234", 6, Ignore = "Remove to run test case")>]
-    [<TestCase("01032987583", 19, Ignore = "Remove to run test case")>]
+    [<Theory(Skip = "Remove to run test")>]
+    [InlineData("01234", 6)]
+    [InlineData("01032987583", 19)]
     member this.``Slice longer than input is not allowed`` (input, slice) =
         (fun () -> slices input slice |> ignore) |> should throw typeof<Exception>

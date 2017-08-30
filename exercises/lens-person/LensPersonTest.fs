@@ -24,18 +24,18 @@ let testPerson =
           place = "Fallmeadow"
           country = "Canada" } }
 
-[Fact]
+[<Fact>]
 let ``Set born at street`` () =
     Optic.get bornAtStreet testPerson |> should equal "Longway"
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Set current street`` () =
     Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet |> should equal "Middleroad"
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Upper case born at street`` () =
     Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet |> should equal "LONGWAY"
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Set birth month`` () =
     Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)

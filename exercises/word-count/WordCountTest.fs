@@ -4,14 +4,14 @@ open Xunit
 open FsUnit
 open Phrase
 
-[Fact]
+[<Fact>]
 let ``Count one word`` () =
     let phrase = "word"
     let counts = Map.ofSeq [("word", 1)]
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Count one of each`` () =
     let phrase = "one of each"
     let counts = Map.ofSeq [("one",  1);
@@ -20,7 +20,7 @@ let ``Count one of each`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Count multiple occurrences`` () =
     let phrase = "one fish two fish red fish blue fish"
     let counts = Map.ofSeq [("one",  1);
@@ -31,7 +31,7 @@ let ``Count multiple occurrences`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Count everything just once`` () =
     let phrase = "all the kings horses and all the kings men"
     let counts = Map.ofSeq [("all",    2);
@@ -43,7 +43,7 @@ let ``Count everything just once`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Ignore punctuation`` () =
     let phrase = "car : carpet as java : javascript!!&@$%^&"
     let counts = Map.ofSeq [("car",        1);
@@ -54,7 +54,7 @@ let ``Ignore punctuation`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Handles cramped list`` () =
     let phrase = "one,two,three"
     let counts = Map.ofSeq [("one",   1);
@@ -63,7 +63,7 @@ let ``Handles cramped list`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Include numbers`` () =
     let phrase = "testing, 1, 2 testing"
     let counts = Map.ofSeq [("testing", 2);
@@ -72,14 +72,14 @@ let ``Include numbers`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Normalize case`` () =
     let phrase = "go Go GO"
     let counts = Map.ofSeq [("go", 3)]
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``With apostrophes`` () =
     let phrase = "First: don't laugh. Then: don't cry."
     let counts = Map.ofSeq [("first", 1);
@@ -90,14 +90,14 @@ let ``With apostrophes`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``With free standing apostrophes`` () =
     let phrase = "go ' Go '' GO"
     let counts = Map.ofSeq [("go", 3)]
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``With apostrophes as quotes`` () =
     let phrase = "She said, 'let's meet at twelve o'clock'"
     let counts = Map.ofSeq [("she",     1);
@@ -110,7 +110,7 @@ let ``With apostrophes as quotes`` () =
 
     wordCount phrase |> should equal counts
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``With multiple lines`` () =
     let phrase = "Your time will come. You will face the same Evil, and you will defeat it."
     let counts = Map.ofSeq [("and",    1);

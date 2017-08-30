@@ -7,13 +7,13 @@ open Minesweeper
 
 let concat = List.reduce (fun x y -> x + "\n" + y)
 
-[Fact]
+[<Fact>]
 let ``Zero size board`` () =
     let actual = ""
     let expected = ""
     annotate actual |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Empty board`` () =
     let actual = 
         ["   ";
@@ -29,7 +29,7 @@ let ``Empty board`` () =
 
     annotate actual |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Board full of mines`` () =
     let actual = 
         ["***";
@@ -45,7 +45,7 @@ let ``Board full of mines`` () =
 
     annotate actual |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Surrounded`` () =    
     let actual = 
         ["***";
@@ -61,14 +61,14 @@ let ``Surrounded`` () =
 
     annotate actual |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Horizontal line`` () =    
     let actual = [" * * "] |> concat
     let expected = ["1*2*1"] |> concat
 
     annotate actual |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Vertical line`` () =   
     let actual = 
         [" ";
@@ -88,7 +88,7 @@ let ``Vertical line`` () =
 
     annotate actual |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Cross`` () = 
     let actual = 
         ["  *  ";

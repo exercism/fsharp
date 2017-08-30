@@ -4,25 +4,25 @@ open Xunit
 open FsUnit
 open ETL
 
-[Fact]
+[<Fact>]
 let ``Transforms one value`` () =
     let old = [(1, ["A"])] |> Map.ofSeq
     let expected = [("a", 1)] |> Map.ofSeq
     transform old |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Transforms multiple values`` () =
     let old = [(1, ["A"; "E"; "I"; "O"; "U"])] |> Map.ofSeq
     let expected = [("a", 1); ("e", 1); ("i", 1); ("o", 1); ("u", 1)] |> Map.ofSeq
     transform old |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Transforms multiple keys`` () =
     let old = [(1, ["A"; "E"]); (2, ["D"; "G"])] |> Map.ofSeq
     let expected = [("a", 1); ("e", 1); ("d", 2); ("g", 2); ] |> Map.ofSeq
     transform old |> should equal expected
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Transforms a full dataset`` () =
     let old = [(1, ["A"; "E"; "I"; "O"; "U"; "L"; "N"; "R"; "S"; "T"]); 
                 (2, ["D"; "G"]); 

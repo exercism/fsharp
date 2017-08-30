@@ -8,7 +8,7 @@ open Connect
 
 let makeBoard (board: string list) = board |> List.map (fun x -> x.Replace(" ", "")) 
 
-[Fact]
+[<Fact>]
 let ``Empty board has no winner`` () =
     let lines = [". . . . .    ";
                  " . . . . .   ";
@@ -18,19 +18,19 @@ let ``Empty board has no winner`` () =
     let board = makeBoard lines
     resultFor board |> should equal None
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``1x1 board with black stone`` () =
     let lines = ["X"]
     let board = makeBoard lines  
     resultFor board |> should equal <| Some Black
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``1x1 board with white stone`` () =
     let lines = ["O"]
     let board = makeBoard lines  
     resultFor board |> should equal <| Some White
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Convoluted path`` () =
     let lines = [". X X . .    ";
                  " X . X . X   ";
@@ -40,7 +40,7 @@ let ``Convoluted path`` () =
     let board = makeBoard lines  
     resultFor board |> should equal <| Some Black
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Rectangle, black wins`` () =
     let lines = [". O . .    ";
                  " O X X X   ";
@@ -50,7 +50,7 @@ let ``Rectangle, black wins`` () =
     let board = makeBoard lines  
     resultFor board |> should equal <| Some Black
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Rectangle, white wins`` () =
     let lines = [". O . .    ";
                  " O X X X   ";
@@ -60,7 +60,7 @@ let ``Rectangle, white wins`` () =
     let board = makeBoard lines  
     resultFor board |> should equal <| Some White
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Spiral, black wins`` () =
     let lines = ["OXXXXXXXX";
                  "OXOOOOOOO";
@@ -74,7 +74,7 @@ let ``Spiral, black wins`` () =
     let board = makeBoard lines
     resultFor board |> should equal <| Some Black
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Spiral, nobody wins`` () =
     let lines = ["OXXXXXXXX";
                  "OXOOOOOOO";

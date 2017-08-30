@@ -4,33 +4,38 @@ open Xunit
 open FsUnit
 open Raindrops
 
-[<TestCase(1, ExpectedResult = "1")>]
-[<TestCase(52, ExpectedResult = "52", Ignore = "Remove to run test case")>]
-[<TestCase(12121, ExpectedResult = "12121", Ignore = "Remove to run test case")>]
-let ``Non primes pass through`` (number) =
-    convert number
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(1, "1")>]
+[<InlineData(52, "52")>]
+[<InlineData(12121, "12121")>]
+let ``Non primes pass through`` number expected =
+    convert number |> should equal expected
 
-[<TestCase(3, Ignore = "Remove to run test case")>]
-[<TestCase(6, Ignore = "Remove to run test case")>]
-[<TestCase(9, Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(3)>]
+[<InlineData(6)>]
+[<InlineData(9)>]
 let ``Numbers containing 3 as a prime factor give pling`` (number) =
     convert number |> should equal "Pling"
 
-[<TestCase(5, Ignore = "Remove to run test case")>]
-[<TestCase(10, Ignore = "Remove to run test case")>]
-[<TestCase(25, Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(5)>]
+[<InlineData(10)>]
+[<InlineData(25)>]
 let ``Numbers containing 5 as a prime factor give plang`` (number) =
     convert number |> should equal "Plang"
 
-[<TestCase(7, Ignore = "Remove to run test case")>]
-[<TestCase(14, Ignore = "Remove to run test case")>]
-[<TestCase(49, Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(7)>]
+[<InlineData(14)>]
+[<InlineData(49)>]
 let ``Numbers containing 7 as a prime factor give plong`` (number) =
     convert number |> should equal "Plong"
 
-[<TestCase(15, ExpectedResult = "PlingPlang", Ignore = "Remove to run test case")>]
-[<TestCase(21, ExpectedResult = "PlingPlong", Ignore = "Remove to run test case")>]
-[<TestCase(35, ExpectedResult = "PlangPlong", Ignore = "Remove to run test case")>]
-[<TestCase(105, ExpectedResult = "PlingPlangPlong", Ignore = "Remove to run test case")>]    
-let ``Numbers containing multiple prime factors give all results concatenated`` (number) =
-    convert number
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(15, "PlingPlang")>]
+[<InlineData(21, "PlingPlong")>]
+[<InlineData(35, "PlangPlong")>]
+[<InlineData(105, "PlingPlangPlong")>]    
+let ``Numbers containing multiple prime factors give all results concatenated`` number expected =
+    convert number |> should equal expected

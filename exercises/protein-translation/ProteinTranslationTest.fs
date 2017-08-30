@@ -6,53 +6,60 @@ open System
 
 open ProteinTranslation
 
-[<TestCase("AUG")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("AUG")>]
 let ``Identifies Methionine codons`` (codon) =
     translate codon |> should equal ["Methionine"]
     
-[<TestCase("UUU", Ignore = "Remove to run test case")>]
-[<TestCase("UUC", Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("UUU")>]
+[<InlineData("UUC")>]
 let ``Identifies Phenylalanine codons`` (codon) =
     translate codon |> should equal ["Phenylalanine"]
-    
-[<TestCase("UUA", Ignore = "Remove to run test case")>]
-[<TestCase("UUG", Ignore = "Remove to run test case")>]
+ 
+[<Theory(Skip = "Remove to run test")>]   
+[<InlineData("UUA")>]
+[<InlineData("UUG")>]
 let ``Identifies Leucine codons`` (codon) =
     translate codon |> should equal ["Leucine"]
     
-[<TestCase("UCU", Ignore = "Remove to run test case")>]
-[<TestCase("UCC", Ignore = "Remove to run test case")>]
-[<TestCase("UCA", Ignore = "Remove to run test case")>]
-[<TestCase("UCG", Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("UCU")>]
+[<InlineData("UCC")>]
+[<InlineData("UCA")>]
+[<InlineData("UCG")>]
 let ``Identifies Serine codons`` (codon) =
     translate codon |> should equal ["Serine"]
     
-[<TestCase("UAU", Ignore = "Remove to run test case")>]
-[<TestCase("UAC", Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("UAU")>]
+[<InlineData("UAC")>]
 let ``Identifies Tyrosine codons`` (codon) =
     translate codon |> should equal ["Tyrosine"]
     
-[<TestCase("UGU", Ignore = "Remove to run test case")>]
-[<TestCase("UGC", Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("UGU")>]
+[<InlineData("UGC")>]
 let ``Identifies Cysteine codons`` (codon) =
     translate codon |> should equal ["Cysteine"]
     
-[<TestCase("UGG", Ignore = "Remove to run test case")>] 
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData("UGG")>] 
 let ``Identifies Tryptophan codons`` (codon) =
     translate codon |> should equal ["Tryptophan"]
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Translates rna strand into correct protein`` () =
     translate "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Stops translation if stop codon present`` () =
     translate "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Stops translation of longer strand`` () =
     translate "UGGUGUUAUUAAUGGUUU'" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
 
-[Fact(Skip = "Remove to run test")]
+[<Fact(Skip = "Remove to run test")>]
 let ``Throws for invalid codons`` () =
     (fun () -> translate "CARROT'" |> List.ofSeq |> ignore) |> should throw typeof<Exception>
