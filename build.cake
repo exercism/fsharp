@@ -53,9 +53,9 @@ Task("TestRefactoringProjects")
 Task("ReplaceStubWithExample")
     .IsDependentOn("TestRefactoringProjects")
     .Does(() => {
-        var allSolution = ParseSolution(allSolutionPath);
+        var solution = ParseSolution(solutionPath);
 
-        foreach (var project in allSolution.Projects) {
+        foreach (var project in solution.Projects) {
             var projectDir = project.Path.GetDirectory();
             var projectName = project.Path.GetFilenameWithoutExtension();
             var stub = projectDir.GetFilePath(projectName).AppendExtension("fs");
@@ -81,8 +81,8 @@ Task("AddPackagesUsedInExampleImplementations")
 Task("TestUsingExampleImplementation")
     .IsDependentOn("AddPackagesUsedInExampleImplementations")
     .Does(() => {
-        var allSolution = ParseSolution(allSolutionPath);
-        Parallel.ForEach(allSolution.Projects, parallelOptions, (project) => DotNetCoreTest(project.Path.FullPath));
+        var solution = ParseSolution(solutionPath);
+        Parallel.ForEach(solution.Projects, parallelOptions, (project) => DotNetCoreTest(project.Path.FullPath));
     });
 
 Task("Default")
