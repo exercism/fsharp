@@ -22,9 +22,21 @@ Task("CopyExercises")
     .Does(() => {
         CopyDirectory(sourceDir, buildDir);
     });
+    
+Task("AddRuntimeFrameworkVersion")
+    .IsDependentOn("CopyExercises")
+    .Does(() => {
+        const string directoryBuildProps = @"<Project>
+  <PropertyGroup>
+    <RuntimeFrameworkVersion>2.0.0</RuntimeFrameworkVersion>
+  </PropertyGroup>
+</Project>";
+        
+        System.IO.File.WriteAllText(buildDir + "/Directory.Build.props", directoryBuildProps);
+    });
 
 Task("EnableAllTests")
-    .IsDependentOn("CopyExercises")
+    .IsDependentOn("AddRuntimeFrameworkVersion")
     .Does(() => {
         var skipRegex = new Regex(@"Skip = ""Remove to run test""", RegexOptions.Compiled);
         var testFiles = GetFiles(buildDir + "/*/*Test.fs");
