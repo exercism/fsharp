@@ -5,7 +5,7 @@ open FsUnit
 
 open SaddlePoints
 
-[<Test>]
+[Fact]
 let ``Readme example`` () =
     let values = [ [ 9; 8; 7 ]; 
                    [ 5; 3; 2 ]; 
@@ -13,24 +13,21 @@ let ``Readme example`` () =
     let actual = saddlePoints values
     actual |> should equal [(1, 0)]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``No saddle point`` () =
     let values = [ [ 2; 1 ]; 
                    [ 1; 2 ] ]
     let actual = saddlePoints values
     actual |> should be Empty
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Saddle point`` () =
     let values = [ [ 1; 2 ]; 
                    [ 3; 4 ] ]
     let actual = saddlePoints values
     actual |> should equal [(0, 1)]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Another saddle point`` () =
     let values = [ [ 18;  3; 39; 19;  91 ]; 
                    [ 38; 10;  8; 77; 320 ]; 
@@ -38,8 +35,7 @@ let ``Another saddle point`` () =
     let actual = saddlePoints values
     actual |> should equal [(2, 2)]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Multiple saddle points`` () =
     let values = [ [ 4; 5; 4 ];
                    [ 3; 5; 5 ];

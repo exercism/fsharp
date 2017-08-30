@@ -41,22 +41,18 @@ let ``Identifies Cysteine codons`` (codon) =
 let ``Identifies Tryptophan codons`` (codon) =
     translate codon |> should equal ["Tryptophan"]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Translates rna strand into correct protein`` () =
     translate "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Stops translation if stop codon present`` () =
     translate "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Stops translation of longer strand`` () =
     translate "UGGUGUUAUUAAUGGUUU'" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Throws for invalid codons`` () =
     (fun () -> translate "CARROT'" |> List.ofSeq |> ignore) |> should throw typeof<Exception>

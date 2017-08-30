@@ -17,20 +17,17 @@ let ``Can recognize a valid pythagorean`` (x: int) (y: int) (z: int) =
     let actual = triplet x y z
     isPythagorean actual
    
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Can create simple triplets`` () =
     let actual = pythagoreanTriplets 1 10
     actual |> should equal [triplet 3 4 5; triplet 6 8 10]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Can create more triplets`` () =
     let actual = pythagoreanTriplets 11 20
     actual |> should equal [triplet 12 16 20]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Can create complex triplets`` () =
     let actual = pythagoreanTriplets 56 95
     actual |> should equal [triplet 57 76 95; triplet 60 63 87]

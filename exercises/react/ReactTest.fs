@@ -5,7 +5,7 @@ open FsUnit
 
 open React
 
-[<Test>]
+[Fact]
 let ``Setting the value of an input cell changes the observable value`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1
@@ -14,8 +14,7 @@ let ``Setting the value of an input cell changes the observable value`` () =
   inputCell1.Value <- 2
   inputCell1.Value |> should equal 2
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``The value of a compute is determined by the value of the dependencies`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1    
@@ -25,8 +24,7 @@ let ``The value of a compute is determined by the value of the dependencies`` ()
   inputCell1.Value <- 2
   computeCell1.Value |> should equal 3
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Compute cells can depend on other compute cells`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1
@@ -38,8 +36,7 @@ let ``Compute cells can depend on other compute cells`` () =
   inputCell1.Value <- 3
   computeCell3.Value |> should equal 8
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Compute cells can have callbacks`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1
@@ -51,8 +48,7 @@ let ``Compute cells can have callbacks`` () =
   inputCell1.Value <- 2
   observed |> should equal [3]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Callbacks only trigger on change`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1
@@ -67,8 +63,7 @@ let ``Callbacks only trigger on change`` () =
   inputCell1.Value <- 3
   observerCalled |> should equal 1
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Callbacks can be removed`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1
@@ -89,8 +84,7 @@ let ``Callbacks can be removed`` () =
   observed1 |> should equal [3]  
   observed2 |> should equal [3; 4]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Callbacks should only be called once even if multiple dependencies have changed`` () =
   let reactor = new Reactor()
   let inputCell1 = reactor.createInputCell 1

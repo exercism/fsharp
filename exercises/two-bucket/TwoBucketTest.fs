@@ -5,7 +5,7 @@ open FsUnit
 
 open TwoBucket
 
-[<Test>]
+[Fact]
 let ``First example``() =
     let bucketOneSize = 3
     let bucketTwoSize = 5
@@ -15,8 +15,7 @@ let ``First example``() =
     let actual = moves bucketOneSize bucketTwoSize goal startBucket
     actual |> should equal <| Some (4, Bucket.One, 5)
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Second example``() =
     let bucketOneSize = 3
     let bucketTwoSize = 5
@@ -26,8 +25,7 @@ let ``Second example``() =
     let actual = moves bucketOneSize bucketTwoSize goal startBucket
     actual |> should equal <| Some (8, Bucket.Two, 3)
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Third example``() =
     let bucketOneSize = 7
     let bucketTwoSize = 11
@@ -37,8 +35,7 @@ let ``Third example``() =
     let actual = moves bucketOneSize bucketTwoSize goal startBucket
     actual |> should equal <| Some (14, Bucket.One, 11)
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Fourth example``() =
     let bucketOneSize = 7
     let bucketTwoSize = 11

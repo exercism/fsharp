@@ -5,7 +5,7 @@ open FsUnit
 
 open Tournament
 
-[<Test>]
+[Fact]
 let ``Correctly displays the tournament table`` () =
     let actual = 
         ["Αllegoric Alaskians;Blithering Badgers;win";
@@ -24,8 +24,7 @@ let ``Correctly displays the tournament table`` () =
 
     tally actual |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Ignores incorrect input`` () =
     let actual = 
         ["Allegoric Alaskians;Blithering Badgers;win";
@@ -49,8 +48,7 @@ let ``Ignores incorrect input`` () =
 
     tally actual |> should equal expected    
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Correctly displays another tournament table`` () =
     let actual = 
         ["Allegoric Alaskians;Blithering Badgers;win";

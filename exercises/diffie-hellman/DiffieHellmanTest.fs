@@ -7,7 +7,7 @@ open FsUnit
 
 open DiffieHellman
 
-[<Test>]
+[Fact]
 let ``Private key in range`` () =   
     let primeP = 23I
     let privateKeys = [for _ in 0 .. 10 -> privateKey primeP]
@@ -16,15 +16,13 @@ let ``Private key in range`` () =
 
 // Note: due to the nature of randomness, there is always a chance that this test fails
 // Be sure to check the actual generated values
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Private key randomly generated`` () =   
     let primeP = 7919I
     let privateKeys = [for _ in 0 .. 5 -> privateKey primeP]
     privateKeys.Length |> should equal <| List.length (List.distinct privateKeys) 
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Public key correctly calculated`` () =
     let primeP = 23I
     let primeG = 5I
@@ -33,8 +31,7 @@ let ``Public key correctly calculated`` () =
     let actual = publicKey primeP primeG privateKey    
     actual |> should equal 8I
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Secret key correctly calculated`` () =
     let primeP = 23I
     let publicKey = 19I
@@ -43,8 +40,7 @@ let ``Secret key correctly calculated`` () =
     let actual = secret primeP publicKey privateKey
     actual |> should equal 2I
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Secret key correctly calculated when using large primes`` () =
     let primeP = 120227323036150778550155526710966921740030662694578947298423549235265759593711587341037426347114541533006628856300552706996143592240453345642869233562886752930249953227657883929905072620233073626594386072962776144691433658814261874113232461749035425712805067202910389407991986070558964461330091797026762932543I
     let publicKey = 75205441154357919442925546169208711235485855904969178206313309299205868312399046149367516336607966149689640419216591714331722664409474612463910928128055994157922930443733535659848264364106037925315974095321112757711756912144137705613776063541350548911512715512539186192176020596861210448363099541947258202188I
@@ -53,8 +49,7 @@ let ``Secret key correctly calculated when using large primes`` () =
     let actual = secret primeP publicKey privateKey
     actual |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Test exchange`` () =
     let primeP = 23I
     let primeG = 5I

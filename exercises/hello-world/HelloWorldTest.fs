@@ -5,6 +5,6 @@ open FsUnit
 
 open HelloWorld
 
-[<Test>]
+[Fact]
 let ``Say hi!`` () =
     hello |> should equal "Hello, World!"

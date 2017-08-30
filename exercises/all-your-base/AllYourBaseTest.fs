@@ -5,7 +5,7 @@ open FsUnit
 
 open AllYourBase
 
-[<Test>]
+[Fact]
 let ``Single bit one to decimal`` () =
     let inputBase = 2
     let inputDigits = [1]
@@ -13,8 +13,7 @@ let ``Single bit one to decimal`` () =
     let outputDigits = Some [1]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Binary to single decimal`` () =
     let inputBase = 2
     let inputDigits = [1; 0; 1]
@@ -22,8 +21,7 @@ let ``Binary to single decimal`` () =
     let outputDigits = Some [5]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Single decimal to binary`` () =
     let inputBase = 10
     let inputDigits = [5]
@@ -31,8 +29,7 @@ let ``Single decimal to binary`` () =
     let outputDigits = Some [1; 0; 1]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Binary to multiple decimal`` () =
     let inputBase = 2
     let inputDigits = [1; 0; 1; 0; 1; 0]
@@ -40,8 +37,7 @@ let ``Binary to multiple decimal`` () =
     let outputDigits = Some [4; 2]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Decimal to binary`` () =
     let inputBase = 10
     let inputDigits = [4; 2]
@@ -49,8 +45,7 @@ let ``Decimal to binary`` () =
     let outputDigits = Some [1; 0; 1; 0; 1; 0]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Trinary to hexadecimal`` () =
     let inputBase = 3
     let inputDigits = [1; 1; 2; 0]
@@ -58,8 +53,7 @@ let ``Trinary to hexadecimal`` () =
     let outputDigits = Some [2; 10]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Hexadecimal to trinary`` () =
     let inputBase = 16
     let inputDigits = [2; 10]
@@ -67,8 +61,7 @@ let ``Hexadecimal to trinary`` () =
     let outputDigits = Some [1; 1; 2; 0]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``15-bit integer`` () =
     let inputBase = 97
     let inputDigits = [3; 46; 60]
@@ -76,8 +69,7 @@ let ``15-bit integer`` () =
     let outputDigits = Some [6; 10; 45]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Empty list`` () =
     let inputBase = 2
     let inputDigits = []
@@ -85,8 +77,7 @@ let ``Empty list`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Single zero`` () =
     let inputBase = 10
     let inputDigits = [0]
@@ -94,8 +85,7 @@ let ``Single zero`` () =
     let outputDigits = Some [0]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Multiple zeros`` () =
     let inputBase = 10
     let inputDigits = [0; 0; 0]
@@ -103,8 +93,7 @@ let ``Multiple zeros`` () =
     let outputDigits = Some [0]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Leading zeros`` () =
     let inputBase = 7
     let inputDigits = [0; 6; 0]
@@ -112,8 +101,7 @@ let ``Leading zeros`` () =
     let outputDigits = Some [4; 2]
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Negative digit`` () =
     let inputBase = 2
     let inputDigits = [1; -1; 1; 0; 1; 0]
@@ -121,8 +109,7 @@ let ``Negative digit`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Invalid positive digit`` () =
     let inputBase = 2
     let inputDigits = [1; 2; 1; 0; 1; 0]
@@ -130,8 +117,7 @@ let ``Invalid positive digit`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``First base is one`` () =
     let inputBase = 1
     let inputDigits = []
@@ -139,8 +125,7 @@ let ``First base is one`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Second base is one`` () =
     let inputBase = 2
     let inputDigits = [1; 0; 1; 0; 1; 0]
@@ -148,8 +133,7 @@ let ``Second base is one`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``First base is zero`` () =
     let inputBase = 0
     let inputDigits = []
@@ -157,8 +141,7 @@ let ``First base is zero`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Second base is zero`` () =
     let inputBase = 10
     let inputDigits = [7]
@@ -166,8 +149,7 @@ let ``Second base is zero`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``First base is negative`` () =
     let inputBase = -2
     let inputDigits = [1]
@@ -175,8 +157,7 @@ let ``First base is negative`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Second base is negative`` () =
     let inputBase = 2
     let inputDigits = [1]
@@ -184,8 +165,7 @@ let ``Second base is negative`` () =
     let outputDigits = None
     rebase inputBase inputDigits outputBase |> should equal outputDigits
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Both bases are negative`` () =
     let inputBase = -2
     let inputDigits = [1]

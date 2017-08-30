@@ -7,15 +7,14 @@ open FoodChain
 
 let combine = List.reduce (fun x y -> x + "\n" + y)
 
-[<Test>]
+[Fact]
 let ``Verse one`` () =
     let expected = ["I know an old lady who swallowed a fly.";
                     "I don't know why she swallowed the fly. Perhaps she'll die."] |> combine
 
     verse 1 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Verse two`` () =
     let expected = ["I know an old lady who swallowed a spider.";
                     "It wriggled and jiggled and tickled inside her.";
@@ -24,8 +23,7 @@ let ``Verse two`` () =
 
     verse 2 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Verse four`` () =
     let expected = ["I know an old lady who swallowed a cat.";
                     "Imagine that, to swallow a cat!";
@@ -36,16 +34,14 @@ let ``Verse four`` () =
 
     verse 4 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Verse eight`` () =
     let expected = ["I know an old lady who swallowed a horse.";
                     "She's dead, of course!"] |> combine
 
     verse 8 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Complete song`` () =
     let expected = ["I know an old lady who swallowed a fly.";
                     "I don't know why she swallowed the fly. Perhaps she'll die.";

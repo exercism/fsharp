@@ -5,7 +5,7 @@ open FsUnit
 
 open OcrNumbers
 
-[<Test>]
+[Fact]
 let ``Recognizes zero`` () = 
     let converted = convert (" _ " + "\n" +
                               "| |" + "\n" +
@@ -13,8 +13,7 @@ let ``Recognizes zero`` () =
                               "   ")
     converted |> should equal "0"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes one`` () = 
     let converted = convert ("   " + "\n" +
                              "  |" + "\n" +
@@ -22,8 +21,7 @@ let ``Recognizes one`` () =
                              "   ")
     converted |> should equal "1"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes two`` () = 
     let converted = convert (" _ " + "\n" +
                              " _|" + "\n" +
@@ -31,8 +29,7 @@ let ``Recognizes two`` () =
                              "   ")
     converted |> should equal "2"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes three`` () = 
     let converted = convert (" _ " + "\n" +
                              " _|" + "\n" +
@@ -40,8 +37,7 @@ let ``Recognizes three`` () =
                              "   ")
     converted |> should equal "3"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes four`` () = 
     let converted = convert ("   " + "\n" +
                              "|_|" + "\n" +
@@ -49,8 +45,7 @@ let ``Recognizes four`` () =
                              "   ")
     converted |> should equal "4"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes five`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_ " + "\n" +
@@ -58,8 +53,7 @@ let ``Recognizes five`` () =
                              "   ")
     converted |> should equal "5"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes six`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_ " + "\n" +
@@ -67,8 +61,7 @@ let ``Recognizes six`` () =
                              "   ")
     converted |> should equal "6"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes seven`` () = 
     let converted = convert (" _ " + "\n" +
                              "  |" + "\n" +
@@ -76,8 +69,7 @@ let ``Recognizes seven`` () =
                              "   ")
     converted |> should equal "7"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes eight`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_|" + "\n" +
@@ -85,8 +77,7 @@ let ``Recognizes eight`` () =
                              "   ")
     converted |> should equal "8"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes nine`` () = 
     let converted = convert (" _ " + "\n" +
                              "|_|" + "\n" +
@@ -94,8 +85,7 @@ let ``Recognizes nine`` () =
                              "   ")
     converted |> should equal "9"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes garble`` () = 
     let converted = convert ("   " + "\n" +
                              "| |" + "\n" +
@@ -103,8 +93,7 @@ let ``Recognizes garble`` () =
                              "   ")
     converted |> should equal "?"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes ten`` () = 
     let converted = convert ("    _ " + "\n" +
                              "  || |" + "\n" +
@@ -112,8 +101,7 @@ let ``Recognizes ten`` () =
                              "       ")
     converted |> should equal "10"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes 110101100`` () = 
     let converted = convert ("       _     _        _  _ " + "\n" +
                              "  |  || |  || |  |  || || |" + "\n" +
@@ -121,8 +109,7 @@ let ``Recognizes 110101100`` () =
                              "                            ")
     converted |> should equal "110101100"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes numbers and garble`` () = 
     let converted = convert ("       _     _           _ " + "\n" +
                              "  |  || |  || |     || || |" + "\n" +
@@ -130,8 +117,7 @@ let ``Recognizes numbers and garble`` () =
                              "                            ")
     converted |> should equal "11?10?1?0"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Recognizes multiple rows`` () = 
     let converted = convert ("    _  _ " + "\n" +
                              "  | _| _|" + "\n" +

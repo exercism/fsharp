@@ -5,7 +5,7 @@ open FsUnit
 
 open Transpose
 
-[<Test>]
+[Fact]
 let ``Empty string`` () = 
     let input = ""
     let expected = ""
@@ -13,7 +13,7 @@ let ``Empty string`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Two characters in a row`` () = 
     let input =
         "A1"
@@ -25,7 +25,7 @@ let ``Two characters in a row`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Two characters in a column`` () = 
     let input =
         "A\n" +
@@ -37,7 +37,7 @@ let ``Two characters in a column`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Simple`` () = 
     let input =
         "ABC\n" +
@@ -51,7 +51,7 @@ let ``Simple`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Single line`` () = 
     let input =
         "Single line."
@@ -73,7 +73,7 @@ let ``Single line`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``First line longer than second line`` () = 
     let input = 
         "The fourth line.\n" + 
@@ -100,7 +100,7 @@ let ``First line longer than second line`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Second line longer than first line`` () = 
     let input = 
         "The first line.\n" + 
@@ -127,7 +127,7 @@ let ``Second line longer than first line`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Square`` () = 
     let input = 
         "HEART\n" +
@@ -146,7 +146,7 @@ let ``Square`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Rectangle`` () = 
     let input = 
         "FRACTURE\n" +
@@ -167,7 +167,7 @@ let ``Rectangle`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Triangle`` () = 
     let input = 
         "T\n" +
@@ -188,7 +188,7 @@ let ``Triangle`` () =
     transpose input |> should equal expected
 
 [<Ignore("Remove to run test")>]
-[<Test>]
+[Fact]
 let ``Many lines`` () = 
     let input = 
         "Chor. Two households, both alike in dignity,\n" +

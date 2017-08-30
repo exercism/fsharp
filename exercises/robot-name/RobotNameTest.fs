@@ -5,26 +5,23 @@ open FsUnit
 open System.Text.RegularExpressions
 open RobotName
 
-[<Test>]
+[Fact]
 let ``Robot has a name`` () =     
     let robot = mkRobot()
     Regex.IsMatch(name robot, @"\w{2}\d{3}") |> should equal true
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Name is the same each time`` () =     
     let robot = mkRobot()
     name robot |> should equal (name robot)
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Different robots have different names`` () = 
     let robot = mkRobot()
     let robot2 = mkRobot()
     name robot |> should not' (equal (name robot2))
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Can reset the name`` () =  
     let robot = mkRobot()
     let originalName = name robot

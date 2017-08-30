@@ -5,13 +5,12 @@ open FsUnit
 
 open ZebraPuzzle
 
-[<Test>]
+[Fact]
 let ``Who drinks water?`` () =
     let solution = solve()
     whoDrinksWater solution |> should equal Norwegian
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Who owns the zebra?`` () =
     let solution = solve()
     whoOwnsZebra solution |> should equal Japanese

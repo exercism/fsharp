@@ -5,7 +5,7 @@ open FsUnit
 
 open Hangman
 
-[<Test>]
+[Fact]
 let ``Initially 9 failures are allowed`` () =
     let game = createGame "foo"
     let states = statesObservable game
@@ -17,8 +17,7 @@ let ``Initially 9 failures are allowed`` () =
 
     lastProgress |> should equal <| Busy 9
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Initially no letters are guessed`` () =
     let game = createGame "foo"
     let states = statesObservable game
@@ -30,8 +29,7 @@ let ``Initially no letters are guessed`` () =
 
     lastMaskedWord |> should equal "___"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``After 10 failures the game is over`` () =
     let game = createGame "foo"
     let states = statesObservable game
@@ -45,8 +43,7 @@ let ``After 10 failures the game is over`` () =
 
     lastProgress |> should equal Lose
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Feeding a correct letter removes underscores`` () =
     let game = createGame "foobar"
     let states = statesObservable game
@@ -66,8 +63,7 @@ let ``Feeding a correct letter removes underscores`` () =
     lastState.Value.progress |> should equal <| Busy 9
     lastState.Value.maskedWord |> should equal "_oob__"
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Feeding a correct letter twice counts as a failure`` () =
     let game = createGame "foobar"
     let states = statesObservable game
@@ -87,8 +83,7 @@ let ``Feeding a correct letter twice counts as a failure`` () =
     lastState.Value.progress |> should equal <| Busy 8
     lastState.Value.maskedWord |> should equal "___b__"
      
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Getting all the letters right makes for a win`` () =
     let game = createGame "hello"
     let states = statesObservable game

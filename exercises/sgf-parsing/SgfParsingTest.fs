@@ -21,70 +21,61 @@ let treeWithChildren node children = mkTree (Map.ofList node) children
 let treeWithSingleChild node child = mkTree (Map.ofList node) [child]
 let treeWithNoChildren node = mkTree (Map.ofList node) []
 
-[<Test>]
+[Fact]
 let ``Empty value`` () =
     let input = "" 
     let expected = None
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Tree without nodes`` () =
     let input = "()"
     let expected = None
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Node without tree`` () =
     let input = ";"
     let expected = None
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Node without properties`` () =
     let input = "(;)"
     let expected = Some (treeWithNoChildren [])
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Single node tree`` () =
     let input = "(;A[B])"
     let expected = Some (treeWithNoChildren [("A", ["B"])])
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Properties without delimiter`` () =
     let input = "(;a)"
     let expected = None
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``All lowercase property`` () =
     let input = "(;a[b])"
     let expected = None
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Upper- and lowercase property`` () =
     let input = "(;Aa[b])"
     let expected = None
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Two nodes`` () =
     let input = "(;A[B];B[C])"
     let expected = Some (treeWithSingleChild [("A", ["B"])] (treeWithNoChildren [("B", ["C"])]))
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Two child trees`` () =
     let input = "(;A[B](;B[C])(;C[D]))"
     let expected = Some (treeWithChildren [("A", ["B"])]
@@ -92,15 +83,13 @@ let ``Two child trees`` () =
                               treeWithNoChildren [("C", ["D"])] ])
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Multiple properties`` () =
     let input = "(;A[b][c][d])"
     let expected = Some (treeWithNoChildren [("A", ["b"; "c"; "d"])])
     parseSgf input |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[Fact(Skip = "Remove to run test")]
 let ``Escaped property`` () =
     let input = @"(;A[\]b\nc\nd\t\te\\ \n\]])"
     let expected = Some (treeWithNoChildren [("A", [@"]b c d  e\  ]"])])

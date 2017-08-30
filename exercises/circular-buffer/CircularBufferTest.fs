@@ -6,7 +6,7 @@ open System
 
 open CircularBuffer
 
-[<Test>]
+[Fact]
 let ``Write and read back one item`` () =
     let buffer1 = mkCircularBuffer 1 |> write '1'    
     let (val2, buffer2) = read buffer1
@@ -14,8 +14,7 @@ let ``Write and read back one item`` () =
     val2 |> should equal '1'    
     (fun () -> read buffer2 |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Write and read back multiple items`` () =    
     let buffer1 = 
         mkCircularBuffer 2
@@ -29,8 +28,7 @@ let ``Write and read back multiple items`` () =
     val3 |> should equal '2'
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
     
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Clearing buffer`` () =    
     let buffer1 = mkCircularBuffer 3
     let buffer2 = List.fold (fun buffer value -> write value buffer) buffer1 ['1'..'3']
@@ -49,8 +47,7 @@ let ``Clearing buffer`` () =
     val5 |> should equal '1'
     val7 |> should equal '2'
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Alternate write and read`` () =    
     let buffer1 = mkCircularBuffer 2
     let buffer2 = buffer1 |> write '1'
@@ -61,8 +58,7 @@ let ``Alternate write and read`` () =
     val3 |> should equal '1'
     val5 |> should equal '2'
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Reads back oldest item`` () =    
     let buffer1 = 
         mkCircularBuffer 3
@@ -76,8 +72,7 @@ let ``Reads back oldest item`` () =
     val4 |> should equal '2'
     val5 |> should equal '3'
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Writing to a full buffer throws an exception`` () =    
     let buffer = 
         mkCircularBuffer 2
@@ -86,8 +81,7 @@ let ``Writing to a full buffer throws an exception`` () =
 
     (fun () -> buffer |> write 'A' |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Overwriting oldest item in a full buffer`` () =    
     let buffer1 = 
         mkCircularBuffer 2
@@ -102,8 +96,7 @@ let ``Overwriting oldest item in a full buffer`` () =
     val3 |> should equal 'A'
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Forced writes to non full buffer should behave like writes`` () =    
     let buffer1 = 
         mkCircularBuffer 2
@@ -117,8 +110,7 @@ let ``Forced writes to non full buffer should behave like writes`` () =
     val3 |> should equal '2'
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[Fact(Skip = "Remove to run test")] 
 let ``Alternate read and write into buffer overflow`` () =    
     let buffer1 = mkCircularBuffer 5
     let buffer2 = List.fold (fun buffer value -> write value buffer) buffer1 ['1'..'3']

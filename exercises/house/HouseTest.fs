@@ -98,6 +98,6 @@ let expected =
     "that lay in the house that Jack built."]
     |> List.reduce (fun x y -> x + "\n" + y)
 
-[<Test>]
+[Fact]
 let ``Rhyme is correct`` () =
     rhyme |> should equal expected
