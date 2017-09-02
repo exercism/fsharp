@@ -37,7 +37,7 @@ let ``5x5 territory for white`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``5x5 open territory`` () =
-    let expected = Some (None, [(0, 3); (0, 4); (1, 4)])
+    let expected = Some ((None: Color option), [(0, 3); (0, 4); (1, 4)])
     territoryFor board5x5 (1, 4) |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -57,12 +57,12 @@ let ``Minimal board, no territories`` () =
     let input = ["B"]
     let expected = []
 
-    territories input |> should equal expected
+    territories input |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``One territory, covering the whole board`` () =
     let input = [" "]
-    let expected = [(None, [(0, 0)])] |> Map.ofList
+    let expected = [((None: Color option), [(0, 0)])] |> Map.ofList
 
     territories input |> should equal expected
 

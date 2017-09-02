@@ -13,7 +13,7 @@ type SeriesTests () =
         |]
 
     [<Theory>]
-    [MemberData("SliceOneTestData")]
+    [<MemberData("SliceOneTestData")>]
     member this.``Series of one splits to one digit`` (testData: string * int list list) =
         let input, expected = testData
         slices input 1 |> should equal expected
@@ -26,7 +26,7 @@ type SeriesTests () =
         |]
 
     [<Theory(Skip = "Remove to run test")>]
-    [MemberData("SliceTwoTestData")]
+    [<MemberData("SliceTwoTestData")>]
     member this.``Series of two splits to two digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 2 |> should equal expected
@@ -39,7 +39,7 @@ type SeriesTests () =
         |]
 
     [<Theory(Skip = "Remove to run test")>]
-    [MemberData("SliceThreeTestData")]
+    [<MemberData("SliceThreeTestData")>]
     member this.``Series of three splits to three digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 3 |> should equal expected
@@ -51,7 +51,7 @@ type SeriesTests () =
         |]
 
     [<Theory(Skip = "Remove to run test")>]
-    [MemberData("SliceFourTestData")]
+    [<MemberData("SliceFourTestData")>]
     member this.``Series of four splits to four digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 4 |> should equal expected
@@ -63,13 +63,13 @@ type SeriesTests () =
         |]
 
     [<Theory(Skip = "Remove to run test")>]
-    [MemberData("SliceFiveTestData")]
+    [<MemberData("SliceFiveTestData")>]
     member this.``Series of five splits to five digits`` (testData: string * int list list) =
         let input, expected = testData
         slices input 5 |> should equal expected
 
     [<Theory(Skip = "Remove to run test")>]
-    [InlineData("01234", 6)]
-    [InlineData("01032987583", 19)]
+    [<InlineData("01234", 6)>]
+    [<InlineData("01032987583", 19)>]
     member this.``Slice longer than input is not allowed`` (input, slice) =
         (fun () -> slices input slice |> ignore) |> should throw typeof<Exception>
