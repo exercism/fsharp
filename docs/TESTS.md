@@ -1,34 +1,21 @@
 ## Running Tests
 
-### Windows
-After installing Visual Studio Express for Windows Desktop and the F# tools run Visual Studio and it will display a start screen.
+To run the tests, execute the following command:
 
-Click on "New Project" and you should see an entry for Visual F# and click on "Class Library".
+```bash
+dotnet test
+```
 
-![New Project](http://x.exercism.io/v3/tracks/fsharp/docs/img/newProject.png)
+## Solving the exercise
 
-Install [NUnit](http://nunit.org/index.php?p=download) via NuGet package manager with the NUnit.Console package. This will add the reference to the project.
+Solving an exercise means making all its tests pass. By default, only one test (the first one) is executed when you run the tests. This is intentional, as it allows you to focus on just making that one test pass. Once it passes, you can enable the next test by removing `Skip = "Remove to run test"` from the test's `[<Fact>]` or `[<Theory?]` attribute. When all tests have been enabled and your implementation makes them all pass, you'll have solved the exercise!
 
-![NuGet Package Manager](http://x.exercism.io/v3/tracks/fsharp/docs/img/manageNugetPackages.png)
+To help you get started, each exercise comes with a stub implementation file. You can use this file as a starting point for building your solution. Feel free to remove or change this file if you think it is the right thing to do.
 
-![Installing NUnit](http://x.exercism.io/v3/tracks/fsharp/docs/img/installingNunit.png)
+## Using packages
 
-Drag and drop the test file of your chosen exercise into the project in Visual Studio. You can create your own Example file (or drag and drop the one included) and give the exercise a try.
+You should be able to solve most exercises without using any external packages. However, for the exercises where you do want to use an external package, you can add it to your project by running the following command:
 
-Compile the project (Build -> Build Solution or F7) to generate the DLL file.
-
-If you installed the NUnit runner through NuGet, the runner will be located in the ```\packages\NUnit.Console(version number)\tools``` folder where your project is.
-
-If you installed NUnit manually the runner will be in the ```Program Files (x86)\NUnit(version number)\bin``` folder.
-
-Once you have been able to compile the code it will create a DLL in the ```\bin\Debug``` folder of your project. In the NUnit runner, select "Open Project" and select the DLL that was created from compiling. This will load all the tests and allow you to run them.
-
-Now you can have fun learning F# and run your code against the tests!
-
-### Mac
-Xamarin Studio also ships with NUnit. From the new project dialog, just select an NUnit class library.
-
-<img alt="Xamarin NUnit" src=" http://x.exercism.io/v3/tracks/fsharp/docs/img/xamarin-fsharp-nunit.jpg" style="height: 100%; width: 100%;" />
-
-From here you can write NUnit tests right away. To run the tests open the `Unit Tests` pad within
-Xamarin (View -> Pads -> Unit Tests).
+```bash
+dotnet add package <package-name>
+```
