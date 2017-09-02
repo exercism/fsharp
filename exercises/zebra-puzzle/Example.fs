@@ -74,7 +74,7 @@ let solutions = seq {
             yield { colors = validColors; nationalities = validNationalities; pets = validPets; drinks = validDrinks; smokes = validSmokes }
     }
 
-let solve = Seq.head solutions
+let solve() = Seq.head solutions
 
 let whoDrinksWater solution = List.item (index Water solution.drinks) solution.nationalities
 let whoOwnsZebra solution = List.item (index Zebra solution.pets) solution.nationalities

@@ -148,29 +148,25 @@ let ``Adding an existing element does not change the set`` () =
 let ``Intersection of two empty sets is an empty set`` () =
     let left = empty
     let right = empty
-    let expected = empty
-    intersection left right |> should equal expected
+    intersection left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Intersection of an empty set and non-empty set is an empty set`` () =
     let left = empty
     let right = fromList [3; 2; 5]
-    let expected = empty
-    intersection left right |> should equal expected
+    intersection left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Intersection of a non-empty set and an empty set is an empty set`` () =
     let left = fromList [1; 2; 3; 4]
     let right = empty
-    let expected = empty
-    intersection left right |> should equal expected
+    intersection left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Intersection of two sets with no shared elements is an empty set`` () =
     let left = fromList [1; 2; 3]
     let right = fromList [4; 5; 6]
-    let expected = empty
-    intersection left right |> should equal expected
+    intersection left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Intersection of two sets with shared elements is a set of the shared elements`` () =
@@ -183,15 +179,13 @@ let ``Intersection of two sets with shared elements is a set of the shared eleme
 let ``Difference of two empty sets is an empty set`` () =
     let left = empty
     let right = empty
-    let expected = empty
-    difference left right |> should equal expected
+    difference left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Difference of an empty set and non-empty set is an empty set`` () =
     let left = empty
     let right = fromList [3; 2; 5]
-    let expected = empty
-    difference left right |> should equal expected
+    difference left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Difference of a non-empty set and an empty set is an empty set`` () =
@@ -211,8 +205,7 @@ let ``Difference of two non-empty sets is a set of elements that are only in the
 let ``Union of two empty sets is an empty set`` () =
     let left = empty
     let right = empty
-    let expected = empty
-    union left right |> should equal expected
+    union left right |> isEmpty |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Union of an empty set and non-empty set is the non-empty set`` () =

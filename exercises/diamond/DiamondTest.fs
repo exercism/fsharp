@@ -42,8 +42,7 @@ type DiamondTest() =
         let firstNonSpaceLetters =
             rows 
             |> Seq.take expected.Length
-            |> Seq.map trim
-            |> Seq.map Seq.head
+            |> Seq.map (trim >> Seq.head)
             |> Seq.toList
 
         expected |> should equal firstNonSpaceLetters
@@ -120,4 +119,7 @@ type DiamondTest() =
 
         spaceCounts |> should equal expected
 
-    static member Letters = [| 'A' .. 'Z' |]
+    static member Letters = 
+        let theoryData = new TheoryData<char>()
+        [ 'A' .. 'Z' ] |> List.iter (fun c -> theoryData.Add(c))
+        theoryData

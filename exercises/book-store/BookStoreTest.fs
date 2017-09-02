@@ -7,15 +7,15 @@ open BookStore
 
 [<Fact>]
 let ``Basket with single book`` () =
-    calculateTotalCost [1] |> should equal 8
+    calculateTotalCost [1] |> should equal 8.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with two of same book`` () =
-    calculateTotalCost [2; 2] |> should equal 16
+    calculateTotalCost [2; 2] |> should equal 16.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Empty basket`` () =
-    calculateTotalCost [] |> should equal 0
+    calculateTotalCost [] |> should equal 0.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with two different books`` () =
@@ -31,7 +31,7 @@ let ``Basket with four different books`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with five different books`` () =
-    calculateTotalCost [1; 2; 3; 4; 5] |> should equal 30
+    calculateTotalCost [1; 2; 3; 4; 5] |> should equal 30.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with eight books`` () =
@@ -43,11 +43,11 @@ let ``Basket with nine books`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with ten books`` () =
-    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5] |> should equal 60
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5] |> should equal 60.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with eleven books`` () =
-    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1] |> should equal 68
+    calculateTotalCost [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1] |> should equal 68.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basket with twelve books`` () =

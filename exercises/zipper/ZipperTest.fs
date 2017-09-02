@@ -45,4 +45,4 @@ let ``setRight with None``() =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Different paths to same zipper``() =
-    t1 |> fromTree |> left |> Option.get |> up |> Option.get |> right |> should equal t1 |> fromTree |> right
+    t1 |> fromTree |> left |> Option.get |> up |> Option.get |> right |> should equal (t1 |> fromTree |> right)
