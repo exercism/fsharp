@@ -1,54 +1,46 @@
 module PrimeFactorsTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open PrimeFactors
 
-[<Test>]
+[<Fact>]
 let ``Test 1`` () =
-    Assert.That(primeFactorsFor 1L, Is.EqualTo([]))
+    primeFactorsFor 1L |> should be Empty
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 2`` () =
-    Assert.That(primeFactorsFor 2L, Is.EqualTo([2]))
+    primeFactorsFor 2L |> should equal [2]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 3`` () =
-    Assert.That(primeFactorsFor 3L, Is.EqualTo([3]))
+    primeFactorsFor 3L |> should equal [3]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 4`` () =
-    Assert.That(primeFactorsFor 4L, Is.EqualTo([2; 2]))
+    primeFactorsFor 4L |> should equal [2; 2]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 6`` () =
-    Assert.That(primeFactorsFor 6L, Is.EqualTo([2; 3]))
+    primeFactorsFor 6L |> should equal [2; 3]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 8`` () =
-    Assert.That(primeFactorsFor 8L, Is.EqualTo([2; 2; 2]))
+    primeFactorsFor 8L |> should equal [2; 2; 2]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 9`` () =
-    Assert.That(primeFactorsFor 9L, Is.EqualTo([3; 3]))
+    primeFactorsFor 9L |> should equal [3; 3]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 27`` () =
-    Assert.That(primeFactorsFor 27L, Is.EqualTo([3; 3; 3]))
+    primeFactorsFor 27L |> should equal [3; 3; 3]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 625`` () =
-    Assert.That(primeFactorsFor 625L, Is.EqualTo([5; 5; 5; 5]))
+    primeFactorsFor 625L |> should equal [5; 5; 5; 5]
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Test 901255`` () =
-    Assert.That(primeFactorsFor 901255L, Is.EqualTo([5; 17; 23; 461]))
+    primeFactorsFor 901255L |> should equal [5; 17; 23; 461]

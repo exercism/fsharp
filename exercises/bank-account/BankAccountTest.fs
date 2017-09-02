@@ -1,16 +1,16 @@
-﻿module BankAccountTest
+module BankAccountTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 open BankAccount
 
-[<Test>]
+[<Fact>]
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount
 
-    Assert.That(getBalance account, Is.EqualTo(Some 0.0))
+    getBalance account |> should equal <| Some 0.0
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Check basic balance`` () =
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
@@ -20,11 +20,10 @@ let ``Check basic balance`` () =
         |> updateBalance 10.0 
         |> getBalance
 
-    Assert.That(openingBalance, Is.EqualTo(Some 0.0))
-    Assert.That(updatedBalance, Is.EqualTo(Some 10.0))
+    openingBalance |> should equal <| Some 0.0
+    updatedBalance |> should equal <| Some 10.0
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Balance can increment or decrement`` () =    
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
@@ -39,22 +38,20 @@ let ``Balance can increment or decrement`` () =
         |> updateBalance -15.0
         |> getBalance
 
-    Assert.That(openingBalance, Is.EqualTo(Some 0.0))
-    Assert.That(addedBalance, Is.EqualTo(Some 10.0))
-    Assert.That(subtractedBalance, Is.EqualTo(Some -5.0))
+    openingBalance |> should equal <| Some 0.0
+    addedBalance |> should equal <| Some 10.0
+    subtractedBalance |> should equal <| Some -5.0
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Account can be closed`` () =
     let account = 
         mkBankAccount()
         |> openAccount
         |> closeAccount
 
-    Assert.That(account |> getBalance, Is.EqualTo(None))
+    getBalance account |> should equal None
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Account can be updated from multiple threads`` () =
     let account = 
         mkBankAccount()
@@ -73,4 +70,4 @@ let ``Account can be updated from multiple threads`` () =
     |> Async.RunSynchronously
     |> ignore
 
-    Assert.That(account |> getBalance, Is.EqualTo(Some 1000.0))
+    getBalance account |> should equal <| Some 1000.0

@@ -14,7 +14,7 @@ let primeFactorsFor number =
         | factor::xs ->        
             match remainder with
             | _ when remainder <= 1L -> factors |> List.rev
-            | _ when remainder % factor = 0L -> loop (factor :: factors) (remainder / factor |> int64) possibleFactors
+            | _ when remainder % factor = 0L -> loop (int factor :: factors) (remainder / factor |> int64) possibleFactors
             | _ -> loop factors remainder xs
 
     loop [] number (possiblePrimes number)

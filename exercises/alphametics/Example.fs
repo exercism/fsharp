@@ -5,23 +5,23 @@ open System
 open FParsec
 open System.Text.RegularExpressions
 
-let plus = pstring " + "
-let equal = pstring " == "
-let operand = many1Satisfy isAsciiUpper
-let expression = sepBy operand plus
-let equation = expression .>> equal .>>. expression
+let private plus = pstring " + "
+let private equal = pstring " == "
+let private operand = many1Satisfy isAsciiUpper
+let private expression = sepBy operand plus
+let private equation = expression .>> equal .>>. expression
 
-let parseToOption parser (input: string) =
+let private parseToOption parser (input: string) =
     match run parser input with
     | Success(result, _, _)   -> Some result
     | Failure(errorMsg, _, _) -> None
 
-let parseEquation = parseToOption equation
+let private parseEquation = parseToOption equation
 
-let operandToInt (map: Map<char, int>) (operand: string) =
+let private operandToInt (map: Map<char, int>) (operand: string) =
     Seq.fold (fun acc x -> acc * 10 + Map.find x map) 0 operand
 
-let generateCombinations length =
+let private generateCombinations length =
     let rec helper remaining options =
         seq { if remaining = 0 then yield [] else
                 for x in options do
@@ -30,7 +30,7 @@ let generateCombinations length =
 
     helper length ([0..9] |> Set.ofList)
 
-let generateMaps (leftOperands, rightOperands) =
+let private generateMaps (leftOperands, rightOperands) =
     let operands = leftOperands @ rightOperands 
     let chars = operands |> String.concat "" |> Set.ofSeq
     let nonZeroChars = operands |> List.map Seq.head |> Set.ofList
@@ -39,14 +39,14 @@ let generateMaps (leftOperands, rightOperands) =
     |> Seq.map (Seq.zip chars >> Map.ofSeq)
     |> Seq.filter (fun m -> Set.forall (fun x -> Map.find x m <> 0) nonZeroChars)
 
-let sumOperands lettersToDigits = List.sumBy (operandToInt lettersToDigits)
+let private sumOperands lettersToDigits = List.sumBy (operandToInt lettersToDigits)
 
-let trySolve (leftOperands, rightOperands) lettersToDigits =
+let private trySolve (leftOperands, rightOperands) lettersToDigits =
     let left = sumOperands lettersToDigits leftOperands
     let right = sumOperands lettersToDigits rightOperands
     left = right
 
-let solve input = 
+let solve input: Map<char, int> option = 
     match parseEquation input with
     | Some equation -> Seq.tryFind (trySolve equation) (generateMaps equation)
     | None -> None

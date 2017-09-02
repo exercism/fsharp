@@ -1,30 +1,29 @@
-﻿module RobotNameTest
+module RobotNameTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
+open System.Text.RegularExpressions
 open RobotName
 
-[<Test>]
+[<Fact>]
 let ``Robot has a name`` () =     
     let robot = mkRobot()
-    StringAssert.IsMatch(@"\w{2}\d{3}", name robot)
+    Regex.IsMatch(name robot, @"\w{2}\d{3}") |> should equal true
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Name is the same each time`` () =     
     let robot = mkRobot()
-    Assert.That(name robot, Is.EqualTo(name robot))
+    name robot |> should equal (name robot)
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Different robots have different names`` () = 
     let robot = mkRobot()
     let robot2 = mkRobot()
-    Assert.That(name robot, Is.Not.EqualTo(name robot2))
+    name robot |> should not' (equal (name robot2))
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Can reset the name`` () =  
     let robot = mkRobot()
     let originalName = name robot
     let resetRobot = reset robot
-    Assert.That(originalName, Is.Not.EqualTo(name resetRobot))
+    originalName |> should not' (equal (name resetRobot))

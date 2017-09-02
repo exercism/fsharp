@@ -1,10 +1,11 @@
-﻿module LedgerTest
+module LedgerTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open Ledger
 
-[<Test>]
+[<Fact>]
 let ``Empty ledger`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -12,9 +13,9 @@ let ``Empty ledger`` () =
     let expected =
         "Date       | Description               | Change       "
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
 
-[<Test>]
+[<Fact>]
 let ``One entry`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -26,9 +27,9 @@ let ``One entry`` () =
         "Date       | Description               | Change       \n" +
         "01/01/2015 | Buy present               |      ($10.00)"
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
 
-[<Test>]
+[<Fact>]
 let ``Credit and debit`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -42,9 +43,9 @@ let ``Credit and debit`` () =
         "01/01/2015 | Buy present               |      ($10.00)\n" +
         "01/02/2015 | Get present               |       $10.00 "
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
  
-[<Test>]
+[<Fact>]
 let ``Multiple entries on same date ordered by description`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -58,9 +59,9 @@ let ``Multiple entries on same date ordered by description`` () =
         "01/01/2015 | Buy present               |      ($10.00)\n" +
         "01/01/2015 | Get present               |       $10.00 "
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
    
-[<Test>]
+[<Fact>]
 let ``Final order tie breaker is change`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -76,9 +77,9 @@ let ``Final order tie breaker is change`` () =
         "01/01/2015 | Something                 |        $0.00 \n" +
         "01/01/2015 | Something                 |        $0.01 "
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
   
-[<Test>]
+[<Fact>]
 let ``Overlong descriptions`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -90,9 +91,9 @@ let ``Overlong descriptions`` () =
         "Date       | Description               | Change       \n" +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
   
-[<Test>]
+[<Fact>]
 let ``Euros`` () =
     let currency = "EUR"
     let locale = "en-US"
@@ -104,9 +105,9 @@ let ``Euros`` () =
         "Date       | Description               | Change       \n" +
         "01/01/2015 | Buy present               |      (€10.00)"
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
    
-[<Test>]
+[<Fact>]
 let ``Dutch locale`` () =
     let currency = "USD"
     let locale = "nl-NL"
@@ -118,9 +119,9 @@ let ``Dutch locale`` () =
         "Datum      | Omschrijving              | Verandering  \n" +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
  
-[<Test>]
+[<Fact>]
 let ``Dutch negative number with 3 digits before decimal point`` () =
     let currency = "USD"
     let locale = "nl-NL"
@@ -132,9 +133,9 @@ let ``Dutch negative number with 3 digits before decimal point`` () =
         "Datum      | Omschrijving              | Verandering  \n" +
         "12-03-2015 | Buy present               |     $ -123,45"
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected
    
-[<Test>]
+[<Fact>]
 let ``American negative number with 3 digits before decimal point`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -146,4 +147,4 @@ let ``American negative number with 3 digits before decimal point`` () =
         "Date       | Description               | Change       \n" +
         "03/12/2015 | Buy present               |     ($123.45)"
 
-    Assert.That(formatLedger currency locale entries, Is.EqualTo(expected))
+    formatLedger currency locale entries |> should equal expected

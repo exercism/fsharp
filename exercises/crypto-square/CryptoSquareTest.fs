@@ -1,68 +1,57 @@
 module CryptoSquareTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 open CryptoSquare
 
-[<Test>]
+[<Fact>]
 let ``Strange characters are stripped during normalization`` () =
-    Assert.That(normalizePlaintext "s#$%^&plunk", Is.EqualTo("splunk"))
+    normalizePlaintext "s#$%^&plunk" |> should equal "splunk"
 
-[<Test>]
-[<Ignore("Remove to run test")>]   
+[<Fact(Skip = "Remove to run test")>]   
 let ``Letters are lowercased during normalization`` () =
-    Assert.That(normalizePlaintext "WHOA HEY!", Is.EqualTo("whoahey"))
+    normalizePlaintext "WHOA HEY!" |> should equal "whoahey"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Numbers are kept during normalization`` () =
-    Assert.That(normalizePlaintext "1, 2, 3, GO!", Is.EqualTo("123go"))
+    normalizePlaintext "1, 2, 3, GO!" |> should equal "123go"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Smallest square size is 2`` () =
-    Assert.That(size "1234", Is.EqualTo(2))
+    size "1234" |> should equal 2
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Size of text whose length is a perfect square is its square root`` () =
-    Assert.That(size "123456789", Is.EqualTo(3))
+    size "123456789" |> should equal 3
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Size of text whose length is not a perfect square is next biggest square root`` () =
-    Assert.That(size "123456789abc", Is.EqualTo(4))
+    size "123456789abc" |> should equal 4
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Size is determined by normalized text`` () =
-    Assert.That(size "Oh hey, this is nuts!", Is.EqualTo(4))
+    size "Oh hey, this is nuts!" |> should equal 4
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Segments are split by square size`` () =
-    Assert.That(plaintextSegments "Never vex thine heart with idle woes", Is.EqualTo(["neverv"; "exthin"; "eheart"; "withid"; "lewoes"]))
+    plaintextSegments "Never vex thine heart with idle woes" |> should equal ["neverv"; "exthin"; "eheart"; "withid"; "lewoes"]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Segments are split by square size until text runs out`` () =
-    Assert.That(plaintextSegments "ZOMG! ZOMBIES!!!", Is.EqualTo(["zomg"; "zomb"; "ies"]))
+    plaintextSegments "ZOMG! ZOMBIES!!!" |> should equal ["zomg"; "zomb"; "ies"]
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Ciphertext combines text by column`` () =
-    Assert.That(ciphertext "First, solve the problem. Then, write the code.", Is.EqualTo("foeewhilpmrervrticseohtottbeedshlnte"))
+    ciphertext "First, solve the problem. Then, write the code." |> should equal "foeewhilpmrervrticseohtottbeedshlnte"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Ciphertext skips cells with no text`` () =
-    Assert.That(ciphertext "Time is an illusion. Lunchtime doubly so.", Is.EqualTo("tasneyinicdsmiohooelntuillibsuuml"))
+    ciphertext "Time is an illusion. Lunchtime doubly so." |> should equal "tasneyinicdsmiohooelntuillibsuuml"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Normalized ciphertext is split by 5`` () =
-    Assert.That(normalizeCiphertext "Vampires are people too!", Is.EqualTo("vrel aepe mset paoo irpo"))
+    normalizeCiphertext "Vampires are people too!" |> should equal "vrel aepe mset paoo irpo"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Normalized ciphertext not exactly divisible by 5 spills into a smaller segment`` () =
-    Assert.That(normalizeCiphertext "Madness, and then illumination.", Is.EqualTo("msemo aanin dnin ndla etlt shui"))
+    normalizeCiphertext "Madness, and then illumination." |> should equal "msemo aanin dnin ndla etlt shui"

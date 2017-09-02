@@ -1,9 +1,10 @@
-﻿module HelloWorldTest
+module HelloWorldTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open HelloWorld
 
-[<Test>]
+[<Fact>]
 let ``Say hi!`` () =
-    Assert.That(hello, Is.EqualTo("Hello, World!"))
+    hello |> should equal "Hello, World!"

@@ -1,6 +1,7 @@
-﻿module ParallelLetterFrequencyTest
+module ParallelLetterFrequencyTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open ParallelLetterFrequency
 
@@ -37,60 +38,51 @@ let starSpangledBanner =
     "O say does that star-spangled banner yet wave,\n" +
     "O'er the land of the free and the home of the brave?\n"
  
-[<Test>]
+[<Fact>]
 let ``No texts mean no letters`` () =
-    Assert.That(frequency [], Is.EqualTo(Map.empty))
+    frequency [] |> should be Empty
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``One letter`` () =
-    Assert.That(frequency ["a"], Is.EqualTo(Map.ofList [('a', 1)]))
+    frequency ["a"] |> should equal (Map.ofList [('a', 1)])
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Case insensitivity`` () =
-    Assert.That(frequency ["aA"], Is.EqualTo(Map.ofList [('a', 2)]))
+    frequency ["aA"] |> should equal (Map.ofList [('a', 2)])
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Many empty texts still mean no letters`` () =
-    Assert.That(frequency (List.replicate 10000 "  "), Is.EqualTo(Map.empty))
+    frequency (List.replicate 10000 "  ") |> should be Empty
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Many times the same text gives a predictable result`` () =
-    Assert.That(frequency (List.replicate 1000 "abc"), Is.EqualTo(Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)]))
+    frequency (List.replicate 1000 "abc") |> should equal (Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)])
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Punctuation doesn't count`` () =
     let freqs = frequency [odeAnDieFreude]
-    Assert.That(Map.tryFind ',' freqs, Is.EqualTo(None))
+    Map.tryFind ',' freqs |> should equal None
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Numbers don't count`` () =
     let freqs = frequency ["Testing, 1, 2, 3"]
-    Assert.That(Map.tryFind '1' freqs, Is.EqualTo(None))
+    Map.tryFind '1' freqs |> should equal None
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Letters with and without diacritics are not the same letter`` () =
     let freqs = frequency ["aä"]
-    Assert.That(freqs, Is.EqualTo(Map.ofList [('a', 1); ('ä', 1)]))
+    freqs |> should equal (Map.ofList [('a', 1); ('ä', 1)])
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``All three anthems, together`` () =
     let freqs = frequency [odeAnDieFreude; wilhelmus; starSpangledBanner]
-    Assert.That(Map.tryFind 'a' freqs, Is.EqualTo(Some 49))
-    Assert.That(Map.tryFind 't' freqs, Is.EqualTo(Some 56))
-    Assert.That(Map.tryFind 'o' freqs, Is.EqualTo(Some 34))
+    Map.tryFind 'a' freqs |> should equal <| Some 49
+    Map.tryFind 't' freqs |> should equal <| Some 56
+    Map.tryFind 'o' freqs |> should equal <| Some 34
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Can handle large texts`` () =
     let freqs = frequency (List.replicate 1000 [odeAnDieFreude; wilhelmus; starSpangledBanner] |> List.concat)
-    Assert.That(Map.tryFind 'a' freqs, Is.EqualTo(Some 49000))
-    Assert.That(Map.tryFind 't' freqs, Is.EqualTo(Some 56000))
-    Assert.That(Map.tryFind 'o' freqs, Is.EqualTo(Some 34000))
+    Map.tryFind 'a' freqs |> should equal <| Some 49000
+    Map.tryFind 't' freqs |> should equal <| Some 56000
+    Map.tryFind 'o' freqs |> should equal <| Some 34000

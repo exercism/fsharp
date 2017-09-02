@@ -1,16 +1,16 @@
-﻿module ZebraPuzzleTest
+module ZebraPuzzleTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open ZebraPuzzle
 
-[<Test>]
+[<Fact>]
 let ``Who drinks water?`` () =
-    let solution = solve
-    Assert.That(whoDrinksWater solution, Is.EqualTo(Norwegian))
+    let solution = solve()
+    whoDrinksWater solution |> should equal Norwegian
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Who owns the zebra?`` () =
-    let solution = solve
-    Assert.That(whoOwnsZebra solution, Is.EqualTo(Japanese))
+    let solution = solve()
+    whoOwnsZebra solution |> should equal Japanese

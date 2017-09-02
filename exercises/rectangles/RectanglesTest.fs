@@ -1,39 +1,36 @@
-﻿module RectanglesTest
+module RectanglesTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open System
 
 open Rectangle
 
-[<Test>]
+[<Fact>]
 let ``No rows`` () =
     let input = []
-    Assert.That(rectangles input, Is.EqualTo(0))
+    rectangles input |> should equal 0
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``No columns`` () =
     let input = [""]
-    Assert.That(rectangles input, Is.EqualTo(0))
+    rectangles input |> should equal 0
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``No rectangles`` () =
     let input = [" "]
-    Assert.That(rectangles input, Is.EqualTo(0))
+    rectangles input |> should equal 0
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``One rectangle`` () =
     let input = 
         [ "+-+";
           "| |";
           "+-+" ]        
-    Assert.That(rectangles input, Is.EqualTo(1))
+    rectangles input |> should equal 1
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``two rectangles without shared parts`` () =
     let input = 
         [ "  +-+";
@@ -41,10 +38,9 @@ let ``two rectangles without shared parts`` () =
           "+-+-+";
           "| |  ";
           "+-+  " ]        
-    Assert.That(rectangles input, Is.EqualTo(2))
+    rectangles input |> should equal 2
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Five rectangles with shared parts`` () =
     let input = 
         [ "  +-+";
@@ -52,10 +48,9 @@ let ``Five rectangles with shared parts`` () =
           "+-+-+";
           "| | |";
           "+-+-+" ]        
-    Assert.That(rectangles input, Is.EqualTo(5))
+    rectangles input |> should equal 5
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Only complete rectangles are counted`` () =
     let input = 
         [ "  +-+";
@@ -63,10 +58,9 @@ let ``Only complete rectangles are counted`` () =
           "+-+-+";
           "| | -";
           "+-+-+" ]       
-    Assert.That(rectangles input, Is.EqualTo(1))
+    rectangles input |> should equal 1
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Rectangles can be of different sizes`` () =
     let input =
          ["+------+----+";
@@ -74,10 +68,9 @@ let ``Rectangles can be of different sizes`` () =
           "+---+--+    |";
           "|   |       |";
           "+---+-------+" ]       
-    Assert.That(rectangles input, Is.EqualTo(3))
+    rectangles input |> should equal 3
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Corner is required for a rectangle to be complete`` () =
     let input = 
         [ "+------+----+";
@@ -85,10 +78,9 @@ let ``Corner is required for a rectangle to be complete`` () =
           "+------+    |";
           "|   |       |";
           "+---+-------+" ]       
-    Assert.That(rectangles input, Is.EqualTo(2))
+    rectangles input |> should equal 2
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Large input with many rectangles`` () =
     let input = 
         [ "+---+--+----+";
@@ -99,4 +91,4 @@ let ``Large input with many rectangles`` () =
           "+---+--+--+-+";
           "+------+  | |";
           "          +-+" ]       
-    Assert.That(rectangles input, Is.EqualTo(60))
+    rectangles input |> should equal 60

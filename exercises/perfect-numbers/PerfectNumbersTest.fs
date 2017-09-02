@@ -1,23 +1,27 @@
-﻿module PerfectNumbersTest
+module PerfectNumbersTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open PerfectNumbers
 
-[<TestCase(3)>]
-[<TestCase(7, Ignore = "Remove to run test case")>]
-[<TestCase(13, Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(3)>]
+[<InlineData(7)>]
+[<InlineData(13)>]
 let ``Can classify deficient numbers`` (number) =
-    Assert.That(classify number, Is.EqualTo(Deficient))
+    classify number |> should equal Deficient
 
-[<TestCase(6, Ignore = "Remove to run test case")>]
-[<TestCase(28, Ignore = "Remove to run test case")>]
-[<TestCase(496, Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(6)>]
+[<InlineData(28)>]
+[<InlineData(496)>]
 let ``Can classify perfect numbers`` (number) =
-    Assert.That(classify number, Is.EqualTo(Perfect))
+    classify number |> should equal Perfect
 
-[<TestCase(12, Ignore = "Remove to run test case")>]
-[<TestCase(18, Ignore = "Remove to run test case")>]
-[<TestCase(20, Ignore = "Remove to run test case")>]
+[<Theory(Skip = "Remove to run test")>]
+[<InlineData(12)>]
+[<InlineData(18)>]
+[<InlineData(20)>]
 let ``Can classify abundant numbers`` (number) =
-    Assert.That(classify number, Is.EqualTo(Abundant))
+    classify number |> should equal Abundant

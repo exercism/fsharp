@@ -1,10 +1,11 @@
-﻿module TournamentTest
+module TournamentTest
     
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open Tournament
 
-[<Test>]
+[<Fact>]
 let ``Correctly displays the tournament table`` () =
     let actual = 
         ["Αllegoric Alaskians;Blithering Badgers;win";
@@ -21,10 +22,9 @@ let ``Correctly displays the tournament table`` () =
          "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
          "Courageous Californians        |  3 |  0 |  1 |  2 |  1"]
 
-    Assert.That(tally actual, Is.EqualTo(expected))
+    tally actual |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Ignores incorrect input`` () =
     let actual = 
         ["Allegoric Alaskians;Blithering Badgers;win";
@@ -46,10 +46,9 @@ let ``Ignores incorrect input`` () =
          "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
          "Courageous Californians        |  3 |  0 |  1 |  2 |  1"]
 
-    Assert.That(tally actual, Is.EqualTo(expected))    
+    tally actual |> should equal expected    
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Correctly displays another tournament table`` () =
     let actual = 
         ["Allegoric Alaskians;Blithering Badgers;win";
@@ -64,4 +63,4 @@ let ``Correctly displays another tournament table`` () =
          "Devastating Donkeys            |  1 |  1 |  0 |  0 |  3";
          "Courageous Californians        |  2 |  0 |  0 |  2 |  0"]
 
-    Assert.That(tally actual, Is.EqualTo(expected))
+    tally actual |> should equal expected

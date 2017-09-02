@@ -1,8 +1,0 @@
-source https://www.nuget.org/api/v2/
-nuget aether
-nuget FAKE
-nuget FParsec
-nuget FSharp.Core
-nuget NUnit
-nuget NUnit.ConsoleRunner
-github nunit/nunit-transforms nunit3-junit/nunit3-junit.xslt

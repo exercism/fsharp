@@ -1,10 +1,11 @@
-﻿module HangmanTest
+module HangmanTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open Hangman
 
-[<Test>]
+[<Fact>]
 let ``Initially 9 failures are allowed`` () =
     let game = createGame "foo"
     let states = statesObservable game
@@ -14,10 +15,9 @@ let ``Initially 9 failures are allowed`` () =
 
     startGame game |> ignore
 
-    Assert.That(lastProgress, Is.EqualTo(Busy 9))
+    lastProgress |> should equal <| Busy 9
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Initially no letters are guessed`` () =
     let game = createGame "foo"
     let states = statesObservable game
@@ -27,10 +27,9 @@ let ``Initially no letters are guessed`` () =
 
     startGame game |> ignore
 
-    Assert.That(lastMaskedWord, Is.EqualTo("___"))
+    lastMaskedWord |> should equal "___"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``After 10 failures the game is over`` () =
     let game = createGame "foo"
     let states = statesObservable game
@@ -42,10 +41,9 @@ let ``After 10 failures the game is over`` () =
 
     [for x in 1..10 do makeGuess 'x' game] |> ignore
 
-    Assert.That(lastProgress, Is.EqualTo(Lose))
+    lastProgress |> should equal Lose
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Feeding a correct letter removes underscores`` () =
     let game = createGame "foobar"
     let states = statesObservable game
@@ -57,16 +55,15 @@ let ``Feeding a correct letter removes underscores`` () =
 
     makeGuess 'b' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 9))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("___b__"))
+    lastState.Value.progress |> should equal <| Busy 9
+    lastState.Value.maskedWord |> should equal "___b__"
 
     makeGuess 'o' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 9))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("_oob__"))
+    lastState.Value.progress |> should equal <| Busy 9
+    lastState.Value.maskedWord |> should equal "_oob__"
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Feeding a correct letter twice counts as a failure`` () =
     let game = createGame "foobar"
     let states = statesObservable game
@@ -78,16 +75,15 @@ let ``Feeding a correct letter twice counts as a failure`` () =
 
     makeGuess 'b' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 9))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("___b__"))
+    lastState.Value.progress |> should equal <| Busy 9
+    lastState.Value.maskedWord |> should equal "___b__"
 
     makeGuess 'b' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 8))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("___b__"))
+    lastState.Value.progress |> should equal <| Busy 8
+    lastState.Value.maskedWord |> should equal "___b__"
      
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Getting all the letters right makes for a win`` () =
     let game = createGame "hello"
     let states = statesObservable game
@@ -99,25 +95,25 @@ let ``Getting all the letters right makes for a win`` () =
 
     makeGuess 'b' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 8))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("_____"))
+    lastState.Value.progress |> should equal <| Busy 8
+    lastState.Value.maskedWord |> should equal "_____"
 
     makeGuess 'e' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 8))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("_e___"))
+    lastState.Value.progress |> should equal <| Busy 8
+    lastState.Value.maskedWord |> should equal "_e___"
 
     makeGuess 'l' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 8))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("_ell_"))
+    lastState.Value.progress |> should equal <| Busy 8
+    lastState.Value.maskedWord |> should equal "_ell_"
 
     makeGuess 'o' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Busy 8))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("_ello"))
+    lastState.Value.progress |> should equal <| Busy 8
+    lastState.Value.maskedWord |> should equal "_ello"
 
     makeGuess 'h' game |> ignore
 
-    Assert.That(lastState.Value.progress, Is.EqualTo(Win))
-    Assert.That(lastState.Value.maskedWord, Is.EqualTo("hello"))
+    lastState.Value.progress |> should equal Win
+    lastState.Value.maskedWord |> should equal "hello"

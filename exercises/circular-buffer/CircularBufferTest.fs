@@ -1,19 +1,20 @@
-﻿module CircularBufferTest
+module CircularBufferTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
+open System
 
 open CircularBuffer
 
-[<Test>]
+[<Fact>]
 let ``Write and read back one item`` () =
     let buffer1 = mkCircularBuffer 1 |> write '1'    
     let (val2, buffer2) = read buffer1
 
-    Assert.That(val2, Is.EqualTo('1'))    
-    Assert.That((fun () -> read buffer2 |> ignore), Throws.Exception)
+    val2 |> should equal '1'    
+    (fun () -> read buffer2 |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Write and read back multiple items`` () =    
     let buffer1 = 
         mkCircularBuffer 2
@@ -23,12 +24,11 @@ let ``Write and read back multiple items`` () =
     let (val2, buffer2) = read buffer1
     let (val3, buffer3) = read buffer2
 
-    Assert.That(val2, Is.EqualTo('1'))
-    Assert.That(val3, Is.EqualTo('2'))
-    Assert.That((fun () -> read buffer3 |> ignore), Throws.Exception)
+    val2 |> should equal '1'
+    val3 |> should equal '2'
+    (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
     
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Clearing buffer`` () =    
     let buffer1 = mkCircularBuffer 3
     let buffer2 = List.fold (fun buffer value -> write value buffer) buffer1 ['1'..'3']
@@ -43,12 +43,11 @@ let ``Clearing buffer`` () =
     let buffer6 = buffer5 |> write '3'
     let (val7, _) = read buffer6
 
-    Assert.That((fun () -> read buffer3 |> ignore), Throws.Exception)
-    Assert.That(val5, Is.EqualTo('1'))
-    Assert.That(val7, Is.EqualTo('2'))
+    (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
+    val5 |> should equal '1'
+    val7 |> should equal '2'
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Alternate write and read`` () =    
     let buffer1 = mkCircularBuffer 2
     let buffer2 = buffer1 |> write '1'
@@ -56,11 +55,10 @@ let ``Alternate write and read`` () =
     let buffer4 = buffer3 |> write '2'
     let (val5, _) = read buffer4
     
-    Assert.That(val3, Is.EqualTo('1'))
-    Assert.That(val5, Is.EqualTo('2'))
+    val3 |> should equal '1'
+    val5 |> should equal '2'
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Reads back oldest item`` () =    
     let buffer1 = 
         mkCircularBuffer 3
@@ -71,21 +69,19 @@ let ``Reads back oldest item`` () =
     let buffer3 = buffer2 |> write '3'
     let (val4, buffer4) = read buffer3
     let (val5, _) = read buffer4
-    Assert.That(val4, Is.EqualTo('2'))
-    Assert.That(val5, Is.EqualTo('3'))
+    val4 |> should equal '2'
+    val5 |> should equal '3'
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Writing to a full buffer throws an exception`` () =    
     let buffer = 
         mkCircularBuffer 2
         |> write '1'
         |> write '2'
 
-    Assert.That((fun () -> buffer |> write 'A' |> ignore), Throws.Exception)
+    (fun () -> buffer |> write 'A' |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Overwriting oldest item in a full buffer`` () =    
     let buffer1 = 
         mkCircularBuffer 2
@@ -96,12 +92,11 @@ let ``Overwriting oldest item in a full buffer`` () =
     let (val2, buffer2) = read buffer1
     let (val3, buffer3) = read buffer2
 
-    Assert.That(val2, Is.EqualTo('2'))
-    Assert.That(val3, Is.EqualTo('A'))
-    Assert.That((fun () -> read buffer3 |> ignore), Throws.Exception)
+    val2 |> should equal '2'
+    val3 |> should equal 'A'
+    (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Forced writes to non full buffer should behave like writes`` () =    
     let buffer1 = 
         mkCircularBuffer 2
@@ -111,12 +106,11 @@ let ``Forced writes to non full buffer should behave like writes`` () =
     let (val2, buffer2) = read buffer1
     let (val3, buffer3) = read buffer2
 
-    Assert.That(val2, Is.EqualTo('1'))
-    Assert.That(val3, Is.EqualTo('2'))
-    Assert.That((fun () -> read buffer3 |> ignore), Throws.Exception)
+    val2 |> should equal '1'
+    val3 |> should equal '2'
+    (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
   
-[<Test>]
-[<Ignore("Remove to run test")>] 
+[<Fact(Skip = "Remove to run test")>] 
 let ``Alternate read and write into buffer overflow`` () =    
     let buffer1 = mkCircularBuffer 5
     let buffer2 = List.fold (fun buffer value -> write value buffer) buffer1 ['1'..'3']
@@ -133,7 +127,7 @@ let ``Alternate read and write into buffer overflow`` () =
 
     let folder buffer value =
         let (val', buffer') = read buffer    
-        Assert.IsTrue((val' = value)) |> ignore
+        val' |> should equal value |> ignore
         buffer'
 
     let buffer8 = List.fold folder buffer7 ['6'..'8']      
@@ -141,6 +135,6 @@ let ``Alternate read and write into buffer overflow`` () =
     let (val9, buffer9) = read buffer8  
     let (val10, buffer10) = read buffer9
     
-    Assert.That(val9, Is.EqualTo('A'))
-    Assert.That(val10, Is.EqualTo('B'))
-    Assert.That((fun () -> read buffer10 |> ignore), Throws.Exception)
+    val9 |> should equal 'A'
+    val10 |> should equal 'B'
+    (fun () -> read buffer10 |> ignore) |> should throw typeof<Exception>

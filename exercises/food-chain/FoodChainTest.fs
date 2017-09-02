@@ -1,30 +1,29 @@
-﻿module FoodChainTest
+module FoodChainTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open FoodChain
 
 let combine = List.reduce (fun x y -> x + "\n" + y)
 
-[<Test>]
+[<Fact>]
 let ``Verse one`` () =
     let expected = ["I know an old lady who swallowed a fly.";
                     "I don't know why she swallowed the fly. Perhaps she'll die."] |> combine
 
-    Assert.That(verse 1, Is.EqualTo(expected))
+    verse 1 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Verse two`` () =
     let expected = ["I know an old lady who swallowed a spider.";
                     "It wriggled and jiggled and tickled inside her.";
                     "She swallowed the spider to catch the fly.";
                     "I don't know why she swallowed the fly. Perhaps she'll die."] |> combine
 
-    Assert.That(verse 2, Is.EqualTo(expected))
+    verse 2 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Verse four`` () =
     let expected = ["I know an old lady who swallowed a cat.";
                     "Imagine that, to swallow a cat!";
@@ -33,18 +32,16 @@ let ``Verse four`` () =
                     "She swallowed the spider to catch the fly.";
                     "I don't know why she swallowed the fly. Perhaps she'll die."] |> combine
 
-    Assert.That(verse 4, Is.EqualTo(expected))
+    verse 4 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Verse eight`` () =
     let expected = ["I know an old lady who swallowed a horse.";
                     "She's dead, of course!"] |> combine
 
-    Assert.That(verse 8, Is.EqualTo(expected))
+    verse 8 |> should equal expected
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Complete song`` () =
     let expected = ["I know an old lady who swallowed a fly.";
                     "I don't know why she swallowed the fly. Perhaps she'll die.";
@@ -97,4 +94,4 @@ let ``Complete song`` () =
                     "I know an old lady who swallowed a horse.";
                     "She's dead, of course!"] |> combine
 
-    Assert.That(song, Is.EqualTo(expected))
+    song |> should equal expected

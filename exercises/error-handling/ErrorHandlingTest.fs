@@ -1,6 +1,8 @@
 module ErrorHandlingTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
+open System
 
 open ErrorHandling
 
@@ -16,40 +18,35 @@ type Resource() =
 
 // Throwing exceptions is not the preferred approach to handling errors in F#, 
 // but it becomes relevant when you use .NET framework methods from your F# code
-[<Test>]
+[<Fact>]
 let ``Throwing exception`` () =    
-    Assert.That((fun () -> handleErrorByThrowingException() |> ignore), Throws.Exception)
+    (fun () -> handleErrorByThrowingException() |> ignore) |> should throw typeof<Exception>
 
 // A better approach than exceptions is to use the Option<'T> discriminated union. 
 // If the function is successful, Some x is returned (with x being the value).
 // Upon failure, None is returned. The caller can then pattern match on the
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Returning Option<'T>`` () =
     let successResult = handleErrorByReturningOption "1"
-    Assert.That(successResult, Is.EqualTo(Some 1))
+    successResult |> should equal <| Some 1
     
     let failureResult = handleErrorByReturningOption "a"
-    Assert.That(failureResult, Is.EqualTo(None))
+    failureResult |> should equal None
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
-// In that case, one usually defines a new discriminated union: Result<'TSuccess, 'TError>.
+// In that case, one can use a different discriminated union: Result<'TSuccess, 'TError>.
 // This discriminated union has two possible cases: Ok and Error, which contain data
 // of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
-//
-// Note: F# 4.1 will include the Result<'TSuccess, 'TError> type.
-// See: https://blogs.msdn.microsoft.com/dotnet/2016/07/25/a-peek-into-f-4-1/
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Returning Result<'TSuccess, 'TError>`` () =
     let successResult = handleErrorByReturningResult "1"
-    Assert.True((successResult = Ok 1))
+    (successResult = Ok 1) |> should equal true
     
     let failureResult = handleErrorByReturningResult "a"
-    Assert.True((failureResult = Error "Could not convert input to integer"))
+    (failureResult = Error "Could not convert input to integer") |> should equal true
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -66,8 +63,7 @@ let ``Returning Result<'TSuccess, 'TError>`` () =
 //
 // In this test, your task is to write a function "bind", that allows you to combine
 // two functions that take a 'TSuccess instance and return a Result<'TSuccess, 'TError> instance.
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Using railway-oriented programming`` () =
     let validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
     let validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
@@ -81,23 +77,22 @@ let ``Using railway-oriented programming`` () =
         >> bind validate3
 
     let firstValidationFailureResult = combinedValidation 1            
-    Assert.True((firstValidationFailureResult = Error "Input less than or equal to five"))
+    (firstValidationFailureResult = Error "Input less than or equal to five") |> should equal true
 
     let secondValidationFailureResult = combinedValidation 23          
-    Assert.True((secondValidationFailureResult = Error "Input greater than or equal to ten"))
+    (secondValidationFailureResult = Error "Input greater than or equal to ten") |> should equal true
 
     let thirdValidationFailureResult = combinedValidation 8        
-    Assert.True((thirdValidationFailureResult = Error "Input is not odd"))
+    (thirdValidationFailureResult = Error "Input is not odd") |> should equal true
 
     let successResult = combinedValidation 7        
-    Assert.True((successResult = Ok 7))
+    (successResult = Ok 7) |> should equal true
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Cleaning up disposables when throwing exception`` () =    
     let resource = new Resource()
 
-    Assert.That((fun () -> cleanupDisposablesWhenThrowingException resource |> ignore), Throws.Exception)
-    Assert.True(resource.Disposed())
+    (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
+    resource.Disposed() |> should equal true

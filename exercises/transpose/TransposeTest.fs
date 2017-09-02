@@ -1,18 +1,18 @@
-﻿module TransposeTest
+module TransposeTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open Transpose
 
-[<Test>]
+[<Fact>]
 let ``Empty string`` () = 
     let input = ""
     let expected = ""
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Two characters in a row`` () = 
     let input =
         "A1"
@@ -21,10 +21,9 @@ let ``Two characters in a row`` () =
         "A\n" +
         "1"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Two characters in a column`` () = 
     let input =
         "A\n" +
@@ -33,10 +32,9 @@ let ``Two characters in a column`` () =
     let expected = 
         "A1"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Simple`` () = 
     let input =
         "ABC\n" +
@@ -47,10 +45,9 @@ let ``Simple`` () =
         "B2\n" +
         "C3"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Single line`` () = 
     let input =
         "Single line."
@@ -69,10 +66,9 @@ let ``Single line`` () =
         "e\n" +
         "."
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``First line longer than second line`` () = 
     let input = 
         "The fourth line.\n" + 
@@ -96,10 +92,9 @@ let ``First line longer than second line`` () =
         "e.\n" +
         "."
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Second line longer than first line`` () = 
     let input = 
         "The first line.\n" + 
@@ -123,10 +118,9 @@ let ``Second line longer than first line`` () =
         ".e\n" +
         " ."
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Square`` () = 
     let input = 
         "HEART\n" +
@@ -142,10 +136,9 @@ let ``Square`` () =
         "RESIN\n" +
         "TREND"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Rectangle`` () = 
     let input = 
         "FRACTURE\n" +
@@ -163,10 +156,9 @@ let ``Rectangle`` () =
         "RENT\n"+ 
         "EDGE"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Triangle`` () = 
     let input = 
         "T\n" +
@@ -184,10 +176,9 @@ let ``Triangle`` () =
         "    ER\n" + 
         "     R"
 
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected
 
-[<Ignore("Remove to run test")>]
-[<Test>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Many lines`` () = 
     let input = 
         "Chor. Two households, both alike in dignity,\n" +
@@ -260,4 +251,4 @@ let ``Many lines`` () =
         "          e  .\n" +
         "          ,"
     
-    Assert.That(transpose input, Is.EqualTo(expected))
+    transpose input |> should equal expected

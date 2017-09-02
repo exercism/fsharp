@@ -1,19 +1,18 @@
-﻿module TwoFerTest
+module TwoFerTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open TwoFer
 
-[<Test>]
+[<Fact>]
 let ``No name given`` () =
-    Assert.That(getResponse None, Is.EqualTo("One for you, one for me."))
+    getResponse None |> should equal "One for you, one for me."
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``A name given`` () =
-    Assert.That(getResponse (Some "Alice"), Is.EqualTo("One for Alice, one for me."))
+    getResponse (Some "Alice") |> should equal "One for Alice, one for me."
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Another name given`` () =
-    Assert.That(getResponse (Some "Bob"), Is.EqualTo("One for Bob, one for me."))
+    getResponse (Some "Bob") |> should equal "One for Bob, one for me."

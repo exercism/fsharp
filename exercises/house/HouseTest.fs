@@ -1,6 +1,7 @@
-﻿module HouseTest
+module HouseTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open House
 
@@ -97,6 +98,6 @@ let expected =
     "that lay in the house that Jack built."]
     |> List.reduce (fun x y -> x + "\n" + y)
 
-[<Test>]
+[<Fact>]
 let ``Rhyme is correct`` () =
-    Assert.That(rhyme, Is.EqualTo(expected))
+    rhyme |> should equal expected

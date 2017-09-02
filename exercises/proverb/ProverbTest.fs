@@ -1,25 +1,23 @@
-﻿module ProverbTest
+module ProverbTest
 
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 
 open Proverb
 
-[<Test>]
+[<Fact>]
 let ``Line one`` () =
-    Assert.That(line 1, Is.EqualTo("For want of a nail the shoe was lost."))
+    line 1 |> should equal "For want of a nail the shoe was lost."
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Line four`` () =
-    Assert.That(line 4, Is.EqualTo("For want of a rider the message was lost."))
+    line 4 |> should equal "For want of a rider the message was lost."
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Line seven`` () =
-    Assert.That(line 7, Is.EqualTo("And all for the want of a horseshoe nail."))
+    line 7 |> should equal "And all for the want of a horseshoe nail."
     
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Proverb`` () =
     let expected =
         ["For want of a nail the shoe was lost.";
@@ -31,4 +29,4 @@ let ``Proverb`` () =
          "And all for the want of a horseshoe nail."]
         |> List.reduce (fun x y -> x + "\n" + y)
 
-    Assert.That(proverb, Is.EqualTo(expected))
+    proverb |> should equal expected

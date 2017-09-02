@@ -1,7 +1,8 @@
-﻿module LensPersonTest
+module LensPersonTest
 
 open System
-open NUnit.Framework
+open Xunit
+open FsUnit.Xunit
 open Aether
 open Aether.Operators
 open LensPerson
@@ -23,21 +24,18 @@ let testPerson =
           place = "Fallmeadow"
           country = "Canada" } }
 
-[<Test>]
+[<Fact>]
 let ``Set born at street`` () =
-    Assert.That(Optic.get bornAtStreet testPerson, Is.EqualTo("Longway"))
+    Optic.get bornAtStreet testPerson |> should equal "Longway"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Set current street`` () =
-    Assert.That(Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet, Is.EqualTo("Middleroad"))
+    Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet |> should equal "Middleroad"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Upper case born at street`` () =
-    Assert.That(Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet, Is.EqualTo("LONGWAY"))
+    Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet |> should equal "LONGWAY"
 
-[<Test>]
-[<Ignore("Remove to run test")>]
+[<Fact(Skip = "Remove to run test")>]
 let ``Set birth month`` () =
-    Assert.That(Optic.set birthMonth 9 testPerson |> Optic.get bornOn, Is.EqualTo(DateTime(1984, 9, 12)))
+    Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)
