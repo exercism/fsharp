@@ -6,7 +6,7 @@ open Acronym
 
 [<Fact>]
 let ``Empty string abbreviated to empty string`` () =
-    acronym "" |> should equal ""
+    acronym "" |> should be EmptyString
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Basic`` () =

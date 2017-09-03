@@ -24,7 +24,7 @@ let run text = eval text empty |> map formatStack
 
 [<Fact>]
 let ``No input, no stack`` () =
-    formatStack empty |> should equal ""
+    formatStack empty |> should be EmptyString
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Numbers just get pushed onto the stack`` () =
