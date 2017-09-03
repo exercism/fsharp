@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 var target = Argument("target", "Default");
+var exercise = Argument<string>("exercise", null);
 
 var sourceDir = "./exercises";
 var buildDir  = "./build";
@@ -14,13 +15,13 @@ var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = System.Envi
 Task("Clean")
     .Does(() => {
 		CleanDirectory(buildDir);   
-    });
+    }); 
 
 // Copy everything to build so we make no changes in the actual files.
 Task("CopyExercises")
     .IsDependentOn("Clean")
     .Does(() => {
-        CopyDirectory(sourceDir, buildDir);
+        CopyDirectory($"{sourceDir}/{exercise}", $"{buildDir}/{exercise}");
     });
 
 Task("EnableAllTests")
@@ -53,11 +54,11 @@ Task("TestRefactoringProjects")
 Task("ReplaceStubWithExample")
     .IsDependentOn("TestRefactoringProjects")
     .Does(() => {
-        var solution = ParseSolution(solutionPath);
+        var projects = GetFiles(buildDir + "/*/*.fsproj");
 
-        foreach (var project in solution.Projects) {
-            var projectDir = project.Path.GetDirectory();
-            var projectName = project.Path.GetFilenameWithoutExtension();
+        foreach (var project in projects) {
+            var projectDir = project.GetDirectory();
+            var projectName = project.GetFilenameWithoutExtension();
             var stub = projectDir.GetFilePath(projectName).AppendExtension("fs");
             var example = projectDir.GetFilePath("Example.fs");
             
@@ -81,8 +82,8 @@ Task("AddPackagesUsedInExampleImplementations")
 Task("TestUsingExampleImplementation")
     .IsDependentOn("AddPackagesUsedInExampleImplementations")
     .Does(() => {
-        var solution = ParseSolution(solutionPath);
-        Parallel.ForEach(solution.Projects, parallelOptions, (project) => DotNetCoreTest(project.Path.FullPath));
+        var projects = GetFiles(buildDir + "/*/*.fsproj");
+        Parallel.ForEach(projects, parallelOptions, (project) => DotNetCoreTest(project.FullPath));
     });
 
 Task("Default")
