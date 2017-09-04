@@ -8,8 +8,6 @@ var exercise = Argument<string>("exercise", null);
 var sourceDir = "./exercises";
 var buildDir  = "./build";
 
-var solutionPath = buildDir + "/Exercises.sln";
-
 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = System.Environment.ProcessorCount };
 
 Task("Clean")
