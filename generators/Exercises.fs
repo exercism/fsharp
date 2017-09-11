@@ -7,12 +7,16 @@ open Output
 
 [<AbstractClass>]
 type Exercise() =
-    member this.Name = this.GetType() |> toExerciseName
+    abstract member MapCanonicalData : CanonicalData -> CanonicalData
+
+    member this.Name = this.GetType() |> toExerciseName    
 
     member this.Regenerate(canonicalData) = 
         printfn "Canonical data for %s: %A" this.Name canonicalData
         printf "%s" <| renderPartial "TestClass" "CanonicalData" canonicalData
         ()
+
+    default this.MapCanonicalData(canonicalData) = canonicalData    
 
 type HelloWorld() =
     inherit Exercise()

@@ -38,5 +38,9 @@ let setupLogger() =
 
 let toExerciseName (exerciseType: Type) = exerciseType.Name.Kebaberize()
 
+let toTestedModuleName (exercise: string) = exercise.Dehumanize()
+
+let toTestModuleName (exercise: string) = sprintf "%sTest" (toTestedModuleName exercise)
+
 module String =
     let EqualsOrdinalIgnoreCase (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)

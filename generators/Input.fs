@@ -8,17 +8,17 @@ open LibGit2Sharp
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 
-type CanonicalDataCase = {
-    Description: string;
-    Property: string;
-    Properties: ExpandoObject;
-}
+type CanonicalDataCase = 
+    { Description: string
+      Property: string
+      Properties: ExpandoObject }
 
-type CanonicalData = {
-    Exercise: string
-    Version: string
-    Cases: CanonicalDataCase list
-}
+type CanonicalData = 
+    { Exercise: string
+      Version: string
+      Cases: CanonicalDataCase list } with
+        member this.TestedModuleName = toTestedModuleName this.Exercise
+        member this.TestModuleName = toTestModuleName this.Exercise
 
 [<Literal>]
 let private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";

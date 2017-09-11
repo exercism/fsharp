@@ -14,10 +14,10 @@ let private parseTemplate<'T> template =
     let rec registerTypeTree ty =
         if registrations.ContainsKey ty then ()
         elif FSharpType.IsRecord ty then
-            let fields = FSharpType.GetRecordFields ty
-            Template.RegisterSafeType(ty, [| for f in fields -> f.Name |])
+            let properties = ty.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
+            Template.RegisterSafeType(ty, [| for p in properties -> p.Name |])
             registrations.[ty] <- true
-            for f in fields do registerTypeTree f.PropertyType
+            for p in properties do registerTypeTree p.PropertyType
         elif ty.IsGenericType then
             let t = ty.GetGenericTypeDefinition()
             if t = typedefof<seq<_>> || t = typedefof<list<_>>  then
