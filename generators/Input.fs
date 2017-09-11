@@ -1,18 +1,23 @@
 module Input
 
+open System
 open System.IO
+open System.Dynamic
 open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
+open Newtonsoft.Json.Linq
 
 type CanonicalDataCase = {
     Description: string;
+    Property: string;
+    Properties: ExpandoObject;
 }
 
 type CanonicalData = {
     Exercise: string
     Version: string
-    Cases: CanonicalDataCase[]
+    Cases: CanonicalDataCase list
 }
 
 [<Literal>]
@@ -59,60 +64,36 @@ let private readCanonicalData options exercise =
     let exerciseCanonicalDataPath = Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
     File.ReadAllText(exerciseCanonicalDataPath)
 
+type CanonicalDataConverter() =
+    inherit JsonConverter()
+
+    let createCanonicalDataCaseFromJToken (jToken: JToken) =
+        { Description = jToken.["description"].Value<string>()
+          Property = jToken.["property"].Value<string>()
+          Properties = jToken.ToObject<ExpandoObject>() }
+
+    let createCanonicalDataCasesFromJToken (jToken: JToken) =  
+        jToken.["cases"].SelectTokens("$..*[?(@.property)]")
+        |> Seq.map createCanonicalDataCaseFromJToken
+        |> Seq.toList
+
+    let createCanonicalDataFromJToken (jToken: JToken) =
+        { Exercise = jToken.["exercise"].Value<string>()
+          Version = jToken.["version"].Value<string>()
+          Cases = createCanonicalDataCasesFromJToken jToken }
+
+    override this.WriteJson(writer: JsonWriter, value: obj, serializer: JsonSerializer) = failwith "Not supported"
+
+    override this.ReadJson(reader: JsonReader, objectType: Type, existingValue: obj, serializer: JsonSerializer) =
+        let jToken = JToken.ReadFrom(reader)
+        createCanonicalDataFromJToken jToken :> obj
+
+    override this.CanConvert(objectType: Type) = objectType = typedefof<CanonicalData>
+
 let parseCanonicalData options = 
     downloadData options
 
     let readCanonicalData' = readCanonicalData options
     fun exercise ->
         let canonicalDataContents = readCanonicalData' exercise
-        JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents)
-
-//  public class CanonicalDataCase
-//     {
-//         [Required]
-//         public string Description { get; set; }
-
-//         [Required]
-//         public string Property { get; set; }
-
-//         [JsonIgnore]
-//         public IDictionary<string, object> Input { get; set; }
-
-//         [JsonIgnore]
-//         public IDictionary<string, object> ConstructorInput { get; set; }
-
-//         public object Expected { get; set; }
-
-//         [JsonIgnore]
-//         public IDictionary<string, object> Properties { get; set; }
-
-//         [JsonIgnore]
-//         public bool UseVariablesForInput { get; set; }
-
-//         [JsonIgnore]
-//         public bool UseVariableForExpected { get; set; }
-
-//         [JsonIgnore]
-//         public bool UseVariablesForConstructorParameters { get; set; }
-
-//         [JsonIgnore]
-//         public bool UseVariableForTested { get; set; }
-
-//         [JsonIgnore]
-//         public TestedMethodType TestedMethodType { get; set; } = TestedMethodType.Static;
-
-//         [JsonIgnore]
-//         public Type ExceptionThrown { get; set; }
-//     }
-
-// public class CanonicalData
-//     {
-//         [Required]
-//         public string Exercise { get; set; }
-
-//         [Required]
-//         public string Version { get; set; }
-
-//         [JsonConverter(typeof(CanonicalDataCasesJsonConverter))]
-//         public CanonicalDataCase[] Cases { get; set; }
-//     }
+        JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter())

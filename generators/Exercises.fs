@@ -8,7 +8,8 @@ open Input
 type Exercise() =
     member this.Name = this.GetType() |> toExerciseName
 
-    member this.Regenerate(canonicalData) = ()
+    member this.Regenerate(canonicalData) = 
+        printfn "Canonical data for %s: %A" this.Name canonicalData
 
 type HelloWorld() =
     inherit Exercise()
