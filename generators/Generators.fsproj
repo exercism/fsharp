@@ -6,11 +6,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Common.fs" />
+    <Compile Include="Exercises.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
+    <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="serilog" Version="2.5.0" />
     <PackageReference Include="serilog.sinks.literate" Version="3.0.0" />
   </ItemGroup>
