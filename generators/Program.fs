@@ -1,33 +1,16 @@
-﻿open System
-open CommandLine
-open Serilog
+﻿open Serilog
 open Exercises
+open Input
 
-type Options = {
-  [<CommandLine.Option('e', "exercises", Required = false, 
-    HelpText = "Exercises to generate (if not specified, defaults to all exercises).")>] Exercises : seq<string>;
-  [<CommandLine.Option('d', "canonicaldatadirectory", Required = false, 
-    HelpText = "Canonical data directory. If the directory does not exist, the canonical data will be downloaded.")>] CanonicalDataDirectory : string;
-  [<CommandLine.Option('c', "cachecanonicaldata", Required = false, 
-    HelpText = "Use the cached canonical data and don't update the data.")>] CacheCanonicalData : bool;
-}
-
-let parseOptions argv =  
-    let result = CommandLine.Parser.Default.ParseArguments<Options>(argv)
-    match result with
-    | :? Parsed<Options> as parsed -> Result.Ok(parsed.Value)
-    | :? NotParsed<Options> as notParsed -> Result.Error(notParsed.Errors |> Seq.map string)
-    | _ -> Result.Error(seq { yield "Invalid parsing result" })
-
-let setupLogger() =
-    Log.Logger <- LoggerConfiguration()
-        .WriteTo.LiterateConsole()
-        .CreateLogger();
+let regenerateTestClass options (exercise: Exercise) =
+    let canonicalData = (parseCanonicalData options) exercise.Name
+    exercise.Regenerate(canonicalData)
 
 let regenerateTestClasses options =
     Log.Information("Re-generating test classes...")
 
-    let exercises = createExercises options.Exercises
+    createExercises options.Exercises
+    |> Seq.iter (regenerateTestClass options)
 
     Log.Information("Re-generated test classes.")
 

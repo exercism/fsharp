@@ -2,10 +2,13 @@ module Exercises
 
 open System
 open System.Reflection
+open Input
 
 [<AbstractClass>]
 type Exercise() =
     member this.Name = this.GetType() |> toExerciseName
+
+    member this.Regenerate(canonicalData) = ()
 
 type HelloWorld() =
     inherit Exercise()
