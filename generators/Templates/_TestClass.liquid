@@ -6,3 +6,9 @@ open Xunit
 open FsUnit.Xunit
 
 open {{ CanonicalData.TestedModuleName }}
+
+{% for canonicalDataCase in CanonicalData.Cases -%}
+[<Fact>]
+let ``{{ canonicalDataCase.description }}`` () =
+    {{ canonicalDataCase.property }} |> should equal {{ canonicalDataCase.expected }}
+{% endfor -%}

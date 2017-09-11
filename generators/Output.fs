@@ -32,7 +32,7 @@ let private parseTemplate<'T> template =
                 registerTypeTree (ty.GetElementType())
         else ()
 
-    registerTypeTree typeof<'T>    
+    registerTypeTree typeof<'T>
     let t = Template.Parse template
     
     // Given a label name and an instance of the model, render the template with a dictionary made of all of the properties of the model

@@ -2,21 +2,16 @@ module Generators.Input
 
 open System
 open System.IO
-open System.Dynamic
+open System.Collections.Generic
 open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 
-type CanonicalDataCase = 
-    { Description: string
-      Property: string
-      Properties: ExpandoObject }
-
 type CanonicalData = 
     { Exercise: string
       Version: string
-      Cases: CanonicalDataCase list } with
+      Cases: Dictionary<string, obj> list } with
         member this.TestedModuleName = toTestedModuleName this.Exercise
         member this.TestModuleName = toTestModuleName this.Exercise
 
@@ -68,9 +63,7 @@ type CanonicalDataConverter() =
     inherit JsonConverter()
 
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
-        { Description = jToken.["description"].Value<string>()
-          Property = jToken.["property"].Value<string>()
-          Properties = jToken.ToObject<ExpandoObject>() }
+        jToken.ToObject<Dictionary<string, obj>>()
 
     let createCanonicalDataCasesFromJToken (jToken: JToken) =  
         jToken.["cases"].SelectTokens("$..*[?(@.property)]")
