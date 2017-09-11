@@ -3,17 +3,25 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>Generators</RootNamespace>
+    <UseStandardResourceNames>true</UseStandardResourceNames>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="Common.fs" />
     <Compile Include="Input.fs" />
+    <Compile Include="Output.fs" />
     <Compile Include="Exercises.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />
+    <EmbeddedResource Include="Templates\*.liquid" UseStandardResourceNames="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.1.1-beta" />    
+    <PackageReference Include="DotLiquid" Version="2.0.180" />
     <PackageReference Include="Humanizer" Version="2.2.0" />
     <PackageReference Include="LibGit2Sharp.Portable" Version="0.24.10" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />

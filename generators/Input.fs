@@ -1,4 +1,4 @@
-module Input
+module Generators.Input
 
 open System
 open System.IO
@@ -88,7 +88,7 @@ type CanonicalDataConverter() =
         let jToken = JToken.ReadFrom(reader)
         createCanonicalDataFromJToken jToken :> obj
 
-    override this.CanConvert(objectType: Type) = objectType = typedefof<CanonicalData>
+    override this.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
 let parseCanonicalData options = 
     downloadData options

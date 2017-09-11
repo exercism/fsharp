@@ -1,4 +1,6 @@
-﻿open Serilog
+﻿module Generators.Program
+
+open Serilog
 open Exercises
 open Input
 

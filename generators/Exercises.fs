@@ -1,8 +1,9 @@
-module Exercises
+module Generators.Exercises
 
 open System
 open System.Reflection
 open Input
+open Output
 
 [<AbstractClass>]
 type Exercise() =
@@ -10,6 +11,8 @@ type Exercise() =
 
     member this.Regenerate(canonicalData) = 
         printfn "Canonical data for %s: %A" this.Name canonicalData
+        printf "%s" <| renderPartial "TestClass" "CanonicalData" canonicalData
+        ()
 
 type HelloWorld() =
     inherit Exercise()
@@ -17,7 +20,7 @@ type HelloWorld() =
 let createExercises filteredExercises =
 
     let isConcreteExercise (exerciseType: Type) = 
-        not exerciseType.IsAbstract && typedefof<Exercise>.IsAssignableFrom(exerciseType)
+        not exerciseType.IsAbstract && typeof<Exercise>.IsAssignableFrom(exerciseType)
 
     let isFilteredExercises (exerciseType: Type) =
         Seq.isEmpty filteredExercises ||
