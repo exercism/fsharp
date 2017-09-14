@@ -7,25 +7,12 @@ open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
+open Options
 
-type CanonicalData = 
-    { Exercise: string
-      Version: string
-      Cases: Dictionary<string, obj> list } with
-        member this.TestedModuleName = toTestedModuleName this.Exercise
-        member this.TestModuleName = toTestModuleName this.Exercise
-
-[<Literal>]
-let private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
-
-[<Literal>]
-let private ProblemSpecificationsBranch = "master";
-
-[<Literal>]
-let private ProblemSpecificationsRemote = "origin";
-
-[<Literal>]
-let private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
+let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
+let [<Literal>] private ProblemSpecificationsBranch = "master";
+let [<Literal>] private ProblemSpecificationsRemote = "origin";
+let [<Literal>] private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
 
 let private cloneRepository options =
     if (Directory.Exists(options.CanonicalDataDirectory)) then

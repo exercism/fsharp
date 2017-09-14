@@ -8,9 +8,22 @@ open DotLiquid
 open DotLiquid.FileSystems
 open Input
 
+let formatValue (value: obj) = 
+    match value with
+    | :? string as s -> sprintf "\"%s\"" s 
+    | _ -> string value
+
+type FormatFilter() =
+    static member Format(input: obj) = formatValue input
+
+let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "")
+Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
+Template.NamingConvention <- NamingConventions.CSharpNamingConvention()
+Template.RegisterFilter(typeof<FormatFilter>)
+
 let private registrations = Dictionary<_,_>()
 
-let private parseTemplate<'T> template =
+let private renderTemplate template value =
     let rec registerTypeTree ty =
         if registrations.ContainsKey ty then ()
         elif FSharpType.IsRecord ty then
@@ -32,20 +45,11 @@ let private parseTemplate<'T> template =
                 registerTypeTree (ty.GetElementType())
         else ()
 
-    registerTypeTree typeof<'T>
-    let t = Template.Parse template
-    
-    // Given a label name and an instance of the model, render the template with a dictionary made of all of the properties of the model
-    fun k (v:'T) -> t.Render(Hash.FromDictionary(dict [k, box v]))
+    value.GetType() |> registerTypeTree
 
-let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "")
-Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
-Template.NamingConvention <- NamingConventions.CSharpNamingConvention()
+    let parsedTemplate = Template.Parse template
+    parsedTemplate.Render(Hash.FromAnonymousObject(value))
 
-let renderInline<'T> template label parameters =
-    let template = parseTemplate<'T> template label
-    template parameters
-
-let renderPartial<'T> templateName label parameters =
-    let template = parseTemplate<'T> (sprintf "{%% include \"%s\" %%}" templateName) label
-    template parameters
+let renderPartial templateName value =
+    let template = sprintf "{%% include \"%s\" %%}" templateName
+    renderTemplate template value

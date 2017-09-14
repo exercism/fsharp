@@ -1,14 +1,13 @@
-// This file was auto-generated based on version {{CanonicalData.Version}} of the canonical data.
+// This file was auto-generated based on version {{ Version }} of the canonical data.
 
-module {{ CanonicalData.TestModuleName }}
+module {{ TestModuleName }}
 
-open Xunit
-open FsUnit.Xunit
+{%- for namespace in Namespaces -%}
+open {{ namespace }}
+{%- endfor -%}
 
-open {{ CanonicalData.TestedModuleName }}
+open {{ TestedModuleName }}
 
-{% for canonicalDataCase in CanonicalData.Cases -%}
-[<Fact>]
-let ``{{ canonicalDataCase.description }}`` () =
-    {{ canonicalDataCase.property }} |> should equal {{ canonicalDataCase.expected }}
-{% endfor -%}
+{%- for testMethod in TestMethods -%}
+{{ testMethod }}
+{%- endfor -%}

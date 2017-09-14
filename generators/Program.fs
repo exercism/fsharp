@@ -3,6 +3,7 @@
 open Serilog
 open Exercises
 open Input
+open Options
 
 let regenerateTestClass options (exercise: Exercise) =
     let canonicalData = (parseCanonicalData options) exercise.Name
