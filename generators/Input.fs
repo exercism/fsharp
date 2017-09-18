@@ -7,6 +7,8 @@ open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
+open Newtonsoft.Json.Serialization
+open Humanizer
 open Options
 
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
@@ -46,6 +48,9 @@ let private readCanonicalData options exercise =
     let exerciseCanonicalDataPath = Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
     File.ReadAllText(exerciseCanonicalDataPath)
 
+let jsonSerializerSettings = JsonSerializerSettings()
+let jsonSerializer = JsonSerializer()
+
 type CanonicalDataConverter() =
     inherit JsonConverter()
 
@@ -70,10 +75,9 @@ type CanonicalDataConverter() =
 
     override this.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
-let parseCanonicalData options = 
-    downloadData options
+let convertCanonicalData canonicalDataContents = 
+    JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter()) 
 
-    let readCanonicalData' = readCanonicalData options
-    fun exercise ->
-        let canonicalDataContents = readCanonicalData' exercise
-        JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter())
+let parseCanonicalData options = 
+    downloadData options    
+    readCanonicalData options >> convertCanonicalData

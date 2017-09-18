@@ -6,7 +6,7 @@ open Input
 open Options
 
 let regenerateTestClass options (exercise: Exercise) =
-    let canonicalData = (parseCanonicalData options) exercise.Name
+    let canonicalData = parseCanonicalData options exercise.Name
     exercise.Regenerate(canonicalData)
 
 let regenerateTestClasses options =

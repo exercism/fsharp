@@ -16,8 +16,8 @@ type Exercise() =
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
 
     member this.Name = this.GetType().Name.Kebaberize()
-    member this.TestModuleName = this.Name.Dehumanize() |> sprintf "%sTest"
-    member this.TestedModuleName = this.Name.Dehumanize()
+    member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
+    member this.TestedModuleName = this.GetType().Name.Pascalize()
 
     member this.WriteToFile contents =
         let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
