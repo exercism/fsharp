@@ -8,6 +8,6 @@ open {{ namespace }}
 
 open {{ TestedModuleName }}
 
-{%- for testMethod in TestMethods -%}
-{{ testMethod }}
+{%- for method in Methods -%}
+{{ method }}
 {%- endfor -%}

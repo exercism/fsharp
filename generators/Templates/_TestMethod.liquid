@@ -1,3 +1,3 @@
 [<Fact{% if Skip %}(Skip = "Remove to run test"){% endif %}>]
 let ``{{ Name }}`` () =
-    {{ Data.property | Format }} |> should equal {{ Data.expected | Format }}
+    {{ Data.property }} |> should equal {{ Data.expected | Format }}

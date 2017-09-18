@@ -2,8 +2,10 @@ module Generators.Exercises
 
 open System
 open System.Collections.Generic
+open System.IO
 open System.Reflection
 open Humanizer
+open Serilog
 open Input
 open Output
 
@@ -14,14 +16,22 @@ type Exercise() =
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
 
     member this.Name = this.GetType().Name.Kebaberize()
+    member this.TestModuleName = this.Name.Dehumanize() |> sprintf "%sTest"
+    member this.TestedModuleName = this.Name.Dehumanize()
+
+    member this.WriteToFile contents =
+        let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
+
+        Directory.CreateDirectory(Path.GetDirectoryName(testClassPath)) |> ignore
+        File.WriteAllText(testClassPath, contents)
+
+        Log.Information("Generated tests for {Exercise} exercise in {TestClassPath}", this.Name, testClassPath);
 
     member this.Regenerate(canonicalData) = 
-        let renderedTestClass =
-            canonicalData
-            |> this.MapCanonicalData
-            |> this.Render
-
-        printf "%s" renderedTestClass
+        canonicalData
+        |> this.MapCanonicalData
+        |> this.Render
+        |> this.WriteToFile
 
     default this.MapCanonicalData canonicalData = canonicalData
 
@@ -29,10 +39,10 @@ type Exercise() =
         let parameters = 
             { Version = canonicalData.Version              
               ExerciseName = this.Name
-              TestModuleName = this.Name.Dehumanize() |> sprintf "%sTest"
-              TestedModuleName = this.Name.Dehumanize()
-              Namespaces = set ["Xunit"; "FsUnit.Xunit" ]
-              TestMethods = List.mapi this.RenderTestMethod canonicalData.Cases }
+              TestModuleName = this.TestModuleName
+              TestedModuleName = this.TestedModuleName
+              Namespaces = set ["FsUnit.Xunit"; "Xunit"]
+              Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
 
         renderPartial "TestClass" parameters
 

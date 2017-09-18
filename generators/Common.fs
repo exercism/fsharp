@@ -24,7 +24,7 @@ type TestClass =
       TestModuleName: string
       TestedModuleName: string
       Namespaces: Set<string>
-      TestMethods: string list }
+      Methods: string list }
 
 let setupLogger() =
     Log.Logger <- LoggerConfiguration()
