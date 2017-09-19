@@ -104,6 +104,9 @@ type Exercise() =
 type HelloWorld() =
     inherit Exercise()
 
+type Bob() =
+    inherit Exercise()
+
 type Leap() =
     inherit Exercise()
 

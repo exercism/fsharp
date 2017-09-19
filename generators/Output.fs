@@ -9,7 +9,16 @@ open DotLiquid
 open DotLiquid.FileSystems
 open Input
 
-let formatString str = sprintf "\"%s\"" str
+let escapeSpecialCharacters (str: string) =
+    str.Replace("\n", "\\n")
+       .Replace("\t", "\\t")
+       .Replace("\r", "\\r")
+       .Replace("\"", "\\\"")
+
+let formatString str = 
+    str
+    |> escapeSpecialCharacters
+    |> sprintf "\"%s\""
 
 let formatBool b = if b then "true" else "false"
 
