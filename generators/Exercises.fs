@@ -110,6 +110,9 @@ type Bob() =
 type Leap() =
     inherit Exercise()
 
+type Isogram() =
+    inherit Exercise()
+
 type Gigasecond() =
     inherit Exercise()
 
