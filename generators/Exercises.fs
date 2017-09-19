@@ -113,6 +113,9 @@ type Leap() =
 type Isogram() =
     inherit Exercise()
 
+type PigLatin() =
+    inherit Exercise()
+
 type Gigasecond() =
     inherit Exercise()
 
