@@ -79,5 +79,5 @@ let convertCanonicalData canonicalDataContents =
     JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter()) 
 
 let parseCanonicalData options = 
-    downloadData options    
+    downloadData options 
     readCanonicalData options >> convertCanonicalData
