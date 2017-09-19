@@ -86,6 +86,9 @@ type Exercise() =
 type HelloWorld() =
     inherit Exercise()
 
+type Leap() =
+    inherit Exercise()
+
 let createExercises filteredExercises =
 
     let isConcreteExercise (exerciseType: Type) = 

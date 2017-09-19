@@ -10,7 +10,8 @@ open Input
 
 let formatValue (value: obj) = 
     match value with
-    | :? string as s -> sprintf "\"%s\"" s 
+    | :? string as s -> sprintf "\"%s\"" s
+    | :? bool as b -> if b then "true" else "false"
     | _ -> string value
 
 type FormatFilter() =
