@@ -55,7 +55,7 @@ type CanonicalDataConverter() =
     inherit JsonConverter()
 
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
-        jToken.ToObject<Dictionary<string, obj>>()
+        jToken.ToObject<IDictionary<string, obj>>()
 
     let createCanonicalDataCasesFromJToken (jToken: JToken) =  
         jToken.["cases"].SelectTokens("$..*[?(@.property)]")

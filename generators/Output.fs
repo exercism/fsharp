@@ -1,5 +1,6 @@
 module Generators.Output
 
+open System
 open System.Collections.Generic
 open System.IO
 open System.Reflection
@@ -8,10 +9,21 @@ open DotLiquid
 open DotLiquid.FileSystems
 open Input
 
+let formatString str = sprintf "\"%s\"" str
+
+let formatBool b = if b then "true" else "false"
+
+let formatDateTime (dateTime: DateTime) = 
+    if (dateTime.TimeOfDay = TimeSpan.Zero) then
+        sprintf "DateTime(%d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day
+    else
+        sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
+
 let formatValue (value: obj) = 
     match value with
-    | :? string as s -> sprintf "\"%s\"" s
-    | :? bool as b -> if b then "true" else "false"
+    | :? string as s -> formatString s
+    | :? bool as b -> formatBool b
+    | :? DateTime as dateTime -> formatDateTime dateTime
     | _ -> string value
 
 type FormatFilter() =

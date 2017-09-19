@@ -1,6 +1,7 @@
 module Generators.Exercises
 
 open System
+open System.Globalization
 open System.Collections.Generic
 open System.IO
 open System.Reflection
@@ -16,8 +17,12 @@ type Exercise() =
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
     abstract member RenderExpected : obj -> string
-    abstract member RenderSut : string -> CanonicalDataCase -> string
+    abstract member RenderSut : CanonicalDataCase -> string
+    abstract member RenderSutParameters : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string
+    abstract member RenderSutProperty : CanonicalDataCase -> string
+    abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
+    abstract member FormatValue: obj -> string
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
@@ -59,35 +64,60 @@ type Exercise() =
         renderPartial "TestMethod" parameters
 
     default this.RenderTestMethodBody canonicalDataCase = 
-        let input = Dictionary<string, obj>(canonicalDataCase)
-        input.Remove("property") |> ignore
-        input.Remove("expected") |> ignore
-        input.Remove("description") |> ignore
-
-        let property = string canonicalDataCase.["property"]
         let expected = canonicalDataCase.["expected"]
 
         let parameters = 
             { Arrange = []
               Assert = this.RenderAssert canonicalDataCase
-              Sut = this.RenderSut property input
+              Sut = this.RenderSut canonicalDataCase
               Expected = this.RenderExpected expected }
 
         renderPartial "TestMethodBody" parameters
 
-    default this.RenderExpected expected = formatValue expected
+    default this.RenderExpected expected = this.FormatValue expected
 
-    default this.RenderSut property input = 
-        let parameters = Seq.map formatValue input.Values |> Seq.toList
-        string property :: parameters |> String.concat " "
+    default this.RenderSut canonicalDataCase = 
+        let parameters = this.RenderSutParameters canonicalDataCase
+        let property = this.RenderSutProperty canonicalDataCase
+        property :: parameters |> String.concat " "
 
     default this.RenderAssert canonicalDataCase = "should equal"
+
+    default this.RenderSutParameters canonicalDataCase =
+        let parameters = this.SutParameters canonicalDataCase
+        parameters.Values
+        |> Seq.map this.FormatValue
+        |> Seq.toList
+
+    default this.RenderSutProperty canonicalDataCase = 
+        string canonicalDataCase.["property"]
+
+    default this.SutParameters canonicalDataCase =
+        let input = Dictionary<string, obj>(canonicalDataCase)
+        input.Remove("property") |> ignore
+        input.Remove("expected") |> ignore
+        input.Remove("description") |> ignore
+        input :> IDictionary<string, obj>
+
+    default this.FormatValue value = formatValue value    
 
 type HelloWorld() =
     inherit Exercise()
 
 type Leap() =
     inherit Exercise()
+
+type Gigasecond() =
+    inherit Exercise()
+
+    override this.FormatValue value = 
+        value :?> DateTime 
+        |> formatDateTime
+        |> sprintf "(%s)"
+
+    override this.SutParameters canonicalDataCase =
+        [("input", DateTime.Parse(string canonicalDataCase.["input"], CultureInfo.InvariantCulture) :> obj)]
+        |> dict
 
 let createExercises filteredExercises =
 

@@ -1,21 +1,29 @@
+// This file was auto-generated based on version 1.0.0 of the canonical data.
+
 module GigasecondTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
+
 open Gigasecond
-open System
-    
+
 [<Fact>]
-let ``First date`` () =
-    let input = DateTime(2011, 4, 25)
-    gigasecond input |> should equal (DateTime(2043, 1, 1))
+let ``date only specification of time`` () =
+    add (DateTime(2011, 4, 25)) |> should equal (DateTime(2043, 1, 1, 1, 46, 40))
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Another date`` () =
-    let input = DateTime(1977, 6, 13)
-    gigasecond input |> should equal (DateTime(2009, 2, 19))
+let ``second test for date only specification of time`` () =
+    add (DateTime(1977, 6, 13)) |> should equal (DateTime(2009, 2, 19, 1, 46, 40))
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Yet another date`` () =
-    let input = DateTime(1959, 7, 19)
-    gigasecond input |> should equal (DateTime(1991, 3, 27))
+let ``third test for date only specification of time`` () =
+    add (DateTime(1959, 7, 19)) |> should equal (DateTime(1991, 3, 27, 1, 46, 40))
+
+[<Fact(Skip = "Remove to run test")>]
+let ``full time specified`` () =
+    add (DateTime(2015, 1, 24, 22, 0, 0)) |> should equal (DateTime(2046, 10, 2, 23, 46, 40))
+
+[<Fact(Skip = "Remove to run test")>]
+let ``full time with day roll-over`` () =
+    add (DateTime(2015, 1, 24, 23, 59, 59)) |> should equal (DateTime(2046, 10, 3, 1, 46, 39))
+

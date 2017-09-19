@@ -6,7 +6,7 @@ open System.Collections.Generic
 open System.IO
 open Serilog
 
-type CanonicalDataCase = Dictionary<string, obj>
+type CanonicalDataCase = IDictionary<string, obj>
 
 type CanonicalData = 
     { Exercise: string
