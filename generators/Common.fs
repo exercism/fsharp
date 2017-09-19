@@ -16,7 +16,13 @@ type CanonicalData =
 type TestMethod = 
     { Skip: bool
       Name: string
-      Data: CanonicalDataCase }
+      Body: string }
+
+type TestMethodBody = 
+    { Arrange: string list  
+      Assert: string
+      Sut: string
+      Expected: string }
 
 type TestClass = 
     { Version: string

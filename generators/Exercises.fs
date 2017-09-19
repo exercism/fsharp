@@ -14,6 +14,10 @@ type Exercise() =
     abstract member MapCanonicalData : CanonicalData -> CanonicalData
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
+    abstract member RenderTestMethodBody : CanonicalDataCase -> string
+    abstract member RenderExpected : obj -> string
+    abstract member RenderSut : string -> CanonicalDataCase -> string
+    abstract member RenderAssert : CanonicalDataCase -> string
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
@@ -50,10 +54,34 @@ type Exercise() =
         let parameters = 
             { Skip = index > 0
               Name = string canonicalDataCase.["description"]
-              Data = canonicalDataCase }
+              Body = this.RenderTestMethodBody canonicalDataCase }
 
         renderPartial "TestMethod" parameters
-        
+
+    default this.RenderTestMethodBody canonicalDataCase = 
+        let input = Dictionary<string, obj>(canonicalDataCase)
+        input.Remove("property") |> ignore
+        input.Remove("expected") |> ignore
+        input.Remove("description") |> ignore
+
+        let property = string canonicalDataCase.["property"]
+        let expected = canonicalDataCase.["expected"]
+
+        let parameters = 
+            { Arrange = []
+              Assert = this.RenderAssert canonicalDataCase
+              Sut = this.RenderSut property input
+              Expected = this.RenderExpected expected }
+
+        renderPartial "TestMethodBody" parameters
+
+    default this.RenderExpected expected = formatValue expected
+
+    default this.RenderSut property input = 
+        let parameters = Seq.map formatValue input.Values |> Seq.toList
+        string property :: parameters |> String.concat " "
+
+    default this.RenderAssert canonicalDataCase = "should equal"
 
 type HelloWorld() =
     inherit Exercise()
