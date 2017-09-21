@@ -128,6 +128,9 @@ type Isogram() =
 type Leap() =
     inherit Exercise()
 
+type Luhn() =
+    inherit Exercise()
+
 type Pangram() =
     inherit Exercise()
 
