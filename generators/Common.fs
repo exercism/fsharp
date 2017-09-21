@@ -5,6 +5,7 @@ open System
 open System.Collections.Generic
 open System.IO
 open Serilog
+open Humanizer
 
 type CanonicalDataCase = IDictionary<string, obj>
 
@@ -36,6 +37,8 @@ let setupLogger() =
     Log.Logger <- LoggerConfiguration()
         .WriteTo.LiterateConsole()
         .CreateLogger();
+
+let humanize (str: string) = str.Humanize()
 
 module String =
     let EqualsOrdinalIgnoreCase (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)

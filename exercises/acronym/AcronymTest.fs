@@ -8,26 +8,26 @@ open Xunit
 open Acronym
 
 [<Fact>]
-let ``basic`` () =
+let ``Basic`` () =
     abbreviate "Portable Network Graphics" |> should equal "PNG"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``lowercase words`` () =
+let ``Lowercase words`` () =
     abbreviate "Ruby on Rails" |> should equal "ROR"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``punctuation`` () =
+let ``Punctuation`` () =
     abbreviate "First In, First Out" |> should equal "FIFO"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``all caps words`` () =
+let ``All caps words`` () =
     abbreviate "PHP: Hypertext Preprocessor" |> should equal "PHP"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``non-acronym all caps word`` () =
+let ``non acronym all caps word`` () =
     abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``hyphenated`` () =
+let ``Hyphenated`` () =
     abbreviate "Complementary metal-oxide semiconductor" |> should equal "CMOS"
 

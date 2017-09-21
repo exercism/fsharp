@@ -58,7 +58,7 @@ type Exercise() =
     default this.RenderTestMethod index canonicalDataCase = 
         let parameters = 
             { Skip = index > 0
-              Name = string canonicalDataCase.["description"]
+              Name = canonicalDataCase.["description"] |> string |> humanize
               Body = this.RenderTestMethodBody canonicalDataCase }
 
         renderPartial "TestMethod" parameters
