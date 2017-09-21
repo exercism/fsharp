@@ -104,6 +104,9 @@ type Exercise() =
 type Acronym() =
     inherit Exercise()
 
+type AtbashCipher() =
+    inherit Exercise()
+
 type Bob() =
     inherit Exercise()
 

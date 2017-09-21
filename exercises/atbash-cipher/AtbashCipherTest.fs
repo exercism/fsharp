@@ -1,61 +1,57 @@
-module AtbashTest
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
-open Xunit
+module AtbashCipherTest
+
 open FsUnit.Xunit
-open Atbash
+open Xunit
+
+open AtbashCipher
 
 [<Fact>]
 let ``Encode yes`` () =
-    let phrase = "yes"
-    let expected = "bvh"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "yes" |> should equal "bvh"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode no`` () =
-    let phrase = "no"
-    let expected = "ml"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "no" |> should equal "ml"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode OMG`` () =
-    let phrase = "OMG"
-    let expected = "lnt"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "OMG" |> should equal "lnt"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode spaces`` () =
-    let phrase = "O M G"
-    let expected = "lnt"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "O M G" |> should equal "lnt"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode mindblowingly`` () =
-    let phrase = "mindblowingly"
-    let expected = "nrmwy oldrm tob"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "mindblowingly" |> should equal "nrmwy oldrm tob"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode numbers`` () =
-    let phrase = "Testing, 1 2 3, testing."
-    let expected = "gvhgr mt123 gvhgr mt"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "Testing,1 2 3, testing." |> should equal "gvhgr mt123 gvhgr mt"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode deep thought`` () =
-    let phrase = "Truth is fiction."
-    let expected = "gifgs rhurx grlm"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "Truth is fiction." |> should equal "gifgs rhurx grlm"
 
-[<Fact(Skip = "Remove to run test")>]     
+[<Fact(Skip = "Remove to run test")>]
 let ``Encode all the letters`` () =
-    let phrase = "The quick brown fox jumps over the lazy dog."
-    let expected = "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
-    let actual = encode phrase
-    actual |> should equal expected
+    encode "The quick brown fox jumps over the lazy dog." |> should equal "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode exercism`` () =
+    decode "vcvix rhn" |> should equal "exercism"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode a sentence`` () =
+    decode "zmlyh gzxov rhlug vmzhg vkkrm thglm v" |> should equal "anobstacleisoftenasteppingstone"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode numbers`` () =
+    decode "gvhgr mt123 gvhgr mt" |> should equal "testing123testing"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode all the letters`` () =
+    decode "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" |> should equal "thequickbrownfoxjumpsoverthelazydog"
+
