@@ -131,6 +131,9 @@ type Leap() =
 type PigLatin() =
     inherit Exercise()
 
+type ScrabbleScore() =
+    inherit Exercise()
+
 let createExercises filteredExercises =
 
     let isConcreteExercise (exerciseType: Type) = 
