@@ -131,6 +131,9 @@ type Leap() =
 type PigLatin() =
     inherit Exercise()
 
+type Raindrops() =
+    inherit Exercise()
+
 type RomanNumerals() =
     inherit Exercise()
 
