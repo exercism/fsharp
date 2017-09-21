@@ -2,12 +2,10 @@
 module Generators.Common
 
 open System
-open System.Collections.Generic
 open System.IO
 open Serilog
-open Humanizer
 
-type CanonicalDataCase = IDictionary<string, obj>
+type CanonicalDataCase = Map<string, obj>
 
 type CanonicalData = 
     { Exercise: string
@@ -33,12 +31,31 @@ type TestClass =
       Namespaces: Set<string>
       Methods: string list }
 
-let setupLogger() =
-    Log.Logger <- LoggerConfiguration()
-        .WriteTo.LiterateConsole()
-        .CreateLogger();
+module Logging =
 
-let humanize (str: string) = str.Humanize()
+    let setupLogger() =
+        Log.Logger <- LoggerConfiguration()
+            .WriteTo.LiterateConsole()
+            .CreateLogger();
 
 module String =
-    let EqualsOrdinalIgnoreCase (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)
+
+    open Humanizer
+
+    let equals (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)
+
+    let humanize (str: string) = str.Humanize()
+
+module Dict =
+
+    open System.Collections.Generic
+
+    let toSeq d = d |> Seq.map (fun (KeyValue(k,v)) -> (k, v))
+
+    let toMap d = d |> toSeq |> Map.ofSeq
+
+    let ofMap (m: Map<'k,'v>) = new Dictionary<'k,'v>(m) :> IDictionary<'k,'v>
+
+    let ofList (l: ('k * 'v) list) = new Dictionary<'k,'v>(l |> Map.ofList) :> IDictionary<'k,'v>
+
+    let ofSeq (s: ('k * 'v) seq) = new Dictionary<'k,'v>(s |> Map.ofSeq) :> IDictionary<'k,'v>

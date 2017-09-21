@@ -22,7 +22,7 @@ type Exercise() =
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
-    abstract member FormatValue: obj -> string
+    abstract member FormatValue: string -> obj -> string
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
@@ -58,7 +58,7 @@ type Exercise() =
     default this.RenderTestMethod index canonicalDataCase = 
         let parameters = 
             { Skip = index > 0
-              Name = canonicalDataCase.["description"] |> string |> humanize
+              Name = canonicalDataCase.["description"] |> string |> String.humanize
               Body = this.RenderTestMethodBody canonicalDataCase }
 
         renderPartial "TestMethod" parameters
@@ -74,7 +74,7 @@ type Exercise() =
 
         renderPartial "TestMethodBody" parameters
 
-    default this.RenderExpected expected = this.FormatValue expected
+    default this.RenderExpected expected = this.FormatValue "expected" expected
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
@@ -84,22 +84,19 @@ type Exercise() =
     default this.RenderAssert canonicalDataCase = "should equal"
 
     default this.RenderSutParameters canonicalDataCase =
-        let parameters = this.SutParameters canonicalDataCase
-        parameters.Values
-        |> Seq.map this.FormatValue
-        |> Seq.toList
+        let sutParameters = this.SutParameters canonicalDataCase
+        Map.foldBack (fun key value acc -> this.FormatValue key value :: acc) sutParameters [] 
 
     default this.RenderSutProperty canonicalDataCase = 
         string canonicalDataCase.["property"]
 
     default this.SutParameters canonicalDataCase =
-        let input = Dictionary<string, obj>(canonicalDataCase)
-        input.Remove("property") |> ignore
-        input.Remove("expected") |> ignore
-        input.Remove("description") |> ignore
-        input :> IDictionary<string, obj>
+        canonicalDataCase
+        |> Map.remove "property"
+        |> Map.remove "expected"
+        |> Map.remove "description"
 
-    default this.FormatValue value = formatValue value    
+    default this.FormatValue key value = formatValue value    
 
 type Acronym() =
     inherit Exercise()
@@ -119,14 +116,16 @@ type DifferenceOfSquares() =
 type Gigasecond() =
     inherit Exercise()
 
-    override this.FormatValue value = 
-        value :?> DateTime 
-        |> formatDateTime
-        |> sprintf "(%s)"
+    let format = formatDateTime >> parenthesize
 
-    override this.SutParameters canonicalDataCase =
-        [("input", DateTime.Parse(string canonicalDataCase.["input"], CultureInfo.InvariantCulture) :> obj)]
-        |> dict
+    override this.FormatValue key value =
+        match key with
+        | "input" -> 
+            DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
+        | "expected" -> 
+            value :?> DateTime |> format      
+        | _ -> 
+            formatValue value
 
 type HelloWorld() =
     inherit Exercise()  
@@ -162,8 +161,8 @@ let createExercises filteredExercises =
 
     let isFilteredExercises (exerciseType: Type) =
         Seq.isEmpty filteredExercises ||
-        Seq.exists (String.EqualsOrdinalIgnoreCase exerciseType.Name) filteredExercises ||
-        Seq.exists (String.EqualsOrdinalIgnoreCase (exerciseType.Name.Kebaberize())) filteredExercises
+        Seq.exists (String.equals exerciseType.Name) filteredExercises ||
+        Seq.exists (String.equals (exerciseType.Name.Kebaberize())) filteredExercises
 
     let includeExercise (exerciseType: Type) = isConcreteExercise exerciseType && isFilteredExercises exerciseType
 

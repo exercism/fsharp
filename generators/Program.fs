@@ -24,7 +24,7 @@ let regenerateTestClasses options =
 
 [<EntryPoint>]
 let main argv = 
-    setupLogger()
+    Logging.setupLogger()
 
     match parseOptions argv with
     | Result.Ok(options) -> 

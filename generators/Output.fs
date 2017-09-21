@@ -9,6 +9,8 @@ open DotLiquid
 open DotLiquid.FileSystems
 open Input
 
+let parenthesize value = sprintf "(%s)" value
+
 let escapeSpecialCharacters (str: string) =
     str.Replace("\n", "\\n")
        .Replace("\t", "\\t")
