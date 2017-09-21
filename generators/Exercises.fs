@@ -101,19 +101,10 @@ type Exercise() =
 
     default this.FormatValue value = formatValue value    
 
-type HelloWorld() =
+type Acronym() =
     inherit Exercise()
 
 type Bob() =
-    inherit Exercise()
-
-type Leap() =
-    inherit Exercise()
-
-type Isogram() =
-    inherit Exercise()
-
-type PigLatin() =
     inherit Exercise()
 
 type Gigasecond() =
@@ -127,6 +118,18 @@ type Gigasecond() =
     override this.SutParameters canonicalDataCase =
         [("input", DateTime.Parse(string canonicalDataCase.["input"], CultureInfo.InvariantCulture) :> obj)]
         |> dict
+
+type HelloWorld() =
+    inherit Exercise()  
+
+type Isogram() =
+    inherit Exercise()  
+
+type Leap() =
+    inherit Exercise()
+
+type PigLatin() =
+    inherit Exercise()
 
 let createExercises filteredExercises =
 
