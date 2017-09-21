@@ -107,6 +107,9 @@ type Acronym() =
 type Bob() =
     inherit Exercise()
 
+type DifferenceOfSquares() =
+    inherit Exercise()
+
 type Gigasecond() =
     inherit Exercise()
 
