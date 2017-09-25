@@ -9,33 +9,28 @@ open BeerSong
 
 [<Fact>]
 let ``First generic verse`` () =
-    let number = 99
     let expected = "99 bottles of beer on the wall, 99 bottles of beer.\nTake one down and pass it around, 98 bottles of beer on the wall.\n"
-    verse number |> should equal expected
+    verse 99 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Last generic verse`` () =
-    let number = 3
     let expected = "3 bottles of beer on the wall, 3 bottles of beer.\nTake one down and pass it around, 2 bottles of beer on the wall.\n"
-    verse number |> should equal expected
+    verse 3 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Verse 2`` () =
-    let number = 2
     let expected = "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n"
-    verse number |> should equal expected
+    verse 2 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Verse 1`` () =
-    let number = 1
     let expected = "1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n"
-    verse number |> should equal expected
+    verse 1 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Verse 0`` () =
-    let number = 0
     let expected = "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n"
-    verse number |> should equal expected
+    verse 0 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``First two verses`` () =

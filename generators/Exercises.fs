@@ -24,10 +24,10 @@ type Exercise() =
     abstract member RenderSutParameters : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
-    abstract member RenderValue: (string * obj) -> string
-    abstract member RenderValueOrIdentifier: (string * obj) -> string
-    abstract member RenderValueWithoutIdentifier: (string * obj) -> string
-    abstract member RenderValueWithIdentifier: (string * obj) -> string
+    abstract member RenderValue: string -> obj -> string
+    abstract member RenderValueOrIdentifier: string -> obj -> string
+    abstract member RenderValueWithoutIdentifier: string -> obj -> string
+    abstract member RenderValueWithIdentifier: string -> obj -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesWithIdentifier : string list
@@ -74,7 +74,7 @@ type Exercise() =
           Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderExpected canonicalDataCase.["expected"] }
 
-    default this.RenderExpected expected = this.RenderValueOrIdentifier ("expected", expected)
+    default this.RenderExpected expected = this.RenderValueOrIdentifier "expected" expected
 
     default this.Render canonicalData =
         canonicalData
@@ -96,7 +96,7 @@ type Exercise() =
             canonicalDataCase
             |> Map.filter (fun key _ -> List.contains key this.PropertiesWithIdentifier)
 
-        Map.foldBack (fun key value acc -> this.RenderValueWithIdentifier (key, value) :: acc) arrangeCanonicalData []
+        Map.foldBack (fun key value acc -> this.RenderValueWithIdentifier key value :: acc) arrangeCanonicalData []
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
@@ -108,7 +108,7 @@ type Exercise() =
     default this.RenderSutParameters canonicalDataCase =
         let sutParameters = this.SutParameters canonicalDataCase
         
-        Map.foldBack (fun key value acc -> this.RenderValueOrIdentifier (key, value) :: acc) sutParameters [] 
+        Map.foldBack (fun key value acc -> this.RenderValueOrIdentifier key value :: acc) sutParameters [] 
 
     default this.RenderSutProperty canonicalDataCase = 
         string canonicalDataCase.["property"]
@@ -119,21 +119,21 @@ type Exercise() =
         |> Map.remove "expected"
         |> Map.remove "description"
 
-    default this.RenderValue ((key, value)) =
+    default this.RenderValue key value =
         if (List.contains key this.PropertiesWithIdentifier) then
-            this.RenderValueWithIdentifier (key, value)
+            this.RenderValueWithIdentifier key value
         else
-            this.RenderValueWithoutIdentifier (key, value)
+            this.RenderValueWithoutIdentifier key value
 
-    default this.RenderValueOrIdentifier ((key, value)) =
+    default this.RenderValueOrIdentifier key value =
         if (List.contains key this.PropertiesWithIdentifier) then
             key
         else
-            this.RenderValueWithoutIdentifier (key, value)
+            this.RenderValueWithoutIdentifier key value
 
-    default this.RenderValueWithoutIdentifier ((key, value)) = formatValue value  
+    default this.RenderValueWithoutIdentifier key value = formatValue value  
 
-    default this.RenderValueWithIdentifier ((key, value)) = sprintf "let %s = %s" key (this.RenderValueWithoutIdentifier (key, value))
+    default this.RenderValueWithIdentifier key value = sprintf "let %s = %s" key (this.RenderValueWithoutIdentifier key value)
 
     default this.PropertiesWithIdentifier = []
 
@@ -157,13 +157,13 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.RenderValueWithoutIdentifier ((key, value)) =
+    override this.RenderValueWithoutIdentifier key value =
         match key with
         | "expected" -> 
             match value with
             | :? int64 -> "None"
             | _ -> sprintf "Some %s" (formatValue value)
-        | _ -> base.RenderValueWithoutIdentifier (key, value)
+        | _ -> formatValue value
 
     override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
 
@@ -175,7 +175,7 @@ type Gigasecond() =
 
     let format = formatDateTime >> parenthesize
 
-    override this.RenderValue ((key, value)) =
+    override this.RenderValueWithoutIdentifier key value =
         match key with
         | "input" -> 
             DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
