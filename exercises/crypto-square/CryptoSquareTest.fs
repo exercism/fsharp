@@ -1,57 +1,57 @@
+// This file was auto-generated based on version 2.0.0 of the canonical data.
+
 module CryptoSquareTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
+
 open CryptoSquare
 
 [<Fact>]
-let ``Strange characters are stripped during normalization`` () =
-    normalizePlaintext "s#$%^&plunk" |> should equal "splunk"
-
-[<Fact(Skip = "Remove to run test")>]   
-let ``Letters are lowercased during normalization`` () =
-    normalizePlaintext "WHOA HEY!" |> should equal "whoahey"
+let ``Lowercase`` () =
+    normalizedPlaintext "Hello" |> should equal "hello"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Numbers are kept during normalization`` () =
-    normalizePlaintext "1, 2, 3, GO!" |> should equal "123go"
+let ``Remove spaces`` () =
+    normalizedPlaintext "Hi there" |> should equal "hithere"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Smallest square size is 2`` () =
-    size "1234" |> should equal 2
+let ``Remove punctuation`` () =
+    normalizedPlaintext "@1, 2%, 3 Go!" |> should equal "123go"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Size of text whose length is a perfect square is its square root`` () =
-    size "123456789" |> should equal 3
+let ``Empty plaintext results in an empty rectangle`` () =
+    plaintextSegments "" |> should equal []
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Size of text whose length is not a perfect square is next biggest square root`` () =
-    size "123456789abc" |> should equal 4
+let ``4 character plaintext results in an 2x 2 rectangle`` () =
+    plaintextSegments "Ab Cd" |> should equal [seq []; seq []]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Size is determined by normalized text`` () =
-    size "Oh hey, this is nuts!" |> should equal 4
+let ``9 character plaintext results in an 3x 3 rectangle`` () =
+    plaintextSegments "This is fun!" |> should equal [seq []; seq []; seq []]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Segments are split by square size`` () =
-    plaintextSegments "Never vex thine heart with idle woes" |> should equal ["neverv"; "exthin"; "eheart"; "withid"; "lewoes"]
+let ``54 character plaintext results in an 8x 7 rectangle`` () =
+    plaintextSegments "If man was meant to stay on the ground, god would have given us roots." |> should equal [seq []; seq []; seq []; seq []; seq []; seq []; seq []]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Segments are split by square size until text runs out`` () =
-    plaintextSegments "ZOMG! ZOMBIES!!!" |> should equal ["zomg"; "zomb"; "ies"]
+let ``Empty plaintext results in an empty encode`` () =
+    encoded "" |> should equal ""
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Ciphertext combines text by column`` () =
-    ciphertext "First, solve the problem. Then, write the code." |> should equal "foeewhilpmrervrticseohtottbeedshlnte"
+let ``Non empty plaintext results in the combined plaintext segments`` () =
+    encoded "If man was meant to stay on the ground, god would have given us roots." |> should equal "imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Ciphertext skips cells with no text`` () =
-    ciphertext "Time is an illusion. Lunchtime doubly so." |> should equal "tasneyinicdsmiohooelntuillibsuuml"
+let ``Empty plaintext results in an empty ciphertext`` () =
+    ciphertext "" |> should equal ""
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Normalized ciphertext is split by 5`` () =
-    normalizeCiphertext "Vampires are people too!" |> should equal "vrel aepe mset paoo irpo"
+let ``9 character plaintext results in 3 chunks of 3 characters`` () =
+    ciphertext "This is fun!" |> should equal "tsf hiu isn"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Normalized ciphertext not exactly divisible by 5 spills into a smaller segment`` () =
-    normalizeCiphertext "Madness, and then illumination." |> should equal "msemo aanin dnin ndla etlt shui"
+let ``54 character plaintext results in 7 chunks the last two padded with spaces`` () =
+    ciphertext "If man was meant to stay on the ground, god would have given us roots." |> should equal "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau "
+

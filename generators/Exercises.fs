@@ -181,6 +181,9 @@ type Change() =
 
     override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
 
+type CryptoSquare() =
+    inherit Exercise()
+
 type DifferenceOfSquares() =
     inherit Exercise()
 
