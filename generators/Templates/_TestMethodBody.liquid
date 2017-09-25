@@ -1,1 +1,4 @@
-{{ Sut }} |> {{ Assert }} {{ Expected }}
+{%- for arrange in Arrange -%}
+    {{ arrange }}
+{%- endfor -%}
+    {{ Sut }} |> {{ Assert }} {{ Expected }}
