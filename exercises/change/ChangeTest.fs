@@ -61,7 +61,7 @@ let ``No coins make 0 change`` () =
     let coins = [1; 5; 10; 21; 25]
     let expected = Some []
     let target = 0
-    findFewestCoins coins target |> should equal expected
+    findFewestCoins coins target |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Error testing for change smaller than the smallest of coins`` () =

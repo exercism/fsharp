@@ -5,6 +5,7 @@ open System.Globalization
 open System.Collections.Generic
 open System.IO
 open System.Reflection
+open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
 open Input
@@ -15,6 +16,7 @@ type Exercise() =
     abstract member ToTestClass : CanonicalData -> TestClass
     abstract member ToTestMethod : int -> CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
+    abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
@@ -70,8 +72,10 @@ type Exercise() =
 
     default this.ToTestMethodBody canonicalDataCase =         
         { Arrange = this.RenderArrange canonicalDataCase
-          Assert = this.RenderAssert canonicalDataCase
-          Sut = this.RenderSut canonicalDataCase
+          Assert = this.RenderAssert canonicalDataCase }
+
+    default this.ToTestMethodBodyAssert canonicalDataCase =         
+        { Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderExpected canonicalDataCase.["expected"] }
 
     default this.RenderExpected expected = this.RenderValueOrIdentifier "expected" expected
@@ -103,8 +107,16 @@ type Exercise() =
         let property = this.RenderSutProperty canonicalDataCase
         property :: parameters |> String.concat " "
 
-    default this.RenderAssert canonicalDataCase = "should equal"
+    default this.RenderAssert canonicalDataCase = 
+        let template = 
+            match canonicalDataCase.["expected"] with
+            | :? JArray as jArray when jArray.Count = 0 -> "AssertEmpty"
+            | _ -> "AssertEqual"                      
 
+        canonicalDataCase
+        |> this.ToTestMethodBodyAssert
+        |> renderPartial template
+    
     default this.RenderSutParameters canonicalDataCase =
         let sutParameters = this.SutParameters canonicalDataCase
         

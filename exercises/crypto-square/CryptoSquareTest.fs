@@ -21,7 +21,7 @@ let ``Remove punctuation`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Empty plaintext results in an empty rectangle`` () =
-    plaintextSegments "" |> should equal []
+    plaintextSegments "" |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``4 character plaintext results in an 2x 2 rectangle`` () =

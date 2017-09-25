@@ -19,8 +19,10 @@ type TestMethod =
 
 type TestMethodBody = 
     { Arrange: string list  
-      Assert: string
-      Sut: string
+      Assert: string }
+
+type TestMethodBodyAssert = 
+    { Sut: string
       Expected: string }
 
 type TestClass = 
