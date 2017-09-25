@@ -24,12 +24,13 @@ type Exercise() =
     abstract member RenderSutParameters : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
-    abstract member RenderValue: string -> obj -> string
-    abstract member RenderValueWithIdentifier: string -> obj -> string
+    abstract member RenderValue: (string * obj) -> string
+    abstract member RenderValueWithoutIdentifier: (string * obj) -> string
+    abstract member RenderValueWithIdentifier: (string * obj) -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
-    abstract member MapCanonicalData : CanonicalData -> CanonicalData
+    abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesWithIdentifier : string list
-    
+
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
@@ -48,7 +49,10 @@ type Exercise() =
         |> this.Render
         |> this.WriteToFile
 
-    default this.MapCanonicalData canonicalData = canonicalData
+    member this.MapCanonicalData canonicalData = 
+        { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
+
+    default this.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
 
     default this.ToTestClass canonicalData =
         { Version = canonicalData.Version              
@@ -69,7 +73,7 @@ type Exercise() =
           Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderExpected canonicalDataCase.["expected"] }
 
-    default this.RenderExpected expected = this.RenderValue "expected" expected
+    default this.RenderExpected expected = this.RenderValue ("expected", expected)
 
     default this.Render canonicalData =
         canonicalData
@@ -87,9 +91,11 @@ type Exercise() =
         |> renderPartial "TestMethodBody"
 
     default this.RenderArrange canonicalDataCase =
-        canonicalDataCase
-        |> Map.filter (fun key _ -> List.contains key this.PropertiesWithIdentifier)
-        |> Map.fold (fun acc key value -> this.RenderValueWithIdentifier key value :: acc) []
+        let arrangeCanonicalData = 
+            canonicalDataCase
+            |> Map.filter (fun key _ -> List.contains key this.PropertiesWithIdentifier)
+
+        Map.foldBack (fun key value acc -> this.RenderValueWithIdentifier (key, value) :: acc) arrangeCanonicalData []
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
@@ -101,7 +107,7 @@ type Exercise() =
     default this.RenderSutParameters canonicalDataCase =
         let sutParameters = this.SutParameters canonicalDataCase
         
-        Map.foldBack (fun key value acc -> this.RenderValue key value :: acc) sutParameters [] 
+        Map.foldBack (fun key value acc -> this.RenderValue (key, value) :: acc) sutParameters [] 
 
     default this.RenderSutProperty canonicalDataCase = 
         string canonicalDataCase.["property"]
@@ -112,13 +118,15 @@ type Exercise() =
         |> Map.remove "expected"
         |> Map.remove "description"
 
-    default this.RenderValue key value = 
+    default this.RenderValue ((key, value)) =
         if (List.contains key this.PropertiesWithIdentifier) then
-            key
+            this.RenderValueWithIdentifier (key, value)
         else
-            formatValue value
+            this.RenderValueWithoutIdentifier (key, value)
 
-    default this.RenderValueWithIdentifier key value = sprintf "let %s = %s" key (formatValue value)
+    default this.RenderValueWithoutIdentifier ((key, value)) = formatValue value  
+
+    default this.RenderValueWithIdentifier ((key, value)) = sprintf "let %s = %s" key (this.RenderValueWithoutIdentifier (key, value))
 
     default this.PropertiesWithIdentifier = []
 
@@ -139,6 +147,21 @@ type Bob() =
 type BracketPush() =
     inherit Exercise()
 
+type Change() =
+    inherit Exercise()
+
+    override this.RenderValueWithoutIdentifier ((key, value)) =
+        let formattedValue = base.RenderValueWithoutIdentifier (key, value)
+
+        match key with
+        | "expected" -> 
+            match value with
+            | :? int64 -> "None"
+            | _ -> sprintf "Some %A" formattedValue
+        | _ -> formattedValue
+
+    override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
+
 type DifferenceOfSquares() =
     inherit Exercise()
 
@@ -147,7 +170,7 @@ type Gigasecond() =
 
     let format = formatDateTime >> parenthesize
 
-    override this.RenderValue key value =
+    override this.RenderValue ((key, value)) =
         match key with
         | "input" -> 
             DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format

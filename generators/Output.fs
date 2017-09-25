@@ -7,6 +7,7 @@ open System.Reflection
 open FSharp.Reflection
 open DotLiquid
 open DotLiquid.FileSystems
+open Newtonsoft.Json.Linq
 open Input
 
 let parenthesize value = sprintf "(%s)" value
@@ -30,11 +31,41 @@ let formatDateTime (dateTime: DateTime) =
     else
         sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
 
-let formatValue (value: obj) = 
+
+
+let normalizeJArray (jArray: JArray): obj list =
+    let toBoxedList seq = 
+        seq
+        |> Seq.map box 
+        |> List.ofSeq
+
+    if (jArray.Count = 0) then
+        []
+    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer)) then
+        jArray.Values<int>() |> toBoxedList
+    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float)) then
+        jArray.Values<float>() |> toBoxedList
+    else    
+        jArray.Values<obj>() |> toBoxedList
+
+let formatToken (jToken: JToken) =
+    match jToken.Type with
+    | JTokenType.Integer -> jToken.ToObject<int>() |> string
+    | _ -> string jToken
+
+let formatJArray (jArray: JArray) =
+    jArray
+    |> normalizeJArray
+    |> sprintf "%A"      
+
+let rec formatValue (value: obj) =
+
     match value with
     | :? string as s -> formatString s
     | :? bool as b -> formatBool b
     | :? DateTime as dateTime -> formatDateTime dateTime
+    | :? JArray as jArray -> formatJArray jArray
+    | :? JToken as jToken -> formatToken jToken
     | _ -> string value
 
 type FormatFilter() =
