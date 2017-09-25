@@ -25,6 +25,7 @@ type Exercise() =
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
     abstract member RenderValue: (string * obj) -> string
+    abstract member RenderValueOrIdentifier: (string * obj) -> string
     abstract member RenderValueWithoutIdentifier: (string * obj) -> string
     abstract member RenderValueWithIdentifier: (string * obj) -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
@@ -73,7 +74,7 @@ type Exercise() =
           Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderExpected canonicalDataCase.["expected"] }
 
-    default this.RenderExpected expected = this.RenderValue ("expected", expected)
+    default this.RenderExpected expected = this.RenderValueOrIdentifier ("expected", expected)
 
     default this.Render canonicalData =
         canonicalData
@@ -107,7 +108,7 @@ type Exercise() =
     default this.RenderSutParameters canonicalDataCase =
         let sutParameters = this.SutParameters canonicalDataCase
         
-        Map.foldBack (fun key value acc -> this.RenderValue (key, value) :: acc) sutParameters [] 
+        Map.foldBack (fun key value acc -> this.RenderValueOrIdentifier (key, value) :: acc) sutParameters [] 
 
     default this.RenderSutProperty canonicalDataCase = 
         string canonicalDataCase.["property"]
@@ -121,6 +122,12 @@ type Exercise() =
     default this.RenderValue ((key, value)) =
         if (List.contains key this.PropertiesWithIdentifier) then
             this.RenderValueWithIdentifier (key, value)
+        else
+            this.RenderValueWithoutIdentifier (key, value)
+
+    default this.RenderValueOrIdentifier ((key, value)) =
+        if (List.contains key this.PropertiesWithIdentifier) then
+            key
         else
             this.RenderValueWithoutIdentifier (key, value)
 
@@ -151,14 +158,12 @@ type Change() =
     inherit Exercise()
 
     override this.RenderValueWithoutIdentifier ((key, value)) =
-        let formattedValue = base.RenderValueWithoutIdentifier (key, value)
-
         match key with
         | "expected" -> 
             match value with
             | :? int64 -> "None"
-            | _ -> sprintf "Some %A" formattedValue
-        | _ -> formattedValue
+            | _ -> sprintf "Some %s" (formatValue value)
+        | _ -> base.RenderValueWithoutIdentifier (key, value)
 
     override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
 
