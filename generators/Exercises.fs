@@ -151,6 +151,20 @@ type BeerSong() =
 type Bob() =
     inherit Exercise()
 
+type BookStore() =
+    inherit Exercise()
+
+    let formatFloat (value:obj) = value :?> float |> sprintf "%.2f"
+
+    override this.RenderValueWithoutIdentifier key value = 
+        match key with
+        | "expected" -> formatFloat value
+        | _ -> formatValue value  
+
+    override this.SutParameters canonicalDataCase =
+        base.SutParameters canonicalDataCase
+        |> Map.remove "targetgrouping"
+
 type BracketPush() =
     inherit Exercise()
 
