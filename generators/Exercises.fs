@@ -11,8 +11,10 @@ open Input
 open Output
 
 [<AbstractClass>]
-type Exercise() =
-    abstract member MapCanonicalData : CanonicalData -> CanonicalData
+type Exercise() =    
+    abstract member ToTestClass : CanonicalData -> TestClass
+    abstract member ToTestMethod : int -> CanonicalDataCase -> TestMethod
+    abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
@@ -22,7 +24,8 @@ type Exercise() =
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
-    abstract member FormatValue: string -> obj -> string
+    abstract member MapCanonicalData : CanonicalData -> CanonicalData
+    abstract member FormatValue: string -> obj -> string  
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
@@ -44,37 +47,41 @@ type Exercise() =
 
     default this.MapCanonicalData canonicalData = canonicalData
 
-    default this.Render canonicalData =
-        let parameters = 
-            { Version = canonicalData.Version              
-              ExerciseName = this.Name
-              TestModuleName = this.TestModuleName
-              TestedModuleName = this.TestedModuleName
-              Namespaces = set ["FsUnit.Xunit"; "Xunit"]
-              Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
+    default this.ToTestClass canonicalData =
+        { Version = canonicalData.Version              
+          ExerciseName = this.Name
+          TestModuleName = this.TestModuleName
+          TestedModuleName = this.TestedModuleName
+          Namespaces = set ["FsUnit.Xunit"; "Xunit"]
+          Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
 
-        renderPartial "TestClass" parameters
+    default this.ToTestMethod index canonicalDataCase =         
+        { Skip = index > 0
+          Name = canonicalDataCase.["description"] |> string |> String.humanize
+          Body = this.RenderTestMethodBody canonicalDataCase }
 
-    default this.RenderTestMethod index canonicalDataCase = 
-        let parameters = 
-            { Skip = index > 0
-              Name = canonicalDataCase.["description"] |> string |> String.humanize
-              Body = this.RenderTestMethodBody canonicalDataCase }
-
-        renderPartial "TestMethod" parameters
-
-    default this.RenderTestMethodBody canonicalDataCase = 
-        let expected = canonicalDataCase.["expected"]
-
-        let parameters = 
-            { Arrange = []
-              Assert = this.RenderAssert canonicalDataCase
-              Sut = this.RenderSut canonicalDataCase
-              Expected = this.RenderExpected expected }
-
-        renderPartial "TestMethodBody" parameters
+    default this.ToTestMethodBody canonicalDataCase =         
+        { Arrange = []
+          Assert = this.RenderAssert canonicalDataCase
+          Sut = this.RenderSut canonicalDataCase
+          Expected = this.RenderExpected canonicalDataCase.["expected"] }
 
     default this.RenderExpected expected = this.FormatValue "expected" expected
+
+    default this.Render canonicalData =
+        canonicalData
+        |> this.ToTestClass
+        |> renderPartial "TestClass"
+
+    default this.RenderTestMethod index canonicalDataCase = 
+        canonicalDataCase
+        |> this.ToTestMethod index
+        |> renderPartial "TestMethod"
+
+    default this.RenderTestMethodBody canonicalDataCase = 
+        canonicalDataCase
+        |> this.ToTestMethodBody
+        |> renderPartial "TestMethodBody"
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
