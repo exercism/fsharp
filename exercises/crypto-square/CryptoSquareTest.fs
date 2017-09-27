@@ -25,15 +25,16 @@ let ``Empty plaintext results in an empty rectangle`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``4 character plaintext results in an 2x 2 rectangle`` () =
-    plaintextSegments "Ab Cd" |> should equal [seq []; seq []]
+    plaintextSegments "Ab Cd" |> should equal ["ab"; "cd"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``9 character plaintext results in an 3x 3 rectangle`` () =
-    plaintextSegments "This is fun!" |> should equal [seq []; seq []; seq []]
+    plaintextSegments "This is fun!" |> should equal ["thi"; "sis"; "fun"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``54 character plaintext results in an 8x 7 rectangle`` () =
-    plaintextSegments "If man was meant to stay on the ground, god would have given us roots." |> should equal [seq []; seq []; seq []; seq []; seq []; seq []; seq []]
+    plaintextSegments "If man was meant to stay on the ground, god would have given us roots." |> should equal ["ifmanwas"; "meanttos"; "tayonthe"; "groundgo"; "dwouldha"; "vegivenu";
+ "sroots"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Empty plaintext results in an empty encode`` () =

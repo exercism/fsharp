@@ -31,7 +31,8 @@ let formatDateTime (dateTime: DateTime) =
     else
         sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
 
-
+let formatTimeSpan (timeSpan: TimeSpan) = 
+    sprintf "TimeSpan(%d, %d, %d)" timeSpan.Hours timeSpan.Minutes timeSpan.Seconds
 
 let normalizeJArray (jArray: JArray): obj list =
     let toBoxedList seq = 
@@ -45,12 +46,25 @@ let normalizeJArray (jArray: JArray): obj list =
         jArray.Values<int>() |> toBoxedList
     else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float)) then
         jArray.Values<float>() |> toBoxedList
+    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean)) then
+        jArray.Values<bool>() |> toBoxedList
+    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.String)) then
+        jArray.Values<string>() |> toBoxedList
+    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Date)) then
+        jArray.Values<DateTime>() |> toBoxedList
+    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.TimeSpan)) then
+        jArray.Values<TimeSpan>() |> toBoxedList
     else    
         jArray.Values<obj>() |> toBoxedList
 
 let formatToken (jToken: JToken) =
     match jToken.Type with
-    | JTokenType.Integer -> jToken.ToObject<int>() |> string
+    | JTokenType.Integer  -> jToken.ToObject<int>()      |> string
+    | JTokenType.Float    -> jToken.ToObject<float>()    |> string
+    | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> formatBool
+    | JTokenType.String   -> jToken.ToObject<string>()   |> formatString
+    | JTokenType.Date     -> jToken.ToObject<DateTime>() |> formatDateTime
+    | JTokenType.TimeSpan -> jToken.ToObject<TimeSpan>() |> formatTimeSpan
     | _ -> string jToken
 
 let formatJArray (jArray: JArray) =

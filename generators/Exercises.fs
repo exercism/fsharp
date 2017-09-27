@@ -20,16 +20,16 @@ type Exercise() =
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
-    abstract member RenderExpected : obj -> string
+    abstract member RenderExpected : CanonicalDataCase -> obj -> string
+    abstract member RenderInput : CanonicalDataCase -> string -> obj -> string
     abstract member RenderArrange : CanonicalDataCase -> string list
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSutParameters : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
-    abstract member RenderValue: string -> obj -> string
-    abstract member RenderValueOrIdentifier: string -> obj -> string
-    abstract member RenderValueWithoutIdentifier: string -> obj -> string
-    abstract member RenderValueWithIdentifier: string -> obj -> string
+    abstract member RenderValueOrIdentifier: CanonicalDataCase -> string -> obj -> string
+    abstract member RenderValueWithoutIdentifier: CanonicalDataCase -> string -> obj -> string
+    abstract member RenderValueWithIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesWithIdentifier : string list
@@ -77,10 +77,12 @@ type Exercise() =
 
     default this.ToTestMethodBodyAssert canonicalDataCase =         
         { Sut = this.RenderSut canonicalDataCase
-          Expected = this.RenderExpected canonicalDataCase.["expected"] }
+          Expected = this.RenderValueOrIdentifier canonicalDataCase "expected" canonicalDataCase.["expected"] }
 
-    default this.RenderExpected expected = this.RenderValueOrIdentifier "expected" expected
+    default this.RenderExpected canonicalDataCase expected = formatValue expected
 
+    default this.RenderInput canonicalDataCase key value = formatValue value
+    
     default this.Render canonicalData =
         canonicalData
         |> this.ToTestClass
@@ -101,7 +103,7 @@ type Exercise() =
             canonicalDataCase
             |> Map.filter (fun key _ -> List.contains key this.PropertiesWithIdentifier)
 
-        Map.foldBack (fun key value acc -> this.RenderValueWithIdentifier key value :: acc) arrangeCanonicalData []
+        Map.foldBack (fun key value acc -> this.RenderValueWithIdentifier canonicalDataCase key value :: acc) arrangeCanonicalData []
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
@@ -121,10 +123,9 @@ type Exercise() =
     default this.RenderSutParameters canonicalDataCase =
         let sutParameters = this.SutParameters canonicalDataCase
         
-        Map.foldBack (fun key value acc -> this.RenderValueOrIdentifier key value :: acc) sutParameters [] 
+        Map.foldBack (fun key value acc -> this.RenderValueOrIdentifier canonicalDataCase key value :: acc) sutParameters [] 
 
-    default this.RenderSutProperty canonicalDataCase = 
-        string canonicalDataCase.["property"]
+    default this.RenderSutProperty canonicalDataCase = string canonicalDataCase.["property"]
 
     default this.SutParameters canonicalDataCase =
         canonicalDataCase
@@ -132,23 +133,21 @@ type Exercise() =
         |> Map.remove "expected"
         |> Map.remove "description"
 
-    default this.RenderValue key value =
-        if (List.contains key this.PropertiesWithIdentifier) then
-            this.RenderValueWithIdentifier key value
-        else
-            this.RenderValueWithoutIdentifier key value
-
-    default this.RenderValueOrIdentifier key value =
+    default this.RenderValueOrIdentifier canonicalDataCase key value =
         if (List.contains key this.PropertiesWithIdentifier) then
             this.RenderIdentifier key
         else
-            this.RenderValueWithoutIdentifier key value
+            this.RenderValueWithoutIdentifier canonicalDataCase key value
 
-    default this.RenderValueWithoutIdentifier key value = formatValue value  
+    default this.RenderValueWithoutIdentifier canonicalDataCase key value = 
+        if (key = "expected") then
+            this.RenderExpected canonicalDataCase value
+        else            
+            this.RenderInput canonicalDataCase key value
 
-    default this.RenderValueWithIdentifier key value = 
+    default this.RenderValueWithIdentifier canonicalDataCase key value = 
         let identifier = this.RenderIdentifier key
-        let value = this.RenderValueWithoutIdentifier key value
+        let value = this.RenderValueWithoutIdentifier canonicalDataCase key value
         sprintf "let %s = %s" identifier value
 
     default this.PropertiesWithIdentifier = []
@@ -162,12 +161,12 @@ type AtbashCipher() =
 type AllYourBase() =
     inherit Exercise()
 
-    override this.RenderValueWithoutIdentifier key value =
-        match key with
-        | "expected" -> formatNullableToOption value
-        | _ -> formatValue value
+    override this.RenderExpected canonicalDataCase value = formatNullableToOption value
 
     override this.PropertiesWithIdentifier = ["expected"; "input_base"; "input_digits"; "output_base"]
+
+type Allergies() =
+    inherit Exercise()
 
 type BeerSong() =
     inherit Exercise()
@@ -182,10 +181,7 @@ type BookStore() =
 
     let formatFloat (value:obj) = value :?> float |> sprintf "%.2f"
 
-    override this.RenderValueWithoutIdentifier key value = 
-        match key with
-        | "expected" -> formatFloat value
-        | _ -> formatValue value  
+    override this.RenderExpected canonicalDataCase value = formatFloat value
 
     override this.SutParameters canonicalDataCase =
         base.SutParameters canonicalDataCase
@@ -197,10 +193,7 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.RenderValueWithoutIdentifier key value =
-        match key with
-        | "expected" -> formatOption isInt64 value
-        | _ -> formatValue value
+    override this.RenderExpected canonicalDataCase value = formatOption isInt64 value
 
     override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
 
@@ -215,12 +208,12 @@ type Gigasecond() =
 
     let format = formatDateTime >> parenthesize
 
-    override this.RenderValueWithoutIdentifier key value =
+    override this.RenderExpected canonicalDataCase value = value :?> DateTime |> format
+
+    override this.RenderInput canonicalDataCase key value =
         match key with
         | "input" -> 
             DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
-        | "expected" -> 
-            value :?> DateTime |> format      
         | _ -> 
             formatValue value
 
