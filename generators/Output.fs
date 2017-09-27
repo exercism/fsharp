@@ -56,10 +56,9 @@ let formatToken (jToken: JToken) =
 let formatJArray (jArray: JArray) =
     jArray
     |> normalizeJArray
-    |> sprintf "%A"      
+    |> sprintf "%A"
 
 let rec formatValue (value: obj) =
-
     match value with
     | :? string as s -> formatString s
     | :? bool as b -> formatBool b
@@ -67,6 +66,14 @@ let rec formatValue (value: obj) =
     | :? JArray as jArray -> formatJArray jArray
     | :? JToken as jToken -> formatToken jToken
     | _ -> string value
+
+let formatOption noneTest (value: obj) =
+    if (noneTest value) then 
+        "None" 
+    else
+        sprintf "Some %s" (formatValue value)
+
+let formatNullableToOption (value: obj) = formatOption isNull value
 
 type FormatFilter() =
     static member Format(input: obj) = formatValue input

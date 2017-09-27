@@ -40,6 +40,11 @@ module Logging =
             .WriteTo.LiterateConsole()
             .CreateLogger();
 
+let isInt64 (value: obj) = 
+    match value with 
+    | :? int64 -> true 
+    | _ -> false
+
 module String =
 
     open Humanizer
@@ -47,6 +52,8 @@ module String =
     let equals (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)
 
     let humanize (str: string) = str.Humanize()
+
+    let camelize (str: string) = str.Camelize()
 
 module Dict =
 

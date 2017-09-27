@@ -37,6 +37,7 @@ type Exercise() =
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
+    member this.RenderIdentifier key = String.camelize key
 
     member this.WriteToFile contents =
         let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
@@ -139,13 +140,16 @@ type Exercise() =
 
     default this.RenderValueOrIdentifier key value =
         if (List.contains key this.PropertiesWithIdentifier) then
-            key
+            this.RenderIdentifier key
         else
             this.RenderValueWithoutIdentifier key value
 
     default this.RenderValueWithoutIdentifier key value = formatValue value  
 
-    default this.RenderValueWithIdentifier key value = sprintf "let %s = %s" key (this.RenderValueWithoutIdentifier key value)
+    default this.RenderValueWithIdentifier key value = 
+        let identifier = this.RenderIdentifier key
+        let value = this.RenderValueWithoutIdentifier key value
+        sprintf "let %s = %s" identifier value
 
     default this.PropertiesWithIdentifier = []
 
@@ -154,6 +158,16 @@ type Acronym() =
 
 type AtbashCipher() =
     inherit Exercise()
+
+type AllYourBase() =
+    inherit Exercise()
+
+    override this.RenderValueWithoutIdentifier key value =
+        match key with
+        | "expected" -> formatNullableToOption value
+        | _ -> formatValue value
+
+    override this.PropertiesWithIdentifier = ["expected"; "input_base"; "input_digits"; "output_base"]
 
 type BeerSong() =
     inherit Exercise()
@@ -185,10 +199,7 @@ type Change() =
 
     override this.RenderValueWithoutIdentifier key value =
         match key with
-        | "expected" -> 
-            match value with
-            | :? int64 -> "None"
-            | _ -> sprintf "Some %s" (formatValue value)
+        | "expected" -> formatOption isInt64 value
         | _ -> formatValue value
 
     override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
