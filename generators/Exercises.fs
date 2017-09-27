@@ -86,17 +86,17 @@ type Exercise() =
     default this.Render canonicalData =
         canonicalData
         |> this.ToTestClass
-        |> renderPartial "TestClass"
+        |> renderPartialTemplate "TestClass"
 
     default this.RenderTestMethod index canonicalDataCase = 
         canonicalDataCase
         |> this.ToTestMethod index
-        |> renderPartial "TestMethod"
+        |> renderPartialTemplate "TestMethod"
 
     default this.RenderTestMethodBody canonicalDataCase = 
         canonicalDataCase
         |> this.ToTestMethodBody
-        |> renderPartial "TestMethodBody"
+        |> renderPartialTemplate "TestMethodBody"
 
     default this.RenderArrange canonicalDataCase =
         let arrangeCanonicalData = 
@@ -118,7 +118,7 @@ type Exercise() =
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert
-        |> renderPartial template
+        |> renderPartialTemplate template
     
     default this.RenderSutParameters canonicalDataCase =
         let sutParameters = this.SutParameters canonicalDataCase
@@ -165,8 +165,36 @@ type AllYourBase() =
 
     override this.PropertiesWithIdentifier = ["expected"; "input_base"; "input_digits"; "output_base"]
 
+type AllergiesAllergenResult = 
+    { Substance: string
+      Assertion: bool }  
+
 type Allergies() =
     inherit Exercise()
+
+    let toAllergen (jToken: JToken) =  sprintf "Allergen.%s" (jToken.ToString() |> String.humanize)
+
+    override this.RenderTestMethodBody canonicalDataCase =
+        if (string canonicalDataCase.["property"] = "allergicTo") then
+            let allergenResults =
+                canonicalDataCase.["expected"] :?> JArray
+                |> Seq.map (fun (jToken: JToken) -> 
+                    { Substance = jToken.["substance"] |> toAllergen
+                      Assertion = jToken.["result"].ToObject<bool>() })
+                |> Seq.toList              
+                
+            renderInlineTemplate "{% for result in Model %}Assert.{{ result.Assertion }}{{ result.Substance }}{% endfor %}" allergenResults
+        else
+            base.RenderTestMethodBody canonicalDataCase
+            
+
+    override this.RenderExpected canonicalDataCase expected =     
+        if (string canonicalDataCase.["property"] = "list") then
+            canonicalDataCase.["expected"] :?> JArray
+            |> Seq.map toAllergen
+            |> formatList
+        else
+            formatValue expected
 
 type BeerSong() =
     inherit Exercise()
