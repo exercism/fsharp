@@ -1,4 +1,4 @@
-﻿module Atbash
+﻿module AtbashCipher
 
 open System
 
@@ -10,7 +10,7 @@ let rec mapMaybe f list =
         | Some(a) -> a :: mapMaybe f xs
         | None -> mapMaybe f xs
 
-let stringFromChars (chars:char seq) = new String(chars |> Array.ofSeq)
+let stringFromChars (chars:char seq) = String(Array.ofSeq chars)
 let chunksOfSize n xs = 
     xs 
     |> Seq.mapi(fun i x -> i / n, x)
