@@ -166,10 +166,6 @@ type AllYourBase() =
 
     override this.PropertiesWithIdentifier = ["expected"; "input_base"; "input_digits"; "output_base"]
 
-type AllergiesAllergenResult = 
-    { Substance: string
-      Assertion: bool }  
-
 type Allergies() =
     inherit Exercise()
 
@@ -177,17 +173,18 @@ type Allergies() =
 
     override this.RenderTestMethodBody canonicalDataCase =
         if (string canonicalDataCase.["property"] = "allergicTo") then
-            let allergenResults =
-                canonicalDataCase.["expected"] :?> JArray
-                |> Seq.map (fun (jToken: JToken) -> 
-                    { Substance = jToken.["substance"] |> toAllergen
-                      Assertion = jToken.["result"].ToObject<bool>() })
-                |> Seq.toList              
-                
-            renderInlineTemplate "{% for result in Model %}Assert.{{ result.Assertion }}{{ result.Substance }}{% endfor %}" allergenResults
+            let renderAssertion (jToken: JToken) =
+                canonicalDataCase
+                |> Map.add "substance" (jToken.["substance"] |> toAllergen |> box)
+                |> Map.add "expected" (jToken.["result"].ToObject<bool>() |> box)
+                |> this.RenderAssert
+                |> indent
+
+            canonicalDataCase.["expected"] :?> JArray
+            |> Seq.map renderAssertion
+            |> String.concat "\n"
         else
             base.RenderTestMethodBody canonicalDataCase
-            
 
     override this.RenderExpected canonicalDataCase expected =     
         if (string canonicalDataCase.["property"] = "list") then
@@ -196,6 +193,11 @@ type Allergies() =
             |> formatList
         else
             formatValue expected
+
+    override this.RenderInput canonicalDataCase key value =
+        match key with
+        | "substance" -> string value
+        | _ -> formatValue value
 
 type BeerSong() =
     inherit Exercise()
@@ -241,10 +243,8 @@ type Gigasecond() =
 
     override this.RenderInput canonicalDataCase key value =
         match key with
-        | "input" -> 
-            DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
-        | _ -> 
-            formatValue value
+        | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
+        | _ -> formatValue value
 
 type HelloWorld() =
     inherit Exercise()  
