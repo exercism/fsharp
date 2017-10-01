@@ -1,41 +1,95 @@
+// This file was auto-generated based on version 1.0.0 of the canonical data.
+
 module QueenAttackTest
 
-open System
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open QueenAttack
 
 [<Fact>]
-let ``Cannot occupy same space`` () =
-    let white = (2, 4)
-    let black = (2, 4)
-    (fun () -> canAttack white black |> ignore) |> should throw typeof<Exception>
+let ``Queen with a valid position`` () =
+    create {
+  "position": "(2,2)"
+} |> should equal 0
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Cannot attack`` () =
-    canAttack (2, 3) (4, 7) |> should equal false
+let ``Queen must have positive rank`` () =
+    create {
+  "position": "(-2,2)"
+} |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on same row`` () =
-    canAttack (2, 4) (2, 7) |> should equal true
+let ``Queen must have rank on board`` () =
+    create {
+  "position": "(8,4)"
+} |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on same column`` () =
-    canAttack (5, 4) (2, 4) |> should equal true
+let ``Queen must have positive file`` () =
+    create {
+  "position": "(2,-2)"
+} |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on diagonal`` () =
-    canAttack (1, 1) (6, 6) |> should equal true
+let ``Queen must have file on board`` () =
+    create {
+  "position": "(4,8)"
+} |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on other diagonal`` () =
-    canAttack (0, 6) (1, 7) |> should equal true
+let ``Can not attack`` () =
+    canAttack {
+  "position": "(6,6)"
+} {
+  "position": "(2,4)"
+} |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on yet another diagonal`` () =
-    canAttack (4, 1) (6, 3) |> should equal true
+let ``Can attack on same rank`` () =
+    canAttack {
+  "position": "(2,6)"
+} {
+  "position": "(2,4)"
+} |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on a diagonal slanted the other way`` () =
-    canAttack (6, 1) (1, 6) |> should equal true
+let ``Can attack on same file`` () =
+    canAttack {
+  "position": "(2,5)"
+} {
+  "position": "(4,5)"
+} |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can attack on first diagonal`` () =
+    canAttack {
+  "position": "(0,4)"
+} {
+  "position": "(2,2)"
+} |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can attack on second diagonal`` () =
+    canAttack {
+  "position": "(3,1)"
+} {
+  "position": "(2,2)"
+} |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can attack on third diagonal`` () =
+    canAttack {
+  "position": "(1,1)"
+} {
+  "position": "(2,2)"
+} |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can attack on fourth diagonal`` () =
+    canAttack {
+  "position": "(5,5)"
+} {
+  "position": "(2,2)"
+} |> should equal true
+

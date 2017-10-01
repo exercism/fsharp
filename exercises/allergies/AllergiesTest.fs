@@ -9,15 +9,19 @@ open Allergies
 
 [<Fact>]
 let ``No allergies means not allergic`` () =
-
+    allergicTo 0 |> should equal [seq [[substance, peanuts]; [result, False]];
+ seq [[substance, cats]; [result, False]];
+ seq [[substance, strawberries]; [result, False]]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Is allergic to eggs`` () =
-
+    allergicTo 1 |> should equal [seq [[substance, eggs]; [result, True]]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to eggs in addition to other stuff`` () =
-
+    allergicTo 5 |> should equal [seq [[substance, eggs]; [result, True]];
+ seq [[substance, shellfish]; [result, True]];
+ seq [[substance, strawberries]; [result, False]]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No allergies at all`` () =

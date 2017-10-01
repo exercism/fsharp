@@ -182,12 +182,11 @@ type Allergies() =
                 |> Seq.map (fun (jToken: JToken) -> 
                     { Substance = jToken.["substance"] |> toAllergen
                       Assertion = jToken.["result"].ToObject<bool>() })
-                |> Seq.toList              
+                |> Seq.toList
                 
             renderInlineTemplate "{% for result in Model %}Assert.{{ result.Assertion }}{{ result.Substance }}{% endfor %}" allergenResults
         else
-            base.RenderTestMethodBody canonicalDataCase
-            
+            base.RenderTestMethodBody canonicalDataCase            
 
     override this.RenderExpected canonicalDataCase expected =     
         if (string canonicalDataCase.["property"] = "list") then
@@ -263,6 +262,16 @@ type Pangram() =
 
 type PigLatin() =
     inherit Exercise()
+
+type QueenAttack() =
+    inherit Exercise()
+
+    override this.RenderInput canonicalDataCase key value =
+        match key with
+        | "queen" -> 
+            string value
+        | _ -> 
+            formatValue value
 
 type Raindrops() =
     inherit Exercise()
