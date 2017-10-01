@@ -10,6 +10,8 @@ open DotLiquid.FileSystems
 open Newtonsoft.Json.Linq
 open Input
 
+let indent value = sprintf "    %s" value
+
 let parenthesize value = sprintf "(%s)" value
 
 let escapeSpecialCharacters (str: string) =
@@ -102,13 +104,14 @@ let formatOption noneTest (value: obj) =
 
 let formatNullableToOption (value: obj) = formatOption isNull value
 
-type FormatFilter() =
-    static member Format(input: obj) = formatValue input
+type OutputFilter() =
+    static member Format (input: string) = formatValue input
+
+    static member Indent (input: string) = indent input
 
 let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "")
+Template.RegisterFilter(OutputFilter().GetType())
 Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
-Template.NamingConvention <- NamingConventions.CSharpNamingConvention()
-Template.RegisterFilter(typeof<FormatFilter>)
 
 let private registrations = Dictionary<_,_>()
 let rec private registerTypeTree ty =

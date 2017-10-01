@@ -99,11 +99,12 @@ type Exercise() =
         |> renderPartialTemplate "TestMethodBody"
 
     default this.RenderArrange canonicalDataCase =
-        let arrangeCanonicalData = 
-            canonicalDataCase
-            |> Map.filter (fun key _ -> List.contains key this.PropertiesWithIdentifier)
+        let renderArrangeProperty property = 
+            let key = property
+            let value = Map.find key canonicalDataCase
+            this.RenderValueWithIdentifier canonicalDataCase key value
 
-        Map.foldBack (fun key value acc -> this.RenderValueWithIdentifier canonicalDataCase key value :: acc) arrangeCanonicalData []
+        List.map renderArrangeProperty this.PropertiesWithIdentifier
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
