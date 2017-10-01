@@ -9,17 +9,15 @@ open Allergies
 
 [<Fact>]
 let ``No allergies means not allergic`` () =
-    allergicTo 0 |> should equal [seq [seq [seq []]; seq [seq []]]; seq [seq [seq []]; seq [seq []]];
- seq [seq [seq []]; seq [seq []]]]
+
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Is allergic to eggs`` () =
-    allergicTo 1 |> should equal [seq [seq [seq []]; seq [seq []]]]
+
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to eggs in addition to other stuff`` () =
-    allergicTo 5 |> should equal [seq [seq [seq []]; seq [seq []]]; seq [seq [seq []]; seq [seq []]];
- seq [seq [seq []]; seq [seq []]]]
+
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No allergies at all`` () =
@@ -27,34 +25,33 @@ let ``No allergies at all`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to just eggs`` () =
-    list 1 |> should equal ["eggs"]
+    list 1 |> should equal [Allergen.Eggs]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to just peanuts`` () =
-    list 2 |> should equal ["peanuts"]
+    list 2 |> should equal [Allergen.Peanuts]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to just strawberries`` () =
-    list 8 |> should equal ["strawberries"]
+    list 8 |> should equal [Allergen.Strawberries]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to eggs and peanuts`` () =
-    list 3 |> should equal ["eggs"; "peanuts"]
+    list 3 |> should equal [Allergen.Eggs; Allergen.Peanuts]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to more than eggs but not peanuts`` () =
-    list 5 |> should equal ["eggs"; "shellfish"]
+    list 5 |> should equal [Allergen.Eggs; Allergen.Shellfish]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to lots of stuff`` () =
-    list 248 |> should equal ["strawberries"; "tomatoes"; "chocolate"; "pollen"; "cats"]
+    list 248 |> should equal [Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Allergic to everything`` () =
-    list 255 |> should equal ["eggs"; "peanuts"; "shellfish"; "strawberries"; "tomatoes"; "chocolate";
- "pollen"; "cats"]
+    list 255 |> should equal [Allergen.Eggs; Allergen.Peanuts; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Ignore non allergen score parts`` () =
-    list 509 |> should equal ["eggs"; "shellfish"; "strawberries"; "tomatoes"; "chocolate"; "pollen"; "cats"]
+    list 509 |> should equal [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
