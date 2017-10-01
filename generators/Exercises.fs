@@ -230,6 +230,11 @@ type Leap() =
 type Luhn() =
     inherit Exercise()
 
+type Minesweeper() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier = ["input"; "expected"]
+
 type Pangram() =
     inherit Exercise()
 
