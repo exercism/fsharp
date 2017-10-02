@@ -47,10 +47,10 @@ type Exercise() =
 
         Log.Information("Generated tests for {Exercise} exercise in {TestClassPath}", this.Name, testClassPath);
 
-    member this.Regenerate(canonicalData) = 
+    member this.Regenerate(canonicalData) =
         canonicalData
         |> this.MapCanonicalData
-        |> this.Render
+        |> this.Render  
         |> this.WriteToFile
 
     member this.MapCanonicalData canonicalData = 
@@ -159,12 +159,12 @@ type Acronym() =
 type AtbashCipher() =
     inherit Exercise()
 
-type AllYourBase() =
+type AllYourBase() =    
     inherit Exercise()
 
-    override this.RenderExpected canonicalDataCase value = formatNullableToOption value
-
     override this.PropertiesWithIdentifier = ["expected"; "input_base"; "input_digits"; "output_base"]
+
+    override this.RenderExpected canonicalDataCase value = formatNullableToOption value    
 
 type Allergies() =
     inherit Exercise()
@@ -224,9 +224,9 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.RenderExpected canonicalDataCase value = formatOption isInt64 value
-
     override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
+
+    override this.RenderExpected canonicalDataCase value = formatOption isInt64 value    
 
 type CryptoSquare() =
     inherit Exercise()
@@ -262,6 +262,12 @@ type Minesweeper() =
     inherit Exercise()
 
     override this.PropertiesWithIdentifier = ["input"; "expected"]
+
+    override this.RenderValueWithoutIdentifier canonicalDataCase key value =        
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatList
 
 type Pangram() =
     inherit Exercise()
