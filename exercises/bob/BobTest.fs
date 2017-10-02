@@ -68,7 +68,7 @@ let ``Statement containing question mark`` () =
     response "Ending with ? means a question." |> should equal "Whatever."
 
 [<Fact(Skip = "Remove to run test")>]
-let ``non letters with question`` () =
+let ``Non-letters with question`` () =
     response ":) ?" |> should equal "Sure."
 
 [<Fact(Skip = "Remove to run test")>]
@@ -104,6 +104,6 @@ let ``Other whitespace`` () =
     response "\n\r \t" |> should equal "Fine. Be that way!"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``non question ending with whitespace`` () =
+let ``Non-question ending with whitespace`` () =
     response "This is a statement ending with whitespace      " |> should equal "Whatever."
 

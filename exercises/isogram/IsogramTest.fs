@@ -36,7 +36,7 @@ let ``Isogram with duplicated non letter character`` () =
     isIsogram "Hjelmqvist-Gryb-Zock-Pfund-Wax" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``made up name that is an isogram`` () =
+let ``Made-up name that is an isogram`` () =
     isIsogram "Emily Jung Schwartzkopf" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]

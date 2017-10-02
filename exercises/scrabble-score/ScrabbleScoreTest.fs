@@ -24,7 +24,7 @@ let ``Short word`` () =
     score "at" |> should equal 2
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Short valuable word`` () =
+let ``Short, valuable word`` () =
     score "zoo" |> should equal 12
 
 [<Fact(Skip = "Remove to run test")>]
@@ -32,15 +32,15 @@ let ``Medium word`` () =
     score "street" |> should equal 6
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Medium valuable word`` () =
+let ``Medium, valuable word`` () =
     score "quirky" |> should equal 22
 
 [<Fact(Skip = "Remove to run test")>]
-let ``long, mixed case word`` () =
+let ``Long, mixed-case word`` () =
     score "OxyphenButazone" |> should equal 41
 
 [<Fact(Skip = "Remove to run test")>]
-let ``english like word`` () =
+let ``English-like word`` () =
     score "pinata" |> should equal 8
 
 [<Fact(Skip = "Remove to run test")>]

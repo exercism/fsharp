@@ -24,11 +24,11 @@ let ``A simple valid SIN that becomes invalid if reversed`` () =
     valid "59" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``A valid canadian SIN`` () =
+let ``A valid Canadian SIN`` () =
     valid "055 444 285" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Invalid canadian SIN`` () =
+let ``Invalid Canadian SIN`` () =
     valid "055 444 286" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
@@ -36,7 +36,7 @@ let ``Invalid credit card`` () =
     valid "8273 1232 7352 0569" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``valid strings with a non digit included become invalid`` () =
+let ``Valid strings with a non-digit included become invalid`` () =
     valid "055a 444 285" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]

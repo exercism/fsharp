@@ -24,7 +24,7 @@ let ``All caps words`` () =
     abbreviate "PHP: Hypertext Preprocessor" |> should equal "PHP"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``non acronym all caps word`` () =
+let ``Non-acronym all caps word`` () =
     abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
 
 [<Fact(Skip = "Remove to run test")>]

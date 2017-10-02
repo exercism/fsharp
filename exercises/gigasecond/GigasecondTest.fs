@@ -25,6 +25,6 @@ let ``Full time specified`` () =
     add (DateTime(2015, 1, 24, 22, 0, 0)) |> should equal (DateTime(2046, 10, 2, 23, 46, 40))
 
 [<Fact(Skip = "Remove to run test")>]
-let ``full time with day roll over`` () =
+let ``Full time with day roll-over`` () =
     add (DateTime(2015, 1, 24, 23, 59, 59)) |> should equal (DateTime(2046, 10, 3, 1, 46, 39))
 

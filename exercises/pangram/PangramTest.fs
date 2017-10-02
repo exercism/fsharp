@@ -16,11 +16,11 @@ let ``Pangram with only lower case`` () =
     isPangram "the quick brown fox jumps over the lazy dog" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Missing character x`` () =
+let ``Missing character 'x'`` () =
     isPangram "a quick movement of the enemy will jeopardize five gunboats" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Another missing character x`` () =
+let ``Another missing character 'x'`` () =
     isPangram "the quick brown fish jumps over the lazy dog" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]

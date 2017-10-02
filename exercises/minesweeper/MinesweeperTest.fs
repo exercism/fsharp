@@ -50,7 +50,7 @@ let ``Horizontal line`` () =
     annotate input |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Horizontal line mines at edges`` () =
+let ``Horizontal line, mines at edges`` () =
     let input = ["*   *"]
     let expected = ["*1 1*"]
     annotate input |> should equal expected
@@ -62,7 +62,7 @@ let ``Vertical line`` () =
     annotate input |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Vertical line mines at edges`` () =
+let ``Vertical line, mines at edges`` () =
     let input = ["*"; " "; " "; " "; "*"]
     let expected = ["*"; "1"; " "; "1"; "*"]
     annotate input |> should equal expected

@@ -22,14 +22,14 @@ let ``Multiple coin change`` () =
     findFewestCoins coins target |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Change with lilliputian coins`` () =
+let ``Change with Lilliputian Coins`` () =
     let coins = [1; 4; 15; 20; 50]
     let target = 23
     let expected = Some [4; 4; 15]
     findFewestCoins coins target |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Change with lower elbonia coins`` () =
+let ``Change with Lower Elbonia Coins`` () =
     let coins = [1; 5; 10; 21; 25]
     let target = 63
     let expected = Some [21; 21; 21]

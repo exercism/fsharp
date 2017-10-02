@@ -64,7 +64,7 @@ let ``Hexadecimal to trinary`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``15 bit integer`` () =
+let ``15-bit integer`` () =
     let expected = Some [6; 10; 45]
     let inputBase = 97
     let inputDigits = [3; 46; 60]

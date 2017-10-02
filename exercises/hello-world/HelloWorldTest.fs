@@ -8,6 +8,6 @@ open Xunit
 open HelloWorld
 
 [<Fact>]
-let ``Say hi`` () =
+let ``Say Hi!`` () =
     hello |> should equal "Hello, World!"
 
