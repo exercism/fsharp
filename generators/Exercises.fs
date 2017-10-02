@@ -293,7 +293,7 @@ type Change() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
 
-    override this.RenderExpected canonicalDataCase value = formatOption isInt64 value    
+    override this.RenderExpected canonicalDataCase value = formatOption isInt64 value
 
 type CryptoSquare() =
     inherit Exercise()
@@ -383,6 +383,11 @@ type QueenAttack() =
 
 type Raindrops() =
     inherit Exercise()
+
+type RnaTranscription() =
+    inherit Exercise()
+
+    override this.RenderExpected canonicalDataCase value = formatNullableToParenthesizedOption value
 
 type RomanNumerals() =
     inherit Exercise()

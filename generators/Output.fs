@@ -110,6 +110,11 @@ let formatOption noneTest (value: obj) =
 
 let formatNullableToOption (value: obj) = formatOption isNull value
 
+let formatNullableToParenthesizedOption (value: obj) = 
+    match formatOption isNull value with
+    | "None" -> "None"
+    | some -> parenthesize some
+
 type OutputFilter() =
     static member Format (input: string) = formatValue input
 
