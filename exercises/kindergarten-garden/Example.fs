@@ -1,4 +1,4 @@
-﻿module KinderGartenGarden
+﻿module KindergartenGarden
 
 type Plant = Violets | Radishes | Clover | Grass
 
@@ -22,7 +22,7 @@ let private plantsInRow (row: string) =
     |> Seq.chunkBySize plantsPerChildPerRow
     |> Seq.map List.ofArray
 
-let garden children (windowSills: string) =     
+let toGarden children (windowSills: string) =     
     let rows = windowSills.Split rowSeparator
     let row1 = plantsInRow rows.[0]
     let row2 = plantsInRow rows.[1]
@@ -30,6 +30,8 @@ let garden children (windowSills: string) =
     |> Seq.map (fun (child, plants1, plants2) -> (child, plants1 @ plants2))
     |> Map.ofSeq
 
-let defaultGarden windowSills = garden defaultChildren windowSills
+let plantsForCustomStudents diagram student students = 
+    let garden = toGarden students diagram
+    defaultArg (Map.tryFind student garden) []
 
-let lookupPlants child childPlantsMap = defaultArg (Map.tryFind child childPlantsMap) []
+let plantsForDefaultStudents diagram student = plantsForCustomStudents diagram student defaultChildren

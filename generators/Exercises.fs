@@ -17,6 +17,14 @@ let renderExpected (canonicalDataCase: CanonicalDataCase) expected = formatValue
 
 let renderInput (canonicalDataCase: CanonicalDataCase) (key: string) value = formatValue value
 
+let renderTestMethodName (canonicalDataCase: CanonicalDataCase) = 
+    String.upperCaseFirst canonicalDataCase.Description
+
+let renderFullTestMethodName (canonicalDataCase: CanonicalDataCase) = 
+    canonicalDataCase.DescriptionPath
+    |> String.concat " - "
+    |> String.upperCaseFirst
+
 let renderTestClass (testClass: TestClass) = renderPartialTemplate "TestClass" testClass
 
 let renderTestMethod (testMethod: TestMethod) = renderPartialTemplate "TestMethod" testMethod
@@ -24,12 +32,14 @@ let renderTestMethod (testMethod: TestMethod) = renderPartialTemplate "TestMetho
 let renderTestMethodBody (testMethodBody: TestMethodBody) = renderPartialTemplate "TestMethodBody" testMethodBody
 
 let renderArrange renderValueWithIdentifier propertiesWithIdentifier (canonicalDataCase: CanonicalDataCase) =
-    let renderArrangeProperty property = 
-        let key = property
-        let value = Map.find key canonicalDataCase.Properties
-        renderValueWithIdentifier canonicalDataCase key value
+    let renderArrangeProperty property: string option = 
+        match Map.tryFind property canonicalDataCase.Properties with
+        | None -> None
+        | Some value -> Some (renderValueWithIdentifier canonicalDataCase property value)
 
-    List.map renderArrangeProperty propertiesWithIdentifier
+    canonicalDataCase
+    |> propertiesWithIdentifier 
+    |> List.choose renderArrangeProperty
 
 let renderAssert testMethodBodyAssertTemplate (testMethodBodyAssert: TestMethodBodyAssert) = 
     renderPartialTemplate testMethodBodyAssertTemplate testMethodBodyAssert
@@ -40,7 +50,9 @@ let renderValueWithoutIdentifier renderExpected renderInput (canonicalDataCase: 
     | _  -> renderInput canonicalDataCase key value
 
 let renderValueOrIdentifier renderIdentifier renderValueWithoutIdentifier propertiesWithIdentifier (canonicalDataCase: CanonicalDataCase) (key: string) value =
-    match List.contains key propertiesWithIdentifier with
+    let properties = propertiesWithIdentifier canonicalDataCase
+
+    match List.contains key properties with
     | true  -> renderIdentifier key
     | false -> renderValueWithoutIdentifier canonicalDataCase key value
 
@@ -69,19 +81,20 @@ type Exercise() =
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
+    abstract member RenderTestMethodName : CanonicalDataCase -> string
     abstract member RenderExpected : CanonicalDataCase -> obj -> string
     abstract member RenderInput : CanonicalDataCase -> string -> obj -> string
     abstract member RenderArrange : CanonicalDataCase -> string list
+    abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSutParameters : CanonicalDataCase -> string list
-    abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
     abstract member RenderValueOrIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member RenderValueWithoutIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member RenderValueWithIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
-    abstract member PropertiesWithIdentifier : string list
+    abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
     abstract member AdditionalNamespaces : string list
 
     member this.Name = this.GetType().Name.Kebaberize()
@@ -118,7 +131,7 @@ type Exercise() =
 
     default this.ToTestMethod index canonicalDataCase =         
         { Skip = index > 0
-          Name = String.humanize canonicalDataCase.Description
+          Name = this.RenderTestMethodName canonicalDataCase
           Body = this.RenderTestMethodBody canonicalDataCase }
 
     default this.ToTestMethodBody canonicalDataCase =         
@@ -152,6 +165,9 @@ type Exercise() =
         canonicalDataCase
         |> this.ToTestMethodBody
         |> renderTestMethodBody
+
+    default this.RenderTestMethodName canonicalDataCase = 
+        renderTestMethodName canonicalDataCase
 
     default this.RenderArrange canonicalDataCase =
         renderArrange this.RenderValueWithIdentifier this.PropertiesWithIdentifier canonicalDataCase
@@ -191,7 +207,7 @@ type Exercise() =
     default this.RenderValueWithIdentifier canonicalDataCase key value = 
         renderValueWithIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier canonicalDataCase key value
 
-    default this.PropertiesWithIdentifier = []
+    default this.PropertiesWithIdentifier canonicalDataCase = []
 
     default this.AdditionalNamespaces = []
 
@@ -204,7 +220,7 @@ type AtbashCipher() =
 type AllYourBase() =    
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier = ["expected"; "input_base"; "input_digits"; "output_base"]
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"; "input_base"; "input_digits"; "output_base"]
 
     override this.RenderExpected canonicalDataCase value = formatNullableToOption value    
 
@@ -247,7 +263,7 @@ type Allergies() =
 type BeerSong() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier = ["expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
 
 type Bob() =
     inherit Exercise()
@@ -275,7 +291,7 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier = ["coins"; "target"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
 
     override this.RenderExpected canonicalDataCase value = formatOption isInt64 value    
 
@@ -305,6 +321,26 @@ type HelloWorld() =
 type Isogram() =
     inherit Exercise()
 
+type KindergartenGarden() =
+    inherit Exercise()
+
+    let toPlant (jToken: JToken) =  sprintf "Plant.%s" (jToken.ToString() |> String.humanize)
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "students"; "diagram"; "expected"]
+
+    override this.RenderExpected canonicalDataCase value = 
+        value :?> JArray 
+        |> Seq.map toPlant
+        |> formatList
+
+    override this.RenderSutProperty canonicalDataCase =
+        match Map.containsKey "students" canonicalDataCase.Properties with
+        | true  -> "plantsForCustomStudents"
+        | false -> "plantsForDefaultStudents"
+
+    override this.RenderTestMethodName canonicalDataCase =
+        renderFullTestMethodName canonicalDataCase    
+
 type Leap() =
     inherit Exercise()
 
@@ -314,7 +350,7 @@ type Luhn() =
 type Minesweeper() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
 
     override this.RenderValueWithoutIdentifier canonicalDataCase key value =        
         value :?> JArray

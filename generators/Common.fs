@@ -8,7 +8,7 @@ open Newtonsoft.Json.Linq
 
 type CanonicalDataCase = 
     { Properties: Map<string, obj>
-      PropertyPath: string list } with 
+      DescriptionPath: string list } with 
         member this.Description = string this.Properties.["description"]
         member this.Property = string this.Properties.["property"]
         member this.Expected = this.Properties.["expected"]
@@ -60,6 +60,12 @@ module String =
     let humanize (str: string) = str.Humanize()
 
     let camelize (str: string) = str.Camelize()
+
+    let upperCaseFirst (str: string) = 
+        match str with
+        | "" -> str
+        | _  -> sprintf "%c%s" (Char.ToUpper(str.[0])) str.[1..]
+
 
 module Json =
     let rec parentsAndSelf (currentToken: JToken) =

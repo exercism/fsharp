@@ -1,51 +1,104 @@
-module KinderGartenGardenTest
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
-open Xunit
+module KindergartenGardenTest
+
 open FsUnit.Xunit
-open KinderGartenGarden
+open Xunit
+
+open KindergartenGarden
 
 [<Fact>]
-let ``Missing child`` () =
-    let garden = defaultGarden "RC\nGG"
-    let actual = lookupPlants "Potter" garden
-    actual |> should be Empty
+let ``Partial garden - garden with single student`` () =
+    let student = "Alice"
+    let diagram = "RC\nGG"
+    let expected = [Plant.Radishes; Plant.Clover; Plant.Grass; Plant.Grass]
+    plantsForDefaultStudents diagram student |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Alice`` () =
-    defaultGarden "RC\nGG" |> lookupPlants "Alice" |> should equal [Plant.Radishes; Plant.Clover; Plant.Grass; Plant.Grass]
-    defaultGarden "VC\nRC" |> lookupPlants "Alice" |> should equal [Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Clover]
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Small garden`` () =
-    let garden = defaultGarden "VVCG\nVVRC"
-    lookupPlants "Bob" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Clover]
+let ``Partial garden - different garden with single student`` () =
+    let student = "Alice"
+    let diagram = "VC\nRC"
+    let expected = [Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Clover]
+    plantsForDefaultStudents diagram student |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Medium garden`` () =
-    let garden = defaultGarden "VVCCGG\nVVCCGG"
-    lookupPlants "Bob" garden |> should equal [Plant.Clover; Plant.Clover; Plant.Clover; Plant.Clover]
-    lookupPlants "Charlie" garden |> should equal [Plant.Grass; Plant.Grass; Plant.Grass; Plant.Grass]
+let ``Partial garden - garden with two students`` () =
+    let student = "Bob"
+    let diagram = "VVCG\nVVRC"
+    let expected = [Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Clover]
+    plantsForDefaultStudents diagram student |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Full garden`` () =
-    let garden = defaultGarden "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
-    lookupPlants "Alice" garden |> should equal [Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]
-    lookupPlants "Alice" garden |> should equal [Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]
-    lookupPlants "Bob" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Clover; Plant.Clover]
-    lookupPlants "David" garden |> should equal [Plant.Radishes; Plant.Violets; Plant.Clover; Plant.Radishes]
-    lookupPlants "Eve" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Radishes; Plant.Grass]
-    lookupPlants "Fred" garden |> should equal [Plant.Grass; Plant.Clover; Plant.Violets; Plant.Clover]
-    lookupPlants "Ginny" garden |> should equal [Plant.Clover; Plant.Grass; Plant.Grass; Plant.Clover]
-    lookupPlants "Harriet" garden |> should equal [Plant.Violets; Plant.Radishes; Plant.Radishes; Plant.Violets]
-    lookupPlants "Ileana" garden |> should equal [Plant.Grass; Plant.Clover; Plant.Violets; Plant.Clover]
-    lookupPlants "Joseph" garden |> should equal [Plant.Violets; Plant.Clover; Plant.Violets; Plant.Grass]
-    lookupPlants "Kincaid" garden |> should equal [Plant.Grass; Plant.Clover; Plant.Clover; Plant.Grass]
-    lookupPlants "Larry" garden |> should equal [Plant.Grass; Plant.Violets; Plant.Clover; Plant.Violets]
-    
+let ``Partial garden - multiple students for the same garden with three students - second student's garden`` () =
+    let student = "Bob"
+    let diagram = "VVCCGG\nVVCCGG"
+    let expected = [Plant.Clover; Plant.Clover; Plant.Clover; Plant.Clover]
+    plantsForDefaultStudents diagram student |> should equal expected
+
 [<Fact(Skip = "Remove to run test")>]
-let ``Surprise garden`` () =
-    let garden = garden ["Samantha"; "Patricia"; "Xander"; "Roger"] "VCRRGVRG\nRVGCCGCV"
-    lookupPlants "Patricia" garden |> should equal [Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Violets]
-    lookupPlants "Roger" garden |> should equal [Plant.Radishes; Plant.Radishes; Plant.Grass; Plant.Clover]
-    lookupPlants "Samantha" garden |> should equal [Plant.Grass; Plant.Violets; Plant.Clover; Plant.Grass]
-    lookupPlants "Xander" garden |> should equal [Plant.Radishes; Plant.Grass; Plant.Clover; Plant.Violets]
+let ``Partial garden - multiple students for the same garden with three students - third student's garden`` () =
+    let student = "Charlie"
+    let diagram = "VVCCGG\nVVCCGG"
+    let expected = [Plant.Grass; Plant.Grass; Plant.Grass; Plant.Grass]
+    plantsForDefaultStudents diagram student |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Full garden - first student's garden`` () =
+    let student = "Alice"
+    let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
+    let expected = [Plant.Violets; Plant.Radishes; Plant.Violets; Plant.Radishes]
+    plantsForDefaultStudents diagram student |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Full garden - second student's garden`` () =
+    let student = "Bob"
+    let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
+    let expected = [Plant.Clover; Plant.Grass; Plant.Clover; Plant.Clover]
+    plantsForDefaultStudents diagram student |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Full garden - second to last student's garden`` () =
+    let student = "Kincaid"
+    let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
+    let expected = [Plant.Grass; Plant.Clover; Plant.Clover; Plant.Grass]
+    plantsForDefaultStudents diagram student |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Full garden - last student's garden`` () =
+    let student = "Larry"
+    let diagram = "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV"
+    let expected = [Plant.Grass; Plant.Violets; Plant.Clover; Plant.Violets]
+    plantsForDefaultStudents diagram student |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Non-alphabetical student list - first student's garden`` () =
+    let student = "Patricia"
+    let students = ["Samantha"; "Patricia"; "Xander"; "Roger"]
+    let diagram = "VCRRGVRG\nRVGCCGCV"
+    let expected = [Plant.Violets; Plant.Clover; Plant.Radishes; Plant.Violets]
+    plantsForCustomStudents diagram student students |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Non-alphabetical student list - second student's garden`` () =
+    let student = "Roger"
+    let students = ["Samantha"; "Patricia"; "Xander"; "Roger"]
+    let diagram = "VCRRGVRG\nRVGCCGCV"
+    let expected = [Plant.Radishes; Plant.Radishes; Plant.Grass; Plant.Clover]
+    plantsForCustomStudents diagram student students |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Non-alphabetical student list - third student's garden`` () =
+    let student = "Samantha"
+    let students = ["Samantha"; "Patricia"; "Xander"; "Roger"]
+    let diagram = "VCRRGVRG\nRVGCCGCV"
+    let expected = [Plant.Grass; Plant.Violets; Plant.Clover; Plant.Grass]
+    plantsForCustomStudents diagram student students |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Non-alphabetical student list - fourth (last) student's garden`` () =
+    let student = "Xander"
+    let students = ["Samantha"; "Patricia"; "Xander"; "Roger"]
+    let diagram = "VCRRGVRG\nRVGCCGCV"
+    let expected = [Plant.Radishes; Plant.Grass; Plant.Clover; Plant.Violets]
+    plantsForCustomStudents diagram student students |> should equal expected
+
