@@ -9,21 +9,6 @@ open Allergies
 
 [<Fact>]
 let ``No allergies means not allergic`` () =
-<<<<<<< HEAD
-    allergicTo 0 |> should equal [seq [[substance, peanuts]; [result, False]];
- seq [[substance, cats]; [result, False]];
- seq [[substance, strawberries]; [result, False]]]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Is allergic to eggs`` () =
-    allergicTo 1 |> should equal [seq [[substance, eggs]; [result, True]]]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Allergic to eggs in addition to other stuff`` () =
-    allergicTo 5 |> should equal [seq [[substance, eggs]; [result, True]];
- seq [[substance, shellfish]; [result, True]];
- seq [[substance, strawberries]; [result, False]]]
-=======
     allergicTo 0 Allergen.Peanuts |> should equal false
     allergicTo 0 Allergen.Cats |> should equal false
     allergicTo 0 Allergen.Strawberries |> should equal false
@@ -37,7 +22,6 @@ let ``Allergic to eggs in addition to other stuff`` () =
     allergicTo 5 Allergen.Eggs |> should equal true
     allergicTo 5 Allergen.Shellfish |> should equal true
     allergicTo 5 Allergen.Strawberries |> should equal false
->>>>>>> c61369f927a9d68da4dadf7e6c8591ca1c2f2115
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No allergies at all`` () =
