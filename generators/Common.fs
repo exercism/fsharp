@@ -4,9 +4,11 @@ module Generators.Common
 open System
 open System.IO
 open Serilog
+open Newtonsoft.Json.Linq
 
 type CanonicalDataCase = 
-    { Properties: Map<string, obj> } with 
+    { Properties: Map<string, obj>
+      PropertyPath: string list } with 
         member this.Description = string this.Properties.["description"]
         member this.Property = string this.Properties.["property"]
         member this.Expected = this.Properties.["expected"]
@@ -58,6 +60,15 @@ module String =
     let humanize (str: string) = str.Humanize()
 
     let camelize (str: string) = str.Camelize()
+
+module Json =
+    let rec parentsAndSelf (currentToken: JToken) =
+        let rec helper acc (token: JToken) =
+            match token with
+            | null -> acc
+            | _ -> helper (token::acc) token.Parent
+
+        helper [] currentToken
 
 module Dict =
 

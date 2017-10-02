@@ -58,8 +58,19 @@ type CanonicalDataConverter() =
         jToken.ToObject<IDictionary<string, obj>>()
         |> Dict.toMap
 
+    let createPropertyPathFromJToken (jToken: JToken): string list =
+        let descriptionFromJToken (currentToken: JToken) =
+            match currentToken.SelectToken("description") with
+            | null ->  None
+            | description -> Some (description.ToObject<string>())
+
+        jToken
+        |> Json.parentsAndSelf
+        |> List.choose descriptionFromJToken
+
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
-        { Properties = createCanonicalDataCasePropertiesFromJToken jToken }
+        { Properties = createCanonicalDataCasePropertiesFromJToken jToken
+          PropertyPath = createPropertyPathFromJToken jToken }
 
     let createCanonicalDataCasesFromJToken (jToken: JToken) =  
         jToken.["cases"].SelectTokens("$..*[?(@.property)]")

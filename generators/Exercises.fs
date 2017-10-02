@@ -300,10 +300,10 @@ type Gigasecond() =
     override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type HelloWorld() =
-    inherit Exercise()  
+    inherit Exercise()
 
 type Isogram() =
-    inherit Exercise()  
+    inherit Exercise()
 
 type Leap() =
     inherit Exercise()
