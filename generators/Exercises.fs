@@ -11,12 +11,61 @@ open Serilog
 open Input
 open Output
 
+let renderIdentifier key = String.camelize key
+
+let renderExpected (canonicalDataCase: CanonicalDataCase) expected = formatValue expected
+
+let renderInput (canonicalDataCase: CanonicalDataCase) (key: string) value = formatValue value
+
+let renderTestClass (testClass: TestClass) = renderPartialTemplate "TestClass" testClass
+
+let renderTestMethod (testMethod: TestMethod) = renderPartialTemplate "TestMethod" testMethod
+
+let renderTestMethodBody (testMethodBody: TestMethodBody) = renderPartialTemplate "TestMethodBody" testMethodBody
+
+let renderArrange renderValueWithIdentifier propertiesWithIdentifier (canonicalDataCase: CanonicalDataCase) =
+    let renderArrangeProperty property = 
+        let key = property
+        let value = Map.find key canonicalDataCase
+        renderValueWithIdentifier canonicalDataCase key value
+
+    List.map renderArrangeProperty propertiesWithIdentifier
+
+let renderAssert testMethodBodyAssertTemplate (testMethodBodyAssert: TestMethodBodyAssert) = 
+    renderPartialTemplate testMethodBodyAssertTemplate testMethodBodyAssert
+
+let renderValueWithoutIdentifier renderExpected renderInput (canonicalDataCase: CanonicalDataCase) (key: string) value = 
+    match key with
+    | "expected" -> renderExpected canonicalDataCase value
+    | _  -> renderInput canonicalDataCase key value
+
+let renderValueOrIdentifier renderIdentifier renderValueWithoutIdentifier propertiesWithIdentifier (canonicalDataCase: CanonicalDataCase) (key: string) value =
+    match List.contains key propertiesWithIdentifier with
+    | true  -> renderIdentifier key
+    | false -> renderValueWithoutIdentifier canonicalDataCase key value
+
+let renderValueWithIdentifier renderIdentifier renderValueWithoutIdentifier (canonicalDataCase: CanonicalDataCase) (key: string) value = 
+    let identifier = renderIdentifier key
+    let value = renderValueWithoutIdentifier canonicalDataCase key value
+    sprintf "let %s = %s" identifier value    
+
+let renderSutParameters renderValueOrIdentifier (sutParameters: CanonicalDataCase) =    
+    Map.foldBack (fun key value acc -> renderValueOrIdentifier sutParameters key value :: acc) sutParameters [] 
+
+let renderSutProperty (canonicalDataCase: CanonicalDataCase) = string canonicalDataCase.["property"]
+
+let renderSut renderSutParameters renderSutProperty (canonicalDataCase: CanonicalDataCase) = 
+    let parameters = renderSutParameters canonicalDataCase
+    let property = renderSutProperty canonicalDataCase
+    property :: parameters |> String.concat " "
+
 [<AbstractClass>]
 type Exercise() =
     abstract member ToTestClass : CanonicalData -> TestClass
     abstract member ToTestMethod : int -> CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
+    abstract member ToTestMethodBodyAssertTemplate : CanonicalDataCase -> string
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
@@ -37,7 +86,7 @@ type Exercise() =
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
-    member this.RenderIdentifier key = String.camelize key
+    member this.RenderIdentifier key = renderIdentifier key
 
     member this.WriteToFile contents =
         let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
@@ -79,54 +128,49 @@ type Exercise() =
         { Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderValueOrIdentifier canonicalDataCase "expected" canonicalDataCase.["expected"] }
 
-    default this.RenderExpected canonicalDataCase expected = formatValue expected
+    default this.ToTestMethodBodyAssertTemplate canonicalDataCase =
+        match canonicalDataCase.["expected"] with
+        | :? JArray as jArray when jArray.Count = 0 -> "AssertEmpty"
+        | _ -> "AssertEqual"
 
-    default this.RenderInput canonicalDataCase key value = formatValue value
+    default this.RenderExpected canonicalDataCase expected = renderExpected canonicalDataCase expected
+
+    default this.RenderInput canonicalDataCase key value = renderInput canonicalDataCase key value
     
     default this.Render canonicalData =
         canonicalData
         |> this.ToTestClass
-        |> renderPartialTemplate "TestClass"
+        |> renderTestClass
 
     default this.RenderTestMethod index canonicalDataCase = 
         canonicalDataCase
         |> this.ToTestMethod index
-        |> renderPartialTemplate "TestMethod"
+        |> renderTestMethod
 
     default this.RenderTestMethodBody canonicalDataCase = 
         canonicalDataCase
         |> this.ToTestMethodBody
-        |> renderPartialTemplate "TestMethodBody"
+        |> renderTestMethodBody
 
     default this.RenderArrange canonicalDataCase =
-        let renderArrangeProperty property = 
-            let key = property
-            let value = Map.find key canonicalDataCase
-            this.RenderValueWithIdentifier canonicalDataCase key value
-
-        List.map renderArrangeProperty this.PropertiesWithIdentifier
+        renderArrange this.RenderValueWithIdentifier this.PropertiesWithIdentifier canonicalDataCase
 
     default this.RenderSut canonicalDataCase = 
-        let parameters = this.RenderSutParameters canonicalDataCase
-        let property = this.RenderSutProperty canonicalDataCase
-        property :: parameters |> String.concat " "
+        renderSut this.RenderSutParameters this.RenderSutProperty canonicalDataCase
 
     default this.RenderAssert canonicalDataCase = 
-        let template = 
-            match canonicalDataCase.["expected"] with
-            | :? JArray as jArray when jArray.Count = 0 -> "AssertEmpty"
-            | _ -> "AssertEqual"                      
+        let template = this.ToTestMethodBodyAssertTemplate canonicalDataCase                
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert
-        |> renderPartialTemplate template
+        |> renderAssert template
     
     default this.RenderSutParameters canonicalDataCase =
-        let sutParameters = this.SutParameters canonicalDataCase
-        
-        Map.foldBack (fun key value acc -> this.RenderValueOrIdentifier canonicalDataCase key value :: acc) sutParameters [] 
+        canonicalDataCase
+        |> this.SutParameters 
+        |> renderSutParameters this.RenderValueOrIdentifier
 
-    default this.RenderSutProperty canonicalDataCase = string canonicalDataCase.["property"]
+    default this.RenderSutProperty canonicalDataCase = renderSutProperty canonicalDataCase
 
     default this.SutParameters canonicalDataCase =
         canonicalDataCase
@@ -135,21 +179,13 @@ type Exercise() =
         |> Map.remove "description"
 
     default this.RenderValueOrIdentifier canonicalDataCase key value =
-        if (List.contains key this.PropertiesWithIdentifier) then
-            this.RenderIdentifier key
-        else
-            this.RenderValueWithoutIdentifier canonicalDataCase key value
+        renderValueOrIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier this.PropertiesWithIdentifier canonicalDataCase key value
 
     default this.RenderValueWithoutIdentifier canonicalDataCase key value = 
-        if (key = "expected") then
-            this.RenderExpected canonicalDataCase value
-        else            
-            this.RenderInput canonicalDataCase key value
+        renderValueWithoutIdentifier this.RenderExpected this.RenderInput canonicalDataCase key value
 
     default this.RenderValueWithIdentifier canonicalDataCase key value = 
-        let identifier = this.RenderIdentifier key
-        let value = this.RenderValueWithoutIdentifier canonicalDataCase key value
-        sprintf "let %s = %s" identifier value
+        renderValueWithIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier canonicalDataCase key value
 
     default this.PropertiesWithIdentifier = []
 
@@ -192,7 +228,7 @@ type Allergies() =
             |> Seq.map toAllergen
             |> formatList
         else
-            formatValue expected
+            renderExpected canonicalDataCase expected
 
     override this.RenderInput canonicalDataCase key value =
         match key with
@@ -244,7 +280,7 @@ type Gigasecond() =
     override this.RenderInput canonicalDataCase key value =
         match key with
         | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
-        | _ -> formatValue value
+        | _ -> renderInput canonicalDataCase key value
 
 type HelloWorld() =
     inherit Exercise()  
@@ -283,7 +319,7 @@ type QueenAttack() =
         | "queen" -> 
             string value
         | _ -> 
-            formatValue value
+            renderInput canonicalDataCase key value
 
 type Raindrops() =
     inherit Exercise()
