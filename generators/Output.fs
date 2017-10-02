@@ -149,12 +149,6 @@ let renderInlineTemplate template value =
     let parsedTemplate = Template.Parse template
     parsedTemplate.Render(Hash.FromAnonymousObject(value))
 
-let renderInlineTemplateFromDictionary template value =
-    value.GetType() |> registerTypeTree
-
-    let parsedTemplate = Template.Parse template
-    parsedTemplate.Render(Hash.FromDictionary(value))
-
 let renderPartialTemplate templateName value =
     let template = sprintf "{%% include \"%s\" %%}" templateName
     renderInlineTemplate template value
