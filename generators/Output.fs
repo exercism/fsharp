@@ -103,17 +103,12 @@ let rec formatValue (value: obj) =
     | _ -> string value
 
 let formatOption noneTest (value: obj) =
-    if (noneTest value) then 
+    if noneTest value then 
         "None" 
     else
         sprintf "Some %s" (formatValue value)
 
 let formatNullableToOption (value: obj) = formatOption isNull value
-
-let formatNullableToParenthesizedOption (value: obj) = 
-    match formatOption isNull value with
-    | "None" -> "None"
-    | some -> parenthesize some
 
 type OutputFilter() =
     static member Format (input: string) = formatValue input

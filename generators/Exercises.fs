@@ -44,10 +44,15 @@ let renderArrange renderValueWithIdentifier propertiesWithIdentifier (canonicalD
 let renderAssert testMethodBodyAssertTemplate (testMethodBodyAssert: TestMethodBodyAssert) = 
     renderPartialTemplate testMethodBodyAssertTemplate testMethodBodyAssert
 
-let renderValueWithoutIdentifier renderExpected renderInput (canonicalDataCase: CanonicalDataCase) (key: string) value = 
-    match key with
-    | "expected" -> renderExpected canonicalDataCase value
-    | _  -> renderInput canonicalDataCase key value
+let renderValueWithoutIdentifier renderExpected renderInput parenthesizeProperty (canonicalDataCase: CanonicalDataCase) (key: string) value = 
+    let renderedValue = 
+        match key with
+        | "expected" -> renderExpected canonicalDataCase value
+        | _  -> renderInput canonicalDataCase key value    
+
+    match parenthesizeProperty canonicalDataCase key value with
+    | true  -> parenthesize renderedValue
+    | false -> renderedValue
 
 let renderValueOrIdentifier renderIdentifier renderValueWithoutIdentifier propertiesWithIdentifier (canonicalDataCase: CanonicalDataCase) (key: string) value =
     let properties = propertiesWithIdentifier canonicalDataCase
@@ -95,6 +100,7 @@ type Exercise() =
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
+    abstract member ParenthesizeProperty : CanonicalDataCase -> string -> obj -> bool
     abstract member AdditionalNamespaces : string list
 
     member this.Name = this.GetType().Name.Kebaberize()
@@ -202,12 +208,14 @@ type Exercise() =
         renderValueOrIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier this.PropertiesWithIdentifier canonicalDataCase key value
 
     default this.RenderValueWithoutIdentifier canonicalDataCase key value = 
-        renderValueWithoutIdentifier this.RenderExpected this.RenderInput canonicalDataCase key value
+        renderValueWithoutIdentifier this.RenderExpected this.RenderInput this.ParenthesizeProperty canonicalDataCase key value        
 
     default this.RenderValueWithIdentifier canonicalDataCase key value = 
         renderValueWithIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier canonicalDataCase key value
 
     default this.PropertiesWithIdentifier canonicalDataCase = []
+
+    default this.ParenthesizeProperty canonicalDataCase key value = false
 
     default this.AdditionalNamespaces = []
 
@@ -304,14 +312,14 @@ type DifferenceOfSquares() =
 type Gigasecond() =
     inherit Exercise()
 
-    let format = formatDateTime >> parenthesize
-
-    override this.RenderExpected canonicalDataCase value = value :?> DateTime |> format
+    override this.RenderExpected canonicalDataCase value = value :?> DateTime |> formatDateTime
 
     override this.RenderInput canonicalDataCase key value =
         match key with
-        | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
+        | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime
         | _ -> renderInput canonicalDataCase key value
+
+    override this.ParenthesizeProperty canonicalDataCase key value = true
 
     override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
@@ -387,7 +395,10 @@ type Raindrops() =
 type RnaTranscription() =
     inherit Exercise()
 
-    override this.RenderExpected canonicalDataCase value = formatNullableToParenthesizedOption value
+    override this.RenderExpected canonicalDataCase value = 
+        formatNullableToOption value
+    
+    override this.ParenthesizeProperty canonicalDataCase key value = not (isNull value)
 
 type RomanNumerals() =
     inherit Exercise()
