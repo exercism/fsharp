@@ -48,5 +48,5 @@ let rec private calculateTotalCostHelper books priceSoFar =
         prices
         |> List.min
 
-let calculateTotalCost books =
+let total books =
     calculateTotalCostHelper books 0.

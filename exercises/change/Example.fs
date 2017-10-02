@@ -12,7 +12,7 @@ let updateMinimalCoinsMap coins map target =
     | Some x -> Map.add target x map
     | None   -> map
 
-let change target coins = 
+let findFewestCoins coins target = 
     [1..target]
     |> List.fold (updateMinimalCoinsMap coins) (Map.ofList [(0, [])])
     |> Map.tryFind target

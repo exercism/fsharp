@@ -25,3 +25,5 @@ let encodeInChunks = String.concat " " << Seq.map stringFromChars << chunksOfSiz
 let encodeStr = encodeInChunks << mapMaybe encodeLetter
     
 let encode (str:string) = str |> List.ofSeq |> encodeStr
+
+let decode (str:string) = (encode str).Replace(" ", "")

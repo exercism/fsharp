@@ -1,3 +1,3 @@
 ﻿module Change
 
-let change target coins = failwith "You need to implement this function."
+let findFewestCoins coins target = failwith "You need to implement this function."

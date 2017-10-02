@@ -1,3 +1,3 @@
 ﻿module BookStore
 
-let calculateTotalCost books = failwith "You need to implement this function."
+let total books = failwith "You need to implement this function."

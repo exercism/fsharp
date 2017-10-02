@@ -4,26 +4,26 @@
 
 let empty = failwith "You need to implement this function."
 
-let singleton value = { items = [value] }
+let singleton value = failwith "You need to implement this function."
 
-let isEmpty set = set.items.IsEmpty
+let isEmpty set = failwith "You need to implement this function."
 
-let size set = set.items.Length 
+let size set = failwith "You need to implement this function."
 
-let fromList list = { items = list |> List.sort |> List.distinct } 
+let fromList list = failwith "You need to implement this function."
 
-let toList set = set.items
+let toList set = failwith "You need to implement this function."
 
-let contains value set = List.contains value set.items
+let contains value set = failwith "You need to implement this function."
 
-let insert value set = value::set.items |> fromList
+let insert value set = failwith "You need to implement this function."
 
-let union left right = left.items @ right.items |> fromList
+let union left right = failwith "You need to implement this function."
 
-let intersection left right = left.items |> List.filter (fun x -> List.contains x right.items) |> fromList
+let intersection left right = failwith "You need to implement this function."
 
-let difference left right = left.items |> List.filter (fun x -> List.contains x right.items |> not) |> fromList
+let difference left right = failwith "You need to implement this function."
 
-let isSubsetOf left right = left.items |> List.forall (fun x -> List.contains x right.items)
+let isSubsetOf left right = failwith "You need to implement this function."
 
-let isDisjointFrom left right = left.items |> List.exists (fun x -> List.contains x right.items) |> not
+let isDisjointFrom left right = failwith "You need to implement this function."

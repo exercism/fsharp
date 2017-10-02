@@ -1,4 +1,4 @@
-﻿module RomanNumeral
+﻿module RomanNumerals
 
 let numeralThresholds = [(1000, "M");
                             (900,  "CM");
@@ -21,4 +21,4 @@ let rec toRomanLoop remainder acc thresholds =
             if threshold <= remainder then toRomanLoop (remainder - threshold) (acc + numeral) thresholds
             else toRomanLoop remainder acc xs
 
-let toRoman (arabicNumeral: int) = toRomanLoop arabicNumeral "" numeralThresholds
+let roman (arabicNumeral: int) = toRomanLoop arabicNumeral "" numeralThresholds

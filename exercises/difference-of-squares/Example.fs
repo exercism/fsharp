@@ -2,6 +2,6 @@
 
 let square x = x * x
 
-let squareOfSums (number: int) = [1..number] |> List.sum |> square
-let sumOfSquares (number: int) = [1..number] |> List.map square |> List.sum
-let difference (number: int) = squareOfSums number - sumOfSquares number
+let squareOfSum (number: int) = [1..number] |> List.sum |> square
+let sumOfSquares (number: int) = List.sumBy square [1..number]
+let differenceOfSquares (number: int) = squareOfSum number - sumOfSquares number

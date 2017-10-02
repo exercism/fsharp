@@ -30,7 +30,7 @@ type TestClass =
       ExerciseName: string
       TestModuleName: string
       TestedModuleName: string
-      Namespaces: Set<string>
+      Namespaces: string list
       Methods: string list }
 
 module Logging =

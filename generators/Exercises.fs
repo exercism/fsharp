@@ -82,6 +82,7 @@ type Exercise() =
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesWithIdentifier : string list
+    abstract member AdditionalNamespaces : string list
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
@@ -112,7 +113,7 @@ type Exercise() =
           ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
-          Namespaces = set ["FsUnit.Xunit"; "Xunit"]
+          Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
           Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
 
     default this.ToTestMethod index canonicalDataCase =         
@@ -188,6 +189,8 @@ type Exercise() =
         renderValueWithIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier canonicalDataCase key value
 
     default this.PropertiesWithIdentifier = []
+
+    default this.AdditionalNamespaces = []
 
 type Acronym() =
     inherit Exercise()
@@ -281,6 +284,8 @@ type Gigasecond() =
         match key with
         | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> format
         | _ -> renderInput canonicalDataCase key value
+
+    override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type HelloWorld() =
     inherit Exercise()  

@@ -5,19 +5,17 @@ open System
 type Cell = Mine | Empty
 type Board = { cells: Cell [,]; rows: int; cols: int }
 
-let concat = List.reduce (fun x y -> x + "\n" + y)
-
 let parseCell = 
     function
     | '*' -> Mine
     | _   -> Empty
 
-let parseCells (input: string) =
-    input.Split('\n')
+let parseCells (input: string list) =
+    input
     |> Seq.map (Seq.map parseCell)
     |> array2D
 
-let mkBoard (input: string) =
+let mkBoard (input: string list) =
     let cells = parseCells input
     { cells = cells; rows = cells.GetLength 0; cols = cells.GetLength 1 }
 
@@ -44,10 +42,10 @@ let cellOutput (board: Board) (row, col) =
         | 0 -> ' '
         | x -> char x + '0'
 
-let rowOutput (board: Board) row = Array.init board.cols (fun col -> cellOutput board (row, col)) |> String    
+let rowOutput (board: Board) row = 
+    Array.init board.cols (fun col -> cellOutput board (row, col)) 
+    |> (fun chars -> new String(chars))
     
-let annotate (input: string) = 
-    let board = mkBoard input
-    
+let annotate (input: string list) = 
+    let board = mkBoard input    
     List.init board.rows (rowOutput board)
-    |> concat

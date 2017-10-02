@@ -16,11 +16,11 @@ let transpose seq =
     |> Seq.groupBy(fst)
     |> Seq.map(fun (_, s) -> s |> Seq.map snd |> charsToString)    
 
-let normalizePlaintext (input: string) = seq { for c in input do if Char.IsLetterOrDigit c then yield Char.ToLowerInvariant c } |> charsToString
+let normalizedPlaintext (input: string) = seq { for c in input do if Char.IsLetterOrDigit c then yield Char.ToLowerInvariant c } |> charsToString
 
 let size (input: string) = 
     input 
-    |> normalizePlaintext 
+    |> normalizedPlaintext 
     |> String.length 
     |> float 
     |> Math.Sqrt 
@@ -28,16 +28,16 @@ let size (input: string) =
     |> int
 
 let plaintextSegments (input: string) = 
-    chunksOfSize (size input) (normalizePlaintext input) 
+    chunksOfSize (size input) (normalizedPlaintext input) 
     |> List.ofSeq
 
-let ciphertext (input: string) = 
+let encoded (input: string) = 
     input 
     |> plaintextSegments 
     |> transpose 
     |> String.concat ""
 
-let normalizeCiphertext (input: string) = 
+let ciphertext (input: string) = 
     input 
     |> plaintextSegments 
     |> transpose 
