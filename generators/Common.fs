@@ -5,7 +5,11 @@ open System
 open System.IO
 open Serilog
 
-type CanonicalDataCase = Map<string, obj>
+type CanonicalDataCase = 
+    { Properties: Map<string, obj> } with 
+        member this.Description = string this.Properties.["description"]
+        member this.Property = string this.Properties.["property"]
+        member this.Expected = this.Properties.["expected"]
 
 type CanonicalData = 
     { Exercise: string

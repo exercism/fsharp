@@ -54,9 +54,12 @@ let jsonSerializer = JsonSerializer()
 type CanonicalDataConverter() =
     inherit JsonConverter()
 
-    let createCanonicalDataCaseFromJToken (jToken: JToken) =
+    let createCanonicalDataCasePropertiesFromJToken (jToken: JToken) =
         jToken.ToObject<IDictionary<string, obj>>()
         |> Dict.toMap
+
+    let createCanonicalDataCaseFromJToken (jToken: JToken) =
+        { Properties = createCanonicalDataCasePropertiesFromJToken jToken }
 
     let createCanonicalDataCasesFromJToken (jToken: JToken) =  
         jToken.["cases"].SelectTokens("$..*[?(@.property)]")

@@ -26,7 +26,7 @@ let renderTestMethodBody (testMethodBody: TestMethodBody) = renderPartialTemplat
 let renderArrange renderValueWithIdentifier propertiesWithIdentifier (canonicalDataCase: CanonicalDataCase) =
     let renderArrangeProperty property = 
         let key = property
-        let value = Map.find key canonicalDataCase
+        let value = Map.find key canonicalDataCase.Properties
         renderValueWithIdentifier canonicalDataCase key value
 
     List.map renderArrangeProperty propertiesWithIdentifier
@@ -50,9 +50,9 @@ let renderValueWithIdentifier renderIdentifier renderValueWithoutIdentifier (can
     sprintf "let %s = %s" identifier value    
 
 let renderSutParameters renderValueOrIdentifier (sutParameters: CanonicalDataCase) =    
-    Map.foldBack (fun key value acc -> renderValueOrIdentifier sutParameters key value :: acc) sutParameters [] 
+    Map.foldBack (fun key value acc -> renderValueOrIdentifier sutParameters key value :: acc) sutParameters.Properties [] 
 
-let renderSutProperty (canonicalDataCase: CanonicalDataCase) = string canonicalDataCase.["property"]
+let renderSutProperty (canonicalDataCase: CanonicalDataCase) = string canonicalDataCase.Property
 
 let renderSut renderSutParameters renderSutProperty (canonicalDataCase: CanonicalDataCase) = 
     let parameters = renderSutParameters canonicalDataCase
@@ -118,7 +118,7 @@ type Exercise() =
 
     default this.ToTestMethod index canonicalDataCase =         
         { Skip = index > 0
-          Name = canonicalDataCase.["description"] |> string |> String.humanize
+          Name = String.humanize canonicalDataCase.Description
           Body = this.RenderTestMethodBody canonicalDataCase }
 
     default this.ToTestMethodBody canonicalDataCase =         
@@ -127,10 +127,10 @@ type Exercise() =
 
     default this.ToTestMethodBodyAssert canonicalDataCase =         
         { Sut = this.RenderSut canonicalDataCase
-          Expected = this.RenderValueOrIdentifier canonicalDataCase "expected" canonicalDataCase.["expected"] }
+          Expected = this.RenderValueOrIdentifier canonicalDataCase "expected" canonicalDataCase.Expected }
 
     default this.ToTestMethodBodyAssertTemplate canonicalDataCase =
-        match canonicalDataCase.["expected"] with
+        match canonicalDataCase.Expected with
         | :? JArray as jArray when jArray.Count = 0 -> "AssertEmpty"
         | _ -> "AssertEqual"
 
@@ -174,10 +174,13 @@ type Exercise() =
     default this.RenderSutProperty canonicalDataCase = renderSutProperty canonicalDataCase
 
     default this.SutParameters canonicalDataCase =
-        canonicalDataCase
-        |> Map.remove "property"
-        |> Map.remove "expected"
-        |> Map.remove "description"
+        let sutParameters = 
+            canonicalDataCase.Properties
+            |> Map.remove "property"
+            |> Map.remove "expected"
+            |> Map.remove "description"
+
+        { canonicalDataCase with Properties = sutParameters }
 
     default this.RenderValueOrIdentifier canonicalDataCase key value =
         renderValueOrIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier this.PropertiesWithIdentifier canonicalDataCase key value
@@ -211,23 +214,26 @@ type Allergies() =
     let toAllergen (jToken: JToken) =  sprintf "Allergen.%s" (jToken.ToString() |> String.humanize)
 
     override this.RenderTestMethodBody canonicalDataCase =
-        if (string canonicalDataCase.["property"] = "allergicTo") then
+        if (canonicalDataCase.Property = "allergicTo") then
             let renderAssertion (jToken: JToken) =
-                canonicalDataCase
-                |> Map.add "substance" (jToken.["substance"] |> toAllergen |> box)
-                |> Map.add "expected" (jToken.["result"].ToObject<bool>() |> box)
+                let updatedProperties =
+                    canonicalDataCase.Properties
+                    |> Map.add "substance" (jToken.["substance"] |> toAllergen |> box)
+                    |> Map.add "expected" (jToken.["result"].ToObject<bool>() |> box)
+
+                { canonicalDataCase with Properties = updatedProperties }                
                 |> this.RenderAssert
                 |> indent
 
-            canonicalDataCase.["expected"] :?> JArray
+            canonicalDataCase.Expected :?> JArray
             |> Seq.map renderAssertion
             |> String.concat "\n"
         else
             base.RenderTestMethodBody canonicalDataCase
 
     override this.RenderExpected canonicalDataCase expected =     
-        if (string canonicalDataCase.["property"] = "list") then
-            canonicalDataCase.["expected"] :?> JArray
+        if (canonicalDataCase.Property = "list") then
+            canonicalDataCase.Expected :?> JArray
             |> Seq.map toAllergen
             |> formatList
         else
@@ -254,8 +260,14 @@ type BookStore() =
     override this.RenderExpected canonicalDataCase value = formatFloat value
 
     override this.SutParameters canonicalDataCase =
-        base.SutParameters canonicalDataCase
-        |> Map.remove "targetgrouping"
+        let sutParameters = base.SutParameters canonicalDataCase
+        let updatedProperties =
+            sutParameters.Properties
+            |> Map.remove "targetgrouping"
+            |> Map.remove "expected"
+            |> Map.remove "description"
+
+        { sutParameters with Properties = updatedProperties }
 
 type BracketPush() =
     inherit Exercise()
