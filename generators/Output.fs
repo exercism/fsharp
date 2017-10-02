@@ -87,6 +87,10 @@ let formatJArray (jArray: JArray) =
     |> normalizeJArray
     |> sprintf "%A"
 
+let formatTuple tuple = sprintf "%A" tuple
+
+let formatRecord record = sprintf "%A" record
+
 let rec formatValue (value: obj) =
     match value with
     | :? string as s -> formatString s
@@ -94,6 +98,8 @@ let rec formatValue (value: obj) =
     | :? DateTime as dateTime -> formatDateTime dateTime
     | :? JArray as jArray -> formatJArray jArray
     | :? JToken as jToken -> formatToken jToken
+    | _ when FSharpType.IsTuple (value.GetType()) -> formatTuple value
+    | _ when FSharpType.IsRecord (value.GetType()) -> formatRecord value
     | _ -> string value
 
 let formatOption noneTest (value: obj) =

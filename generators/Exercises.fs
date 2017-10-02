@@ -369,8 +369,15 @@ type QueenAttack() =
 
     override this.RenderInput canonicalDataCase key value =
         match key with
-        | "queen" -> 
-            string value
+        | "queen" ->
+            let parts = 
+                (value :?> JToken)
+                    .SelectToken("position")
+                    .ToObject<string>()
+                    .TrimStart('(')
+                    .TrimEnd(')')
+                    .Split(',')
+            formatValue (int parts.[0], int parts.[1])
         | _ -> 
             renderInput canonicalDataCase key value
 

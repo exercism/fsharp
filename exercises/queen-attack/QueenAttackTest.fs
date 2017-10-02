@@ -9,33 +9,23 @@ open QueenAttack
 
 [<Fact>]
 let ``Queen with a valid position`` () =
-    create {
-  "position": "(2,2)"
-} |> should equal 0
+    create (2, 2) |> should equal 0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Queen must have positive rank`` () =
-    create {
-  "position": "(-2,2)"
-} |> should equal -1
+    create (-2, 2) |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Queen must have rank on board`` () =
-    create {
-  "position": "(8,4)"
-} |> should equal -1
+    create (8, 4) |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Queen must have positive file`` () =
-    create {
-  "position": "(2,-2)"
-} |> should equal -1
+    create (2, -2) |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Queen must have file on board`` () =
-    create {
-  "position": "(4,8)"
-} |> should equal -1
+    create (4, 8) |> should equal -1
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Can not attack`` () =
