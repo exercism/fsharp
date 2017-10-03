@@ -11,11 +11,13 @@ type Options = {
     HelpText = "Exercises to generate (if not specified, defaults to all exercises).")>] Exercises : seq<string>;
   [<CommandLine.Option('d', "canonicaldatadirectory", Required = false, 
     HelpText = "Canonical data directory. If the directory does not exist, the canonical data will be downloaded.")>] CanonicalDataDirectory : string;
-  [<CommandLine.Option('c', "cachecanonicaldata", Required = false, 
-    HelpText = "Use the cached canonical data and don't update the data.")>] CacheCanonicalData : bool;
+  [<CommandLine.Option('s', "skipupdatecanonicaldata", Required = false,
+    HelpText = "Don't update the canonical data.")>] SkipUpdateCanonicalData : bool;
 }
 
 let private normalizeOptions options = 
+    printfn "%A" options
+
     if options.CanonicalDataDirectory <> "" then
         options 
     else

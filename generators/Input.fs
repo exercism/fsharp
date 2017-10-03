@@ -39,10 +39,11 @@ let private updateToLatestVersion options =
     Log.Information("Updated repository to latest version.");
 
 let private downloadData options =
-    cloneRepository options
-
-    if (not options.CacheCanonicalData) then
-        updateToLatestVersion options
+    if options.SkipUpdateCanonicalData then
+        ()
+    else
+        cloneRepository options
+        updateToLatestVersion options    
 
 let private readCanonicalData options exercise = 
     let exerciseCanonicalDataPath = Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
