@@ -14,6 +14,10 @@ let indent value = sprintf "    %s" value
 
 let parenthesize value = sprintf "(%s)" value
 
+let backwardPipe value = sprintf "<| %s" value
+
+let backwardPipeConditional test value = if test value then backwardPipe value else value
+
 let escapeSpecialCharacters (str: string) =
     str.Replace("\n", "\\n")
        .Replace("\t", "\\t")
@@ -39,7 +43,7 @@ let formatString str =
 let formatBool b = if b then "true" else "false"
 
 let formatDateTime (dateTime: DateTime) = 
-    if (dateTime.TimeOfDay = TimeSpan.Zero) then
+    if dateTime.TimeOfDay = TimeSpan.Zero then
         sprintf "DateTime(%d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day
     else
         sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
@@ -53,21 +57,21 @@ let normalizeJArray (jArray: JArray): obj list =
         |> Seq.map box 
         |> List.ofSeq
 
-    if (jArray.Count = 0) then
+    if jArray.Count = 0 then
         []
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer) then
         jArray.Values<int>() |> toBoxedList
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float) then
         jArray.Values<float>() |> toBoxedList
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean) then
         jArray.Values<bool>() |> toBoxedList
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.String)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.String) then
         jArray.Values<string>() |> toBoxedList
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Date)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Date) then
         jArray.Values<DateTime>() |> toBoxedList
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.TimeSpan)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.TimeSpan) then
         jArray.Values<TimeSpan>() |> toBoxedList
-    else if (jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Object)) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Object) then
         jArray.Children() |> Seq.map (fun jObject -> jObject.ToObject<Dictionary<string, obj>>()) |> toBoxedList
     else    
         jArray.Values<obj>() |> toBoxedList
