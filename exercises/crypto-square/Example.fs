@@ -38,7 +38,10 @@ let encoded (input: string) =
     |> String.concat ""
 
 let ciphertext (input: string) = 
-    input 
-    |> plaintextSegments 
+    let chunks = plaintextSegments input 
+    let numberOfChunks = List.length chunks
+    
+    chunks
     |> transpose 
+    |> Seq.map (fun x -> x.PadRight(numberOfChunks))
     |> String.concat " "
