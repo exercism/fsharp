@@ -77,6 +77,15 @@ let mapCanonicalDataCase mapCanonicalDataCaseProperty (canonicalDataCase: Canoni
     { canonicalDataCase with 
         Properties = Map.map (mapCanonicalDataCaseProperty canonicalDataCase) canonicalDataCase.Properties }
 
+let sutParameters canonicalDataCase =
+    let updatedProperties = 
+        canonicalDataCase.Properties
+        |> Map.remove "property"
+        |> Map.remove "expected"
+        |> Map.remove "description"
+
+    { canonicalDataCase with Properties = updatedProperties }        
+
 [<AbstractClass>]
 type Exercise() =
     abstract member ToTestClass : CanonicalData -> TestClass
@@ -198,14 +207,7 @@ type Exercise() =
 
     default this.RenderSutProperty canonicalDataCase = renderSutProperty canonicalDataCase
 
-    default this.SutParameters canonicalDataCase =
-        let sutParameters = 
-            canonicalDataCase.Properties
-            |> Map.remove "property"
-            |> Map.remove "expected"
-            |> Map.remove "description"
-
-        { canonicalDataCase with Properties = sutParameters }
+    default this.SutParameters canonicalDataCase = sutParameters canonicalDataCase
 
     default this.RenderValueOrIdentifier canonicalDataCase key value =
         renderValueOrIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier this.PropertiesWithIdentifier canonicalDataCase key value
@@ -302,10 +304,17 @@ type Change() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
 
-    default this.MapCanonicalDataCaseProperty canonicalDataCase key value = 
+    override this.MapCanonicalDataCaseProperty canonicalDataCase key value = 
         match key with 
         | "expected" -> toOption isInt64 value |> box
         | _ -> mapCanonicalDataCaseProperty canonicalDataCase key value
+
+    override this.RenderExpected canonicalDataCase value = 
+        let expected = renderExpected canonicalDataCase value
+
+        match canonicalDataCase.Properties.["target"] :?> int64 with
+        | 0L -> expected |> addTypeAnnotation "int list option"
+        | _  -> expected
 
 type CryptoSquare() =
     inherit Exercise()

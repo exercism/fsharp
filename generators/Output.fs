@@ -18,6 +18,8 @@ let backwardPipe value = sprintf "<| %s" value
 
 let backwardPipeConditional test value = if test value then backwardPipe value else value
 
+let addTypeAnnotation ty value = sprintf "%s: %s" value ty
+
 let escapeSpecialCharacters (str: string) =
     str.Replace("\n", "\\n")
        .Replace("\t", "\\t")
@@ -100,6 +102,11 @@ let formatOption option =
     | None -> "None"
     | Some x -> sprintf "Some %s" x
 
+let formatResult result = 
+    match result with
+    | Ok x -> sprintf "Ok %s" x
+    | Error y -> sprintf "Error %s" y
+
 let rec formatValue (value: obj) =
     match value with
     | :? string as s -> 
@@ -113,9 +120,9 @@ let rec formatValue (value: obj) =
     | :? JToken as jToken -> 
         formatToken jToken
     | :? Option<obj> as option -> 
-        option 
-        |> Option.map formatValue
-        |> formatOption
+        option |> Option.map formatValue |> formatOption
+    | :? Result<obj, obj> as result -> 
+        result |> Result.map formatValue |> Result.mapError formatValue |> formatResult
     | _ when FSharpType.IsTuple (value.GetType()) -> 
         formatTuple value
     | _ when FSharpType.IsRecord (value.GetType()) -> 
@@ -127,14 +134,6 @@ let formatNullableToOption (value: obj) =
     value
     |> toOption isNull
     |> formatValue
-
-let formatResult errorTest (errorValue: obj) (value: obj) =
-    if errorTest value then 
-        sprintf "Error %s" (formatValue errorValue)
-    else
-        sprintf "Ok %s" (formatValue value)
-
-let formatNullableToResult (errorValue: obj) (value: obj) = formatResult isNull errorValue value
 
 type OutputFilter() =
     static member Format (input: string) = formatValue input
