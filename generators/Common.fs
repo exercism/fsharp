@@ -40,7 +40,6 @@ type TestClass =
       Methods: string list }
 
 module Logging =
-
     let setupLogger() =
         Log.Logger <- LoggerConfiguration()
             .WriteTo.LiterateConsole()
@@ -51,14 +50,14 @@ let isInt64 (value: obj) =
     | :? int64 -> true 
     | _ -> false
 
-let toOption noneTest (value: obj) =
-    if noneTest value then 
-        None
-    else
-        Some value
+module Option =
+    let ofNonNegativeInt (value: obj) =
+        match value with
+        | :? int64 as i -> if i < 0L then None else Some value
+        | :? int32 as i -> if i < 0  then None else Some value
+        | _ -> Some value
 
 module String =
-
     open Humanizer
 
     let equals (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)

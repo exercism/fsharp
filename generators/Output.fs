@@ -130,11 +130,6 @@ let rec formatValue (value: obj) =
     | _ -> 
         string value
 
-let formatNullableToOption (value: obj) = 
-    value
-    |> toOption isNull
-    |> formatValue
-
 type OutputFilter() =
     static member Format (input: string) = formatValue input
 

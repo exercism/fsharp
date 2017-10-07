@@ -233,7 +233,7 @@ type AllYourBase() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["expected"; "input_base"; "input_digits"; "output_base"]
 
-    override this.RenderExpected canonicalDataCase value = formatNullableToOption value    
+    override this.RenderExpected canonicalDataCase value = value |> Option.ofObj |> formatValue
 
 type Allergies() =
     inherit Exercise()
@@ -306,7 +306,7 @@ type Change() =
 
     override this.MapCanonicalDataCaseProperty canonicalDataCase key value = 
         match key with 
-        | "expected" -> toOption isInt64 value |> box
+        | "expected" -> value |> Option.ofNonNegativeInt |> box
         | _ -> mapCanonicalDataCaseProperty canonicalDataCase key value
 
     override this.RenderExpected canonicalDataCase value = 
@@ -407,7 +407,7 @@ type RnaTranscription() =
     inherit Exercise()
 
     override this.RenderExpected canonicalDataCase value =
-        formatNullableToOption value |> backwardPipe
+        value |> Option.ofObj |> formatValue |> backwardPipe
 
 type RomanNumerals() =
     inherit Exercise()
