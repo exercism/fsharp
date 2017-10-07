@@ -51,6 +51,12 @@ let isInt64 (value: obj) =
     | :? int64 -> true 
     | _ -> false
 
+let toOption noneTest (value: obj) =
+    if noneTest value then 
+        None
+    else
+        Some value
+
 module String =
 
     open Humanizer

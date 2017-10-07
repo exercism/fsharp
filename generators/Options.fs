@@ -15,9 +15,7 @@ type Options = {
     HelpText = "Don't update the canonical data.")>] SkipUpdateCanonicalData : bool;
 }
 
-let private normalizeOptions options = 
-    printfn "%A" options
-
+let private normalizeOptions options =
     if options.CanonicalDataDirectory <> "" then
         options 
     else

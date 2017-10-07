@@ -2,10 +2,13 @@
 
 let minimalCoins coins map target =
     coins
-    |> List.filter (fun x -> x <= target)
-    |> List.map (fun x -> x :: Map.find (target - x) map)
+    |> List.filter (fun x -> x <= target) 
+    |> List.choose (fun x -> 
+        match Map.tryFind (target - x) map with
+        | Some y -> Some(x :: y)
+        | None -> None)   
     |> List.sortBy List.length
-    |> List.tryHead
+    |> List.tryHead 
 
 let updateMinimalCoinsMap coins map target = 
     match minimalCoins coins map target with

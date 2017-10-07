@@ -71,6 +71,12 @@ let renderSut renderSutParameters renderSutProperty (canonicalDataCase: Canonica
     let property = renderSutProperty canonicalDataCase
     property :: parameters |> String.concat " "
 
+let mapCanonicalDataCaseProperty (canonicalDataCase: CanonicalDataCase) (key: string) value = value 
+
+let mapCanonicalDataCase mapCanonicalDataCaseProperty (canonicalDataCase: CanonicalDataCase) =
+    { canonicalDataCase with 
+        Properties = Map.map (mapCanonicalDataCaseProperty canonicalDataCase) canonicalDataCase.Properties }
+
 [<AbstractClass>]
 type Exercise() =
     abstract member ToTestClass : CanonicalData -> TestClass
@@ -94,6 +100,7 @@ type Exercise() =
     abstract member RenderValueWithIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
+    abstract member MapCanonicalDataCaseProperty : CanonicalDataCase -> string -> obj -> obj
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
     abstract member AdditionalNamespaces : string list
 
@@ -119,7 +126,9 @@ type Exercise() =
     member this.MapCanonicalData canonicalData = 
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
-    default this.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
+    default this.MapCanonicalDataCase canonicalDataCase = mapCanonicalDataCase this.MapCanonicalDataCaseProperty canonicalDataCase
+
+    default this.MapCanonicalDataCaseProperty canonicalDataCase key value = mapCanonicalDataCaseProperty canonicalDataCase key value
 
     default this.ToTestClass canonicalData =
         { Version = canonicalData.Version              
@@ -293,7 +302,10 @@ type Change() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
 
-    override this.RenderExpected canonicalDataCase value = formatOption isInt64 value
+    default this.MapCanonicalDataCaseProperty canonicalDataCase key value = 
+        match key with 
+        | "expected" -> toOption isInt64 value |> box
+        | _ -> mapCanonicalDataCaseProperty canonicalDataCase key value
 
 type CryptoSquare() =
     inherit Exercise()

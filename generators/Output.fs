@@ -95,24 +95,38 @@ let formatTuple tuple = sprintf "%A" tuple
 
 let formatRecord record = sprintf "%A" record
 
+let formatOption option = 
+    match option with
+    | None -> "None"
+    | Some x -> sprintf "Some %s" x
+
 let rec formatValue (value: obj) =
     match value with
-    | :? string as s -> formatString s
-    | :? bool as b -> formatBool b
-    | :? DateTime as dateTime -> formatDateTime dateTime
-    | :? JArray as jArray -> formatJArray jArray
-    | :? JToken as jToken -> formatToken jToken
-    | _ when FSharpType.IsTuple (value.GetType()) -> formatTuple value
-    | _ when FSharpType.IsRecord (value.GetType()) -> formatRecord value
-    | _ -> string value
+    | :? string as s -> 
+        formatString s
+    | :? bool as b -> 
+        formatBool b
+    | :? DateTime as dateTime -> 
+        formatDateTime dateTime
+    | :? JArray as jArray -> 
+        formatJArray jArray
+    | :? JToken as jToken -> 
+        formatToken jToken
+    | :? Option<obj> as option -> 
+        option 
+        |> Option.map formatValue
+        |> formatOption
+    | _ when FSharpType.IsTuple (value.GetType()) -> 
+        formatTuple value
+    | _ when FSharpType.IsRecord (value.GetType()) -> 
+        formatRecord value
+    | _ -> 
+        string value
 
-let formatOption noneTest (value: obj) =
-    if noneTest value then 
-        "None" 
-    else
-        sprintf "Some %s" (formatValue value)
-
-let formatNullableToOption (value: obj) = formatOption isNull value
+let formatNullableToOption (value: obj) = 
+    value
+    |> toOption isNull
+    |> formatValue
 
 let formatResult errorTest (errorValue: obj) (value: obj) =
     if errorTest value then 
