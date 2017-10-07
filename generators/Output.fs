@@ -114,6 +114,14 @@ let formatOption noneTest (value: obj) =
 
 let formatNullableToOption (value: obj) = formatOption isNull value
 
+let formatResult errorTest (errorValue: obj) (value: obj) =
+    if errorTest value then 
+        sprintf "Error %s" (formatValue errorValue)
+    else
+        sprintf "Ok %s" (formatValue value)
+
+let formatNullableToResult (errorValue: obj) (value: obj) = formatResult isNull errorValue value
+
 type OutputFilter() =
     static member Format (input: string) = formatValue input
 

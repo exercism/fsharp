@@ -29,13 +29,13 @@ let ``RNA complement`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Correctly handles invalid input (RNA instead of DNA)`` () =
-    toRna "U" |> should equal None
+    toRna "U" |> should equal <| None
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Correctly handles completely invalid DNA input`` () =
-    toRna "XXX" |> should equal None
+    toRna "XXX" |> should equal <| None
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Correctly handles partially invalid DNA input`` () =
-    toRna "ACGTXXXCTTAA" |> should equal None
+    toRna "ACGTXXXCTTAA" |> should equal <| None
 

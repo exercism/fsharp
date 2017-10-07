@@ -386,7 +386,7 @@ type RnaTranscription() =
     inherit Exercise()
 
     override this.RenderExpected canonicalDataCase value =
-        formatNullableToOption value |> backwardPipeConditional (fun x -> not (isNull value))
+        formatNullableToOption value |> backwardPipe
 
 type RomanNumerals() =
     inherit Exercise()
