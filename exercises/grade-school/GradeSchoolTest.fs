@@ -57,10 +57,11 @@ let ``Student names and grades in roster are sorted`` () =
         |> add "Kareem" 6
         |> add "Christopher" 4
         |> add "Kyle" 3
+        |> add "Zoe" 4
 
     let expected = 
         [(3, ["Kyle"]);
-         (4, ["Christopher"; "Jennifer"]);
+         (4, ["Christopher"; "Jennifer"; "Zoe"]);
          (6, ["Kareem"])]
 
     roster school |> should equal expected
