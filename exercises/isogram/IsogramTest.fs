@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module IsogramTest
 
@@ -32,8 +32,8 @@ let ``Hypothetical isogrammic word with hyphen`` () =
     isIsogram "thumbscrew-japingly" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Isogram with duplicated non letter character`` () =
-    isIsogram "Hjelmqvist-Gryb-Zock-Pfund-Wax" |> should equal true
+let ``Isogram with duplicated hyphen`` () =
+    isIsogram "six-year-old" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Made-up name that is an isogram`` () =
