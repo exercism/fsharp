@@ -331,13 +331,6 @@ type Change() =
             | _  -> None
         | _ -> None
 
-    // override this.RenderExpected canonicalDataCase value = 
-    //     let expected = renderExpected canonicalDataCase value
-
-    //     match canonicalDataCase.Properties.["target"] :?> int64 with
-    //     | 0L -> expected |> addTypeAnnotation "int list option"
-    //     | _  -> expected
-
 type CryptoSquare() =
     inherit Exercise()
 
@@ -413,19 +406,27 @@ type PigLatin() =
 type QueenAttack() =
     inherit Exercise()
 
+    override this.PropertiesWithIdentifier canonicalDataCase = ["white_queen"; "black_queen"]
+
     override this.RenderInput canonicalDataCase key value =
-        match key with
-        | "queen" ->
+        let parsePositionTuple (tupleValue: obj) =
             let parts = 
-                (value :?> JToken)
+                (tupleValue :?> JToken)
                     .SelectToken("position")
                     .ToObject<string>()
                     .TrimStart('(')
                     .TrimEnd(')')
                     .Split(',')
             formatValue (int parts.[0], int parts.[1])
-        | _ -> 
-            renderInput canonicalDataCase key value
+
+        match key with
+        | "queen" | "white_queen" | "black_queen" -> parsePositionTuple value
+        | _ -> renderInput canonicalDataCase key value
+
+    override this.MapCanonicalDataCaseProperty canonicalDataCase key value =
+        match canonicalDataCase.Property, key, value with
+        | "create", "expected", _ -> value :?> int64 <> -1L |> box
+        | _ -> mapCanonicalDataCaseProperty canonicalDataCase key value
 
 type Raindrops() =
     inherit Exercise()
