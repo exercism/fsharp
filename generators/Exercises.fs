@@ -11,7 +11,14 @@ open Serilog
 open Input
 open Output
 
-let renderIdentifier key = String.camelize key
+let renderIdentifier typeAnnotation (canonicalDataCase: CanonicalDataCase) (key: string) value = String.camelize key
+
+let renderIdentifierWithTypeAnnotation renderIdentifier typeAnnotation (canonicalDataCase: CanonicalDataCase) (key: string) value = 
+    let identifier = renderIdentifier canonicalDataCase key value
+    
+    match typeAnnotation canonicalDataCase key value with
+    | Some ty -> identifier |> addTypeAnnotation ty
+    | None    -> identifier
 
 let renderExpected (canonicalDataCase: CanonicalDataCase) expected = formatValue expected
 
@@ -53,11 +60,11 @@ let renderValueOrIdentifier renderIdentifier renderValueWithoutIdentifier proper
     let properties = propertiesWithIdentifier canonicalDataCase
 
     match List.contains key properties with
-    | true  -> renderIdentifier key
+    | true  -> renderIdentifier canonicalDataCase key value
     | false -> renderValueWithoutIdentifier canonicalDataCase key value
 
-let renderValueWithIdentifier renderIdentifier renderValueWithoutIdentifier (canonicalDataCase: CanonicalDataCase) (key: string) value = 
-    let identifier = renderIdentifier key
+let renderValueWithIdentifier renderIdentifier renderValueWithoutIdentifier typeAnnotation (canonicalDataCase: CanonicalDataCase) (key: string) value = 
+    let identifier = renderIdentifierWithTypeAnnotation renderIdentifier typeAnnotation canonicalDataCase key value
     let value = renderValueWithoutIdentifier canonicalDataCase key value
     sprintf "let %s = %s" identifier value    
 
@@ -86,6 +93,8 @@ let sutParameters canonicalDataCase =
 
     { canonicalDataCase with Properties = updatedProperties }        
 
+let identifierTypeAnnotation (canonicalDataCase: CanonicalDataCase) (key: string) value = None
+
 [<AbstractClass>]
 type Exercise() =
     abstract member ToTestClass : CanonicalData -> TestClass
@@ -104,6 +113,7 @@ type Exercise() =
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSutParameters : CanonicalDataCase -> string list
     abstract member RenderSutProperty : CanonicalDataCase -> string
+    abstract member RenderIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member RenderValueOrIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member RenderValueWithoutIdentifier: CanonicalDataCase -> string -> obj -> string
     abstract member RenderValueWithIdentifier: CanonicalDataCase -> string -> obj -> string
@@ -111,12 +121,12 @@ type Exercise() =
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member MapCanonicalDataCaseProperty : CanonicalDataCase -> string -> obj -> obj
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
+    abstract member IdentifierTypeAnnotation: CanonicalDataCase -> string -> obj -> string option
     abstract member AdditionalNamespaces : string list
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
-    member this.RenderIdentifier key = renderIdentifier key
 
     member this.WriteToFile contents =
         let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
@@ -162,7 +172,7 @@ type Exercise() =
 
     default this.ToTestMethodBodyAssertTemplate canonicalDataCase =
         match canonicalDataCase.Expected with
-        | :? JArray as jArray when jArray.Count = 0 -> "AssertEmpty"
+        | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
         | _ -> "AssertEqual"
 
     default this.RenderExpected canonicalDataCase expected = renderExpected canonicalDataCase expected
@@ -208,6 +218,8 @@ type Exercise() =
     default this.RenderSutProperty canonicalDataCase = renderSutProperty canonicalDataCase
 
     default this.SutParameters canonicalDataCase = sutParameters canonicalDataCase
+    
+    default this.RenderIdentifier canonicalDataCase key value = renderIdentifier this.IdentifierTypeAnnotation canonicalDataCase key value
 
     default this.RenderValueOrIdentifier canonicalDataCase key value =
         renderValueOrIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier this.PropertiesWithIdentifier canonicalDataCase key value
@@ -216,9 +228,11 @@ type Exercise() =
         renderValueWithoutIdentifier this.RenderExpected this.RenderInput canonicalDataCase key value        
 
     default this.RenderValueWithIdentifier canonicalDataCase key value = 
-        renderValueWithIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier canonicalDataCase key value
+        renderValueWithIdentifier this.RenderIdentifier this.RenderValueWithoutIdentifier this.IdentifierTypeAnnotation canonicalDataCase key value
 
     default this.PropertiesWithIdentifier canonicalDataCase = []
+
+    default this.IdentifierTypeAnnotation canonicalDataCase key value = identifierTypeAnnotation canonicalDataCase key value
 
     default this.AdditionalNamespaces = []
 
@@ -309,12 +323,20 @@ type Change() =
         | "expected" -> value |> Option.ofNonNegativeInt |> box
         | _ -> mapCanonicalDataCaseProperty canonicalDataCase key value
 
-    override this.RenderExpected canonicalDataCase value = 
-        let expected = renderExpected canonicalDataCase value
+    override this.IdentifierTypeAnnotation canonicalDataCase key value = 
+        match key with 
+        | "expected" -> 
+            match canonicalDataCase.Properties.["target"] :?> int64 with
+            | 0L -> Some "int list option"
+            | _  -> None
+        | _ -> None
 
-        match canonicalDataCase.Properties.["target"] :?> int64 with
-        | 0L -> expected |> addTypeAnnotation "int list option"
-        | _  -> expected
+    // override this.RenderExpected canonicalDataCase value = 
+    //     let expected = renderExpected canonicalDataCase value
+
+    //     match canonicalDataCase.Properties.["target"] :?> int64 with
+    //     | 0L -> expected |> addTypeAnnotation "int list option"
+    //     | _  -> expected
 
 type CryptoSquare() =
     inherit Exercise()
@@ -370,6 +392,11 @@ type Minesweeper() =
     inherit Exercise()
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
+
+    override this.IdentifierTypeAnnotation canonicalDataCase key value = 
+        match value :?> JArray |> Seq.isEmpty with 
+        | true  -> Some "string list"
+        | false -> None
 
     override this.RenderValueWithoutIdentifier canonicalDataCase key value =        
         value :?> JArray

@@ -9,9 +9,9 @@ open Minesweeper
 
 [<Fact>]
 let ``No rows`` () =
-    let input = []
-    let expected = []
-    annotate input |> should be Empty
+    let input: string list = []
+    let expected: string list = []
+    annotate input |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No columns`` () =
