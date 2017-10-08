@@ -257,7 +257,7 @@ type Allergies() =
 
                 { canonicalDataCase with Properties = updatedProperties }                
                 |> this.RenderAssert
-                |> indent
+                |> indent 1
 
             canonicalDataCase.Expected :?> JArray
             |> Seq.map renderAssertion
@@ -374,7 +374,7 @@ type Minesweeper() =
         value :?> JArray
         |> normalizeJArray
         |> Seq.map formatValue
-        |> formatList
+        |> formatMultiLineList
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
 

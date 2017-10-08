@@ -10,7 +10,9 @@ open DotLiquid.FileSystems
 open Newtonsoft.Json.Linq
 open Input
 
-let indent value = sprintf "    %s" value
+let indent level value = 
+    let indentation = String.replicate level "    "
+    sprintf "%s%s" indentation value
 
 let parenthesize value = sprintf "(%s)" value
 
@@ -25,17 +27,6 @@ let escapeSpecialCharacters (str: string) =
        .Replace("\t", "\\t")
        .Replace("\r", "\\r")
        .Replace("\"", "\\\"")
-
-let formatCollection formatString collection =
-    collection
-    |> String.concat "; "
-    |> sprintf formatString
-
-let formatList sequence = formatCollection "[%s]" sequence
-
-let formatArray sequence = formatCollection "[|%s|]" sequence
-
-let formatSequence sequence = formatCollection "seq {%s}" sequence
 
 let formatString str = 
     str
@@ -130,10 +121,63 @@ let rec formatValue (value: obj) =
     | _ -> 
         string value
 
+let formatCollection formatString collection =
+    collection
+    |> String.concat "; "
+    |> sprintf formatString
+
+let formatList sequence = formatCollection "[%s]" sequence
+
+let formatArray sequence = formatCollection "[|%s|]" sequence
+
+let formatSequence sequence = formatCollection "seq {%s}" sequence
+
+let formatMultiLineCollection (openPrefix, closePostfix) collection =
+    match Seq.length collection with
+    | 0 -> 
+        sprintf "%s%s" openPrefix closePostfix
+    | 1 -> 
+        sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix    
+    | length -> 
+        let lineIndent = String(' ', String.length openPrefix)
+
+        let formatLine i line = 
+            match i with
+            | 0 -> 
+                sprintf "%s %s" openPrefix line
+            | _ when i = length - 1 -> 
+                sprintf "%s %s %s" lineIndent line closePostfix
+            | _ ->
+                sprintf "%s %s" lineIndent line
+
+        collection
+        |> Seq.mapi formatLine
+        |> Seq.toList
+        |> List.map (indent 2)
+        |> String.concat "\n"
+        |> sprintf "\n%s"
+
+let formatMultiLineList sequence = formatMultiLineCollection ("[", "]") sequence
+
+let formatMultiLineArray sequence = formatMultiLineCollection ("[|", "|]") sequence
+
+let formatMultiLineSequence sequence = formatMultiLineCollection ("seq {", "}") sequence
+
+let formatMultiLineString strings = 
+    let length = Seq.length strings
+    let formatLine i line =
+        match i = length - 1 with
+        | true  -> line
+        | false -> sprintf "%s +" line
+
+    strings
+    |> Seq.mapi formatLine
+    |> Seq.toList      
+
 type OutputFilter() =
     static member Format (input: string) = formatValue input
 
-    static member Indent (input: string) = indent input
+    static member Indent (input: string) = indent 1 input
 
 let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "")
 Template.RegisterFilter(OutputFilter().GetType())
