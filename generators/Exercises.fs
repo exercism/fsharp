@@ -13,33 +13,47 @@ open Output
 
 [<AbstractClass>]
 type Exercise() =
+    // Allow changes in canonical data
+    abstract member MapCanonicalData : CanonicalData -> CanonicalData
+    abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
+    abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
+
+    // Convert canonical data to representation used when rendering
     abstract member ToTestClass : CanonicalData -> TestClass
     abstract member ToTestMethod : int -> CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
     abstract member ToTestMethodBodyAssertTemplate : CanonicalDataCase -> string
+
+    // Rendering of canonical data
     abstract member Render : CanonicalData -> string
     abstract member RenderTestMethod : int -> CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
     abstract member RenderTestMethodName : CanonicalDataCase -> string
+
+    // Generic value/identifier rendering methods
     abstract member RenderValue : CanonicalDataCase * string * obj -> string
+    abstract member RenderValueOrIdentifier: CanonicalDataCase * string * obj -> string
+    abstract member RenderValueWithoutIdentifier: CanonicalDataCase * string * obj -> string
+    abstract member RenderValueWithIdentifier: CanonicalDataCase * string * obj -> string
+    abstract member RenderIdentifier: CanonicalDataCase * string * obj -> string
+    abstract member RenderIdentifierWithTypeAnnotation: CanonicalDataCase * string * obj -> string
+
+    // Canonical-data specific rendering methods
     abstract member RenderExpected : CanonicalDataCase * string * obj -> string
     abstract member RenderInput : CanonicalDataCase * string * obj -> string
     abstract member RenderArrange : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSutParameters : CanonicalDataCase -> string list
+    abstract member RenderSutParameter : CanonicalDataCase * string * obj -> string
     abstract member RenderSutProperty : CanonicalDataCase -> string
-    abstract member RenderIdentifier: CanonicalDataCase * string * obj -> string
-    abstract member RenderIdentifierWithTypeAnnotation: CanonicalDataCase * string * obj -> string
-    abstract member RenderValueOrIdentifier: CanonicalDataCase * string * obj -> string
-    abstract member RenderValueWithoutIdentifier: CanonicalDataCase * string * obj -> string
-    abstract member RenderValueWithIdentifier: CanonicalDataCase * string * obj -> string
-    abstract member SutParameters : CanonicalDataCase -> CanonicalDataCase
-    abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
-    abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
+    
+    // Utility methods to customize rendered output
+    abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
     abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * obj -> string option
+    abstract member UseFullMethodName : CanonicalDataCase -> bool
     abstract member AdditionalNamespaces : string list
 
     member this.Name = this.GetType().Name.Kebaberize()
@@ -60,7 +74,9 @@ type Exercise() =
         |> this.Render  
         |> this.WriteToFile
 
-    member this.MapCanonicalData canonicalData = 
+    // Allow changes in canonical data    
+
+    default this.MapCanonicalData canonicalData = 
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
     default this.MapCanonicalDataCase canonicalDataCase =
@@ -71,6 +87,8 @@ type Exercise() =
         { canonicalDataCase with Properties = updatedProperties }
 
     default this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = value
+
+    // Convert canonical data to representation used when rendering
 
     default this.ToTestClass canonicalData =
         { Version = canonicalData.Version              
@@ -98,11 +116,7 @@ type Exercise() =
         | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
         | _ -> "AssertEqual"
 
-    default this.RenderValue (canonicalDataCase, key, value) = formatValue value
-
-    default this.RenderExpected (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
-
-    default this.RenderInput (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
+    // Rendering of canonical data
 
     default this.Render canonicalData =
         canonicalData
@@ -119,61 +133,18 @@ type Exercise() =
         |> this.ToTestMethodBody
         |> renderPartialTemplate "TestMethodBody"
 
-    default this.RenderTestMethodName canonicalDataCase = String.upperCaseFirst canonicalDataCase.Description
+    default this.RenderTestMethodName canonicalDataCase = 
+        match this.UseFullMethodName canonicalDataCase with
+        | false ->
+            String.upperCaseFirst canonicalDataCase.Description
+        | true -> 
+            canonicalDataCase.DescriptionPath
+            |> String.concat " - "
+            |> String.upperCaseFirst    
 
-    member this.RenderFullTestMethodName (canonicalDataCase: CanonicalDataCase) = 
-        canonicalDataCase.DescriptionPath
-        |> String.concat " - "
-        |> String.upperCaseFirst
+    // Generic value/identifier rendering methods
 
-    default this.RenderArrange canonicalDataCase =
-        let renderArrangeProperty property: string option = 
-            match Map.tryFind property canonicalDataCase.Properties with
-            | None -> None
-            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, property, value))
-
-        canonicalDataCase
-        |> this.PropertiesWithIdentifier 
-        |> List.choose renderArrangeProperty
-
-    default this.RenderSut canonicalDataCase = 
-        let parameters = this.RenderSutParameters canonicalDataCase
-        let property = this.RenderSutProperty canonicalDataCase
-        property :: parameters |> String.concat " "
-
-    default this.RenderAssert canonicalDataCase = 
-        let template = this.ToTestMethodBodyAssertTemplate canonicalDataCase                
-
-        canonicalDataCase
-        |> this.ToTestMethodBodyAssert
-        |> renderPartialTemplate template
-    
-    member this.RenderSutParameter (canonicalDataCase, key, value) =
-        this.RenderValueOrIdentifier (canonicalDataCase, key, value) 
-
-    default this.RenderSutParameters canonicalDataCase =
-        let sutParameters = this.SutParameters canonicalDataCase
-        Map.foldBack (fun key value acc -> this.RenderSutParameter (sutParameters, key, value) :: acc) sutParameters.Properties [] 
-
-    default this.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
-
-    default this.SutParameters canonicalDataCase = 
-        let updatedProperties = 
-            canonicalDataCase.Properties
-            |> Map.remove "property"
-            |> Map.remove "expected"
-            |> Map.remove "description"
-
-        { canonicalDataCase with Properties = updatedProperties }
-    
-    default this.RenderIdentifier (canonicalDataCase, key, value) = String.camelize key
-
-    default this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) = 
-        let identifier = this.RenderIdentifier (canonicalDataCase, key, value)
-    
-        match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
-        | Some ty -> identifier |> addTypeAnnotation ty
-        | None    -> identifier
+    default this.RenderValue (canonicalDataCase, key, value) = formatValue value
 
     default this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
         let properties = this.PropertiesWithIdentifier canonicalDataCase
@@ -192,9 +163,69 @@ type Exercise() =
         let value = this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
         sprintf "let %s = %s" identifier value  
 
+    default this.RenderIdentifier (canonicalDataCase, key, value) = String.camelize key
+
+    default this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) = 
+        let identifier = this.RenderIdentifier (canonicalDataCase, key, value)
+    
+        match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
+        | Some ty -> identifier |> addTypeAnnotation ty
+        | None    -> identifier
+
+    // Canonical-data specific rendering methods
+
+    default this.RenderExpected (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
+
+    default this.RenderInput (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
+
+    default this.RenderArrange canonicalDataCase =
+        let renderArrangeProperty property: string option = 
+            match Map.tryFind property canonicalDataCase.Properties with
+            | None -> None
+            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, property, value))
+
+        canonicalDataCase
+        |> this.PropertiesWithIdentifier 
+        |> List.choose renderArrangeProperty
+
+    default this.RenderAssert canonicalDataCase = 
+        let template = this.ToTestMethodBodyAssertTemplate canonicalDataCase                
+
+        canonicalDataCase
+        |> this.ToTestMethodBodyAssert
+        |> renderPartialTemplate template    
+
+    default this.RenderSut canonicalDataCase = 
+        let parameters = this.RenderSutParameters canonicalDataCase
+        let property = this.RenderSutProperty canonicalDataCase
+        property :: parameters |> String.concat " "
+
+    default this.RenderSutParameters canonicalDataCase =
+        let sutParameterProperties = this.PropertiesUsedAsSutParameter canonicalDataCase
+
+        canonicalDataCase.Properties
+        |> Map.filter (fun key value -> List.contains key sutParameterProperties)
+        |> Map.fold (fun acc key value  -> this.RenderSutParameter (canonicalDataCase, key, value) :: acc) [] 
+        |> List.rev
+    
+    default this.RenderSutParameter (canonicalDataCase, key, value) =
+        this.RenderValueOrIdentifier (canonicalDataCase, key, value) 
+
+    default this.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
+
+    default this.PropertiesUsedAsSutParameter canonicalDataCase = 
+        canonicalDataCase.Properties
+        |> Map.toList
+        |> List.map fst
+        |> List.except ["property"; "expected"; "description"]
+    
+    // Utility methods to customize rendered output
+
     default this.PropertiesWithIdentifier canonicalDataCase = []
 
-    default this.IdentifierTypeAnnotation (canonicalDataCase, key, value )= None
+    default this.IdentifierTypeAnnotation (canonicalDataCase, key, value ) = None
+
+    default this.UseFullMethodName canonicalDataCase = false
 
     default this.AdditionalNamespaces = []
 
@@ -207,9 +238,9 @@ type AtbashCipher() =
 type AllYourBase() =    
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"; "input_base"; "input_digits"; "output_base"]
-
     override this.RenderExpected (canonicalDataCase, key, value) = value |> Option.ofObj |> formatValue
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"; "input_base"; "input_digits"; "output_base"]
 
 type Allergies() =
     inherit Exercise()
@@ -262,15 +293,9 @@ type BookStore() =
 
     override this.RenderExpected (canonicalDataCase, key, value) = formatFloat value
 
-    override this.SutParameters canonicalDataCase =
-        let sutParameters = base.SutParameters canonicalDataCase
-        let updatedProperties =
-            sutParameters.Properties
-            |> Map.remove "targetgrouping"
-            |> Map.remove "expected"
-            |> Map.remove "description"
-
-        { sutParameters with Properties = updatedProperties }
+    override this.PropertiesUsedAsSutParameter canonicalDataCase =
+        base.PropertiesUsedAsSutParameter canonicalDataCase
+        |> List.except ["targetgrouping"; "expected"; "description"]
 
 type BracketPush() =
     inherit Exercise()
@@ -278,12 +303,12 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
-
     override this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = 
         match key with 
         | "expected" -> value |> Option.ofNonNegativeInt |> box
         | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
 
     override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match key with 
@@ -322,8 +347,6 @@ type KindergartenGarden() =
 
     let toPlant (jToken: JToken) =  sprintf "Plant.%s" (jToken.ToString() |> String.humanize)
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "students"; "diagram"; "expected"]
-
     override this.RenderExpected (canonicalDataCase, key, value) = 
         value :?> JArray 
         |> Seq.map toPlant
@@ -334,8 +357,9 @@ type KindergartenGarden() =
         | true  -> "plantsForCustomStudents"
         | false -> "plantsForDefaultStudents"
 
-    override this.RenderTestMethodName canonicalDataCase =
-        this.RenderFullTestMethodName canonicalDataCase    
+    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "students"; "diagram"; "expected"]
+
+    override this.UseFullMethodName canonicalDataCase = true
 
 type Leap() =
     inherit Exercise()
@@ -346,18 +370,18 @@ type Luhn() =
 type Minesweeper() =
     inherit Exercise()
 
+    override this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) =        
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatList
+
     override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
 
     override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match value :?> JArray |> Seq.isEmpty with 
         | true  -> Some "string list"
         | false -> None
-
-    override this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) =        
-        value :?> JArray
-        |> normalizeJArray
-        |> Seq.map formatValue
-        |> formatList
 
 type Pangram() =
     inherit Exercise()
@@ -368,7 +392,10 @@ type PigLatin() =
 type QueenAttack() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["white_queen"; "black_queen"]
+    override this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) =
+        match canonicalDataCase.Property, key, value with
+        | "create", "expected", _ -> value :?> int64 <> -1L |> box
+        | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
 
     override this.RenderInput (canonicalDataCase, key, value) =
         let parsePositionTuple (tupleValue: obj) =
@@ -385,10 +412,7 @@ type QueenAttack() =
         | "queen" | "white_queen" | "black_queen" -> parsePositionTuple value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
-    override this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) =
-        match canonicalDataCase.Property, key, value with
-        | "create", "expected", _ -> value :?> int64 <> -1L |> box
-        | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
+    override this.PropertiesWithIdentifier canonicalDataCase = ["white_queen"; "black_queen"]
 
 type Raindrops() =
     inherit Exercise()
