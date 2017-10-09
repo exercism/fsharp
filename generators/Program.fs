@@ -1,7 +1,7 @@
 ﻿module Generators.Program
 
 open Serilog
-open Exercises
+open Exercise
 open Input
 open Options
 

@@ -20,7 +20,7 @@ let backwardPipe value = sprintf "<| %s" value
 
 let backwardPipeConditional test value = if test value then backwardPipe value else value
 
-let addTypeAnnotation ty value = sprintf "%s: %s" value ty
+let addTypeAnnotation typeAnnotation value = sprintf "%s: %s" value typeAnnotation
 
 let escapeSpecialCharacters (str: string) =
     str.Replace("\n", "\\n")
@@ -184,41 +184,41 @@ Template.RegisterFilter(OutputFilter().GetType())
 Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
 
 let private registrations = Dictionary<_,_>()
-let rec private registerTypeTree ty =
-    if registrations.ContainsKey ty then ()
-    elif FSharpType.IsRecord ty then
-        let properties = ty.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
-        Template.RegisterSafeType(ty, [| for p in properties -> p.Name |])
-        registrations.[ty] <- true
+let rec private registerTypeTree templateDataType =
+    if registrations.ContainsKey templateDataType then ()
+    elif FSharpType.IsRecord templateDataType then
+        let properties = templateDataType.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
+        Template.RegisterSafeType(templateDataType, [| for p in properties -> p.Name |])
+        registrations.[templateDataType] <- true
         for p in properties do registerTypeTree p.PropertyType
-    elif ty.IsGenericType then
-        let t = ty.GetGenericTypeDefinition()
+    elif templateDataType.IsGenericType then
+        let t = templateDataType.GetGenericTypeDefinition()
         if t = typedefof<seq<_>> || t = typedefof<list<_>> then
-            registrations.[ty] <- true
-            registerTypeTree (ty.GetGenericArguments().[0])
+            registrations.[templateDataType] <- true
+            registerTypeTree (templateDataType.GetGenericArguments().[0])
         elif t = typedefof<IDictionary<_,_>> || t = typedefof<Map<_,_>> then
-            registrations.[ty] <- true
-            registerTypeTree (ty.GetGenericArguments().[0])
-            registerTypeTree (ty.GetGenericArguments().[1])
+            registrations.[templateDataType] <- true
+            registerTypeTree (templateDataType.GetGenericArguments().[0])
+            registerTypeTree (templateDataType.GetGenericArguments().[1])
         elif t = typedefof<option<_>> then
-            Template.RegisterSafeType(ty, [|"Value"; "IsSome"; "IsNone";|])
-            registrations.[ty] <- true
-            registerTypeTree (ty.GetGenericArguments().[0])
-        elif ty.IsArray then          
-            registrations.[ty] <- true
-            registerTypeTree (ty.GetElementType())
+            Template.RegisterSafeType(templateDataType, [|"Value"; "IsSome"; "IsNone";|])
+            registrations.[templateDataType] <- true
+            registerTypeTree (templateDataType.GetGenericArguments().[0])
+        elif templateDataType.IsArray then          
+            registrations.[templateDataType] <- true
+            registerTypeTree (templateDataType.GetElementType())
     else 
-        let properties = ty.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
-        Template.RegisterSafeType(ty, [| for p in properties -> p.Name |])
-        registrations.[ty] <- true
+        let properties = templateDataType.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
+        Template.RegisterSafeType(templateDataType, [| for p in properties -> p.Name |])
+        registrations.[templateDataType] <- true
         for p in properties do registerTypeTree p.PropertyType
 
-let renderInlineTemplate template value =
-    value.GetType() |> registerTypeTree
+let renderInlineTemplate template data =
+    data.GetType() |> registerTypeTree
 
     let parsedTemplate = Template.Parse template
-    parsedTemplate.Render(Hash.FromAnonymousObject(value))
+    parsedTemplate.Render(Hash.FromAnonymousObject(data))
 
-let renderPartialTemplate templateName value =
+let renderPartialTemplate templateName data =
     let template = sprintf "{%% include \"%s\" %%}" templateName
-    renderInlineTemplate template value
+    renderInlineTemplate template data

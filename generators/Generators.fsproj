@@ -10,7 +10,8 @@
     <Compile Include="Options.fs" />
     <Compile Include="Input.fs" />
     <Compile Include="Output.fs" />
-    <Compile Include="Exercises.fs" />
+    <Compile Include="Exercise.fs" />
+    <Compile Include="Generators.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

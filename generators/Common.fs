@@ -55,7 +55,7 @@ module Option =
         match value with
         | :? int64 as i -> if i < 0L then None else Some value
         | :? int32 as i -> if i < 0  then None else Some value
-        | _ -> Some value
+        | _ -> None
 
 module String =
     open Humanizer
