@@ -9,7 +9,7 @@ let verse n =
 
 let verses stop start = 
     [stop .. -1 .. start] 
-    |> List.map (fun i -> verse i + "\n") 
-    |> List.reduce (+)
+    |> List.map verse
+    |> String.concat "\n"
 
 let sing = verses 99 0

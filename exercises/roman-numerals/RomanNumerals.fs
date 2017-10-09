@@ -1,3 +1,3 @@
-﻿module RomanNumeral
+﻿module RomanNumerals
 
-let toRoman arabicNumeral = failwith "You need to implement this function."
+let roman arabicNumeral = failwith "You need to implement this function."

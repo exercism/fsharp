@@ -1,21 +1,25 @@
-module LeapYearTest
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
-open Xunit
+module LeapTest
+
 open FsUnit.Xunit
-open LeapYear
-    
+open Xunit
+
+open Leap
+
 [<Fact>]
-let ``Is 1996 a valid leap year`` () = 
-    isLeapYear 1996 |> should equal true
-    
+let ``Year not divisible by 4: common year`` () =
+    leapYear 2015 |> should equal false
+
 [<Fact(Skip = "Remove to run test")>]
-let ``Is 1997 an invalid leap year`` () = 
-    isLeapYear 1997 |> should equal false
-    
+let ``Year divisible by 4, not divisible by 100: leap year`` () =
+    leapYear 2016 |> should equal true
+
 [<Fact(Skip = "Remove to run test")>]
-let ``Is the turn of the 20th century an invalid leap year`` () = 
-    isLeapYear 1900 |> should equal false
-    
+let ``Year divisible by 100, not divisible by 400: common year`` () =
+    leapYear 2100 |> should equal false
+
 [<Fact(Skip = "Remove to run test")>]
-let ``Is the turn of the 25th century a valid leap year`` () = 
-    isLeapYear 2400 |> should equal true
+let ``Year divisible by 400: leap year`` () =
+    leapYear 2000 |> should equal true
+

@@ -2,43 +2,40 @@
 
 open System
 
-let charsToString chars = new String(chars |> Array.ofSeq)
+let private charsToString chars = String(Array.ofSeq chars)
 
-let chunksOfSize n seq = 
+let private chunksOfSize n seq = 
     seq 
     |> Seq.mapi(fun i x -> i / n, x)
     |> Seq.groupBy fst
     |> Seq.map (fun (_, g) -> g |> Seq.map snd |> charsToString)
 
-let transpose seq = 
+let private transpose seq = 
     seq
     |> Seq.collect(fun s -> s |> Seq.mapi(fun i e -> (i, e)))
     |> Seq.groupBy(fst)
     |> Seq.map(fun (_, s) -> s |> Seq.map snd |> charsToString)    
 
-let normalizePlaintext (input: string) = seq { for c in input do if Char.IsLetterOrDigit c then yield Char.ToLowerInvariant c } |> charsToString
+let private normalizedPlaintext (input: string) = seq { for c in input do if Char.IsLetterOrDigit c then yield Char.ToLowerInvariant c } |> charsToString
 
-let size (input: string) = 
+let private size (input: string) = 
     input 
-    |> normalizePlaintext 
+    |> normalizedPlaintext 
     |> String.length 
     |> float 
     |> Math.Sqrt 
     |> ceil 
     |> int
 
-let plaintextSegments (input: string) = 
-    chunksOfSize (size input) (normalizePlaintext input) 
+let private plaintextSegments (input: string) = 
+    chunksOfSize (size input) (normalizedPlaintext input) 
     |> List.ofSeq
 
 let ciphertext (input: string) = 
-    input 
-    |> plaintextSegments 
+    let chunks = plaintextSegments input 
+    let numberOfChunks = List.length chunks
+    
+    chunks
     |> transpose 
-    |> String.concat ""
-
-let normalizeCiphertext (input: string) = 
-    input 
-    |> plaintextSegments 
-    |> transpose 
+    |> Seq.map (fun x -> x.PadRight(numberOfChunks))
     |> String.concat " "

@@ -1,69 +1,45 @@
+// This file was auto-generated based on version 1.2.0 of the canonical data.
+
 module IsogramTest
-    
-open Xunit
+
 open FsUnit.Xunit
+open Xunit
 
 open Isogram
 
 [<Fact>]
 let ``Empty string`` () =
-    let input = ""
-    let expected = true
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Isogram with only lower case characters`` () =
-    let input = "isogram"
-    let expected = true
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "isogram" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Word with one duplicated character`` () =
-    let input = "eleven"
-    let expected = false
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "eleven" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Longest reported english isogram`` () =
-    let input = "subdermatoglyphic"
-    let expected = true
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "subdermatoglyphic" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Word with duplicated character in mixed case`` () =
-    let input = "Alphabet"
-    let expected = false
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "Alphabet" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Hypothetical isogrammic word with hyphen`` () =
-    let input = "thumbscrew-japingly"
-    let expected = true
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "thumbscrew-japingly" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Isogram with duplicated non letter character`` () =
-    let input = "Hjelmqvist-Gryb-Zock-Pfund-Wax"
-    let expected = true
-    let actual = isogram input
-    actual |> should equal expected
+let ``Isogram with duplicated hyphen`` () =
+    isIsogram "six-year-old" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Made-up name that is an isogram`` () =
-    let input = "Emily Jung Schwartzkopf"
-    let expected = true
-    let actual = isogram input
-    actual |> should equal expected
+    isIsogram "Emily Jung Schwartzkopf" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Word with duplicated accented character`` () =
-    let input = "éléphant"
-    let expected = false
-    let actual = isogram input
-    actual |> should equal expected
+let ``Duplicated character in the middle`` () =
+    isIsogram "accentor" |> should equal false
+

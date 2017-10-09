@@ -16,7 +16,10 @@ let fromBase b nums =
         if digit <  0 then None else
         if digit >= b then None else
         loop (acc * b + digit) rest
-    if nums = [] then None else loop 0 nums
+
+    match nums with
+    | [] | 0::_ -> None
+    | _ -> loop 0 nums
 
 let rebase inB inDigits outB =
     if inB < 2 || outB < 2 then None else

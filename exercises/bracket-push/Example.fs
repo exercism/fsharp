@@ -2,7 +2,7 @@
 
 open System
 
-let matched (input: string) =
+let isPaired (input: string) =
     let brackets = "[]{}()" |> Set.ofSeq
     let filtered = input.ToCharArray() |> Array.filter brackets.Contains |> String
     let replaceMatchingBrackets (str: string) = str.Replace("[]", "").Replace("{}", "").Replace("()", "")

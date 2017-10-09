@@ -1,10 +1,13 @@
+// This file was auto-generated based on version 1.0.0 of the canonical data.
+
 module HelloWorldTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open HelloWorld
 
 [<Fact>]
-let ``Say hi!`` () =
+let ``Say Hi!`` () =
     hello |> should equal "Hello, World!"
+

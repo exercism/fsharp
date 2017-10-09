@@ -4,6 +4,6 @@ open System
 
 // TODO: define the Allergen type
 
-let allergicTo allergen codedAllergies = failwith "You need to implement this function."
+let allergicTo codedAllergies allergen = failwith "You need to implement this function."
 
-let allergies codedAllergies = failwith "You need to implement this function."
+let list codedAllergies = failwith "You need to implement this function."
