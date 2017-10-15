@@ -1,49 +1,61 @@
+// This file was auto-generated based on version 1.0.0 of the canonical data.
+
 module RunLengthEncodingTest
 
-open Xunit
 open FsUnit.Xunit
-open System.Text
+open Xunit
 
 open RunLengthEncoding
 
 [<Fact>]
-let ``Encode simple`` () =
-    let input = "AABBBCCCC"
-    let expected = "2A3B4C"
-    encode input |> should equal expected
+let ``Encode empty string`` () =
+    encode "" |> should equal ""
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Decode simple`` () =
-    let input = "2A3B4C"
-    let expected = "AABBBCCCC"
-    decode input |> should equal expected
+let ``Encode single characters only are encoded without count`` () =
+    encode "XYZ" |> should equal "XYZ"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode with single values`` () =
-    let input = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
-    let expected = "12WB12W3B24WB"
-    encode input |> should equal expected
+let ``Encode string with no single characters`` () =
+    encode "AABBBCCCC" |> should equal "2A3B4C"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Decode with single values`` () =
-    let input = "12WB12W3B24WB"
-    let expected = "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
-    decode input |> should equal expected
+let ``Encode single characters mixed with repeated characters`` () =
+    encode "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB" |> should equal "12WB12W3B24WB"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode and then decode`` () =
-    let input = "zzz ZZ  zZ"
-    let expected = "zzz ZZ  zZ"
-    encode input |> decode |> should equal expected
+let ``Encode multiple whitespace mixed in string`` () =
+    encode "  hsqq qww  " |> should equal "2 hs2q q2w2 "
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode unicode`` () =
-    let input = Encoding.Unicode.GetString([|240uy; 35uy; 189uy; 38uy; 189uy; 38uy; 189uy; 38uy; 80uy; 43uy; 80uy; 43uy; 240uy; 35uy|])
-    let expected = Encoding.Unicode.GetString([|240uy; 35uy; 51uy; 0uy; 189uy; 38uy; 50uy; 0uy; 80uy; 43uy; 240uy; 35uy|])
-    encode input |> should equal expected
+let ``Encode lowercase characters`` () =
+    encode "aabbbcccc" |> should equal "2a3b4c"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Decode unicode`` () =
-    let input = Encoding.Unicode.GetString([|240uy; 35uy; 51uy; 0uy; 189uy; 38uy; 50uy; 0uy; 80uy; 43uy; 240uy; 35uy|])
-    let expected = Encoding.Unicode.GetString([|240uy; 35uy; 189uy; 38uy; 189uy; 38uy; 189uy; 38uy; 80uy; 43uy; 80uy; 43uy; 240uy; 35uy|])
-    decode input |> should equal expected
+let ``Decode empty string`` () =
+    decode "" |> should equal ""
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode single characters only`` () =
+    decode "XYZ" |> should equal "XYZ"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode string with no single characters`` () =
+    decode "2A3B4C" |> should equal "AABBBCCCC"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode single characters with repeated characters`` () =
+    decode "12WB12W3B24WB" |> should equal "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode multiple whitespace mixed in string`` () =
+    decode "2 hs2q q2w2 " |> should equal "  hsqq qww  "
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode lower case string`` () =
+    decode "2a3b4c" |> should equal "aabbbcccc"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Encode followed by decode gives original string`` () =
+    "zzz ZZ  zZ" |> encode |> decode |> should equal "zzz ZZ  zZ"
+
