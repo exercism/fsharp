@@ -23,12 +23,12 @@ let encode (input: string) =
     |> List.ofArray
     |> partitionConsecutive
     |> List.map encodePartition
-    |> List.reduce (+)
+    |> List.fold (+) ""
 
 let decode (input: string) = 
     let folder ((decoded: string), (count: int option)) item =
         let updatedCount = Option.fold (fun acc x -> acc + x * 10) (digitToInt item) count |> Some
-        let updateDecoded = Option.fold (fun acc x -> acc + new String(item, x - 1)) (decoded + string item) count
+        let updateDecoded = Option.fold (fun acc x -> acc + String(item, x - 1)) (decoded + string item) count
 
         if Char.IsDigit item then (decoded, updatedCount) else (updateDecoded, None)
 

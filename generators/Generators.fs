@@ -2,6 +2,7 @@ module Generators.Generators
 
 open System
 open System.Globalization
+open Humanizer
 open Newtonsoft.Json.Linq
 open Output
 open Exercise
@@ -202,6 +203,24 @@ type RnaTranscription() =
 
     override this.RenderExpected (canonicalDataCase, key, value) =
         value |> Option.ofObj |> formatValue |> backwardPipe
+
+type RunLengthEncoding() =
+    inherit Exercise()
+
+    override this.RenderSut canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "consistency" ->
+            let parameters = this.RenderSutParameters canonicalDataCase |> String.concat " "
+            sprintf "%s |> encode |> decode" parameters
+        | _ -> 
+            base.RenderSut canonicalDataCase
+
+    override this.RenderTestMethodName canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "consistency" -> 
+            base.RenderTestMethodName canonicalDataCase
+        | _ -> 
+            sprintf "%s %s" canonicalDataCase.Property canonicalDataCase.Description |> String.upperCaseFirst
 
 type RomanNumerals() =
     inherit Exercise()
