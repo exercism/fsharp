@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 2.0.0 of the canonical data.
 
 module QueenAttackTest
 
@@ -12,19 +12,19 @@ let ``Queen with a valid position`` () =
     create (2, 2) |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Queen must have positive rank`` () =
+let ``Queen must have positive row`` () =
     create (-2, 2) |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Queen must have rank on board`` () =
+let ``Queen must have row on board`` () =
     create (8, 4) |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Queen must have positive file`` () =
+let ``Queen must have positive column`` () =
     create (2, -2) |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Queen must have file on board`` () =
+let ``Queen must have column on board`` () =
     create (4, 8) |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
@@ -34,13 +34,13 @@ let ``Can not attack`` () =
     canAttack blackQueen whiteQueen |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on same rank`` () =
+let ``Can attack on same row`` () =
     let whiteQueen = (2, 4)
     let blackQueen = (2, 6)
     canAttack blackQueen whiteQueen |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can attack on same file`` () =
+let ``Can attack on same column`` () =
     let whiteQueen = (4, 5)
     let blackQueen = (2, 5)
     canAttack blackQueen whiteQueen |> should equal true
