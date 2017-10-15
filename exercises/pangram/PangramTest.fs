@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module PangramTest
 
@@ -10,6 +10,10 @@ open Pangram
 [<Fact>]
 let ``Sentence empty`` () =
     isPangram "" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Recognizes a perfect lower case pangram`` () =
+    isPangram "abcdefghijklmnopqrstuvwxyz" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Pangram with only lower case`` () =

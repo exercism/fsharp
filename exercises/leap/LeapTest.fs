@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module LeapTest
 
@@ -13,7 +13,7 @@ let ``Year not divisible by 4: common year`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Year divisible by 4, not divisible by 100: leap year`` () =
-    leapYear 2016 |> should equal true
+    leapYear 2020 |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Year divisible by 100, not divisible by 400: common year`` () =

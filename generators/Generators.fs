@@ -179,14 +179,8 @@ type QueenAttack() =
 
     override this.RenderInput (canonicalDataCase, key, value) =
         let parsePositionTuple (tupleValue: obj) =
-            let parts = 
-                (tupleValue :?> JToken)
-                    .SelectToken("position")
-                    .ToObject<string>()
-                    .TrimStart('(')
-                    .TrimEnd(')')
-                    .Split(',')
-            formatValue (int parts.[0], int parts.[1])
+            let position = (tupleValue :?> JToken).SelectToken("position")
+            formatValue (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
 
         match key with
         | "queen" | "white_queen" | "black_queen" -> parsePositionTuple value
