@@ -170,6 +170,14 @@ type Pangram() =
 type PigLatin() =
     inherit Exercise()
 
+type PrimeFactors() =
+    inherit Exercise()
+    
+    override this.RenderInput (canonicalDataCase, key, value) =
+        base.RenderInput (canonicalDataCase, key, value) |> sprintf "%sL"
+    
+    override this.RenderSutProperty canonicalDataCase = "primeFactorsFor"
+
 type QueenAttack() =
     inherit Exercise()
 
