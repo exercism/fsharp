@@ -117,6 +117,18 @@ type Gigasecond() =
 
     override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
+type Grains() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = Some "Result<uint64,string>"
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        match string value with
+        | "-1" -> "Error \"Invalid input\""
+        | x    -> sprintf "Ok %sUL" x
+
 type HelloWorld() =
     inherit Exercise()
 
