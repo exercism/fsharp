@@ -204,11 +204,10 @@ type Exercise() =
 
     default this.RenderSutParameters canonicalDataCase =
         let sutParameterProperties = this.PropertiesUsedAsSutParameter canonicalDataCase
+        let renderSutParameter key = this.RenderSutParameter (canonicalDataCase, key, Map.find key canonicalDataCase.Properties)
 
-        canonicalDataCase.Properties
-        |> Map.filter (fun key value -> List.contains key sutParameterProperties)
-        |> Map.fold (fun acc key value  -> this.RenderSutParameter (canonicalDataCase, key, value) :: acc) [] 
-        |> List.rev
+        sutParameterProperties
+        |> List.map renderSutParameter
     
     default this.RenderSutParameter (canonicalDataCase, key, value) =
         this.RenderValueOrIdentifier (canonicalDataCase, key, value) 
