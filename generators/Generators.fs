@@ -189,6 +189,13 @@ type QueenAttack() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["white_queen"; "black_queen"]
 
+type RailFenceCipher() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["rails"; "msg"; "expected"]
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = ["rails"; "msg"]
+
 type Raindrops() =
     inherit Exercise()
 
