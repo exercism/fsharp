@@ -167,6 +167,12 @@ type Minesweeper() =
 type Pangram() =
     inherit Exercise()
 
+type PhoneNumber() =
+    inherit Exercise()
+    
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        value |> Option.ofObj |> formatValue |> backwardPipe
+
 type PigLatin() =
     inherit Exercise()
 
