@@ -2,19 +2,12 @@
 
 open System
 
-let possiblePrimes (number: int64): int64 list =
-    [2L; 3L] @ [for n in 6L..6L..number do
-                   for k in [-1L; 1L] do
-                      yield n + k ]
-
-let primeFactorsFor number =
-    let rec loop factors (remainder: int64) (possibleFactors: int64 list) =
-        match possibleFactors with
-        | [] -> factors |> List.rev
-        | factor::xs ->        
+let factors number =
+    let rec loop factors (remainder: int64) (factorToCheck: int64) =     
             match remainder with
             | _ when remainder <= 1L -> factors |> List.rev
-            | _ when remainder % factor = 0L -> loop (int factor :: factors) (remainder / factor |> int64) possibleFactors
-            | _ -> loop factors remainder xs
+            | _ when remainder % factorToCheck = 0L 
+                    -> loop (int factorToCheck :: factors) (remainder / factorToCheck |> int64) factorToCheck
+            | _ -> loop factors remainder (factorToCheck+1L)
 
-    loop [] number (possiblePrimes number)
+    loop [] number 2L

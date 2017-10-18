@@ -1,3 +1,3 @@
 ﻿module PrimeFactors
 
-let primeFactorsFor number = failwith "You need to implement this function."
+let factors number = failwith "You need to implement this function."
