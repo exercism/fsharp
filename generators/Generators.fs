@@ -179,6 +179,17 @@ type Minesweeper() =
 type Pangram() =
     inherit Exercise()
 
+type PerfectNumbers() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        match value |> string with 
+        | "perfect" -> "Perfect"
+        | "abundant" -> "Abundant"
+        | "deficient" -> "Deficient"
+        | _ -> "NotPossible"
+
+
 type PhoneNumber() =
     inherit Exercise()
     
