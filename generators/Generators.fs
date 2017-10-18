@@ -184,10 +184,10 @@ type PerfectNumbers() =
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
         match value |> string with 
-        | "perfect" -> "Perfect"
-        | "abundant" -> "Abundant"
-        | "deficient" -> "Deficient"
-        | _ -> "InvalidInput"
+        | "perfect" -> "(Some Perfect)"
+        | "abundant" -> "(Some Abundant)"
+        | "deficient" -> "(Some Deficient)"
+        | _ -> "None"
 
 type PhoneNumber() =
     inherit Exercise()

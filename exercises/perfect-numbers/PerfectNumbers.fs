@@ -1,5 +1,5 @@
 ﻿module PerfectNumbers
 
-type Classification = Perfect | Abundant | Deficient | InvalidInput
+type Classification = Perfect | Abundant | Deficient 
 
-let classify n = failwith "You need to implement this function."
+let classify n : Classification option = failwith "You need to implement this function."
