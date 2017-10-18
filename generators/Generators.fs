@@ -188,6 +188,12 @@ type PhoneNumber() =
 type PigLatin() =
     inherit Exercise()
 
+type PrimeFactors() =
+    inherit Exercise()
+    
+    override this.RenderInput (canonicalDataCase, key, value) =
+        base.RenderInput (canonicalDataCase, key, value) |> sprintf "%sL"
+    
 type QueenAttack() =
     inherit Exercise()
 
