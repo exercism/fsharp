@@ -187,8 +187,7 @@ type PerfectNumbers() =
         | "perfect" -> "Perfect"
         | "abundant" -> "Abundant"
         | "deficient" -> "Deficient"
-        | _ -> "NotPossible"
-
+        | _ -> "InvalidInput"
 
 type PhoneNumber() =
     inherit Exercise()

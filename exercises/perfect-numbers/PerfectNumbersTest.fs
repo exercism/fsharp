@@ -53,9 +53,9 @@ let ``Edge case (no factors other than itself) is classified correctly`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Zero is rejected (not a natural number)`` () =
-    classify 0 |> should equal NotPossible
+    classify 0 |> should equal InvalidInput
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Negative integer is rejected (not a natural number)`` () =
-    classify -1 |> should equal NotPossible
+    classify -1 |> should equal InvalidInput
 
