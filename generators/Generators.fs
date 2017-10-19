@@ -176,9 +176,17 @@ type Minesweeper() =
         | true  -> Some "string list"
         | false -> None
 
-type Pangram() =
+type NthPrime() =
     inherit Exercise()
 
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        match string value with 
+        | "False" -> "None"
+        | _ ->  value :?> int64 |> sprintf "(Some %d)"
+
+type Pangram() =
+    inherit Exercise()
+    
 type PerfectNumbers() =
     inherit Exercise()
 

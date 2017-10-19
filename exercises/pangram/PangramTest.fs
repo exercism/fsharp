@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module PangramTest
 
@@ -24,8 +24,8 @@ let ``Missing character 'x'`` () =
     isPangram "a quick movement of the enemy will jeopardize five gunboats" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Another missing character 'x'`` () =
-    isPangram "the quick brown fish jumps over the lazy dog" |> should equal false
+let ``Another missing character, e.g. 'h'`` () =
+    isPangram "five boxing wizards jump quickly at it" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Pangram with underscores`` () =
