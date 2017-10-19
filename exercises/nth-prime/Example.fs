@@ -20,4 +20,7 @@ let primes =
         yield! Seq.filter isPrime (possiblePrimes 6)
     }
 
-let nthPrime nth = Seq.item (nth - 1) primes
+let prime nth : int option = 
+    match nth with 
+    | n when n < 1 -> None
+    | _ -> Some (Seq.item (nth - 1) primes)
