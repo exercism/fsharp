@@ -154,6 +154,11 @@ type KindergartenGarden() =
 
     override this.UseFullMethodName canonicalDataCase = true
 
+type LargestSeriesProduct() =
+    inherit Exercise()
+
+     override this.PropertiesWithIdentifier canonicalDataCase = ["digits"]
+
 type Leap() =
     inherit Exercise()
 

@@ -16,10 +16,16 @@ let slices size list =
     let sliceCount = List.length list + 1 - size
 
     List.init sliceCount slice
-
+let isInputHasAllDigits input =
+    input
+    |> Seq.forall Char.IsDigit
 let largestProduct input seriesLength = 
-    if seriesLength > String.length input then failwith "Slice size is too big"
-    else 
+    match input with 
+    | l when String.length l < seriesLength -> -1
+    | l when String.length l = 0 && seriesLength > 0 -> -1
+    | l when seriesLength < 0 -> -1 
+    | l when isInputHasAllDigits l -> -1
+    | _ ->   
         input 
         |> digits 
         |> slices seriesLength
