@@ -203,14 +203,13 @@ type PascalsTriangle() =
     override this.RenderSutProperty canonicalDataCase = "triangle"
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match string value with
-        | "-1" -> "ArgumentOutOfRangeException"
-        | _ ->
+        match value with
+        | :? JArray  ->
             value :?> JArray 
             |> normalizeJArray
             |> Seq.map formatValue
             |> formatList
-            |> sprintf "(Some %s)"
+        | _ -> "System.ArgumentOutOfRangeException"
 
     override this.ToTestMethodBodyAssertTemplate canonicalDataCase =
          match canonicalDataCase.Expected with

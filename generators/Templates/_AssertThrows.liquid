@@ -1,1 +1,1 @@
-{{ Sut }} |> should throw typeof<{{ Expected }}>
+(fun () -> {{ Sut }} |> ignore) |> should throw typeof<{{ Expected }}>

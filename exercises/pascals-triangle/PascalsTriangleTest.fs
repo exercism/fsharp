@@ -13,21 +13,21 @@ let ``Zero rows`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Single row`` () =
-    triangle 1 |> should equal (Some [[1]])
+    triangle 1 |> should equal [[1]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Two rows`` () =
-    triangle 2 |> should equal (Some [[1]; [1; 1]])
+    triangle 2 |> should equal [[1]; [1; 1]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Three rows`` () =
-    triangle 3 |> should equal (Some [[1]; [1; 1]; [1; 2; 1]])
+    triangle 3 |> should equal [[1]; [1; 1]; [1; 2; 1]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Four rows`` () =
-    triangle 4 |> should equal (Some [[1]; [1; 1]; [1; 2; 1]; [1; 3; 3; 1]])
+    triangle 4 |> should equal [[1]; [1; 1]; [1; 2; 1]; [1; 3; 3; 1]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Negative rows`` () =
-    triangle -1 |> should throw typeof<ArgumentOutOfRangeException>
+    (fun () -> triangle -1 |> ignore) |> should throw typeof<System.ArgumentOutOfRangeException>
 
