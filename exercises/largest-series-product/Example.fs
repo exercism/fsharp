@@ -17,20 +17,20 @@ let slices size list =
 
     List.init sliceCount slice
 
-let isInputHasAllDigits input =
+let allDigits input =
     input
     |> Seq.forall Char.IsDigit
     
-let isValidCase input seriesLength =
+let isInvalidCase input seriesLength =
     let inputLenth = String.length input
     
     inputLenth < seriesLength 
     || inputLenth = 0 && seriesLength > 0 
     || seriesLength < 0 
-    || not (isInputHasAllDigits input)
+    || not (allDigits input)
 
 let largestProduct input seriesLength = 
-    match isValidCase input seriesLength with 
+    match isInvalidCase input seriesLength with 
     | true -> -1
     | false ->   
         input 
