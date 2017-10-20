@@ -1,4 +1,5 @@
 ﻿module PascalsTriangle
+
 let triangle rows = 
     match rows with 
     | r when r < 0 -> raise (System.ArgumentOutOfRangeException())
