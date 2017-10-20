@@ -1,8 +1,7 @@
 ﻿module PascalsTriangle
-open System    
 let triangle rows = 
     match rows with 
-    | r when r < 0 -> raise (ArgumentOutOfRangeException())
+    | r when r < 0 -> raise (System.ArgumentOutOfRangeException())
     | _ ->
         let row i = 
             [1 .. i - 1] 
