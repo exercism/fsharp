@@ -29,5 +29,5 @@ let ``Four rows`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Negative rows`` () =
-    triangle -1 |> should equal None
+    triangle -1 |> should throw typeof<ArgumentOutOfRangeException>
 

@@ -204,14 +204,19 @@ type PascalsTriangle() =
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
         match string value with
-        | "-1" -> "None"
+        | "-1" -> "ArgumentOutOfRangeException"
         | _ ->
             value :?> JArray 
             |> normalizeJArray
             |> Seq.map formatValue
             |> formatList
             |> sprintf "(Some %s)"
-        
+
+    override this.ToTestMethodBodyAssertTemplate canonicalDataCase =
+         match canonicalDataCase.Expected with
+         | :? JArray -> base.ToTestMethodBodyAssertTemplate canonicalDataCase
+         | _ -> "AssertThrows"
+
 type PhoneNumber() =
     inherit Exercise()
     

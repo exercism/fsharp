@@ -1,8 +1,8 @@
 ﻿module PascalsTriangle
-    
-let triangle rows : int list list option = 
+open System    
+let triangle rows = 
     match rows with 
-    | r when r < 0 -> None
+    | r when r < 0 -> raise (ArgumentOutOfRangeException())
     | _ ->
         let row i = 
             [1 .. i - 1] 
@@ -10,4 +10,3 @@ let triangle rows : int list list option =
 
         [1..rows] 
         |> List.map row 
-        |> Some
