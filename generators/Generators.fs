@@ -197,6 +197,21 @@ type PerfectNumbers() =
         | "deficient" -> "(Some Deficient)"
         | _ -> "None"
 
+type PascalsTriangle() =
+    inherit Exercise()
+
+    override this.RenderSutProperty canonicalDataCase = "triangle"
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        match string value with
+        | "-1" -> "None"
+        | _ ->
+            value :?> JArray 
+            |> normalizeJArray
+            |> Seq.map formatValue
+            |> formatList
+            |> sprintf "(Some %s)"
+        
 type PhoneNumber() =
     inherit Exercise()
     
