@@ -159,6 +159,11 @@ type LargestSeriesProduct() =
 
      override this.PropertiesWithIdentifier canonicalDataCase = ["digits"]
 
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        match value :?> int64 with 
+        | -1L -> "None"
+        | _ -> value :?> int64 |> sprintf "(Some %d)"
+
 type Leap() =
     inherit Exercise()
 

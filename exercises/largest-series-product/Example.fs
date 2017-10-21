@@ -29,12 +29,13 @@ let isInvalidCase input seriesLength =
     || seriesLength < 0 
     || not (allDigits input)
 
-let largestProduct input seriesLength = 
+let largestProduct input seriesLength : int option = 
     match isInvalidCase input seriesLength with 
-    | true -> -1
+    | true -> None
     | false ->   
         input 
         |> digits 
         |> slices seriesLength
         |> List.map (List.fold (*) 1)
         |> List.max
+        |> Some

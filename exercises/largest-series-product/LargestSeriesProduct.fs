@@ -1,3 +1,3 @@
 ﻿module LargestSeriesProduct
 
-let largestProduct input seriesLength = failwith "You need to implement this function."
+let largestProduct input seriesLength : int option = failwith "You need to implement this function."
