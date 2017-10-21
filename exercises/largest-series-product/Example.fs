@@ -17,11 +17,25 @@ let slices size list =
 
     List.init sliceCount slice
 
-let largestProduct input seriesLength = 
-    if seriesLength > String.length input then failwith "Slice size is too big"
-    else 
+let allDigits input =
+    input
+    |> Seq.forall Char.IsDigit
+    
+let isInvalidCase input seriesLength =
+    let inputLenth = String.length input
+    
+    inputLenth < seriesLength 
+    || inputLenth = 0 && seriesLength > 0 
+    || seriesLength < 0 
+    || not (allDigits input)
+
+let largestProduct input seriesLength : int option = 
+    match isInvalidCase input seriesLength with 
+    | true -> None
+    | false ->   
         input 
         |> digits 
         |> slices seriesLength
         |> List.map (List.fold (*) 1)
         |> List.max
+        |> Some

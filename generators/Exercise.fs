@@ -218,7 +218,7 @@ type Exercise() =
         canonicalDataCase.Properties
         |> Map.toList
         |> List.map fst
-        |> List.except ["property"; "expected"; "description"]
+        |> List.except ["property"; "expected"; "description"; "comments"]
     
     // Utility methods to customize rendered output
 
