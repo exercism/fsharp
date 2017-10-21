@@ -200,21 +200,21 @@ type PerfectNumbers() =
 type PascalsTriangle() =
     inherit Exercise()
 
-    override this.RenderSutProperty canonicalDataCase = "triangle"
-
     override this.RenderExpected (canonicalDataCase, key, value) = 
         match value with
         | :? JArray  ->
-            value :?> JArray 
-            |> normalizeJArray
-            |> Seq.map formatValue
-            |> formatList
-        | _ -> "System.ArgumentOutOfRangeException"
+            match value :?> JArray |> Seq.isEmpty  with
+            | true -> "(Some ([]: int list list))"
+            | false ->
+                value :?> JArray
+                |> normalizeJArray
+                |> Seq.map formatValue
+                |> formatList
+                |> sprintf "(Some %s)"
 
-    override this.ToTestMethodBodyAssertTemplate canonicalDataCase =
-         match canonicalDataCase.Expected with
-         | :? JArray -> base.ToTestMethodBodyAssertTemplate canonicalDataCase
-         | _ -> "AssertThrows"
+        | _ -> "None"
+
+    override this.ToTestMethodBodyAssertTemplate canonicalDataCase = "AssertEqual"
 
 type PhoneNumber() =
     inherit Exercise()
