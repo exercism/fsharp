@@ -207,6 +207,25 @@ type PerfectNumbers() =
         | "deficient" -> "(Some Deficient)"
         | _ -> "None"
 
+type PascalsTriangle() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        match value with
+        | :? JArray  ->
+            match value :?> JArray |> Seq.isEmpty  with
+            | true -> "(Some ([]: int list list))"
+            | false ->
+                value :?> JArray
+                |> normalizeJArray
+                |> Seq.map formatValue
+                |> formatList
+                |> sprintf "(Some %s)"
+
+        | _ -> "None"
+
+    override this.ToTestMethodBodyAssertTemplate canonicalDataCase = "AssertEqual"
+
 type PhoneNumber() =
     inherit Exercise()
     

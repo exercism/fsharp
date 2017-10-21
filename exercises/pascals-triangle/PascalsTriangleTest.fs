@@ -1,30 +1,33 @@
+// This file was auto-generated based on version 1.1.0 of the canonical data.
+
 module PascalsTriangleTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open PascalsTriangle
 
 [<Fact>]
-let ``One row`` () =
-    triangle 1 |> should equal [[1]]
-        
+let ``Zero rows`` () =
+    rows 0 |> should equal (Some ([]: int list list))
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Single row`` () =
+    rows 1 |> should equal (Some [[1]])
+
 [<Fact(Skip = "Remove to run test")>]
 let ``Two rows`` () =
-    triangle 2 |> should equal [[1]; [1; 1]]
+    rows 2 |> should equal (Some [[1]; [1; 1]])
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Three rows`` () =
-    triangle 3 |> should equal [[1]; [1; 1]; [1; 2; 1]]
+    rows 3 |> should equal (Some [[1]; [1; 1]; [1; 2; 1]])
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Four rows`` () =
-    triangle 4 |> should equal [[1]; [1; 1]; [1; 2; 1]; [1; 3; 3; 1]]
+    rows 4 |> should equal (Some [[1]; [1; 1]; [1; 2; 1]; [1; 3; 3; 1]])
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Five rows`` () =
-    triangle 5 |> should equal [[1]; [1; 1]; [1; 2; 1]; [1; 3; 3; 1]; [1; 4; 6; 4; 1]]
+let ``Negative rows`` () =
+    rows -1 |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
-let ``Twenty rows`` () =
-    triangle 20 |> List.last |> should equal [1; 19; 171; 969; 3876; 11628; 27132; 50388; 75582; 92378; 92378; 75582; 50388; 27132; 11628; 3876; 969; 171; 19; 1]
