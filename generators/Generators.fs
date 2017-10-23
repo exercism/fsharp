@@ -80,13 +80,9 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = 
-        match key with 
-        | "expected" -> 
-            match value with 
-            | :? JArray -> Option.ofObj value |> box
-            | _ -> value |> Option.ofNonNegativeInt |> box
-        | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        let convertToOption = if value :? JArray then Option.ofObj else Option.ofNonNegativeInt
+        value |> convertToOption |> formatValue
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -154,9 +150,10 @@ type LargestSeriesProduct() =
      override this.PropertiesWithIdentifier canonicalDataCase = ["digits"]
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match value :?> int64 with 
-        | -1L -> "None"
-        | _ -> value :?> int64 |> sprintf "(Some %d)"
+        value 
+        |> Option.ofNonNegativeInt 
+        |> formatValue 
+        |> parenthesizeOption
 
 type Leap() =
     inherit Exercise()
@@ -184,9 +181,10 @@ type NthPrime() =
     inherit Exercise()
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match string value with 
-        | "False" -> "None"
-        | _ ->  value :?> int64 |> sprintf "(Some %d)"
+        value 
+        |> Option.ofNonFalse 
+        |> formatValue 
+        |> parenthesizeOption
 
 type Pangram() =
     inherit Exercise()
@@ -194,12 +192,14 @@ type Pangram() =
 type PerfectNumbers() =
     inherit Exercise()
 
+    let toClassification value = string value |> String.humanize
+
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match value |> string with 
-        | "perfect" -> "(Some Perfect)"
-        | "abundant" -> "(Some Abundant)"
-        | "deficient" -> "(Some Deficient)"
-        | _ -> "None"
+        value 
+        |> Option.ofNonError  
+        |> Option.map toClassification 
+        |> formatOption 
+        |> parenthesizeOption
 
 type PascalsTriangle() =
     inherit Exercise()
@@ -224,7 +224,10 @@ type PhoneNumber() =
     inherit Exercise()
     
     override this.RenderExpected (canonicalDataCase, key, value) =
-        value |> Option.ofObj |> formatValue |> backwardPipe
+        value 
+        |> Option.ofObj 
+        |> formatValue
+        |> parenthesizeOption
 
 type PigLatin() =
     inherit Exercise()
@@ -268,7 +271,7 @@ type RnaTranscription() =
     inherit Exercise()
 
     override this.RenderExpected (canonicalDataCase, key, value) =
-        value |> Option.ofObj |> formatValue |> backwardPipe
+        value |> Option.ofObj |> formatValue |> parenthesizeOption
 
 type RunLengthEncoding() =
     inherit Exercise()

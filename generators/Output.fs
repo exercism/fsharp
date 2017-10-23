@@ -16,9 +16,14 @@ let indent level value =
 
 let parenthesize value = sprintf "(%s)" value
 
+let parenthesizeOption value = 
+    match value with
+    | "None" -> value
+    | _ -> parenthesize value
+
 let backwardPipe value = sprintf "<| %s" value
 
-let backwardPipeConditional test value = if test value then backwardPipe value else value
+let backwardPipeIf test value = if test value then backwardPipe value else value
 
 let addTypeAnnotation typeAnnotation value = sprintf "%s: %s" value typeAnnotation
 
