@@ -145,12 +145,7 @@ type KindergartenGarden() =
         |> Seq.map toPlant
         |> formatList
 
-    override this.RenderSutProperty canonicalDataCase =
-        match Map.containsKey "students" canonicalDataCase.Properties with
-        | true  -> "plantsForCustomStudents"
-        | false -> "plantsForDefaultStudents"
-
-    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "students"; "diagram"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "diagram"; "expected"]
 
     override this.UseFullMethodName canonicalDataCase = true
 
