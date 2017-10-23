@@ -50,6 +50,7 @@ type Exercise() =
     abstract member RenderSutProperty : CanonicalDataCase -> string
     
     // Utility methods to customize rendered output
+    abstract member Properties : CanonicalDataCase -> string list
     abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
     abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * obj -> string option
@@ -214,11 +215,14 @@ type Exercise() =
 
     default this.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
 
+    default this.Properties canonicalDataCase =
+        List.append (this.PropertiesUsedAsSutParameter canonicalDataCase) ["expected"]
+
     default this.PropertiesUsedAsSutParameter canonicalDataCase = 
         canonicalDataCase.Properties
         |> Map.toList
         |> List.map fst
-        |> List.except ["property"; "expected"; "description"; "comments"]
+        |> List.except ["expected"; "property"; "description"; "comments"]
     
     // Utility methods to customize rendered output
 

@@ -18,7 +18,7 @@ type AllYourBase() =
 
     override this.RenderExpected (canonicalDataCase, key, value) = value |> Option.ofObj |> formatValue
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"; "input_base"; "input_digits"; "output_base"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Allergies() =
     inherit Exercise()
@@ -72,8 +72,7 @@ type BookStore() =
     override this.RenderExpected (canonicalDataCase, key, value) = formatFloat value
 
     override this.PropertiesUsedAsSutParameter canonicalDataCase =
-        base.PropertiesUsedAsSutParameter canonicalDataCase
-        |> List.except ["targetgrouping"; "expected"; "description"]
+        base.PropertiesUsedAsSutParameter canonicalDataCase |> List.except ["targetgrouping"]
 
 type BracketPush() =
     inherit Exercise()
@@ -89,7 +88,7 @@ type Change() =
             | _ -> value |> Option.ofNonNegativeInt |> box
         | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match key with 
@@ -174,7 +173,7 @@ type Minesweeper() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match value :?> JArray |> Seq.isEmpty with 
@@ -258,9 +257,9 @@ type QueenAttack() =
 type RailFenceCipher() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["rails"; "msg"; "expected"]
-
     override this.PropertiesUsedAsSutParameter canonicalDataCase = ["rails"; "msg"]
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Raindrops() =
     inherit Exercise()
