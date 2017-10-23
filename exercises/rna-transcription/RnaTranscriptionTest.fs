@@ -9,33 +9,33 @@ open RnaTranscription
 
 [<Fact>]
 let ``RNA complement of cytosine is guanine`` () =
-    toRna "C" |> should equal <| Some "G"
+    toRna "C" |> should equal (Some "G")
 
 [<Fact(Skip = "Remove to run test")>]
 let ``RNA complement of guanine is cytosine`` () =
-    toRna "G" |> should equal <| Some "C"
+    toRna "G" |> should equal (Some "C")
 
 [<Fact(Skip = "Remove to run test")>]
 let ``RNA complement of thymine is adenine`` () =
-    toRna "T" |> should equal <| Some "A"
+    toRna "T" |> should equal (Some "A")
 
 [<Fact(Skip = "Remove to run test")>]
 let ``RNA complement of adenine is uracil`` () =
-    toRna "A" |> should equal <| Some "U"
+    toRna "A" |> should equal (Some "U")
 
 [<Fact(Skip = "Remove to run test")>]
 let ``RNA complement`` () =
-    toRna "ACGTGGTCTTAA" |> should equal <| Some "UGCACCAGAAUU"
+    toRna "ACGTGGTCTTAA" |> should equal (Some "UGCACCAGAAUU")
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Correctly handles invalid input (RNA instead of DNA)`` () =
-    toRna "U" |> should equal <| None
+    toRna "U" |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Correctly handles completely invalid DNA input`` () =
-    toRna "XXX" |> should equal <| None
+    toRna "XXX" |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Correctly handles partially invalid DNA input`` () =
-    toRna "ACGTXXXCTTAA" |> should equal <| None
+    toRna "ACGTXXXCTTAA" |> should equal None
 

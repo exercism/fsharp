@@ -18,7 +18,7 @@ type AllYourBase() =
 
     override this.RenderExpected (canonicalDataCase, key, value) = value |> Option.ofObj |> formatValue
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"; "input_base"; "input_digits"; "output_base"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Allergies() =
     inherit Exercise()
@@ -72,8 +72,7 @@ type BookStore() =
     override this.RenderExpected (canonicalDataCase, key, value) = formatFloat value
 
     override this.PropertiesUsedAsSutParameter canonicalDataCase =
-        base.PropertiesUsedAsSutParameter canonicalDataCase
-        |> List.except ["targetgrouping"; "expected"; "description"]
+        base.PropertiesUsedAsSutParameter canonicalDataCase |> List.except ["targetgrouping"]
 
 type BracketPush() =
     inherit Exercise()
@@ -81,15 +80,11 @@ type BracketPush() =
 type Change() =
     inherit Exercise()
 
-    override this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = 
-        match key with 
-        | "expected" -> 
-            match value with 
-            | :? JArray -> Option.ofObj value |> box
-            | _ -> value |> Option.ofNonNegativeInt |> box
-        | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        let convertToOption = if value :? JArray then Option.ofObj else Option.ofNonNegativeInt
+        value |> convertToOption |> formatValue
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["coins"; "target"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match key with 
@@ -145,12 +140,7 @@ type KindergartenGarden() =
         |> Seq.map toPlant
         |> formatList
 
-    override this.RenderSutProperty canonicalDataCase =
-        match Map.containsKey "students" canonicalDataCase.Properties with
-        | true  -> "plantsForCustomStudents"
-        | false -> "plantsForDefaultStudents"
-
-    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "students"; "diagram"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = ["student"; "diagram"; "expected"]
 
     override this.UseFullMethodName canonicalDataCase = true
 
@@ -160,9 +150,10 @@ type LargestSeriesProduct() =
      override this.PropertiesWithIdentifier canonicalDataCase = ["digits"]
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match value :?> int64 with 
-        | -1L -> "None"
-        | _ -> value :?> int64 |> sprintf "(Some %d)"
+        value 
+        |> Option.ofNonNegativeInt 
+        |> formatValue 
+        |> parenthesizeOption
 
 type Leap() =
     inherit Exercise()
@@ -179,7 +170,7 @@ type Minesweeper() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match value :?> JArray |> Seq.isEmpty with 
@@ -190,9 +181,10 @@ type NthPrime() =
     inherit Exercise()
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match string value with 
-        | "False" -> "None"
-        | _ ->  value :?> int64 |> sprintf "(Some %d)"
+        value 
+        |> Option.ofNonFalse 
+        |> formatValue 
+        |> parenthesizeOption
 
 type Pangram() =
     inherit Exercise()
@@ -200,12 +192,14 @@ type Pangram() =
 type PerfectNumbers() =
     inherit Exercise()
 
+    let toClassification value = string value |> String.humanize
+
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        match value |> string with 
-        | "perfect" -> "(Some Perfect)"
-        | "abundant" -> "(Some Abundant)"
-        | "deficient" -> "(Some Deficient)"
-        | _ -> "None"
+        value 
+        |> Option.ofNonError  
+        |> Option.map toClassification 
+        |> formatOption 
+        |> parenthesizeOption
 
 type PascalsTriangle() =
     inherit Exercise()
@@ -230,7 +224,10 @@ type PhoneNumber() =
     inherit Exercise()
     
     override this.RenderExpected (canonicalDataCase, key, value) =
-        value |> Option.ofObj |> formatValue |> backwardPipe
+        value 
+        |> Option.ofObj 
+        |> formatValue
+        |> parenthesizeOption
 
 type PigLatin() =
     inherit Exercise()
@@ -263,9 +260,9 @@ type QueenAttack() =
 type RailFenceCipher() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier canonicalDataCase = ["rails"; "msg"; "expected"]
-
     override this.PropertiesUsedAsSutParameter canonicalDataCase = ["rails"; "msg"]
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Raindrops() =
     inherit Exercise()
@@ -274,7 +271,7 @@ type RnaTranscription() =
     inherit Exercise()
 
     override this.RenderExpected (canonicalDataCase, key, value) =
-        value |> Option.ofObj |> formatValue |> backwardPipe
+        value |> Option.ofObj |> formatValue |> parenthesizeOption
 
 type RunLengthEncoding() =
     inherit Exercise()

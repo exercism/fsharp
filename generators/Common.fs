@@ -57,6 +57,16 @@ module Option =
         | :? int32 as i -> if i < 0  then None else Some value
         | _ -> None
 
+    let ofNonFalse (value: obj) =
+        match value with
+        | :? bool as b when not b -> None
+        | _ -> Some value
+
+    let ofNonError (value: obj) =
+        match value with
+        | :? JToken as jToken when not (isNull jToken.["error"]) -> None
+        | _ -> Some value
+
 module String =
     open Humanizer
 
