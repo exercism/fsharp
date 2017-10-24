@@ -1,6 +1,9 @@
 ﻿module RobotSimulator
 
 type Bearing = North | East | South | West
+type Coordinate = int * int
+
+type Robot = { bearing: Bearing; coordinate: Coordinate }
 
 let createRobot bearing coordinate = failwith "You need to implement this function."
 
