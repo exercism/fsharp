@@ -100,6 +100,21 @@ type CryptoSquare() =
 type DifferenceOfSquares() =
     inherit Exercise()
 
+type Dominoes() =
+    inherit Exercise()
+    
+    let formatAsTuple (value:obj) =
+        let twoElementList = value :?> JArray |> normalizeJArray
+        (twoElementList.Item 0, twoElementList.Item 1) |> string
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatAsTuple
+        |> formatList
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type Gigasecond() =
     inherit Exercise()
 
@@ -147,7 +162,7 @@ type KindergartenGarden() =
 type LargestSeriesProduct() =
     inherit Exercise()
 
-     override this.PropertiesWithIdentifier canonicalDataCase = ["digits"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
         value 
