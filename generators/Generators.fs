@@ -94,6 +94,51 @@ type Change() =
             | _  -> None
         | _ -> None
 
+type Clock() =
+    inherit Exercise()
+    let createClock (value:obj) clockId =
+        let clock = value :?> JObject
+        sprintf "let %s = create %s %s" clockId (clock.["hour"].ToObject<string>()) (clock.["minute"].ToObject<string>())
+
+    override this.PropertiesWithIdentifier canonicalDataCase = 
+        this.PropertiesUsedAsSutParameter canonicalDataCase 
+
+    override this.RenderValueWithIdentifier (canonicalDataCase, key, value) =
+        match key with 
+        | "clock1" | "clock2" -> createClock value key
+        | _ -> base.RenderValueWithIdentifier (canonicalDataCase, key, value)
+    
+    override this.RenderArrange canonicalDataCase =
+        let renderArrangeProperty property: string option = 
+            match Map.tryFind property canonicalDataCase.Properties with
+            | None -> None
+            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, property, value))
+            
+        match canonicalDataCase.Property with
+        | "create" | "add" ->
+            let clock = sprintf "let clock = create %s %s" (canonicalDataCase.Properties.["hour"] |> formatValue ) (canonicalDataCase.Properties.["minute"] |>formatValue) 
+            clock:: (canonicalDataCase
+                |> this.PropertiesWithIdentifier |> List.except ["hour";"minute"]
+                |> List.choose renderArrangeProperty)
+        | _ ->  (canonicalDataCase
+                |> this.PropertiesWithIdentifier 
+                |> List.choose renderArrangeProperty)
+    
+    override this.RenderIdentifier (canonicalDataCase, key, value) = 
+        match key with 
+        | "add" -> "minutesToAdd"
+        | _ -> base.RenderIdentifier (canonicalDataCase, key, value)
+
+    override this.RenderSut canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "create" ->
+            sprintf "display clock"
+        | "add" ->
+            sprintf "add minutesToAdd clock |> display" 
+        | "equal" -> "clock1 = clock2" 
+        | _ -> 
+            base.RenderSut canonicalDataCase
+
 type CryptoSquare() =
     inherit Exercise()
 

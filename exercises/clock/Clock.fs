@@ -1,6 +1,6 @@
 module Clock
 
-let mkClock hours minutes = failwith "You need to implement this function."
+let create hours minutes = failwith "You need to implement this function."
 
 let add minutes clock = failwith "You need to implement this function."
 
