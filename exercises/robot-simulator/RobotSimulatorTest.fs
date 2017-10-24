@@ -1,44 +1,147 @@
+// This file was auto-generated based on version 2.0.0 of the canonical data.
+
 module RobotSimulatorTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open RobotSimulator
 
 [<Fact>]
-let ``Turn right edge case`` () =
-    let robot = createRobot Bearing.West (0, 0)
-    let movedRobot = turnRight robot
-    movedRobot |> should equal <| createRobot Bearing.North (0, 0)
+let ``create - Robots are created with a position and direction`` () =
+    let robot = createRobot North (0, 0)
+    let expected = createRobot North (0, 0)
+    robot |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Turn left edge case`` () =
-    let robot = createRobot Bearing.North (0, 0)
-    let movedRobot = turnLeft robot
-    movedRobot |> should equal <| createRobot Bearing.West (0, 0)
+let ``create - Negative positions are allowed`` () =
+    let robot = createRobot South (-1, -1)
+    let expected = createRobot South (-1, -1)
+    robot |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Robbie`` () =
-    let robbie = createRobot Bearing.East (-2, 1)
-    robbie |> should equal <| createRobot Bearing.East (-2, 1)
-
-    let movedRobbie = simulate robbie "RLAALAL"
-    movedRobbie |> should equal <| createRobot Bearing.West (0, 2)
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Clutz`` () =
-    let clutz = createRobot Bearing.North (0, 0)
-    let movedClutz = simulate clutz "LAAARALA"
-    movedClutz |> should equal <| createRobot Bearing.West (-4, 1)
+let ``turnRight - Does not change the position`` () =
+    let robot = createRobot North (0, 0)
+    let actual = turnRight robot
+    let expected = (0, 0)
+    actual.coordinate |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Sphero`` () =
-    let sphero = createRobot Bearing.East (2, -7)
-    let movedSphero = simulate sphero "RRAAAAALA"
-    movedSphero |> should equal <| createRobot Bearing.South (-3, -8)
+let ``turnRight - Changes the direction from north to east`` () =
+    let robot = createRobot North (0, 0)
+    let actual = turnRight robot
+    let expected = East
+    actual.bearing |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Roomba`` () =
-    let roomba = createRobot Bearing.South (8, 4)
-    let movedRoomba = simulate roomba "LAAARRRALLLL"
-    movedRoomba |> should equal <| createRobot Bearing.North (11, 5)
+let ``turnRight - Changes the direction from east to south`` () =
+    let robot = createRobot East (0, 0)
+    let actual = turnRight robot
+    let expected = South
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnRight - Changes the direction from south to west`` () =
+    let robot = createRobot South (0, 0)
+    let actual = turnRight robot
+    let expected = West
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnRight - Changes the direction from west to north`` () =
+    let robot = createRobot West (0, 0)
+    let actual = turnRight robot
+    let expected = North
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnLeft - Does not change the position`` () =
+    let robot = createRobot North (0, 0)
+    let actual = turnLeft robot
+    let expected = (0, 0)
+    actual.coordinate |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnLeft - Changes the direction from north to west`` () =
+    let robot = createRobot North (0, 0)
+    let actual = turnLeft robot
+    let expected = West
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnLeft - Changes the direction from west to south`` () =
+    let robot = createRobot West (0, 0)
+    let actual = turnLeft robot
+    let expected = South
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnLeft - Changes the direction from south to east`` () =
+    let robot = createRobot South (0, 0)
+    let actual = turnLeft robot
+    let expected = East
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``turnLeft - Changes the direction from east to north`` () =
+    let robot = createRobot East (0, 0)
+    let actual = turnLeft robot
+    let expected = North
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``advance - Does not change the direction`` () =
+    let robot = createRobot North (0, 0)
+    let actual = advance robot
+    let expected = North
+    actual.bearing |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``advance - Increases the y coordinate one when facing north`` () =
+    let robot = createRobot North (0, 0)
+    let actual = advance robot
+    let expected = (0, 1)
+    actual.coordinate |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``advance - Decreases the y coordinate by one when facing south`` () =
+    let robot = createRobot South (0, 0)
+    let actual = advance robot
+    let expected = (0, -1)
+    actual.coordinate |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``advance - Increases the x coordinate by one when facing east`` () =
+    let robot = createRobot East (0, 0)
+    let actual = advance robot
+    let expected = (1, 0)
+    actual.coordinate |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``advance - Decreases the x coordinate by one when facing west`` () =
+    let robot = createRobot West (0, 0)
+    let actual = advance robot
+    let expected = (-1, 0)
+    actual.coordinate |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``instructions - Instructions to move west and north`` () =
+    let robot = createRobot North (0, 0)
+    let actual = simulate robot "LAAARALA"
+    let expected = createRobot West (-4, 1)
+    actual |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``instructions - Instructions to move west and south`` () =
+    let robot = createRobot East (2, -7)
+    let actual = simulate robot "RRAAAAALA"
+    let expected = createRobot South (-3, -8)
+    actual |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``instructions - Instructions to move east and north`` () =
+    let robot = createRobot South (8, 4)
+    let actual = simulate robot "LAAARRRALLLL"
+    let expected = createRobot North (11, 5)
+    actual |> should equal expected
+
