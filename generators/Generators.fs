@@ -113,7 +113,7 @@ type Dominoes() =
         |> Seq.map formatAsTuple
         |> formatList
 
-    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
 type Gigasecond() =
     inherit Exercise()
@@ -162,7 +162,7 @@ type KindergartenGarden() =
 type LargestSeriesProduct() =
     inherit Exercise()
 
-    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
         value 
