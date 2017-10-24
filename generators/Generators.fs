@@ -270,7 +270,7 @@ type Raindrops() =
 type RobotSimulator() =
     inherit Exercise()
 
-    member this.ResultIdentifierName = "actual"
+    let resultIdentifierName = "actual"
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["robot"; "property"; "expected"]
 
@@ -305,9 +305,9 @@ type RobotSimulator() =
         | "expected" -> 
             // here we may need to render full robot object
             // or just coordinate/direction values
-            let input = (value :?> JToken)
+            let input = value :?> JToken
             let direction, position = this.GetRobotProperties input
-            match isNull(direction), isNull(position) with
+            match isNull direction, isNull position with
             | true, false ->
                 this.RenderCoords position
             | false, true ->
@@ -321,14 +321,14 @@ type RobotSimulator() =
     override this.RenderValueWithIdentifier (canonicalDataCase, key, value) = 
         match key with 
         | "property" -> 
-            let action = (value :?> string)
+            let action = value :?> string
             match action with 
             | "instructions" -> 
-                 sprintf "let %s = simulate robot %s" this.ResultIdentifierName (canonicalDataCase.Properties.["instructions"] |> formatValue)
+                 sprintf "let %s = simulate robot %s" resultIdentifierName (canonicalDataCase.Properties.["instructions"] |> formatValue)
             | "create" -> 
                 ""
             | _ -> 
-                 sprintf "let %s = %s robot" this.ResultIdentifierName action
+                 sprintf "let %s = %s robot" resultIdentifierName action
             
         | _ -> 
             base.RenderValueWithIdentifier (canonicalDataCase, key, value)
@@ -341,21 +341,23 @@ type RobotSimulator() =
             // depends on expected value we may need to 
             // check whole robot or just one of its' properties
             let direction, position = this.GetRobotProperties (canonicalDataCase.Properties.["expected"] :?> JToken)
-            match isNull(direction), isNull(position) with
+            match isNull direction, isNull position with
             | true, false -> 
-                sprintf "%s.coordinate" this.ResultIdentifierName
+                sprintf "%s.coordinate" resultIdentifierName
             | false, true ->
-                sprintf "%s.bearing" this.ResultIdentifierName
+                sprintf "%s.bearing" resultIdentifierName
             | true, true -> 
-                this.ResultIdentifierName
+                resultIdentifierName
             | false, false -> 
                 match canonicalDataCase.Property with
                 | "create" -> "robot"
-                | _ -> this.ResultIdentifierName
+                | _ -> resultIdentifierName
     
     override this.RenderTestMethodName canonicalDataCase =
-        // avoid duplicated method names
-        sprintf "%s - %s" canonicalDataCase.Property (canonicalDataCase.Description |> String.upperCaseFirst)
+         // avoid duplicated method names
+         // for this generator it is preferable
+         // because useFullMethodName leads to very long names
+         sprintf "%s - %s" canonicalDataCase.Property (canonicalDataCase.Description |> String.upperCaseFirst)
 
 type RnaTranscription() =
     inherit Exercise()
