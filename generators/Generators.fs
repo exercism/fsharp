@@ -96,46 +96,41 @@ type Change() =
 
 type Clock() =
     inherit Exercise()
+
     let createClock (value:obj) clockId =
         let clock = value :?> JObject
-        sprintf "let %s = create %s %s" clockId (clock.["hour"].ToObject<string>()) (clock.["minute"].ToObject<string>())
+        let hour = clock.["hour"].ToObject<string>()
+        let minute = clock.["minute"].ToObject<string>()
+        sprintf "let %s = create %s %s" clockId hour minute
 
-    override this.PropertiesWithIdentifier canonicalDataCase = 
-        this.PropertiesUsedAsSutParameter canonicalDataCase 
+    member private this.renderPropertyValue canonicalDataCase property =
+        this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Properties)
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["clock1"; "clock2"]
 
     override this.RenderValueWithIdentifier (canonicalDataCase, key, value) =
-        match key with 
+        match key with
         | "clock1" | "clock2" -> createClock value key
         | _ -> base.RenderValueWithIdentifier (canonicalDataCase, key, value)
     
     override this.RenderArrange canonicalDataCase =
-        let renderArrangeProperty property: string option = 
-            match Map.tryFind property canonicalDataCase.Properties with
-            | None -> None
-            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, property, value))
-            
         match canonicalDataCase.Property with
-        | "create" | "add" ->
-            let clock = sprintf "let clock = create %s %s" (canonicalDataCase.Properties.["hour"] |> formatValue ) (canonicalDataCase.Properties.["minute"] |>formatValue) 
-            clock:: (canonicalDataCase
-                |> this.PropertiesWithIdentifier |> List.except ["hour";"minute"]
-                |> List.choose renderArrangeProperty)
-        | _ ->  (canonicalDataCase
-                |> this.PropertiesWithIdentifier 
-                |> List.choose renderArrangeProperty)
-    
-    override this.RenderIdentifier (canonicalDataCase, key, value) = 
-        match key with 
-        | "add" -> "minutesToAdd"
-        | _ -> base.RenderIdentifier (canonicalDataCase, key, value)
+        | "create" | "add" -> 
+            let hour = this.renderPropertyValue canonicalDataCase "hour"
+            let minute = this.renderPropertyValue canonicalDataCase "minute"
+            [sprintf "let clock = create %s %s" hour minute]
+        | _ -> 
+            base.RenderArrange canonicalDataCase
 
     override this.RenderSut canonicalDataCase =
         match canonicalDataCase.Property with
-        | "create" ->
+        | "create" -> 
             sprintf "display clock"
-        | "add" ->
-            sprintf "add minutesToAdd clock |> display" 
-        | "equal" -> "clock1 = clock2" 
+        | "add" -> 
+            this.renderPropertyValue canonicalDataCase "add"
+            |> sprintf "add %s clock |> display" 
+        | "equal" -> 
+            "clock1 = clock2" 
         | _ -> 
             base.RenderSut canonicalDataCase
 
