@@ -145,6 +145,21 @@ type CryptoSquare() =
 type DifferenceOfSquares() =
     inherit Exercise()
 
+type Dominoes() =
+    inherit Exercise()
+    
+    let formatAsTuple (value:obj) =
+        let twoElementList = value :?> JArray |> normalizeJArray
+        (twoElementList.Item 0, twoElementList.Item 1) |> string
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatAsTuple
+        |> formatList
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type Gigasecond() =
     inherit Exercise()
 
@@ -192,7 +207,7 @@ type KindergartenGarden() =
 type LargestSeriesProduct() =
     inherit Exercise()
 
-     override this.PropertiesWithIdentifier canonicalDataCase = ["digits"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
         value 
@@ -311,6 +326,98 @@ type RailFenceCipher() =
 
 type Raindrops() =
     inherit Exercise()
+
+type RobotSimulator() =
+    inherit Exercise()
+
+    let resultIdentifierName = "actual"
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["robot"; "property"; "expected"]
+
+    member private this.RenderDirection (value: JToken) = 
+        sprintf "%s" (value.ToObject<string>() |> String.upperCaseFirst)  
+
+    member private this.RenderCoords (coords: JToken) = 
+        (coords.["x"].ToObject<int>(), coords.["y"].ToObject<int>()) 
+        |> formatValue
+
+    member private this.DefineRobot (direction: JToken) (coords: JToken) = 
+        sprintf "createRobot %s %s" (this.RenderDirection direction) (this.RenderCoords coords)
+
+    member private this.GetRobotProperties (value : JToken) = 
+        value.SelectToken("direction"), value.SelectToken("position")
+
+    override this.RenderArrange canonicalDataCase =
+        // one identifier may be empty if we only checking created object
+        // we need to filter out this empty line
+        base.RenderArrange canonicalDataCase
+        |> List.choose (
+            function
+            | "" -> None
+            | v -> Some v
+        )
+
+    override this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
+        match key with
+        | "robot" ->
+            let input = value :?> JToken
+            this.DefineRobot ("direction" |> input.SelectToken) ("position" |> input.SelectToken)
+        | "expected" -> 
+            // here we may need to render full robot object
+            // or just coordinate/direction values
+            let input = value :?> JToken
+            let direction, position = this.GetRobotProperties input
+            match isNull direction, isNull position with
+            | true, false ->
+                this.RenderCoords position
+            | false, true ->
+                this.RenderDirection direction
+            | false, false ->
+                this.DefineRobot ("direction" |> input.SelectToken) ("position" |> input.SelectToken)
+            | true, true -> 
+                ""
+        | _ -> ""
+
+    override this.RenderValueWithIdentifier (canonicalDataCase, key, value) = 
+        match key with 
+        | "property" -> 
+            let action = value :?> string
+            match action with 
+            | "instructions" -> 
+                 sprintf "let %s = simulate robot %s" resultIdentifierName (canonicalDataCase.Properties.["instructions"] |> formatValue)
+            | "create" -> 
+                ""
+            | _ -> 
+                 sprintf "let %s = %s robot" resultIdentifierName action
+            
+        | _ -> 
+            base.RenderValueWithIdentifier (canonicalDataCase, key, value)
+
+    override this.RenderSut canonicalDataCase = 
+        match canonicalDataCase.Property with
+        | "create" -> 
+            "robot"
+        | _ -> 
+            // depends on expected value we may need to 
+            // check whole robot or just one of its' properties
+            let direction, position = this.GetRobotProperties (canonicalDataCase.Properties.["expected"] :?> JToken)
+            match isNull direction, isNull position with
+            | true, false -> 
+                sprintf "%s.coordinate" resultIdentifierName
+            | false, true ->
+                sprintf "%s.bearing" resultIdentifierName
+            | true, true -> 
+                resultIdentifierName
+            | false, false -> 
+                match canonicalDataCase.Property with
+                | "create" -> "robot"
+                | _ -> resultIdentifierName
+    
+    override this.RenderTestMethodName canonicalDataCase =
+         // avoid duplicated method names
+         // for this generator it is preferable
+         // because useFullMethodName leads to very long names
+         sprintf "%s - %s" canonicalDataCase.Property (canonicalDataCase.Description |> String.upperCaseFirst)
 
 type RnaTranscription() =
     inherit Exercise()
