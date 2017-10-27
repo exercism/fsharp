@@ -1,14 +1,11 @@
 module Generators.Exercise
 
 open System
-open System.Globalization
-open System.Collections.Generic
 open System.IO
 open System.Reflection
 open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
-open Input
 open Output
 
 [<AbstractClass>]
@@ -16,6 +13,7 @@ type Exercise() =
     // Allow changes in canonical data
     abstract member MapCanonicalData : CanonicalData -> CanonicalData
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
+    abstract member MapCanonicalDataCaseProperties : CanonicalDataCase * Map<string, obj> -> Map<string, obj>
     abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
 
     // Convert canonical data to representation used when rendering
@@ -81,11 +79,12 @@ type Exercise() =
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
     default this.MapCanonicalDataCase canonicalDataCase =
-        let updatedProperties = 
-            canonicalDataCase.Properties
-            |> Map.map (fun key value -> this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)) 
+        { canonicalDataCase with 
+            Properties = this.MapCanonicalDataCaseProperties (canonicalDataCase, canonicalDataCase.Properties) }
 
-        { canonicalDataCase with Properties = updatedProperties }
+    default this.MapCanonicalDataCaseProperties (canonicalDataCase, properties) =
+        properties
+        |> Map.map (fun key value -> this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)) 
 
     default this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = value
 

@@ -4,4 +4,4 @@ open System
 
 type Schedule = First | Second | Third | Fourth | Last | Teenth
 
-let meetupDay dayOfWeek schedule year month: DateTime = failwith "You need to implement this function."
+let meetup year month dayOfWeek schedule: DateTime = failwith "You need to implement this function."

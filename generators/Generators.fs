@@ -215,6 +215,32 @@ type Leap() =
 
 type Luhn() =
     inherit Exercise()
+    
+type Meetup() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        let year  = canonicalDataCase.Properties.["year"] :?> int64 |> int
+        let month = canonicalDataCase.Properties.["month"] :?> int64 |> int
+        let day   = canonicalDataCase.Properties.["dayofmonth"] :?> int64 |> int
+        DateTime(year, month, day) |> formatDateTime |> parenthesize
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "dayofweek" -> 
+            sprintf "DayOfWeek.%s" (string canonicalDataCase.Properties.["dayofweek"])
+        | "week" -> 
+            sprintf "Schedule.%s" (string canonicalDataCase.Properties.["week"] |> String.upperCaseFirst)
+        | _ -> 
+            base.RenderInput (canonicalDataCase, key, value)
+
+    override this.MapCanonicalDataCaseProperties (canonicalDataCase, properties) =
+        properties |> Map.add "expected" null // Ensure that the "expected" key exists
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = 
+        ["year"; "month"; "dayofweek"; "week"]
+
+    override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type Minesweeper() =
     inherit Exercise()
