@@ -149,11 +149,11 @@ let formatMultiLineCollection (openPrefix, closePostfix) collection =
         let formatLine i line = 
             match i with
             | 0 -> 
-                sprintf "%s %s" openPrefix line
+                sprintf "%s %s;" openPrefix line
             | _ when i = length - 1 -> 
                 sprintf "%s %s %s" lineIndent line closePostfix
             | _ ->
-                sprintf "%s %s" lineIndent line
+                sprintf "%s %s;" lineIndent line
 
         collection
         |> Seq.mapi formatLine
