@@ -236,8 +236,8 @@ type NthPrime() =
     inherit Exercise()
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
-        value 
-        |> Option.ofNonFalse 
+        value
+        |> Option.ofNonError
         |> formatValue 
         |> parenthesizeOption
 
