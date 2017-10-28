@@ -241,6 +241,30 @@ type NthPrime() =
         |> formatValue 
         |> parenthesizeOption
 
+type NucleotideCount() =
+    inherit Exercise()
+
+    member this.formatMap<'TKey, 'TValue> (value: obj) =
+        match Option.ofNonError value with
+        | None -> 
+            "None"
+        | _ ->
+            let input = value :?> JObject
+            let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+            let formattedList =
+                dict
+                |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
+                |> formatMultiLineList
+
+            if (formattedList.Contains("\n")) then
+                sprintf "%s\n%s\n%s" formattedList (indent 2 "|> Map.ofList") (indent 2 "|> Some")
+            else   
+                sprintf "%s |> Map.ofList |> Some" formattedList
+
+    override this.RenderExpected (canonicalDataCase, key, value) = this.formatMap<char, int> value
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
 type Pangram() =
     inherit Exercise()
     

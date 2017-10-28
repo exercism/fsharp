@@ -1,4 +1,4 @@
-﻿module NucleoTideCount
+﻿module NucleotideCount
 
 let private validNucleotides = ['A'; 'T'; 'C'; 'G']
 
@@ -10,5 +10,9 @@ let count (nucleotide:char) (strand:string) =
     | false -> failwith "Invalid nucleotide"
 
 let nucleotideCounts strand = 
-    List.map (fun nucleotide -> (nucleotide, count nucleotide strand)) validNucleotides 
-    |> Map.ofSeq
+    if String.forall isValid strand then
+        List.map (fun nucleotide -> (nucleotide, count nucleotide strand)) validNucleotides 
+        |> Map.ofSeq
+        |> Some
+    else    
+        None
