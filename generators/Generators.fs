@@ -241,6 +241,23 @@ type NthPrime() =
         |> formatValue 
         |> parenthesizeOption
 
+type OcrNumbers() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofNonNegativeInt 
+        |> formatValue 
+        |> parenthesizeOption
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type Pangram() =
     inherit Exercise()
     
