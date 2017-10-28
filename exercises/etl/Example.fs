@@ -1,9 +1,14 @@
-﻿module ETL
+﻿module Etl
 
-let normalizeLetter (letter:string) = letter.ToLowerInvariant()
+open System
 
-let transformLetterWithScore score lettersWithScore (letter:string) = Map.add (normalizeLetter letter) score lettersWithScore
+let normalizeLetter letter = Char.ToLowerInvariant(letter)
 
-let transformScoreWithLetters lettersWithScore score letters = List.fold (transformLetterWithScore score) lettersWithScore letters
+let transformLetterWithScore score lettersWithScore letter = 
+    Map.add (normalizeLetter letter) score lettersWithScore
 
-let transform scoresWithLetters: Map<string, int> = Map.fold transformScoreWithLetters Map.empty scoresWithLetters
+let transformScoreWithLetters lettersWithScore score letters = 
+    List.fold (transformLetterWithScore score) lettersWithScore letters
+
+let transform scoresWithLetters: Map<char, int> = 
+    Map.fold transformScoreWithLetters Map.empty scoresWithLetters

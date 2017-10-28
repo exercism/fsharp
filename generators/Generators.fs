@@ -155,6 +155,28 @@ type Dominoes() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
+type Etl() =
+    inherit Exercise()
+
+    member this.formatMap<'TKey, 'TValue> (value: obj) =
+        let input = value :?> JObject
+        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+        let formattedList =
+            dict
+            |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
+            |> formatMultiLineList
+
+        if (formattedList.Contains("\n")) then
+            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+        else   
+            sprintf "%s |> Map.ofList" formattedList
+
+    override this.RenderInput (canonicalDataCase, key, value) = this.formatMap<int, List<char>> value
+
+    override this.RenderExpected (canonicalDataCase, key, value) = this.formatMap<char, int> value
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
 type Gigasecond() =
     inherit Exercise()
 
