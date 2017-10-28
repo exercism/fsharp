@@ -234,17 +234,19 @@ type Exercise() =
 
     default this.AdditionalNamespaces = []
 
-let createExercises filteredExercises =
+let createExercises filteredExercise =
 
     let isConcreteExercise (exerciseType: Type) = 
         not exerciseType.IsAbstract && typeof<Exercise>.IsAssignableFrom(exerciseType)
 
-    let isFilteredExercises (exerciseType: Type) =
-        Seq.isEmpty filteredExercises ||
-        Seq.exists (String.equals exerciseType.Name) filteredExercises ||
-        Seq.exists (String.equals (exerciseType.Name.Kebaberize())) filteredExercises
+    let isFilteredExercise exercise (exerciseType: Type) =
+        String.equals exercise exerciseType.Name || 
+        String.equals exercise (exerciseType.Name.Kebaberize())
 
-    let includeExercise (exerciseType: Type) = isConcreteExercise exerciseType && isFilteredExercises exerciseType
+    let includeExercise (exerciseType: Type) = 
+        match filteredExercise with
+        | None -> isConcreteExercise exerciseType
+        | Some exercise -> isConcreteExercise exerciseType && isFilteredExercise exercise exerciseType
 
     let assemblyTypes = Assembly.GetEntryAssembly().GetTypes()
 
