@@ -182,6 +182,22 @@ type Grains() =
 type HelloWorld() =
     inherit Exercise()
 
+type House() =
+    inherit Exercise()
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "verses"  -> ["start verse"; "end verse"]
+        | _         -> base.PropertiesUsedAsSutParameter canonicalDataCase
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type Isogram() =
     inherit Exercise()
 
