@@ -472,3 +472,9 @@ type RomanNumerals() =
 
 type ScrabbleScore() =
     inherit Exercise()
+
+type TwoFer() =
+    inherit Exercise()
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        value |> Option.ofObj |> formatValue |> parenthesizeOption
