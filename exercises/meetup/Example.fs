@@ -4,7 +4,7 @@ open System
 
 type Schedule = First | Second | Third | Fourth | Last | Teenth
 
-let meetupDay dayOfWeek schedule year month = 
+let meetup year month dayOfWeek schedule = 
     let daysOfWeek = 
         [1..DateTime.DaysInMonth(year, month)]
         |> List.map (fun day -> new DateTime(year, month, day))
