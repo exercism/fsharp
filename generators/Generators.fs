@@ -138,6 +138,25 @@ type Clock() =
         | _ -> 
             base.RenderSut canonicalDataCase
 
+type Connect() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        match string value with
+        | "O" -> "(Some White)"
+        | "X" -> "(Some Black)"
+        | _   -> "None"
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        let lines = (value :?> JArray).ToObject<string seq>() |> List.ofSeq
+        let padSize = List.last lines |> String.length
+
+        lines        
+        |> List.map (fun line -> line.PadRight(padSize) |> formatValue)
+        |> formatMultiLineList
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type CryptoSquare() =
     inherit Exercise()
 
