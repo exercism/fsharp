@@ -16,8 +16,9 @@ let regenerateTestClasses options =
     Log.Information("Re-generating test classes...")
 
     let regenerateTestClass' = regenerateTestClass options
+    let filteredExercise = Option.ofNonEmptyString options.Exercise
 
-    createExercises options.Exercises
+    createExercises filteredExercise
     |> Seq.iter regenerateTestClass'
 
     Log.Information("Re-generated test classes.")
@@ -27,9 +28,9 @@ let main argv =
     Logging.setupLogger()
 
     match parseOptions argv with
-    | Result.Ok(options) -> 
+    | Ok(options) -> 
         regenerateTestClasses options
         0
-    | Result.Error(errors) -> 
+    | Error(errors) -> 
         Log.Error("Error(s) parsing commandline arguments: {Errors}", errors)
         1

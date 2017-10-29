@@ -2,7 +2,6 @@ module Generators.Generators
 
 open System
 open System.Globalization
-open Humanizer
 open Newtonsoft.Json.Linq
 open Output
 open Exercise

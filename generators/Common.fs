@@ -2,7 +2,6 @@
 module Generators.Common
 
 open System
-open System.IO
 open Serilog
 open Newtonsoft.Json.Linq
 
@@ -66,6 +65,11 @@ module Option =
         match value with
         | :? JToken as jToken when not (isNull jToken.["error"]) -> None
         | _ -> Some value
+
+    let ofNonEmptyString (value: string) =
+        match String.IsNullOrEmpty value with
+        | true  -> None
+        | false -> Some value
 
 module String =
     open Humanizer
