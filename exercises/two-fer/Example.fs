@@ -1,4 +1,6 @@
 ﻿module TwoFer
 
-let getResponse input =
-    sprintf "One for %s, one for me." (defaultArg input "you")
+let name input =
+    input 
+    |> Option.defaultValue  "you"
+    |> sprintf "One for %s, one for me."
