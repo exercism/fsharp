@@ -3,15 +3,13 @@ module Generators.Options
 open System
 open System.IO
 open CommandLine
-open Serilog
-open Humanizer
 
 type Options = {
-  [<CommandLine.Option('e', "exercises", Required = false, 
-    HelpText = "Exercises to generate (if not specified, defaults to all exercises).")>] Exercises : seq<string>;
-  [<CommandLine.Option('d', "canonicaldatadirectory", Required = false, 
+  [<Option('e', "exercise", Required = false, 
+    HelpText = "Exercise to generate (if not specified, defaults to all exercises).")>] Exercise : string;
+  [<Option('d', "canonicaldatadirectory", Required = false, 
     HelpText = "Canonical data directory. If the directory does not exist, the canonical data will be downloaded.")>] CanonicalDataDirectory : string;
-  [<CommandLine.Option('s', "skipupdatecanonicaldata", Required = false,
+  [<Option('s', "skipupdatecanonicaldata", Required = false,
     HelpText = "Don't update the canonical data.")>] SkipUpdateCanonicalData : bool;
 }
 
