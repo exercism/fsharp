@@ -155,6 +155,29 @@ type Dominoes() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
+type FoodChain() =
+    inherit Exercise()
+
+    let hasMultipleVerses canonicalDataCase = Map.containsKey "end verse" canonicalDataCase.Properties
+
+    override this.RenderSutProperty canonicalDataCase = 
+        match hasMultipleVerses canonicalDataCase with
+        | true  -> "verses"
+        | false -> "verse"
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase =
+        match hasMultipleVerses canonicalDataCase with
+        | true  -> ["start verse"; "end verse"]
+        | false -> ["start verse"]
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type Gigasecond() =
     inherit Exercise()
 

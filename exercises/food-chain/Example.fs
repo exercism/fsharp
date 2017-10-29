@@ -2,8 +2,6 @@
 
 let joinBy str = List.reduce (fun x y -> x + str + y)
 
-let verses = 8
-
 let subjects = 
     [("spider", "It wriggled and jiggled and tickled inside her.");
      ("bird",   "How absurd to swallow a bird!");
@@ -38,11 +36,9 @@ let verseEnd number =
         |> List.skip (List.length history - number)
         |> List.take number
 
-let verse number = 
-    verseBegin number @ verseEnd number
-    |> joinBy "\n"
+let verse number = verseBegin number @ verseEnd number
 
-let song = 
-    [1 .. verses]
-    |> List.map verse 
-    |> joinBy "\n\n"
+let verses start stop =
+    [start .. stop]
+    |> List.map verse
+    |> List.reduce (fun x y -> x @ "" :: y)

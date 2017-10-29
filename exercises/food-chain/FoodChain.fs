@@ -1,5 +1,5 @@
 ﻿module FoodChain
 
-let verse number = failwith "You need to implement this function."
+let verse number: string list = failwith "You need to implement this function."
 
-let song: string = failwith "You need to implement this function."
+let verses start stop: string list = failwith "You need to implement this function."
