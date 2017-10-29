@@ -201,6 +201,15 @@ type Grains() =
         | "-1" -> "Error \"Invalid input\""
         | x    -> sprintf "Ok %sUL" x
 
+type Hamming() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofNonError 
+        |> formatValue
+        |> parenthesizeOption
+
 type HelloWorld() =
     inherit Exercise()
 
