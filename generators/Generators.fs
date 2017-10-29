@@ -55,6 +55,11 @@ type Allergies() =
         | "substance" -> string value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
+type Anagram() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["candidates"]
+
 type BeerSong() =
     inherit Exercise()
 
