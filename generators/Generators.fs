@@ -55,6 +55,29 @@ type Allergies() =
         | "substance" -> string value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
+type Alphametics() =
+    inherit Exercise()
+
+    member this.formatMap<'TKey, 'TValue> (value: obj) =
+        if isNull value then
+            "None"
+        else
+            let input = value :?> JObject
+            let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+            let formattedList =
+                dict
+                |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
+                |> formatMultiLineList
+
+            if (formattedList.Contains("\n")) then
+                sprintf "%s\n%s\n%s" formattedList (indent 2 "|> Map.ofList") (indent 2 "|> Some")
+            else   
+                sprintf "%s |> Map.ofList |> Some" formattedList
+
+    override this.RenderExpected (canonicalDataCase, key, value) = this.formatMap<char, int> value
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
 type Anagram() =
     inherit Exercise()
 
@@ -138,6 +161,25 @@ type Clock() =
         | _ -> 
             base.RenderSut canonicalDataCase
 
+type Connect() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        match string value with
+        | "O" -> "(Some White)"
+        | "X" -> "(Some Black)"
+        | _   -> "None"
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        let lines = (value :?> JArray).ToObject<string seq>() |> List.ofSeq
+        let padSize = List.last lines |> String.length
+
+        lines        
+        |> List.map (fun line -> line.PadRight(padSize) |> formatValue)
+        |> formatMultiLineList
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type CryptoSquare() =
     inherit Exercise()
 
@@ -158,6 +200,28 @@ type Dominoes() =
         |> formatList
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
+type Etl() =
+    inherit Exercise()
+
+    member this.formatMap<'TKey, 'TValue> (value: obj) =
+        let input = value :?> JObject
+        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+        let formattedList =
+            dict
+            |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
+            |> formatMultiLineList
+
+        if (formattedList.Contains("\n")) then
+            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+        else   
+            sprintf "%s |> Map.ofList" formattedList
+
+    override this.RenderInput (canonicalDataCase, key, value) = this.formatMap<int, List<char>> value
+
+    override this.RenderExpected (canonicalDataCase, key, value) = this.formatMap<char, int> value
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type FoodChain() =
     inherit Exercise()
@@ -591,3 +655,9 @@ type RomanNumerals() =
 
 type ScrabbleScore() =
     inherit Exercise()
+
+type TwoFer() =
+    inherit Exercise()
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        value |> Option.ofObj |> formatValue |> parenthesizeOption

@@ -48,14 +48,18 @@ let charToColor c =
     | 'X' -> Some Black
     | _   -> None
 
-let mkBoard (input: string list) = 
-    let rows' = List.length input
-    let cols' = Seq.length (List.head input)
-    let cellColor col row = input |> List.item row |> Seq.item col |> charToColor
+let normalizeRow (row: string) = row.Replace(" ", "")
+
+let mkBoard (input: string list) =
+    let normalizedRows = List.map normalizeRow input
+
+    let rows' = List.length normalizedRows
+    let cols' = Seq.length (List.head normalizedRows)
+    let cellColor col row = normalizedRows |> List.item row |> Seq.item col |> charToColor
     
     Array2D.init cols' rows' cellColor
 
-let resultFor input =
+let winner input =
     let board = mkBoard input
     if whiteWins board then Some White
     elif blackWins board then Some Black
