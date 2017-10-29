@@ -2,7 +2,6 @@ module Generators.Generators
 
 open System
 open System.Globalization
-open Humanizer
 open Newtonsoft.Json.Linq
 open Output
 open Exercise
@@ -55,6 +54,11 @@ type Allergies() =
         match key with
         | "substance" -> string value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
+
+type Anagram() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["candidates"]
 
 type BeerSong() =
     inherit Exercise()
@@ -177,6 +181,29 @@ type Etl() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
+type FoodChain() =
+    inherit Exercise()
+
+    let hasMultipleVerses canonicalDataCase = Map.containsKey "end verse" canonicalDataCase.Properties
+
+    override this.RenderSutProperty canonicalDataCase = 
+        match hasMultipleVerses canonicalDataCase with
+        | true  -> "verses"
+        | false -> "verse"
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase =
+        match hasMultipleVerses canonicalDataCase with
+        | true  -> ["start verse"; "end verse"]
+        | false -> ["start verse"]
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type Gigasecond() =
     inherit Exercise()
 
@@ -201,8 +228,33 @@ type Grains() =
         | "-1" -> "Error \"Invalid input\""
         | x    -> sprintf "Ok %sUL" x
 
+type Hamming() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofNonError 
+        |> formatValue
+        |> parenthesizeOption
+
 type HelloWorld() =
     inherit Exercise()
+
+type House() =
+    inherit Exercise()
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "verses"  -> ["start verse"; "end verse"]
+        | _         -> base.PropertiesUsedAsSutParameter canonicalDataCase
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
 
 type Isogram() =
     inherit Exercise()
@@ -237,6 +289,32 @@ type Leap() =
 
 type Luhn() =
     inherit Exercise()
+    
+type Meetup() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        let year  = canonicalDataCase.Properties.["year"] :?> int64 |> int
+        let month = canonicalDataCase.Properties.["month"] :?> int64 |> int
+        let day   = canonicalDataCase.Properties.["dayofmonth"] :?> int64 |> int
+        DateTime(year, month, day) |> formatDateTime |> parenthesize
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "dayofweek" -> 
+            sprintf "DayOfWeek.%s" (string canonicalDataCase.Properties.["dayofweek"])
+        | "week" -> 
+            sprintf "Schedule.%s" (string canonicalDataCase.Properties.["week"] |> String.upperCaseFirst)
+        | _ -> 
+            base.RenderInput (canonicalDataCase, key, value)
+
+    override this.MapCanonicalDataCaseProperties (canonicalDataCase, properties) =
+        properties |> Map.add "expected" null // Ensure that the "expected" key exists
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = 
+        ["year"; "month"; "dayofweek"; "week"]
+
+    override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type Minesweeper() =
     inherit Exercise()
@@ -262,6 +340,23 @@ type NthPrime() =
         |> Option.ofNonFalse 
         |> formatValue 
         |> parenthesizeOption
+
+type OcrNumbers() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofNonNegativeInt 
+        |> formatValue 
+        |> parenthesizeOption
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
 
 type Pangram() =
     inherit Exercise()

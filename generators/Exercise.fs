@@ -1,14 +1,11 @@
 module Generators.Exercise
 
 open System
-open System.Globalization
-open System.Collections.Generic
 open System.IO
 open System.Reflection
 open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
-open Input
 open Output
 
 [<AbstractClass>]
@@ -16,6 +13,7 @@ type Exercise() =
     // Allow changes in canonical data
     abstract member MapCanonicalData : CanonicalData -> CanonicalData
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
+    abstract member MapCanonicalDataCaseProperties : CanonicalDataCase * Map<string, obj> -> Map<string, obj>
     abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
 
     // Convert canonical data to representation used when rendering
@@ -81,11 +79,12 @@ type Exercise() =
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
     default this.MapCanonicalDataCase canonicalDataCase =
-        let updatedProperties = 
-            canonicalDataCase.Properties
-            |> Map.map (fun key value -> this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)) 
+        { canonicalDataCase with 
+            Properties = this.MapCanonicalDataCaseProperties (canonicalDataCase, canonicalDataCase.Properties) }
 
-        { canonicalDataCase with Properties = updatedProperties }
+    default this.MapCanonicalDataCaseProperties (canonicalDataCase, properties) =
+        properties
+        |> Map.map (fun key value -> this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)) 
 
     default this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = value
 
@@ -234,17 +233,19 @@ type Exercise() =
 
     default this.AdditionalNamespaces = []
 
-let createExercises filteredExercises =
+let createExercises filteredExercise =
 
     let isConcreteExercise (exerciseType: Type) = 
         not exerciseType.IsAbstract && typeof<Exercise>.IsAssignableFrom(exerciseType)
 
-    let isFilteredExercises (exerciseType: Type) =
-        Seq.isEmpty filteredExercises ||
-        Seq.exists (String.equals exerciseType.Name) filteredExercises ||
-        Seq.exists (String.equals (exerciseType.Name.Kebaberize())) filteredExercises
+    let isFilteredExercise exercise (exerciseType: Type) =
+        String.equals exercise exerciseType.Name || 
+        String.equals exercise (exerciseType.Name.Kebaberize())
 
-    let includeExercise (exerciseType: Type) = isConcreteExercise exerciseType && isFilteredExercises exerciseType
+    let includeExercise (exerciseType: Type) = 
+        match filteredExercise with
+        | None -> isConcreteExercise exerciseType
+        | Some exercise -> isConcreteExercise exerciseType && isFilteredExercise exercise exerciseType
 
     let assemblyTypes = Assembly.GetEntryAssembly().GetTypes()
 
