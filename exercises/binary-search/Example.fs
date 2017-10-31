@@ -12,6 +12,6 @@ let rec binarySearchAux index value =
         elif value > middleValue then binarySearchAux (index + middle + 1) value input.[middle + 1 ..]
         else Some (index + middle)
 
-let binarySearch input value =
+let find input value =
     if Array.sort input <> input then failwith "The input must be an ordered lists"
     else binarySearchAux 0 value input
