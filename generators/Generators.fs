@@ -88,6 +88,22 @@ type BeerSong() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
 
+type BinarySearch() = 
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["array"; "value"; "expected"]
+
+    override this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) =
+        match key with
+        | "array" -> 
+            (value :?> JToken).ToObject<string []>() |> formatArray
+        | "expected" -> 
+            match string value with
+            | "-1" -> None |> formatOption
+            | x -> Some x |> formatOption
+        | _ ->
+            base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+
 type Bob() =
     inherit Exercise()
 
