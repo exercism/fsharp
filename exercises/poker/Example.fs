@@ -170,8 +170,6 @@ let parsePokerHand (input: string) =
 let bestHands hands =
     let pokerHands = List.map (fun hand -> hand, parsePokerHand hand) hands
     let bestHand = pokerHands |> List.map snd |> List.max 
-    printf "%O" hands
-    printf "%O\n\n" bestHand
     pokerHands
     |> List.filter (snd >> (=) bestHand)
     |> List.map fst
