@@ -486,6 +486,11 @@ type PhoneNumber() =
 type PigLatin() =
     inherit Exercise()
 
+type Poker() = 
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
+
 type PrimeFactors() =
     inherit Exercise()
     

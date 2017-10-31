@@ -28,11 +28,11 @@ type PokerHand =
     | HighCard of Rank * Rank * Rank * Rank * Rank
     | OnePair of Rank * Rank * Rank * Rank 
     | TwoPair of Rank * Rank * Rank
-    | ThreeOfAKind of Rank
+    | ThreeOfAKind of Rank * Rank * Rank
     | Straight of Rank
     | Flush of Rank * Rank * Rank * Rank * Rank
     | FullHouse of Rank * Rank
-    | FourOfAKind of Rank
+    | FourOfAKind of Rank * Rank
     | StraightFlush of Rank
     
 let tuple5ToList = function (one, two, three, four, five) -> [one; two; three; four; five]
@@ -74,23 +74,27 @@ let parseSuit =
         
 let parseRank =
     function
-    | '2' -> Two
-    | '3' -> Three
-    | '4' -> Four
-    | '5' -> Five
-    | '6' -> Six
-    | '7' -> Seven
-    | '8' -> Eight
-    | '9' -> Nine
-    | 'T' -> Ten
-    | 'J' -> Jack 
-    | 'Q' -> Queen
-    | 'K' -> King
-    | 'A' -> Ace 
+    | "2" -> Two
+    | "3" -> Three
+    | "4" -> Four
+    | "5" -> Five
+    | "6" -> Six
+    | "7" -> Seven
+    | "8" -> Eight
+    | "9" -> Nine
+    | "10" -> Ten
+    | "J" -> Jack 
+    | "Q" -> Queen
+    | "K" -> King
+    | "A" -> Ace 
     | _   -> failwith "Invalid rank"
         
-let parseCard (input: string) = parseRank input.[0], parseSuit input.[1]
-        
+let parseCard (input: string) = 
+    if input.Length = 2 then
+        parseRank input.[0..0], parseSuit input.[1]
+    else
+        parseRank input.[0..1], parseSuit input.[2]
+
 let parseHand (input: string) =
     input.Split(' ') 
     |> List.ofArray 
@@ -125,12 +129,12 @@ let (|StraightFlush|_|) hand =
     
 let (|FourOfAKind|_|) hand =
     match ranksWithCount hand with
-    | (rank1, 4)::_ -> PokerHand.FourOfAKind rank1 |> Some 
+    | (rank1, 4)::(rank2, 1)::[] -> PokerHand.FourOfAKind (rank1, rank2) |> Some 
     | _ -> None
     
 let (|ThreeOfAKind|_|) hand =
     match ranksWithCount hand with
-    | (rank1, 3)::_ -> PokerHand.ThreeOfAKind rank1 |> Some 
+    | (rank1, 3)::(rank2, 1)::(rank3, 1)::[] -> PokerHand.ThreeOfAKind (rank1, rank2, rank3) |> Some 
     | _ -> None
 
 let (|TwoPair|_|) hand =
@@ -166,7 +170,6 @@ let parsePokerHand (input: string) =
 let bestHands hands =
     let pokerHands = List.map (fun hand -> hand, parsePokerHand hand) hands
     let bestHand = pokerHands |> List.map snd |> List.max 
-    
     pokerHands
     |> List.filter (snd >> (=) bestHand)
     |> List.map fst
