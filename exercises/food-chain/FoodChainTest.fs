@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 2.0.0 of the canonical data.
 
 module FoodChainTest
 
@@ -12,7 +12,7 @@ let ``Fly`` () =
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 1 |> should equal expected
+    recite 1 1 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Spider`` () =
@@ -21,7 +21,7 @@ let ``Spider`` () =
           "It wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 2 |> should equal expected
+    recite 2 2 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Bird`` () =
@@ -31,7 +31,7 @@ let ``Bird`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 3 |> should equal expected
+    recite 3 3 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Cat`` () =
@@ -42,7 +42,7 @@ let ``Cat`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 4 |> should equal expected
+    recite 4 4 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Dog`` () =
@@ -54,7 +54,7 @@ let ``Dog`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 5 |> should equal expected
+    recite 5 5 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Goat`` () =
@@ -67,7 +67,7 @@ let ``Goat`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 6 |> should equal expected
+    recite 6 6 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Cow`` () =
@@ -81,14 +81,14 @@ let ``Cow`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verse 7 |> should equal expected
+    recite 7 7 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Horse`` () =
     let expected = 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
-    verse 8 |> should equal expected
+    recite 8 8 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple verses`` () =
@@ -106,7 +106,7 @@ let ``Multiple verses`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    verses 1 3 |> should equal expected
+    recite 1 3 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Full song`` () =
@@ -161,5 +161,5 @@ let ``Full song`` () =
           "";
           "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
-    verses 1 8 |> should equal expected
+    recite 1 8 |> should equal expected
 

@@ -38,7 +38,7 @@ let verseEnd number =
 
 let verse number = verseBegin number @ verseEnd number
 
-let verses start stop =
+let recite start stop =
     [start .. stop]
     |> List.map verse
     |> List.reduce (fun x y -> x @ "" :: y)
