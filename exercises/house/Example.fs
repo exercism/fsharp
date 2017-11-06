@@ -28,7 +28,7 @@ let verse number =
     [number .. -1 .. 1]
     |> List.map lineForBlock
 
-let verses startVerse endVerse = 
+let recite startVerse endVerse = 
     [startVerse..endVerse]
     |> List.map verse
     |> List.reduce (fun x y -> x @ "" :: y)

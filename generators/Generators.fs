@@ -301,10 +301,7 @@ type HelloWorld() =
 type House() =
     inherit Exercise()
 
-    override this.PropertiesUsedAsSutParameter canonicalDataCase =
-        match canonicalDataCase.Property with
-        | "verses"  -> ["start verse"; "end verse"]
-        | _         -> base.PropertiesUsedAsSutParameter canonicalDataCase
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = ["startVerse"; "endVerse"]
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
 
