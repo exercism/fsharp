@@ -1,13 +1,13 @@
 ﻿module Proverb
 
-let subjects = ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
+let line (want, lost) = sprintf "For want of a %s the %s was lost." want lost
 
-let line number = 
-    match number with
-    | 7 -> "And all for the want of a horseshoe nail."
-    | _ -> sprintf "For want of a %s the %s was lost." (List.item (number - 1) subjects) (List.item number subjects) 
+let ending input = sprintf "And all for the want of a %s." (List.head input)
 
-let proverb = 
-    [1..7]
-    |> List.map line
-    |> List.reduce (fun x y -> x + "\n" + y)
+let recite input =
+    match List.isEmpty input with
+    | true -> 
+        []
+    | false ->
+        let lines = input |> List.pairwise |> List.map line
+        List.append lines [ending input]
