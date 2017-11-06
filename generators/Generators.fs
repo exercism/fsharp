@@ -86,7 +86,15 @@ type Anagram() =
 type BeerSong() =
     inherit Exercise()
 
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = ["startBottles"; "takeDown"]
+
     override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
 
 type BinarySearch() = 
     inherit Exercise()
