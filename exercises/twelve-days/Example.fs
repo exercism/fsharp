@@ -1,4 +1,4 @@
-﻿module TwelveDaysSong
+﻿module TwelveDays
 
 let numberToStr = 
     function
@@ -63,6 +63,6 @@ let verseEnd =
         |> List.map subjectToStr 
         |> List.reduce (fun x y -> x + ", " + y)
 
-let verse number = sprintf "%s%s.\n" (verseBegin number) (verseEnd number)
-let verses start stop = List.fold (fun acc x -> acc + verse x + "\n") "" [start..stop]
-let song = verses 1 12
+let verse number = sprintf "%s%s." (verseBegin number) (verseEnd number)
+
+let recite start stop = List.map verse [start..stop]

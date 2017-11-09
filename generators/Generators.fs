@@ -672,6 +672,19 @@ type RomanNumerals() =
 type ScrabbleScore() =
     inherit Exercise()
 
+type TwelveDays() =
+    inherit Exercise()
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = ["startVerse"; "endVerse"]
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type TwoFer() =
     inherit Exercise()
 
