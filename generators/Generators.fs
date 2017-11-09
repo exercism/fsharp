@@ -491,6 +491,22 @@ type PrimeFactors() =
     
     override this.RenderInput (canonicalDataCase, key, value) =
         base.RenderInput (canonicalDataCase, key, value) |> sprintf "%sL"
+
+type Proverb() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["input"; "expected"]
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+    
+    override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
+        match value :?> JArray |> Seq.isEmpty with 
+        | true  -> Some "string list"
+        | false -> None
     
 type QueenAttack() =
     inherit Exercise()
