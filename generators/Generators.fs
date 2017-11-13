@@ -15,7 +15,7 @@ type AtbashCipher() =
 type AllYourBase() =    
     inherit Exercise()
 
-    override this.RenderExpected (canonicalDataCase, key, value) = value |> Option.ofObj |> formatValue
+    override this.RenderExpected (canonicalDataCase, key, value) = value |> Option.ofNonError |> formatValue
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
