@@ -453,19 +453,30 @@ type PerfectNumbers() =
 type PascalsTriangle() =
     inherit Exercise()
 
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+
     override this.RenderExpected (canonicalDataCase, key, value) = 
         match value with
         | :? JArray  ->
-            match value :?> JArray |> Seq.isEmpty  with
-            | true -> "(Some ([]: int list list))"
-            | false ->
+            let formattedList = 
                 value :?> JArray
                 |> normalizeJArray
                 |> Seq.map formatValue
-                |> formatList
-                |> sprintf "(Some %s)"
+                |> formatMultiLineList
 
+            if (formattedList.Contains("\n")) then
+                sprintf "%s\n%s" formattedList (indent 2 "|> Some")
+            else   
+                sprintf "%s |> Some" formattedList
         | _ -> "None"
+
+    override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
+        match key, value with 
+        | "expected", :? JArray ->
+            match value :?> JArray |> Seq.isEmpty with 
+            | true  -> Some "int list list option"
+            | false -> None    
+        | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 
     override this.ToTestMethodBodyAssertTemplate canonicalDataCase = "AssertEqual"
 
