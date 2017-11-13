@@ -566,6 +566,9 @@ type Rectangles() =
         | _ -> 
             base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
 
+type ReverseString() =
+    inherit Exercise()
+
 type RobotSimulator() =
     inherit Exercise()
 
