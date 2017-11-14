@@ -204,6 +204,15 @@ type Connect() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
+type CollatzConjecture() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        value 
+        |> Option.ofNonError 
+        |> formatValue
+        |> parenthesizeOption
+
 type CryptoSquare() =
     inherit Exercise()
 
