@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 2.0.0 of the canonical data.
 
 module AllYourBaseTest
 
@@ -76,7 +76,7 @@ let ``Empty list`` () =
     let inputBase = 2
     let inputDigits = []
     let outputBase = 10
-    let expected = None
+    let expected = Some [0]
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -84,7 +84,7 @@ let ``Single zero`` () =
     let inputBase = 10
     let inputDigits = [0]
     let outputBase = 2
-    let expected = None
+    let expected = Some [0]
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -92,7 +92,7 @@ let ``Multiple zeros`` () =
     let inputBase = 10
     let inputDigits = [0; 0; 0]
     let outputBase = 2
-    let expected = None
+    let expected = Some [0]
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -100,7 +100,7 @@ let ``Leading zeros`` () =
     let inputBase = 7
     let inputDigits = [0; 6; 0]
     let outputBase = 10
-    let expected = None
+    let expected = Some [4; 2]
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]

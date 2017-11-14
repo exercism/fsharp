@@ -17,12 +17,14 @@ let fromBase b nums =
         if digit >= b then None else
         loop (acc * b + digit) rest
 
-    match nums with
-    | [] | 0::_ -> None
-    | _ -> loop 0 nums
+    loop 0 nums
 
 let rebase inB inDigits outB =
-    if inB < 2 || outB < 2 then None else
-    match fromBase inB inDigits with
-    | None -> None
-    | Some num -> toBase outB num
+    match inB < 2 || outB < 2 with
+    | true ->
+        None
+    | false ->
+        inDigits
+        |> List.skipWhile ((=) 0)
+        |> fromBase inB
+        |> Option.bind (toBase outB)

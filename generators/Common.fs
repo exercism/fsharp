@@ -63,7 +63,10 @@ module Option =
 
     let ofNonError (value: obj) =
         match value with
-        | :? JToken as jToken when not (isNull jToken.["error"]) -> None
+        | :? JToken as jToken -> 
+            match jToken.SelectToken("error") |> isNull with
+            | true  -> Some value
+            | false -> None
         | _ -> Some value
 
     let ofNonEmptyString (value: string) =

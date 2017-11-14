@@ -214,6 +214,8 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Zipper", "zipper\Zipper.fsp
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CollatzConjecture", "collatz-conjecture\CollatzConjecture.fsproj", "{FA7B3DD2-DF53-44EC-92AF-5696D6C731ED}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ReverseString", "reverse-string\ReverseString.fsproj", "{A996AAE3-E54D-41F2-9B6A-99EACD6DAAB7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -644,6 +646,10 @@ Global
 		{FA7B3DD2-DF53-44EC-92AF-5696D6C731ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA7B3DD2-DF53-44EC-92AF-5696D6C731ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA7B3DD2-DF53-44EC-92AF-5696D6C731ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A996AAE3-E54D-41F2-9B6A-99EACD6DAAB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A996AAE3-E54D-41F2-9B6A-99EACD6DAAB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A996AAE3-E54D-41F2-9B6A-99EACD6DAAB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A996AAE3-E54D-41F2-9B6A-99EACD6DAAB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="OcrNumbers.fs" />
-    <Compile Include="OcrNumbersTest.fs" />
+    <Compile Include="ReverseString.fs" />
+    <Compile Include="ReverseStringTest.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
