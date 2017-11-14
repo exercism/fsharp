@@ -234,6 +234,16 @@
     {
       "core": false,
       "difficulty": 1,
+      "slug": "reverse-string",
+      "topics": [
+        "strings"
+      ],
+      "unlocked_by": null,
+      "uuid": "08be451e-65c1-4306-860e-ac0c4a02a546"
+    },
+    {
+      "core": false,
+      "difficulty": 1,
       "slug": "rna-transcription",
       "topics": [
         "strings",
