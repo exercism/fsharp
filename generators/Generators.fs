@@ -681,6 +681,9 @@ type RobotSimulator() =
          // because useFullMethodName leads to very long names
          sprintf "%s - %s" canonicalDataCase.Property (canonicalDataCase.Description |> String.upperCaseFirst)
 
+type RotationalCipher() =
+    inherit Exercise()
+
 type RnaTranscription() =
     inherit Exercise()
 
