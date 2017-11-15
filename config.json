@@ -699,6 +699,18 @@
     {
       "core": false,
       "difficulty": 5,
+      "slug": "rotational-cipher",
+      "topics": [
+        "algorithms",
+        "strings",
+        "transforming"
+      ],
+      "unlocked_by": "beer-song",
+      "uuid": "26b00c8d-6282-48a8-b017-2ed3e6d48267"
+    },
+    {
+      "core": false,
+      "difficulty": 5,
       "slug": "scale-generator",
       "topics": [
         "algorithms",
