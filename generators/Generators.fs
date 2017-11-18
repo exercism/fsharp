@@ -717,6 +717,15 @@ type RomanNumerals() =
 type ScrabbleScore() =
     inherit Exercise()
 
+type SpiralMatrix() =
+    inherit Exercise()
+
+    override this.RenderExpected (canonicalDataCase, key, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type TwelveDays() =
     inherit Exercise()
 
