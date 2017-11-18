@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Generators": {
-      "commandName": "Project",
-      "commandLineArgs": "-e allergies"
+      "commandName": "Project"
     }
   }
 }
