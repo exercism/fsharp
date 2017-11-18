@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.0.1 of the canonical data.
 
 module ReverseStringTest
 
@@ -8,7 +8,7 @@ open Xunit
 open ReverseString
 
 [<Fact>]
-let ``Empty string`` () =
+let ``An empty string`` () =
     reverse "" |> should equal ""
 
 [<Fact(Skip = "Remove to run test")>]

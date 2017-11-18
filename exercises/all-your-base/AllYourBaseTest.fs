@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.0.0 of the canonical data.
+// This file was auto-generated based on version 2.0.1 of the canonical data.
 
 module AllYourBaseTest
 
@@ -104,7 +104,7 @@ let ``Leading zeros`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``First base is one`` () =
+let ``Input base is one`` () =
     let inputBase = 1
     let inputDigits = []
     let outputBase = 10
@@ -112,7 +112,7 @@ let ``First base is one`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``First base is zero`` () =
+let ``Input base is zero`` () =
     let inputBase = 0
     let inputDigits = []
     let outputBase = 10
@@ -120,7 +120,7 @@ let ``First base is zero`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``First base is negative`` () =
+let ``Input base is negative`` () =
     let inputBase = -2
     let inputDigits = [1]
     let outputBase = 10
@@ -144,7 +144,7 @@ let ``Invalid positive digit`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Second base is one`` () =
+let ``Output base is one`` () =
     let inputBase = 2
     let inputDigits = [1; 0; 1; 0; 1; 0]
     let outputBase = 1
@@ -152,7 +152,7 @@ let ``Second base is one`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Second base is zero`` () =
+let ``Output base is zero`` () =
     let inputBase = 10
     let inputDigits = [7]
     let outputBase = 0
@@ -160,7 +160,7 @@ let ``Second base is zero`` () =
     rebase inputBase inputDigits outputBase |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Second base is negative`` () =
+let ``Output base is negative`` () =
     let inputBase = 2
     let inputDigits = [1]
     let outputBase = -7
