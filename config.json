@@ -644,6 +644,17 @@
     },
     {
       "core": false,
+      "difficulty": 4,
+      "slug": "isbn-verifier",
+      "topics": [
+        "loops",
+        "strings"
+      ],
+      "unlocked_by": "bob",
+      "uuid": "c339c32c-3310-4b8c-b4e6-0f9f651064b7"
+    },
+    {
+      "core": false,
       "difficulty": 5,
       "slug": "roman-numerals",
       "topics": [

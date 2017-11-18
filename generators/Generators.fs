@@ -318,6 +318,9 @@ type House() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
+type IsbnVerifier() =
+    inherit Exercise()
+
 type Isogram() =
     inherit Exercise()
 
