@@ -219,6 +219,7 @@ EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RotationalCipher", "rotational-cipher\RotationalCipher.fsproj", "{91D0A5E0-E39C-472B-87FB-6DD17336AA22}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "IsbnVerifier", "isbn-verifier\IsbnVerifier.fsproj", "{531D1AB8-1297-4DE2-9B9B-3742A648EDB7}"
+EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SpiralMatrix", "spiral-matrix\SpiralMatrix.fsproj", "{4C02F0E3-90F6-4ACD-9D34-EDFF301B058D}"
 EndProject
 Global
