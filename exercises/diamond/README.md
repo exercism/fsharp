@@ -53,7 +53,8 @@ E·······E
 ```
 
 ## Hints
-- Testing this one can be tricky without simply hardcoding a bunch of inputs and outputs. [Property based testing](https://fsharpforfunandprofit.com/posts/property-based-testing/) is another way to think about testing that allows you to more easily test this type of algorithm.
+- Testing this one can be tricky without simply hardcoding a bunch of inputs and outputs. [Property based testing](https://fsharpforfunandprofit.com/posts/property-based-testing/) is another way to think about testing that allows you to more easily test this type of algorithm. The test suite uses the [FsCheck](https://fscheck.github.io/FsCheck/) property-based testing framework to define the tests.
+
 ## Source
 
 Seb Rose [http://claysnow.co.uk/recycling-tests-in-tdd/](http://claysnow.co.uk/recycling-tests-in-tdd/)
