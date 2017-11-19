@@ -1,4 +1,4 @@
-﻿module Palindrome
+﻿module PalindromeProducts
 
 let isPalindrome n = 
     let mutable current = n
@@ -10,24 +10,32 @@ let isPalindrome n =
     result = n
 
 let palindrome predicate minFactor maxFactor = 
-    let allPalindromes = 
-        [for y in minFactor..maxFactor do
-             for x in minFactor ..y do
-                 if isPalindrome (x * y) then
-                    yield x * y, (x, y)]
+    if minFactor > maxFactor then
+        None
+    else
+        let allPalindromes = 
+            [for y in minFactor..maxFactor do
+                 for x in minFactor ..y do
+                     if isPalindrome (x * y) then
+                        yield x * y, (x, y)]
 
-    let value = 
-        allPalindromes 
-        |> List.map fst 
-        |> predicate
-    
-    let factors = 
-        allPalindromes 
-        |> List.filter (fun x -> fst x = value) 
-        |> List.map snd 
-        |> List.sort
+        match List.isEmpty allPalindromes with
+        | true -> 
+            None
+        | false ->
+            let value = 
+                allPalindromes 
+                |> List.map fst 
+                |> predicate
+            
+            let factors = 
+                allPalindromes 
+                |> List.filter (fun x -> fst x = value) 
+                |> List.map snd 
+                |> List.sort
 
-    (value, factors)
+            Some (value, factors)
 
-let largestPalindrome minFactor maxFactor = palindrome List.max minFactor maxFactor
-let smallestPalindrome minFactor maxFactor = palindrome List.min minFactor maxFactor
+let largest minFactor maxFactor = palindrome List.max minFactor maxFactor
+
+let smallest minFactor maxFactor = palindrome List.min minFactor maxFactor
