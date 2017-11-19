@@ -449,18 +449,34 @@ type OcrNumbers() =
 
 type Pangram() =
     inherit Exercise()
-    
-type PerfectNumbers() =
+
+type PalindromeProducts() =
     inherit Exercise()
 
-    let toClassification value = string value |> String.humanize
+    let toFactors (value: obj) = 
+        let jArray = value :?> JArray
+        let factors = jArray.ToObject<int list>()
+        sprintf "(%A, %A)" factors.[0] factors.[1]
+
+    let toPalindromeProducts (value: obj) =
+        let jObject = value :?> JObject
+        let palindromeValue = jObject.Value<int>("value")
+        let factors = 
+            jObject.Value<JArray>("factors") 
+            |> normalizeJArray
+            |> Seq.map toFactors
+            |> formatList
+
+        sprintf "(%d, %s)" palindromeValue factors
 
     override this.RenderExpected (canonicalDataCase, key, value) = 
         value 
-        |> Option.ofNonError  
-        |> Option.map toClassification 
+        |> Option.ofNonError
+        |> Option.map toPalindromeProducts 
         |> formatOption 
         |> parenthesizeOption
+
+    override this.PropertiesUsedAsSutParameter canonicalDataCase = ["input_min"; "input_max"]
 
 type PascalsTriangle() =
     inherit Exercise()
@@ -491,6 +507,18 @@ type PascalsTriangle() =
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 
     override this.ToTestMethodBodyAssertTemplate canonicalDataCase = "AssertEqual"
+    
+type PerfectNumbers() =
+    inherit Exercise()
+
+    let toClassification value = string value |> String.humanize
+
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofNonError  
+        |> Option.map toClassification 
+        |> formatOption 
+        |> parenthesizeOption
 
 type PhoneNumber() =
     inherit Exercise()
