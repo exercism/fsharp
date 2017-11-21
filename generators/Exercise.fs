@@ -18,7 +18,7 @@ type Exercise() =
 
     // Convert canonical data to representation used when rendering
     abstract member ToTestClass : CanonicalData -> TestClass
-    abstract member ToTestMethod : int -> CanonicalDataCase -> TestMethod
+    abstract member ToTestMethod : int * CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
     abstract member ToTestMethodBodyAssertTemplate : CanonicalDataCase -> string
@@ -98,7 +98,7 @@ type Exercise() =
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
           Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
 
-    default this.ToTestMethod index canonicalDataCase =         
+    default this.ToTestMethod (index, canonicalDataCase) =
         { Skip = index > 0
           Name = this.RenderTestMethodName canonicalDataCase
           Body = this.RenderTestMethodBody canonicalDataCase }
@@ -124,8 +124,8 @@ type Exercise() =
         |> renderPartialTemplate "TestClass"
 
     default this.RenderTestMethod index canonicalDataCase = 
-        canonicalDataCase
-        |> this.ToTestMethod index
+        (index, canonicalDataCase)
+        |> this.ToTestMethod 
         |> renderPartialTemplate "TestMethod"
 
     default this.RenderTestMethodBody canonicalDataCase = 

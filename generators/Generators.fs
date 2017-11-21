@@ -354,6 +354,14 @@ type Leap() =
 
 type Luhn() =
     inherit Exercise()
+
+type Markdown() =
+    inherit Exercise()
+
+    override this.ToTestMethod (index, canonicalDataCase) =
+        { base.ToTestMethod (index, canonicalDataCase) with Skip = false }
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
     
 type Meetup() =
     inherit Exercise()
