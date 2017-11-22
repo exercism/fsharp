@@ -1,7 +1,9 @@
+// This file was auto-generated based on version 1.1.0 of the canonical data.
+
 module MarkdownTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open Markdown
 
@@ -10,7 +12,7 @@ let ``Parses normal text as a paragraph`` () =
     let input = "This will be a paragraph"
     let expected = "<p>This will be a paragraph</p>"
     parse input |> should equal expected
-    
+
 [<Fact>]
 let ``Parsing italics`` () =
     let input = "_This will be italic_"
@@ -58,3 +60,4 @@ let ``With a little bit of everything`` () =
     let input = "# Header!\n* __Bold Item__\n* _Italic Item_"
     let expected = "<h1>Header!</h1><ul><li><strong>Bold Item</strong></li><li><em>Italic Item</em></li></ul>"
     parse input |> should equal expected
+
