@@ -1,113 +1,229 @@
+// This file was auto-generated based on version 1.4.0 of the canonical data.
+
 module ForthTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open Forth
 
-let bind f m = 
-    match m with
-    | Choice1Of2 x -> f x
-    | Choice2Of2 x -> Choice2Of2 x
-
-let map f =
-    function
-    | Choice1Of2 x -> f x |> Choice1Of2
-    | Choice2Of2 x -> Choice2Of2 x
-
-let run text = eval text empty |> map formatStack
-    
-// Note: we use the Choice<'T1, 'T2> type to represent a possible outcome of
-// evaluating input. When the evaluating is succesful, the result is 
-// contained in a Choice1Of2. If an error occured, that error is contained
-// in a Choice2Of2.
-
 [<Fact>]
-let ``No input, no stack`` () =
-    formatStack empty |> should be EmptyString
+let ``Parsing and numbers - numbers just get pushed onto the stack`` () =
+    let expected = Some [1; 2; 3; 4; 5]
+    evaluate ["1 2 3 4 5"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Numbers just get pushed onto the stack`` () =
-    run "1 2 3 4 5" |> should equal (Choice1Of2 "1 2 3 4 5": Choice<string,ForthError>)
+let ``Addition - can add two numbers`` () =
+    let expected = Some [3]
+    evaluate ["1 2 +"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Non-word characters are separators`` () =
-    run "1\b2\t3\n4\r5 6\t7" |> should equal (Choice1Of2 "1 2 3 4 5 6 7": Choice<string,ForthError>)
+let ``Addition - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["+"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Basic arithmetic`` () =
-    run "1 2 + 4 -" |> should equal (Choice1Of2 "-1": Choice<string,ForthError>)
-    run "2 4 * 3 /" |> should equal (Choice1Of2 "2": Choice<string,ForthError>)
+let ``Addition - errors if there is only one value on the stack`` () =
+    let expected = None
+    evaluate ["1 +"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Division by zero`` () =
-    run "4 2 2 - /" |> should equal (Choice2Of2 DivisionByZero: Choice<string,ForthError>)
+let ``Subtraction - can subtract two numbers`` () =
+    let expected = Some [-1]
+    evaluate ["3 4 -"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``dup`` () =
-    run "1 DUP" |> should equal (Choice1Of2 "1 1": Choice<string,ForthError>)
-    run "1 2 Dup" |> should equal (Choice1Of2 "1 2 2": Choice<string,ForthError>)
-    run "dup" |> should equal (Choice2Of2 StackUnderflow: Choice<string,ForthError>)
+let ``Subtraction - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["-"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``drop`` () =
-    run "1 drop" |> should equal (Choice1Of2 "": Choice<string,ForthError>)
-    run "1 2 drop" |> should equal (Choice1Of2 "1": Choice<string,ForthError>)
-    run "drop" |> should equal (Choice2Of2 StackUnderflow: Choice<string,ForthError>)
+let ``Subtraction - errors if there is only one value on the stack`` () =
+    let expected = None
+    evaluate ["1 -"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``swap`` () =
-    run "1 2 swap" |> should equal (Choice1Of2 "2 1": Choice<string,ForthError>)
-    run "1 2 3 swap" |> should equal (Choice1Of2 "1 3 2": Choice<string,ForthError>)
-    run "1 swap" |> should equal (Choice2Of2 StackUnderflow: Choice<string,ForthError>)
-    run "swap" |> should equal (Choice2Of2 StackUnderflow: Choice<string,ForthError>)
+let ``Multiplication - can multiply two numbers`` () =
+    let expected = Some [8]
+    evaluate ["2 4 *"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``over`` () =
-    run "1 2 over" |> should equal (Choice1Of2 "1 2 1": Choice<string,ForthError>)
-    run "1 2 3 over" |> should equal (Choice1Of2 "1 2 3 2": Choice<string,ForthError>)
-    run "1 over" |> should equal (Choice2Of2 StackUnderflow: Choice<string,ForthError>)
-    run "over" |> should equal (Choice2Of2 StackUnderflow: Choice<string,ForthError>)
+let ``Multiplication - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["*"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Defining a new word`` () =
-    let actual =
-        empty
-        |> eval ": dup-twice dup dup ;"  
-        |> bind (eval "1 dup-twice")
-        |> map formatStack
-
-    actual |> should equal (Choice1Of2 "1 1 1": Choice<string,ForthError>)
+let ``Multiplication - errors if there is only one value on the stack`` () =
+    let expected = None
+    evaluate ["1 *"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Redefining an existing word`` () =    
-    let actual =
-        empty
-        |> eval ": foo dup ;"  
-        |> bind (eval ": foo dup dup ;")
-        |> bind (eval "1 foo")
-        |> map formatStack
-        
-    actual |> should equal (Choice1Of2 "1 1 1": Choice<string,ForthError>)
+let ``Division - can divide two numbers`` () =
+    let expected = Some [4]
+    evaluate ["12 3 /"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Redefining an existing built-in word`` () =  
-    let actual =
-        empty
-        |> eval ": swap dup ;"  
-        |> bind (eval "1 swap")
-        |> map formatStack
-
-    actual |> should equal (Choice1Of2 "1 1": Choice<string,ForthError>)
+let ``Division - performs integer division`` () =
+    let expected = Some [2]
+    evaluate ["8 3 /"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Defining words with odd characters`` () =
-    run ": € 220371 ; €" |> should equal (Choice1Of2 "220371": Choice<string,ForthError>)
+let ``Division - errors if dividing by zero`` () =
+    let expected = None
+    evaluate ["4 0 /"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Defining a number`` () =
-    run ": 1 2 ;" |> should equal (Choice2Of2 InvalidWord: Choice<string,ForthError>)
+let ``Division - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["/"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Calling a non-existing word`` () =
-    run "1 foo" |> should equal (Choice2Of2 (UnknownWord "foo"): Choice<string,ForthError>)
+let ``Division - errors if there is only one value on the stack`` () =
+    let expected = None
+    evaluate ["1 /"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Combined arithmetic - addition and subtraction`` () =
+    let expected = Some [-1]
+    evaluate ["1 2 + 4 -"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Combined arithmetic - multiplication and division`` () =
+    let expected = Some [2]
+    evaluate ["2 4 * 3 /"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Dup - copies a value on the stack`` () =
+    let expected = Some [1; 1]
+    evaluate ["1 dup"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Dup - copies the top value on the stack`` () =
+    let expected = Some [1; 2; 2]
+    evaluate ["1 2 dup"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Dup - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["dup"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Drop - removes the top value on the stack if it is the only one`` () =
+    let expected: int list option = Some []
+    evaluate ["1 drop"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Drop - removes the top value on the stack if it is not the only one`` () =
+    let expected = Some [1]
+    evaluate ["1 2 drop"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Drop - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["drop"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Swap - swaps the top two values on the stack if they are the only ones`` () =
+    let expected = Some [2; 1]
+    evaluate ["1 2 swap"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Swap - swaps the top two values on the stack if they are not the only ones`` () =
+    let expected = Some [1; 3; 2]
+    evaluate ["1 2 3 swap"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Swap - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["swap"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Swap - errors if there is only one value on the stack`` () =
+    let expected = None
+    evaluate ["1 swap"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Over - copies the second element if there are only two`` () =
+    let expected = Some [1; 2; 1]
+    evaluate ["1 2 over"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Over - copies the second element if there are more than two`` () =
+    let expected = Some [1; 2; 3; 2]
+    evaluate ["1 2 3 over"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Over - errors if there is nothing on the stack`` () =
+    let expected = None
+    evaluate ["over"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Over - errors if there is only one value on the stack`` () =
+    let expected = None
+    evaluate ["1 over"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - can consist of built-in words`` () =
+    let expected = Some [1; 1; 1]
+    evaluate [": dup-twice dup dup ;"; "1 dup-twice"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - execute in the right order`` () =
+    let expected = Some [1; 2; 3]
+    evaluate [": countup 1 2 3 ;"; "countup"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - can override other user-defined words`` () =
+    let expected = Some [1; 1; 1]
+    evaluate [": foo dup ;"; ": foo dup dup ;"; "1 foo"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - can override built-in words`` () =
+    let expected = Some [1; 1]
+    evaluate [": swap dup ;"; "1 swap"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - can override built-in operators`` () =
+    let expected = Some [12]
+    evaluate [": + * ;"; "3 4 +"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - cannot redefine numbers`` () =
+    let expected = None
+    evaluate [": 1 2 ;"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - errors if executing a non-existent word`` () =
+    let expected = None
+    evaluate ["foo"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Case-insensitivity - DUP is case-insensitive`` () =
+    let expected = Some [1; 1; 1; 1]
+    evaluate ["1 DUP Dup dup"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Case-insensitivity - DROP is case-insensitive`` () =
+    let expected = Some [1]
+    evaluate ["1 2 3 4 DROP Drop drop"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Case-insensitivity - SWAP is case-insensitive`` () =
+    let expected = Some [2; 3; 4; 1]
+    evaluate ["1 2 SWAP 3 Swap 4 swap"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Case-insensitivity - OVER is case-insensitive`` () =
+    let expected = Some [1; 2; 1; 2; 1]
+    evaluate ["1 2 OVER Over over"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Case-insensitivity - user-defined words are case-insensitive`` () =
+    let expected = Some [1; 1; 1; 1]
+    evaluate [": foo dup ;"; "1 FOO Foo foo"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Case-insensitivity - definitions are case-insensitive`` () =
+    let expected = Some [1; 1; 1; 1]
+    evaluate [": SWAP DUP Dup dup ;"; "1 swap"] |> should equal expected
+

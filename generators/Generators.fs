@@ -15,7 +15,10 @@ type AtbashCipher() =
 type AllYourBase() =    
     inherit Exercise()
 
-    override this.RenderExpected (canonicalDataCase, key, value) = value |> Option.ofNonError |> formatValue
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofNonError 
+        |> formatValue
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -268,6 +271,23 @@ type FoodChain() =
         |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
+
+type Forth() =
+    inherit Exercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = ["expected"]
+    
+    override this.RenderExpected (canonicalDataCase, key, value) = 
+        value 
+        |> Option.ofObj 
+        |> formatValue
+
+    override this.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
+        match value :?> JArray|> Option.ofObj |> Option.map Seq.isEmpty with 
+        | Some true -> Some "int list option"
+        | _ -> None
+
+    override this.UseFullMethodName canonicalDataCase = true
 
 type Gigasecond() =
     inherit Exercise()

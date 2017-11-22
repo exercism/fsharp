@@ -23,12 +23,6 @@ type Operation =
 
 type ForthState = { sStack: Value list; sInput: Item list; sMapping: Map<Word, Operation> }
 
-type ForthError = 
-    | DivisionByZero 
-    | StackUnderflow 
-    | InvalidWord 
-    | UnknownWord of Word
-
 let defaultMapping = 
     [("+",    Plus);
      ("-",    Minus);
@@ -72,21 +66,21 @@ let parse text state = parseText text |> addItems state
 
 let unaryStackOp op state =
     match state.sStack with
-    | []    -> Choice2Of2 StackUnderflow
-    | x::xs -> Choice1Of2 { state with sStack = op x @ xs}
+    | []    -> None
+    | x::xs -> Some { state with sStack = op x @ xs}
 
 let binaryStackOp op state =
     match state.sStack with
-    | x::y::xs -> Choice1Of2 { state with sStack = op x y @ xs}
-    | _        -> Choice2Of2 StackUnderflow
+    | x::y::xs -> Some { state with sStack = op x y @ xs}
+    | _        -> None
 
 let toBinaryStackOp op x y = [op y x]
 
 let divOp state = 
     match state.sStack with
-    | 0::_     -> Choice2Of2 DivisionByZero
-    | x::y::xs -> Choice1Of2 { state with sStack = (y / x) :: xs }
-    | _        -> Choice2Of2 StackUnderflow
+    | 0::_     -> None
+    | x::y::xs -> Some { state with sStack = (y / x) :: xs }
+    | _        -> None
 
 let applyOp op state =
     match op with
@@ -98,33 +92,43 @@ let applyOp op state =
     | Drop  -> unaryStackOp (fun _ -> []) state
     | Swap  -> binaryStackOp (fun x y -> [y; x]) state
     | Over  -> binaryStackOp (fun x y -> [y; x; y]) state
-    | User terms -> addItems state terms |> Choice1Of2
+    | User terms -> addItems state terms |> Some
 
 let evalWord word state = 
     match Map.tryFind word state.sMapping with
-    | None -> UnknownWord word |> Choice2Of2 
+    | None -> None
     | Some op -> applyOp op state
 
 let rec evalState state =
     match state with
-    | Choice2Of2 _ -> state
-    | Choice1Of2 s ->
+    | None -> state
+    | Some s ->
         match s.sInput with
         | [] -> state
-        | (Value v)::xs -> { s with sStack = v::s.sStack; sInput = xs } |> Choice1Of2 |> evalState
+        | (Value v)::xs -> { s with sStack = v::s.sStack; sInput = xs } |> Some |> evalState
         | (Word w)::xs ->
             match w with
             | ":" -> 
                 match breakBy (fun c -> c = Word ";") xs with
                 | ((Word userWord::operations), remainder) ->
                     { s with sInput = List.tail remainder; sMapping = Map.add (userWord.ToLower()) (User operations) s.sMapping } 
-                    |> Choice1Of2
+                    |> Some
                     |> evalState
-                | _ -> Choice2Of2 InvalidWord
-            | ";" -> Choice2Of2 InvalidWord
+                | _ -> None
+            | ";" -> None
             | _   -> evalWord w { s with sInput = xs } |> evalState
 
-let eval text state =     
-    parse text state 
-    |> Choice1Of2
-    |> evalState
+let rec eval commands (state: ForthState option) =   
+    match commands, state with
+    | [], _ 
+        -> state |> Option.map (fun x -> List.rev x.sStack)
+    | x::xs, Some y ->
+        let updatedState = 
+            parse x y 
+            |> Some
+            |> evalState
+
+        eval xs updatedState
+    | _ -> None    
+
+let evaluate commands = eval commands (Some empty)
