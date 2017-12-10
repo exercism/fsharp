@@ -222,6 +222,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "IsbnVerifier", "isbn-verifi
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "SpiralMatrix", "spiral-matrix\SpiralMatrix.fsproj", "{4C02F0E3-90F6-4ACD-9D34-EDFF301B058D}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ArmstrongNumbers", "armstrong-numbers\ArmstrongNumbers.fsproj", "{48345F81-5B0F-4C2C-9403-84CBF918714C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -668,6 +670,10 @@ Global
 		{4C02F0E3-90F6-4ACD-9D34-EDFF301B058D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C02F0E3-90F6-4ACD-9D34-EDFF301B058D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C02F0E3-90F6-4ACD-9D34-EDFF301B058D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48345F81-5B0F-4C2C-9403-84CBF918714C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48345F81-5B0F-4C2C-9403-84CBF918714C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48345F81-5B0F-4C2C-9403-84CBF918714C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48345F81-5B0F-4C2C-9403-84CBF918714C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

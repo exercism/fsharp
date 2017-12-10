@@ -86,6 +86,13 @@ type Anagram() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = ["candidates"]
 
+type ArmstrongNumbers() =
+    inherit Exercise()
+
+    override this.RenderInput (canonicalDataCase, key, value) =
+        (value :?> JToken).Value("number") 
+        |> formatValue
+
 type BeerSong() =
     inherit Exercise()
 
