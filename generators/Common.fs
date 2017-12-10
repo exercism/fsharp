@@ -11,6 +11,7 @@ type CanonicalDataCase =
         member this.Description = string this.Properties.["description"]
         member this.Property = string this.Properties.["property"]
         member this.Expected = this.Properties.["expected"]
+        member this.Input = this.Properties.["input"]
 
 type CanonicalData = 
     { Exercise: string

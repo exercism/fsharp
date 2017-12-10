@@ -115,6 +115,17 @@
       "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e"
     },
     {
+      "core": false,
+      "difficulty": 2,
+      "slug": "armstrong-numbers",
+      "topics": [
+        "integers",
+        "mathematics"
+      ],
+      "unlocked_by": "sum-of-multiples",
+      "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938"
+    },
+    {
       "core": true,
       "difficulty": 3,
       "slug": "beer-song",
