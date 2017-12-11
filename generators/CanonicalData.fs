@@ -1,4 +1,4 @@
-module Generators.Input
+module Generators.CanonicalData
 
 open System
 open System.IO
@@ -7,8 +7,6 @@ open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
-open Newtonsoft.Json.Serialization
-open Humanizer
 open Options
 
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
@@ -49,9 +47,6 @@ let private readCanonicalData options exercise =
     let exerciseCanonicalDataPath = Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
     File.ReadAllText(exerciseCanonicalDataPath)
 
-let jsonSerializerSettings = JsonSerializerSettings()
-let jsonSerializer = JsonSerializer()
-
 type CanonicalDataConverter() =
     inherit JsonConverter()
 
@@ -83,15 +78,15 @@ type CanonicalDataConverter() =
           Version = jToken.["version"].Value<string>()
           Cases = createCanonicalDataCasesFromJToken jToken }
 
-    override this.WriteJson(writer: JsonWriter, value: obj, serializer: JsonSerializer) = failwith "Not supported"
+    override __.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
 
-    override this.ReadJson(reader: JsonReader, objectType: Type, existingValue: obj, serializer: JsonSerializer) =
+    override __.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
         let jToken = JToken.ReadFrom(reader)
         createCanonicalDataFromJToken jToken :> obj
 
-    override this.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
+    override __.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
-let convertCanonicalData canonicalDataContents = 
+let private convertCanonicalData canonicalDataContents = 
     JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter()) 
 
 let parseCanonicalData options = 

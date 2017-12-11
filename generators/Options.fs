@@ -26,4 +26,4 @@ let parseOptions argv =
     match result with
     | :? Parsed<Options> as parsed -> Result.Ok(normalizeOptions parsed.Value)
     | :? NotParsed<Options> as notParsed -> Result.Error(notParsed.Errors |> Seq.map string)
-    | _ -> Result.Error(seq { yield "Invalid parsing result" })
+    | _ -> Result.Error(Seq.singleton "Invalid parsing result")

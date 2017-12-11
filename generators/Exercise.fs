@@ -6,7 +6,8 @@ open System.Reflection
 open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
-open Output
+open Formatting
+open Rendering
 
 [<AbstractClass>]
 type Exercise() =
@@ -86,7 +87,7 @@ type Exercise() =
         properties
         |> Map.map (fun key value -> this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)) 
 
-    default this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) = value
+    default __.MapCanonicalDataCaseProperty (_, _, value) = value
 
     // Convert canonical data to representation used when rendering
 
@@ -144,7 +145,7 @@ type Exercise() =
 
     // Generic value/identifier rendering methods
 
-    default this.RenderValue (canonicalDataCase, key, value) = formatValue value
+    default __.RenderValue (_, _, value) = formatValue value
 
     default this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
         let properties = this.PropertiesWithIdentifier canonicalDataCase
@@ -163,7 +164,7 @@ type Exercise() =
         let value = this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
         sprintf "let %s = %s" identifier value  
 
-    default this.RenderIdentifier (canonicalDataCase, key, value) = String.camelize key
+    default __.RenderIdentifier (_, key, _) = String.camelize key
 
     default this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) = 
         let identifier = this.RenderIdentifier (canonicalDataCase, key, value)
@@ -212,12 +213,12 @@ type Exercise() =
     default this.RenderSutParameter (canonicalDataCase, key, value) =
         this.RenderValueOrIdentifier (canonicalDataCase, key, value) 
 
-    default this.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
+    default __.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
 
     default this.Properties canonicalDataCase =
         List.append (this.PropertiesUsedAsSutParameter canonicalDataCase) ["expected"]
 
-    default this.PropertiesUsedAsSutParameter canonicalDataCase = 
+    default __.PropertiesUsedAsSutParameter canonicalDataCase = 
         canonicalDataCase.Properties
         |> Map.toList
         |> List.map fst
@@ -225,13 +226,13 @@ type Exercise() =
     
     // Utility methods to customize rendered output
 
-    default this.PropertiesWithIdentifier canonicalDataCase = []
+    default __.PropertiesWithIdentifier _ = []
 
-    default this.IdentifierTypeAnnotation (canonicalDataCase, key, value ) = None
+    default __.IdentifierTypeAnnotation (_, _, _) = None
 
-    default this.UseFullMethodName canonicalDataCase = false
+    default __.UseFullMethodName _ = false
 
-    default this.AdditionalNamespaces = []
+    default __.AdditionalNamespaces = []
 
 let createExercises filteredExercise =
 
