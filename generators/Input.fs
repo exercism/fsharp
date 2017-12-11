@@ -49,9 +49,6 @@ let private readCanonicalData options exercise =
     let exerciseCanonicalDataPath = Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
     File.ReadAllText(exerciseCanonicalDataPath)
 
-let jsonSerializerSettings = JsonSerializerSettings()
-let jsonSerializer = JsonSerializer()
-
 type CanonicalDataConverter() =
     inherit JsonConverter()
 
@@ -91,7 +88,7 @@ type CanonicalDataConverter() =
 
     override __.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
-let convertCanonicalData canonicalDataContents = 
+let private convertCanonicalData canonicalDataContents = 
     JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter()) 
 
 let parseCanonicalData options = 
