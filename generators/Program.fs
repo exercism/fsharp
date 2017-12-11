@@ -5,14 +5,14 @@ open Exercise
 open Input
 open Options
 
-let regenerateTestClass options =
+let private regenerateTestClass options =
     let parseCanonicalData' = parseCanonicalData options
 
     fun (exercise: Exercise) ->
         let canonicalData = parseCanonicalData' exercise.Name
         exercise.Regenerate(canonicalData)
 
-let regenerateTestClasses options =
+let private regenerateTestClasses options =
     Log.Information("Re-generating test classes...")
 
     let regenerateTestClass' = regenerateTestClass options
