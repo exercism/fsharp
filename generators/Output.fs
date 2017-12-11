@@ -184,7 +184,7 @@ type OutputFilter() =
 
     static member Indent (input: string) = indent 1 input
 
-let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "")
+let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "Generators.Templates")
 Template.RegisterFilter(OutputFilter().GetType())
 Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
 
