@@ -8,8 +8,9 @@
   <ItemGroup>
     <Compile Include="Common.fs" />
     <Compile Include="Options.fs" />
-    <Compile Include="Input.fs" />
-    <Compile Include="Output.fs" />
+    <Compile Include="CanonicalData.fs" />
+    <Compile Include="Formatting.fs" />
+    <Compile Include="Rendering.fs" />
     <Compile Include="Exercise.fs" />
     <Compile Include="Generators.fs" />
     <Compile Include="Program.fs" />

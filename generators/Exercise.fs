@@ -6,7 +6,8 @@ open System.Reflection
 open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
-open Output
+open Formatting
+open Rendering
 
 [<AbstractClass>]
 type Exercise() =

@@ -2,7 +2,7 @@
 
 open Serilog
 open Exercise
-open Input
+open CanonicalData
 open Options
 
 let private regenerateTestClass options =

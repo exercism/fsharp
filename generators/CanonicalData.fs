@@ -1,4 +1,4 @@
-module Generators.Input
+module Generators.CanonicalData
 
 open System
 open System.IO
@@ -7,8 +7,6 @@ open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
-open Newtonsoft.Json.Serialization
-open Humanizer
 open Options
 
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";

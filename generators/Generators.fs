@@ -3,7 +3,7 @@ module Generators.Generators
 open System
 open System.Globalization
 open Newtonsoft.Json.Linq
-open Output
+open Formatting
 open Exercise
 
 type Acronym() =
