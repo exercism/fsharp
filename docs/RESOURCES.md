@@ -6,7 +6,7 @@
 
 ### Social media
 * [StackOverflow ](http://stackoverflow.com/questions/tagged/f%23) can be used to search for your problem and see if it has been answered already. You can also ask and answer questions.
-* The [F# channel](https://functionalprogramming.slack.com/messages/fsharp/) of the [functionalprogramming slack account](https://functionalprogramming.slack.com/). To join, go to [fpchat.com](http://fpchat.com/).
+* The [F# channel](https://functionalprogramming.slack.com/messages/fsharp/) of the [functionalprogramming slack account](https://functionalprogramming.slack.com/). To join, go to [fpchat-invite.herokuapp.com](https://fpchat-invite.herokuapp.com/).
 * The [F# slack account](https://fsharp.slack.com). To join, you have to [become a member of the F# foundation](http://fsharp.org/guides/slack/).
 * [/r/fsharp](https://www.reddit.com/r/fsharp) is the F# subreddit.
 * The [Gitter channel](https://gitter.im/exercism/xfsharp) can be used to ask questions and get support for any issues related to the F# track. 
