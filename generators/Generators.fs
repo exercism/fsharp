@@ -226,6 +226,9 @@ type CollatzConjecture() =
 type CryptoSquare() =
     inherit GeneratorExercise()
 
+type Diamond() =
+    inherit CustomExercise()
+
 type DifferenceOfSquares() =
     inherit GeneratorExercise()
 
