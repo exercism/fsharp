@@ -1,5 +1,6 @@
 module Generators.Rendering
 
+open System.IO
 open System.Collections.Generic
 open System.Reflection
 open FSharp.Reflection
@@ -12,7 +13,7 @@ type OutputFilter() =
 
     static member Indent (input: string) = indent 1 input
 
-let private fileSystem = EmbeddedFileSystem(Assembly.GetExecutingAssembly(), "Generators.Templates")
+let private fileSystem = LocalFileSystem(Path.GetFullPath("./Templates"))
 Template.RegisterFilter(OutputFilter().GetType())
 Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
 
