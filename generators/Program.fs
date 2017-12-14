@@ -5,21 +5,48 @@ open Exercise
 open CanonicalData
 open Options
 
+let private isNotFilteredByName options (exercise: Exercise) =
+    match options.Exercise with
+    | Some filteredExerciseName -> filteredExerciseName = exerciseName exercise
+    | None -> true
+    
+let private isNotFilteredByStatus options (exercise: Exercise) =
+    match options.Status, exercise with
+    | None, _ -> true
+    | Some Status.Implemented,   Exercise.Generator _     -> true
+    | Some Status.Unimplemented, Exercise.Unimplemented _ -> true
+    | Some Status.MissingData,   Exercise.MissingData _   -> true
+    | Some Status.Custom,        Exercise.Custom _        -> true
+    | _ -> false
+
+let private shouldBeIncluded options (exercise: Exercise) =
+    isNotFilteredByName options exercise &&
+    isNotFilteredByStatus options exercise
+
 let private regenerateTestClass options =
     let parseCanonicalData' = parseCanonicalData options
 
-    fun (exercise: Exercise) ->
-        let canonicalData = parseCanonicalData' exercise.Name
-        exercise.Regenerate(canonicalData)
+    fun (exercise) ->
+        match exercise with
+        | Exercise.Custom custom ->
+            Log.Information("{Exercise}: has customized tests", custom.Name)
+        | Exercise.Unimplemented unimplemented ->
+            Log.Error("{Exercise}: missing test generator", unimplemented.Name)
+        | Exercise.MissingData missingData ->
+            Log.Warning("{Exercise}: missing canonical data", missingData.Name)
+        | Exercise.Generator generator ->
+            let canonicalData = parseCanonicalData' generator.Name
+            generator.Regenerate(canonicalData)
+            Log.Information("{Exercise}: tests generated", generator.Name)
 
 let private regenerateTestClasses options =
     Log.Information("Re-generating test classes...")
 
     let regenerateTestClass' = regenerateTestClass options
-    let filteredExercise = Option.ofNonEmptyString options.Exercise
-
-    createExercises filteredExercise
-    |> Seq.iter regenerateTestClass'
+    
+    createExercises options
+    |> List.filter (shouldBeIncluded options)
+    |> List.iter regenerateTestClass'
 
     Log.Information("Re-generated test classes.")
 

@@ -37,15 +37,11 @@ let private updateToLatestVersion options =
     Log.Information("Updated repository to latest version.");
 
 let private downloadData options =
-    if options.SkipUpdateCanonicalData then
+    if options.CacheCanonicalData then
         ()
     else
         cloneRepository options
-        updateToLatestVersion options    
-
-let private readCanonicalData options exercise = 
-    let exerciseCanonicalDataPath = Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
-    File.ReadAllText(exerciseCanonicalDataPath)
+        updateToLatestVersion options
 
 type CanonicalDataConverter() =
     inherit JsonConverter()
@@ -87,7 +83,18 @@ type CanonicalDataConverter() =
     override __.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
 let private convertCanonicalData canonicalDataContents = 
-    JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter()) 
+    JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter())     
+
+let private canonicalDataFile options exercise = 
+    Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
+
+let private readCanonicalData options exercise = 
+    canonicalDataFile options exercise
+    |> File.ReadAllText
+
+let hasCanonicalData options exercise =
+    canonicalDataFile options exercise
+    |> File.Exists
 
 let parseCanonicalData options = 
     downloadData options 
