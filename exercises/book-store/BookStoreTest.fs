@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.1 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module BookStoreTest
 
@@ -58,4 +58,8 @@ let ``Three copies of first book and 2 each of remaining`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Three each of first 2 books and 2 each of remaining books`` () =
     total [1; 1; 2; 2; 3; 3; 4; 4; 5; 5; 1; 2] |> should equal 75.20
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Four groups of four are cheaper than two groups each of five and three`` () =
+    total [1; 1; 2; 2; 3; 3; 4; 5; 1; 1; 2; 2; 3; 3; 4; 5] |> should equal 102.40
 
