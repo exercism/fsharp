@@ -3,14 +3,19 @@ module Generators.Exercise
 open System
 open System.IO
 open System.Reflection
+open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
 open Formatting
 open Rendering
+open CanonicalData
+
+let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebaberize()
 
 [<AbstractClass>]
-type Exercise() =
+type GeneratorExercise() =
+
     // Allow changes in canonical data
     abstract member MapCanonicalData : CanonicalData -> CanonicalData
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
@@ -56,7 +61,7 @@ type Exercise() =
     abstract member UseFullMethodName : CanonicalDataCase -> bool
     abstract member AdditionalNamespaces : string list
 
-    member this.Name = this.GetType().Name.Kebaberize()
+    member this.Name = this.GetType() |> exerciseNameFromType 
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
@@ -65,8 +70,6 @@ type Exercise() =
 
         Directory.CreateDirectory(Path.GetDirectoryName(testClassPath)) |> ignore
         File.WriteAllText(testClassPath, contents)
-
-        Log.Information("Generated tests for {Exercise} exercise in {TestClassPath}", this.Name, testClassPath);
 
     member this.Regenerate(canonicalData) =
         canonicalData
@@ -233,23 +236,86 @@ type Exercise() =
     default __.UseFullMethodName _ = false
 
     default __.AdditionalNamespaces = []
+    
+type CustomExercise() =
 
-let createExercises filteredExercise =
+    member this.Name = this.GetType().Name.Kebaberize()
 
-    let isConcreteExercise (exerciseType: Type) = 
-        not exerciseType.IsAbstract && typeof<Exercise>.IsAssignableFrom(exerciseType)
+type MissingDataExercise = { Name: string }
 
-    let isFilteredExercise exercise (exerciseType: Type) =
-        String.equals exercise exerciseType.Name || 
-        String.equals exercise (exerciseType.Name.Kebaberize())
+type UnimplementedExercise = { Name: string }
+    
+type Exercise =
+    | Generator of GeneratorExercise
+    | Custom of CustomExercise
+    | MissingData of MissingDataExercise
+    | Unimplemented of UnimplementedExercise
+    
+let exerciseName exercise =
+    match exercise with
+    | Generator generator -> generator.Name
+    | Custom custom -> custom.Name
+    | Unimplemented unimplemented -> unimplemented.Name
+    | MissingData missingData -> missingData.Name    
 
-    let includeExercise (exerciseType: Type) = 
-        match filteredExercise with
-        | None -> isConcreteExercise exerciseType
-        | Some exercise -> isConcreteExercise exerciseType && isFilteredExercise exercise exerciseType
+type ConfigExercise = { Slug: string }
 
-    let assemblyTypes = Assembly.GetEntryAssembly().GetTypes()
+type Config = { Exercises: ConfigExercise[] }
 
-    seq { for exerciseType in assemblyTypes do 
-            if includeExercise exerciseType then 
-                yield Activator.CreateInstance(exerciseType) :?> Exercise }
+let private exerciseNames = 
+    let configFilePath = "../config.json"
+    let configFileContents = File.ReadAllText configFilePath
+    let config = JsonConvert.DeserializeObject<Config>(configFileContents)
+
+    config.Exercises
+    |> Seq.map (fun exercise -> exercise.Slug)
+    |> Seq.sort
+    |> Seq.toList
+
+let private isConcreteType (ty: Type) = not ty.IsAbstract
+
+let private isGeneratorExercise (ty: Type) = typeof<GeneratorExercise>.IsAssignableFrom(ty)
+
+let private isCustomExercise (ty: Type) = typeof<CustomExercise>.IsAssignableFrom(ty)
+
+let private concreteAssemblyTypes = 
+    Assembly.GetEntryAssembly().GetTypes()
+    |> Array.filter isConcreteType
+
+let private exerciseTypeByName<'T> exerciseType =
+    (exerciseNameFromType exerciseType, Activator.CreateInstance(exerciseType) :?> 'T)
+
+let private exerciseTypesByName<'T> predicate =
+    concreteAssemblyTypes
+    |> Array.filter predicate
+    |> Array.map exerciseTypeByName<'T>
+    |> Map.ofArray
+    
+let private generatorExercises = exerciseTypesByName<GeneratorExercise> isGeneratorExercise
+
+let private customExercises = exerciseTypesByName<CustomExercise> isCustomExercise
+
+let private tryFindGeneratorExercise exerciseName =
+    generatorExercises
+    |> Map.tryFind exerciseName 
+    |> Option.map Generator
+    
+let private tryFindCustomExercise exerciseName =
+    customExercises
+    |> Map.tryFind exerciseName 
+    |> Option.map Custom
+    
+let private tryFindUnimplementedExercise options exerciseName =
+    match hasCanonicalData options exerciseName with
+    | true  -> Unimplemented { Name = exerciseName } |> Some 
+    | false -> None
+
+let private createExercise options exerciseName =
+    tryFindGeneratorExercise exerciseName
+    |> Option.orElse (tryFindCustomExercise exerciseName)
+    |> Option.orElse (tryFindUnimplementedExercise options exerciseName)
+    |> Option.orElse (MissingData { Name = exerciseName } |> Some)
+
+let createExercises options =
+    exerciseNames
+    |> List.choose (createExercise options)

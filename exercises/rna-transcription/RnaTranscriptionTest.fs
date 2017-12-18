@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.1 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module RnaTranscriptionTest
 
@@ -26,16 +26,4 @@ let ``RNA complement of adenine is uracil`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``RNA complement`` () =
     toRna "ACGTGGTCTTAA" |> should equal (Some "UGCACCAGAAUU")
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Correctly handles invalid input (RNA instead of DNA)`` () =
-    toRna "U" |> should equal None
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Correctly handles completely invalid DNA input`` () =
-    toRna "XXX" |> should equal None
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Correctly handles partially invalid DNA input`` () =
-    toRna "ACGTXXXCTTAA" |> should equal None
 

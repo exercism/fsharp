@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module BobTest
 
@@ -41,7 +41,7 @@ let ``Using acronyms in regular speech`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Forceful question`` () =
-    response "WHAT THE HELL WERE YOU THINKING?" |> should equal "Whoa, chill out!"
+    response "WHAT THE HELL WERE YOU THINKING?" |> should equal "Calm down, I know what I'm doing!"
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Shouting numbers`` () =
