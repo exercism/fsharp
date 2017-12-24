@@ -7,6 +7,10 @@ open {{ namespace }}
 {%- endfor -%}
 
 open {{ TestedModuleName }}
+{%- if Setup != empty -%}
+
+{{ Setup }}
+{%- endif -%}
 
 type {{ TestModuleName }}() =
 

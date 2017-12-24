@@ -37,7 +37,8 @@ type TestFile =
       TestModuleName: string
       TestedModuleName: string
       Namespaces: string list
-      Methods: string list }
+      Methods: string list
+      Setup: string }
 
 type TestFileFormat = 
     | Module 

@@ -40,6 +40,7 @@ type GeneratorExercise() =
     abstract member RenderTestMethod : int * CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
     abstract member RenderTestMethodName : CanonicalDataCase -> string
+    abstract member RenderSetup : CanonicalData -> string
 
     // Generic value/identifier rendering methods
     abstract member RenderValue : CanonicalDataCase * string * obj -> string
@@ -108,7 +109,8 @@ type GeneratorExercise() =
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
-          Methods = List.mapi renderTestMethod canonicalData.Cases }
+          Methods = List.mapi renderTestMethod canonicalData.Cases
+          Setup = this.RenderSetup canonicalData }
 
     default this.ToTestMethod (index, canonicalDataCase) =
         { Skip = index > 0
@@ -175,7 +177,9 @@ type GeneratorExercise() =
         | true -> 
             canonicalDataCase.DescriptionPath
             |> String.concat " - "
-            |> String.upperCaseFirst    
+            |> String.upperCaseFirst   
+
+    default __.RenderSetup _ = ""
 
     // Generic value/identifier rendering methods
 
