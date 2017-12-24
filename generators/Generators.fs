@@ -4,6 +4,7 @@ open System
 open System.Globalization
 open Newtonsoft.Json.Linq
 open Formatting
+open Rendering
 open Exercise
 
 type Acronym() =
@@ -327,6 +328,26 @@ type Grep() =
     inherit GeneratorExercise()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+    override __.RenderExpected (_, _, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineListWithIndentation 3
+
+    override __.RenderSetup _ = renderPartialTemplate "Generators/GrepSetup" Map.empty<string, obj>
+
+    override __.RenderArrange canonicalDataCase =
+        base.RenderArrange canonicalDataCase @ [""; "createFiles() |> ignore"]
+
+    override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
+        match key with
+        | "expected" ->
+            match value :?> JArray |> Seq.isEmpty with 
+            | true  -> Some "string list"
+            | false -> None
+        | _ ->
+            base.IdentifierTypeAnnotation(canonicalDataCase, key, value)        
 
     override __.AdditionalNamespaces = [typeof<System.IO.File>.Namespace]
 

@@ -7,6 +7,7 @@ open FSharp.Reflection
 open DotLiquid
 open DotLiquid.FileSystems
 open Formatting
+open System.Collections
 
 type OutputFilter() =
     static member Format (input: string) = formatValue input
@@ -47,11 +48,17 @@ let rec private registerTypeTree templateDataType =
         registrations.[templateDataType] <- true
         for p in properties do registerTypeTree p.PropertyType
 
+let private hashFromData (data: obj) =
+    match FSharpType.IsRecord (data.GetType()) with
+    | true  -> Hash.FromAnonymousObject(data)
+    | false -> Hash.FromDictionary(data :?> IDictionary<string, obj>)
+
 let renderInlineTemplate template data =
     data.GetType() |> registerTypeTree
 
     let parsedTemplate = Template.Parse template
-    parsedTemplate.Render(Hash.FromAnonymousObject(data))
+    let hash = hashFromData data
+    parsedTemplate.Render(hash)
 
 let renderPartialTemplate templateName data =
     let template = sprintf "{%% include \"%s\" %%}" templateName
