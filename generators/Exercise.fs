@@ -27,11 +27,16 @@ type GeneratorExercise() =
     abstract member ToTestMethod : int * CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
-    abstract member ToTestMethodBodyAssertTemplate : CanonicalDataCase -> string
+
+    // Templates to use when rendering
+    abstract member TestClassTemplate : CanonicalData -> string
+    abstract member TestMethodTemplate : int * CanonicalDataCase -> string
+    abstract member TestMethodBodyTemplate : CanonicalDataCase -> string
+    abstract member TestMethodBodyAssertTemplate : CanonicalDataCase -> string
 
     // Rendering of canonical data
     abstract member Render : CanonicalData -> string
-    abstract member RenderTestMethod : int -> CanonicalDataCase -> string
+    abstract member RenderTestMethod : int * CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
     abstract member RenderTestMethodName : CanonicalDataCase -> string
 
@@ -95,12 +100,14 @@ type GeneratorExercise() =
     // Convert canonical data to representation used when rendering
 
     default this.ToTestClass canonicalData =
+        let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
+
         { Version = canonicalData.Version              
           ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
-          Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
+          Methods = List.mapi renderTestMethod canonicalData.Cases }
 
     default this.ToTestMethod (index, canonicalDataCase) =
         { Skip = index > 0
@@ -115,7 +122,15 @@ type GeneratorExercise() =
         { Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderValueOrIdentifier (canonicalDataCase, "expected", canonicalDataCase.Expected) }
 
-    default this.ToTestMethodBodyAssertTemplate canonicalDataCase =
+    // Templates to use when rendering
+
+    default __.TestClassTemplate canonicalData = "TestClass"
+    
+    default __.TestMethodTemplate (index, canonicalDataCase) = "TestMethod"
+
+    default __.TestMethodBodyTemplate canonicalDataCase = "TestMethodBody"
+
+    default this.TestMethodBodyAssertTemplate canonicalDataCase =
         match canonicalDataCase.Expected with
         | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
         | _ -> "AssertEqual"
@@ -123,19 +138,25 @@ type GeneratorExercise() =
     // Rendering of canonical data
 
     default this.Render canonicalData =
+        let template = this.TestClassTemplate canonicalData
+
         canonicalData
         |> this.ToTestClass
-        |> renderPartialTemplate "TestClass"
+        |> renderPartialTemplate template
 
-    default this.RenderTestMethod index canonicalDataCase = 
+    default this.RenderTestMethod (index, canonicalDataCase) = 
+        let template = this.TestMethodTemplate (index, canonicalDataCase)
+
         (index, canonicalDataCase)
         |> this.ToTestMethod 
-        |> renderPartialTemplate "TestMethod"
+        |> renderPartialTemplate template
 
     default this.RenderTestMethodBody canonicalDataCase = 
+        let template = this.TestMethodBodyTemplate canonicalDataCase
+
         canonicalDataCase
         |> this.ToTestMethodBody
-        |> renderPartialTemplate "TestMethodBody"
+        |> renderPartialTemplate template
 
     default this.RenderTestMethodName canonicalDataCase = 
         match this.UseFullMethodName canonicalDataCase with
@@ -195,7 +216,7 @@ type GeneratorExercise() =
         |> List.choose renderArrangeProperty
 
     default this.RenderAssert canonicalDataCase = 
-        let template = this.ToTestMethodBodyAssertTemplate canonicalDataCase                
+        let template = this.TestMethodBodyAssertTemplate canonicalDataCase                
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert

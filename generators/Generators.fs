@@ -61,7 +61,7 @@ type Allergies() =
 type Alphametics() =
     inherit GeneratorExercise()
 
-    member __.formatMap<'TKey, 'TValue> (value: obj) =
+    member __.FormatMap<'TKey, 'TValue> (value: obj) =
         if isNull value then
             "None"
         else
@@ -77,7 +77,7 @@ type Alphametics() =
             else   
                 sprintf "%s |> Map.ofList |> Some" formattedList
 
-    override this.RenderExpected (_, _, value) = this.formatMap<char, int> value
+    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -417,7 +417,7 @@ type Meetup() =
     override __.PropertiesUsedAsSutParameter _ = 
         ["year"; "month"; "dayofweek"; "week"]
 
-    override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
+    override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type Minesweeper() =
     inherit GeneratorExercise()
@@ -544,7 +544,7 @@ type PascalsTriangle() =
             | false -> None    
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 
-    override __.ToTestMethodBodyAssertTemplate _ = "AssertEqual"
+    override __.TestMethodBodyAssertTemplate _ = "AssertEqual"
     
 type PerfectNumbers() =
     inherit GeneratorExercise()
