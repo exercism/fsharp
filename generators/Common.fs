@@ -31,7 +31,7 @@ type TestMethodBodyAssert =
     { Sut: string
       Expected: string }
 
-type TestClass = 
+type TestFile = 
     { Version: string
       ExerciseName: string
       TestModuleName: string

@@ -23,13 +23,13 @@ type GeneratorExercise() =
     abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
 
     // Convert canonical data to representation used when rendering
-    abstract member ToTestClass : CanonicalData -> TestClass
+    abstract member ToTestFile : CanonicalData -> TestFile
     abstract member ToTestMethod : int * CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
 
     // Templates to use when rendering
-    abstract member TestClassTemplate : CanonicalData -> string
+    abstract member TestFileTemplate : CanonicalData -> string
     abstract member TestMethodTemplate : int * CanonicalDataCase -> string
     abstract member TestMethodBodyTemplate : CanonicalDataCase -> string
     abstract member TestMethodBodyAssertTemplate : CanonicalDataCase -> string
@@ -71,10 +71,10 @@ type GeneratorExercise() =
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
     member this.WriteToFile contents =
-        let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
+        let testFilePath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
 
-        Directory.CreateDirectory(Path.GetDirectoryName(testClassPath)) |> ignore
-        File.WriteAllText(testClassPath, contents)
+        Directory.CreateDirectory(Path.GetDirectoryName(testFilePath)) |> ignore
+        File.WriteAllText(testFilePath, contents)
 
     member this.Regenerate(canonicalData) =
         canonicalData
@@ -99,7 +99,7 @@ type GeneratorExercise() =
 
     // Convert canonical data to representation used when rendering
 
-    default this.ToTestClass canonicalData =
+    default this.ToTestFile canonicalData =
         let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
 
         { Version = canonicalData.Version              
@@ -124,7 +124,7 @@ type GeneratorExercise() =
 
     // Templates to use when rendering
 
-    default __.TestClassTemplate canonicalData = "TestClass"
+    default __.TestFileTemplate canonicalData = "TestModule"
     
     default __.TestMethodTemplate (index, canonicalDataCase) = "TestMethod"
 
@@ -138,10 +138,10 @@ type GeneratorExercise() =
     // Rendering of canonical data
 
     default this.Render canonicalData =
-        let template = this.TestClassTemplate canonicalData
+        let template = this.TestFileTemplate canonicalData
 
         canonicalData
-        |> this.ToTestClass
+        |> this.ToTestFile
         |> renderPartialTemplate template
 
     default this.RenderTestMethod (index, canonicalDataCase) = 
