@@ -28,11 +28,12 @@ type GeneratorExercise() =
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
 
-    // Templates to use when rendering
-    abstract member TestFileTemplate : CanonicalData -> string
+    // Determine the templates to use when rendering
+    abstract member TestFileTemplate : string
     abstract member TestMethodTemplate : int * CanonicalDataCase -> string
     abstract member TestMethodBodyTemplate : CanonicalDataCase -> string
     abstract member TestMethodBodyAssertTemplate : CanonicalDataCase -> string
+    abstract member TestFileFormat: TestFileFormat
 
     // Rendering of canonical data
     abstract member Render : CanonicalData -> string
@@ -122,27 +123,36 @@ type GeneratorExercise() =
         { Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderValueOrIdentifier (canonicalDataCase, "expected", canonicalDataCase.Expected) }
 
-    // Templates to use when rendering
+    // Determine the templates to use when rendering
 
-    default __.TestFileTemplate canonicalData = "TestModule"
+    default this.TestFileTemplate = 
+        match this.TestFileFormat with
+        | Module -> "TestModule"
+        | Class  -> "TestClass"
     
-    default __.TestMethodTemplate (index, canonicalDataCase) = "TestMethod"
+    default this.TestMethodTemplate (_, _) =
+        match this.TestFileFormat with
+        | Module -> "TestFunction"
+        | Class  -> "TestMember"
 
-    default __.TestMethodBodyTemplate canonicalDataCase = "TestMethodBody"
+    default this.TestMethodBodyTemplate _ =
+        match this.TestFileFormat with
+        | Module -> "TestFunctionBody"
+        | Class  -> "TestMemberBody"
 
     default this.TestMethodBodyAssertTemplate canonicalDataCase =
         match canonicalDataCase.Expected with
         | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
         | _ -> "AssertEqual"
 
+    default __.TestFileFormat = TestFileFormat.Module
+
     // Rendering of canonical data
 
     default this.Render canonicalData =
-        let template = this.TestFileTemplate canonicalData
-
         canonicalData
         |> this.ToTestFile
-        |> renderPartialTemplate template
+        |> renderPartialTemplate this.TestFileTemplate
 
     default this.RenderTestMethod (index, canonicalDataCase) = 
         let template = this.TestMethodTemplate (index, canonicalDataCase)

@@ -39,6 +39,10 @@ type TestFile =
       Namespaces: string list
       Methods: string list }
 
+type TestFileFormat = 
+    | Module 
+    | Class
+
 module Logging =
     let setupLogger() =
         Log.Logger <- LoggerConfiguration()

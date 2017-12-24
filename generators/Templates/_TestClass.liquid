@@ -1,0 +1,15 @@
+// This file was auto-generated based on version {{ Version }} of the canonical data.
+
+module {{ TestModuleName }}
+
+{%- for namespace in Namespaces -%}
+open {{ namespace }}
+{%- endfor -%}
+
+open {{ TestedModuleName }}
+
+type {{ TestModuleName }}() =
+
+    {%- for method in Methods -%}
+    {{ method }}
+    {%- endfor -%}
