@@ -121,7 +121,7 @@ let rec formatValue (value: obj) =
     | _ -> 
         string value
 
-let formatCollection formatString collection =
+let private formatCollection formatString collection =
     collection
     |> String.concat "; "
     |> sprintf formatString
@@ -132,7 +132,7 @@ let formatArray sequence = formatCollection "[|%s|]" sequence
 
 let formatSequence sequence = formatCollection "seq {%s}" sequence
 
-let formatMultiLineCollection (openPrefix, closePostfix) collection =
+let private formatMultiLineCollection (openPrefix, closePostfix) collection indentation =
     match Seq.length collection with
     | 0 -> 
         sprintf "%s%s" openPrefix closePostfix
@@ -153,15 +153,22 @@ let formatMultiLineCollection (openPrefix, closePostfix) collection =
         collection
         |> Seq.mapi formatLine
         |> Seq.toList
-        |> List.map (indent 2)
+        |> List.map (indent indentation)
         |> String.concat "\n"
         |> sprintf "\n%s"
 
-let formatMultiLineList sequence = formatMultiLineCollection ("[", "]") sequence
 
-let formatMultiLineArray sequence = formatMultiLineCollection ("[|", "|]") sequence
+let formatMultiLineListWithIndentation indentation sequence = formatMultiLineCollection ("[", "]") sequence indentation
 
-let formatMultiLineSequence sequence = formatMultiLineCollection ("seq {", "}") sequence
+let formatMultiLineArrayWithIndentation indentation sequence = formatMultiLineCollection ("[|", "|]") sequence indentation
+
+let formatMultiLineSequenceWithIndentation indentation sequence = formatMultiLineCollection ("seq {", "}") sequence indentation
+
+let formatMultiLineList sequence = formatMultiLineListWithIndentation 2 sequence
+
+let formatMultiLineArray sequence = formatMultiLineArrayWithIndentation 2 sequence
+
+let formatMultiLineSequence sequence = formatMultiLineSequenceWithIndentation 2 sequence
 
 let formatMultiLineString strings = 
     let length = Seq.length strings

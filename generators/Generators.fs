@@ -4,6 +4,7 @@ open System
 open System.Globalization
 open Newtonsoft.Json.Linq
 open Formatting
+open Rendering
 open Exercise
 
 type Acronym() =
@@ -61,7 +62,7 @@ type Allergies() =
 type Alphametics() =
     inherit GeneratorExercise()
 
-    member __.formatMap<'TKey, 'TValue> (value: obj) =
+    member __.FormatMap<'TKey, 'TValue> (value: obj) =
         if isNull value then
             "None"
         else
@@ -77,7 +78,7 @@ type Alphametics() =
             else   
                 sprintf "%s |> Map.ofList |> Some" formattedList
 
-    override this.RenderExpected (_, _, value) = this.formatMap<char, int> value
+    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -164,7 +165,7 @@ type Clock() =
         let minute = clock.["minute"].ToObject<string>()
         sprintf "let %s = create %s %s" clockId hour minute
 
-    member private this.renderPropertyValue canonicalDataCase property =
+    member private this.RenderPropertyValue canonicalDataCase property =
         this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Properties)
 
     override __.PropertiesWithIdentifier _ = ["clock1"; "clock2"]
@@ -177,8 +178,8 @@ type Clock() =
     override this.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
         | "create" | "add" -> 
-            let hour = this.renderPropertyValue canonicalDataCase "hour"
-            let minute = this.renderPropertyValue canonicalDataCase "minute"
+            let hour = this.RenderPropertyValue canonicalDataCase "hour"
+            let minute = this.RenderPropertyValue canonicalDataCase "minute"
             [sprintf "let clock = create %s %s" hour minute]
         | _ -> 
             base.RenderArrange canonicalDataCase
@@ -188,7 +189,7 @@ type Clock() =
         | "create" -> 
             sprintf "display clock"
         | "add" -> 
-            this.renderPropertyValue canonicalDataCase "add"
+            this.RenderPropertyValue canonicalDataCase "add"
             |> sprintf "add %s clock |> display" 
         | "equal" -> 
             "clock1 = clock2" 
@@ -250,7 +251,7 @@ type Dominoes() =
 type Etl() =
     inherit GeneratorExercise()
 
-    member __.formatMap<'TKey, 'TValue> (value: obj) =
+    member __.FormatMap<'TKey, 'TValue> (value: obj) =
         let input = value :?> JObject
         let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
         let formattedList =
@@ -263,9 +264,9 @@ type Etl() =
         else   
             sprintf "%s |> Map.ofList" formattedList
 
-    override this.RenderInput (_, _, value) = this.formatMap<int, List<char>> value
+    override this.RenderInput (_, _, value) = this.FormatMap<int, List<char>> value
 
-    override this.RenderExpected (_, _, value) = this.formatMap<char, int> value
+    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -322,6 +323,35 @@ type Grains() =
         match string value with
         | "-1" -> "Error \"Invalid input\""
         | x    -> sprintf "Ok %sUL" x
+
+type Grep() =
+    inherit GeneratorExercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+    override __.RenderExpected (_, _, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineListWithIndentation 3
+
+    override __.RenderSetup _ = renderPartialTemplate "Generators/GrepSetup" Map.empty<string, obj>
+
+    override __.RenderArrange canonicalDataCase =
+        base.RenderArrange canonicalDataCase @ [""; "createFiles() |> ignore"]
+
+    override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
+        match key with
+        | "expected" ->
+            match value :?> JArray |> Seq.isEmpty with 
+            | true  -> Some "string list"
+            | false -> None
+        | _ ->
+            base.IdentifierTypeAnnotation(canonicalDataCase, key, value)        
+
+    override __.AdditionalNamespaces = [typeof<System.IO.File>.Namespace]
+
+    override __.TestFileFormat = TestFileFormat.Class
 
 type Hamming() =
     inherit GeneratorExercise()
@@ -417,7 +447,7 @@ type Meetup() =
     override __.PropertiesUsedAsSutParameter _ = 
         ["year"; "month"; "dayofweek"; "week"]
 
-    override this.AdditionalNamespaces = [typeof<DateTime>.Namespace]
+    override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type Minesweeper() =
     inherit GeneratorExercise()
@@ -447,7 +477,7 @@ type NthPrime() =
 type NucleotideCount() =
     inherit GeneratorExercise()
 
-    member __.formatMap<'TKey, 'TValue> (value: obj) =
+    member __.FormatMap<'TKey, 'TValue> (value: obj) =
         match Option.ofNonError value with
         | None -> 
             "None"
@@ -464,7 +494,7 @@ type NucleotideCount() =
             else   
                 sprintf "%s |> Map.ofList |> Some" formattedList
 
-    override this.RenderExpected (_, _, value) = this.formatMap<char, int> value
+    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -544,7 +574,7 @@ type PascalsTriangle() =
             | false -> None    
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 
-    override __.ToTestMethodBodyAssertTemplate _ = "AssertEqual"
+    override __.TestMethodBodyAssertTemplate _ = "AssertEqual"
     
 type PerfectNumbers() =
     inherit GeneratorExercise()
@@ -770,7 +800,7 @@ type RunLengthEncoding() =
         | _ -> 
             base.RenderSut canonicalDataCase
 
-    override this.RenderTestMethodName canonicalDataCase =
+    override __.RenderTestMethodName canonicalDataCase =
         match canonicalDataCase.Property with
         | "consistency" -> 
             base.RenderTestMethodName canonicalDataCase

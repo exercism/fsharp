@@ -23,17 +23,24 @@ type GeneratorExercise() =
     abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
 
     // Convert canonical data to representation used when rendering
-    abstract member ToTestClass : CanonicalData -> TestClass
+    abstract member ToTestFile : CanonicalData -> TestFile
     abstract member ToTestMethod : int * CanonicalDataCase -> TestMethod
     abstract member ToTestMethodBody : CanonicalDataCase -> TestMethodBody  
     abstract member ToTestMethodBodyAssert : CanonicalDataCase -> TestMethodBodyAssert  
-    abstract member ToTestMethodBodyAssertTemplate : CanonicalDataCase -> string
+
+    // Determine the templates to use when rendering
+    abstract member TestFileTemplate : string
+    abstract member TestMethodTemplate : int * CanonicalDataCase -> string
+    abstract member TestMethodBodyTemplate : CanonicalDataCase -> string
+    abstract member TestMethodBodyAssertTemplate : CanonicalDataCase -> string
+    abstract member TestFileFormat: TestFileFormat
 
     // Rendering of canonical data
     abstract member Render : CanonicalData -> string
-    abstract member RenderTestMethod : int -> CanonicalDataCase -> string
+    abstract member RenderTestMethod : int * CanonicalDataCase -> string
     abstract member RenderTestMethodBody : CanonicalDataCase -> string
     abstract member RenderTestMethodName : CanonicalDataCase -> string
+    abstract member RenderSetup : CanonicalData -> string
 
     // Generic value/identifier rendering methods
     abstract member RenderValue : CanonicalDataCase * string * obj -> string
@@ -66,10 +73,10 @@ type GeneratorExercise() =
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
     member this.WriteToFile contents =
-        let testClassPath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
+        let testFilePath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
 
-        Directory.CreateDirectory(Path.GetDirectoryName(testClassPath)) |> ignore
-        File.WriteAllText(testClassPath, contents)
+        Directory.CreateDirectory(Path.GetDirectoryName(testFilePath)) |> ignore
+        File.WriteAllText(testFilePath, contents)
 
     member this.Regenerate(canonicalData) =
         canonicalData
@@ -94,13 +101,16 @@ type GeneratorExercise() =
 
     // Convert canonical data to representation used when rendering
 
-    default this.ToTestClass canonicalData =
+    default this.ToTestFile canonicalData =
+        let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
+
         { Version = canonicalData.Version              
           ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
-          Methods = List.mapi this.RenderTestMethod canonicalData.Cases }
+          Methods = List.mapi renderTestMethod canonicalData.Cases
+          Setup = this.RenderSetup canonicalData }
 
     default this.ToTestMethod (index, canonicalDataCase) =
         { Skip = index > 0
@@ -115,27 +125,50 @@ type GeneratorExercise() =
         { Sut = this.RenderSut canonicalDataCase
           Expected = this.RenderValueOrIdentifier (canonicalDataCase, "expected", canonicalDataCase.Expected) }
 
-    default this.ToTestMethodBodyAssertTemplate canonicalDataCase =
+    // Determine the templates to use when rendering
+
+    default this.TestFileTemplate = 
+        match this.TestFileFormat with
+        | Module -> "TestModule"
+        | Class  -> "TestClass"
+    
+    default this.TestMethodTemplate (_, _) =
+        match this.TestFileFormat with
+        | Module -> "TestFunction"
+        | Class  -> "TestMember"
+
+    default this.TestMethodBodyTemplate _ =
+        match this.TestFileFormat with
+        | Module -> "TestFunctionBody"
+        | Class  -> "TestMemberBody"
+
+    default this.TestMethodBodyAssertTemplate canonicalDataCase =
         match canonicalDataCase.Expected with
         | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
         | _ -> "AssertEqual"
+
+    default __.TestFileFormat = TestFileFormat.Module
 
     // Rendering of canonical data
 
     default this.Render canonicalData =
         canonicalData
-        |> this.ToTestClass
-        |> renderPartialTemplate "TestClass"
+        |> this.ToTestFile
+        |> renderPartialTemplate this.TestFileTemplate
 
-    default this.RenderTestMethod index canonicalDataCase = 
+    default this.RenderTestMethod (index, canonicalDataCase) = 
+        let template = this.TestMethodTemplate (index, canonicalDataCase)
+
         (index, canonicalDataCase)
         |> this.ToTestMethod 
-        |> renderPartialTemplate "TestMethod"
+        |> renderPartialTemplate template
 
     default this.RenderTestMethodBody canonicalDataCase = 
+        let template = this.TestMethodBodyTemplate canonicalDataCase
+
         canonicalDataCase
         |> this.ToTestMethodBody
-        |> renderPartialTemplate "TestMethodBody"
+        |> renderPartialTemplate template
 
     default this.RenderTestMethodName canonicalDataCase = 
         match this.UseFullMethodName canonicalDataCase with
@@ -144,7 +177,9 @@ type GeneratorExercise() =
         | true -> 
             canonicalDataCase.DescriptionPath
             |> String.concat " - "
-            |> String.upperCaseFirst    
+            |> String.upperCaseFirst   
+
+    default __.RenderSetup _ = ""
 
     // Generic value/identifier rendering methods
 
@@ -195,7 +230,7 @@ type GeneratorExercise() =
         |> List.choose renderArrangeProperty
 
     default this.RenderAssert canonicalDataCase = 
-        let template = this.ToTestMethodBodyAssertTemplate canonicalDataCase                
+        let template = this.TestMethodBodyAssertTemplate canonicalDataCase                
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert

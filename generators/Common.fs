@@ -31,13 +31,18 @@ type TestMethodBodyAssert =
     { Sut: string
       Expected: string }
 
-type TestClass = 
+type TestFile = 
     { Version: string
       ExerciseName: string
       TestModuleName: string
       TestedModuleName: string
       Namespaces: string list
-      Methods: string list }
+      Methods: string list
+      Setup: string }
+
+type TestFileFormat = 
+    | Module 
+    | Class
 
 module Logging =
     let setupLogger() =

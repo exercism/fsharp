@@ -15,7 +15,7 @@ type Flags =
     | Invert           = 8
     | MatchEntireLines = 16
 
-let parseFlag =
+let private parseFlag =
     function
     | "-n" -> Flags.PrintLineNumbers
     | "-l" -> Flags.PrintFileNames
@@ -24,20 +24,19 @@ let parseFlag =
     | "-x" -> Flags.MatchEntireLines
     | _    -> Flags.None
 
-let parseFlags (flags: string) =
-    flags.Split ' '
-    |> Array.fold (fun acc flag -> acc ||| parseFlag flag) Flags.None    
+let private parseFlags (flags: string list) =
+    List.fold (fun acc flag -> acc ||| parseFlag flag) Flags.None flags 
 
-let isMatch pattern (flags: Flags) =
+let private isMatch pattern (flags: Flags) =
     let pattern' = if flags.HasFlag Flags.MatchEntireLines then sprintf "^%s$" pattern else pattern
     let options  = if flags.HasFlag Flags.CaseInsensitive then RegexOptions.IgnoreCase else RegexOptions.None
     let regex = Regex(pattern', options)     
 
     fun text -> regex.IsMatch text <> flags.HasFlag Flags.Invert
 
-let mkLine file index text = { File = file; Number = index + 1; Text = text }
+let private mkLine file index text = { File = file; Number = index + 1; Text = text }
 
-let findMatchingLines pattern flags file  = 
+let private findMatchingLines pattern flags file  = 
     let lineMatches line = isMatch pattern flags line.Text
     
     file
@@ -45,36 +44,33 @@ let findMatchingLines pattern flags file  =
     |> Seq.mapi (mkLine file)
     |> Seq.filter lineMatches    
 
-let formatMatchingFile file = sprintf "%s\n" file
-
-let formatMatchingFiles pattern  (flags: Flags) files  =    
+let private formatMatchingFiles pattern  (flags: Flags) files  =    
     let hasMatchingLine file = findMatchingLines pattern flags file |> Seq.isEmpty |> not
 
     files  
     |> Seq.filter hasMatchingLine
-    |> Seq.map formatMatchingFile
-    |> String.Concat
+    |> Seq.toList
 
-let formatMatchingLine (flags: Flags) files line =   
+let private formatMatchingLine (flags: Flags) files line =   
     let printLineNumbers = flags.HasFlag Flags.PrintLineNumbers
     let printFileName = List.length files > 1
 
     match printLineNumbers, printFileName with
-    | true,  true  -> sprintf "%s:%i:%s\n" line.File line.Number line.Text
-    | true,  false -> sprintf    "%i:%s\n" line.Number line.Text
-    | false, true  -> sprintf    "%s:%s\n" line.File line.Text
-    | false, false -> sprintf       "%s\n" line.Text
+    | true,  true  -> sprintf "%s:%i:%s" line.File line.Number line.Text
+    | true,  false -> sprintf    "%i:%s" line.Number line.Text
+    | false, true  -> sprintf    "%s:%s" line.File line.Text
+    | false, false -> sprintf       "%s" line.Text
 
-let formatMatchingLines pattern (flags: Flags) files = 
+let private formatMatchingLines pattern (flags: Flags) files = 
     let lineMatches = findMatchingLines pattern flags
     let formatLine = formatMatchingLine flags files
 
     files  
     |> Seq.collect lineMatches
     |> Seq.map formatLine
-    |> String.Concat
+    |> Seq.toList
 
-let grep pattern flagArguments files =
+let grep files flagArguments pattern =
     let flags = parseFlags flagArguments
 
     match flags.HasFlag Flags.PrintFileNames with

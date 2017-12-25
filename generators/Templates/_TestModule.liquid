@@ -12,8 +12,6 @@ open {{ TestedModuleName }}
 {{ Setup }}
 {%- endif -%}
 
-type {{ TestModuleName }}() =
-
-    {%- for method in Methods -%}
-    {{ method }}
-    {%- endfor -%}
+{%- for method in Methods -%}
+{{ method }}
+{%- endfor -%}
