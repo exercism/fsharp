@@ -19,12 +19,12 @@ let fromBase b nums =
 
     loop 0 nums
 
-let rebase inB inDigits outB =
-    match inB < 2 || outB < 2 with
+let rebase digits inputBase outputBase =
+    match inputBase < 2 || outputBase < 2 with
     | true ->
         None
     | false ->
-        inDigits
+        digits
         |> List.skipWhile ((=) 0)
-        |> fromBase inB
-        |> Option.bind (toBase outB)
+        |> fromBase inputBase
+        |> Option.bind (toBase outputBase)

@@ -1,34 +1,34 @@
 ﻿module RobotSimulator
 
-type Bearing = North | East | South | West
-type Coordinate = int * int
+type Direction = North | East | South | West
+type Position = int * int
 
-type Robot = { bearing: Bearing; coordinate: Coordinate }
+type Robot = { direction: Direction; position: Position }
 
-let createRobot bearing coordinate = { bearing = bearing; coordinate = coordinate }
+let create bearing position = { direction = bearing; position = position }
 
 let turnLeft robot = 
-    match robot.bearing with
-    | North -> { robot with bearing = West  }
-    | East  -> { robot with bearing = North }
-    | South -> { robot with bearing = East  }
-    | West  -> { robot with bearing = South }
+    match robot.direction with
+    | North -> { robot with direction = West  }
+    | East  -> { robot with direction = North }
+    | South -> { robot with direction = East  }
+    | West  -> { robot with direction = South }
 
 let turnRight robot = 
-    match robot.bearing with
-    | North -> { robot with bearing = East  }
-    | East  -> { robot with bearing = South }
-    | South -> { robot with bearing = West  }
-    | West  -> { robot with bearing = North }
+    match robot.direction with
+    | North -> { robot with direction = East  }
+    | East  -> { robot with direction = South }
+    | South -> { robot with direction = West  }
+    | West  -> { robot with direction = North }
 
 let advance robot = 
-    let (x, y) = robot.coordinate
+    let (x, y) = robot.position
 
-    match robot.bearing with
-    | North -> { robot with coordinate = (x    , y + 1) }
-    | East  -> { robot with coordinate = (x + 1, y    ) }
-    | South -> { robot with coordinate = (x    , y - 1) }
-    | West  -> { robot with coordinate = (x - 1, y    ) }
+    match robot.direction with
+    | North -> { robot with position = (x    , y + 1) }
+    | East  -> { robot with position = (x + 1, y    ) }
+    | South -> { robot with position = (x    , y - 1) }
+    | West  -> { robot with position = (x - 1, y    ) }
     
 let applyInstruction robot instruction =
     match instruction with
@@ -37,4 +37,4 @@ let applyInstruction robot instruction =
     | 'A' -> advance robot
     | _   -> failwith "Invalid instruction"
 
-let simulate robot instructions = Seq.fold applyInstruction robot instructions
+let instructions instructions' robot = Seq.fold applyInstruction robot instructions'

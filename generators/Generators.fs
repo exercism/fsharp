@@ -3,14 +3,12 @@ module Generators.Generators
 open System
 open System.Globalization
 open Newtonsoft.Json.Linq
+open CanonicalData
 open Formatting
 open Rendering
 open Exercise
 
 type Acronym() =
-    inherit GeneratorExercise()
-
-type AtbashCipher() =
     inherit GeneratorExercise()
 
 type AllYourBase() =    
@@ -31,12 +29,13 @@ type Allergies() =
     override this.RenderTestMethodBody canonicalDataCase =
         if (canonicalDataCase.Property = "allergicTo") then
             let renderAssertion (jToken: JToken) =
-                let updatedProperties =
-                    canonicalDataCase.Properties
+                let updatedInput =
+                    canonicalDataCase.Input
                     |> Map.add "substance" (jToken.["substance"] |> toAllergen |> box)
-                    |> Map.add "expected" (jToken.["result"].ToObject<bool>() |> box)
 
-                { canonicalDataCase with Properties = updatedProperties }                
+                { canonicalDataCase with 
+                    Input = updatedInput
+                    Expected = jToken.["result"].ToObject<bool>() |> box }
                 |> this.RenderAssert
                 |> indent 1
 
@@ -90,18 +89,15 @@ type Anagram() =
 type ArmstrongNumbers() =
     inherit GeneratorExercise()
 
-    override __.RenderInput (_, _, value) =
-        (value :?> JToken).Value("number") 
-        |> formatValue
+type AtbashCipher() =
+    inherit GeneratorExercise()
 
 type BeerSong() =
     inherit GeneratorExercise()
 
-    override __.PropertiesUsedAsSutParameter _ = ["startBottles"; "takeDown"]
-
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, key, value) =
+    override __.RenderExpected (_, _, value) =
         (value :?> JArray)
         |> normalizeJArray
         |> Seq.map formatValue
@@ -148,10 +144,10 @@ type Change() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
-    override __.IdentifierTypeAnnotation (canonicalDataCase, key, _) = 
-        match key with 
-        | "expected" -> 
-            match canonicalDataCase.Properties.["target"] :?> int64 with
+    override __.IdentifierTypeAnnotation (canonicalDataCase, key, _) =
+        match key with
+        | "expected" ->
+            match canonicalDataCase.Input.["target"] :?> int64 with
             | 0L -> Some "int list option"
             | _  -> None
         | _ -> None
@@ -329,6 +325,9 @@ type Etl() =
 
     override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
 
+    override __.MapCanonicalDataCaseInput (canonicalDataCase, _) = 
+        Map.empty |> Map.add "lettersByScore" (canonicalDataCase.Properties.["input"])
+
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type FoodChain() =
@@ -487,37 +486,36 @@ type Markdown() =
 type Meetup() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (canonicalDataCase, _, _) =
-        let year  = canonicalDataCase.Properties.["year"] :?> int64 |> int
-        let month = canonicalDataCase.Properties.["month"] :?> int64 |> int
-        let day   = canonicalDataCase.Properties.["dayofmonth"] :?> int64 |> int
-        DateTime(year, month, day) |> formatDateTime |> parenthesize
+    override __.RenderExpected (_, _, value) =
+        DateTime.Parse(string value) 
+        |> formatDateTime 
+        |> parenthesize
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
         | "dayofweek" -> 
-            sprintf "DayOfWeek.%s" (string canonicalDataCase.Properties.["dayofweek"])
+            sprintf "DayOfWeek.%s" (string canonicalDataCase.Input.["dayofweek"])
         | "week" -> 
-            sprintf "Schedule.%s" (string canonicalDataCase.Properties.["week"] |> String.upperCaseFirst)
+            sprintf "Week.%s" (string canonicalDataCase.Input.["week"] |> String.upperCaseFirst)
         | _ -> 
             base.RenderInput (canonicalDataCase, key, value)
 
-    override __.MapCanonicalDataCaseProperties (_, properties) =
-        properties |> Map.add "expected" null // Ensure that the "expected" key exists
-
-    override __.PropertiesUsedAsSutParameter _ = 
-        ["year"; "month"; "dayofweek"; "week"]
+    override __.PropertiesUsedAsSutParameter _ = ["year"; "month"; "week"; "dayofweek"]
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type Minesweeper() =
     inherit GeneratorExercise()
 
-    override __.RenderValueWithoutIdentifier (_, _, value) =        
+    let renderValue (value: obj) = 
         value :?> JArray
         |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
+
+    override __.RenderInput (_, _, value) = renderValue value
+
+    override __.RenderExpected (_, _, value) = renderValue value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -691,10 +689,10 @@ type Proverb() =
 type QueenAttack() =
     inherit GeneratorExercise()
 
-    override __.MapCanonicalDataCaseProperty (canonicalDataCase, key, value) =
-        match canonicalDataCase.Property, key, value with
-        | "create", "expected", _ -> value :?> int64 <> -1L |> box
-        | _ -> base.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)
+    override __.MapCanonicalDataCaseExpected (canonicalDataCase, key, value) =
+        match canonicalDataCase.Property with
+        | "create" -> value :?> int64 <> -1L |> box
+        | _ -> base.MapCanonicalDataCaseInputProperty (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
         let parsePositionTuple (tupleValue: obj) =
@@ -828,94 +826,61 @@ type ReverseString() =
 type RobotSimulator() =
     inherit GeneratorExercise()
 
-    let resultIdentifierName = "actual"
+    let parseInput (input: obj) = 
+        let token = input :?> JToken
+        let direction = token.SelectToken "direction" |> Option.ofObj
+        let position  = token.SelectToken "position"  |> Option.ofObj
+        (direction, position)
 
-    override __.PropertiesWithIdentifier _ = ["robot"; "property"; "expected"]
+    let renderDirection (value: JToken) = 
+        value.ToObject<string>() |> String.upperCaseFirst
 
-    member private __.RenderDirection (value: JToken) = 
-        sprintf "%s" (value.ToObject<string>() |> String.upperCaseFirst)  
-
-    member private __.RenderCoords (coords: JToken) = 
-        (coords.["x"].ToObject<int>(), coords.["y"].ToObject<int>()) 
+    let renderPosition (position: JToken) = 
+        (position.["x"].ToObject<int>(), position.["y"].ToObject<int>()) 
         |> formatValue
 
-    member private this.DefineRobot (direction: JToken) (coords: JToken) = 
-        sprintf "createRobot %s %s" (this.RenderDirection direction) (this.RenderCoords coords)
+    let renderRobot direction position = 
+        sprintf "create %s %s" (renderDirection direction) (renderPosition position)
 
-    member private __.GetRobotProperties (value : JToken) = 
-        value.SelectToken("direction"), value.SelectToken("position")
+    let renderInput input = 
+        match input with
+        | None,           Some position -> renderPosition position
+        | Some direction, None          -> renderDirection direction
+        | Some direction, Some position -> renderRobot direction position
+        | None,           None          -> failwith "No direction or position"
 
-    override __.RenderArrange canonicalDataCase =
-        // one identifier may be empty if we only checking created object
-        // we need to filter out this empty line
-        base.RenderArrange canonicalDataCase
-        |> List.choose (
-            function
-            | "" -> None
-            | v -> Some v
-        )
+    override __.PropertiesWithIdentifier canonicalDataCase =
+        match parseInput canonicalDataCase.Expected with
+        | None,   Some _ -> ["robot"; "sut"] 
+        | Some _, None   -> ["robot"; "sut"]
+        | Some _, Some _ -> ["robot"; "expected"]
+        | None,   None   -> ["robot"; "sut"; "expected"]
 
-    override this.RenderValueWithoutIdentifier (_, key, value) = 
+    override __.ToTestMethodBodyAssert canonicalDataCase =
+        let testMethodBodyAssert = base.ToTestMethodBodyAssert(canonicalDataCase)
+
+        match parseInput canonicalDataCase.Expected with
+        | None, Some _ -> { testMethodBodyAssert with Sut = sprintf "%s.position" testMethodBodyAssert.Sut }
+        | Some _, None -> { testMethodBodyAssert with Sut = sprintf "%s.direction" testMethodBodyAssert.Sut }
+        | _ -> testMethodBodyAssert
+
+    override __.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
         match key with
-        | "robot" ->
-            let input = value :?> JToken
-            this.DefineRobot ("direction" |> input.SelectToken) ("position" |> input.SelectToken)
-        | "expected" -> 
-            // here we may need to render full robot object
-            // or just coordinate/direction values
-            let input = value :?> JToken
-            let direction, position = this.GetRobotProperties input
-            match isNull direction, isNull position with
-            | true, false ->
-                this.RenderCoords position
-            | false, true ->
-                this.RenderDirection direction
-            | false, false ->
-                this.DefineRobot ("direction" |> input.SelectToken) ("position" |> input.SelectToken)
-            | true, true -> 
-                ""
-        | _ -> ""
+        | "robot"    -> value |> parseInput |> renderInput
+        | "expected" -> value |> parseInput |> renderInput
+        | _ -> base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
 
-    override __.RenderValueWithIdentifier (canonicalDataCase, key, value) = 
-        match key with 
-        | "property" -> 
-            let action = value :?> string
-            match action with 
-            | "instructions" -> 
-                 sprintf "let %s = simulate robot %s" resultIdentifierName (canonicalDataCase.Properties.["instructions"] |> formatValue)
-            | "create" -> 
-                ""
-            | _ -> 
-                 sprintf "let %s = %s robot" resultIdentifierName action
-            
-        | _ -> 
-            base.RenderValueWithIdentifier (canonicalDataCase, key, value)
-
-    override this.RenderSut canonicalDataCase = 
+    override __.RenderSut canonicalDataCase = 
         match canonicalDataCase.Property with
-        | "create" -> 
-            "robot"
-        | _ -> 
-            // depends on expected value we may need to 
-            // check whole robot or just one of its' properties
-            let direction, position = this.GetRobotProperties (canonicalDataCase.Properties.["expected"] :?> JToken)
-            match isNull direction, isNull position with
-            | true, false -> 
-                sprintf "%s.coordinate" resultIdentifierName
-            | false, true ->
-                sprintf "%s.bearing" resultIdentifierName
-            | true, true -> 
-                resultIdentifierName
-            | false, false -> 
-                match canonicalDataCase.Property with
-                | "create" -> "robot"
-                | _ -> resultIdentifierName
-    
+        | "create" -> "robot"
+        | _ -> base.RenderSut canonicalDataCase
+
     override __.RenderTestMethodName canonicalDataCase =
-         // avoid duplicated method names
-         // for this generator it is preferable
-         // because useFullMethodName leads to very long names
-         sprintf "%s - %s" canonicalDataCase.Property (canonicalDataCase.Description |> String.upperCaseFirst)
+        let testMethodName = base.RenderTestMethodName canonicalDataCase
+
+        match canonicalDataCase.Property with
+        | "create" | "instructions" -> testMethodName
+        | _ -> sprintf "%s %s" canonicalDataCase.Property (String.lowerCaseFirst testMethodName)
 
 type RotationalCipher() =
     inherit GeneratorExercise()

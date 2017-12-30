@@ -9,6 +9,23 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Options
 
+type CanonicalDataCase = 
+    { Input: Map<string, obj>
+      Expected: obj
+      Property: string
+      Properties: Map<string, obj>
+      Description: string
+      DescriptionPath: string list }
+
+type CanonicalData = 
+    { Exercise: string
+      Version: string
+      Cases: CanonicalDataCase list }
+
+type CanonicalDataFormat = 
+    | Old
+    | New
+
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
 let [<Literal>] private ProblemSpecificationsBranch = "master";
 let [<Literal>] private ProblemSpecificationsRemote = "origin";
@@ -46,7 +63,7 @@ let private downloadData options =
 type CanonicalDataConverter() =
     inherit JsonConverter()
 
-    let createCanonicalDataCasePropertiesFromJToken (jToken: JToken) =
+    let jTokenToMap (jToken: JToken) =
         jToken.ToObject<IDictionary<string, obj>>()
         |> Dict.toMap
 
@@ -60,8 +77,32 @@ type CanonicalDataConverter() =
         |> Json.parentsAndSelf
         |> List.choose descriptionFromJToken
 
+    let createInputFromJTokenInNewFormat (properties: Map<string, obj>) = 
+        (properties.["input"] :?> JObject)
+        |> jTokenToMap
+
+    let createInputFromJTokenInOldFormat (properties: Map<string, obj>) = 
+        properties
+        |> Map.filter (fun key _ -> List.contains key ["expected"; "property"; "description"; "comments"] |> not)
+
+    let detectCanonicalDataFormatFromJToken (properties: Map<string, obj>) = 
+        match properties.ContainsKey "input" && properties.["input"] :? JObject with
+        | true  -> New
+        | false -> Old
+
+    let createInputFromJToken (properties: Map<string, obj>) = 
+        match detectCanonicalDataFormatFromJToken properties with
+        | Old -> createInputFromJTokenInOldFormat properties
+        | New -> createInputFromJTokenInNewFormat properties
+
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
-        { Properties = createCanonicalDataCasePropertiesFromJToken jToken
+        let properties = jTokenToMap jToken
+
+        { Input = createInputFromJToken properties
+          Expected = properties.["expected"]
+          Property = string properties.["property"]
+          Properties = properties
+          Description = string properties.["description"]
           DescriptionPath = createDescriptionPathFromJToken jToken }
 
     let createCanonicalDataCasesFromJToken (jToken: JToken) =  
@@ -83,7 +124,8 @@ type CanonicalDataConverter() =
     override __.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
 let private convertCanonicalData canonicalDataContents = 
-    JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, CanonicalDataConverter())     
+    let converter = CanonicalDataConverter()
+    JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, converter)
 
 let private canonicalDataFile options exercise = 
     Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
@@ -98,4 +140,8 @@ let hasCanonicalData options exercise =
 
 let parseCanonicalData options = 
     downloadData options 
-    readCanonicalData options >> convertCanonicalData
+
+    fun exercise ->
+        exercise 
+        |> readCanonicalData options 
+        |> convertCanonicalData

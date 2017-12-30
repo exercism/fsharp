@@ -1,11 +1,11 @@
 ﻿module RobotSimulator
 
-type Bearing = North | East | South | West
-type Coordinate = int * int
+type Direction = North | East | South | West
+type Position = int * int
 
-type Robot = { bearing: Bearing; coordinate: Coordinate }
+type Robot = { direction: Direction; position: Position }
 
-let createRobot bearing coordinate = failwith "You need to implement this function."
+let create direction position = failwith "You need to implement this function."
 
 let turnLeft robot = failwith "You need to implement this function."
 
@@ -13,4 +13,4 @@ let turnRight robot = failwith "You need to implement this function."
 
 let advance robot = failwith "You need to implement this function."
 
-let simulate robot instructions = failwith "You need to implement this function."
+let instructions instructions' robot = failwith "You need to implement this function."

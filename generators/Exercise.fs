@@ -19,8 +19,9 @@ type GeneratorExercise() =
     // Allow changes in canonical data
     abstract member MapCanonicalData : CanonicalData -> CanonicalData
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
-    abstract member MapCanonicalDataCaseProperties : CanonicalDataCase * Map<string, obj> -> Map<string, obj>
-    abstract member MapCanonicalDataCaseProperty : CanonicalDataCase * string * obj -> obj
+    abstract member MapCanonicalDataCaseInput : CanonicalDataCase * Map<string, obj> -> Map<string, obj>
+    abstract member MapCanonicalDataCaseInputProperty : CanonicalDataCase * string * obj -> obj
+    abstract member MapCanonicalDataCaseExpected : CanonicalDataCase * string * obj -> obj
 
     // Convert canonical data to representation used when rendering
     abstract member ToTestFile : CanonicalData -> TestFile
@@ -91,13 +92,16 @@ type GeneratorExercise() =
 
     default this.MapCanonicalDataCase canonicalDataCase =
         { canonicalDataCase with 
-            Properties = this.MapCanonicalDataCaseProperties (canonicalDataCase, canonicalDataCase.Properties) }
+            Input = this.MapCanonicalDataCaseInput (canonicalDataCase, canonicalDataCase.Input)
+            Expected = this.MapCanonicalDataCaseExpected (canonicalDataCase, "expected", canonicalDataCase.Expected) }
 
-    default this.MapCanonicalDataCaseProperties (canonicalDataCase, properties) =
+    default this.MapCanonicalDataCaseInput (canonicalDataCase, properties) =
         properties
-        |> Map.map (fun key value -> this.MapCanonicalDataCaseProperty (canonicalDataCase, key, value)) 
+        |> Map.map (fun key value -> this.MapCanonicalDataCaseInputProperty (canonicalDataCase, key, value)) 
 
-    default __.MapCanonicalDataCaseProperty (_, _, value) = value
+    default __.MapCanonicalDataCaseInputProperty (_, _, value) = value
+
+    default __.MapCanonicalDataCaseExpected (_, _, value) = value
 
     // Convert canonical data to representation used when rendering
 
@@ -122,7 +126,7 @@ type GeneratorExercise() =
           Assert = this.RenderAssert canonicalDataCase }
 
     default this.ToTestMethodBodyAssert canonicalDataCase =         
-        { Sut = this.RenderSut canonicalDataCase
+        { Sut = this.RenderValueOrIdentifier (canonicalDataCase, "sut", canonicalDataCase.Expected)
           Expected = this.RenderValueOrIdentifier (canonicalDataCase, "expected", canonicalDataCase.Expected) }
 
     // Determine the templates to use when rendering
@@ -195,6 +199,7 @@ type GeneratorExercise() =
     default this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
         match key with
         | "expected" -> this.RenderExpected (canonicalDataCase, key, value)
+        | "sut" -> this.RenderSut canonicalDataCase
         | _  -> this.RenderInput (canonicalDataCase, key, value)
 
     default this.RenderValueWithIdentifier (canonicalDataCase, key, value) = 
@@ -220,10 +225,22 @@ type GeneratorExercise() =
     default this.RenderInput (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
 
     default this.RenderArrange canonicalDataCase =
-        let renderArrangeProperty property: string option = 
-            match Map.tryFind property canonicalDataCase.Properties with
+        let renderExpected prop =
+            this.RenderValueWithIdentifier (canonicalDataCase, prop, canonicalDataCase.Expected) |> Some
+
+        let renderSut prop =
+            this.RenderValueWithIdentifier (canonicalDataCase, prop, canonicalDataCase.Expected) |> Some
+
+        let renderInput prop =
+            match Map.tryFind prop canonicalDataCase.Input with
             | None -> None
-            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, property, value))
+            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, prop, value))
+
+        let renderArrangeProperty prop: string option = 
+            match prop with
+            | "expected" -> renderExpected prop
+            | "sut" -> renderSut prop
+            | _ -> renderInput prop
 
         canonicalDataCase
         |> this.PropertiesWithIdentifier 
@@ -238,12 +255,12 @@ type GeneratorExercise() =
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
-        let property = this.RenderSutProperty canonicalDataCase
-        property :: parameters |> String.concat " "
+        let prop = this.RenderSutProperty canonicalDataCase
+        prop :: parameters |> String.concat " "
 
     default this.RenderSutParameters canonicalDataCase =
         let sutParameterProperties = this.PropertiesUsedAsSutParameter canonicalDataCase
-        let renderSutParameter key = this.RenderSutParameter (canonicalDataCase, key, Map.find key canonicalDataCase.Properties)
+        let renderSutParameter key = this.RenderSutParameter (canonicalDataCase, key, Map.find key canonicalDataCase.Input)
 
         sutParameterProperties
         |> List.map renderSutParameter
@@ -257,10 +274,9 @@ type GeneratorExercise() =
         List.append (this.PropertiesUsedAsSutParameter canonicalDataCase) ["expected"]
 
     default __.PropertiesUsedAsSutParameter canonicalDataCase = 
-        canonicalDataCase.Properties
+        canonicalDataCase.Input
         |> Map.toList
         |> List.map fst
-        |> List.except ["expected"; "property"; "description"; "comments"]
     
     // Utility methods to customize rendered output
 
