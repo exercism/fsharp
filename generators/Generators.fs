@@ -656,6 +656,82 @@ type RailFenceCipher() =
 type Raindrops() =
     inherit GeneratorExercise()
 
+type React() = 
+    inherit GeneratorExercise()
+
+    override __.PropertiesWithIdentifier _ = []
+
+    member private __.RenderCells canonicalDataCase = 
+        let reactorVar = sprintf "let %s = new %s()" "reactor" "Reactor"
+        let cellVars = 
+            canonicalDataCase.Properties.["cells"] :?> JArray
+            |> Seq.map (fun (cellValue: JToken) -> 
+                let cell = cellValue :?> JObject
+                let cellName = cell.["name"].ToObject<string>()
+                match cell.["type"].ToObject<string>() with
+                | "compute" ->
+                    let funBody = 
+                        cell.["compute_function"].ToObject<string>().Replace ("inputs", "values.")
+                    let inputParams = 
+                        (cell.["inputs"].ToObject<seq<string>>() |> formatList)
+                    
+                    sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
+                | "input" -> 
+                    let initialValue = cell.["initial_value"].ToObject<int64>()
+                    sprintf "let %s = reactor.createInputCell %s" cellName (formatValue initialValue)
+                | _ -> ""
+            )
+            |> Seq.toList
+        [ reactorVar ] @ cellVars
+     
+    member private __.RenderOperations canonicalDataCase = 
+        canonicalDataCase.Properties.["operations"] :?> JArray
+        // we can generate more than 1 line per operation
+        // so we need to flatten results here
+        // collect does it automatically for us 
+        // and every operation should emit seq<string>
+        |> Seq.collect (fun (opToken: JToken) -> 
+            let op = opToken :?> JObject
+            match op.["type"].ToObject<string>() with
+            | "expect_cell_value" -> seq { 
+                let cellName = op.["cell"].ToObject<string>()
+                let expectedValue = op.["value"].ToObject<int>()
+                yield sprintf "%s.Value |> should equal %i" cellName expectedValue }
+            | "set_value" -> seq { 
+                let cellName = op.["cell"].ToObject<string>()
+                let cellValue = op.["value"].ToObject<int>()
+                yield sprintf "%s.Value <- %i" cellName cellValue }
+            | "add_callback" -> seq { 
+                let callbackName = op.["name"].ToObject<string>()
+                let cellName = op.["cell"].ToObject<string>() 
+                yield sprintf "let mutable %s = []" callbackName 
+                yield sprintf "let %sHandler = Handler<int>(fun _ value -> %s <- %s @ [value])" callbackName callbackName callbackName
+                yield sprintf "%s.Changed.AddHandler %sHandler" cellName callbackName }
+            | "expect_callback_values" -> seq {
+                let callbackName = op.["callback"].ToObject<string>()
+                let callbackValues = op.["values"].ToObject<string[]>()
+                if callbackValues.Length = 0 then
+                    yield sprintf "%s |> should equal List.empty<int>" callbackName
+                else
+                    yield sprintf "%s |> should equal %s" callbackName (formatList callbackValues) }
+            | "remove_callback" -> seq {
+                let cellName = op.["cell"].ToObject<string>()
+                let callbackName = op.["name"].ToObject<string>()
+                yield sprintf "%s.Changed.RemoveHandler %sHandler" cellName callbackName }
+            | _ -> seq { yield "" }
+        )
+        |> Seq.toList
+
+    override __.RenderAssert _ = 
+        // skip this method 
+        // because for this task we have multiple assert statements
+        ""
+
+    override this.RenderArrange canonicalDataCase =
+        let initialVars = this.RenderCells canonicalDataCase
+        let operations = this.RenderOperations canonicalDataCase
+        initialVars @ operations
+
 type Rectangles() = 
     inherit GeneratorExercise()
 

@@ -1,98 +1,161 @@
+// This file was auto-generated based on version 1.0.0 of the canonical data.
+
 module ReactTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open React
 
 [<Fact>]
-let ``Setting the value of an input cell changes the observable value`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1
-
-  inputCell1.Value |> should equal 1
-  inputCell1.Value <- 2
-  inputCell1.Value |> should equal 2
+let ``Input cells have a value`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 10
+    input.Value |> should equal 10
+    
 
 [<Fact(Skip = "Remove to run test")>]
-let ``The value of a compute is determined by the value of the dependencies`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1    
-  let computeCell1 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] + 1)
+let ``An input cell's value can be set`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 4
+    input.Value <- 20
+    input.Value |> should equal 20
+    
 
-  computeCell1.Value |> should equal 2  
-  inputCell1.Value <- 2
-  computeCell1.Value |> should equal 3
+[<Fact(Skip = "Remove to run test")>]
+let ``Compute cells calculate initial value`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    output.Value |> should equal 2
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Compute cells take inputs in the right order`` () =
+    let reactor = new Reactor()
+    let one = reactor.createInputCell 1
+    let two = reactor.createInputCell 2
+    let output = reactor.createComputeCell [one; two] (fun values -> values.[0] + values.[1] * 10)
+    output.Value |> should equal 21
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Compute cells update value when dependencies are changed`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    input.Value <- 3
+    output.Value |> should equal 4
+    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Compute cells can depend on other compute cells`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1
-  let computeCell1 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] + 1)
-  let computeCell2 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] - 1)
-  let computeCell3 = reactor.createComputeCell [computeCell1; computeCell2] (fun values -> values.[0] * values.[1])
-  
-  computeCell3.Value |> should equal 0  
-  inputCell1.Value <- 3
-  computeCell3.Value |> should equal 8
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Compute cells can have callbacks`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1
-  let computeCell1 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] + 1)
-  let mutable observed = []
-  computeCell1.Changed.Add(fun value -> observed <- observed @ [value]) |> ignore
-  
-  observed |> should be Empty
-  inputCell1.Value <- 2
-  observed |> should equal [3]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Callbacks only trigger on change`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1
-  let computecell1 = reactor.createComputeCell [inputCell1] (fun values -> if values.[0] > 2 then values.[0] + 1 else 2)
-  let mutable observerCalled = 0
-  computecell1.Changed.Add(fun value -> observerCalled <- observerCalled + 1) |> ignore
-
-  inputCell1.Value <- 1
-  observerCalled |> should equal 0
-  inputCell1.Value <- 2
-  observerCalled |> should equal 0
-  inputCell1.Value <- 3
-  observerCalled |> should equal 1
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Callbacks can be removed`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1
-  let computeCell1 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] + 1)
-  let mutable observed1 = []
-  let mutable observed2 = []
-
-  let changedHandler1 = Handler<int>(fun _ value -> observed1 <- observed1 @ [value])
-  computeCell1.Changed.AddHandler changedHandler1
-  computeCell1.Changed.Add(fun value -> observed2 <- observed2 @ [value]) |> ignore
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let times_two = reactor.createComputeCell [input] (fun values -> values.[0] * 2)
+    let times_thirty = reactor.createComputeCell [input] (fun values -> values.[0] * 30)
+    let output = reactor.createComputeCell [times_two; times_thirty] (fun values -> values.[0] + values.[1])
+    output.Value |> should equal 32
+    input.Value <- 3
+    output.Value |> should equal 96
     
-  inputCell1.Value <- 2
-  observed1 |> should equal [3]  
-  observed2 |> should equal [3]
-
-  computeCell1.Changed.RemoveHandler changedHandler1
-  inputCell1.Value <- 3
-  observed1 |> should equal [3]  
-  observed2 |> should equal [3; 4]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Callbacks should only be called once even if multiple dependencies have changed`` () =
-  let reactor = new Reactor()
-  let inputCell1 = reactor.createInputCell 1
-  let computeCell1 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] + 1)
-  let computeCell2 = reactor.createComputeCell [inputCell1] (fun values -> values.[0] - 1)
-  let computeCell3 = reactor.createComputeCell [computeCell2] (fun values -> values.[0] - 1)
-  let computeCell4 = reactor.createComputeCell [computeCell1; computeCell3] (fun values -> values.[0] * values.[1])
-  let mutable changed4 = 0
-  computeCell4.Changed.Add(fun value -> changed4 <- changed4 + 1) |> ignore
-  inputCell1.Value <- 3
-  changed4 |> should equal 1  
+let ``Compute cells fire callbacks`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- callback1 @ [value])
+    output.Changed.AddHandler callback1Handler
+    input.Value <- 3
+    callback1 |> should equal [4]
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Callback cells only fire on change`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let output = reactor.createComputeCell [input] (fun values -> if values.[0] < 3 then 111 else 222)
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- callback1 @ [value])
+    output.Changed.AddHandler callback1Handler
+    input.Value <- 2
+    callback1 |> should equal List.empty<int>
+    input.Value <- 4
+    callback1 |> should equal [222]
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Callbacks can be added and removed`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 11
+    let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- callback1 @ [value])
+    output.Changed.AddHandler callback1Handler
+    let mutable callback2 = []
+    let callback2Handler = Handler<int>(fun _ value -> callback2 <- callback2 @ [value])
+    output.Changed.AddHandler callback2Handler
+    input.Value <- 31
+    output.Changed.RemoveHandler callback1Handler
+    let mutable callback3 = []
+    let callback3Handler = Handler<int>(fun _ value -> callback3 <- callback3 @ [value])
+    output.Changed.AddHandler callback3Handler
+    input.Value <- 41
+    callback1 |> should equal [32]
+    callback2 |> should equal [32; 42]
+    callback3 |> should equal [42]
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Removing a callback multiple times doesn't interfere with other callbacks`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- callback1 @ [value])
+    output.Changed.AddHandler callback1Handler
+    let mutable callback2 = []
+    let callback2Handler = Handler<int>(fun _ value -> callback2 <- callback2 @ [value])
+    output.Changed.AddHandler callback2Handler
+    output.Changed.RemoveHandler callback1Handler
+    output.Changed.RemoveHandler callback1Handler
+    output.Changed.RemoveHandler callback1Handler
+    input.Value <- 2
+    callback1 |> should equal List.empty<int>
+    callback2 |> should equal [3]
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Callbacks should only be called once even if multiple dependencies change`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let plus_one = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    let minus_one1 = reactor.createComputeCell [input] (fun values -> values.[0] - 1)
+    let minus_one2 = reactor.createComputeCell [minus_one1] (fun values -> values.[0] - 1)
+    let output = reactor.createComputeCell [plus_one; minus_one2] (fun values -> values.[0] * values.[1])
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- callback1 @ [value])
+    output.Changed.AddHandler callback1Handler
+    input.Value <- 4
+    callback1 |> should equal [10]
+    
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Callbacks should not be called if dependencies change but output value doesn't change`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let plus_one = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    let minus_one = reactor.createComputeCell [input] (fun values -> values.[0] - 1)
+    let always_two = reactor.createComputeCell [plus_one; minus_one] (fun values -> values.[0] - values.[1])
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- callback1 @ [value])
+    always_two.Changed.AddHandler callback1Handler
+    input.Value <- 2
+    input.Value <- 3
+    input.Value <- 4
+    input.Value <- 5
+    callback1 |> should equal List.empty<int>
+    
+
