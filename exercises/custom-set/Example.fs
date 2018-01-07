@@ -24,6 +24,8 @@ let intersection left right = left.items |> List.filter (fun x -> List.contains 
 
 let difference left right = left.items |> List.filter (fun x -> List.contains x right.items |> not) |> fromList
 
+let isEqualTo left right = (size left = size right) && (isEmpty (difference left right))
+
 let isSubsetOf left right = left.items |> List.forall (fun x -> List.contains x right.items)
 
 let isDisjointFrom left right = left.items |> List.exists (fun x -> List.contains x right.items) |> not

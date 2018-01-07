@@ -227,6 +227,67 @@ type CollatzConjecture() =
 type CryptoSquare() =
     inherit GeneratorExercise()
 
+type CustomSet() = 
+    inherit GeneratorExercise()
+
+    member __.SutName = "actual"
+
+    override __.TestMethodBodyAssertTemplate _ = "AssertEqual"
+
+    member __.RenderSet canonicalDataCase key =
+        let value = 
+            (canonicalDataCase.Properties.[key] :?> JToken).ToObject<seq<string>>()
+            |> formatList
+        sprintf "CustomSet.fromList %s" value
+
+    override this.RenderSut canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "add" | "intersection" | "difference" | "union" -> 
+            sprintf "%sBool" this.SutName
+        | _ -> this.SutName
+
+    override __.RenderExpected (canonicalDataCase, _, _) =
+        match canonicalDataCase.Property with
+        | "add" | "intersection" | "difference" | "union" -> 
+            "true"
+        | _ -> formatValue canonicalDataCase.Expected
+
+    override this.RenderArrange canonicalDataCase = 
+        let arrangeLines =
+            match canonicalDataCase.Property with
+            | "empty" ->
+                let setValue = this.RenderSet canonicalDataCase "set"
+                [ sprintf "let %s = CustomSet.isEmpty (%s)" this.SutName setValue ]
+            | "add" | "contains" ->
+                let methodName = 
+                    match canonicalDataCase.Property with
+                    | "add" -> "insert"
+                    | s -> s
+                let setVar = sprintf "let setValue = %s" (this.RenderSet canonicalDataCase "set")
+                let valueVar = sprintf "let element = %s" (formatValue canonicalDataCase.Properties.["element"])
+                let resultVar = sprintf "let %s = CustomSet.%s element setValue" this.SutName methodName 
+                [ setVar; valueVar; resultVar ]
+            | "intersection" | "difference" | "union" | "disjoint" | "subset" | "equal" ->
+                let methodName = 
+                    match canonicalDataCase.Property with
+                    | "disjoint" -> "isDisjointFrom"
+                    | "subset" -> "isSubsetOf"
+                    | "equal" -> "isEqualTo"
+                    | s -> s
+                let firstSetVar = sprintf "let set1 = %s" (this.RenderSet canonicalDataCase "set1")
+                let secondSetVar = sprintf "let set2 = %s" (this.RenderSet canonicalDataCase "set2")
+                let resultVar = sprintf "let %s = CustomSet.%s set1 set2" this.SutName methodName
+                [ firstSetVar; secondSetVar; resultVar ]
+            | _ -> 
+                [ "" ]
+
+        match canonicalDataCase.Property with
+        | "add" | "intersection" | "difference" | "union" -> 
+            let expectedSetVar = sprintf "let expectedSet = %s" (this.RenderSet canonicalDataCase "expected")
+            let actualBoolVar = sprintf "let %sBool = CustomSet.isEqualTo %s expectedSet" this.SutName this.SutName
+            arrangeLines @ [ expectedSetVar; actualBoolVar ]
+        | _ -> arrangeLines
+
 type Diamond() =
     inherit CustomExercise()
 
