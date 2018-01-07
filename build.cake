@@ -68,13 +68,8 @@ Task("ReplaceStubWithExample")
 Task("AddPackagesUsedInExampleImplementations")
     .IsDependentOn("ReplaceStubWithExample")
     .Does(() => {
-        var fparsecProjects = 
-              GetFiles(buildDir + "/*/Alphametics.fsproj")
-            + GetFiles(buildDir + "/*/SgfParsing.fsproj");
-
-        foreach (var fparsecProject in fparsecProjects) {
-            DotNetCoreTool(fparsecProject, "add", "package FParsec");
-        }
+        var projects = GetFiles(buildDir + "/*/SgfParsing.fsproj");
+        Parallel.ForEach(projects, parallelOptions, (project) => DotNetCoreTool(project.FullPath, "add", "package FParsec"));
     });
 
 Task("TestUsingExampleImplementation")

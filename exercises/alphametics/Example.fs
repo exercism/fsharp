@@ -2,24 +2,15 @@
 
 open System
 
-open FParsec
-open System.Text.RegularExpressions
+let private foldMapBy mapping map1 map2 =
+    let helper acc key value = 
+        match Map.tryFind key acc with
+        | Some x -> Map.add key (mapping x value) acc
+        | None   -> Map.add key value acc
 
-let private plus = pstring " + "
-let private equal = pstring " == "
-let private operand = many1Satisfy isAsciiUpper
-let private expression = sepBy operand plus
-let private equation = expression .>> equal .>>. expression
+    map1 |> Map.fold helper map2
 
-let private parseToOption parser (input: string) =
-    match run parser input with
-    | Success(result, _, _)   -> Some result
-    | Failure(errorMsg, _, _) -> None
-
-let private parseEquation = parseToOption equation
-
-let private operandToInt (map: Map<char, int>) (operand: string) =
-    Seq.fold (fun acc x -> acc * 10 + Map.find x map) 0 operand
+let private tenToPower power = Math.Pow(10., float power) |> int
 
 let private generateCombinations length =
     let rec helper remaining options =
@@ -55,7 +46,7 @@ let private parseAddends (puzzle: string) =
         .Replace("+", "")
         .Split([|" "|], StringSplitOptions.RemoveEmptyEntries)
 
-let private wordToLetterCount multiplier word =
+let private addendToLetterCount multiplier word =
     word
     |> Seq.rev
     |> Seq.mapi (fun i letter -> (letter, tenToPower i * multiplier))
@@ -64,12 +55,12 @@ let private wordToLetterCount multiplier word =
     |> Map.ofSeq
 
 let private addendsToLetterCount addends =   
-    let mapAddend i addend =
+    let mapAddend i addend = 
         let multiplier = if i = Array.length addends - 1 then -1 else 1
-        wordToLetterCount multiplier addend
+        addendToLetterCount multiplier addend
 
     addends
-    |> Array.mapi mapAddend 
+    |> Array.mapi mapAddend
     |> Array.reduce (foldMapBy (+))
 
 let solve (puzzle: string) =
