@@ -5,19 +5,6 @@ open System
 open Serilog
 open Newtonsoft.Json.Linq
 
-type CanonicalDataCase = 
-    { Properties: Map<string, obj>
-      DescriptionPath: string list } with 
-        member this.Description = string this.Properties.["description"]
-        member this.Property = string this.Properties.["property"]
-        member this.Expected = this.Properties.["expected"]
-        member this.Input = this.Properties.["input"]
-
-type CanonicalData = 
-    { Exercise: string
-      Version: string
-      Cases: CanonicalDataCase list }
-
 type TestMethod = 
     { Skip: bool
       Name: string
@@ -94,6 +81,10 @@ module String =
         | "" -> str
         | _  -> sprintf "%c%s" (Char.ToUpper(str.[0])) str.[1..]
 
+    let lowerCaseFirst (str: string) = 
+        match str with
+        | "" -> str
+        | _  -> sprintf "%c%s" (Char.ToLower(str.[0])) str.[1..]
 
 module Json =
     let rec parentsAndSelf (currentToken: JToken) =

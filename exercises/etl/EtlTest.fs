@@ -9,13 +9,13 @@ open Etl
 
 [<Fact>]
 let ``A single letter`` () =
-    let input = [(1, ['A'])] |> Map.ofList
+    let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList
-    transform input |> should equal expected
+    transform lettersByScore |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Single score with multiple letters`` () =
-    let input = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
+    let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
     let expected = 
         [ ('a', 1);
           ('e', 1);
@@ -23,11 +23,11 @@ let ``Single score with multiple letters`` () =
           ('o', 1);
           ('u', 1) ]
         |> Map.ofList
-    transform input |> should equal expected
+    transform lettersByScore |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple scores with multiple letters`` () =
-    let input = 
+    let lettersByScore = 
         [ (1, ['A'; 'E']);
           (2, ['D'; 'G']) ]
         |> Map.ofList
@@ -37,11 +37,11 @@ let ``Multiple scores with multiple letters`` () =
           ('e', 1);
           ('g', 2) ]
         |> Map.ofList
-    transform input |> should equal expected
+    transform lettersByScore |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple scores with differing numbers of letters`` () =
-    let input = 
+    let lettersByScore = 
         [ (1, ['A'; 'E'; 'I'; 'O'; 'U'; 'L'; 'N'; 'R'; 'S'; 'T']);
           (2, ['D'; 'G']);
           (3, ['B'; 'C'; 'M'; 'P']);
@@ -78,5 +78,5 @@ let ``Multiple scores with differing numbers of letters`` () =
           ('y', 4);
           ('z', 10) ]
         |> Map.ofList
-    transform input |> should equal expected
+    transform lettersByScore |> should equal expected
 
