@@ -44,7 +44,7 @@ let formatDateTime (dateTime: DateTime) =
 let formatTimeSpan (timeSpan: TimeSpan) = 
     sprintf "TimeSpan(%d, %d, %d)" timeSpan.Hours timeSpan.Minutes timeSpan.Seconds
 
-let normalizeJArray (jArray: JArray): obj list =
+let rec normalizeJArray (jArray: JArray): obj list =
     let toBoxedList seq = 
         seq
         |> Seq.map box 
@@ -66,6 +66,8 @@ let normalizeJArray (jArray: JArray): obj list =
         jArray.Values<TimeSpan>() |> toBoxedList
     else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Object) then
         jArray.Children() |> Seq.map (fun jObject -> jObject.ToObject<Dictionary<string, obj>>()) |> toBoxedList
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Array) then
+        jArray.Values<JArray>() |> Seq.map normalizeJArray |> toBoxedList
     else    
         jArray.Values<obj>() |> toBoxedList
 

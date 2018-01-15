@@ -2,7 +2,7 @@
 
 let rec foldl folder state list = failwith "You need to implement this function."
 
-let rec foldr folder list state = failwith "You need to implement this function."
+let rec foldr folder state list = failwith "You need to implement this function."
 
 let length list = failwith "You need to implement this function."
 
