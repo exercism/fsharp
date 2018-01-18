@@ -86,6 +86,9 @@ module String =
         | "" -> str
         | _  -> sprintf "%c%s" (Char.ToLower(str.[0])) str.[1..]
 
+    let replace (oldValue: string) (newValue: string) (str: string) =
+        str.Replace(oldValue, newValue)    
+
 module Json =
     let rec parentsAndSelf (currentToken: JToken) =
         let rec helper acc (token: JToken) =

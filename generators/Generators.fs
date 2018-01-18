@@ -472,6 +472,27 @@ type LargestSeriesProduct() =
 type Leap() =
     inherit GeneratorExercise()
 
+type ListOps() =
+    inherit GeneratorExercise()
+
+    let renderFunction (value: obj) =
+        value
+        |> string
+        |> String.replace "(" ""
+        |> String.replace ")" ""
+        |> String.replace "," ""
+        |> String.replace "==" "="
+        |> String.replace "modulo" "%"
+        |> sprintf "(fun %s)"
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "function" -> renderFunction value
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
+
+    override __.RenderTestMethodName canonicalDataCase =
+        sprintf "%s %s" canonicalDataCase.Property canonicalDataCase.Description
+
 type Luhn() =
     inherit GeneratorExercise()
 

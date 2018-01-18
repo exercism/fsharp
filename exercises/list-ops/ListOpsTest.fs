@@ -1,106 +1,85 @@
+// This file was auto-generated based on version 2.1.0 of the canonical data.
+
 module ListOpsTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open ListOps
 
-let big = 100000
-let bigList = [1 .. big]
-let odd x = x % 2 = 1
-
 [<Fact>]
-let ``length of empty list`` () =
-    length [] |> should equal 0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``length of non-empty list`` () =
-    length [1 .. 4] |> should equal 4
-
-[<Fact(Skip = "Remove to run test")>]
-let ``length of large list`` () =
-    length [1 .. big] |> should equal big
-
-[<Fact(Skip = "Remove to run test")>]
-let ``reverse of empty list`` () =
-    reverse [] |> should be Empty
-
-[<Fact(Skip = "Remove to run test")>]
-let ``reverse of non-empty list`` () =
-    reverse [1 .. 100] |> should equal [100 .. -1 .. 1]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``map of empty list`` () =
-    map ((+) 1) [] |> should be Empty
-
-[<Fact(Skip = "Remove to run test")>]
-let ``map of non-empty list`` () =
-    map ((+) 1) [1 .. 2 .. 7] |> should equal [2 .. 2 .. 8]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``filter of empty list`` () =
-    filter id [] |> should be Empty
-
-[<Fact(Skip = "Remove to run test")>]
-let ``filter of normal list`` () =
-    filter odd [1 .. 4] |> should equal [1; 3]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldl of empty list`` () =
-    foldl (+) 0 [] |> should equal 0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldl of non-empty list`` () =
-    foldl (+) -3 [1 .. 4] |> should equal 7
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldl of huge list`` () =
-    foldl (+) 0 [1 .. big] |> should equal (big * (big + 1) / 2)
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldl with non-commutative function`` () =
-    foldl (-) 10 [1 .. 4] |> should equal 0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldl is not just foldr . flip`` () =
-    foldl (fun acc item -> item :: acc) [] (List.ofSeq "asdf") |> should equal (List.ofSeq "fdsa")
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldr as id`` () =
-    foldr (fun item acc -> item :: acc) [1 .. big] [] = bigList |> should equal true
-
-[<Fact(Skip = "Remove to run test")>]
-let ``foldr as append`` () =
-    foldr (fun item acc -> item :: acc) [1 .. 99] [100 .. big] = bigList |> should equal true
-
-[<Fact(Skip = "Remove to run test")>]
-let ``append of empty lists`` () =
+let ``append empty lists`` () =
     append [] [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
-let ``append of empty and non-empty lists`` () =
-    append [] [1 .. 4] |> should equal [1 .. 4]
+let ``append empty list to list`` () =
+    append [] [1; 2; 3; 4] |> should equal [1; 2; 3; 4]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``append of non-empty and empty lists`` () =
-    append [1 .. 4] [] |> should equal [1 .. 4]
+let ``append non-empty lists`` () =
+    append [1; 2] [2; 3; 4; 5] |> should equal [1; 2; 2; 3; 4; 5]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``append of non-empty lists`` () =
-    append [1 .. 3] [4; 5] |> should equal [1 .. 5]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``append of large lists`` () =
-    append [1 .. (big / 2)] [1 + big / 2 .. big] = bigList |> should equal true
-
-[<Fact(Skip = "Remove to run test")>]
-let ``concat of no lists`` () =
+let ``concat empty list`` () =
     concat [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
-let ``concat of list of lists`` () =
-    concat [[1; 2]; [3]; []; [4; 5; 6]] |> should equal [1 .. 6]
+let ``concat list of lists`` () =
+    concat [[1; 2]; [3]; []; [4; 5; 6]] |> should equal [1; 2; 3; 4; 5; 6]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``concat of large list of small lists`` () =
-    concat (map (fun x -> [x]) [1 .. big]) = bigList |> should equal true
+let ``filter empty list`` () =
+    filter (fun x -> x % 2 = 1) [] |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``filter non-empty list`` () =
+    filter (fun x -> x % 2 = 1) [1; 2; 3; 5] |> should equal [1; 3; 5]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``length empty list`` () =
+    length [] |> should equal 0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``length non-empty list`` () =
+    length [1; 2; 3; 4] |> should equal 4
+
+[<Fact(Skip = "Remove to run test")>]
+let ``map empty list`` () =
+    map (fun x -> x + 1) [] |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``map non-empty list`` () =
+    map (fun x -> x + 1) [1; 3; 5; 7] |> should equal [2; 4; 6; 8]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``foldl empty list`` () =
+    foldl (fun x y -> x * y) 2 [] |> should equal 2
+
+[<Fact(Skip = "Remove to run test")>]
+let ``foldl direction independent function applied to non-empty list`` () =
+    foldl (fun x y -> x + y) 5 [1; 2; 3; 4] |> should equal 15
+
+[<Fact(Skip = "Remove to run test")>]
+let ``foldl direction dependent function applied to non-empty list`` () =
+    foldl (fun x y -> x / y) 5 [2; 5] |> should equal 0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``foldr empty list`` () =
+    foldr (fun x y -> x * y) 2 [] |> should equal 2
+
+[<Fact(Skip = "Remove to run test")>]
+let ``foldr direction independent function applied to non-empty list`` () =
+    foldr (fun x y -> x + y) 5 [1; 2; 3; 4] |> should equal 15
+
+[<Fact(Skip = "Remove to run test")>]
+let ``foldr direction dependent function applied to non-empty list`` () =
+    foldr (fun x y -> x / y) 5 [2; 5] |> should equal 2
+
+[<Fact(Skip = "Remove to run test")>]
+let ``reverse empty list`` () =
+    reverse [] |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``reverse non-empty list`` () =
+    reverse [1; 3; 5; 7] |> should equal [7; 5; 3; 1]
+
