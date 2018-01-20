@@ -957,6 +957,16 @@
     {
       "core": false,
       "difficulty": 6,
+      "slug": "complex-numbers",
+      "topics": [
+        "mathematics"
+      ],
+      "unlocked_by": "leap",
+      "uuid": "d993508d-b4d2-4f3f-a46d-35b753bf90a9"
+    },
+    {
+      "core": false,
+      "difficulty": 6,
       "slug": "rail-fence-cipher",
       "topics": [
         "algorithms",
