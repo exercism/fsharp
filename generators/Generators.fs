@@ -132,6 +132,30 @@ type BookStore() =
     override __.PropertiesUsedAsSutParameter canonicalDataCase =
         base.PropertiesUsedAsSutParameter canonicalDataCase |> List.except ["targetgrouping"]
 
+type Bowling() = 
+    inherit GeneratorExercise()
+
+    override __.RenderSut _ ="score game"
+
+    override __.RenderSetup canonicalDataCase = 
+        "let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls"
+
+    override __.RenderArrange canonicalDataCase =
+        seq {
+            let arr = (canonicalDataCase.Input.["previousRolls"] :?> JToken).ToObject<string[]>()
+            yield sprintf "let rolls = %s" (formatList arr)
+            if canonicalDataCase.Input.ContainsKey "roll" then
+                let roll = canonicalDataCase.Input.["roll"] :?> int64
+                yield sprintf "let startingRolls = rollMany rolls (newGame())" 
+                yield sprintf "let game = roll %i startingRolls" roll
+            else
+                yield sprintf "let game = rollMany rolls (newGame())" 
+        }
+        |> Seq.toList
+
+    override __.RenderExpected (_, _, value) = 
+        if value :? JObject then "None" else sprintf "<| Some %s" (formatValue value)
+    
 type BracketPush() =
     inherit GeneratorExercise()
 
