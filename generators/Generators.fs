@@ -216,6 +216,45 @@ type Clock() =
         | _ -> 
             base.RenderSut canonicalDataCase
 
+type ComplexNumbers() =
+    inherit GeneratorExercise()
+
+    let renderNumber (input: JToken) =
+        match string input with
+        | "e"  -> "Math.E"
+        | "pi" -> "Math.PI"
+        | int when int.IndexOf('.') = -1  -> sprintf "%s.0" int
+        | float -> float
+    
+    let renderComplexNumber (input: JArray) =
+        sprintf "(create %s %s)" (renderNumber input.[0]) (renderNumber input.[1])
+
+    override __.RenderValue (canonicalDataCase, key, value) = 
+        match value with
+        | :? JArray as jArray -> renderComplexNumber jArray
+        | :? int64 as i -> sprintf "%d.0" i
+        | _ -> base.RenderValue (canonicalDataCase, key, value)
+
+    override __.RenderAssert canonicalDataCase = 
+        match canonicalDataCase.Expected with
+        | :? JArray as jArray ->
+            let renderAssertion testedFunction expected =
+                { Sut = sprintf "%s sut" testedFunction; Expected = expected }
+                |> renderInlineTemplate "{{ Sut }} |> should (equalWithin 0.000000001) {{ Expected }}"
+
+            [ renderAssertion "real" (renderNumber jArray.[0]) 
+              renderAssertion "imaginary" (renderNumber jArray.[1]) |> indent 1 ]
+            |> String.concat "\n"
+        | _ ->
+            base.RenderAssert(canonicalDataCase)
+
+    override __.PropertiesWithIdentifier canonicalDataCase = 
+        match canonicalDataCase.Expected with
+        | :? JArray -> ["sut"]
+        | _ -> base.PropertiesWithIdentifier canonicalDataCase
+
+    override __.AdditionalNamespaces = [typeof<Math>.Namespace]
+
 type Connect() =
     inherit GeneratorExercise()
 
