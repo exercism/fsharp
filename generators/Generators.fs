@@ -189,8 +189,10 @@ type CircularBuffer() =
     override this.RenderArrange canonicalDataCase = 
         seq {
             yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Properties.["capacity"] :?> int64)
+            let operations = (canonicalDataCase.Properties.["operations"] :?> JArray)
             let mutable ind = 2
-            for op in (canonicalDataCase.Properties.["operations"] :?> JArray) do
+            let lastInd = operations.Count + 1 
+            for op in operations do
                 let dict = (op :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>();
                 let funcName = dict.["operation"].ToObject<string>()
                 match funcName with
@@ -209,7 +211,10 @@ type CircularBuffer() =
                         yield this.ExceptionCheck command
                     | _, _ -> 
                         let expected = dict.["expected"].ToObject<int64>()
-                        yield sprintf "let (val%i,buffer%i) = %s" ind ind command
+                        if ind = lastInd then
+                            yield sprintf "let (val%i, _) = %s" ind command
+                        else
+                            yield sprintf "let (val%i, buffer%i) = %s" ind ind command
                         yield sprintf "val%i |> should equal %i" ind expected
                 | "overwrite" ->
                     yield sprintf "let buffer%i = forceWrite %i buffer%i" ind (dict.["item"].ToObject<int>()) (ind-1)
