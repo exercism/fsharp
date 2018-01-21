@@ -99,7 +99,7 @@ type CanonicalDataConverter() =
         let properties = jTokenToMap jToken
 
         { Input = createInputFromJToken properties
-          Expected = properties.["expected"]
+          Expected = if properties.ContainsKey "expected" then properties.["expected"] else ("" :> obj)
           Property = string properties.["property"]
           Properties = properties
           Description = string properties.["description"]
