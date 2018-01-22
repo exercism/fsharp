@@ -714,8 +714,8 @@ type PalindromeProducts() =
     inherit GeneratorExercise()
 
     let toFactors (value: obj) = 
-        let jArray = value :?> JArray
-        let factors = jArray.ToObject<int list>()
+        let jArray = value :?> obj list
+        let factors = jArray |> List.map (string >> int)
         sprintf "(%A, %A)" factors.[0] factors.[1]
 
     let toPalindromeProducts (value: obj) =
