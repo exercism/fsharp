@@ -176,6 +176,56 @@ type Change() =
             | _  -> None
         | _ -> None
 
+type CircularBuffer() = 
+    inherit GeneratorExercise()
+
+    override __.AdditionalNamespaces = [ "System" ]
+
+    override __.RenderAssert _ = ""
+
+    member __.ExceptionCheck command = 
+        sprintf "(fun () -> %s |> ignore) |> should throw typeof<Exception>" command 
+
+    override this.RenderArrange canonicalDataCase = 
+        seq {
+            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Properties.["capacity"] :?> int64)
+            let operations = (canonicalDataCase.Properties.["operations"] :?> JArray)
+            let mutable ind = 2
+            let lastInd = operations.Count + 1 
+            for op in operations do
+                let dict = (op :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>();
+                let funcName = dict.["operation"].ToObject<string>()
+                match funcName with
+                | "write" as operation -> 
+                    let item = dict.["item"].ToObject<int>()
+                    let command = sprintf "%s %i buffer%i" operation item (ind - 1)
+                    match dict.ContainsKey "should_succeed", (dict.["should_succeed"].ToObject<bool>()) with
+                    | true, false ->
+                        yield this.ExceptionCheck command
+                    | _, _ ->
+                        yield sprintf "let buffer%i = %s" ind command
+                | "read" as operation -> 
+                    let command = sprintf "%s buffer%i" operation (ind - 1)
+                    match dict.ContainsKey "should_succeed", dict.["should_succeed"].ToObject<bool>() with
+                    | true, false ->
+                        yield this.ExceptionCheck command
+                    | _, _ -> 
+                        let expected = dict.["expected"].ToObject<int64>()
+                        if ind = lastInd then
+                            yield sprintf "let (val%i, _) = %s" ind command
+                        else
+                            yield sprintf "let (val%i, buffer%i) = %s" ind ind command
+                        yield sprintf "val%i |> should equal %i" ind expected
+                | "overwrite" ->
+                    yield sprintf "let buffer%i = forceWrite %i buffer%i" ind (dict.["item"].ToObject<int>()) (ind-1)
+                | "clear" -> 
+                    yield sprintf "let buffer%i = clear buffer%i" ind (ind - 1) 
+                | _ -> ()
+                ind <- ind + 1
+
+        }
+        |> Seq.toList
+
 type Clock() =
     inherit GeneratorExercise()
 
