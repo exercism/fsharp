@@ -1049,8 +1049,7 @@ type SpiralMatrix() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
