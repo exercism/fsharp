@@ -98,8 +98,7 @@ type BeerSong() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -450,8 +449,7 @@ type FoodChain() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -500,8 +498,7 @@ type Grep() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineListWithIndentation 3
 
@@ -543,8 +540,7 @@ type House() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -640,7 +636,6 @@ type Minesweeper() =
 
     let renderValue (value: obj) = 
         value :?> JArray
-        |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -806,8 +801,7 @@ type Proverb() =
     override __.PropertiesWithIdentifier _ = ["input"; "expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
     
@@ -1061,8 +1055,7 @@ type TwelveDays() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
