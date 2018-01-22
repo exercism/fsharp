@@ -163,7 +163,7 @@ type Change() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        let convertToOption = if value :? JArray then Option.ofObj else Option.ofNonNegativeInt
+        let convertToOption = if value :? JArray then Option.ofObj else Option.ofPositiveInt
         value |> convertToOption |> formatValue
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
@@ -578,7 +578,7 @@ type LargestSeriesProduct() =
 
     override __.RenderExpected (_, _, value) = 
         value 
-        |> Option.ofNonNegativeInt 
+        |> Option.ofPositiveInt 
         |> formatValue 
         |> parenthesizeOption
 
@@ -698,7 +698,7 @@ type OcrNumbers() =
 
     override __.RenderExpected (_, _, value) = 
         value 
-        |> Option.ofNonNegativeInt 
+        |> Option.ofPositiveInt 
         |> formatValue 
         |> parenthesizeOption
 
@@ -1045,6 +1045,17 @@ type RunLengthEncoding() =
 
 type RomanNumerals() =
     inherit GeneratorExercise()
+
+type Say() =
+    inherit GeneratorExercise()
+
+    override __.RenderExpected (_, _, value) =
+        value 
+        |> Option.ofPositiveInt
+        |> formatValue
+        |> parenthesizeOption
+
+    override __.RenderInput (_, _, value) = sprintf "%sL" (string value)
 
 type ScrabbleScore() =
     inherit GeneratorExercise()
