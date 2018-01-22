@@ -16,6 +16,7 @@ let private isNotFilteredByStatus options (exercise: Exercise) =
     | Some Status.Implemented,   Exercise.Generator _     -> true
     | Some Status.Unimplemented, Exercise.Unimplemented _ -> true
     | Some Status.MissingData,   Exercise.MissingData _   -> true
+    | Some Status.Deprecated,    Exercise.Deprecated _    -> true
     | Some Status.Custom,        Exercise.Custom _        -> true
     | _ -> false
 
@@ -34,6 +35,8 @@ let private regenerateTestClass options =
             Log.Error("{Exercise}: missing test generator", unimplemented.Name)
         | Exercise.MissingData missingData ->
             Log.Warning("{Exercise}: missing canonical data", missingData.Name)
+        | Exercise.Deprecated deprecated ->
+            Log.Warning("{Exercise}: deprecated", deprecated.Name)
         | Exercise.Generator generator ->
             let canonicalData = parseCanonicalData' generator.Name
             generator.Regenerate(canonicalData)

@@ -10,6 +10,7 @@ open Serilog
 open Formatting
 open Rendering
 open CanonicalData
+open Track
 
 let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebaberize()
 
@@ -295,12 +296,15 @@ type CustomExercise() =
 type MissingDataExercise = { Name: string }
 
 type UnimplementedExercise = { Name: string }
+
+type DeprecatedExercise = { Name: string }
     
 type Exercise =
     | Generator of GeneratorExercise
     | Custom of CustomExercise
     | MissingData of MissingDataExercise
     | Unimplemented of UnimplementedExercise
+    | Deprecated of DeprecatedExercise
     
 let exerciseName exercise =
     match exercise with
@@ -308,6 +312,7 @@ let exerciseName exercise =
     | Custom custom -> custom.Name
     | Unimplemented unimplemented -> unimplemented.Name
     | MissingData missingData -> missingData.Name    
+    | Deprecated deprecated -> deprecated.Name    
 
 type ConfigExercise = { Slug: string }
 
@@ -356,13 +361,19 @@ let private tryFindCustomExercise exerciseName =
     |> Map.tryFind exerciseName 
     |> Option.map Custom
     
+let private tryFindDeprecatedExercise exerciseName =
+    match isDeprecated exerciseName with
+    | true  -> Deprecated { Name = exerciseName } |> Some 
+    | false -> None
+    
 let private tryFindUnimplementedExercise options exerciseName =
     match hasCanonicalData options exerciseName with
     | true  -> Unimplemented { Name = exerciseName } |> Some 
     | false -> None
 
 let private createExercise options exerciseName =
-    tryFindGeneratorExercise exerciseName
+    tryFindDeprecatedExercise exerciseName
+    |> Option.orElse (tryFindGeneratorExercise exerciseName)
     |> Option.orElse (tryFindCustomExercise exerciseName)
     |> Option.orElse (tryFindUnimplementedExercise options exerciseName)
     |> Option.orElse (MissingData { Name = exerciseName } |> Some)

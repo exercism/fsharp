@@ -8,6 +8,7 @@ type Status =
     | Implemented
     | Unimplemented
     | MissingData
+    | Deprecated
     | Custom
 
 type CommandLineOptions = 
@@ -47,6 +48,7 @@ let private normalizeStatus status =
     | Some "unimplemented" -> Some Unimplemented
     | Some "missingdata"   -> Some MissingData
     | Some "custom"        -> Some Custom
+    | Some "deprecated"    -> Some Deprecated
     | Some "all"           -> None
     | Some _               -> failwith "Invalid status" 
     | None                 -> Some Implemented
