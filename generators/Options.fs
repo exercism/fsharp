@@ -36,13 +36,18 @@ let private normalizeCanonicalDataDirectory canonicalDataDirectory =
         
 let private normalizeExercise exercise = Option.ofNonEmptyString exercise
 
-let private normalizeStatus status = 
-    match Option.ofNonEmptyString status with
-    | Some "Implemented"   -> Some Implemented
-    | Some "Unimplemented" -> Some Unimplemented
-    | Some "MissingData"   -> Some MissingData
-    | Some "Custom"        -> Some Custom
-    | Some "All"           -> None
+let private normalizeStatus status =
+    let normalizedStatus = 
+        status 
+        |> Option.ofNonEmptyString 
+        |> Option.map String.toLower
+
+    match normalizedStatus with
+    | Some "implemented"   -> Some Implemented
+    | Some "unimplemented" -> Some Unimplemented
+    | Some "missingdata"   -> Some MissingData
+    | Some "custom"        -> Some Custom
+    | Some "all"           -> None
     | Some _               -> failwith "Invalid status" 
     | None                 -> Some Implemented
 
