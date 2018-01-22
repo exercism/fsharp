@@ -1049,6 +1049,15 @@ type RomanNumerals() =
 type ScrabbleScore() =
     inherit GeneratorExercise()
 
+type Sieve() =
+    inherit GeneratorExercise()
+
+    override __.RenderExpected (_, _, value) =
+        (value :?> JArray)
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatList
+
 type SpiralMatrix() =
     inherit GeneratorExercise()
 
