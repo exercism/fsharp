@@ -856,7 +856,7 @@ type React() =
     member private __.RenderCells canonicalDataCase = 
         let reactorVar = sprintf "let %s = new %s()" "reactor" "Reactor"
         let cellVars = 
-            canonicalDataCase.Properties.["cells"] :?> JArray
+            canonicalDataCase.Input.["cells"] :?> JArray
             |> Seq.map (fun (cellValue: JToken) -> 
                 let cell = cellValue :?> JObject
                 let cellName = cell.["name"].ToObject<string>()
@@ -877,7 +877,7 @@ type React() =
         [ reactorVar ] @ cellVars
      
     member private __.RenderOperations canonicalDataCase = 
-        canonicalDataCase.Properties.["operations"] :?> JArray
+        canonicalDataCase.Input.["operations"] :?> JArray
         // we can generate more than 1 line per operation
         // so we need to flatten results here
         // collect does it automatically for us 
