@@ -1049,6 +1049,9 @@ type RomanNumerals() =
 type ScrabbleScore() =
     inherit GeneratorExercise()
 
+type SecretHandshake() =
+    inherit GeneratorExercise()
+
 type SpiralMatrix() =
     inherit GeneratorExercise()
 

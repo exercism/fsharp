@@ -1,3 +1,3 @@
 ﻿module SecretHandshake
 
-let handshake number = failwith "You need to implement this function."
+let commands number = failwith "You need to implement this function."
