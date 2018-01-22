@@ -1076,3 +1076,9 @@ type TwoFer() =
 
     override __.RenderInput (_, _, value) =
         value |> Option.ofObj |> formatValue |> parenthesizeOption
+
+type Wordy() =
+    inherit GeneratorExercise()
+
+    override __.RenderExpected (_, _, value) =
+        value |> Option.ofNonFalse |> formatValue |> parenthesizeOption
