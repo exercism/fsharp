@@ -407,8 +407,8 @@ type Dominoes() =
     inherit GeneratorExercise()
     
     let formatAsTuple (value:obj) =
-        let twoElementList = value :?> JArray |> normalizeJArray
-        (twoElementList.Item 0, twoElementList.Item 1) |> string
+        let items = value :?> obj list
+        formatTuple (List.item 0 items, List.item 1 items)
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
