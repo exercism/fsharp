@@ -1058,6 +1058,9 @@ type SpiralMatrix() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
+type SumOfMultiples() =
+    inherit GeneratorExercise()
+
 type TwelveDays() =
     inherit GeneratorExercise()
 
