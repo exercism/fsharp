@@ -125,7 +125,7 @@ type Bob() =
 type BookStore() =
     inherit GeneratorExercise()
 
-    let formatFloat (value:obj) = value :?> float |> sprintf "%.2f"
+    let formatFloat (value:obj) = value :?> int64 |> (fun x -> float x / 100.0) |> sprintf "%.2f"
 
     override __.RenderExpected (_, _, value) = formatFloat value
 
