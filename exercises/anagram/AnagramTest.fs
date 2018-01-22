@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module AnagramTest
 
@@ -11,16 +11,6 @@ open Anagram
 let ``No matches`` () =
     let candidates = ["hello"; "world"; "zombies"; "pants"]
     anagrams candidates "diaper" |> should be Empty
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Detects simple anagram`` () =
-    let candidates = ["tan"; "stand"; "at"]
-    anagrams candidates "ant" |> should equal ["tan"]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Does not detect false positives`` () =
-    let candidates = ["eagle"]
-    anagrams candidates "galea" |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Detects two anagrams`` () =
@@ -43,11 +33,6 @@ let ``Detects three anagrams`` () =
     anagrams candidates "allergy" |> should equal ["gallery"; "regally"; "largely"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Does not detect identical words`` () =
-    let candidates = ["corn"; "dark"; "Corn"; "rank"; "CORN"; "cron"; "park"]
-    anagrams candidates "corn" |> should equal ["cron"]
-
-[<Fact(Skip = "Remove to run test")>]
 let ``Does not detect non-anagrams with identical checksum`` () =
     let candidates = ["last"]
     anagrams candidates "mass" |> should be Empty
@@ -66,11 +51,6 @@ let ``Detects anagrams using case-insensitive subject`` () =
 let ``Detects anagrams using case-insensitive possible matches`` () =
     let candidates = ["cashregister"; "Carthorse"; "radishes"]
     anagrams candidates "orchestra" |> should equal ["Carthorse"]
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Does not detect a word as its own anagram`` () =
-    let candidates = ["Banana"]
-    anagrams candidates "banana" |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Does not detect a anagram if the original word is repeated`` () =
