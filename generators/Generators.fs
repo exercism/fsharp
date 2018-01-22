@@ -477,10 +477,8 @@ type Gigasecond() =
 
     override __.RenderExpected (_, _, value) = value :?> DateTime |> formatDateTime |> parenthesize
  
-    override __.RenderInput (canonicalDataCase, key, value) =
-        match key with
-        | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> parenthesize
-        | _ -> base.RenderInput (canonicalDataCase, key, value)
+    override __.RenderInput (_, _, value) =
+         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> parenthesize
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
