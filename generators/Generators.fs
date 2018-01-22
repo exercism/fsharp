@@ -746,9 +746,8 @@ type PascalsTriangle() =
         | :? JArray  ->
             let formattedList = 
                 value :?> JArray
-                |> normalizeJArray
                 |> Seq.map formatValue
-                |> formatMultiLineList
+                |> formatMultiLineList            
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s" formattedList (indent 2 "|> Some")
