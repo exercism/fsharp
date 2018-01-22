@@ -89,6 +89,8 @@ module String =
     let replace (oldValue: string) (newValue: string) (str: string) =
         str.Replace(oldValue, newValue)    
 
+    let toLower (str: string) = str.ToLowerInvariant()
+
 module Json =
     let rec parentsAndSelf (currentToken: JToken) =
         let rec helper acc (token: JToken) =
