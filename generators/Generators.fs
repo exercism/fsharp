@@ -1076,3 +1076,22 @@ type TwoFer() =
 
     override __.RenderInput (_, _, value) =
         value |> Option.ofObj |> formatValue |> parenthesizeOption
+
+type WordCount() =
+    inherit GeneratorExercise()
+    member __.FormatMap<'TKey, 'TValue> (value: obj) =
+        let input = value :?> JObject
+        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+        let formattedList =
+            dict
+            |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
+            |> formatMultiLineList
+
+        if (formattedList.Contains("\n")) then
+            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+        else   
+            sprintf "%s |> Map.ofList" formattedList
+
+    override this.RenderExpected (_, _, value) = this.FormatMap<string, int> value
+
+    override __.PropertiesWithIdentifier _ = ["expected"]
