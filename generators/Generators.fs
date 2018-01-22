@@ -1076,3 +1076,8 @@ type TwoFer() =
 
     override __.RenderInput (_, _, value) =
         value |> Option.ofObj |> formatValue |> parenthesizeOption
+
+type ZebraPuzzle() =
+    inherit GeneratorExercise()
+
+    override __.RenderExpected (_, _, value) = string value
