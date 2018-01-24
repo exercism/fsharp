@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module PhoneNumberTest
 
@@ -48,10 +48,18 @@ let ``Invalid with punctuations`` () =
     clean "123-@:!-7890" |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Invalid if area code does not start with 2-9`` () =
+let ``Invalid if area code starts with 0`` () =
+    clean "(023) 456-7890" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Invalid if area code starts with 1`` () =
     clean "(123) 456-7890" |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Invalid if exchange code does not start with 2-9`` () =
+let ``Invalid if exchange code starts with 0`` () =
     clean "(223) 056-7890" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Invalid if exchange code starts with 1`` () =
+    clean "(223) 156-7890" |> should equal None
 

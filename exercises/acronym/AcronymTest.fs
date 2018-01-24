@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module AcronymTest
 
@@ -20,14 +20,10 @@ let ``Punctuation`` () =
     abbreviate "First In, First Out" |> should equal "FIFO"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``All caps words`` () =
-    abbreviate "PHP: Hypertext Preprocessor" |> should equal "PHP"
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Non-acronym all caps word`` () =
+let ``All caps word`` () =
     abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Hyphenated`` () =
+let ``Punctuation without whitespace`` () =
     abbreviate "Complementary metal-oxide semiconductor" |> should equal "CMOS"
 

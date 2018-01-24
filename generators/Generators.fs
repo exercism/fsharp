@@ -98,8 +98,7 @@ type BeerSong() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -125,7 +124,7 @@ type Bob() =
 type BookStore() =
     inherit GeneratorExercise()
 
-    let formatFloat (value:obj) = value :?> float |> sprintf "%.2f"
+    let formatFloat (value:obj) = value :?> int64 |> (fun x -> float x / 100.0) |> sprintf "%.2f"
 
     override __.RenderExpected (_, _, value) = formatFloat value
 
@@ -343,11 +342,10 @@ type CustomSet() =
 
     override __.TestMethodBodyAssertTemplate _ = "AssertEqual"
 
-    member __.RenderSet canonicalDataCase key =
-        let value = 
-            (canonicalDataCase.Properties.[key] :?> JToken).ToObject<seq<string>>()
-            |> formatList
-        sprintf "CustomSet.fromList %s" value
+    member __.RenderSet (jToken: obj) =
+        (jToken :?> JToken).ToObject<seq<string>>()
+        |> formatList
+        |> sprintf "CustomSet.fromList %s"
 
     override this.RenderSut canonicalDataCase =
         match canonicalDataCase.Property with
@@ -365,15 +363,15 @@ type CustomSet() =
         let arrangeLines =
             match canonicalDataCase.Property with
             | "empty" ->
-                let setValue = this.RenderSet canonicalDataCase "set"
+                let setValue = this.RenderSet canonicalDataCase.Input.["set"]
                 [ sprintf "let %s = CustomSet.isEmpty (%s)" this.SutName setValue ]
             | "add" | "contains" ->
                 let methodName = 
                     match canonicalDataCase.Property with
                     | "add" -> "insert"
                     | s -> s
-                let setVar = sprintf "let setValue = %s" (this.RenderSet canonicalDataCase "set")
-                let valueVar = sprintf "let element = %s" (formatValue canonicalDataCase.Properties.["element"])
+                let setVar = sprintf "let setValue = %s" (this.RenderSet canonicalDataCase.Input.["set"])
+                let valueVar = sprintf "let element = %s" (formatValue canonicalDataCase.Input.["element"])
                 let resultVar = sprintf "let %s = CustomSet.%s element setValue" this.SutName methodName 
                 [ setVar; valueVar; resultVar ]
             | "intersection" | "difference" | "union" | "disjoint" | "subset" | "equal" ->
@@ -383,8 +381,8 @@ type CustomSet() =
                     | "subset" -> "isSubsetOf"
                     | "equal" -> "isEqualTo"
                     | s -> s
-                let firstSetVar = sprintf "let set1 = %s" (this.RenderSet canonicalDataCase "set1")
-                let secondSetVar = sprintf "let set2 = %s" (this.RenderSet canonicalDataCase "set2")
+                let firstSetVar = sprintf "let set1 = %s" (this.RenderSet canonicalDataCase.Input.["set1"])
+                let secondSetVar = sprintf "let set2 = %s" (this.RenderSet canonicalDataCase.Input.["set2"])
                 let resultVar = sprintf "let %s = CustomSet.%s set1 set2" this.SutName methodName
                 [ firstSetVar; secondSetVar; resultVar ]
             | _ -> 
@@ -392,7 +390,7 @@ type CustomSet() =
 
         match canonicalDataCase.Property with
         | "add" | "intersection" | "difference" | "union" -> 
-            let expectedSetVar = sprintf "let expectedSet = %s" (this.RenderSet canonicalDataCase "expected")
+            let expectedSetVar = sprintf "let expectedSet = %s" (this.RenderSet canonicalDataCase.Expected)
             let actualBoolVar = sprintf "let %sBool = CustomSet.isEqualTo %s expectedSet" this.SutName this.SutName
             arrangeLines @ [ expectedSetVar; actualBoolVar ]
         | _ -> arrangeLines
@@ -407,8 +405,8 @@ type Dominoes() =
     inherit GeneratorExercise()
     
     let formatAsTuple (value:obj) =
-        let twoElementList = value :?> JArray |> normalizeJArray
-        (twoElementList.Item 0, twoElementList.Item 1) |> string
+        let items = value :?> obj list
+        formatTuple (List.item 0 items, List.item 1 items)
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
@@ -451,8 +449,7 @@ type FoodChain() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -478,10 +475,8 @@ type Gigasecond() =
 
     override __.RenderExpected (_, _, value) = value :?> DateTime |> formatDateTime |> parenthesize
  
-    override __.RenderInput (canonicalDataCase, key, value) =
-        match key with
-        | "input" -> DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> parenthesize
-        | _ -> base.RenderInput (canonicalDataCase, key, value)
+    override __.RenderInput (_, _, value) =
+         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> parenthesize
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
@@ -503,8 +498,7 @@ type Grep() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineListWithIndentation 3
 
@@ -546,8 +540,7 @@ type House() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -643,7 +636,6 @@ type Minesweeper() =
 
     let renderValue (value: obj) = 
         value :?> JArray
-        |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -715,8 +707,8 @@ type PalindromeProducts() =
     inherit GeneratorExercise()
 
     let toFactors (value: obj) = 
-        let jArray = value :?> JArray
-        let factors = jArray.ToObject<int list>()
+        let jArray = value :?> obj list
+        let factors = jArray |> List.map (string >> int)
         sprintf "(%A, %A)" factors.[0] factors.[1]
 
     let toPalindromeProducts (value: obj) =
@@ -749,9 +741,8 @@ type PascalsTriangle() =
         | :? JArray  ->
             let formattedList = 
                 value :?> JArray
-                |> normalizeJArray
                 |> Seq.map formatValue
-                |> formatMultiLineList
+                |> formatMultiLineList            
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s" formattedList (indent 2 "|> Some")
@@ -810,8 +801,7 @@ type Proverb() =
     override __.PropertiesWithIdentifier _ = ["input"; "expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
     
@@ -857,7 +847,7 @@ type React() =
     member private __.RenderCells canonicalDataCase = 
         let reactorVar = sprintf "let %s = new %s()" "reactor" "Reactor"
         let cellVars = 
-            canonicalDataCase.Properties.["cells"] :?> JArray
+            canonicalDataCase.Input.["cells"] :?> JArray
             |> Seq.map (fun (cellValue: JToken) -> 
                 let cell = cellValue :?> JObject
                 let cellName = cell.["name"].ToObject<string>()
@@ -878,7 +868,7 @@ type React() =
         [ reactorVar ] @ cellVars
      
     member private __.RenderOperations canonicalDataCase = 
-        canonicalDataCase.Properties.["operations"] :?> JArray
+        canonicalDataCase.Input.["operations"] :?> JArray
         // we can generate more than 1 line per operation
         // so we need to flatten results here
         // collect does it automatically for us 
@@ -1053,8 +1043,7 @@ type SpiralMatrix() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -1066,8 +1055,7 @@ type TwelveDays() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
