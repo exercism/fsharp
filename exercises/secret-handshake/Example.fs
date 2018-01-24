@@ -1,6 +1,6 @@
 ﻿module SecretHandshake
 
-let commands = 
+let commandsMapping = 
     [(1 <<< 0, (fun acc -> acc @ ["wink"]));
      (1 <<< 1, (fun acc -> acc @ ["double blink"]));
      (1 <<< 2, (fun acc -> acc @ ["close your eyes"]));
@@ -11,4 +11,4 @@ let applyCommand number acc (mask, apply) =
     if number &&& mask <> 0 then apply acc
     else acc
 
-let handshake number = commands |> List.fold (applyCommand number) []
+let commands number = commandsMapping |> List.fold (applyCommand number) []
