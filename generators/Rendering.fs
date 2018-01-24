@@ -7,7 +7,6 @@ open FSharp.Reflection
 open DotLiquid
 open DotLiquid.FileSystems
 open Formatting
-open System.Collections
 
 type OutputFilter() =
     static member Format (input: string) = formatValue input

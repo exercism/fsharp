@@ -23,8 +23,8 @@ let codonToProtein =
     | "UGA" -> "STOP"
     | _ -> failwith "Invalid codon"
 
-let translate (input: string) =
-    input 
+let proteins (rna: string) =
+    rna 
     |> Seq.chunkBySize 3 
     |> Seq.map (String >> codonToProtein)
     |> Seq.takeWhile (fun str -> str <> "STOP")
