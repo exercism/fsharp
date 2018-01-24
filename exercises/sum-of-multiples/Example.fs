@@ -1,6 +1,6 @@
 ﻿module SumOfMultiples
 
-let sumOfMultiples numbers upperBound =
+let sum numbers upperBound =
     let isMultiple x = numbers |> List.exists (fun y -> x % y = 0) 
     
     [1 .. upperBound - 1] 

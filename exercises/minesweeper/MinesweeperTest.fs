@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module MinesweeperTest
 
@@ -9,19 +9,19 @@ open Minesweeper
 
 [<Fact>]
 let ``No rows`` () =
-    let input: string list = []
+    let minefield: string list = []
     let expected: string list = []
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No columns`` () =
-    let input = [""]
+    let minefield = [""]
     let expected = [""]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No mines`` () =
-    let input = 
+    let minefield = 
         [ "   ";
           "   ";
           "   " ]
@@ -29,11 +29,11 @@ let ``No mines`` () =
         [ "   ";
           "   ";
           "   " ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Board with only mines`` () =
-    let input = 
+let ``Minefield with only mines`` () =
+    let minefield = 
         [ "***";
           "***";
           "***" ]
@@ -41,11 +41,11 @@ let ``Board with only mines`` () =
         [ "***";
           "***";
           "***" ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Mine surrounded by spaces`` () =
-    let input = 
+    let minefield = 
         [ "   ";
           " * ";
           "   " ]
@@ -53,11 +53,11 @@ let ``Mine surrounded by spaces`` () =
         [ "111";
           "1*1";
           "111" ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Space surrounded by mines`` () =
-    let input = 
+    let minefield = 
         [ "***";
           "* *";
           "***" ]
@@ -65,23 +65,23 @@ let ``Space surrounded by mines`` () =
         [ "***";
           "*8*";
           "***" ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Horizontal line`` () =
-    let input = [" * * "]
+    let minefield = [" * * "]
     let expected = ["1*2*1"]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Horizontal line, mines at edges`` () =
-    let input = ["*   *"]
+    let minefield = ["*   *"]
     let expected = ["*1 1*"]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Vertical line`` () =
-    let input = 
+    let minefield = 
         [ " ";
           "*";
           " ";
@@ -93,11 +93,11 @@ let ``Vertical line`` () =
           "2";
           "*";
           "1" ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Vertical line, mines at edges`` () =
-    let input = 
+    let minefield = 
         [ "*";
           " ";
           " ";
@@ -109,11 +109,11 @@ let ``Vertical line, mines at edges`` () =
           " ";
           "1";
           "*" ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Cross`` () =
-    let input = 
+    let minefield = 
         [ "  *  ";
           "  *  ";
           "*****";
@@ -125,11 +125,11 @@ let ``Cross`` () =
           "*****";
           "25*52";
           " 2*2 " ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Large board`` () =
-    let input = 
+let ``Large minefield`` () =
+    let minefield = 
         [ " *  * ";
           "  *   ";
           "    * ";
@@ -143,5 +143,5 @@ let ``Large board`` () =
           "112*4*";
           "1*22*2";
           "111111" ]
-    annotate input |> should equal expected
+    annotate minefield |> should equal expected
 

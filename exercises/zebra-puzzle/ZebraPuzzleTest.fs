@@ -1,18 +1,17 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module ZebraPuzzleTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open ZebraPuzzle
 
 [<Fact>]
-let ``Who drinks water?`` () =
-    let solution = solve()
-    whoDrinksWater solution |> should equal Norwegian
+let ``Resident who drinks water`` () =
+    drinksWater |> should equal Norwegian
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Who owns the zebra?`` () =
-    let solution = solve()
-    whoOwnsZebra solution |> should equal Japanese
+let ``Resident who owns zebra`` () =
+    ownsZebra |> should equal Japanese
+

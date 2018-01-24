@@ -1,67 +1,101 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.0.1 of the canonical data.
 
 module ProteinTranslationTest
 
-open Xunit
 open FsUnit.Xunit
-open System
+open Xunit
 
 open ProteinTranslation
 
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData("AUG")>]
-let ``Identifies Methionine codons`` (codon) =
-    translate codon |> should equal ["Methionine"]
-    
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData("UUU")>]
-[<InlineData("UUC")>]
-let ``Identifies Phenylalanine codons`` (codon) =
-    translate codon |> should equal ["Phenylalanine"]
- 
-[<Theory(Skip = "Remove to run test")>]   
-[<InlineData("UUA")>]
-[<InlineData("UUG")>]
-let ``Identifies Leucine codons`` (codon) =
-    translate codon |> should equal ["Leucine"]
-    
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData("UCU")>]
-[<InlineData("UCC")>]
-[<InlineData("UCA")>]
-[<InlineData("UCG")>]
-let ``Identifies Serine codons`` (codon) =
-    translate codon |> should equal ["Serine"]
-    
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData("UAU")>]
-[<InlineData("UAC")>]
-let ``Identifies Tyrosine codons`` (codon) =
-    translate codon |> should equal ["Tyrosine"]
-    
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData("UGU")>]
-[<InlineData("UGC")>]
-let ``Identifies Cysteine codons`` (codon) =
-    translate codon |> should equal ["Cysteine"]
-    
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData("UGG")>] 
-let ``Identifies Tryptophan codons`` (codon) =
-    translate codon |> should equal ["Tryptophan"]
+[<Fact>]
+let ``Methionine RNA sequence`` () =
+    proteins "AUG" |> should equal ["Methionine"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Translates rna strand into correct protein`` () =
-    translate "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
+let ``Phenylalanine RNA sequence 1`` () =
+    proteins "UUU" |> should equal ["Phenylalanine"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Stops translation if stop codon present`` () =
-    translate "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
+let ``Phenylalanine RNA sequence 2`` () =
+    proteins "UUC" |> should equal ["Phenylalanine"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Stops translation of longer strand`` () =
-    translate "UGGUGUUAUUAAUGGUUU'" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
+let ``Leucine RNA sequence 1`` () =
+    proteins "UUA" |> should equal ["Leucine"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Throws for invalid codons`` () =
-    (fun () -> translate "CARROT'" |> List.ofSeq |> ignore) |> should throw typeof<Exception>
+let ``Leucine RNA sequence 2`` () =
+    proteins "UUG" |> should equal ["Leucine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Serine RNA sequence 1`` () =
+    proteins "UCU" |> should equal ["Serine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Serine RNA sequence 2`` () =
+    proteins "UCC" |> should equal ["Serine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Serine RNA sequence 3`` () =
+    proteins "UCA" |> should equal ["Serine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Serine RNA sequence 4`` () =
+    proteins "UCG" |> should equal ["Serine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Tyrosine RNA sequence 1`` () =
+    proteins "UAU" |> should equal ["Tyrosine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Tyrosine RNA sequence 2`` () =
+    proteins "UAC" |> should equal ["Tyrosine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Cysteine RNA sequence 1`` () =
+    proteins "UGU" |> should equal ["Cysteine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Cysteine RNA sequence 2`` () =
+    proteins "UGC" |> should equal ["Cysteine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Tryptophan RNA sequence`` () =
+    proteins "UGG" |> should equal ["Tryptophan"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``STOP codon RNA sequence 1`` () =
+    proteins "UAA" |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``STOP codon RNA sequence 2`` () =
+    proteins "UAG" |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``STOP codon RNA sequence 3`` () =
+    proteins "UGA" |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Translate RNA strand into correct protein list`` () =
+    proteins "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Translation stops if STOP codon at beginning of sequence`` () =
+    proteins "UAGUGG" |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Translation stops if STOP codon at end of two-codon sequence`` () =
+    proteins "UGGUAG" |> should equal ["Tryptophan"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Translation stops if STOP codon at end of three-codon sequence`` () =
+    proteins "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Translation stops if STOP codon in middle of three-codon sequence`` () =
+    proteins "UGGUAGUGG" |> should equal ["Tryptophan"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Translation stops if STOP codon in middle of six-codon sequence`` () =
+    proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
+
