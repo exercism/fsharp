@@ -68,7 +68,7 @@ let parts n =
     let (thousandsCount, remainder) = quotRem millionsRemainder 1000L
     (billionsCount, millionsCount, thousandsCount, remainder)
     
-let inEnglish n = 
+let say n = 
     match n with
     | _ when n < 0L || n>= 1000000000000L -> None
     | 0L -> Some "zero"
