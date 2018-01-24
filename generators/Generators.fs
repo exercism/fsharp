@@ -795,6 +795,9 @@ type PrimeFactors() =
     override __.RenderInput (canonicalDataCase, key, value) =
         base.RenderInput (canonicalDataCase, key, value) |> sprintf "%sL"
 
+type ProteinTranslation() =
+    inherit GeneratorExercise()
+
 type Proverb() =
     inherit GeneratorExercise()
 
