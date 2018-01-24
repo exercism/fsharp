@@ -1,12 +1,11 @@
 module Wordy
 
-open System
 open System.Text.RegularExpressions
 
 type Operation = int -> int
 type Equation = int * (Operation list)
 
-let equationRegex = new Regex(@"(?<left>-?\d+) (?<operation>-?plus|minus|divided by|multiplied by) (?=(?<right>-?\d+))", RegexOptions.Compiled)
+let equationRegex = Regex(@"(?<left>-?\d+) (?<operation>-?plus|minus|divided by|multiplied by) (?=(?<right>-?\d+))", RegexOptions.Compiled)
 
 let regexGroupStr (group: string) (m: Match) = m.Groups.[group].Value
 let regexGroupNumber (group: string) (m: Match) = regexGroupStr group m |> int
@@ -43,7 +42,7 @@ let parse (question: string): Equation option =
     | m when m.Count = 0 -> None
     | m -> Some (parseLeft m, parseOperations m)
 
-let solve (question: string): int option =  
+let answer (question: string): int option =  
     question 
     |> parse 
     |> Option.map calculate
