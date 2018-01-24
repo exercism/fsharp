@@ -1064,7 +1064,8 @@ type TwoFer() =
 
     override __.RenderInput (_, _, value) =
         value |> Option.ofObj |> formatValue |> parenthesizeOption
-
+        
+        
 type WordCount() =
     inherit GeneratorExercise()
     member __.FormatMap<'TKey, 'TValue> (value: obj) =
@@ -1083,3 +1084,8 @@ type WordCount() =
     override this.RenderExpected (_, _, value) = this.FormatMap<string, int> value
 
     override __.PropertiesWithIdentifier _ = ["expected"]
+
+  type ZebraPuzzle() =
+      inherit GeneratorExercise()
+
+      override __.RenderExpected (_, _, value) = string value
