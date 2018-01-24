@@ -5,6 +5,6 @@ let rec private sieve remainder primes =
     | [] -> primes |> List.rev
     | p::xs -> sieve (xs |> List.filter (fun x -> x % p > 0)) (p :: primes)
     
-let primesUpTo limit = 
+let primes limit = 
     let possiblePrimes = [2 .. limit]    
     sieve possiblePrimes []
