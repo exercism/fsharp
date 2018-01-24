@@ -1,3 +1,3 @@
-﻿module Phrase
+﻿module WordCount
 
-let wordCount phrase = failwith "You need to implement this function."
+let countwords phrase = failwith "You need to implement this function."
