@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module ComplexNumbersTest
 
@@ -13,6 +13,30 @@ let ``Imaginary unit`` () =
     let sut = mul (create 0.0 1.0) (create 0.0 1.0)
     real sut |> should (equalWithin 0.000000001) -1.0
     imaginary sut |> should (equalWithin 0.000000001) 0.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Real part of a purely real number`` () =
+    real (create 1.0 0.0) |> should equal 1.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Real part of a purely imaginary number`` () =
+    real (create 0.0 1.0) |> should equal 0.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Real part of a number with real and imaginary part`` () =
+    real (create 1.0 2.0) |> should equal 1.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Imaginary part of a purely real number`` () =
+    imaginary (create 1.0 0.0) |> should equal 0.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Imaginary part of a purely imaginary number`` () =
+    imaginary (create 0.0 1.0) |> should equal 1.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Imaginary part of a number with real and imaginary part`` () =
+    imaginary (create 1.0 2.0) |> should equal 2.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Add purely real numbers`` () =
@@ -123,30 +147,6 @@ let ``Conjugate a number with real and imaginary part`` () =
     let sut = conjugate (create 1.0 1.0)
     real sut |> should (equalWithin 0.000000001) 1.0
     imaginary sut |> should (equalWithin 0.000000001) -1.0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Real part of a purely real number`` () =
-    real (create 1.0 0.0) |> should equal 1.0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Real part of a purely imaginary number`` () =
-    real (create 0.0 1.0) |> should equal 0.0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Real part of a number with real and imaginary part`` () =
-    real (create 1.0 2.0) |> should equal 1.0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Imaginary part of a purely real number`` () =
-    imaginary (create 1.0 0.0) |> should equal 0.0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Imaginary part of a purely imaginary number`` () =
-    imaginary (create 0.0 1.0) |> should equal 1.0
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Imaginary part of a number with real and imaginary part`` () =
-    imaginary (create 1.0 2.0) |> should equal 2.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Euler's identity/formula`` () =
