@@ -1,22 +1,17 @@
 ﻿module Triangle
 
-open System
+let private isValid triangle = 
+    let nonZero = List.sum triangle <> 0.0
+    let equality =
+        let [x; y; z] = triangle
+        x + y >= z && x + z >= y && y + z >= x
+    
+    equality && nonZero
 
-type TriangleKind =
-    | Equilateral
-    | Isosceles
-    | Scalene
+let private distinctSides triangle = triangle |> List.distinct |> List.length
 
-let kind (x: decimal) (y: decimal) (z: decimal) = 
-    let hasZeroSides = x = 0m && y = 0m && z = 0m
-    let hasNegativeSide = x < 0m || y < 0m || z < 0m
-    let violatesTriangleEquality = x + y <= z || x + z <= y || y + z <= x
+let equilateral triangle = isValid triangle && distinctSides triangle = 1
 
-    let isInvalid = hasZeroSides || hasNegativeSide || violatesTriangleEquality
-    let isEquilateral = x = y && y = z
-    let isIsosceles = x = y || y = z || x = z
+let isosceles triangle = isValid triangle && distinctSides triangle <= 2
 
-    if   isInvalid     then invalidOp "Invalid triangle."
-    elif isEquilateral then TriangleKind.Equilateral
-    elif isIsosceles   then TriangleKind.Isosceles
-    else TriangleKind.Scalene
+let scalene triangle = isValid triangle && distinctSides triangle = 3
