@@ -1174,6 +1174,32 @@ type TwelveDays() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
+type Triangle() =
+    inherit GeneratorExercise()
+
+    let formatFloat (value:obj) = 
+        match value with
+        | :? int64 as i -> sprintf "%.1f" (float i)
+        | :? int32 as i -> sprintf "%.1f" (float i)
+        | :? float as f -> sprintf "%.1f" f
+        | _ -> failwith "Invalid value"
+
+    let hasUniqueTestMethodName canonicalDataCase = 
+        canonicalDataCase.Description.Contains "equilateral" ||
+        canonicalDataCase.Description.Contains "isosceles" ||
+        canonicalDataCase.Description.Contains "scalene"
+
+    override __.RenderTestMethodName canonicalDataCase =
+        match hasUniqueTestMethodName canonicalDataCase with
+        | true  -> base.RenderTestMethodName canonicalDataCase
+        | false -> sprintf "%s returns %s" (String.upperCaseFirst canonicalDataCase.Property) canonicalDataCase.Description
+
+    override __.RenderInput (_, _, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatFloat
+        |> formatList  
+
 type TwoFer() =
     inherit GeneratorExercise()
 

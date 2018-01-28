@@ -1,8 +1,7 @@
 ﻿module Triangle
 
-type TriangleKind =
-    | Equilateral
-    | Isosceles
-    | Scalene
+let equilateral triangle = failwith "You need to implement this function."
 
-let kind x y z = failwith "You need to implement this function."
+let isosceles triangle = failwith "You need to implement this function."
+
+let scalene triangle = failwith "You need to implement this function."
