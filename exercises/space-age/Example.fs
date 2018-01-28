@@ -12,20 +12,20 @@ type Planet =
     | Neptune
     | Uranus
 
-let secondsOnEarth = 31557600m    
+let secondsOnEarth = 31557600.0   
 
 let planetPeriods = 
-    [Mercury, 0.2408467m;
-     Venus,   0.61519726m;
-     Earth,   1.0m;
-     Mars,    1.8808158m;
-     Jupiter, 11.862615m;
-     Saturn,  29.447498m;
-     Uranus,  84.016846m;
-     Neptune, 164.79132m] 
+    [Mercury, 0.2408467;
+     Venus,   0.61519726;
+     Earth,   1.0;
+     Mars,    1.8808158;
+     Jupiter, 11.862615;
+     Saturn,  29.447498;
+     Uranus,  84.016846;
+     Neptune, 164.79132] 
     |> Map.ofList
 
-let spaceAge planet (seconds: decimal) = 
-    let yearsUsingPeriod (period:decimal) = Math.Round((seconds / period) / secondsOnEarth, 2)
+let age planet (seconds: int64) = 
+    let yearsUsingPeriod (period: float) = Math.Round((float seconds / period) / secondsOnEarth, 2)
         
     yearsUsingPeriod planetPeriods.[planet]

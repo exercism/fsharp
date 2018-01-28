@@ -1151,6 +1151,15 @@ type Sieve() =
 type SecretHandshake() =
     inherit GeneratorExercise()
 
+type SpaceAge() =
+    inherit GeneratorExercise()
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match value with
+        | :? string as s -> s
+        | :? int64 as i -> sprintf "%dL" i
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
+
 type SpiralMatrix() =
     inherit GeneratorExercise()
 
