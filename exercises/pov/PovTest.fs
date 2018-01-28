@@ -1,80 +1,93 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.1.1 of the canonical data.
 
 module PovTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open Pov
 
-let x = "x"
-let leaf v = mkGraph v []
-
-let singleton = mkGraph x []
-let flat = mkGraph "root" (List.map leaf ["a"; "b"; x; "c"])
-let nested = mkGraph "level-0" [mkGraph "level-1" [mkGraph "level-2" [mkGraph "level-3" [mkGraph x []]]]]
-let kids = mkGraph "root" [mkGraph x [mkGraph "kid-0" []; mkGraph "kid-1" []]]
-let cousins = mkGraph "grandparent" [
-                mkGraph "parent" [
-                    mkGraph x [leaf "kid-a"; leaf "kid-b"]; 
-                    (leaf "sibling-0"); 
-                    (leaf "sibling-1")];
-                    mkGraph "uncle" [
-                        (leaf "cousin-0");
-                        (leaf "cousin-1")]]
-
-let singleton' = singleton
-let flat' = mkGraph x [mkGraph "root" (List.map leaf ["a"; "b"; "c"])]
-let nested' = mkGraph x [mkGraph "level-3" [mkGraph "level-2" [mkGraph "level-1" [mkGraph "level-0" []]]]]
-let kids' = mkGraph x [mkGraph "kid-0" []; mkGraph "kid-1" []; mkGraph "root" []]
-let cousins' = mkGraph x [
-                leaf "kid-a";
-                leaf "kid-b";
-                mkGraph "parent" [
-                    mkGraph "sibling-0" [];
-                    mkGraph "sibling-1" [];
-                    mkGraph "grandparent" [
-                        mkGraph "uncle" [
-                            mkGraph "cousin-0" [];
-                            mkGraph "cousin-1" []]]]]
+let rec graphToList graph = 
+    let right =
+        graph.children
+        |> List.sortBy (fun x -> x.value)
+        |> List.collect graphToList
+    [graph.value] @ right
+let mapToList graph = match graph with | Some x -> graphToList x | None -> []
 
 [<Fact>]
-let ``Reparent singleton`` () =
-    fromPOV x singleton |> should equal <| Some singleton'
+let ``Results in the same tree if the input tree is a singleton`` () =
+    let tree = mkGraph "x" []
+    let expected = mkGraph "x" []
+    fromPOV "x" tree |> mapToList  |> should equal <| graphToList expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Reparent flat`` () =
-    fromPOV x flat |> should equal <| Some flat'
+let ``Can reroot a tree with a parent and one sibling`` () =
+    let tree = mkGraph "parent" [mkGraph "x" []; mkGraph "sibling" []]
+    let expected = mkGraph "x" [mkGraph "parent" [mkGraph "sibling" []]]
+    fromPOV "x" tree |> mapToList  |> should equal <| graphToList expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Reparent nested`` () =
-    fromPOV x nested |> should equal <| Some nested'
+let ``Can reroot a tree with a parent and many siblings`` () =
+    let tree = mkGraph "parent" [mkGraph "a" []; mkGraph "x" []; mkGraph "b" []; mkGraph "c" []]
+    let expected = mkGraph "x" [mkGraph "parent" [mkGraph "a" []; mkGraph "b" []; mkGraph "c" []]]
+    fromPOV "x" tree |> mapToList  |> should equal <| graphToList expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Reparent kids`` () =
-    fromPOV x kids |> should equal <| Some kids'
+let ``Can reroot a tree with new root deeply nested in tree`` () =
+    let tree = mkGraph "level-0" [mkGraph "level-1" [mkGraph "level-2" [mkGraph "level-3" [mkGraph "x" []]]]]
+    let expected = mkGraph "x" [mkGraph "level-3" [mkGraph "level-2" [mkGraph "level-1" [mkGraph "level-0" []]]]]
+    fromPOV "x" tree |> mapToList  |> should equal <| graphToList expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Reparent cousins`` () =
-    fromPOV x cousins |> should equal <| Some cousins'
+let ``Moves children of the new root to same level as former parent`` () =
+    let tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]]
+    let expected = mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []; mkGraph "parent" []]
+    fromPOV "x" tree |> mapToList  |> should equal <| graphToList expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Reparent from POV of non-existent node`` () =
-    fromPOV x (leaf "foo") |> should equal None
+let ``Can reroot a complex tree with cousins`` () =
+    let tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]; mkGraph "uncle" [mkGraph "cousin-0" []; mkGraph "cousin-1" []]]
+    let expected = mkGraph "x" [mkGraph "kid-1" []; mkGraph "kid-0" []; mkGraph "parent" [mkGraph "sibling-0" []; mkGraph "sibling-1" []; mkGraph "grandparent" [mkGraph "uncle" [mkGraph "cousin-0" []; mkGraph "cousin-1" []]]]]
+    fromPOV "x" tree |> mapToList  |> should equal <| graphToList expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Should not be able to find a missing node`` () =
-    let nodes = [singleton; flat; kids; nested; cousins] |> List.map (fromPOV "NOT THERE")
-    nodes |> List.iter (should equal None)
+let ``Errors if target does not exist in a singleton tree`` () =
+    let tree = mkGraph "x" []
+    fromPOV "nonexistent" tree  |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Cannot trace between un-connected nodes`` () =
-    tracePathBetween x "NOT THERE" cousins |> should equal None
+let ``Errors if target does not exist in a large tree`` () =
+    let tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]
+    fromPOV "nonexistent" tree  |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can trace a path from x to cousin`` () = 
-    tracePathBetween x "cousin-1" cousins |> should equal <| Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
+let ``Can find path to parent`` () =
+    let tree = mkGraph "parent" [mkGraph "x" []; mkGraph "sibling" []]
+    tracePathBetween "x" "parent" tree |> should equal <| Some ["x"; "parent"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can trace from a leaf to a leaf`` () =
-    tracePathBetween "kid-a" "cousin-0" cousins |> should equal <| Some ["kid-a"; "x"; "parent"; "grandparent"; "uncle"; "cousin-0"]
+let ``Can find path to sibling`` () =
+    let tree = mkGraph "parent" [mkGraph "a" []; mkGraph "x" []; mkGraph "b" []; mkGraph "c" []]
+    tracePathBetween "x" "b" tree |> should equal <| Some ["x"; "parent"; "b"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can find path to cousin`` () =
+    let tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]; mkGraph "uncle" [mkGraph "cousin-0" []; mkGraph "cousin-1" []]]
+    tracePathBetween "x" "cousin-1" tree |> should equal <| Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can find path from nodes other than x`` () =
+    let tree = mkGraph "parent" [mkGraph "a" []; mkGraph "x" []; mkGraph "b" []; mkGraph "c" []]
+    tracePathBetween "a" "c" tree |> should equal <| Some ["a"; "parent"; "c"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Errors if destination does not exist`` () =
+    let tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]
+    tracePathBetween "x" "nonexistent" tree |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Errors if source does not exist`` () =
+    let tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]
+    tracePathBetween "nonexistent" "x" tree |> should equal None
+

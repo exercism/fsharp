@@ -789,6 +789,92 @@ type Poker() =
 
     override __.PropertiesWithIdentifier _ = ["input"; "expected"]
 
+type Pov() = 
+    inherit GeneratorExercise()
+
+    let isNull x = match x with null -> true | _ -> false
+
+    override __.RenderSetup _ = 
+        ["let rec graphToList graph = "
+         "    let right ="
+         "        graph.children"
+         "        |> List.sortBy (fun x -> x.value)"
+         "        |> List.collect graphToList"
+         "    [graph.value] @ right"
+         "let mapToList graph = match graph with | Some x -> graphToList x | None -> []"
+        ] |> String.concat "\n"
+
+    member this.RenderNode (tree: obj) : string = 
+        match isNull tree with
+        | true -> ""
+        | false ->
+            let node = (tree :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>();
+            let children = 
+                if node.ContainsKey "children" then 
+                    node.["children"]
+                    |> Seq.map this.RenderNode
+                    |> formatList
+                else
+                    "[]"
+            let label =
+                node.["label"]
+                |> formatValue
+            sprintf "mkGraph %s %s" label children
+
+    override this.RenderArrange canonicalDataCase =
+        seq {
+            yield 
+                canonicalDataCase.Properties.["tree"]
+                |> this.RenderNode 
+                |> sprintf "let tree = %s" 
+
+            match canonicalDataCase.Property, isNull canonicalDataCase.Expected with
+            | "fromPov", false ->
+                yield 
+                    canonicalDataCase.Expected
+                    |> this.RenderNode 
+                    |> sprintf "let expected = %s" 
+            | _, _ -> ()
+        }
+        |> Seq.toList
+
+
+    override __.RenderSut canonicalDataCase = 
+        match canonicalDataCase.Property with
+        | "fromPov" -> 
+            let from = 
+                canonicalDataCase.Properties.["from"]
+                |> formatValue
+            match isNull canonicalDataCase.Expected with
+            | false -> sprintf "fromPOV %s tree |> mapToList " from
+            | true -> sprintf "fromPOV %s tree " from
+        | "pathTo" -> 
+            let fromValue = 
+                canonicalDataCase.Properties.["from"] 
+                |> formatValue
+            let toValue = 
+                canonicalDataCase.Properties.["to"] 
+                |> formatValue
+            sprintf "tracePathBetween %s %s tree" fromValue toValue
+        | _ -> ""
+ 
+    override __.RenderExpected (canonicalDataCase, key, value) =
+        match canonicalDataCase.Property with
+        | "fromPov" -> 
+            match isNull value with 
+            | true -> "None"
+            | false -> sprintf "<| graphToList %s" key
+        | "pathTo" -> 
+            match isNull value with
+            | true -> "None" 
+            | false ->
+                printf "%s" canonicalDataCase.Description
+                canonicalDataCase.Expected :?> JArray
+                |> Seq.map formatValue
+                |> formatList
+                |> sprintf "<| Some %s" 
+        | _ -> ""
+
 type PrimeFactors() =
     inherit GeneratorExercise()
     
