@@ -1248,7 +1248,27 @@ type Triangle() =
         value :?> JArray
         |> normalizeJArray
         |> Seq.map formatFloat
-        |> formatList  
+        |> formatList
+
+type TwoBucket() =
+    inherit GeneratorExercise()
+
+    let renderBucket (value: obj) = 
+        value |> string |> String.upperCaseFirst |> sprintf "Bucket.%s"
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "startBucket" -> renderBucket value
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
+
+    override __.RenderExpected (_, _, value) =
+        let jObject = value :?> JObject
+        let moves       = jObject.Value<int>("moves")
+        let goalBucket  = jObject.Value<string>("goalBucket") |> renderBucket
+        let otherBucket = jObject.Value<int>("otherBucket")
+        sprintf "{ Moves = %d; GoalBucket = %s; OtherBucket = %d }" moves goalBucket otherBucket
 
 type TwoFer() =
     inherit GeneratorExercise()
