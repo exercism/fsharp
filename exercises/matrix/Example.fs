@@ -1,18 +1,21 @@
 ﻿module Matrix
 
-type Matrix = { rows: int [][]; cols: int [][] }
+let private parseRow (row: string) =
+    row.Split(' ')
+    |> Seq.map int
+    |> List.ofSeq
 
-let fromString (str: string) =     
-    let parseRow (row: string) = 
-        row.Split(' ') 
-        |> Array.map (string >> int)
-    
-    let rows = str.Split('\n') |> Array.map parseRow
-    let numberOfCols = Array.item 0 rows |> Array.length
-    let cols = [| for col in 0..numberOfCols - 1 ->
-                    [| for row in rows -> Array.item col row |] |]
+let private parseRows (matrix: string) =
+    matrix.Split('\n') 
+    |> Seq.map parseRow
+    |> List.ofSeq
 
-    { rows = rows; cols = cols }
+let row index matrix = 
+    matrix
+    |> parseRows
+    |> List.item index
 
-let rows matrix = matrix.rows
-let cols matrix = matrix.cols
+let column index matrix =
+    matrix
+    |> parseRows
+    |> List.map (List.item index)
