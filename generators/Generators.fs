@@ -1125,6 +1125,25 @@ type RunLengthEncoding() =
 type RomanNumerals() =
     inherit GeneratorExercise()
 
+type SaddlePoints() =
+    inherit GeneratorExercise()
+
+    let renderSaddlePoint (input: JObject) =
+        (input.Value<int>("row"), input.Value<int>("column")) |> formatTuple
+
+    override __.RenderInput (_, _, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
+    override __.RenderExpected (_, _, value) =
+        (value :?> JArray).Values<JObject>()
+        |> Seq.map renderSaddlePoint
+        |> formatList
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type Say() =
     inherit GeneratorExercise()
 
