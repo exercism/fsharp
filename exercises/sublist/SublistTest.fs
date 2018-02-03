@@ -1,81 +1,111 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module SublistTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open Sublist
 
 [<Fact>]
-let ``Empty equals empty`` () =
-    sublist [] [] |> should equal Equal
+let ``Empty lists`` () =
+    let listOne = []
+    let listTwo = []
+    sublist listOne listTwo |> should equal Equal
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Empty is a sublist of anything`` () =
-    sublist [] [1; 2; 3; 4] |> should equal Sublist
+let ``Empty list within non empty list`` () =
+    let listOne = []
+    let listTwo = [1; 2; 3]
+    sublist listOne listTwo |> should equal Sublist
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Anything is a superlist of empty`` () =
-    sublist [1; 2; 3; 4] [] |> should equal Superlist
+let ``Non empty list contains empty list`` () =
+    let listOne = [1; 2; 3]
+    let listTwo = []
+    sublist listOne listTwo |> should equal Superlist
 
 [<Fact(Skip = "Remove to run test")>]
-let ``1 is not 2`` () =
-    sublist [1] [2] |> should equal Unequal
+let ``List equals itself`` () =
+    let listOne = [1; 2; 3]
+    let listTwo = [1; 2; 3]
+    sublist listOne listTwo |> should equal Equal
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Compare larger equal lists`` () =
-    let xs = List.replicate 1000 'x'
-    sublist xs xs |> should equal Equal
+let ``Different lists`` () =
+    let listOne = [1; 2; 3]
+    let listTwo = [2; 3; 4]
+    sublist listOne listTwo |> should equal Unequal
+
+[<Fact(Skip = "Remove to run test")>]
+let ``False start`` () =
+    let listOne = [1; 2; 5]
+    let listTwo = [0; 1; 2; 3; 1; 2; 5; 6]
+    sublist listOne listTwo |> should equal Sublist
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Consecutive`` () =
+    let listOne = [1; 1; 2]
+    let listTwo = [0; 1; 1; 1; 2; 1; 2]
+    sublist listOne listTwo |> should equal Sublist
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Sublist at start`` () =
-    sublist [1; 2; 3] [1; 2; 3; 4; 5] |> should equal Sublist
+    let listOne = [0; 1; 2]
+    let listTwo = [0; 1; 2; 3; 4; 5]
+    sublist listOne listTwo |> should equal Sublist
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Sublist in middle`` () =
-    sublist [4; 3; 2] [5; 4; 3; 2; 1] |> should equal Sublist
+    let listOne = [2; 3; 4]
+    let listTwo = [0; 1; 2; 3; 4; 5]
+    sublist listOne listTwo |> should equal Sublist
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Sublist at end`` () =
-    sublist [3; 4; 5] [1; 2; 3; 4; 5] |> should equal Sublist
+    let listOne = [3; 4; 5]
+    let listTwo = [0; 1; 2; 3; 4; 5]
+    sublist listOne listTwo |> should equal Sublist
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Partially matching sublist at start`` () =
-    sublist [1; 1; 2] [1; 1; 1; 2] |> should equal Sublist
+let ``At start of superlist`` () =
+    let listOne = [0; 1; 2; 3; 4; 5]
+    let listTwo = [0; 1; 2]
+    sublist listOne listTwo |> should equal Superlist
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Sublist early in huge list`` () =
-    sublist [3; 4; 5] [1 .. 1000000]  |> should equal Sublist
- 
-[<Fact(Skip = "Remove to run test")>]
-let ``Huge sublist not in huge list`` () =
-    sublist [10 .. 1000001] [1 .. 1000000] |> should equal Unequal
+let ``In middle of superlist`` () =
+    let listOne = [0; 1; 2; 3; 4; 5]
+    let listTwo = [2; 3]
+    sublist listOne listTwo |> should equal Superlist
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Superlist at start`` () =
-    sublist [1; 2; 3; 4; 5] [1; 2; 3] |> should equal Superlist
+let ``At end of superlist`` () =
+    let listOne = [0; 1; 2; 3; 4; 5]
+    let listTwo = [3; 4; 5]
+    sublist listOne listTwo |> should equal Superlist
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Superlist in middle`` () =
-    sublist [5; 4; 3; 2; 1] [4; 3; 2] |> should equal Superlist
+let ``First list missing element from second list`` () =
+    let listOne = [1; 3]
+    let listTwo = [1; 2; 3]
+    sublist listOne listTwo |> should equal Unequal
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Superlist at end`` () =
-    sublist [1; 2; 3; 4; 5] [3; 4; 5] |> should equal Superlist
+let ``Second list missing element from first list`` () =
+    let listOne = [1; 2; 3]
+    let listTwo = [1; 3]
+    sublist listOne listTwo |> should equal Unequal
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Partially matching superlist at start`` () =
-    sublist [1; 1; 1; 2] [1; 1; 2] |> should equal Superlist
+let ``Order matters to a list`` () =
+    let listOne = [1; 2; 3]
+    let listTwo = [3; 2; 1]
+    sublist listOne listTwo |> should equal Unequal
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Superlist early in huge list`` () =
-    sublist [1 .. 1000000] [3; 4; 5] |> should equal Superlist
+let ``Same digits but different numbers`` () =
+    let listOne = [1; 0; 1]
+    let listTwo = [10; 1]
+    sublist listOne listTwo |> should equal Unequal
 
-[<Fact(Skip = "Remove to run test")>]
-let ``Recurring values sublist`` () =
-    sublist [1; 2; 1; 2; 3] [1; 2; 3; 1; 2; 1; 2; 3; 2; 1] |> should equal Sublist
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Recurring values unequal`` () =
-    sublist [1; 2; 1; 2; 3] [1; 2; 3; 1; 2; 3; 2; 3; 2; 1] |> should equal Unequal
