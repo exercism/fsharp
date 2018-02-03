@@ -1168,6 +1168,14 @@ type SpiralMatrix() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
+type Sublist() =
+    inherit GeneratorExercise()
+
+    override __.RenderExpected (_, _, value) =
+        string value |> String.upperCaseFirst
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type SumOfMultiples() =
     inherit GeneratorExercise()
 
