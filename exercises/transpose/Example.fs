@@ -1,29 +1,26 @@
 ﻿module Transpose
 
-let transpose (input: string) = 
-    let rows = input.Split '\n'
-
+let transpose (rows: string list): string list =
     let transposedCoordinates =
         rows
-        |> Array.mapi (fun row str -> str |> Seq.mapi (fun col char -> (col, (row, char))) |> Seq.toArray)
-        |> Array.concat
+        |> List.mapi (fun row str -> str |> Seq.mapi (fun col char -> (col, (row, char))) |> List.ofSeq)
+        |> List.concat
 
     let groupedByTransposedColumns =
         transposedCoordinates
-        |> Array.groupBy fst
-        |> Array.map (fun (row, chars) -> (row, chars |> Array.map snd))
+        |> List.groupBy fst
+        |> List.map (fun (row, chars) -> (row, chars |> List.map snd))
 
-    let transposedColToRow (input: (int * char)[]) =
-        let maxCol = input |> Array.map fst |> Array.max
+    let transposedColToRow (input: (int * char) list) =
+        let maxCol = input |> List.map fst |> List.max
         let findCharacter col = 
-            match Array.tryFind (fun (c, _) -> c = col) input with
+            match List.tryFind (fun (c, _) -> c = col) input with
             | Some y -> snd y
             | None -> ' '
-                
+
         [| 0..maxCol |] 
         |> Array.map findCharacter
         |> System.String
 
     groupedByTransposedColumns
-    |> Seq.map (snd >> transposedColToRow)
-    |> String.concat "\n"
+    |> List.map (snd >> transposedColToRow)

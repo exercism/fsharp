@@ -1193,6 +1193,21 @@ type TwelveDays() =
         |> Seq.map formatValue
         |> formatMultiLineList
 
+type Transpose() =
+    inherit GeneratorExercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+    override __.IdentifierTypeAnnotation (_, _, value) = 
+        match value :?> JArray |> Seq.isEmpty with 
+        | true  -> Some "string list"
+        | false -> None
+
+    override __.RenderValue (_, _, value) =
+        value :?> JArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type Triangle() =
     inherit GeneratorExercise()
 
