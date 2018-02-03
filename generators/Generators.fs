@@ -609,6 +609,9 @@ type Markdown() =
         { base.ToTestMethod (index, canonicalDataCase) with Skip = false }
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+type Matrix() =
+    inherit GeneratorExercise()
     
 type Meetup() =
     inherit GeneratorExercise()
