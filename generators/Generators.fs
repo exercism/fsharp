@@ -1171,6 +1171,16 @@ type SpiralMatrix() =
 type SumOfMultiples() =
     inherit GeneratorExercise()
 
+type Tournament() = 
+    inherit GeneratorExercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+    override __.RenderValue (_, _, value) =
+        value :?> JArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
+
 type TwelveDays() =
     inherit GeneratorExercise()
 
