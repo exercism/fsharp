@@ -235,7 +235,7 @@ type Clock() =
         sprintf "let %s = create %s %s" clockId hour minute
 
     member private this.RenderPropertyValue canonicalDataCase property =
-        this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Properties)
+        this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Input)
 
     override __.PropertiesWithIdentifier _ = ["clock1"; "clock2"]
 
@@ -246,7 +246,7 @@ type Clock() =
     
     override this.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
-        | "create" | "add" -> 
+        | "create" | "add" | "subtract" -> 
             let hour = this.RenderPropertyValue canonicalDataCase "hour"
             let minute = this.RenderPropertyValue canonicalDataCase "minute"
             [sprintf "let clock = create %s %s" hour minute]
@@ -258,8 +258,11 @@ type Clock() =
         | "create" -> 
             sprintf "display clock"
         | "add" -> 
-            this.RenderPropertyValue canonicalDataCase "add"
+            this.RenderPropertyValue canonicalDataCase "value"
             |> sprintf "add %s clock |> display" 
+        | "subtract" -> 
+            this.RenderPropertyValue canonicalDataCase "value"
+            |> sprintf "subtract %s clock |> display" 
         | "equal" -> 
             "clock1 = clock2" 
         | _ -> 
