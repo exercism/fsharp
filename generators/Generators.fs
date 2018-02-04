@@ -1012,31 +1012,13 @@ type React() =
 type Rectangles() = 
     inherit GeneratorExercise()
 
-    member private __.GetPadding n = 
-        String.replicate n " "
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
-    member private this.FormatList (list: List<string>) = 
-        let separator = "; \n" + (this.GetPadding 8)
-        let value = 
-            list 
-            |> String.concat separator
-
-        if list.Length < 2 then 
-            sprintf "[%s]" value
-        else
-            sprintf "\n%s[ %s ]" (this.GetPadding 6) value
-
-    override __.PropertiesWithIdentifier _ = ["input"]
-    override __.RenderSutProperty _ = "rectangles"
-
-    override this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
-        match key with
-        | "input" ->
-            (value :?> JToken).ToObject<List<string>>() 
-            |> List.map formatString 
-            |> this.FormatList
-        | _ -> 
-            base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+    override __.RenderInput (_, _, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
 
 type ReverseString() =
     inherit GeneratorExercise()
