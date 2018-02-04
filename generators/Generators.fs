@@ -892,7 +892,7 @@ type ProteinTranslation() =
 type Proverb() =
     inherit GeneratorExercise()
 
-    override __.PropertiesWithIdentifier _ = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
