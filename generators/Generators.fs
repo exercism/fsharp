@@ -793,7 +793,7 @@ type PigLatin() =
 type Poker() = 
     inherit GeneratorExercise()
 
-    override __.PropertiesWithIdentifier _ = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Pov() = 
     inherit GeneratorExercise()
@@ -843,7 +843,6 @@ type Pov() =
             | _, _ -> ()
         }
         |> Seq.toList
-
 
     override __.RenderSut canonicalDataCase = 
         match canonicalDataCase.Property with
