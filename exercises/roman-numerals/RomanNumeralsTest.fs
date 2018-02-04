@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module RomanNumeralsTest
 
@@ -42,6 +42,10 @@ let ``20 is two X's`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``48 is not 50 - 2 but rather 40 + 8`` () =
     roman 48 |> should equal "XLVIII"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``49 is not 40 + 5 + 4 but rather 50 - 10 + 10 - 1`` () =
+    roman 49 |> should equal "XLIX"
 
 [<Fact(Skip = "Remove to run test")>]
 let ``50 is a single L`` () =
