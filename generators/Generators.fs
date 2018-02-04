@@ -735,7 +735,7 @@ type PalindromeProducts() =
         |> formatOption 
         |> parenthesizeOption
 
-    override __.PropertiesUsedAsSutParameter _ = ["input_min"; "input_max"]
+    override __.PropertiesUsedAsSutParameter _ = ["min"; "max"]
 
 type PascalsTriangle() =
     inherit GeneratorExercise()
