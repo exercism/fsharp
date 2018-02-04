@@ -1051,10 +1051,10 @@ type RobotSimulator() =
 
     override __.PropertiesWithIdentifier canonicalDataCase =
         match parseInput canonicalDataCase.Expected with
-        | None,   Some _ -> ["robot"; "sut"] 
-        | Some _, None   -> ["robot"; "sut"]
-        | Some _, Some _ -> ["robot"; "expected"]
-        | None,   None   -> ["robot"; "sut"; "expected"]
+        | None,   Some _ -> ["sut"] 
+        | Some _, None   -> ["sut"]
+        | Some _, Some _ -> ["expected"]
+        | None,   None   -> ["sut"; "expected"]
 
     override __.ToTestMethodBodyAssert canonicalDataCase =
         let testMethodBodyAssert = base.ToTestMethodBodyAssert(canonicalDataCase)
@@ -1064,15 +1064,17 @@ type RobotSimulator() =
         | Some _, None -> { testMethodBodyAssert with Sut = sprintf "%s.direction" testMethodBodyAssert.Sut }
         | _ -> testMethodBodyAssert
 
-    override __.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
-        match key with
-        | "robot"    -> value |> parseInput |> renderInput
-        | "expected" -> value |> parseInput |> renderInput
-        | _ -> base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+    override __.RenderArrange canonicalDataCase =
+        sprintf "let robot = %s" (canonicalDataCase.Properties.["input"] |> parseInput |> renderInput) :: base.RenderArrange canonicalDataCase
+
+    override __.RenderExpected (_, _, value) = 
+        value |> parseInput |> renderInput
 
     override __.RenderSut canonicalDataCase = 
         match canonicalDataCase.Property with
         | "create" -> "robot"
+        | "turnLeft" | "turnRight" | "advance" -> sprintf "%s robot" canonicalDataCase.Property
+        | "instructions" -> sprintf "instructions %s robot" (formatValue canonicalDataCase.Input.["instructions"])
         | _ -> base.RenderSut canonicalDataCase
 
     override __.RenderTestMethodName canonicalDataCase =
