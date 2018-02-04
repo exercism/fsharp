@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module WordCountTest
 
@@ -10,7 +10,7 @@ open WordCount
 [<Fact>]
 let ``Count one word`` () =
     let expected = [("word", 1)] |> Map.ofList
-    countwords "word" |> should equal expected
+    countWords "word" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Count one of each word`` () =
@@ -19,7 +19,7 @@ let ``Count one of each word`` () =
           ("of", 1);
           ("each", 1) ]
         |> Map.ofList
-    countwords "one of each" |> should equal expected
+    countWords "one of each" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple occurrences of a word`` () =
@@ -30,7 +30,7 @@ let ``Multiple occurrences of a word`` () =
           ("red", 1);
           ("blue", 1) ]
         |> Map.ofList
-    countwords "one fish two fish red fish blue fish" |> should equal expected
+    countWords "one fish two fish red fish blue fish" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Handles cramped lists`` () =
@@ -39,7 +39,7 @@ let ``Handles cramped lists`` () =
           ("two", 1);
           ("three", 1) ]
         |> Map.ofList
-    countwords "one,two,three" |> should equal expected
+    countWords "one,two,three" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Handles expanded lists`` () =
@@ -48,7 +48,7 @@ let ``Handles expanded lists`` () =
           ("two", 1);
           ("three", 1) ]
         |> Map.ofList
-    countwords "one,\ntwo,\nthree" |> should equal expected
+    countWords "one,\ntwo,\nthree" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Ignore punctuation`` () =
@@ -59,7 +59,7 @@ let ``Ignore punctuation`` () =
           ("java", 1);
           ("javascript", 1) ]
         |> Map.ofList
-    countwords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
+    countWords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Include numbers`` () =
@@ -68,7 +68,7 @@ let ``Include numbers`` () =
           ("1", 1);
           ("2", 1) ]
         |> Map.ofList
-    countwords "testing, 1, 2 testing" |> should equal expected
+    countWords "testing, 1, 2 testing" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Normalize case`` () =
@@ -76,7 +76,7 @@ let ``Normalize case`` () =
         [ ("go", 3);
           ("stop", 2) ]
         |> Map.ofList
-    countwords "go Go GO Stop stop" |> should equal expected
+    countWords "go Go GO Stop stop" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``With apostrophes`` () =
@@ -87,7 +87,7 @@ let ``With apostrophes`` () =
           ("then", 1);
           ("cry", 1) ]
         |> Map.ofList
-    countwords "First: don't laugh. Then: don't cry." |> should equal expected
+    countWords "First: don't laugh. Then: don't cry." |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``With quotations`` () =
@@ -99,7 +99,7 @@ let ``With quotations`` () =
           ("large", 2);
           ("and", 1) ]
         |> Map.ofList
-    countwords "Joe can't tell between 'large' and large." |> should equal expected
+    countWords "Joe can't tell between 'large' and large." |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple spaces not detected as a word`` () =
@@ -107,5 +107,5 @@ let ``Multiple spaces not detected as a word`` () =
         [ ("multiple", 1);
           ("whitespaces", 1) ]
         |> Map.ofList
-    countwords " multiple   whitespaces" |> should equal expected
+    countWords " multiple   whitespaces" |> should equal expected
 

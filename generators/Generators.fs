@@ -235,7 +235,7 @@ type Clock() =
         sprintf "let %s = create %s %s" clockId hour minute
 
     member private this.RenderPropertyValue canonicalDataCase property =
-        this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Properties)
+        this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Input)
 
     override __.PropertiesWithIdentifier _ = ["clock1"; "clock2"]
 
@@ -246,7 +246,7 @@ type Clock() =
     
     override this.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
-        | "create" | "add" -> 
+        | "create" | "add" | "subtract" -> 
             let hour = this.RenderPropertyValue canonicalDataCase "hour"
             let minute = this.RenderPropertyValue canonicalDataCase "minute"
             [sprintf "let clock = create %s %s" hour minute]
@@ -258,8 +258,11 @@ type Clock() =
         | "create" -> 
             sprintf "display clock"
         | "add" -> 
-            this.RenderPropertyValue canonicalDataCase "add"
+            this.RenderPropertyValue canonicalDataCase "value"
             |> sprintf "add %s clock |> display" 
+        | "subtract" -> 
+            this.RenderPropertyValue canonicalDataCase "value"
+            |> sprintf "subtract %s clock |> display" 
         | "equal" -> 
             "clock1 = clock2" 
         | _ -> 
@@ -732,7 +735,7 @@ type PalindromeProducts() =
         |> formatOption 
         |> parenthesizeOption
 
-    override __.PropertiesUsedAsSutParameter _ = ["input_min"; "input_max"]
+    override __.PropertiesUsedAsSutParameter _ = ["min"; "max"]
 
 type PascalsTriangle() =
     inherit GeneratorExercise()
@@ -790,7 +793,7 @@ type PigLatin() =
 type Poker() = 
     inherit GeneratorExercise()
 
-    override __.PropertiesWithIdentifier _ = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Pov() = 
     inherit GeneratorExercise()
@@ -841,7 +844,6 @@ type Pov() =
         }
         |> Seq.toList
 
-
     override __.RenderSut canonicalDataCase = 
         match canonicalDataCase.Property with
         | "fromPov" -> 
@@ -890,7 +892,7 @@ type ProteinTranslation() =
 type Proverb() =
     inherit GeneratorExercise()
 
-    override __.PropertiesWithIdentifier _ = ["input"; "expected"]
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
@@ -1010,31 +1012,13 @@ type React() =
 type Rectangles() = 
     inherit GeneratorExercise()
 
-    member private __.GetPadding n = 
-        String.replicate n " "
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
-    member private this.FormatList (list: List<string>) = 
-        let separator = "; \n" + (this.GetPadding 8)
-        let value = 
-            list 
-            |> String.concat separator
-
-        if list.Length < 2 then 
-            sprintf "[%s]" value
-        else
-            sprintf "\n%s[ %s ]" (this.GetPadding 6) value
-
-    override __.PropertiesWithIdentifier _ = ["input"]
-    override __.RenderSutProperty _ = "rectangles"
-
-    override this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
-        match key with
-        | "input" ->
-            (value :?> JToken).ToObject<List<string>>() 
-            |> List.map formatString 
-            |> this.FormatList
-        | _ -> 
-            base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+    override __.RenderInput (_, _, value) =
+        value :?> JArray
+        |> normalizeJArray
+        |> Seq.map formatValue
+        |> formatMultiLineList
 
 type ReverseString() =
     inherit GeneratorExercise()
@@ -1067,10 +1051,10 @@ type RobotSimulator() =
 
     override __.PropertiesWithIdentifier canonicalDataCase =
         match parseInput canonicalDataCase.Expected with
-        | None,   Some _ -> ["robot"; "sut"] 
-        | Some _, None   -> ["robot"; "sut"]
-        | Some _, Some _ -> ["robot"; "expected"]
-        | None,   None   -> ["robot"; "sut"; "expected"]
+        | None,   Some _ -> ["sut"] 
+        | Some _, None   -> ["sut"]
+        | Some _, Some _ -> ["expected"]
+        | None,   None   -> ["sut"; "expected"]
 
     override __.ToTestMethodBodyAssert canonicalDataCase =
         let testMethodBodyAssert = base.ToTestMethodBodyAssert(canonicalDataCase)
@@ -1080,15 +1064,17 @@ type RobotSimulator() =
         | Some _, None -> { testMethodBodyAssert with Sut = sprintf "%s.direction" testMethodBodyAssert.Sut }
         | _ -> testMethodBodyAssert
 
-    override __.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
-        match key with
-        | "robot"    -> value |> parseInput |> renderInput
-        | "expected" -> value |> parseInput |> renderInput
-        | _ -> base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+    override __.RenderArrange canonicalDataCase =
+        sprintf "let robot = %s" (canonicalDataCase.Properties.["input"] |> parseInput |> renderInput) :: base.RenderArrange canonicalDataCase
+
+    override __.RenderExpected (_, _, value) = 
+        value |> parseInput |> renderInput
 
     override __.RenderSut canonicalDataCase = 
         match canonicalDataCase.Property with
         | "create" -> "robot"
+        | "turnLeft" | "turnRight" | "advance" -> sprintf "%s robot" canonicalDataCase.Property
+        | "instructions" -> sprintf "instructions %s robot" (formatValue canonicalDataCase.Input.["instructions"])
         | _ -> base.RenderSut canonicalDataCase
 
     override __.RenderTestMethodName canonicalDataCase =
