@@ -1275,6 +1275,43 @@ type WordCount() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
+type WordSearch() =
+    inherit GeneratorExercise()
+
+    let toCoordinates (value: JToken) = value.Value<int>("column"), value.Value<int>("row")
+
+    let renderExpectedCoordinates (value: JObject) =
+        formatTuple (value.Item("start") |> toCoordinates, value.Item("end") |> toCoordinates)
+
+    let renderExpectedValue (value: JObject) =
+        match isNull value with
+        | true  -> "Option<((int * int) * (int * int))>.None"
+        | false -> sprintf "Some (%s)" (renderExpectedCoordinates value)
+
+    override __.RenderExpected (_, _, value) = 
+        let input = value :?> JObject
+        let formattedList =
+            input.ToObject<Collections.Generic.Dictionary<string, JObject>>()
+            |> Seq.map (fun kv -> sprintf "(%s, %s)" (formatValue kv.Key) (renderExpectedValue kv.Value))
+            |> formatMultiLineList
+
+        if (formattedList.Contains("\n")) then
+            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+        else   
+            sprintf "%s |> Map.ofList" formattedList
+
+    override __.RenderInput (canonicalDataCase, key, value) = 
+        match key with
+        | "grid" -> 
+            value :?> JArray
+            |> normalizeJArray
+            |> Seq.map formatValue
+            |> formatMultiLineList
+        | _ -> 
+            base.RenderInput(canonicalDataCase, key, value)
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
 type Wordy() =
     inherit GeneratorExercise()
 

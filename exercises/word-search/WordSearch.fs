@@ -1,3 +1,3 @@
 ﻿module WordSearch
 
-let find puzzle word = failwith "You need to implement this function."
+let search grid wordsToSearchFor = failwith "You need to implement this function."
