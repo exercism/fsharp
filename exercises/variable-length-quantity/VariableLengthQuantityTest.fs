@@ -1,70 +1,113 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module VariableLengthQuantityTest
 
-open Xunit
 open FsUnit.Xunit
-open System
+open Xunit
 
 open VariableLengthQuantity
 
 [<Fact>]
-let ``To single byte`` () =
-    toBytes [0x00u] |> should equal [0x00uy]
-    toBytes [0x40u] |> should equal [0x40uy]
-    toBytes [0x7fu] |> should equal [0x7fuy]
+let ``Zero`` () =
+    encode [0x0u] |> should equal [0x0uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``To double byte`` () =
-    toBytes [0x80u] |> should equal [0x81uy; 0x00uy]
-    toBytes [0x2000u] |> should equal [0xc0uy; 0x00uy]
-    toBytes [0x3fffu] |> should equal [0xffuy; 0x7fuy]
+let ``Arbitrary single byte`` () =
+    encode [0x40u] |> should equal [0x40uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``To triple byte`` () =
-    toBytes [0x4000u] |> should equal [0x81uy; 0x80uy; 0x00uy]
-    toBytes [0x100000u] |> should equal [0xc0uy; 0x80uy; 0x00uy]
-    toBytes [0x1fffffu] |> should equal [0xffuy; 0xffuy; 0x7fuy]
+let ``Largest single byte`` () =
+    encode [0x7fu] |> should equal [0x7fuy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``To quadruple byte`` () =
-    toBytes [0x200000u] |> should equal [0x81uy; 0x80uy; 0x80uy; 0x00uy]
-    toBytes [0x08000000u] |> should equal [0xc0uy; 0x80uy; 0x80uy; 0x00uy]
-    toBytes [0x0fffffffu] |> should equal [0xffuy; 0xffuy; 0xffuy; 0x7fuy]
+let ``Smallest double byte`` () =
+    encode [0x80u] |> should equal [0x81uy; 0x0uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``To quintuple byte`` () =
-    toBytes [0x10000000u] |> should equal [0x81uy; 0x80uy; 0x80uy; 0x80uy; 0x00uy]
-    toBytes [0xff000000u] |> should equal [0x8fuy; 0xf8uy; 0x80uy; 0x80uy; 0x00uy]
-    toBytes [0xffffffffu] |> should equal [0x8fuy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy]
+let ``Arbitrary double byte`` () =
+    encode [0x2000u] |> should equal [0xc0uy; 0x0uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``From bytes`` () =
-    fromBytes [0x7fuy] |> should equal [0x7fu]
-    fromBytes [0xc0uy; 0x00uy] |> should equal [0x2000u]
-    fromBytes [0xffuy; 0xffuy; 0x7fuy] |> should equal [0x1fffffu]
-    fromBytes [0x81uy; 0x80uy; 0x80uy; 0x00uy] |> should equal [0x200000u]
-    fromBytes [0x8fuy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy] |> should equal [0xffffffffu]
+let ``Largest double byte`` () =
+    encode [0x3fffu] |> should equal [0xffuy; 0x7fuy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``To bytes multiple values`` () =
-    toBytes [0x40u; 0x7fu] |> should equal [0x40uy; 0x7fuy]
-    toBytes [0x4000u; 0x123456u] |> should equal [0x81uy; 0x80uy; 0x00uy; 0xc8uy; 0xe8uy; 0x56uy]
-    toBytes [0x2000u; 0x123456u; 0x0fffffffu; 0x00u; 0x3fffu; 0x4000u] |> should equal [0xc0uy; 0x00uy; 0xc8uy; 0xe8uy; 0x56uy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy; 0x00uy; 0xffuy; 0x7fuy; 0x81uy; 0x80uy; 0x00uy]
+let ``Smallest triple byte`` () =
+    encode [0x4000u] |> should equal [0x81uy; 0x80uy; 0x0uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``From bytes multiple values`` () =
-    fromBytes [0xc0uy; 0x00uy; 0xc8uy; 0xe8uy; 0x56uy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy; 0x00uy; 0xffuy; 0x7fuy; 0x81uy; 0x80uy; 0x00uy] |> should equal [0x2000u; 0x123456u; 0x0fffffffu; 0x00u; 0x3fffu; 0x4000u]
+let ``Arbitrary triple byte`` () =
+    encode [0x100000u] |> should equal [0xc0uy; 0x80uy; 0x0uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Incomplete byte sequence`` () =
-    (fun () -> fromBytes [0xffuy] |> ignore) |> should throw typeof<Exception>
+let ``Largest triple byte`` () =
+    encode [0x1fffffu] |> should equal [0xffuy; 0xffuy; 0x7fuy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Overflow`` () =    
-    (fun () -> fromBytes [0xffuy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy] |> ignore) |> should throw typeof<Exception>
+let ``Smallest quadruple byte`` () =
+    encode [0x200000u] |> should equal [0x81uy; 0x80uy; 0x80uy; 0x0uy]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Chained execution is identity`` () =
-    let test = [0xf2u; 0xf6u; 0x96u; 0x9cu; 0x3bu; 0x39u; 0x2eu; 0x30u; 0xb3u; 0x24u];
-    toBytes test |> fromBytes |> should equal test
+let ``Arbitrary quadruple byte`` () =
+    encode [0x8000000u] |> should equal [0xc0uy; 0x80uy; 0x80uy; 0x0uy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Largest quadruple byte`` () =
+    encode [0xfffffffu] |> should equal [0xffuy; 0xffuy; 0xffuy; 0x7fuy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Smallest quintuple byte`` () =
+    encode [0x10000000u] |> should equal [0x81uy; 0x80uy; 0x80uy; 0x80uy; 0x0uy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Arbitrary quintuple byte`` () =
+    encode [0xff000000u] |> should equal [0x8fuy; 0xf8uy; 0x80uy; 0x80uy; 0x0uy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Maximum 32-bit integer input`` () =
+    encode [0xffffffffu] |> should equal [0x8fuy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Two single-byte values`` () =
+    encode [0x40u; 0x7fu] |> should equal [0x40uy; 0x7fuy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Two multi-byte values`` () =
+    encode [0x4000u; 0x123456u] |> should equal [0x81uy; 0x80uy; 0x0uy; 0xc8uy; 0xe8uy; 0x56uy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Many multi-byte values`` () =
+    encode [0x2000u; 0x123456u; 0xfffffffu; 0x0u; 0x3fffu; 0x4000u] |> should equal [0xc0uy; 0x0uy; 0xc8uy; 0xe8uy; 0x56uy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy; 0x0uy; 0xffuy; 0x7fuy; 0x81uy; 0x80uy; 0x0uy]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``One byte`` () =
+    decode [0x7fuy] |> should equal (Some [0x7fu])
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Two bytes`` () =
+    decode [0xc0uy; 0x0uy] |> should equal (Some [0x2000u])
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Three bytes`` () =
+    decode [0xffuy; 0xffuy; 0x7fuy] |> should equal (Some [0x1fffffu])
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Four bytes`` () =
+    decode [0x81uy; 0x80uy; 0x80uy; 0x0uy] |> should equal (Some [0x200000u])
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Maximum 32-bit integer`` () =
+    decode [0x8fuy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy] |> should equal (Some [0xffffffffu])
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Incomplete sequence causes error`` () =
+    decode [0xffuy] |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Incomplete sequence causes error, even if value is zero`` () =
+    decode [0x80uy] |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Multiple values`` () =
+    decode [0xc0uy; 0x0uy; 0xc8uy; 0xe8uy; 0x56uy; 0xffuy; 0xffuy; 0xffuy; 0x7fuy; 0x0uy; 0xffuy; 0x7fuy; 0x81uy; 0x80uy; 0x0uy] |> should equal (Some [0x2000u; 0x123456u; 0xfffffffu; 0x0u; 0x3fffu; 0x4000u])
+

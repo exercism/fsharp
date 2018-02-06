@@ -19,21 +19,25 @@ let toBytesSingle value =
     if value = 0u then [0uy]
     else List.unfold unfolder (value, true) |> List.rev
 
-let toBytes values = List.collect toBytesSingle values
+let encode values = List.collect toBytesSingle values
 
-let fromBytes (bytes: byte list): uint32 list = 
-    let folder (acc, values) b = 
-        if acc &&& 0xfe000000u > 0u then 
-            failwith "Overflow exception"
-        else
-            let value = (acc <<< 7) ||| (uint32 b &&& 0x7fu)
+let decode (bytes: byte list): uint32 list option = 
+    let folder acc b =
+        match acc with
+        | None -> None
+        | Some (remainder, values) ->
+            if remainder &&& 0xfe000000u > 0u then 
+                None
+            else
+                let value = (remainder <<< 7) ||| (uint32 b &&& 0x7fu)
 
-            if 0x80uy &&& b = 0uy then 
-                (0u, value :: values) 
-            else 
-                (value, values)
+                if 0x80uy &&& b = 0uy then 
+                    Some (0u, value :: values) 
+                else 
+                    Some (value, values)
 
-    let (acc, values) = List.fold folder (0u, []) bytes
-
-    if acc <> 0u then failwith "Incomplete byte sequence"
-    else values |> List.rev
+    match List.fold folder (Some (0u, [])) bytes with
+    | None -> None
+    | Some (remainder, _) when remainder <> 0u -> None
+    | Some (_, values) when List.isEmpty values -> None
+    | Some (_, values) -> Some (List.rev values)
