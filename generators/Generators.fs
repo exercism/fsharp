@@ -292,7 +292,7 @@ type ComplexNumbers() =
         | :? JArray as jArray ->
             let renderAssertion testedFunction expected =
                 { Sut = sprintf "%s sut" testedFunction; Expected = expected }
-                |> renderInlineTemplate "{{ Sut }} |> should (equalWithin 0.000000001) {{ Expected }}"
+                |> renderPartialTemplate "AssertEqualWithin"
 
             [ renderAssertion "real" (renderNumber jArray.[0]) 
               renderAssertion "imaginary" (renderNumber jArray.[1]) |> indent 1 ]
