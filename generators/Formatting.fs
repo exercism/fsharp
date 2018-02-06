@@ -44,6 +44,8 @@ let formatDateTime (dateTime: DateTime) =
 let formatTimeSpan (timeSpan: TimeSpan) = 
     sprintf "TimeSpan(%d, %d, %d)" timeSpan.Hours timeSpan.Minutes timeSpan.Seconds
 
+let isInt (jToken: JToken) = jToken.Value<int64>() <= int64 Int32.MaxValue
+
 let rec normalizeJArray (jArray: JArray): obj list =
     let toBoxedList seq = 
         seq
@@ -52,8 +54,10 @@ let rec normalizeJArray (jArray: JArray): obj list =
 
     if jArray.Count = 0 then
         []
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer) then
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer && isInt x) then
         jArray.Values<int>() |> toBoxedList
+    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer) then
+        jArray.Values<int64>() |> toBoxedList
     else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float) then
         jArray.Values<float>() |> toBoxedList
     else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean) then
@@ -73,7 +77,8 @@ let rec normalizeJArray (jArray: JArray): obj list =
 
 let formatToken (jToken: JToken) =
     match jToken.Type with
-    | JTokenType.Integer  -> jToken.ToObject<int>()      |> string
+    | JTokenType.Integer when isInt jToken -> jToken.ToObject<int>() |> string
+    | JTokenType.Integer  -> jToken.ToObject<int64>()    |> string
     | JTokenType.Float    -> jToken.ToObject<float>()    |> string
     | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> formatBool
     | JTokenType.String   -> jToken.ToObject<string>()   |> formatString
