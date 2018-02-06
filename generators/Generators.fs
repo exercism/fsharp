@@ -933,6 +933,19 @@ type RailFenceCipher() =
 type Raindrops() =
     inherit GeneratorExercise()
 
+type RationalNumbers() =
+    inherit GeneratorExercise()
+
+    override __.RenderValue (canonicalDataCase, key, value) =
+        match value with
+        | :? JArray as jArray -> sprintf "(create %d %d)" (jArray.[0].Value<int>()) (jArray.[1].Value<int>())
+        | _ -> base.RenderValue (canonicalDataCase, key, value)
+
+    override __.TestMethodBodyAssertTemplate canonicalDataCase =
+        match canonicalDataCase.Expected with
+        | :? double -> "AssertEqualWithin"
+        | _ -> base.TestMethodBodyAssertTemplate(canonicalDataCase)
+
 type React() = 
     inherit GeneratorExercise()
 

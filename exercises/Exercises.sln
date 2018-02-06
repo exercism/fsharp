@@ -226,6 +226,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ArmstrongNumbers", "armstro
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "ComplexNumbers", "complex-numbers\ComplexNumbers.fsproj", "{79DD3BB0-7693-4DE3-98AD-E28A7DD91758}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RationalNumbers", "rational-numbers\RationalNumbers.fsproj", "{0D472A8A-E241-473A-85C6-548D0177A6AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -680,6 +682,10 @@ Global
 		{79DD3BB0-7693-4DE3-98AD-E28A7DD91758}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79DD3BB0-7693-4DE3-98AD-E28A7DD91758}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79DD3BB0-7693-4DE3-98AD-E28A7DD91758}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D472A8A-E241-473A-85C6-548D0177A6AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D472A8A-E241-473A-85C6-548D0177A6AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D472A8A-E241-473A-85C6-548D0177A6AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D472A8A-E241-473A-85C6-548D0177A6AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
