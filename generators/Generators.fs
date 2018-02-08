@@ -292,7 +292,7 @@ type ComplexNumbers() =
         | :? JArray as jArray ->
             let renderAssertion testedFunction expected =
                 { Sut = sprintf "%s sut" testedFunction; Expected = expected }
-                |> renderInlineTemplate "{{ Sut }} |> should (equalWithin 0.000000001) {{ Expected }}"
+                |> renderPartialTemplate "AssertEqualWithin"
 
             [ renderAssertion "real" (renderNumber jArray.[0]) 
               renderAssertion "imaginary" (renderNumber jArray.[1]) |> indent 1 ]
@@ -932,6 +932,19 @@ type RailFenceCipher() =
 
 type Raindrops() =
     inherit GeneratorExercise()
+
+type RationalNumbers() =
+    inherit GeneratorExercise()
+
+    override __.RenderValue (canonicalDataCase, key, value) =
+        match value with
+        | :? JArray as jArray -> sprintf "(create %d %d)" (jArray.[0].Value<int>()) (jArray.[1].Value<int>())
+        | _ -> base.RenderValue (canonicalDataCase, key, value)
+
+    override __.TestMethodBodyAssertTemplate canonicalDataCase =
+        match canonicalDataCase.Expected with
+        | :? double -> "AssertEqualWithin"
+        | _ -> base.TestMethodBodyAssertTemplate(canonicalDataCase)
 
 type React() = 
     inherit GeneratorExercise()

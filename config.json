@@ -967,6 +967,16 @@
     {
       "core": false,
       "difficulty": 6,
+      "slug": "rational-numbers",
+      "topics": [
+        "mathematics"
+      ],
+      "unlocked_by": "leap",
+      "uuid": "913ce020-32ae-4b65-ae64-c924d25295dc"
+    },
+    {
+      "core": false,
+      "difficulty": 6,
       "slug": "rail-fence-cipher",
       "topics": [
         "algorithms",
