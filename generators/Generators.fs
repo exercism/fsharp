@@ -1275,6 +1275,31 @@ type TwoFer() =
 
     override __.RenderInput (_, _, value) =
         value |> Option.ofObj |> formatValue |> parenthesizeOption
+
+type VariableLengthQuantity() = 
+    inherit GeneratorExercise()
+
+    let formatUnsignedByteList (value: obj) =
+        value :?> JArray
+        |> Seq.map (fun x -> x.Value<byte>() |> sprintf "0x%xuy")
+        |> formatList
+
+    let formatUnsignedIntList (value: obj) =
+        value :?> JArray
+        |> Seq.map (fun x -> x.Value<uint32>() |> sprintf "0x%xu")
+        |> formatList
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match canonicalDataCase.Property with
+        | "encode" -> value |> formatUnsignedIntList
+        | "decode" -> value |> formatUnsignedByteList
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
+
+    override __.RenderExpected (canonicalDataCase, key, value) =
+        match canonicalDataCase.Property with
+        | "encode" -> value |> formatUnsignedByteList
+        | "decode" -> value |> Option.ofObj |> Option.map formatUnsignedIntList |> formatOption |> parenthesizeOption
+        | _ -> base.RenderExpected (canonicalDataCase, key, value)
         
 type WordCount() =
     inherit GeneratorExercise()
