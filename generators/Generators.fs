@@ -26,24 +26,23 @@ type Allergies() =
 
     let toAllergen (jToken: JToken) =  sprintf "Allergen.%s" (jToken.ToString() |> String.humanize)
 
-    override this.RenderTestMethodBody canonicalDataCase =
-        if (canonicalDataCase.Property = "allergicTo") then
-            let renderAssertion (jToken: JToken) =
-                let updatedInput =
-                    canonicalDataCase.Input
-                    |> Map.add "substance" (jToken.["substance"] |> toAllergen |> box)
+    let renderAllergicToAssert canonicalDataCase (jToken: JToken) =
+        let substance = jToken.["substance"] |> toAllergen
+        let score = canonicalDataCase.Input.["score"] :?> int64
+        let sut = sprintf "allergicTo %d %s" score substance
+        let expected = jToken.Value<bool>("result") |> formatBool
+        
+        { Sut = sut; Expected = expected }
+        |> renderPartialTemplate "AssertEqual"
 
-                { canonicalDataCase with 
-                    Input = updatedInput
-                    Expected = jToken.["result"].ToObject<bool>() |> box }
-                |> this.RenderAssert
-                |> indent 1
-
+    override __.RenderAssert canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "allergicTo" ->
             canonicalDataCase.Expected :?> JArray
-            |> Seq.map renderAssertion
-            |> String.concat "\n"
-        else
-            base.RenderTestMethodBody canonicalDataCase
+            |> Seq.map (renderAllergicToAssert canonicalDataCase)
+            |> Seq.toList
+        | _ -> 
+            base.RenderAssert canonicalDataCase
 
     override __.RenderExpected (canonicalDataCase, key, value) =     
         if (canonicalDataCase.Property = "list") then
@@ -180,7 +179,7 @@ type CircularBuffer() =
 
     override __.AdditionalNamespaces = [ "System" ]
 
-    override __.RenderAssert _ = ""
+    override __.RenderAssert _ = []
 
     member __.ExceptionCheck command = 
         sprintf "(fun () -> %s |> ignore) |> should throw typeof<Exception>" command 
@@ -273,10 +272,11 @@ type ComplexNumbers() =
 
     let renderNumber (input: JToken) =
         match string input with
-        | "e"  -> "Math.E"
-        | "pi" -> "Math.PI"
-        | int when int.IndexOf('.') = -1  -> sprintf "%s.0" int
-        | float -> float
+        | "e"     -> "Math.E"
+        | "pi"    -> "Math.PI"
+        | "ln(2)" -> "(Math.Log(2.0))"
+        | i when i.IndexOf('.') = -1  -> sprintf "%s.0" i
+        | float   -> float
     
     let renderComplexNumber (input: JArray) =
         sprintf "(create %s %s)" (renderNumber input.[0]) (renderNumber input.[1])
@@ -294,9 +294,8 @@ type ComplexNumbers() =
                 { Sut = sprintf "%s sut" testedFunction; Expected = expected }
                 |> renderPartialTemplate "AssertEqualWithin"
 
-            [ renderAssertion "real" (renderNumber jArray.[0]) 
-              renderAssertion "imaginary" (renderNumber jArray.[1]) |> indent 1 ]
-            |> String.concat "\n"
+            [ jArray.[0] |> renderNumber |> renderAssertion "real"
+              jArray.[1] |> renderNumber |> renderAssertion "imaginary" ]
         | _ ->
             base.RenderAssert(canonicalDataCase)
 
@@ -1012,10 +1011,7 @@ type React() =
         )
         |> Seq.toList
 
-    override __.RenderAssert _ = 
-        // skip this method 
-        // because for this task we have multiple assert statements
-        ""
+    override __.RenderAssert _ = []
 
     override this.RenderArrange canonicalDataCase =
         let initialVars = this.RenderCells canonicalDataCase

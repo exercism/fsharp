@@ -12,7 +12,6 @@ let ``Input cells have a value`` () =
     let reactor = new Reactor()
     let input = reactor.createInputCell 10
     input.Value |> should equal 10
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``An input cell's value can be set`` () =
@@ -20,7 +19,6 @@ let ``An input cell's value can be set`` () =
     let input = reactor.createInputCell 4
     input.Value <- 20
     input.Value |> should equal 20
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Compute cells calculate initial value`` () =
@@ -28,7 +26,6 @@ let ``Compute cells calculate initial value`` () =
     let input = reactor.createInputCell 1
     let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     output.Value |> should equal 2
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Compute cells take inputs in the right order`` () =
@@ -37,7 +34,6 @@ let ``Compute cells take inputs in the right order`` () =
     let two = reactor.createInputCell 2
     let output = reactor.createComputeCell [one; two] (fun values -> values.[0] + values.[1] * 10)
     output.Value |> should equal 21
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Compute cells update value when dependencies are changed`` () =
@@ -46,7 +42,6 @@ let ``Compute cells update value when dependencies are changed`` () =
     let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     input.Value <- 3
     output.Value |> should equal 4
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Compute cells can depend on other compute cells`` () =
@@ -58,7 +53,6 @@ let ``Compute cells can depend on other compute cells`` () =
     output.Value |> should equal 32
     input.Value <- 3
     output.Value |> should equal 96
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Compute cells fire callbacks`` () =
@@ -70,7 +64,6 @@ let ``Compute cells fire callbacks`` () =
     output.Changed.AddHandler callback1Handler
     input.Value <- 3
     callback1 |> should equal [4]
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Callback cells only fire on change`` () =
@@ -84,7 +77,6 @@ let ``Callback cells only fire on change`` () =
     callback1 |> should equal List.empty<int>
     input.Value <- 4
     callback1 |> should equal [222]
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Callbacks can be added and removed`` () =
@@ -106,7 +98,6 @@ let ``Callbacks can be added and removed`` () =
     callback1 |> should equal [32]
     callback2 |> should equal [32; 42]
     callback3 |> should equal [42]
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Removing a callback multiple times doesn't interfere with other callbacks`` () =
@@ -125,7 +116,6 @@ let ``Removing a callback multiple times doesn't interfere with other callbacks`
     input.Value <- 2
     callback1 |> should equal List.empty<int>
     callback2 |> should equal [3]
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Callbacks should only be called once even if multiple dependencies change`` () =
@@ -140,7 +130,6 @@ let ``Callbacks should only be called once even if multiple dependencies change`
     output.Changed.AddHandler callback1Handler
     input.Value <- 4
     callback1 |> should equal [10]
-    
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Callbacks should not be called if dependencies change but output value doesn't change`` () =
@@ -157,5 +146,4 @@ let ``Callbacks should not be called if dependencies change but output value doe
     input.Value <- 4
     input.Value <- 5
     callback1 |> should equal List.empty<int>
-    
 

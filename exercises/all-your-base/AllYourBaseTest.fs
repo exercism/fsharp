@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.1.0 of the canonical data.
+// This file was auto-generated based on version 2.3.0 of the canonical data.
 
 module AllYourBaseTest
 
@@ -105,7 +105,7 @@ let ``Leading zeros`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Input base is one`` () =
-    let digits = []
+    let digits = [0]
     let inputBase = 1
     let outputBase = 10
     let expected = None

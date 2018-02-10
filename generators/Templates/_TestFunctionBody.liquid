@@ -1,4 +1,6 @@
 {%- for arrange in Arrange -%}
 {{ arrange | indent }}
 {%- endfor -%}
-{{ Assert | indent }}
+{%- for assert in Assert -%}
+{{ assert | indent }}
+{%- endfor -%}
