@@ -4,11 +4,11 @@ type Node = { left: Node option; value: int; right: Node option }
 
 let left node  = node.left
 let right node = node.right
-let value node = Some node.value
+let data node = node.value
 
-let singleton value = { left = None; right = None; value = value }
+let private singleton value = { left = None; right = None; value = value }
 
-let rec insert newValue (tree: Node) =
+let rec private insert newValue (tree: Node) =
     let loop newValue = 
         function
         | Some x -> Some <| insert newValue x
@@ -20,7 +20,7 @@ let rec insert newValue (tree: Node) =
     | _ -> 
         { tree with right = loop newValue tree.right }
 
-let toList tree = 
+let sortedData tree = 
     let rec loop = 
         function
         | Some node -> loop node.left @ [node.value] @ loop node.right
@@ -28,7 +28,7 @@ let toList tree =
 
     loop <| Some tree
 
-let fromList = 
+let create = 
     function
     | []    -> failwith "Cannot create tree from empty list."
     | x::xs -> List.fold (fun acc elem -> insert elem acc) (singleton x) xs
