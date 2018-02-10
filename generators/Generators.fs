@@ -1157,6 +1157,22 @@ type Say() =
 
     override __.RenderInput (_, _, value) = sprintf "%sL" (string value)
 
+type ScaleGenerator() =
+    inherit GeneratorExercise()
+
+    override __.MapCanonicalDataCaseInput (canonicalDataCase, properties) =
+        let input = base.MapCanonicalDataCaseInput (canonicalDataCase, properties)
+        match Map.tryFind "intervals" input with
+        | Some _ -> input
+        | None   -> Map.add "intervals" null input
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with 
+        | "intervals" -> value |> Option.ofObj |> formatValue |> parenthesizeOption
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
+
+    override __.PropertiesUsedAsSutParameter _ = ["tonic"; "intervals"]
+
 type ScrabbleScore() =
     inherit GeneratorExercise()
 

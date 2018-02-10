@@ -1,3 +1,3 @@
 ﻿module ScaleGenerator
 
-let pitches tonic pattern = failwith "You need to implement this function."
+let pitches tonic intervals = failwith "You need to implement this function."
