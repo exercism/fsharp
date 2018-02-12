@@ -1,92 +1,77 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
 module ScaleGeneratorTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open ScaleGenerator
 
 [<Fact>]
-let ``Major scale`` () =
-    let major = pitches "C" "MMmMMMm"
-    let expected = ["C"; "D"; "E"; "F"; "G"; "A"; "B"]
-    major |> should equal expected
+let ``Chromatic scale with sharps`` () =
+    pitches "C" None |> should equal ["C"; "C#"; "D"; "D#"; "E"; "F"; "F#"; "G"; "G#"; "A"; "A#"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Another major scale`` () =
-    let major = pitches "G" "MMmMMMm"
-    let expected = ["G"; "A"; "B"; "C"; "D"; "E"; "F#"]
-    major |> should equal expected
+let ``Chromatic scale with flats`` () =
+    pitches "F" None |> should equal ["F"; "Gb"; "G"; "Ab"; "A"; "Bb"; "B"; "C"; "Db"; "D"; "Eb"; "E"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Minor scale`` () =
-    let minor = pitches "f#" "MmMMmMM"
-    let expected = ["F#"; "G#"; "A"; "B"; "C#"; "D"; "E"]
-    minor |> should equal expected
+let ``Simple major scale`` () =
+    pitches "C" (Some "MMmMMMm") |> should equal ["C"; "D"; "E"; "F"; "G"; "A"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Another minor scale`` () =
-    let minor = pitches "bb" "MmMMmMM"
-    let expected = ["Bb"; "C"; "Db"; "Eb"; "F"; "Gb"; "Ab"]
-    minor |> should equal expected
-    
+let ``Major scale with sharps`` () =
+    pitches "G" (Some "MMmMMMm") |> should equal ["G"; "A"; "B"; "C"; "D"; "E"; "F#"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Major scale with flats`` () =
+    pitches "F" (Some "MMmMMMm") |> should equal ["F"; "G"; "A"; "Bb"; "C"; "D"; "E"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Minor scale with sharps`` () =
+    pitches "f#" (Some "MmMMmMM") |> should equal ["F#"; "G#"; "A"; "B"; "C#"; "D"; "E"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Minor scale with flats`` () =
+    pitches "bb" (Some "MmMMmMM") |> should equal ["Bb"; "C"; "Db"; "Eb"; "F"; "Gb"; "Ab"]
+
 [<Fact(Skip = "Remove to run test")>]
 let ``Dorian mode`` () =
-    let dorian = pitches "d" "MmMMMmM"
-    let expected = ["D"; "E"; "F"; "G"; "A"; "B"; "C"]
-    dorian |> should equal expected
+    pitches "d" (Some "MmMMMmM") |> should equal ["D"; "E"; "F"; "G"; "A"; "B"; "C"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Mixolydian mode`` () =
-    let mixolydian = pitches "Eb" "MMmMMmM"
-    let expected = ["Eb"; "F"; "G"; "Ab"; "Bb"; "C"; "Db"]
-    mixolydian |> should equal expected
+    pitches "Eb" (Some "MMmMMmM") |> should equal ["Eb"; "F"; "G"; "Ab"; "Bb"; "C"; "Db"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Lydian mode`` () =
-    let lydian = pitches "a" "MMMmMMm"
-    let expected = ["A"; "B"; "C#"; "D#"; "E"; "F#"; "G#"]
-    lydian |> should equal expected
+    pitches "a" (Some "MMMmMMm") |> should equal ["A"; "B"; "C#"; "D#"; "E"; "F#"; "G#"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Phrygian mode`` () =
-    let phrygian = pitches "e" "mMMMmMM"
-    let expected = ["E"; "F"; "G"; "A"; "B"; "C"; "D"]
-    phrygian |> should equal expected
+    pitches "e" (Some "mMMMmMM") |> should equal ["E"; "F"; "G"; "A"; "B"; "C"; "D"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Locrian mode`` () =
-    let locrian = pitches "g" "mMMmMMM"
-    let expected = ["G"; "Ab"; "Bb"; "C"; "Db"; "Eb"; "F"]
-    locrian |> should equal expected
+    pitches "g" (Some "mMMmMMM") |> should equal ["G"; "Ab"; "Bb"; "C"; "Db"; "Eb"; "F"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Harmonic minor`` () =
-    let harmonicMinor = pitches "d" "MmMMmAm"
-    let expected = ["D"; "E"; "F"; "G"; "A"; "Bb"; "Db"]
-    harmonicMinor |> should equal expected
+    pitches "d" (Some "MmMMmAm") |> should equal ["D"; "E"; "F"; "G"; "A"; "Bb"; "Db"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Octatonic`` () =
-    let octatonic = pitches "C" "MmMmMmMm"
-    let expected = ["C"; "D"; "D#"; "F"; "F#"; "G#"; "A"; "B"]
-    octatonic |> should equal expected
+    pitches "C" (Some "MmMmMmMm") |> should equal ["C"; "D"; "D#"; "F"; "F#"; "G#"; "A"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Hexatonic`` () =
-    let hexatonic = pitches "Db" "MMMMMM"
-    let expected = ["Db"; "Eb"; "F"; "G"; "A"; "B"]
-    hexatonic |> should equal expected
+    pitches "Db" (Some "MMMMMM") |> should equal ["Db"; "Eb"; "F"; "G"; "A"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Pentatonic`` () =
-    let pentatonic = pitches "A" "MMAMA"
-    let expected = ["A"; "B"; "C#"; "E"; "F#"]
-    pentatonic |> should equal expected
+    pitches "A" (Some "MMAMA") |> should equal ["A"; "B"; "C#"; "E"; "F#"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Enigmatic`` () =
-    let enigmatic = pitches "G" "mAMMMmm"
-    let expected = ["G"; "G#"; "B"; "C#"; "D#"; "F"; "F#"]
-    enigmatic |> should equal expected
+    pitches "G" (Some "mAMMMmm") |> should equal ["G"; "G#"; "B"; "C#"; "D#"; "F"; "F#"]
+
