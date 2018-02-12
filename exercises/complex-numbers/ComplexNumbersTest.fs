@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module ComplexNumbersTest
 
@@ -164,5 +164,11 @@ let ``Exponential of 0`` () =
 let ``Exponential of a purely real number`` () =
     let sut = exp (create 1.0 0.0)
     real sut |> should (equalWithin 0.000000001) Math.E
+    imaginary sut |> should (equalWithin 0.000000001) 0.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Exponential of a number with real and imaginary part`` () =
+    let sut = exp (create (Math.Log(2.0)) Math.PI)
+    real sut |> should (equalWithin 0.000000001) -2.0
     imaginary sut |> should (equalWithin 0.000000001) 0.0
 

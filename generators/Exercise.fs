@@ -56,7 +56,7 @@ type GeneratorExercise() =
     abstract member RenderExpected : CanonicalDataCase * string * obj -> string
     abstract member RenderInput : CanonicalDataCase * string * obj -> string
     abstract member RenderArrange : CanonicalDataCase -> string list
-    abstract member RenderAssert : CanonicalDataCase -> string
+    abstract member RenderAssert : CanonicalDataCase -> string list
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSutParameters : CanonicalDataCase -> string list
     abstract member RenderSutParameter : CanonicalDataCase * string * obj -> string
@@ -252,7 +252,8 @@ type GeneratorExercise() =
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert
-        |> renderPartialTemplate template    
+        |> renderPartialTemplate template
+        |> List.singleton
 
     default this.RenderSut canonicalDataCase = 
         let parameters = this.RenderSutParameters canonicalDataCase
