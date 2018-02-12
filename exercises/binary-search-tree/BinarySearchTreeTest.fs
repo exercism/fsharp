@@ -1,61 +1,87 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
 module BinarySearchTreeTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
+
 open BinarySearchTree
 
 [<Fact>]
 let ``Data is retained`` () =
-    let tree = singleton 4
-    tree |> value |> should equal <| Some 4
+    let treeData = create [4]
+    treeData |> data |> should equal 4
+    treeData |> left |> should equal None
+    treeData |> right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Inserting less`` () =
-    let tree = singleton 4 |> insert 2
-    tree |> value |> should equal <| Some 4
-    tree |> left |> Option.bind value |> should equal <| Some 2
+let ``Can create complex tree`` () =
+    let treeData = create [4; 2; 6; 1; 3; 5; 7]
+    treeData |> data |> should equal 4
+    treeData |> left |> Option.map data |> should equal (Some 2)
+    treeData |> left |> Option.bind left |> Option.map data |> should equal (Some 1)
+    treeData |> left |> Option.bind left |> Option.bind left |> should equal None
+    treeData |> left |> Option.bind left |> Option.bind right |> should equal None
+    treeData |> left |> Option.bind right |> Option.map data |> should equal (Some 3)
+    treeData |> left |> Option.bind right |> Option.bind left |> should equal None
+    treeData |> left |> Option.bind right |> Option.bind right |> should equal None
+    treeData |> right |> Option.map data |> should equal (Some 6)
+    treeData |> right |> Option.bind left |> Option.map data |> should equal (Some 5)
+    treeData |> right |> Option.bind left |> Option.bind left |> should equal None
+    treeData |> right |> Option.bind left |> Option.bind right |> should equal None
+    treeData |> right |> Option.bind right |> Option.map data |> should equal (Some 7)
+    treeData |> right |> Option.bind right |> Option.bind left |> should equal None
+    treeData |> right |> Option.bind right |> Option.bind right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Inserting same`` () =
-    let tree = singleton 4 |> insert 4
-    tree |> value |> should equal <| Some 4
-    tree |> left |> Option.bind value |> should equal <| Some 4
+let ``Smaller number at left node`` () =
+    let treeData = create [4; 2]
+    treeData |> data |> should equal 4
+    treeData |> left |> Option.map data |> should equal (Some 2)
+    treeData |> left |> Option.bind left |> should equal None
+    treeData |> left |> Option.bind right |> should equal None
+    treeData |> right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Inserting greater`` () =
-    let tree = singleton 4 |> insert 5
-    tree |> value |> should equal <| Some 4
-    tree |> right |> Option.bind value |> should equal <| Some 5
+let ``Same number at left node`` () =
+    let treeData = create [4; 4]
+    treeData |> data |> should equal 4
+    treeData |> left |> Option.map data |> should equal (Some 4)
+    treeData |> left |> Option.bind left |> should equal None
+    treeData |> left |> Option.bind right |> should equal None
+    treeData |> right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Complex tree`` () =
-    let tree = fromList [4; 2; 6; 1; 3; 7; 5]
-    tree |> value |> should equal <| Some 4
-    tree |> left |> Option.bind value |> should equal <| Some 2
-    tree |> left |> Option.bind (fun x -> x |> left) |> Option.bind value |> should equal <| Some 1
-    tree |> left |> Option.bind (fun x -> x |> right) |> Option.bind value |> should equal <| Some 3
-    tree |> right |> Option.bind value |> should equal <| Some 6
-    tree |> right |> Option.bind (fun x -> x |> left) |> Option.bind value |> should equal <| Some 5
-    tree |> right |> Option.bind (fun x -> x |> right) |> Option.bind value |> should equal <| Some 7
+let ``Greater number at right node`` () =
+    let treeData = create [4; 5]
+    treeData |> data |> should equal 4
+    treeData |> left |> should equal None
+    treeData |> right |> Option.map data |> should equal (Some 5)
+    treeData |> right |> Option.bind left |> should equal None
+    treeData |> right |> Option.bind right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Iterating one element`` () =
-    let elements = singleton 4 |> toList
-    elements |> should equal [4]
+let ``Can sort single number`` () =
+    let treeData = create [2]
+    sortedData treeData |> should equal [2]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Iterating over smaller element`` () =
-    let elements = fromList [4; 2] |> toList
-    elements |> should equal [2; 4]
+let ``Can sort if second number is smaller than first`` () =
+    let treeData = create [2; 1]
+    sortedData treeData |> should equal [1; 2]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Iterating over larger element`` () =
-    let elements = fromList [4; 5] |> toList
-    elements |> should equal [4; 5]
+let ``Can sort if second number is same as first`` () =
+    let treeData = create [2; 2]
+    sortedData treeData |> should equal [2; 2]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Iterating over complex element`` () =
-    let elements = fromList [4; 2; 1; 3; 6; 7; 5] |> toList
-    elements |> should equal [1; 2; 3; 4; 5; 6; 7] 
+let ``Can sort if second number is greater than first`` () =
+    let treeData = create [2; 3]
+    sortedData treeData |> should equal [2; 3]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can sort complex tree`` () =
+    let treeData = create [2; 1; 3; 6; 7; 5]
+    sortedData treeData |> should equal [1; 2; 3; 5; 6; 7]
+

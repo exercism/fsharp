@@ -117,6 +117,60 @@ type BinarySearch() =
         | _ ->
             base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
 
+type BinarySearchTree() =
+    inherit GeneratorExercise()
+
+    let rec renderAssertions previousPaths (tree: JObject) =
+        let previousPath = previousPaths |> List.rev |> String.concat " |> "
+        let rootPath = List.length previousPaths = 1
+
+        let renderDataAssertions =
+            let dataPath = if rootPath then "data" else "Option.map data"
+            let data = tree.["data"]
+
+            match data.Type with
+            | JTokenType.Null -> 
+                let expected = if rootPath then failwith "Invalid data" else "None"
+                [ sprintf "%s |> %s |> should equal %s" previousPath dataPath expected ]
+            | _ -> 
+                let data = (data :?> JValue).ToObject<int>()
+                let expected = if rootPath then string data else sprintf "(Some %d)" data
+                [ sprintf "%s |> %s |> should equal %s" previousPath dataPath expected ]
+
+        let renderNodeAssertions nodeName (node: JToken) = 
+            let nodePath = if rootPath then nodeName else sprintf "Option.bind %s" nodeName
+
+            match node.Type with
+            | JTokenType.Null -> 
+                [ sprintf "%s |> %s |> should equal None" previousPath nodePath ]
+            | _ ->
+                renderAssertions (nodePath :: previousPaths) (node :?> JObject)            
+
+        [ renderDataAssertions
+          renderNodeAssertions "left" tree.["left"] 
+          renderNodeAssertions "right" tree.["right"] ]
+        |> List.concat
+
+    override __.RenderAssert canonicalDataCase = 
+        match canonicalDataCase.Property with
+        | "data" ->
+            canonicalDataCase.Expected :?> JObject
+            |> renderAssertions ["treeData"]
+        | _ -> base.RenderAssert canonicalDataCase
+
+    override __.RenderInput (_, _, value) = 
+        value :?> JArray
+        |> Seq.map string
+        |> formatList
+        |> sprintf "create %s"
+
+    override __.RenderExpected (canonicalDataCase, key, value) = 
+        match value with
+        | :? JArray as jArray -> jArray |> Seq.map string |> formatList
+        | _ -> base.RenderExpected (canonicalDataCase, key, value)
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
 type Bob() =
     inherit GeneratorExercise()
 
@@ -135,7 +189,7 @@ type Bowling() =
 
     override __.RenderSut _ ="score game"
 
-    override __.RenderSetup canonicalDataCase = 
+    override __.RenderSetup _ = 
         "let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls"
 
     override __.RenderArrange canonicalDataCase =
