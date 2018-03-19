@@ -126,7 +126,7 @@
       "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938"
     },
     {
-      "core": true,
+      "core": false,
       "difficulty": 3,
       "slug": "beer-song",
       "topics": [
@@ -180,7 +180,7 @@
       "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826"
     },
     {
-      "core": true,
+      "core": false,
       "difficulty": 4,
       "slug": "allergies",
       "topics": [
