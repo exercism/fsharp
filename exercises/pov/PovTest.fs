@@ -7,7 +7,7 @@ open Xunit
 
 open Pov
 
-let rec graphToList graph = 
+let rec graphToList (graph: Graph<'a>) =
     let right =
         graph.children
         |> List.sortBy (fun x -> x.value)
