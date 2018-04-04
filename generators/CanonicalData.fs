@@ -22,10 +22,6 @@ type CanonicalData =
       Version: string
       Cases: CanonicalDataCase list }
 
-type CanonicalDataFormat = 
-    | Old
-    | New
-
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
 let [<Literal>] private ProblemSpecificationsBranch = "master";
 let [<Literal>] private ProblemSpecificationsRemote = "origin";
@@ -77,23 +73,9 @@ type CanonicalDataConverter() =
         |> Json.parentsAndSelf
         |> List.choose descriptionFromJToken
 
-    let createInputFromJTokenInNewFormat (properties: Map<string, obj>) = 
-        (properties.["input"] :?> JObject)
-        |> jTokenToMap
-
-    let createInputFromJTokenInOldFormat (properties: Map<string, obj>) = 
-        properties
-        |> Map.filter (fun key _ -> List.contains key ["expected"; "property"; "description"; "comments"] |> not)
-
-    let detectCanonicalDataFormatFromJToken (properties: Map<string, obj>) = 
-        match properties.ContainsKey "input" && properties.["input"] :? JObject with
-        | true  -> New
-        | false -> Old
-
     let createInputFromJToken (properties: Map<string, obj>) = 
-        match detectCanonicalDataFormatFromJToken properties with
-        | Old -> createInputFromJTokenInOldFormat properties
-        | New -> createInputFromJTokenInNewFormat properties
+        properties.["input"] :?> JObject
+        |> jTokenToMap
 
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
         let properties = jTokenToMap jToken

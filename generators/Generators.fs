@@ -240,8 +240,8 @@ type CircularBuffer() =
 
     override this.RenderArrange canonicalDataCase = 
         seq {
-            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Properties.["capacity"] :?> int64)
-            let operations = (canonicalDataCase.Properties.["operations"] :?> JArray)
+            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Input.["capacity"] :?> int64)
+            let operations = (canonicalDataCase.Input.["operations"] :?> JArray)
             let mutable ind = 2
             let lastInd = operations.Count + 1 
             for op in operations do
@@ -854,7 +854,7 @@ type Pov() =
     let isNull x = match x with null -> true | _ -> false
 
     override __.RenderSetup _ = 
-        ["let rec graphToList graph = "
+        ["let rec graphToList (graph: Graph<'a>) = "
          "    let right ="
          "        graph.children"
          "        |> List.sortBy (fun x -> x.value)"
@@ -883,7 +883,7 @@ type Pov() =
     override this.RenderArrange canonicalDataCase =
         seq {
             yield 
-                canonicalDataCase.Properties.["tree"]
+                canonicalDataCase.Input.["tree"]
                 |> this.RenderNode 
                 |> sprintf "let tree = %s" 
 
@@ -901,17 +901,17 @@ type Pov() =
         match canonicalDataCase.Property with
         | "fromPov" -> 
             let from = 
-                canonicalDataCase.Properties.["from"]
+                canonicalDataCase.Input.["from"]
                 |> formatValue
             match isNull canonicalDataCase.Expected with
             | false -> sprintf "fromPOV %s tree |> mapToList " from
             | true -> sprintf "fromPOV %s tree " from
         | "pathTo" -> 
             let fromValue = 
-                canonicalDataCase.Properties.["from"] 
+                canonicalDataCase.Input.["from"] 
                 |> formatValue
             let toValue = 
-                canonicalDataCase.Properties.["to"] 
+                canonicalDataCase.Input.["to"] 
                 |> formatValue
             sprintf "tracePathBetween %s %s tree" fromValue toValue
         | _ -> ""
@@ -1047,8 +1047,13 @@ type React() =
             | "add_callback" -> seq { 
                 let callbackName = op.["name"].ToObject<string>()
                 let cellName = op.["cell"].ToObject<string>() 
+                let callback = 
+                    if canonicalDataCase.Description.Contains("do not report") then 
+                        "[value]" 
+                    else 
+                        sprintf "%s @ [value]" callbackName
                 yield sprintf "let mutable %s = []" callbackName 
-                yield sprintf "let %sHandler = Handler<int>(fun _ value -> %s <- %s @ [value])" callbackName callbackName callbackName
+                yield sprintf "let %sHandler = Handler<int>(fun _ value -> %s <- %s)" callbackName callbackName callback
                 yield sprintf "%s.Changed.AddHandler %sHandler" cellName callbackName }
             | "expect_callback_values" -> seq {
                 let callbackName = op.["callback"].ToObject<string>()

@@ -8,7 +8,7 @@ type Cell(ord: int, initialValue: int, changed: (Cell -> int -> unit)) =
     member val Ord = ord    
     member val Consumers = List.empty<int> with get,set
     member val Producers = List.empty<Cell> with get,set
-    member val Compute = (fun values -> 0) with get,set
+    member val Compute = (fun _ -> 0) with get,set
 
     member val ChangedEvent = changedEvent
     member val Changed = changedEvent.Publish
