@@ -53,7 +53,7 @@
         "optional_values",
         "strings"
       ],
-      "unlocked_by": "null",
+      "unlocked_by": null,
       "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1"
     },
     {
@@ -126,14 +126,14 @@
       "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938"
     },
     {
-      "core": false,
+      "core": true,
       "difficulty": 3,
       "slug": "beer-song",
       "topics": [
         "algorithms",
         "text_formatting"
       ],
-      "unlocked_by": "raindrops",
+      "unlocked_by": null,
       "uuid": "0ea0d92f-5510-4ba9-b419-3f5ad029b74f"
     },
     {
@@ -180,7 +180,7 @@
       "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826"
     },
     {
-      "core": false,
+      "core": true,
       "difficulty": 4,
       "slug": "allergies",
       "topics": [
@@ -188,7 +188,7 @@
         "enumerations",
         "filtering"
       ],
-      "unlocked_by": "kindergarten-garden",
+      "unlocked_by": null,
       "uuid": "221dff26-0495-4d4b-9363-14a5d7263271"
     },
     {
@@ -885,7 +885,7 @@
         "algorithms",
         "matrices"
       ],
-      "unlocked_by": "matrix",
+      "unlocked_by": "kindergarten-garden",
       "uuid": "52f8f299-b93b-4f44-bd5b-b445741b285d"
     },
     {
