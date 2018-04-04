@@ -890,6 +890,18 @@
     },
     {
       "core": false,
+      "difficulty": 5,
+      "slug": "yacht",
+      "topics": [
+        "discriminated_unions",
+        "games",
+        "parsing"
+      ],
+      "unlocked_by": "space-age",
+      "uuid": "005721ef-264e-4f81-ae63-ae72b0e5310f"
+    },
+    {
+      "core": false,
       "difficulty": 6,
       "slug": "tournament",
       "topics": [
