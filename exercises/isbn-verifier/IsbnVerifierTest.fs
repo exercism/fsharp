@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.2.0 of the canonical data.
+// This file was auto-generated based on version 2.3.0 of the canonical data.
 
 module IsbnVerifierTest
 
@@ -25,7 +25,7 @@ let ``Check digit is a character other than X`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Invalid character in isbn`` () =
-    isValid "3-598-2K507-0" |> should equal false
+    isValid "3-598-P1581-X" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``X is only valid as a check digit`` () =

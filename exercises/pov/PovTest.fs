@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.1 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module PovTest
 
@@ -7,7 +7,7 @@ open Xunit
 
 open Pov
 
-let rec graphToList (graph: Graph<'a>) =
+let rec graphToList (graph: Graph<'a>) = 
     let right =
         graph.children
         |> List.sortBy (fun x -> x.value)

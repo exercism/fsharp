@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module BowlingTest
 
@@ -183,5 +183,19 @@ let ``Both bonus rolls for a strike in the last frame must be rolled before scor
 let ``Bonus roll for a spare in the last frame must be rolled before score can be calculated`` () =
     let rolls = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 7; 3]
     let game = rollMany rolls (newGame())
+    score game |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Cannot roll after bonus roll for spare`` () =
+    let rolls = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 7; 3; 2]
+    let startingRolls = rollMany rolls (newGame())
+    let game = roll 2 startingRolls
+    score game |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Cannot roll after bonus rolls for strike`` () =
+    let rolls = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 10; 3; 2]
+    let startingRolls = rollMany rolls (newGame())
+    let game = roll 2 startingRolls
     score game |> should equal None
 

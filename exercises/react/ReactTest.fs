@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module ReactTest
 
@@ -77,6 +77,19 @@ let ``Callback cells only fire on change`` () =
     callback1 |> should equal List.empty<int>
     input.Value <- 4
     callback1 |> should equal [222]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Callbacks do not report already reported values`` () =
+    let reactor = new Reactor()
+    let input = reactor.createInputCell 1
+    let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
+    let mutable callback1 = []
+    let callback1Handler = Handler<int>(fun _ value -> callback1 <- [value])
+    output.Changed.AddHandler callback1Handler
+    input.Value <- 2
+    callback1 |> should equal [3]
+    input.Value <- 3
+    callback1 |> should equal [4]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Callbacks can be added and removed`` () =
