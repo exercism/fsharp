@@ -72,7 +72,7 @@ module String =
 
     let equals (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)
 
-    let humanize (str: string) = str.Humanize()
+    let dehumanize (str: string) = str.Dehumanize()
 
     let camelize (str: string) = str.Camelize()
 

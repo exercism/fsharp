@@ -24,7 +24,7 @@ type AllYourBase() =
 type Allergies() =
     inherit GeneratorExercise()
 
-    let toAllergen (jToken: JToken) =  sprintf "Allergen.%s" (jToken.ToString() |> String.humanize)
+    let toAllergen (jToken: JToken) =  sprintf "Allergen.%s" (jToken.ToString() |> String.dehumanize)
 
     let renderAllergicToAssert canonicalDataCase (jToken: JToken) =
         let substance = jToken.["substance"] |> toAllergen
@@ -609,7 +609,7 @@ type Isogram() =
 type KindergartenGarden() =
     inherit GeneratorExercise()
 
-    let toPlant (jToken: JToken) =  sprintf "Plant.%s" (jToken.ToString() |> String.humanize)
+    let toPlant (jToken: JToken) =  sprintf "Plant.%s" (jToken.ToString() |> String.dehumanize)
 
     override __.RenderExpected (_, _, value) = 
         value :?> JArray 
@@ -822,7 +822,7 @@ type PascalsTriangle() =
 type PerfectNumbers() =
     inherit GeneratorExercise()
 
-    let toClassification value = string value |> String.humanize
+    let toClassification value = string value |> String.dehumanize
 
     override __.RenderExpected (_, _, value) = 
         value 
@@ -1446,6 +1446,14 @@ type Wordy() =
 
     override __.RenderExpected (_, _, value) =
         value |> Option.ofNonFalse |> formatValue |> parenthesizeOption
+
+type Yacht() =
+    inherit GeneratorExercise()
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "category" -> sprintf "Category.%s" (value |> string |> String.dehumanize)
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
 
 type ZebraPuzzle() =
     inherit GeneratorExercise()
