@@ -70,6 +70,8 @@ module Option =
 module String =
     open Humanizer
 
+    let split (separator: string) (y: string) = y.Split(separator)
+
     let equals (x: string) (y: string) = String.Equals(x, y, StringComparison.OrdinalIgnoreCase)
 
     let dehumanize (str: string) = str.Dehumanize()

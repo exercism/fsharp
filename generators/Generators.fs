@@ -1543,3 +1543,103 @@ type ZebraPuzzle() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) = string value
+
+type Zipper() = 
+    inherit GeneratorExercise()
+
+    let rec renderTree root (tree: JToken) =
+        match tree with
+        | :? JObject as jObject ->
+            let value = jObject .["value"].ToObject<int>()
+            let left = tree.["left"] |> renderTree false 
+            let right = tree.["right"] |> renderTree false
+
+            if root then
+                sprintf "tree %d %s %s" value left right
+            else
+                match left, right with
+                | "None", "None" -> 
+                    sprintf "(leaf %d)" value
+                | _ -> 
+                    sprintf "(subTree %d %s %s)" value left right
+        | _ -> 
+            "None"
+
+    let renderOperation count index (jToken: JToken) = 
+        let operation = jToken.["operation"] |> string |> String.camelize
+
+        match operation with
+        | "value" | "toTree" -> 
+            [operation]
+        | "left" | "right" | "up" -> 
+            if index = count - 1 then
+                [operation]
+            else            
+                [operation; "Option.get"]
+        | "setValue" -> 
+            [sprintf "setValue %s" (jToken.["item"] |> string)]
+        | "setLeft"| "setRight" -> 
+            match jToken.["item"] with
+            | :? JObject as subTree ->
+                let tree = renderTree true subTree
+                [sprintf "%s (Some (%s))" operation tree]
+            | _ ->
+                [sprintf "%s None" operation]
+        | _ -> failwith "Unknown operation"
+
+    let renderOperations (operations: JArray) =
+        operations
+        |> Seq.mapi (renderOperation (Seq.length operations))
+        |> Seq.concat
+        |> String.concat " |> "
+        |> sprintf "|> %s"
+
+    let renderTreeWithIdentifier identifier (tree: JObject) =
+        tree
+        |> renderTree true
+        |> sprintf "let %s = %s" identifier
+
+    let renderZipperWithIdentifier identifier (tree: JObject) =
+        let renderedTree = renderTree true tree
+        sprintf "let %s = fromTree (%s)" identifier renderedTree
+
+    let renderExpectedZipperWithIdentifier identifier (tree: JObject) (operations: JArray) =
+        let renderedTree = renderTree true tree
+        let renderedOperations = renderOperations operations
+        sprintf "let %s = fromTree (%s) %s" identifier renderedTree renderedOperations
+
+    let renderSut (operations: JArray) =
+        operations
+        |> renderOperations
+        |> sprintf "let sut = zipper %s"
+
+    let renderExpected (expected: JObject) =
+        match expected.["type"] |> string with
+        | "int" -> 
+            expected.["value"] |> string |> sprintf "let expected = %s"
+        | "zipper" ->
+            match expected.["initialTree"] with
+            | :? JObject as jObject -> 
+                renderExpectedZipperWithIdentifier "expected" jObject (expected.["operations"] :?> JArray)
+            | _ -> 
+                "let expected = None"
+        | "tree" ->
+            expected.["value"] :?> JObject |> renderTreeWithIdentifier "expected"
+        | _ -> failwith "Unknown expected type"
+
+    override __.RenderSetup _ = 
+        [ "let subTree value left right = Some (tree value left right)"
+          "let leaf value = subTree value None None" ]
+        |> String.concat "\n"      
+
+    override __.PropertiesWithIdentifier _ = ["initialTree"; "sut"; "expected"]
+
+    override __.RenderArrange canonicalDataCase = 
+        let tree = canonicalDataCase.Input.["initialTree"] :?> JObject |> renderZipperWithIdentifier "zipper"
+        let sut = canonicalDataCase.Input.["operations"] :?> JArray |> renderSut
+        let expected = canonicalDataCase.Expected :?> JObject |> renderExpected
+        [tree; sut; expected]
+
+    override __.RenderTestMethodName canonicalDataCase = 
+        let testMethodName = base.RenderTestMethodName canonicalDataCase
+        testMethodName.Replace("Set_", "Set ")
