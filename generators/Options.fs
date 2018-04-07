@@ -28,7 +28,7 @@ type Options =
       CacheCanonicalData : bool }
 
 let private normalizeCanonicalDataDirectory canonicalDataDirectory = 
-    if canonicalDataDirectory <> "" then
+    if not (String.IsNullOrWhiteSpace(canonicalDataDirectory)) then
         canonicalDataDirectory
     else
         let appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
