@@ -536,6 +536,90 @@ type Gigasecond() =
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
+type GoCounting() =
+    inherit GeneratorExercise()
+
+    let renderOwner (value: JToken) = 
+        value
+        |> string
+        |> String.toLower
+        |> String.upperCaseFirst
+        |> sprintf "Owner.%s"
+
+    let renderTerritoryPosition (value: JToken) =
+        let arr = value :?> JArray
+        (arr.[0].ToObject<int>(), arr.[1].ToObject<int>())
+        |> formatValue
+
+    let renderTerritory (value: JToken) = 
+        value :?> JArray
+        |> Seq.map renderTerritoryPosition
+        |> formatList
+
+    let renderTerritoryWithOwner (value: obj) =
+        let expected = value :?> JObject
+        let owner = expected.["owner"] |> renderOwner
+        let territory = expected.["territory"] |> renderTerritory
+        sprintf "(%s, %s)" owner territory
+
+    let renderExpectedTerritory (value: obj) = 
+        match Option.ofNonError value with
+        | None -> "Option.None"
+        | Some expected -> expected |> renderTerritoryWithOwner |> sprintf "Option.Some %s"
+    
+    let renderExpectedTerritories (value: obj) = 
+        let expected = value :?> JObject
+        let black = sprintf "(Owner.Black, %s)" (expected.["territoryBlack"] |> renderTerritory)
+        let white = sprintf "(Owner.White, %s)" (expected.["territoryWhite"] |> renderTerritory)
+        let none  = sprintf "(Owner.None, %s)"  (expected.["territoryNone"]  |> renderTerritory)
+
+        let formattedList = formatMultiLineList [black; white; none]
+        sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+
+    let territoryPosition (input: Map<string, obj>) =
+        let valueToInt key = input |> Map.find key |> string |> int
+        (valueToInt "x", valueToInt "y") |> box
+
+    let mapTerritoryInput (input: Map<string, obj>) =
+        input
+        |> Map.remove "x"
+        |> Map.remove "y"
+        |> Map.add "position" (territoryPosition input)
+
+    override __.MapCanonicalDataCaseInput (canonicalDataCase, input) =
+        match canonicalDataCase.Property with
+        | "territory" -> mapTerritoryInput input
+        | _ -> base.MapCanonicalDataCaseInput(canonicalDataCase, input)
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "board" -> 
+            value :?> JArray 
+            |> Seq.map formatValue 
+            |> formatMultiLineList
+        | _ -> 
+            base.RenderInput (canonicalDataCase, key, value)
+
+    override __.RenderExpected (canonicalDataCase, key, value) =
+        match canonicalDataCase.Property with
+        | "territory" -> renderExpectedTerritory value
+        | "territories" -> renderExpectedTerritories value
+        | _ -> base.RenderExpected(canonicalDataCase, key, value)
+
+    override __.PropertiesWithIdentifier canonicalDataCase = base.Properties canonicalDataCase
+
+    override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
+        match canonicalDataCase.Property, key with 
+        | "territory", "expected" -> 
+            match Option.ofNonError value with
+            | None -> None
+            | Some _ ->
+                if (value :?> JObject).["territory"] :?> JArray |> Seq.isEmpty then
+                    Some "(Owner * (int * int) list) option"
+                else
+                    None            
+        | _ -> None
+
 type Grains() =
     inherit GeneratorExercise()
 

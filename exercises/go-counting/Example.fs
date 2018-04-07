@@ -1,13 +1,13 @@
 ﻿module GoCounting
 
-type Color = Black | White
+type Owner = None | Black | White
 type Coord = int * int
-type Board = Color option [,]
+type Board = Owner [,]
 
-let charToColor =
+let charToOwner =
     function
-    | 'B' -> Some Black
-    | 'W' -> Some White
+    | 'B' -> Black
+    | 'W' -> White
     | _   -> None
 
 let cols (board: Board) = board.GetUpperBound 0 + 1
@@ -44,17 +44,17 @@ let mkBoard (input: string list) =
     let rows = input.Length
     let cols = input.[0].Length
 
-    Array2D.init cols rows (fun col row -> charToColor input.[row].[col])
+    Array2D.init cols rows (fun col row -> charToOwner input.[row].[col])
 
 let territoryOwner (board: Board) (coords: Set<Coord>) = 
     let uniqueNeighborColors = 
         coords 
         |> Seq.collect (nonEmptyNeighborCoordinates board) 
-        |> Seq.choose (color board)
+        |> Seq.map (color board)
         |> set
 
-    if uniqueNeighborColors.Count = 1 then Some (Seq.head uniqueNeighborColors)
-    else None
+    if uniqueNeighborColors.Count = 1 then Seq.head uniqueNeighborColors
+    else Owner.None
     
 let rec territoryHelper board remainder acc = 
     match remainder with
@@ -72,28 +72,32 @@ let rec territoryHelper board remainder acc =
 
     territoryHelper board newRemainder newAcc
 
-let territory board coord =
+let territoryCoordinates board coord =
     if isValidCoordinate board coord && isEmpty board coord then territoryHelper board [coord] (Set.singleton coord)
     else Set.empty
 
-let territoryFor input coord = 
+let territory input coordinate = 
     let board = mkBoard input
-    let coords = territory board coord
-    let owner = territoryOwner board coords
-
-    if Set.isEmpty coords then None else Some (owner, Set.toList coords)
+    
+    if not (isValidCoordinate board coordinate) then
+        Option.None
+    else
+        let coords = territoryCoordinates board coordinate
+        let owner = territoryOwner board coords
+        Some (owner, Set.toList coords)
 
 let rec territoriesHelper board remainder acc =
     match remainder with
     | [] -> acc
     | coord :: _ ->
-        let coords = territory board coord
+        let coords = territoryCoordinates board coord
         let owner = territoryOwner board coords
-        let remainder = Set.difference (Set.ofList remainder) coords |> Set.toList        
-
-        territoriesHelper board remainder (Map.add owner (Set.toList coords) acc)
+        let remainder = Set.difference (Set.ofList remainder) coords |> Set.toList   
+        let updatedOwnedTerritories = Map.find owner acc @ Set.toList coords
+        territoriesHelper board remainder (Map.add owner updatedOwnedTerritories acc)
 
 let territories input = 
   let board = mkBoard input
   let emptyCoords = emptyCoordinates board
-  territoriesHelper board emptyCoords Map.empty
+  let startMap = Map.ofList [(Owner.None, []); (Owner.Black, []); (Owner.White, [])]
+  territoriesHelper board emptyCoords startMap
