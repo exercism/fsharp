@@ -1,4 +1,4 @@
-// This file was created manually and its version is 1.0.1.
+// This file was created manually and its version is 2.0.1.
 
 module BankAccountTest
 
@@ -10,7 +10,7 @@ open BankAccount
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount
 
-    getBalance account |> should equal (Some 0.0)
+    getBalance account |> should equal (Some 0.0m)
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Check basic balance`` () =
@@ -19,11 +19,11 @@ let ``Check basic balance`` () =
 
     let updatedBalance = 
         account
-        |> updateBalance 10.0 
+        |> updateBalance 10.0m
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0)
-    updatedBalance |> should equal (Some 10.0)
+    openingBalance |> should equal (Some 0.0m)
+    updatedBalance |> should equal (Some 10.0m)
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Balance can increment or decrement`` () =    
@@ -32,17 +32,17 @@ let ``Balance can increment or decrement`` () =
 
     let addedBalance = 
         account 
-        |> updateBalance 10.0
+        |> updateBalance 10.0m
         |> getBalance
 
     let subtractedBalance = 
         account 
-        |> updateBalance -15.0
+        |> updateBalance -15.0m
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0)
-    addedBalance |> should equal (Some 10.0)
-    subtractedBalance |> should equal (Some -5.0)
+    openingBalance |> should equal (Some 0.0m)
+    addedBalance |> should equal (Some 10.0m)
+    subtractedBalance |> should equal (Some -5.0m)
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Account can be closed`` () =
@@ -63,7 +63,7 @@ let ``Account can be updated from multiple threads`` () =
     let updateAccountAsync =        
         async {                             
             account 
-            |> updateBalance 1.0
+            |> updateBalance 1.0m
             |> ignore
         }
 
@@ -73,4 +73,4 @@ let ``Account can be updated from multiple threads`` () =
     |> Async.RunSynchronously
     |> ignore
 
-    getBalance account |> should equal (Some 1000.0)
+    getBalance account |> should equal (Some 1000.0m)

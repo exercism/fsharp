@@ -4,13 +4,13 @@ open System
 
 type BankAccount() = 
     member val Lock = new Object()
-    member val Balance: float option = None with get,set
+    member val Balance: decimal option = None with get,set
 
 let mkBankAccount() = BankAccount()
 
 let openAccount (account: BankAccount) = 
     lock account.Lock (fun () ->
-        account.Balance <- Some 0.0
+        account.Balance <- Some 0.0m
         account
     )
 
