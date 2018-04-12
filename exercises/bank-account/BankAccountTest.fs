@@ -1,4 +1,4 @@
-// This file was created manually and its version is 2.0.1.
+// This file was created manually and its version is 2.0.0.
 
 module BankAccountTest
 
