@@ -11,3 +11,4 @@ paket-files
 .vs/
 .vscode/
 .dotnet
+*.fsproj.user
