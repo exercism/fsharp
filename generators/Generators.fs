@@ -106,7 +106,7 @@ type BinarySearch() =
 
     override __.PropertiesWithIdentifier _ = ["array"; "value"; "expected"]
 
-    override __.RenderValueWithoutIdentifier (canonicalDataCase, key, value) =
+    override __.RenderValue (canonicalDataCase, key, value) =
         match key with
         | "array" -> 
             (value :?> JToken).ToObject<string []>() |> formatArray
@@ -115,7 +115,7 @@ type BinarySearch() =
             | "-1" -> None |> formatOption
             | x -> Some x |> formatOption
         | _ ->
-            base.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+            base.RenderValue (canonicalDataCase, key, value)
 
 type BinarySearchTree() =
     inherit GeneratorExercise()
@@ -281,21 +281,21 @@ type CircularBuffer() =
 type Clock() =
     inherit GeneratorExercise()
 
-    let createClock (value:obj) clockId =
+    let createClock (value:obj) =
         let clock = value :?> JObject
         let hour = clock.["hour"].ToObject<string>()
         let minute = clock.["minute"].ToObject<string>()
-        sprintf "let %s = create %s %s" clockId hour minute
+        sprintf "create %s %s" hour minute
 
     member private this.RenderPropertyValue canonicalDataCase property =
         this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Input)
 
     override __.PropertiesWithIdentifier _ = ["clock1"; "clock2"]
 
-    override __.RenderValueWithIdentifier (canonicalDataCase, key, value) =
+    override __.RenderValue (canonicalDataCase, key, value) =
         match key with
-        | "clock1" | "clock2" -> createClock value key
-        | _ -> base.RenderValueWithIdentifier (canonicalDataCase, key, value)
+        | "clock1" | "clock2" -> createClock value
+        | _ -> base.RenderValue (canonicalDataCase, key, value)
     
     override this.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
@@ -396,7 +396,7 @@ type CustomSet() =
 
     member __.SutName = "actual"
 
-    override __.TestMethodBodyAssertTemplate _ = "AssertEqual"
+    override __.AssertTemplate _ = "AssertEqual"
 
     member __.RenderSet (jToken: obj) =
         (jToken :?> JToken).ToObject<seq<string>>()
@@ -492,8 +492,8 @@ type Etl() =
 
     override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
 
-    override __.MapCanonicalDataCaseInput (canonicalDataCase, _) = 
-        Map.empty |> Map.add "lettersByScore" (canonicalDataCase.Properties.["input"])
+    override __.MapCanonicalDataCase canonicalDataCase = 
+        { canonicalDataCase with Input = Map.empty |> Map.add "lettersByScore" (canonicalDataCase.Properties.["input"]) }
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -586,10 +586,10 @@ type GoCounting() =
         |> Map.remove "y"
         |> Map.add "position" (territoryPosition input)
 
-    override __.MapCanonicalDataCaseInput (canonicalDataCase, input) =
+    override __.MapCanonicalDataCase canonicalDataCase =
         match canonicalDataCase.Property with
-        | "territory" -> mapTerritoryInput input
-        | _ -> base.MapCanonicalDataCaseInput(canonicalDataCase, input)
+        | "territory" -> { canonicalDataCase with Input = mapTerritoryInput canonicalDataCase.Input }
+        | _ -> canonicalDataCase
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
@@ -736,7 +736,7 @@ type ListOps() =
         | "function" -> renderFunction value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
-    override __.RenderTestMethodName canonicalDataCase =
+    override __.TestMethodName canonicalDataCase =
         sprintf "%s %s" canonicalDataCase.Property canonicalDataCase.Description
 
 type Luhn() =
@@ -745,8 +745,7 @@ type Luhn() =
 type Markdown() =
     inherit GeneratorExercise()
 
-    override __.ToTestMethod (index, canonicalDataCase) =
-        { base.ToTestMethod (index, canonicalDataCase) with Skip = false }
+    override __.SkipTestMethod (_, _) = false
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -901,7 +900,7 @@ type PascalsTriangle() =
             | false -> None    
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 
-    override __.TestMethodBodyAssertTemplate _ = "AssertEqual"
+    override __.AssertTemplate _ = "AssertEqual"
     
 type PerfectNumbers() =
     inherit GeneratorExercise()
@@ -1044,10 +1043,10 @@ type Proverb() =
 type QueenAttack() =
     inherit GeneratorExercise()
 
-    override __.MapCanonicalDataCaseExpected (canonicalDataCase, key, value) =
+    override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "create" -> value :?> int64 <> -1L |> box
-        | _ -> base.MapCanonicalDataCaseInputProperty (canonicalDataCase, key, value)
+        | "create" -> value :?> int64 <> -1L |> formatValue
+        | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
         let parsePositionTuple (tupleValue: obj) =
@@ -1078,10 +1077,10 @@ type RationalNumbers() =
         | :? JArray as jArray -> sprintf "(create %d %d)" (jArray.[0].Value<int>()) (jArray.[1].Value<int>())
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
-    override __.TestMethodBodyAssertTemplate canonicalDataCase =
+    override __.AssertTemplate canonicalDataCase =
         match canonicalDataCase.Expected with
         | :? double -> "AssertEqualWithin"
-        | _ -> base.TestMethodBodyAssertTemplate(canonicalDataCase)
+        | _ -> base.AssertTemplate(canonicalDataCase)
 
 type React() = 
     inherit GeneratorExercise()
@@ -1208,13 +1207,17 @@ type RobotSimulator() =
         | Some _, Some _ -> ["expected"]
         | None,   None   -> ["sut"; "expected"]
 
-    override __.ToTestMethodBodyAssert canonicalDataCase =
-        let testMethodBodyAssert = base.ToTestMethodBodyAssert(canonicalDataCase)
+    override this.RenderAssert canonicalDataCase = 
+        let renderAssertWithProperty prop =
+            let expected = this.RenderExpected (canonicalDataCase, "expected", canonicalDataCase.Expected)
+
+            { Sut = sprintf "sut.%s" prop; Expected = expected }
+            |> renderPartialTemplate "AssertEqual"
 
         match parseInput canonicalDataCase.Expected with
-        | None, Some _ -> { testMethodBodyAssert with Sut = sprintf "%s.position" testMethodBodyAssert.Sut }
-        | Some _, None -> { testMethodBodyAssert with Sut = sprintf "%s.direction" testMethodBodyAssert.Sut }
-        | _ -> testMethodBodyAssert
+        | None, Some _ -> [renderAssertWithProperty "position"]
+        | Some _, None -> [renderAssertWithProperty "direction"]
+        | _ -> base.RenderAssert canonicalDataCase
 
     override __.RenderArrange canonicalDataCase =
         sprintf "let robot = %s" (canonicalDataCase.Properties.["input"] |> parseInput |> renderInput) :: base.RenderArrange canonicalDataCase
@@ -1229,8 +1232,8 @@ type RobotSimulator() =
         | "instructions" -> sprintf "instructions %s robot" (formatValue canonicalDataCase.Input.["instructions"])
         | _ -> base.RenderSut canonicalDataCase
 
-    override __.RenderTestMethodName canonicalDataCase =
-        let testMethodName = base.RenderTestMethodName canonicalDataCase
+    override __.TestMethodName canonicalDataCase =
+        let testMethodName = base.TestMethodName canonicalDataCase
 
         match canonicalDataCase.Property with
         | "create" | "instructions" -> testMethodName
@@ -1256,10 +1259,10 @@ type RunLengthEncoding() =
         | _ -> 
             base.RenderSut canonicalDataCase
 
-    override __.RenderTestMethodName canonicalDataCase =
+    override __.TestMethodName canonicalDataCase =
         match canonicalDataCase.Property with
         | "consistency" -> 
-            base.RenderTestMethodName canonicalDataCase
+            base.TestMethodName canonicalDataCase
         | _ -> 
             sprintf "%s %s" canonicalDataCase.Property canonicalDataCase.Description |> String.upperCaseFirst
 
@@ -1299,11 +1302,11 @@ type Say() =
 type ScaleGenerator() =
     inherit GeneratorExercise()
 
-    override __.MapCanonicalDataCaseInput (canonicalDataCase, properties) =
-        let input = base.MapCanonicalDataCaseInput (canonicalDataCase, properties)
+    override __.MapCanonicalDataCase canonicalDataCase =
+        let input = canonicalDataCase.Input
         match Map.tryFind "intervals" input with
-        | Some _ -> input
-        | None   -> Map.add "intervals" null input
+        | Some _ -> canonicalDataCase
+        | None   -> { canonicalDataCase with Input = Map.add "intervals" null input }
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with 
@@ -1407,9 +1410,9 @@ type Triangle() =
         canonicalDataCase.Description.Contains "isosceles" ||
         canonicalDataCase.Description.Contains "scalene"
 
-    override __.RenderTestMethodName canonicalDataCase =
+    override __.TestMethodName canonicalDataCase =
         match hasUniqueTestMethodName canonicalDataCase with
-        | true  -> base.RenderTestMethodName canonicalDataCase
+        | true  -> base.TestMethodName canonicalDataCase
         | false -> sprintf "%s returns %s" (String.upperCaseFirst canonicalDataCase.Property) canonicalDataCase.Description
 
     override __.RenderInput (_, _, value) =
@@ -1640,6 +1643,5 @@ type Zipper() =
         let expected = canonicalDataCase.Expected :?> JObject |> renderExpected
         [tree; sut; expected]
 
-    override __.RenderTestMethodName canonicalDataCase = 
-        let testMethodName = base.RenderTestMethodName canonicalDataCase
-        testMethodName.Replace("Set_", "Set ")
+    override __.TestMethodName canonicalDataCase = 
+        base.TestMethodName canonicalDataCase |> String.replace "Set_" "Set "
