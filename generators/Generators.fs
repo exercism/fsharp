@@ -1330,6 +1330,12 @@ type Sieve() =
 type SecretHandshake() =
     inherit GeneratorExercise()
 
+type Series() =
+    inherit GeneratorExercise()
+    
+    override __.RenderExpected (_, _, value) =
+        value |> Option.ofNonError |> formatValue |> parenthesizeOption
+
 type SpaceAge() =
     inherit GeneratorExercise()
 

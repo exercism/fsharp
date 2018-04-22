@@ -1,72 +1,49 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
 module SeriesTest
 
-open System
-open Xunit
 open FsUnit.Xunit
+open Xunit
+
 open Series
 
-type SeriesTests () =
-    static member SliceOneTestData = 
-        let theoryData = new TheoryData<string, int list list>()
-        theoryData.Add("01234", [[0]; [1]; [2]; [3]; [4]])
-        theoryData.Add("92834", [[9]; [2]; [8]; [3]; [4]])
-        theoryData
+[<Fact>]
+let ``Slices of one from one`` () =
+    slices "1" 1 |> should equal (Some ["1"])
 
-    [<Theory>]
-    [<MemberData("SliceOneTestData")>]
-    member this.``Series of one splits to one digit`` input expected =
-        slices input 1 |> should equal expected
+[<Fact(Skip = "Remove to run test")>]
+let ``Slices of one from two`` () =
+    slices "12" 1 |> should equal (Some ["1"; "2"])
 
-    static member SliceTwoTestData = 
-        let theoryData = new TheoryData<string, int list list>()
-        theoryData.Add("01234", [[0; 1]; [1; 2]; [2; 3]; [3; 4]]);
-        theoryData.Add("98273463", [[9; 8]; [8; 2]; [2; 7]; [7; 3]; [3; 4]; [4; 6]; [6; 3]]);
-        theoryData.Add("37103", [[3; 7]; [7; 1]; [1; 0]; [0; 3]])
-        theoryData
+[<Fact(Skip = "Remove to run test")>]
+let ``Slices of two`` () =
+    slices "35" 2 |> should equal (Some ["35"])
 
-    [<Theory(Skip = "Remove to run test")>]
-    [<MemberData("SliceTwoTestData")>]
-    member this.``Series of two splits to two digits`` input expected =
-        slices input 2 |> should equal expected
+[<Fact(Skip = "Remove to run test")>]
+let ``Slices of two overlap`` () =
+    slices "9142" 2 |> should equal (Some ["91"; "14"; "42"])
 
-    static member SliceThreeTestData = 
-        let theoryData = new TheoryData<string, int list list>()
-        theoryData.Add("01234", [[0; 1; 2]; [1; 2; 3]; [2; 3; 4]]);
-        theoryData.Add("31001", [[3; 1; 0]; [1; 0; 0]; [0; 0; 1]]);
-        theoryData.Add("982347", [[9; 8; 2]; [8; 2; 3]; [2; 3; 4]; [3; 4; 7]])
-        theoryData
+[<Fact(Skip = "Remove to run test")>]
+let ``Slices can include duplicates`` () =
+    slices "777777" 3 |> should equal (Some ["777"; "777"; "777"; "777"])
 
-    [<Theory(Skip = "Remove to run test")>]
-    [<MemberData("SliceThreeTestData")>]
-    member this.``Series of three splits to three digits`` input expected =
-        slices input 3 |> should equal expected
+[<Fact(Skip = "Remove to run test")>]
+let ``Slices of a long series`` () =
+    slices "918493904243" 5 |> should equal (Some ["91849"; "18493"; "84939"; "49390"; "93904"; "39042"; "90424"; "04243"])
 
-    static member SliceFourTestData = 
-        let theoryData = new TheoryData<string, int list list>()
-        theoryData.Add("01234", [[0; 1; 2; 3]; [1; 2; 3; 4]]);
-        theoryData.Add("91274", [[9; 1; 2; 7]; [1; 2; 7; 4]])
-        theoryData
+[<Fact(Skip = "Remove to run test")>]
+let ``Slice length is too large`` () =
+    slices "12345" 6 |> should equal None
 
-    [<Theory(Skip = "Remove to run test")>]
-    [<MemberData("SliceFourTestData")>]
-    member this.``Series of four splits to four digits`` input expected =
-        slices input 4 |> should equal expected
+[<Fact(Skip = "Remove to run test")>]
+let ``Slice length cannot be zero`` () =
+    slices "12345" 0 |> should equal None
 
-    static member SliceFiveTestData = 
-        let theoryData = new TheoryData<string, int list list>()
-        theoryData.Add("01234", [[0; 1; 2; 3; 4]]);
-        theoryData.Add("81228", [[8; 1; 2; 2; 8]])
-        theoryData
+[<Fact(Skip = "Remove to run test")>]
+let ``Slice length cannot be negative`` () =
+    slices "123" -1 |> should equal None
 
-    [<Theory(Skip = "Remove to run test")>]
-    [<MemberData("SliceFiveTestData")>]
-    member this.``Series of five splits to five digits`` input expected =
-        slices input 5 |> should equal expected
+[<Fact(Skip = "Remove to run test")>]
+let ``Empty series is invalid`` () =
+    slices "" 1 |> should equal None
 
-    [<Theory(Skip = "Remove to run test")>]
-    [<InlineData("01234", 6)>]
-    [<InlineData("01032987583", 19)>]
-    member this.``Slice longer than input is not allowed`` input slice =
-        (fun () -> slices input slice |> ignore) |> should throw typeof<ArgumentException>
