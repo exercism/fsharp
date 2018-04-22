@@ -1085,9 +1085,7 @@ type RationalNumbers() =
 type React() = 
     inherit GeneratorExercise()
 
-    override __.PropertiesWithIdentifier _ = []
-
-    member private __.RenderCells canonicalDataCase = 
+    let renderCells canonicalDataCase = 
         let reactorVar = sprintf "let %s = new %s()" "reactor" "Reactor"
         let cellVars = 
             canonicalDataCase.Input.["cells"] :?> JArray
@@ -1110,55 +1108,86 @@ type React() =
             |> Seq.toList
         [ reactorVar ] @ cellVars
      
-    member private __.RenderOperations canonicalDataCase = 
+    let renderExpectedCellValueOperation (op: JObject) =
+        seq { 
+            let cellName = op.["cell"].ToObject<string>()
+            let expectedValue = op.["value"].ToObject<int>()
+            yield sprintf "%s.Value |> should equal %i" cellName expectedValue 
+        }
+
+    let renderExpectedCallbacks (jToken: JToken) =
+        match jToken with
+        | :? JObject as jObject ->
+            seq {
+                for child in jObject.Children<JProperty>() ->
+                    let callbackName = child.Name
+                    let callbackValue = child.Value |> string
+                    let callbackHandlerName = sprintf "%sHandler" callbackName
+
+                    seq {
+                        yield sprintf "A.CallTo(fun() -> %s.Invoke(A<obj>.``_``, %s)).MustHaveHappenedOnceExactly() |> ignore" callbackHandlerName callbackValue
+                        yield sprintf "Fake.ClearRecordedCalls(%s) |> ignore" callbackHandlerName
+                    }                
+            } |> Seq.concat
+        | _ -> Seq.empty
+
+    let renderExpectedCallbacksNotToBeCalled (jToken: JToken) =
+        match jToken with
+        | :? JArray as jArray -> 
+            jArray.ToObject<string list>() 
+            |> Seq.map (sprintf "A.CallTo(fun() -> %sHandler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore")
+        | _ -> Seq.empty
+
+    let renderSetValueOperation (op: JObject) = 
+        seq { 
+            let cellName = op.["cell"].ToObject<string>()
+            let cellValue = op.["value"].ToObject<int>()
+            yield sprintf "%s.Value <- %i" cellName cellValue
+            yield! renderExpectedCallbacks op.["expect_callbacks"]
+            yield! renderExpectedCallbacksNotToBeCalled op.["expect_callbacks_not_to_be_called"]
+        }
+
+    let renderAddCallbackOperation (op: JObject) =
+        seq { 
+            let callbackName = op.["name"].ToObject<string>()
+            let cellName = op.["cell"].ToObject<string>() 
+            let callbackHandlerName = sprintf "%sHandler" callbackName
+            yield sprintf "let %s = A.Fake<Handler<int>>()" callbackHandlerName
+            yield sprintf "%s.Changed.AddHandler %s" cellName callbackHandlerName 
+        }
+
+    let renderRemoveCallbackOperation (op: JObject) =
+        seq {
+            let cellName = op.["cell"].ToObject<string>()
+            let callbackName = op.["name"].ToObject<string>()
+            yield sprintf "%s.Changed.RemoveHandler %sHandler" cellName callbackName
+        }
+
+    let renderOperation (op: JObject) =
+        let opType = op.["type"].ToObject<string>()
+        match opType with
+        | "expect_cell_value" -> renderExpectedCellValueOperation op
+        | "set_value" -> renderSetValueOperation op
+        | "add_callback" -> renderAddCallbackOperation op
+        | "remove_callback" -> renderRemoveCallbackOperation op
+        | _ -> failwith "Unknown operation type"
+
+    let renderOperations canonicalDataCase = 
         canonicalDataCase.Input.["operations"] :?> JArray
-        // we can generate more than 1 line per operation
-        // so we need to flatten results here
-        // collect does it automatically for us 
-        // and every operation should emit seq<string>
-        |> Seq.collect (fun (opToken: JToken) -> 
-            let op = opToken :?> JObject
-            match op.["type"].ToObject<string>() with
-            | "expect_cell_value" -> seq { 
-                let cellName = op.["cell"].ToObject<string>()
-                let expectedValue = op.["value"].ToObject<int>()
-                yield sprintf "%s.Value |> should equal %i" cellName expectedValue }
-            | "set_value" -> seq { 
-                let cellName = op.["cell"].ToObject<string>()
-                let cellValue = op.["value"].ToObject<int>()
-                yield sprintf "%s.Value <- %i" cellName cellValue }
-            | "add_callback" -> seq { 
-                let callbackName = op.["name"].ToObject<string>()
-                let cellName = op.["cell"].ToObject<string>() 
-                let callback = 
-                    if canonicalDataCase.Description.Contains("do not report") then 
-                        "[value]" 
-                    else 
-                        sprintf "%s @ [value]" callbackName
-                yield sprintf "let mutable %s = []" callbackName 
-                yield sprintf "let %sHandler = Handler<int>(fun _ value -> %s <- %s)" callbackName callbackName callback
-                yield sprintf "%s.Changed.AddHandler %sHandler" cellName callbackName }
-            | "expect_callback_values" -> seq {
-                let callbackName = op.["callback"].ToObject<string>()
-                let callbackValues = op.["values"].ToObject<string[]>()
-                if callbackValues.Length = 0 then
-                    yield sprintf "%s |> should equal List.empty<int>" callbackName
-                else
-                    yield sprintf "%s |> should equal %s" callbackName (formatList callbackValues) }
-            | "remove_callback" -> seq {
-                let cellName = op.["cell"].ToObject<string>()
-                let callbackName = op.["name"].ToObject<string>()
-                yield sprintf "%s.Changed.RemoveHandler %sHandler" cellName callbackName }
-            | _ -> seq { yield "" }
-        )
+        |> Seq.cast<JObject>
+        |> Seq.collect renderOperation
         |> Seq.toList
+
+    override __.PropertiesWithIdentifier _ = []
 
     override __.RenderAssert _ = []
 
-    override this.RenderArrange canonicalDataCase =
-        let initialVars = this.RenderCells canonicalDataCase
-        let operations = this.RenderOperations canonicalDataCase
+    override __.RenderArrange canonicalDataCase =
+        let initialVars = renderCells canonicalDataCase
+        let operations = renderOperations canonicalDataCase
         initialVars @ operations
+
+    override __.AdditionalNamespaces = ["FakeItEasy"]
 
 type Rectangles() = 
     inherit GeneratorExercise()

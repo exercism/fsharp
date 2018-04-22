@@ -55,10 +55,10 @@ type Reactor() =
         cells <- cells @ [cell]
         cell
 
-    member this.createInputCell value =
+    member __.createInputCell value =
         addCell value
 
-    member this.createComputeCell (producers: Cell list) (compute: (int list -> int)) =
+    member __.createComputeCell (producers: Cell list) (compute: (int list -> int)) =
         let value = computeValue producers compute
         let cell = addCell value
         cell.Producers <- producers
