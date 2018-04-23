@@ -5,7 +5,7 @@ open System.Globalization
 open Newtonsoft.Json.Linq
 open CanonicalData
 open Formatting
-open Rendering
+open Templates
 open Exercise
 
 type Acronym() =

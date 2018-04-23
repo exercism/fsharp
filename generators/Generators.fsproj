@@ -11,7 +11,7 @@
     <Compile Include="CanonicalData.fs" />
     <Compile Include="Track.fs" />
     <Compile Include="Formatting.fs" />
-    <Compile Include="Rendering.fs" />
+    <Compile Include="Templates.fs" />
     <Compile Include="Exercise.fs" />
     <Compile Include="Generators.fs" />
     <Compile Include="Program.fs" />

@@ -1,4 +1,4 @@
-module Generators.Rendering
+module Generators.Templates
 
 open System.IO
 open System.Collections.Generic

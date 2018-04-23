@@ -8,7 +8,7 @@ open Newtonsoft.Json.Linq
 open Humanizer
 open Serilog
 open Formatting
-open Rendering
+open Templates
 open CanonicalData
 open Track
 
