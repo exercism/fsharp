@@ -24,10 +24,10 @@ type AllYourBase() =
 type Allergies() =
     inherit GeneratorExercise()
 
-    let toAllergen (jToken: JToken) =  sprintf "Allergen.%s" (jToken.ToString() |> String.dehumanize)
+    let toAllergen (jToken: JToken) = string jToken |> String.dehumanize |> sprintf "Allergen.%s"
 
     let renderAllergicToAssert canonicalDataCase (jToken: JToken) =
-        let substance = jToken.["substance"] |> toAllergen
+        let substance = toAllergen jToken.["substance"]
         let score = canonicalDataCase.Input.["score"] :?> int64
         let sut = sprintf "allergicTo %d %s" score substance
         let expected = jToken.Value<bool>("result") |> formatBool
@@ -838,7 +838,6 @@ type OcrNumbers() =
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
-        |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -1196,7 +1195,6 @@ type Rectangles() =
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
-        |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -1306,7 +1304,6 @@ type SaddlePoints() =
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
-        |> normalizeJArray
         |> Seq.map formatValue
         |> formatMultiLineList
 
@@ -1351,8 +1348,7 @@ type Sieve() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray)
-        |> normalizeJArray
+        value :?> JArray
         |> Seq.map formatValue
         |> formatList
 
@@ -1555,7 +1551,6 @@ type WordSearch() =
         match key with
         | "grid" -> 
             value :?> JArray
-            |> normalizeJArray
             |> Seq.map formatValue
             |> formatMultiLineList
         | _ -> 
