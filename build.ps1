@@ -25,7 +25,7 @@ Param(
 
 $SCRIPT_DIR = $PSScriptRoot
 $TOOLS_DIR = Join-Path $SCRIPT_DIR "tools"
-$CAKE_VERSION = "0.26.1"
+$CAKE_VERSION = "0.27.1"
 $CAKE_DIR = Join-Path $TOOLS_DIR "Cake.$CAKE_VERSION"
 $CAKE_DLL = Join-Path $CAKE_DIR "Cake.dll"
 $CAKE_ZIP = Join-Path $TOOLS_DIR "Cake.$CAKE_VERSION.zip"
