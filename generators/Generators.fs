@@ -72,7 +72,7 @@ type Alphametics() =
                 |> formatMultiLineList
 
             if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s\n%s" formattedList (indent 2 "|> Map.ofList") (indent 2 "|> Some")
+                sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
             else   
                 sprintf "%s |> Map.ofList |> Some" formattedList
 
@@ -484,7 +484,7 @@ type Etl() =
             |> formatMultiLineList
 
         if (formattedList.Contains("\n")) then
-            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+            sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
         else   
             sprintf "%s |> Map.ofList" formattedList
 
@@ -529,10 +529,10 @@ type Forth() =
 type Gigasecond() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) = value :?> DateTime |> formatDateTime |> parenthesize
+    override __.RenderExpected (_, _, value) = value :?> DateTime |> formatDateTime |> String.parenthesize
  
     override __.RenderInput (_, _, value) =
-         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> parenthesize
+         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> String.parenthesize
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
@@ -574,7 +574,7 @@ type GoCounting() =
         let none  = sprintf "(Owner.None, %s)"  (expected.["territoryNone"]  |> renderTerritory)
 
         let formattedList = formatMultiLineList [black; white; none]
-        sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+        sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
 
     let territoryPosition (input: Map<string, obj>) =
         let valueToInt key = input |> Map.find key |> string |> int
@@ -758,7 +758,7 @@ type Meetup() =
     override __.RenderExpected (_, _, value) =
         DateTime.Parse(string value) 
         |> formatDateTime 
-        |> parenthesize
+        |> String.parenthesize
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
@@ -817,7 +817,7 @@ type NucleotideCount() =
                 |> formatMultiLineList
 
             if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s\n%s" formattedList (indent 2 "|> Map.ofList") (indent 2 "|> Some")
+                sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
             else   
                 sprintf "%s |> Map.ofList |> Some" formattedList
 
@@ -887,7 +887,7 @@ type PascalsTriangle() =
                 |> formatMultiLineList            
 
             if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s" formattedList (indent 2 "|> Some")
+                sprintf "%s\n%s" formattedList (String.indent 2 "|> Some")
             else   
                 sprintf "%s |> Some" formattedList
         | _ -> "None"
@@ -1518,7 +1518,7 @@ type WordCount() =
             |> formatMultiLineList
 
         if (formattedList.Contains("\n")) then
-            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+            sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
         else   
             sprintf "%s |> Map.ofList" formattedList
 
@@ -1547,7 +1547,7 @@ type WordSearch() =
             |> formatMultiLineList
 
         if (formattedList.Contains("\n")) then
-            sprintf "%s\n%s" formattedList (indent 2 "|> Map.ofList")
+            sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
         else   
             sprintf "%s |> Map.ofList" formattedList
 

@@ -5,16 +5,10 @@ open System.Collections.Generic
 open FSharp.Reflection
 open Newtonsoft.Json.Linq
 
-let indent level value = 
-    let indentation = String.replicate level "    "
-    sprintf "%s%s" indentation value
-
-let parenthesize value = sprintf "(%s)" value
-
 let parenthesizeOption value = 
     match value with
     | "None" -> value
-    | _ -> parenthesize value
+    | _ -> String.parenthesize value
 
 let backwardPipe value = sprintf "<| %s" value
 
@@ -160,7 +154,7 @@ let private formatMultiLineCollection (openPrefix, closePostfix) collection inde
         collection
         |> Seq.mapi formatLine
         |> Seq.toList
-        |> List.map (indent indentation)
+        |> List.map (String.indent indentation)
         |> String.concat "\n"
         |> sprintf "\n%s"
 

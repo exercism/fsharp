@@ -93,6 +93,13 @@ module String =
 
     let toLower (str: string) = str.ToLowerInvariant()
 
+    let indent level str =
+        let oneLevelIndentation = "    "
+        let indentation = String.replicate level oneLevelIndentation
+        sprintf "%s%s" indentation str
+
+    let parenthesize value = sprintf "(%s)" value
+
 module Json =
     let rec parentsAndSelf (currentToken: JToken) =
         let rec helper acc (token: JToken) =

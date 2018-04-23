@@ -11,7 +11,7 @@ open Formatting
 type OutputFilter() =
     static member Format (input: string) = formatValue input
 
-    static member Indent (input: string) = indent 1 input
+    static member Indent (input: string) = String.indent 1 input
 
 let private fileSystem = LocalFileSystem(Path.GetFullPath("./Templates"))
 Template.RegisterFilter(OutputFilter().GetType())
