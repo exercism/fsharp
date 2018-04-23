@@ -145,7 +145,7 @@ type GeneratorExercise() =
 
     // Generic value/identifier rendering methods
 
-    default __.RenderValue (_, _, value) = formatValue value
+    default __.RenderValue (_, _, value) = renderObj value
 
     member this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
         let properties = this.PropertiesWithIdentifier canonicalDataCase

@@ -89,7 +89,11 @@ module String =
         let indentation = String.replicate level oneLevelIndentation
         sprintf "%s%s" indentation str
 
-    let parenthesize value = sprintf "(%s)" value
+    let enclose before after str = sprintf "%s%s%s" before str after
+
+    let enquote str = enclose "\"" "\"" str
+
+    let parenthesize str = enclose "(" ")" str
 
 module Dict =
 

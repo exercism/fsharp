@@ -10,26 +10,22 @@ let parenthesizeOption value =
     | "None" -> value
     | _ -> String.parenthesize value
 
-let escapeSpecialCharacters (str: string) =
+let renderString (str: string) =
     str.Replace("\n", "\\n")
        .Replace("\t", "\\t")
        .Replace("\r", "\\r")
        .Replace("\"", "\\\"")
+    |> String.enquote
 
-let formatString str = 
-    str
-    |> escapeSpecialCharacters
-    |> sprintf "\"%s\""
+let renderBool b = if b then "true" else "false"
 
-let formatBool b = if b then "true" else "false"
-
-let formatDateTime (dateTime: DateTime) = 
+let renderDateTime (dateTime: DateTime) = 
     if dateTime.TimeOfDay = TimeSpan.Zero then
         sprintf "DateTime(%d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day
     else
         sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
 
-let formatTimeSpan (timeSpan: TimeSpan) = 
+let renderTimeSpan (timeSpan: TimeSpan) = 
     sprintf "TimeSpan(%d, %d, %d)" timeSpan.Hours timeSpan.Minutes timeSpan.Seconds
 
 let isInt (jToken: JToken) = jToken.Value<int64>() <= int64 Int32.MaxValue
@@ -63,69 +59,69 @@ let rec normalizeJArray (jArray: JArray): obj list =
     else    
         jArray.Values<obj>() |> toBoxedList
 
-let formatToken (jToken: JToken) =
+let renderJToken (jToken: JToken) =
     match jToken.Type with
     | JTokenType.Integer when isInt jToken -> jToken.ToObject<int>() |> string
     | JTokenType.Integer  -> jToken.ToObject<int64>()    |> string
     | JTokenType.Float    -> jToken.ToObject<float>()    |> string
-    | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> formatBool
-    | JTokenType.String   -> jToken.ToObject<string>()   |> formatString
-    | JTokenType.Date     -> jToken.ToObject<DateTime>() |> formatDateTime
-    | JTokenType.TimeSpan -> jToken.ToObject<TimeSpan>() |> formatTimeSpan
+    | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> renderBool
+    | JTokenType.String   -> jToken.ToObject<string>()   |> renderString
+    | JTokenType.Date     -> jToken.ToObject<DateTime>() |> renderDateTime
+    | JTokenType.TimeSpan -> jToken.ToObject<TimeSpan>() |> renderTimeSpan
     | _ -> string jToken
 
-let formatJArray (jArray: JArray) =
+let renderJArray (jArray: JArray) =
     jArray
     |> normalizeJArray
     |> sprintf "%A"
 
-let formatTuple tuple = sprintf "%A" tuple
+let renderTuple tuple = sprintf "%A" tuple
 
-let formatRecord record = sprintf "%A" record
+let renderRecord record = sprintf "%A" record
 
-let formatOption option = 
+let renderOption option = 
     match option with
     | None -> "None"
     | Some x -> sprintf "Some %s" x
 
-let formatResult result = 
+let renderResult result = 
     match result with
     | Ok x -> sprintf "Ok %s" x
     | Error y -> sprintf "Error %s" y
 
-let rec formatValue (value: obj) =
+let rec renderObj (value: obj) =
     match value with
     | :? string as s -> 
-        formatString s
+        renderString s
     | :? bool as b -> 
-        formatBool b
+        renderBool b
     | :? DateTime as dateTime -> 
-        formatDateTime dateTime
+        renderDateTime dateTime
     | :? JArray as jArray -> 
-        formatJArray jArray
+        renderJArray jArray
     | :? JToken as jToken -> 
-        formatToken jToken
+        renderJToken jToken
     | :? Option<obj> as option -> 
-        option |> Option.map formatValue |> formatOption
+        option |> Option.map renderObj |> renderOption
     | :? Result<obj, obj> as result -> 
-        result |> Result.map formatValue |> Result.mapError formatValue |> formatResult
+        result |> Result.map renderObj |> Result.mapError renderObj |> renderResult
     | _ when FSharpType.IsTuple (value.GetType()) -> 
-        formatTuple value
+        renderTuple value
     | _ when FSharpType.IsRecord (value.GetType()) -> 
-        formatRecord value
+        renderRecord value
     | _ -> 
         string value
 
-let private formatCollection formatString collection =
+let private renderCollection formatString collection =
     collection
     |> String.concat "; "
     |> sprintf formatString
 
-let formatList sequence = formatCollection "[%s]" sequence
+let renderList sequence = renderCollection "[%s]" sequence
 
-let formatArray sequence = formatCollection "[|%s|]" sequence
+let renderArray sequence = renderCollection "[|%s|]" sequence
 
-let private formatMultiLineCollection (openPrefix, closePostfix) collection indentation =
+let private renderMultiLineCollection (openPrefix, closePostfix) collection indentation =
     match Seq.length collection with
     | 0 -> 
         sprintf "%s%s" openPrefix closePostfix
@@ -151,6 +147,6 @@ let private formatMultiLineCollection (openPrefix, closePostfix) collection inde
         |> sprintf "\n%s"
 
 
-let formatMultiLineListWithIndentation indentation sequence = formatMultiLineCollection ("[", "]") sequence indentation
+let renderMultiLineListWithIndentation indentation sequence = renderMultiLineCollection ("[", "]") sequence indentation
 
-let formatMultiLineList sequence = formatMultiLineListWithIndentation 2 sequence
+let renderMultiLineList sequence = renderMultiLineListWithIndentation 2 sequence

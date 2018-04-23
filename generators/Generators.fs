@@ -17,7 +17,7 @@ type AllYourBase() =
     override __.RenderExpected (_, _, value) = 
         value 
         |> Option.ofNonError 
-        |> formatValue
+        |> renderObj
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -30,7 +30,7 @@ type Allergies() =
         let substance = toAllergen jToken.["substance"]
         let score = canonicalDataCase.Input.["score"] :?> int64
         let sut = sprintf "allergicTo %d %s" score substance
-        let expected = jToken.Value<bool>("result") |> formatBool
+        let expected = jToken.Value<bool>("result") |> renderBool
         
         { Sut = sut; Expected = expected }
         |> renderPartialTemplate "AssertEqual"
@@ -48,7 +48,7 @@ type Allergies() =
         if (canonicalDataCase.Property = "list") then
             canonicalDataCase.Expected :?> JArray
             |> Seq.map toAllergen
-            |> formatList
+            |> renderList
         else
             base.RenderExpected (canonicalDataCase, key, value)
 
@@ -68,8 +68,8 @@ type Alphametics() =
             let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
             let formattedList =
                 dict
-                |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
-                |> formatMultiLineList
+                |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
+                |> renderMultiLineList
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
@@ -98,8 +98,8 @@ type BeerSong() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type BinarySearch() = 
     inherit GeneratorExercise()
@@ -109,11 +109,11 @@ type BinarySearch() =
     override __.RenderValue (canonicalDataCase, key, value) =
         match key with
         | "array" -> 
-            (value :?> JToken).ToObject<string []>() |> formatArray
+            (value :?> JToken).ToObject<string []>() |> renderArray
         | "expected" -> 
             match string value with
-            | "-1" -> None |> formatOption
-            | x -> Some x |> formatOption
+            | "-1" -> None |> renderOption
+            | x -> Some x |> renderOption
         | _ ->
             base.RenderValue (canonicalDataCase, key, value)
 
@@ -161,12 +161,12 @@ type BinarySearchTree() =
     override __.RenderInput (_, _, value) = 
         value :?> JArray
         |> Seq.map string
-        |> formatList
+        |> renderList
         |> sprintf "create %s"
 
     override __.RenderExpected (canonicalDataCase, key, value) = 
         match value with
-        | :? JArray as jArray -> jArray |> Seq.map string |> formatList
+        | :? JArray as jArray -> jArray |> Seq.map string |> renderList
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
@@ -195,7 +195,7 @@ type Bowling() =
     override __.RenderArrange canonicalDataCase =
         seq {
             let arr = (canonicalDataCase.Input.["previousRolls"] :?> JToken).ToObject<string[]>()
-            yield sprintf "let rolls = %s" (formatList arr)
+            yield sprintf "let rolls = %s" (renderList arr)
             if canonicalDataCase.Input.ContainsKey "roll" then
                 let roll = canonicalDataCase.Input.["roll"] :?> int64
                 yield sprintf "let startingRolls = rollMany rolls (newGame())" 
@@ -206,7 +206,7 @@ type Bowling() =
         |> Seq.toList
 
     override __.RenderExpected (_, _, value) = 
-        if value :? JObject then "None" else sprintf "<| Some %s" (formatValue value)
+        if value :? JObject then "None" else sprintf "<| Some %s" (renderObj value)
     
 type BracketPush() =
     inherit GeneratorExercise()
@@ -216,7 +216,7 @@ type Change() =
 
     override __.RenderExpected (_, _, value) =
         let convertToOption = if value :? JArray then Option.ofObj else Option.ofPositiveInt
-        value |> convertToOption |> formatValue
+        value |> convertToOption |> renderObj
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -374,8 +374,8 @@ type Connect() =
         let padSize = List.last lines |> String.length
 
         lines        
-        |> List.map (fun line -> line.PadRight(padSize) |> formatValue)
-        |> formatMultiLineList
+        |> List.map (fun line -> line.PadRight(padSize) |> renderObj)
+        |> renderMultiLineList
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -385,7 +385,7 @@ type CollatzConjecture() =
     override __.RenderExpected (_, _, value) =
         value 
         |> Option.ofNonError 
-        |> formatValue
+        |> renderObj
         |> parenthesizeOption
 
 type CryptoSquare() =
@@ -400,7 +400,7 @@ type CustomSet() =
 
     member __.RenderSet (jToken: obj) =
         (jToken :?> JToken).ToObject<seq<string>>()
-        |> formatList
+        |> renderList
         |> sprintf "CustomSet.fromList %s"
 
     override this.RenderSut canonicalDataCase =
@@ -413,7 +413,7 @@ type CustomSet() =
         match canonicalDataCase.Property with
         | "add" | "intersection" | "difference" | "union" -> 
             "true"
-        | _ -> formatValue canonicalDataCase.Expected
+        | _ -> renderObj canonicalDataCase.Expected
 
     override this.RenderArrange canonicalDataCase = 
         let arrangeLines =
@@ -427,7 +427,7 @@ type CustomSet() =
                     | "add" -> "insert"
                     | s -> s
                 let setVar = sprintf "let setValue = %s" (this.RenderSet canonicalDataCase.Input.["set"])
-                let valueVar = sprintf "let element = %s" (formatValue canonicalDataCase.Input.["element"])
+                let valueVar = sprintf "let element = %s" (renderObj canonicalDataCase.Input.["element"])
                 let resultVar = sprintf "let %s = CustomSet.%s element setValue" this.SutName methodName 
                 [ setVar; valueVar; resultVar ]
             | "intersection" | "difference" | "union" | "disjoint" | "subset" | "equal" ->
@@ -462,13 +462,13 @@ type Dominoes() =
     
     let formatAsTuple (value:obj) =
         let items = value :?> obj list
-        formatTuple (List.item 0 items, List.item 1 items)
+        renderTuple (List.item 0 items, List.item 1 items)
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
         |> normalizeJArray
         |> Seq.map formatAsTuple
-        |> formatList
+        |> renderList
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -480,8 +480,8 @@ type Etl() =
         let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
         let formattedList =
             dict
-            |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
-            |> formatMultiLineList
+            |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
+            |> renderMultiLineList
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -506,8 +506,8 @@ type FoodChain() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type Forth() =
     inherit GeneratorExercise()
@@ -517,7 +517,7 @@ type Forth() =
     override __.RenderExpected (_, _, value) = 
         value 
         |> Option.ofObj 
-        |> formatValue
+        |> renderObj
 
     override __.IdentifierTypeAnnotation (_, _, value) = 
         match value :?> JArray|> Option.ofObj |> Option.map Seq.isEmpty with 
@@ -529,10 +529,10 @@ type Forth() =
 type Gigasecond() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) = value :?> DateTime |> formatDateTime |> String.parenthesize
+    override __.RenderExpected (_, _, value) = value :?> DateTime |> renderDateTime |> String.parenthesize
  
     override __.RenderInput (_, _, value) =
-         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> formatDateTime |> String.parenthesize
+         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> renderDateTime |> String.parenthesize
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
@@ -549,12 +549,12 @@ type GoCounting() =
     let renderTerritoryPosition (value: JToken) =
         let arr = value :?> JArray
         (arr.[0].ToObject<int>(), arr.[1].ToObject<int>())
-        |> formatValue
+        |> renderObj
 
     let renderTerritory (value: JToken) = 
         value :?> JArray
         |> Seq.map renderTerritoryPosition
-        |> formatList
+        |> renderList
 
     let renderTerritoryWithOwner (value: obj) =
         let expected = value :?> JObject
@@ -573,7 +573,7 @@ type GoCounting() =
         let white = sprintf "(Owner.White, %s)" (expected.["territoryWhite"] |> renderTerritory)
         let none  = sprintf "(Owner.None, %s)"  (expected.["territoryNone"]  |> renderTerritory)
 
-        let formattedList = formatMultiLineList [black; white; none]
+        let formattedList = renderMultiLineList [black; white; none]
         sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
 
     let territoryPosition (input: Map<string, obj>) =
@@ -595,8 +595,8 @@ type GoCounting() =
         match key with
         | "board" -> 
             value :?> JArray 
-            |> Seq.map formatValue 
-            |> formatMultiLineList
+            |> Seq.map renderObj 
+            |> renderMultiLineList
         | _ -> 
             base.RenderInput (canonicalDataCase, key, value)
 
@@ -639,8 +639,8 @@ type Grep() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineListWithIndentation 3
+        |> Seq.map renderObj
+        |> renderMultiLineListWithIndentation 3
 
     override __.RenderSetup _ = renderPartialTemplate "Generators/GrepSetup" Map.empty<string, obj>
 
@@ -666,7 +666,7 @@ type Hamming() =
     override __.RenderExpected (_, _, value) = 
         value 
         |> Option.ofNonError 
-        |> formatValue
+        |> renderObj
         |> parenthesizeOption
 
 type HelloWorld() =
@@ -681,8 +681,8 @@ type House() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type IsbnVerifier() =
     inherit GeneratorExercise()
@@ -698,7 +698,7 @@ type KindergartenGarden() =
     override __.RenderExpected (_, _, value) = 
         value :?> JArray 
         |> Seq.map toPlant
-        |> formatList
+        |> renderList
 
     override __.PropertiesWithIdentifier _ = ["student"; "diagram"; "expected"]
 
@@ -712,7 +712,7 @@ type LargestSeriesProduct() =
     override __.RenderExpected (_, _, value) = 
         value 
         |> Option.ofPositiveInt 
-        |> formatValue 
+        |> renderObj 
         |> parenthesizeOption
 
 type Leap() =
@@ -757,7 +757,7 @@ type Meetup() =
 
     override __.RenderExpected (_, _, value) =
         DateTime.Parse(string value) 
-        |> formatDateTime 
+        |> renderDateTime 
         |> String.parenthesize
 
     override __.RenderInput (canonicalDataCase, key, value) =
@@ -778,8 +778,8 @@ type Minesweeper() =
 
     let renderValue (value: obj) = 
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
     override __.RenderInput (_, _, value) = renderValue value
 
@@ -798,7 +798,7 @@ type NthPrime() =
     override __.RenderExpected (_, _, value) = 
         value
         |> Option.ofNonError
-        |> formatValue 
+        |> renderObj 
         |> parenthesizeOption
 
 type NucleotideCount() =
@@ -813,8 +813,8 @@ type NucleotideCount() =
             let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
             let formattedList =
                 dict
-                |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
-                |> formatMultiLineList
+                |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
+                |> renderMultiLineList
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
@@ -833,13 +833,13 @@ type OcrNumbers() =
     override __.RenderExpected (_, _, value) = 
         value 
         |> Option.ofPositiveInt 
-        |> formatValue 
+        |> renderObj 
         |> parenthesizeOption
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type Pangram() =
     inherit GeneratorExercise()
@@ -859,7 +859,7 @@ type PalindromeProducts() =
             jObject.Value<JArray>("factors") 
             |> normalizeJArray
             |> Seq.map toFactors
-            |> formatList
+            |> renderList
 
         sprintf "(%d, %s)" palindromeValue factors
 
@@ -867,7 +867,7 @@ type PalindromeProducts() =
         value 
         |> Option.ofNonError
         |> Option.map toPalindromeProducts 
-        |> formatOption 
+        |> renderOption 
         |> parenthesizeOption
 
     override __.PropertiesUsedAsSutParameter _ = ["min"; "max"]
@@ -882,8 +882,8 @@ type PascalsTriangle() =
         | :? JArray  ->
             let formattedList = 
                 value :?> JArray
-                |> Seq.map formatValue
-                |> formatMultiLineList            
+                |> Seq.map renderObj
+                |> renderMultiLineList            
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s" formattedList (String.indent 2 "|> Some")
@@ -910,7 +910,7 @@ type PerfectNumbers() =
         value 
         |> Option.ofNonError  
         |> Option.map toClassification 
-        |> formatOption 
+        |> renderOption 
         |> parenthesizeOption
 
 type PhoneNumber() =
@@ -919,7 +919,7 @@ type PhoneNumber() =
     override __.RenderExpected (_, _, value) =
         value 
         |> Option.ofObj 
-        |> formatValue
+        |> renderObj
         |> parenthesizeOption
 
 type PigLatin() =
@@ -954,12 +954,12 @@ type Pov() =
                 if node.ContainsKey "children" then 
                     node.["children"]
                     |> Seq.map this.RenderNode
-                    |> formatList
+                    |> renderList
                 else
                     "[]"
             let label =
                 node.["label"]
-                |> formatValue
+                |> renderObj
             sprintf "mkGraph %s %s" label children
 
     override this.RenderArrange canonicalDataCase =
@@ -984,17 +984,17 @@ type Pov() =
         | "fromPov" -> 
             let from = 
                 canonicalDataCase.Input.["from"]
-                |> formatValue
+                |> renderObj
             match isNull canonicalDataCase.Expected with
             | false -> sprintf "fromPOV %s tree |> mapToList " from
             | true -> sprintf "fromPOV %s tree " from
         | "pathTo" -> 
             let fromValue = 
                 canonicalDataCase.Input.["from"] 
-                |> formatValue
+                |> renderObj
             let toValue = 
                 canonicalDataCase.Input.["to"] 
-                |> formatValue
+                |> renderObj
             sprintf "tracePathBetween %s %s tree" fromValue toValue
         | _ -> ""
  
@@ -1010,8 +1010,8 @@ type Pov() =
             | false ->
                 printf "%s" canonicalDataCase.Description
                 canonicalDataCase.Expected :?> JArray
-                |> Seq.map formatValue
-                |> formatList
+                |> Seq.map renderObj
+                |> renderList
                 |> sprintf "<| Some %s" 
         | _ -> ""
 
@@ -1031,8 +1031,8 @@ type Proverb() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
     
     override __.IdentifierTypeAnnotation (_, _, value) = 
         match value :?> JArray |> Seq.isEmpty with 
@@ -1044,13 +1044,13 @@ type QueenAttack() =
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "create" -> value :?> int64 <> -1L |> formatValue
+        | "create" -> value :?> int64 <> -1L |> renderObj
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
         let parsePositionTuple (tupleValue: obj) =
             let position = (tupleValue :?> JToken).SelectToken("position")
-            formatValue (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
+            renderObj (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
 
         match key with
         | "queen" | "white_queen" | "black_queen" -> parsePositionTuple value
@@ -1096,12 +1096,12 @@ type React() =
                     let funBody = 
                         cell.["compute_function"].ToObject<string>().Replace ("inputs", "values.")
                     let inputParams = 
-                        (cell.["inputs"].ToObject<seq<string>>() |> formatList)
+                        (cell.["inputs"].ToObject<seq<string>>() |> renderList)
                     
                     sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
                 | "input" -> 
                     let initialValue = cell.["initial_value"].ToObject<int64>()
-                    sprintf "let %s = reactor.createInputCell %s" cellName (formatValue initialValue)
+                    sprintf "let %s = reactor.createInputCell %s" cellName (renderObj initialValue)
                 | _ -> ""
             )
             |> Seq.toList
@@ -1195,8 +1195,8 @@ type Rectangles() =
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type ReverseString() =
     inherit GeneratorExercise()
@@ -1215,7 +1215,7 @@ type RobotSimulator() =
 
     let renderPosition (position: JToken) = 
         (position.["x"].ToObject<int>(), position.["y"].ToObject<int>()) 
-        |> formatValue
+        |> renderObj
 
     let renderRobot direction position = 
         sprintf "create %s %s" (renderDirection direction) (renderPosition position)
@@ -1256,7 +1256,7 @@ type RobotSimulator() =
         match canonicalDataCase.Property with
         | "create" -> "robot"
         | "turnLeft" | "turnRight" | "advance" -> sprintf "%s robot" canonicalDataCase.Property
-        | "instructions" -> sprintf "instructions %s robot" (formatValue canonicalDataCase.Input.["instructions"])
+        | "instructions" -> sprintf "instructions %s robot" (renderObj canonicalDataCase.Input.["instructions"])
         | _ -> base.RenderSut canonicalDataCase
 
     override __.TestMethodName canonicalDataCase =
@@ -1273,7 +1273,7 @@ type RnaTranscription() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        value |> Option.ofObj |> formatValue |> parenthesizeOption
+        value |> Option.ofObj |> renderObj |> parenthesizeOption
 
 type RunLengthEncoding() =
     inherit GeneratorExercise()
@@ -1300,17 +1300,17 @@ type SaddlePoints() =
     inherit GeneratorExercise()
 
     let renderSaddlePoint (input: JObject) =
-        (input.Value<int>("row"), input.Value<int>("column")) |> formatTuple
+        (input.Value<int>("row"), input.Value<int>("column")) |> renderTuple
 
     override __.RenderInput (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
     override __.RenderExpected (_, _, value) =
         (value :?> JArray).Values<JObject>()
         |> Seq.map renderSaddlePoint
-        |> formatList
+        |> renderList
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -1320,7 +1320,7 @@ type Say() =
     override __.RenderExpected (_, _, value) =
         value 
         |> Option.ofPositiveInt
-        |> formatValue
+        |> renderObj
         |> parenthesizeOption
 
     override __.RenderInput (_, _, value) = sprintf "%sL" (string value)
@@ -1336,7 +1336,7 @@ type ScaleGenerator() =
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with 
-        | "intervals" -> value |> Option.ofObj |> formatValue |> parenthesizeOption
+        | "intervals" -> value |> Option.ofObj |> renderObj |> parenthesizeOption
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.PropertiesUsedAsSutParameter _ = ["tonic"; "intervals"]
@@ -1349,8 +1349,8 @@ type Sieve() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatList
+        |> Seq.map renderObj
+        |> renderList
 
 type SecretHandshake() =
     inherit GeneratorExercise()
@@ -1359,7 +1359,7 @@ type Series() =
     inherit GeneratorExercise()
     
     override __.RenderExpected (_, _, value) =
-        value |> Option.ofNonError |> formatValue |> parenthesizeOption
+        value |> Option.ofNonError |> renderObj |> parenthesizeOption
 
 type SpaceAge() =
     inherit GeneratorExercise()
@@ -1375,8 +1375,8 @@ type SpiralMatrix() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type Sublist() =
     inherit GeneratorExercise()
@@ -1396,8 +1396,8 @@ type Tournament() =
 
     override __.RenderValue (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type TwelveDays() =
     inherit GeneratorExercise()
@@ -1408,8 +1408,8 @@ type TwelveDays() =
 
     override __.RenderExpected (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type Transpose() =
     inherit GeneratorExercise()
@@ -1423,8 +1423,8 @@ type Transpose() =
 
     override __.RenderValue (_, _, value) =
         value :?> JArray
-        |> Seq.map formatValue
-        |> formatMultiLineList
+        |> Seq.map renderObj
+        |> renderMultiLineList
 
 type Triangle() =
     inherit GeneratorExercise()
@@ -1450,7 +1450,7 @@ type Triangle() =
         value :?> JArray
         |> normalizeJArray
         |> Seq.map formatFloat
-        |> formatList
+        |> renderList
 
 type TwoBucket() =
     inherit GeneratorExercise()
@@ -1476,7 +1476,7 @@ type TwoFer() =
     inherit GeneratorExercise()
 
     override __.RenderInput (_, _, value) =
-        value |> Option.ofObj |> formatValue |> parenthesizeOption
+        value |> Option.ofObj |> renderObj |> parenthesizeOption
 
 type VariableLengthQuantity() = 
     inherit GeneratorExercise()
@@ -1484,12 +1484,12 @@ type VariableLengthQuantity() =
     let formatUnsignedByteList (value: obj) =
         value :?> JArray
         |> Seq.map (fun x -> x.Value<byte>() |> sprintf "0x%xuy")
-        |> formatList
+        |> renderList
 
     let formatUnsignedIntList (value: obj) =
         value :?> JArray
         |> Seq.map (fun x -> x.Value<uint32>() |> sprintf "0x%xu")
-        |> formatList
+        |> renderList
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
@@ -1500,7 +1500,7 @@ type VariableLengthQuantity() =
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
         | "encode" -> value |> formatUnsignedByteList
-        | "decode" -> value |> Option.ofObj |> Option.map formatUnsignedIntList |> formatOption |> parenthesizeOption
+        | "decode" -> value |> Option.ofObj |> Option.map formatUnsignedIntList |> renderOption |> parenthesizeOption
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
         
 type WordCount() =
@@ -1510,8 +1510,8 @@ type WordCount() =
         let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
         let formattedList =
             dict
-            |> Seq.map (fun kv -> formatTuple (kv.Key, kv.Value))
-            |> formatMultiLineList
+            |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
+            |> renderMultiLineList
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -1528,7 +1528,7 @@ type WordSearch() =
     let toCoordinates (value: JToken) = value.Value<int>("column"), value.Value<int>("row")
 
     let renderExpectedCoordinates (value: JObject) =
-        formatTuple (value.Item("start") |> toCoordinates, value.Item("end") |> toCoordinates)
+        renderTuple (value.Item("start") |> toCoordinates, value.Item("end") |> toCoordinates)
 
     let renderExpectedValue (value: JObject) =
         match isNull value with
@@ -1539,8 +1539,8 @@ type WordSearch() =
         let input = value :?> JObject
         let formattedList =
             input.ToObject<Collections.Generic.Dictionary<string, JObject>>()
-            |> Seq.map (fun kv -> sprintf "(%s, %s)" (formatValue kv.Key) (renderExpectedValue kv.Value))
-            |> formatMultiLineList
+            |> Seq.map (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value))
+            |> renderMultiLineList
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -1551,8 +1551,8 @@ type WordSearch() =
         match key with
         | "grid" -> 
             value :?> JArray
-            |> Seq.map formatValue
-            |> formatMultiLineList
+            |> Seq.map renderObj
+            |> renderMultiLineList
         | _ -> 
             base.RenderInput(canonicalDataCase, key, value)
 
@@ -1562,7 +1562,7 @@ type Wordy() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        value |> Option.ofNonFalse |> formatValue |> parenthesizeOption
+        value |> Option.ofNonFalse |> renderObj |> parenthesizeOption
 
 type Yacht() =
     inherit GeneratorExercise()
