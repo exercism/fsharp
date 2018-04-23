@@ -1,7 +1,6 @@
 [<AutoOpen>]
 module Generators.Common
-
-open Serilog
+open System
 
 type TestMethod = 
     { Skip: bool
@@ -30,7 +29,16 @@ type TestFileFormat =
     | Class
 
 module Logging =
+
+    open Serilog
+
     let setupLogger() =
         Log.Logger <- LoggerConfiguration()
             .WriteTo.LiterateConsole()
-            .CreateLogger();
+            .CreateLogger()
+
+module JToken =
+
+    open Newtonsoft.Json.Linq
+
+    let isInt64 (jToken: JToken) = jToken.Value<int64>() > int64 Int32.MaxValue        

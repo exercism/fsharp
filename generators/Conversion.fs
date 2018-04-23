@@ -1,22 +1,23 @@
 [<AutoOpen>]
-module Generators.Convert
+module Generators.Conversion
 
 open System
 open Newtonsoft.Json.Linq
+open System.Collections.Generic
 
 module Option =
-    let ofPositiveInt (value: obj) =
+    let ofNonNegativeNumber (value: obj) =
         match value with
         | :? int64 as i -> if i < 0L then None else Some value
         | :? int32 as i -> if i < 0  then None else Some value
         | _ -> Some value
 
-    let ofNonFalse (value: obj) =
+    let ofNonFalseBoolean (value: obj) =
         match value with
         | :? bool as b when not b -> None
         | _ -> Some value
 
-    let ofNonError (value: obj) =
+    let ofNonErrorObject (value: obj) =
         match value with
         | :? JToken as jToken -> 
             match jToken.SelectToken("error") |> isNull with
@@ -67,3 +68,38 @@ module Dict =
     let toSeq d = d |> Seq.map (fun (KeyValue(k,v)) -> (k, v))
 
     let toMap d = d |> toSeq |> Map.ofSeq
+
+
+
+module List =
+
+    let rec ofJArray (value: JArray) =
+        let toBoxedList seq = 
+            seq
+            |> Seq.map box 
+            |> List.ofSeq
+
+        if value.Count = 0 then
+            []
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer && JToken.isInt64 x) then
+            value.Values<int64>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer) then
+            value.Values<int>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float) then
+            value.Values<float>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean) then
+            value.Values<bool>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.String) then
+            value.Values<string>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Date) then
+            value.Values<DateTime>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.TimeSpan) then
+            value.Values<TimeSpan>() |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Object) then
+            value.Children() |> Seq.map (fun jObject -> jObject.ToObject<Dictionary<string, obj>>()) |> toBoxedList
+        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Array) then
+            value.Values<JArray>() |> Seq.map ofJArray |> toBoxedList
+        else    
+            value.Values<obj>() |> toBoxedList    
+
+    let ofObj (value: obj) = value :?> JArray |> ofJArray

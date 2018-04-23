@@ -4,6 +4,7 @@ open System
 open System.Collections.Generic
 open FSharp.Reflection
 open Newtonsoft.Json.Linq
+open Conversion
 
 let parenthesizeOption value = 
     match value with
@@ -28,41 +29,10 @@ let renderDateTime (dateTime: DateTime) =
 let renderTimeSpan (timeSpan: TimeSpan) = 
     sprintf "TimeSpan(%d, %d, %d)" timeSpan.Hours timeSpan.Minutes timeSpan.Seconds
 
-let isInt (jToken: JToken) = jToken.Value<int64>() <= int64 Int32.MaxValue
-
-let rec normalizeJArray (jArray: JArray): obj list =
-    let toBoxedList seq = 
-        seq
-        |> Seq.map box 
-        |> List.ofSeq
-
-    if jArray.Count = 0 then
-        []
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer && isInt x) then
-        jArray.Values<int>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer) then
-        jArray.Values<int64>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float) then
-        jArray.Values<float>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean) then
-        jArray.Values<bool>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.String) then
-        jArray.Values<string>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Date) then
-        jArray.Values<DateTime>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.TimeSpan) then
-        jArray.Values<TimeSpan>() |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Object) then
-        jArray.Children() |> Seq.map (fun jObject -> jObject.ToObject<Dictionary<string, obj>>()) |> toBoxedList
-    else if jArray.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Array) then
-        jArray.Values<JArray>() |> Seq.map normalizeJArray |> toBoxedList
-    else    
-        jArray.Values<obj>() |> toBoxedList
-
 let renderJToken (jToken: JToken) =
     match jToken.Type with
-    | JTokenType.Integer when isInt jToken -> jToken.ToObject<int>() |> string
-    | JTokenType.Integer  -> jToken.ToObject<int64>()    |> string
+    | JTokenType.Integer when JToken.isInt64 jToken -> jToken.ToObject<int64>() |> string
+    | JTokenType.Integer  -> jToken.ToObject<int>()      |> string
     | JTokenType.Float    -> jToken.ToObject<float>()    |> string
     | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> renderBool
     | JTokenType.String   -> jToken.ToObject<string>()   |> renderString
@@ -72,7 +42,7 @@ let renderJToken (jToken: JToken) =
 
 let renderJArray (jArray: JArray) =
     jArray
-    |> normalizeJArray
+    |> List.ofJArray
     |> sprintf "%A"
 
 let renderTuple tuple = sprintf "%A" tuple
@@ -117,10 +87,6 @@ let private renderCollection formatString collection =
     |> String.concat "; "
     |> sprintf formatString
 
-let renderList sequence = renderCollection "[%s]" sequence
-
-let renderArray sequence = renderCollection "[|%s|]" sequence
-
 let private renderMultiLineCollection (openPrefix, closePostfix) collection indentation =
     match Seq.length collection with
     | 0 -> 
@@ -149,4 +115,36 @@ let private renderMultiLineCollection (openPrefix, closePostfix) collection inde
 
 let renderMultiLineListWithIndentation indentation sequence = renderMultiLineCollection ("[", "]") sequence indentation
 
-let renderMultiLineList sequence = renderMultiLineListWithIndentation 2 sequence
+module Option =
+
+    let private renderMap valueMap someMap option =
+        match option with
+        | None -> "None"
+        | Some value -> sprintf "Some %s" (valueMap value) |> someMap
+
+    let renderString option = renderMap id id option
+
+    let renderStringParenthesized option = renderMap id String.parenthesize option
+
+    let render option = renderMap renderObj id option
+
+    let renderParenthesized option = renderMap renderObj String.parenthesize option
+
+module List =
+
+    let render value = renderCollection "[%s]" value
+
+    let renderMultiLine value = renderMultiLineListWithIndentation 2 value
+
+module Array =
+
+    let render value = renderCollection "[|%s|]" value
+
+module Obj =
+
+    let render value = renderObj value
+
+    let renderEnum typeName value = 
+        let enumType = String.upperCaseFirst typeName
+        let enumValue = String.dehumanize (string value)
+        sprintf "%s.%s" enumType enumValue   
