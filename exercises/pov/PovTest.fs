@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module PovTest
 
@@ -75,6 +75,11 @@ let ``Can find path to sibling`` () =
 let ``Can find path to cousin`` () =
     let tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]; mkGraph "uncle" [mkGraph "cousin-0" []; mkGraph "cousin-1" []]]
     tracePathBetween "x" "cousin-1" tree |> should equal <| Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can find path not involving root`` () =
+    let tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" []; mkGraph "sibling-0" []; mkGraph "sibling-1" []]]
+    tracePathBetween "x" "sibling-1" tree |> should equal <| Some ["x"; "parent"; "sibling-1"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Can find path from nodes other than x`` () =
