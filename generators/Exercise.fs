@@ -172,7 +172,7 @@ type GeneratorExercise() =
     
         match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
         | Some identifierType -> 
-            identifier |> addTypeAnnotation identifierType
+            sprintf "%s: %s" identifier identifierType
         | None -> 
             identifier
 

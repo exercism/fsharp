@@ -10,12 +10,6 @@ let parenthesizeOption value =
     | "None" -> value
     | _ -> String.parenthesize value
 
-let backwardPipe value = sprintf "<| %s" value
-
-let backwardPipeIf test value = if test value then backwardPipe value else value
-
-let addTypeAnnotation typeAnnotation value = sprintf "%s: %s" value typeAnnotation
-
 let escapeSpecialCharacters (str: string) =
     str.Replace("\n", "\\n")
        .Replace("\t", "\\t")
@@ -131,8 +125,6 @@ let formatList sequence = formatCollection "[%s]" sequence
 
 let formatArray sequence = formatCollection "[|%s|]" sequence
 
-let formatSequence sequence = formatCollection "seq {%s}" sequence
-
 let private formatMultiLineCollection (openPrefix, closePostfix) collection indentation =
     match Seq.length collection with
     | 0 -> 
@@ -161,23 +153,4 @@ let private formatMultiLineCollection (openPrefix, closePostfix) collection inde
 
 let formatMultiLineListWithIndentation indentation sequence = formatMultiLineCollection ("[", "]") sequence indentation
 
-let formatMultiLineArrayWithIndentation indentation sequence = formatMultiLineCollection ("[|", "|]") sequence indentation
-
-let formatMultiLineSequenceWithIndentation indentation sequence = formatMultiLineCollection ("seq {", "}") sequence indentation
-
 let formatMultiLineList sequence = formatMultiLineListWithIndentation 2 sequence
-
-let formatMultiLineArray sequence = formatMultiLineArrayWithIndentation 2 sequence
-
-let formatMultiLineSequence sequence = formatMultiLineSequenceWithIndentation 2 sequence
-
-let formatMultiLineString strings = 
-    let length = Seq.length strings
-    let formatLine i line =
-        match i = length - 1 with
-        | true  -> line
-        | false -> sprintf "%s +" line
-
-    strings
-    |> Seq.mapi formatLine
-    |> Seq.toList
