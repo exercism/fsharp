@@ -218,15 +218,9 @@ type Change() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        match value.Type with
-        | JTokenType.Array ->
-            value 
-            |> Option.ofObj 
-            |> Option.render
-        | _ ->
-            value 
-            |> Option.ofNonNegativeNumber 
-            |> Option.render
+        value
+        |> Option.ofNonNegativeNumber
+        |> Option.render
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -1288,11 +1282,6 @@ type RotationalCipher() =
 
 type RnaTranscription() =
     inherit GeneratorExercise()
-
-    override __.RenderExpected (_, _, value) =
-        value
-        |> Option.ofObj
-        |> Option.renderParenthesized
 
 type RunLengthEncoding() =
     inherit GeneratorExercise()
