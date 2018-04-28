@@ -5,24 +5,25 @@ open System
 open Newtonsoft.Json.Linq
 
 module Option =
-    let ofNonNegativeNumber (value: obj) =
-        match value with
-        | :? int64 as i -> if i < 0L then None else Some value
-        | :? int32 as i -> if i < 0  then None else Some value
-        | _ -> Some value
+    let ofNonNegativeNumber (jToken: JToken) =
+        match jToken.Type with
+        | JTokenType.Integer -> if jToken.ToObject<int>() < 0 then None else Some jToken
+        | _ -> Some jToken
 
-    let ofNonFalseBoolean (value: obj) =
-        match value with
-        | :? bool as b when not b -> None
-        | _ -> Some value
+    let ofNonFalseBoolean (jToken: JToken) =
+        match jToken.Type with
+        | JTokenType.Boolean -> if jToken.ToObject<bool>() then Some jToken else None
+        | _ -> Some jToken
 
-    let ofNonErrorObject (value: obj) =
-        match value with
-        | :? JToken as jToken -> 
-            match jToken.SelectToken("error") |> isNull with
-            | true  -> Some value
-            | false -> None
-        | _ -> Some value
+    let ofNonNull (jToken: JToken) =
+        match jToken.Type with
+        | JTokenType.Null -> None
+        | _ -> Some jToken
+
+    let ofNonErrorObject (jToken: JToken) =
+        match jToken.SelectToken("error") |> isNull with
+        | true  -> Some jToken
+        | false -> None
 
     let ofNonEmptyString (value: string) =
         match String.IsNullOrEmpty value with

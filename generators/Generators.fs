@@ -8,6 +8,7 @@ open Conversion
 open Formatting
 open Templates
 open Exercise
+open Generators.Common
 
 type Acronym() =
     inherit GeneratorExercise()
@@ -29,7 +30,7 @@ type Allergies() =
 
     let renderAllergicToAssert canonicalDataCase (jToken: JToken) =
         let substance = renderAllergenEnum jToken.["substance"]
-        let score = canonicalDataCase.Input.["score"] :?> int64
+        let score = canonicalDataCase.Input.["score"].ToObject<int64>()
         let sut = sprintf "allergicTo %d %s" score substance
         let expected = jToken.Value<bool>("result") |> Bool.render
         
@@ -58,12 +59,11 @@ type Allergies() =
 type Alphametics() =
     inherit GeneratorExercise()
 
-    member __.FormatMap<'TKey, 'TValue> (value: obj) =
-        if isNull value then
+    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
+        if value.Type = JTokenType.Null then
             "None"
         else
-            let input = value :?> JObject
-            let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+            let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
             let formattedList =
                 dict
                 |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
@@ -180,9 +180,7 @@ type Bob() =
 type BookStore() =
     inherit GeneratorExercise()
 
-    let formatFloat (value:obj) = value :?> int64 |> (fun x -> float x / 100.0) |> sprintf "%.2f"
-
-    override __.RenderExpected (_, _, value) = formatFloat value
+    override __.RenderExpected (_, _, value) = value.ToObject<float>() / 100.0 |> sprintf "%.2f"
 
     override __.PropertiesUsedAsSutParameter canonicalDataCase =
         base.PropertiesUsedAsSutParameter canonicalDataCase |> List.except ["targetgrouping"]
@@ -197,10 +195,10 @@ type Bowling() =
 
     override __.RenderArrange canonicalDataCase =
         seq {
-            let arr = (canonicalDataCase.Input.["previousRolls"] :?> JToken).ToObject<string[]>()
+            let arr = canonicalDataCase.Input.["previousRolls"].ToObject<string[]>()
             yield sprintf "let rolls = %s" (List.renderStrings arr)
             if canonicalDataCase.Input.ContainsKey "roll" then
-                let roll = canonicalDataCase.Input.["roll"] :?> int64
+                let roll = canonicalDataCase.Input.["roll"].ToObject<int64>()
                 yield sprintf "let startingRolls = rollMany rolls (newGame())" 
                 yield sprintf "let game = roll %i startingRolls" roll
             else
@@ -220,8 +218,8 @@ type Change() =
     inherit GeneratorExercise()
 
     override __.RenderExpected (_, _, value) =
-        match value with
-        | :? JArray ->
+        match value.Type with
+        | JTokenType.Array ->
             value 
             |> Option.ofObj 
             |> Option.render
@@ -235,7 +233,7 @@ type Change() =
     override __.IdentifierTypeAnnotation (canonicalDataCase, key, _) =
         match key with
         | "expected" ->
-            match canonicalDataCase.Input.["target"] :?> int64 with
+            match canonicalDataCase.Input.["target"].ToObject<int64>() with
             | 0L -> Some "int list option"
             | _  -> None
         | _ -> None
@@ -252,12 +250,12 @@ type CircularBuffer() =
 
     override this.RenderArrange canonicalDataCase = 
         seq {
-            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Input.["capacity"] :?> int64)
+            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Input.["capacity"].ToObject<int64>())
             let operations = (canonicalDataCase.Input.["operations"] :?> JArray)
             let mutable ind = 2
             let lastInd = operations.Count + 1 
             for op in operations do
-                let dict = (op :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>();
+                let dict = (op :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>()
                 let funcName = dict.["operation"].ToObject<string>()
                 match funcName with
                 | "write" as operation -> 
@@ -348,9 +346,9 @@ type ComplexNumbers() =
         sprintf "(create %s %s)" (renderNumber input.[0]) (renderNumber input.[1])
 
     override __.RenderValue (canonicalDataCase, key, value) = 
-        match value with
-        | :? JArray as jArray -> renderComplexNumber jArray
-        | :? int64 as i -> sprintf "%d.0" i
+        match value.Type with
+        | JTokenType.Array -> renderComplexNumber (value.ToObject<JArray>())
+        | JTokenType.Integer -> sprintf "%d.0" (value.ToObject<int>())
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
     override __.RenderAssert canonicalDataCase = 
@@ -489,7 +487,7 @@ type Etl() =
 
     member __.FormatMap<'TKey, 'TValue> (value: obj) =
         let input = value :?> JObject
-        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
         let formattedList =
             dict
             |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
@@ -529,11 +527,11 @@ type Forth() =
     
     override __.RenderExpected (_, _, value) = 
         value 
-        |> Option.ofObj 
+        |> Option.ofNonNull 
         |> Option.render
 
     override __.IdentifierTypeAnnotation (_, _, value) = 
-        let isEmptyList = value :?> JArray|> Option.ofObj |> Option.map Seq.isEmpty
+        let isEmptyList = value |> Option.ofNonNull |> Option.map Seq.isEmpty
 
         match isEmptyList with 
         | Some true -> Some "int list option"
@@ -544,7 +542,7 @@ type Forth() =
 type Gigasecond() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) = value :?> DateTime |> DateTime.renderParenthesized
+    override __.RenderExpected (_, _, value) = value.ToObject<DateTime>() |> DateTime.renderParenthesized
  
     override __.RenderInput (_, _, value) =
          DateTime.Parse(string value, CultureInfo.InvariantCulture) |> DateTime.renderParenthesized
@@ -577,12 +575,12 @@ type GoCounting() =
         let territory = expected.["territory"] |> renderTerritory
         sprintf "(%s, %s)" owner territory
 
-    let renderExpectedTerritory (value: obj) = 
+    let renderExpectedTerritory (value: JToken) = 
         match Option.ofNonErrorObject value with
         | None -> "Option.None"
         | Some expected -> expected |> renderTerritoryWithOwner |> sprintf "Option.Some %s"
     
-    let renderExpectedTerritories (value: obj) = 
+    let renderExpectedTerritories (value: JToken) = 
         let expected = value :?> JObject
         let black = sprintf "(Owner.Black, %s)" (expected.["territoryBlack"] |> renderTerritory)
         let white = sprintf "(Owner.White, %s)" (expected.["territoryWhite"] |> renderTerritory)
@@ -591,11 +589,12 @@ type GoCounting() =
         let formattedList = List.renderMultiLineStrings [black; white; none]
         sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
 
-    let territoryPosition (input: Map<string, obj>) =
+    let territoryPosition (input: Map<string, JToken>) =
         let valueToInt key = input |> Map.find key |> string |> int
-        (valueToInt "x", valueToInt "y") |> box
+        let position = sprintf "{ \"x\": %d, \"y\": %d }" (valueToInt "x") (valueToInt "y")
+        JToken.Parse(position)
 
-    let mapTerritoryInput (input: Map<string, obj>) =
+    let mapTerritoryInput (input: Map<string, JToken>) =
         input
         |> Map.remove "x"
         |> Map.remove "y"
@@ -612,6 +611,9 @@ type GoCounting() =
             value
             |> List.ofObj
             |> List.renderMultiLine
+        | "position" ->
+            (value.SelectToken("x").ToObject<int>(), value.SelectToken("y").ToObject<int>())
+            |> Obj.render
         | _ -> 
             base.RenderInput (canonicalDataCase, key, value)
 
@@ -824,13 +826,12 @@ type NthPrime() =
 type NucleotideCount() =
     inherit GeneratorExercise()
 
-    member __.FormatMap<'TKey, 'TValue> (value: obj) =
+    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
         match Option.ofNonErrorObject value with
         | None -> 
             "None"
         | _ ->
-            let input = value :?> JObject
-            let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+            let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
             let formattedList =
                 dict
                 |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
@@ -935,7 +936,7 @@ type PhoneNumber() =
     
     override __.RenderExpected (_, _, value) =
         value 
-        |> Option.ofObj
+        |> Option.ofNonNull
         |> Option.renderParenthesized
 
 type PigLatin() =
@@ -949,7 +950,7 @@ type Poker() =
 type Pov() = 
     inherit GeneratorExercise()
 
-    let isNull x = match x with null -> true | _ -> false
+    let isNull (jToken: JToken) = jToken.Type = JTokenType.Null
 
     override __.RenderSetup _ = 
         ["let rec graphToList (graph: Graph<'a>) = "
@@ -961,11 +962,11 @@ type Pov() =
          "let mapToList graph = match graph with | Some x -> graphToList x | None -> []"
         ] |> String.concat "\n"
 
-    member this.RenderNode (tree: obj) : string = 
+    member this.RenderNode (tree: JToken) : string = 
         match isNull tree with
         | true -> ""
         | false ->
-            let node = (tree :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>();
+            let node = tree.ToObject<Collections.Generic.Dictionary<string, JToken>>()
             let children = 
                 if node.ContainsKey "children" then 
                     node.["children"]
@@ -1060,7 +1061,7 @@ type QueenAttack() =
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "create" -> value :?> int64 <> -1L |> renderObj
+        | "create" -> value.ToObject<int64>() <> -1L |> renderObj
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
@@ -1093,8 +1094,8 @@ type RationalNumbers() =
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
     override __.AssertTemplate canonicalDataCase =
-        match canonicalDataCase.Expected with
-        | :? double -> "AssertEqualWithin"
+        match canonicalDataCase.Expected.Type with
+        | JTokenType.Float -> "AssertEqualWithin"
         | _ -> base.AssertTemplate(canonicalDataCase)
 
 type React() = 
@@ -1387,9 +1388,9 @@ type SpaceAge() =
     inherit GeneratorExercise()
 
     override __.RenderInput (canonicalDataCase, key, value) =
-        match value with
-        | :? string as s -> s
-        | :? int64 as i -> sprintf "%dL" i
+        match value.Type with
+        | JTokenType.String -> value.ToObject<string>()
+        | JTokenType.Integer -> sprintf "%dL" (value.ToObject<int64>())
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
 type SpiralMatrix() =
@@ -1496,34 +1497,34 @@ type TwoFer() =
 
     override __.RenderInput (_, _, value) =
         value
-        |> Option.ofObj
+        |> Option.ofNonNull
         |> Option.renderParenthesized
 
 type VariableLengthQuantity() = 
     inherit GeneratorExercise()
 
-    let formatUnsignedByteList (value: obj) =
-        value :?> JArray
-        |> Seq.map (fun x -> x.Value<byte>() |> sprintf "0x%xuy")
+    let formatUnsignedByteList (value: JToken) =
+        value.ToObject<byte list>()
+        |> Seq.map (sprintf "0x%xuy")
         |> List.renderStrings
 
-    let formatUnsignedIntList (value: obj) =
-        value :?> JArray
-        |> Seq.map (fun x -> x.Value<uint32>() |> sprintf "0x%xu")
+    let formatUnsignedIntList (value: JToken) =
+        value.ToObject<uint32 list>()
+        |> Seq.map (sprintf "0x%xu")
         |> List.renderStrings
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "encode" -> value |> formatUnsignedIntList
-        | "decode" -> value |> formatUnsignedByteList
+        | "encode" -> formatUnsignedIntList value
+        | "decode" -> formatUnsignedByteList value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "encode" -> value |> formatUnsignedByteList
+        | "encode" -> formatUnsignedByteList value
         | "decode" -> 
             value
-            |> Option.ofObj
+            |> Option.ofNonNull
             |> Option.map formatUnsignedIntList
             |> Option.renderStringParenthesized
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
@@ -1532,7 +1533,7 @@ type WordCount() =
     inherit GeneratorExercise()
     member __.FormatMap<'TKey, 'TValue> (value: obj) =
         let input = value :?> JObject
-        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>();
+        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
         let formattedList =
             dict
             |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))

@@ -1,7 +1,6 @@
 module Generators.Formatting
 
 open System
-open System.Collections.Generic
 open FSharp.Reflection
 open Newtonsoft.Json.Linq
 open Conversion

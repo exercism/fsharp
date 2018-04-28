@@ -18,19 +18,19 @@ let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebabe
 type GeneratorExercise() =
 
     // Customize rendered output
-    abstract member RenderExpected : CanonicalDataCase * string * obj -> string
-    abstract member RenderInput : CanonicalDataCase * string * obj -> string
+    abstract member RenderExpected : CanonicalDataCase * string * JToken -> string
+    abstract member RenderInput : CanonicalDataCase * string * JToken -> string
     abstract member RenderArrange : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string list
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSetup : CanonicalData -> string
-    abstract member RenderValue : CanonicalDataCase * string * obj -> string
+    abstract member RenderValue : CanonicalDataCase * string * JToken -> string
     
     // Utility methods to customize rendered output
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
-    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * obj -> string option    
+    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * JToken -> string option    
     abstract member AdditionalNamespaces : string list    
     abstract member AssertTemplate : CanonicalDataCase -> string    
     abstract member TestFileFormat: TestFileFormat

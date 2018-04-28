@@ -10,10 +10,10 @@ open Newtonsoft.Json.Linq
 open Options
 
 type CanonicalDataCase = 
-    { Input: Map<string, obj>
-      Expected: obj
+    { Input: Map<string, JToken>
+      Expected: JToken
       Property: string
-      Properties: Map<string, obj>
+      Properties: Map<string, JToken>
       Description: string
       DescriptionPath: string list }
 
@@ -68,7 +68,7 @@ type CanonicalDataConverter() =
         helper [] currentToken
 
     let jTokenToMap (jToken: JToken) =
-        jToken.ToObject<IDictionary<string, obj>>()
+        jToken.ToObject<IDictionary<string, JToken>>()
         |> Dict.toMap
 
     let createDescriptionPathFromJToken (jToken: JToken): string list =
@@ -81,7 +81,7 @@ type CanonicalDataConverter() =
         |> parentsAndSelf
         |> List.choose descriptionFromJToken
 
-    let createInputFromJToken (properties: Map<string, obj>) = 
+    let createInputFromJToken (properties: Map<string, JToken>) = 
         properties.["input"] :?> JObject
         |> jTokenToMap
 
@@ -89,7 +89,7 @@ type CanonicalDataConverter() =
         let properties = jTokenToMap jToken
 
         { Input = createInputFromJToken properties
-          Expected = if properties.ContainsKey "expected" then properties.["expected"] else ("" :> obj)
+          Expected = if properties.ContainsKey "expected" then properties.["expected"] else (JToken.Parse(""))
           Property = string properties.["property"]
           Properties = properties
           Description = string properties.["description"]
