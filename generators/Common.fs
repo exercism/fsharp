@@ -41,4 +41,4 @@ module JToken =
 
     open Newtonsoft.Json.Linq
 
-    let isInt64 (jToken: JToken) = jToken.Value<int64>() > int64 Int32.MaxValue        
+    let isInt64 (jToken: JToken) = jToken.Value<int64>() > int64 Int32.MaxValue

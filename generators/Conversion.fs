@@ -3,7 +3,6 @@ module Generators.Conversion
 
 open System
 open Newtonsoft.Json.Linq
-open System.Collections.Generic
 
 module Option =
     let ofNonNegativeNumber (value: obj) =
@@ -63,43 +62,18 @@ module String =
 
     let parenthesize str = enclose "(" ")" str
 
+    let split (separator: string) (str: string) = str.Split(separator)
+
 module Dict =
 
     let toSeq d = d |> Seq.map (fun (KeyValue(k,v)) -> (k, v))
 
     let toMap d = d |> toSeq |> Map.ofSeq
 
+module Array =
 
+    let ofObj (value: obj) = value :?> JArray |> Seq.toArray
 
 module List =
 
-    let rec ofJArray (value: JArray) =
-        let toBoxedList seq = 
-            seq
-            |> Seq.map box 
-            |> List.ofSeq
-
-        if value.Count = 0 then
-            []
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer && JToken.isInt64 x) then
-            value.Values<int64>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Integer) then
-            value.Values<int>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Float) then
-            value.Values<float>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Boolean) then
-            value.Values<bool>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.String) then
-            value.Values<string>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Date) then
-            value.Values<DateTime>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.TimeSpan) then
-            value.Values<TimeSpan>() |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Object) then
-            value.Children() |> Seq.map (fun jObject -> jObject.ToObject<Dictionary<string, obj>>()) |> toBoxedList
-        else if value.Children() |> Seq.forall (fun x -> x.Type = JTokenType.Array) then
-            value.Values<JArray>() |> Seq.map ofJArray |> toBoxedList
-        else    
-            value.Values<obj>() |> toBoxedList    
-
-    let ofObj (value: obj) = value :?> JArray |> ofJArray
+    let ofObj (value: obj) = value :?> JArray |> Seq.toList

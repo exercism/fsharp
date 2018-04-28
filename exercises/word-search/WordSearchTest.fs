@@ -313,8 +313,7 @@ let ``Should fail to locate a word that is not in the puzzle`` () =
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"; "lua"; "lisp"; "ruby";
- "haskell"]
+    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"; "lua"; "lisp"; "ruby"; "haskell"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
