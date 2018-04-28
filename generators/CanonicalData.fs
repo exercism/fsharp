@@ -81,15 +81,11 @@ type CanonicalDataConverter() =
         |> parentsAndSelf
         |> List.choose descriptionFromJToken
 
-    let createInputFromJToken (properties: Map<string, JToken>) = 
-        properties.["input"] :?> JObject
-        |> jTokenToMap
-
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
         let properties = jTokenToMap jToken
 
-        { Input = createInputFromJToken properties
-          Expected = if properties.ContainsKey "expected" then properties.["expected"] else (JToken.Parse(""))
+        { Input = jTokenToMap properties.["input"]
+          Expected = properties.["expected"]
           Property = string properties.["property"]
           Properties = properties
           Description = string properties.["description"]
