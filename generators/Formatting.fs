@@ -31,6 +31,11 @@ module DateTime =
         else
             sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
 
+    let renderParenthesized (dateTime: DateTime) = 
+        dateTime
+        |> render
+        |> String.parenthesize
+
 let renderJToken (jToken: JToken) =
     match jToken.Type with
     | JTokenType.Integer when JToken.isInt64 jToken -> jToken.ToObject<int64>() |> string

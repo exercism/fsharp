@@ -544,10 +544,10 @@ type Forth() =
 type Gigasecond() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) = value :?> DateTime |> DateTime.render |> String.parenthesize
+    override __.RenderExpected (_, _, value) = value :?> DateTime |> DateTime.renderParenthesized
  
     override __.RenderInput (_, _, value) =
-         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> DateTime.render |> String.parenthesize
+         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> DateTime.renderParenthesized
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
@@ -778,8 +778,7 @@ type Meetup() =
 
     override __.RenderExpected (_, _, value) =
         DateTime.Parse(string value) 
-        |> DateTime.render 
-        |> String.parenthesize
+        |> DateTime.renderParenthesized
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
