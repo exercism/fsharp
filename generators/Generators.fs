@@ -495,12 +495,7 @@ type Gigasecond() =
 type GoCounting() =
     inherit GeneratorExercise()
 
-    let renderOwner (value: JToken) = 
-        value
-        |> string
-        |> String.toLower
-        |> String.upperCaseFirst
-        |> sprintf "Owner.%s"
+    let renderOwner (value: JToken) = Obj.renderEnum "Owner" (string value |> String.toLower)
 
     let renderTerritoryPosition (value: JToken) =
         let arr = value.ToObject<int list>()
@@ -509,8 +504,8 @@ type GoCounting() =
     let renderTerritory (value: JToken) = List.mapRender renderTerritoryPosition value
 
     let renderTerritoryWithOwner (value: JToken) =
-        let owner = value.["owner"] |> renderOwner
-        let territory = value.["territory"] |> renderTerritory
+        let owner = renderOwner value.["owner"]
+        let territory = renderTerritory value.["territory"]
         sprintf "(%s, %s)" owner territory
 
     let renderExpectedTerritory (expected: JToken) = 
@@ -707,12 +702,9 @@ type Meetup() =
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
-        | "dayofweek" -> 
-            sprintf "DayOfWeek.%s" (string canonicalDataCase.Input.["dayofweek"])
-        | "week" -> 
-            sprintf "Week.%s" (string canonicalDataCase.Input.["week"] |> String.upperCaseFirst)
-        | _ -> 
-            base.RenderInput (canonicalDataCase, key, value)
+        | "dayofweek" -> Obj.renderEnum "DayOfWeek" canonicalDataCase.Input.["dayofweek"]
+        | "week" -> Obj.renderEnum "Week" canonicalDataCase.Input.["week"]
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.PropertiesUsedAsSutParameter _ = ["year"; "month"; "week"; "dayofweek"]
 
@@ -816,7 +808,7 @@ type PascalsTriangle() =
 type PerfectNumbers() =
     inherit GeneratorExercise()
 
-    let toClassification value = string value |> String.dehumanize
+    let toClassification value = Obj.renderEnum "Classification" value
 
     override __.RenderExpected (_, _, value) = 
         value
@@ -1097,8 +1089,7 @@ type RobotSimulator() =
         let position  = token.SelectToken "position"  |> Option.ofObj
         (direction, position)
 
-    let renderDirection (value: JToken) = 
-        value.ToObject<string>() |> String.upperCaseFirst
+    let renderDirection (value: JToken) = Obj.renderEnum "Direction" value
 
     let renderPosition (position: JToken) = 
         Obj.render (position.["x"].ToObject<int>(), position.["y"].ToObject<int>())
@@ -1254,8 +1245,7 @@ type SpiralMatrix() =
 type Sublist() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) =
-        string value |> String.upperCaseFirst
+    override __.RenderExpected (_, _, value) = Obj.renderEnum "SublistType" value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -1311,8 +1301,7 @@ type Triangle() =
 type TwoBucket() =
     inherit GeneratorExercise()
 
-    let renderBucket (value: obj) = 
-        value |> string |> String.upperCaseFirst |> sprintf "Bucket.%s"
+    let renderBucket (value: JToken) = Obj.renderEnum "Bucket" value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -1322,9 +1311,9 @@ type TwoBucket() =
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.RenderExpected (_, _, value) =
-        let moves       = value.Value<int>("moves")
-        let goalBucket  = value.Value<string>("goalBucket") |> renderBucket
-        let otherBucket = value.Value<int>("otherBucket")
+        let moves       = value.["moves"].ToObject<int>()
+        let goalBucket  = renderBucket value.["goalBucket"]
+        let otherBucket = value.["otherBucket"].ToObject<int>()
         sprintf "{ Moves = %d; GoalBucket = %s; OtherBucket = %d }" moves goalBucket otherBucket
 
 type TwoFer() =
@@ -1406,7 +1395,7 @@ type Yacht() =
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
-        | "category" -> sprintf "Category.%s" (value |> string |> String.dehumanize)
+        | "category" -> Obj.renderEnum "Category" value
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
 type ZebraPuzzle() =

@@ -1,6 +1,6 @@
 ﻿module Sublist
 
-type Sublist = Equal | Sublist | Superlist | Unequal
+type SublistType = Equal | Sublist | Superlist | Unequal
 
 let rec isSublist xs ys lx ly = 
     let rec helper xs' ys' =
