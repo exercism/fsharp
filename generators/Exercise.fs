@@ -6,7 +6,6 @@ open System.Reflection
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Humanizer
-open Serilog
 open Rendering
 open Templates
 open CanonicalData
@@ -150,7 +149,7 @@ type GeneratorExercise() =
 
     // Generic value/identifier rendering methods
 
-    default __.RenderValue (_, _, value) = renderObj value
+    default __.RenderValue (_, _, value) = Obj.render value
 
     member this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
         let properties = this.PropertiesWithIdentifier canonicalDataCase

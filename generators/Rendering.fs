@@ -35,74 +35,52 @@ module DateTime =
         |> render
         |> String.parenthesize
 
-let renderJToken (jToken: JToken) =
-    match jToken.Type with
-    | JTokenType.Integer when JToken.isInt64 jToken -> jToken.ToObject<int64>() |> string
-    | JTokenType.Integer  -> jToken.ToObject<int>()      |> string
-    | JTokenType.Float    -> jToken.ToObject<float>()    |> string
-    | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> Bool.render
-    | JTokenType.String   -> jToken.ToObject<string>()   |> String.render
-    | JTokenType.Date     -> jToken.ToObject<DateTime>() |> DateTime.render
-    | _ -> string jToken
+module Obj =
 
-let private renderTuple tuple = sprintf "%A" tuple
+    let private renderJToken (jToken: JToken) =
+        match jToken.Type with
+        | JTokenType.Integer  -> jToken.ToObject<int64>()    |> string
+        | JTokenType.Float    -> jToken.ToObject<float>()    |> string
+        | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> Bool.render
+        | JTokenType.String   -> jToken.ToObject<string>()   |> String.render
+        | JTokenType.Date     -> jToken.ToObject<DateTime>() |> DateTime.render
+        | _ -> string jToken
 
-let private renderRecord record = sprintf "%A" record
+    let private renderTuple tuple = sprintf "%A" tuple
 
-let rec renderObj (value: obj) =
-    let rec renderJArray (jArray: JArray) =
-        jArray
-        |> Seq.map renderObj
-        |> String.concat "; "
-        |> sprintf "[%s]"
+    let private renderRecord record = sprintf "%A" record
 
-    match value with
-    | :? string as s -> 
-        String.render s
-    | :? bool as b -> 
-        Bool.render b
-    | :? DateTime as dateTime -> 
-        DateTime.render dateTime
-    | :? JArray as jArray -> 
-        renderJArray jArray
-    | :? JToken as jToken -> 
-        renderJToken jToken
-    | _ when FSharpType.IsTuple (value.GetType()) -> 
-        renderTuple value
-    | _ when FSharpType.IsRecord (value.GetType()) -> 
-        renderRecord value
-    | _ -> 
-        string value
+    let rec private renderObj (value: obj) =
+        let rec renderJArray (jArray: JArray) =
+            jArray
+            |> Seq.map renderObj
+            |> String.concat "; "
+            |> sprintf "[%s]"
 
-let private renderCollection formatString collection =
-    collection
-    |> String.concat "; "
-    |> sprintf formatString
+        match value with
+        | :? string as s -> 
+            String.render s
+        | :? bool as b -> 
+            Bool.render b
+        | :? DateTime as dateTime -> 
+            DateTime.render dateTime
+        | :? JArray as jArray -> 
+            renderJArray jArray
+        | :? JToken as jToken -> 
+            renderJToken jToken
+        | _ when FSharpType.IsTuple (value.GetType()) -> 
+            renderTuple value
+        | _ when FSharpType.IsRecord (value.GetType()) -> 
+            renderRecord value
+        | _ -> 
+            string value
 
-let private renderMultiLineCollection (openPrefix, closePostfix) collection =
-    match Seq.length collection with
-    | 0 -> 
-        sprintf "%s%s" openPrefix closePostfix
-    | 1 -> 
-        sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix
-    | length -> 
-        let lineIndent = String(' ', String.length openPrefix)
+    let render value = renderObj value
 
-        let formatLine i line = 
-            match i with
-            | 0 -> 
-                sprintf "%s %s;" openPrefix line
-            | _ when i = length - 1 -> 
-                sprintf "%s %s %s" lineIndent line closePostfix
-            | _ ->
-                sprintf "%s %s;" lineIndent line
-
-        collection
-        |> Seq.mapi formatLine
-        |> Seq.toList
-        |> List.map (String.indent 2)
-        |> String.concat "\n"
-        |> sprintf "\n%s"
+    let renderEnum typeName value = 
+        let enumType = String.upperCaseFirst typeName
+        let enumValue = String.dehumanize (string value)
+        sprintf "%s.%s" enumType enumValue    
 
 module Option =
 
@@ -115,37 +93,59 @@ module Option =
 
     let renderStringParenthesized option = renderMap id String.parenthesize option
 
-    let render option = renderMap renderObj id option
+    let render option = renderMap Obj.render id option
 
-    let renderParenthesized option = renderMap renderObj String.parenthesize option
+    let renderParenthesized option = renderMap Obj.render String.parenthesize option
+
+module Collection =
+    let render formatString collection =
+        collection
+        |> String.concat "; "
+        |> sprintf formatString
+
+    let renderMultiLine openPrefix closePostfix collection =
+        match Seq.length collection with
+        | 0 -> 
+            sprintf "%s%s" openPrefix closePostfix
+        | 1 -> 
+            sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix
+        | length -> 
+            let lineIndent = String(' ', String.length openPrefix)
+
+            let formatLine i line = 
+                match i with
+                | 0 -> 
+                    sprintf "%s %s;" openPrefix line
+                | _ when i = length - 1 -> 
+                    sprintf "%s %s %s" lineIndent line closePostfix
+                | _ ->
+                    sprintf "%s %s;" lineIndent line
+
+            collection
+            |> Seq.mapi formatLine
+            |> Seq.toList
+            |> List.map (String.indent 2)
+            |> String.concat "\n"
+            |> sprintf "\n%s"
 
 module List =
 
-    let mapRender map value = renderCollection "[%s]" (Seq.map map value)
+    let mapRender map value = Collection.render "[%s]" (Seq.map map value)
 
-    let mapRenderMultiLine map value = renderMultiLineCollection ("[", "]") (Seq.map map value)
+    let mapRenderMultiLine map value = Collection.renderMultiLine "[" "]" (Seq.map map value)
 
-    let render value = mapRender renderObj value
+    let render value = mapRender Obj.render value
 
-    let renderMultiLine value = mapRenderMultiLine renderObj value
+    let renderMultiLine value = mapRenderMultiLine Obj.render value
 
 module Array =
 
-    let renderStrings value = renderCollection "[|%s|]" value
+    let renderStrings value = Collection.render "[|%s|]" value
 
     let render value = 
         value
-        |> Seq.map renderObj
+        |> Seq.map Obj.render
         |> renderStrings
-
-module Obj =
-
-    let render value = renderObj value
-
-    let renderEnum typeName value = 
-        let enumType = String.upperCaseFirst typeName
-        let enumValue = String.dehumanize (string value)
-        sprintf "%s.%s" enumType enumValue
 
 module Map =
 

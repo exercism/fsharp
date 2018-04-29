@@ -387,7 +387,7 @@ type CustomSet() =
         match canonicalDataCase.Property with
         | "add" | "intersection" | "difference" | "union" -> 
             "true"
-        | _ -> renderObj canonicalDataCase.Expected
+        | _ -> Obj.render canonicalDataCase.Expected
 
     override this.RenderArrange canonicalDataCase = 
         let arrangeLines =
@@ -401,7 +401,7 @@ type CustomSet() =
                     | "add" -> "insert"
                     | s -> s
                 let setVar = sprintf "let setValue = %s" (this.RenderSet canonicalDataCase.Input.["set"])
-                let valueVar = sprintf "let element = %s" (renderObj canonicalDataCase.Input.["element"])
+                let valueVar = sprintf "let element = %s" (Obj.render canonicalDataCase.Input.["element"])
                 let resultVar = sprintf "let %s = CustomSet.%s element setValue" this.SutName methodName 
                 [ setVar; valueVar; resultVar ]
             | "intersection" | "difference" | "union" | "disjoint" | "subset" | "equal" ->
@@ -504,8 +504,7 @@ type GoCounting() =
 
     let renderTerritoryPosition (value: JToken) =
         let arr = value.ToObject<int list>()
-        (arr.[0], arr.[1])
-        |> renderObj
+        Obj.render (arr.[0], arr.[1])
 
     let renderTerritory (value: JToken) = List.mapRender renderTerritoryPosition value
 
@@ -866,9 +865,7 @@ type Pov() =
                     List.mapRender this.RenderNode node.["children"]
                 else
                     "[]"
-            let label =
-                node.["label"]
-                |> renderObj
+            let label = Obj.render node.["label"]
             sprintf "mkGraph %s %s" label children
 
     override this.RenderArrange canonicalDataCase =
@@ -891,19 +888,13 @@ type Pov() =
     override __.RenderSut canonicalDataCase = 
         match canonicalDataCase.Property with
         | "fromPov" -> 
-            let from = 
-                canonicalDataCase.Input.["from"]
-                |> renderObj
+            let from = Obj.render canonicalDataCase.Input.["from"]
             match isNull canonicalDataCase.Expected with
             | false -> sprintf "fromPOV %s tree |> mapToList " from
             | true -> sprintf "fromPOV %s tree " from
         | "pathTo" -> 
-            let fromValue = 
-                canonicalDataCase.Input.["from"] 
-                |> renderObj
-            let toValue = 
-                canonicalDataCase.Input.["to"] 
-                |> renderObj
+            let fromValue = Obj.render canonicalDataCase.Input.["from"]
+            let toValue = Obj.render canonicalDataCase.Input.["to"]
             sprintf "tracePathBetween %s %s tree" fromValue toValue
         | _ -> ""
  
@@ -948,14 +939,14 @@ type QueenAttack() =
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "create" -> value.ToObject<int>() <> -1 |> renderObj
+        | "create" -> value.ToObject<int>() <> -1 |> Obj.render
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
         | "queen" | "white_queen" | "black_queen" ->
             let position = value.SelectToken("position")
-            renderObj (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
+            Obj.render (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.PropertiesWithIdentifier _ = ["white_queen"; "black_queen"]
@@ -1002,7 +993,7 @@ type React() =
                     sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
                 | "input" -> 
                     let initialValue = cellValue.["initial_value"].ToObject<int>()
-                    sprintf "let %s = reactor.createInputCell %s" cellName (renderObj initialValue)
+                    sprintf "let %s = reactor.createInputCell %s" cellName (Obj.render initialValue)
                 | _ -> ""
             )
             |> Seq.toList
@@ -1110,8 +1101,7 @@ type RobotSimulator() =
         value.ToObject<string>() |> String.upperCaseFirst
 
     let renderPosition (position: JToken) = 
-        (position.["x"].ToObject<int>(), position.["y"].ToObject<int>()) 
-        |> renderObj
+        Obj.render (position.["x"].ToObject<int>(), position.["y"].ToObject<int>())
 
     let renderRobot direction position = 
         sprintf "create %s %s" (renderDirection direction) (renderPosition position)
@@ -1152,7 +1142,7 @@ type RobotSimulator() =
         match canonicalDataCase.Property with
         | "create" -> "robot"
         | "turnLeft" | "turnRight" | "advance" -> sprintf "%s robot" canonicalDataCase.Property
-        | "instructions" -> sprintf "instructions %s robot" (renderObj canonicalDataCase.Input.["instructions"])
+        | "instructions" -> sprintf "instructions %s robot" (Obj.render canonicalDataCase.Input.["instructions"])
         | _ -> base.RenderSut canonicalDataCase
 
     override __.TestMethodName canonicalDataCase =
@@ -1393,7 +1383,7 @@ type WordSearch() =
         | false -> renderExpectedCoordinates value |> Some |> Option.renderString
 
     override __.RenderExpected (_, _, value) = 
-        Map.mapRender (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value)) value
+        Map.mapRender (fun kv -> sprintf "(%s, %s)" (Obj.render kv.Key) (renderExpectedValue kv.Value)) value
 
     override __.RenderInput (canonicalDataCase, key, value) = 
         match key with

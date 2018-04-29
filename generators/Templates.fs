@@ -9,7 +9,7 @@ open DotLiquid.FileSystems
 open Rendering
 
 type OutputFilter() =
-    static member Format (input: string) = renderObj input
+    static member Format (input: string) = Obj.render input
 
     static member Indent (input: string) = String.indent 1 input
 

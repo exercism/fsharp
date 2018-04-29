@@ -36,10 +36,3 @@ module Logging =
         Log.Logger <- LoggerConfiguration()
             .WriteTo.LiterateConsole()
             .CreateLogger()
-
-module JToken =
-
-    open Newtonsoft.Json.Linq
-
-    // TODO
-    let isInt64 (jToken: JToken) = jToken.Value<int64>() > int64 Int32.MaxValue
