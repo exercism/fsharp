@@ -122,7 +122,7 @@ type BinarySearch() =
 type BinarySearchTree() =
     inherit GeneratorExercise()
 
-    let rec renderAssertions previousPaths (tree: JObject) =
+    let rec renderAssertions previousPaths (tree: JToken) =
         let previousPath = previousPaths |> List.rev |> String.concat " |> "
         let rootPath = List.length previousPaths = 1
 
@@ -135,8 +135,7 @@ type BinarySearchTree() =
                 let expected = if rootPath then failwith "Invalid data" else "None"
                 [ sprintf "%s |> %s |> should equal %s" previousPath dataPath expected ]
             | _ -> 
-                let data = (data :?> JValue).ToObject<int>()
-                let expected = if rootPath then string data else sprintf "(Some %d)" data
+                let expected = if rootPath then string data else sprintf "(Some %s)" (string data)
                 [ sprintf "%s |> %s |> should equal %s" previousPath dataPath expected ]
 
         let renderNodeAssertions nodeName (node: JToken) = 
@@ -146,7 +145,7 @@ type BinarySearchTree() =
             | JTokenType.Null -> 
                 [ sprintf "%s |> %s |> should equal None" previousPath nodePath ]
             | _ ->
-                renderAssertions (nodePath :: previousPaths) (node :?> JObject)            
+                renderAssertions (nodePath :: previousPaths) node
 
         [ renderDataAssertions
           renderNodeAssertions "left" tree.["left"] 
@@ -156,7 +155,7 @@ type BinarySearchTree() =
     override __.RenderAssert canonicalDataCase = 
         match canonicalDataCase.Property with
         | "data" ->
-            canonicalDataCase.Expected :?> JObject
+            canonicalDataCase.Expected
             |> renderAssertions ["treeData"]
         | _ -> base.RenderAssert canonicalDataCase
 
@@ -168,8 +167,8 @@ type BinarySearchTree() =
         |> sprintf "create %s"
 
     override __.RenderExpected (canonicalDataCase, key, value) = 
-        match value with
-        | :? JArray as jArray -> jArray |> Seq.map string |> List.renderStrings
+        match value.Type with
+        | JTokenType.Array -> value.ToObject<int list>() |> List.render
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
@@ -245,9 +244,9 @@ type CircularBuffer() =
     override this.RenderArrange canonicalDataCase = 
         seq {
             yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Input.["capacity"].ToObject<int64>())
-            let operations = (canonicalDataCase.Input.["operations"] :?> JArray)
+            let operations = canonicalDataCase.Input.["operations"]
             let mutable ind = 2
-            let lastInd = operations.Count + 1 
+            let lastInd = Seq.length operations + 1 
             for op in operations do
                 let dict = (op :?> JObject).ToObject<Collections.Generic.Dictionary<string, JToken>>()
                 let funcName = dict.["operation"].ToObject<string>()
@@ -285,14 +284,13 @@ type CircularBuffer() =
 type Clock() =
     inherit GeneratorExercise()
 
-    let createClock (value:obj) =
-        let clock = value :?> JObject
-        let hour = clock.["hour"].ToObject<string>()
-        let minute = clock.["minute"].ToObject<string>()
+    let createClock (value: JToken) =
+        let hour = value.["hour"].ToObject<string>()
+        let minute = value.["minute"].ToObject<string>()
         sprintf "create %s %s" hour minute
 
-    member private this.RenderPropertyValue canonicalDataCase property =
-        this.RenderSutParameter (canonicalDataCase, property, Map.find property canonicalDataCase.Input)
+    member private this.RenderPropertyValue canonicalDataCase propertyName =
+        this.RenderSutParameter (canonicalDataCase, propertyName, Map.find propertyName canonicalDataCase.Input)
 
     override __.PropertiesWithIdentifier _ = ["clock1"; "clock2"]
 
@@ -346,20 +344,20 @@ type ComplexNumbers() =
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
     override __.RenderAssert canonicalDataCase = 
-        match canonicalDataCase.Expected with
-        | :? JArray as jArray ->
+        match canonicalDataCase.Expected.Type with
+        | JTokenType.Array ->
             let renderAssertion testedFunction expected =
                 { Sut = sprintf "%s sut" testedFunction; Expected = expected }
                 |> renderPartialTemplate "AssertEqualWithin"
 
-            [ jArray.[0] |> renderNumber |> renderAssertion "real"
-              jArray.[1] |> renderNumber |> renderAssertion "imaginary" ]
+            [ canonicalDataCase.Expected.[0] |> renderNumber |> renderAssertion "real"
+              canonicalDataCase.Expected.[1] |> renderNumber |> renderAssertion "imaginary" ]
         | _ ->
             base.RenderAssert(canonicalDataCase)
 
     override __.PropertiesWithIdentifier canonicalDataCase = 
-        match canonicalDataCase.Expected with
-        | :? JArray -> ["sut"]
+        match canonicalDataCase.Expected.Type with
+        | JTokenType.Array -> ["sut"]
         | _ -> base.PropertiesWithIdentifier canonicalDataCase
 
     override __.AdditionalNamespaces = [typeof<Math>.Namespace]
@@ -374,7 +372,7 @@ type Connect() =
         | _   -> "None"
 
     override __.RenderInput (_, _, value) =
-        let lines = (value :?> JArray).ToObject<string seq>() |> List.ofSeq
+        let lines = value.ToObject<string list>()
         let padSize = List.last lines |> String.length
 
         lines
@@ -465,8 +463,8 @@ type Dominoes() =
     inherit GeneratorExercise()
     
     let formatAsTuple (value: JToken) =
-        let items = value :?> JArray
-        renderTuple (items.[0].ToObject<int>(), items.[1].ToObject<int>())
+        let items = value.ToObject<int list>()
+        renderTuple (items.[0], items.[1])
 
     override __.RenderInput (_, _, value) =
         value
@@ -479,9 +477,8 @@ type Dominoes() =
 type Etl() =
     inherit GeneratorExercise()
 
-    member __.FormatMap<'TKey, 'TValue> (value: obj) =
-        let input = value :?> JObject
-        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
+        let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
         let formattedList =
             dict
             |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
@@ -554,28 +551,26 @@ type GoCounting() =
         |> sprintf "Owner.%s"
 
     let renderTerritoryPosition (value: JToken) =
-        let arr = value :?> JArray
-        (arr.[0].ToObject<int>(), arr.[1].ToObject<int>())
+        let arr = value.ToObject<int list>()
+        (arr.[0], arr.[1])
         |> renderObj
 
     let renderTerritory (value: JToken) = 
-        value :?> JArray
+        value
         |> Seq.map renderTerritoryPosition
         |> List.renderStrings
 
-    let renderTerritoryWithOwner (value: obj) =
-        let expected = value :?> JObject
-        let owner = expected.["owner"] |> renderOwner
-        let territory = expected.["territory"] |> renderTerritory
+    let renderTerritoryWithOwner (value: JToken) =
+        let owner = value.["owner"] |> renderOwner
+        let territory = value.["territory"] |> renderTerritory
         sprintf "(%s, %s)" owner territory
 
-    let renderExpectedTerritory (value: JToken) = 
-        match Option.ofNonErrorObject value with
+    let renderExpectedTerritory (expected: JToken) = 
+        match Option.ofNonErrorObject expected with
         | None -> "Option.None"
         | Some expected -> expected |> renderTerritoryWithOwner |> sprintf "Option.Some %s"
     
-    let renderExpectedTerritories (value: JToken) = 
-        let expected = value :?> JObject
+    let renderExpectedTerritories (expected: JToken) = 
         let black = sprintf "(Owner.Black, %s)" (expected.["territoryBlack"] |> renderTerritory)
         let white = sprintf "(Owner.White, %s)" (expected.["territoryWhite"] |> renderTerritory)
         let none  = sprintf "(Owner.None, %s)"  (expected.["territoryNone"]  |> renderTerritory)
@@ -625,7 +620,7 @@ type GoCounting() =
             match Option.ofNonErrorObject value with
             | None -> None
             | Some _ ->
-                if (value :?> JObject).["territory"] :?> JArray |> Seq.isEmpty then
+                if Seq.isEmpty value.["territory"] then
                     Some "(Owner * (int * int) list) option"
                 else
                     None            
@@ -668,7 +663,7 @@ type Grep() =
     override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match key with
         | "expected" ->
-            match value :?> JArray |> Seq.isEmpty with 
+            match Seq.isEmpty value  with 
             | true  -> Some "string list"
             | false -> None
         | _ ->
@@ -805,7 +800,7 @@ type Minesweeper() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override __.IdentifierTypeAnnotation (_, _, value) = 
-        match value :?> JArray |> Seq.isEmpty with 
+        match Seq.isEmpty value with 
         | true  -> Some "string list"
         | false -> None
 
@@ -861,15 +856,13 @@ type Pangram() =
 type PalindromeProducts() =
     inherit GeneratorExercise()
 
-    let toFactors (value: JToken) = 
-        let jArray = value :?> JArray
-        sprintf "(%s, %s)" (string jArray.[0]) (string jArray.[1])
+    let toFactors (value: JToken) =
+        sprintf "(%s, %s)" (string value.[0]) (string value.[1])
 
-    let toPalindromeProducts (value: obj) =
-        let jObject = value :?> JObject
-        let palindromeValue = jObject.Value<int>("value")
+    let toPalindromeProducts (value: JToken) =
+        let palindromeValue = value.Value<int>("value")
         let factors = 
-            jObject.Value<obj>("factors") 
+            value.Value<obj>("factors") 
             |> List.ofObj
             |> List.map toFactors
             |> List.renderStrings
@@ -890,8 +883,8 @@ type PascalsTriangle() =
     override __.PropertiesWithIdentifier _ = ["expected"]
 
     override __.RenderExpected (_, _, value) = 
-        match value with
-        | :? JArray  ->
+        match value.Type with
+        | JTokenType.Array  ->
             let formattedList =
                 value
                 |> List.ofObj       
@@ -905,9 +898,9 @@ type PascalsTriangle() =
         | _ -> "None"
 
     override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
-        match key, value with 
-        | "expected", :? JArray ->
-            match value :?> JArray |> Seq.isEmpty with 
+        match key, value.Type with 
+        | "expected", JTokenType.Array ->
+            match Seq.isEmpty value with 
             | true  -> Some "int list list option"
             | false -> None    
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
@@ -1019,8 +1012,7 @@ type Pov() =
             match isNull value with
             | true -> "None" 
             | false ->
-                printf "%s" canonicalDataCase.Description
-                canonicalDataCase.Expected :?> JArray
+                canonicalDataCase.Expected
                 |> Seq.map renderObj
                 |> List.renderStrings
                 |> sprintf "<| Some %s" 
@@ -1046,7 +1038,7 @@ type Proverb() =
         |> List.renderMultiLine
     
     override __.IdentifierTypeAnnotation (_, _, value) = 
-        match value :?> JArray |> Seq.isEmpty with 
+        match Seq.isEmpty value with 
         | true  -> Some "string list"
         | false -> None
     
@@ -1059,12 +1051,10 @@ type QueenAttack() =
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
-        let parsePositionTuple (tupleValue: obj) =
-            let position = (tupleValue :?> JToken).SelectToken("position")
-            renderObj (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
-
         match key with
-        | "queen" | "white_queen" | "black_queen" -> parsePositionTuple value
+        | "queen" | "white_queen" | "black_queen" ->
+            let position = value.SelectToken("position")
+            renderObj (position.["row"].ToObject<int>(), position.["column"].ToObject<int>())
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.PropertiesWithIdentifier _ = ["white_queen"; "black_queen"]
@@ -1083,8 +1073,8 @@ type RationalNumbers() =
     inherit GeneratorExercise()
 
     override __.RenderValue (canonicalDataCase, key, value) =
-        match value with
-        | :? JArray as jArray -> sprintf "(create %d %d)" (jArray.[0].Value<int>()) (jArray.[1].Value<int>())
+        match value.Type with
+        | JTokenType.Array -> sprintf "(create %d %d)" (value.[0].Value<int>()) (value.[1].Value<int>())
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
     override __.AssertTemplate canonicalDataCase =
@@ -1098,27 +1088,26 @@ type React() =
     let renderCells canonicalDataCase = 
         let reactorVar = sprintf "let %s = new %s()" "reactor" "Reactor"
         let cellVars = 
-            canonicalDataCase.Input.["cells"] :?> JArray
+            canonicalDataCase.Input.["cells"]
             |> Seq.map (fun (cellValue: JToken) -> 
-                let cell = cellValue :?> JObject
-                let cellName = cell.["name"].ToObject<string>()
-                match cell.["type"].ToObject<string>() with
+                let cellName = cellValue.["name"].ToObject<string>()
+                match cellValue.["type"].ToObject<string>() with
                 | "compute" ->
                     let funBody = 
-                        cell.["compute_function"].ToObject<string>().Replace ("inputs", "values.")
+                        cellValue.["compute_function"].ToObject<string>().Replace ("inputs", "values.")
                     let inputParams = 
-                        (cell.["inputs"].ToObject<seq<string>>() |> List.renderStrings)
+                        (cellValue.["inputs"].ToObject<seq<string>>() |> List.renderStrings)
                     
                     sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
                 | "input" -> 
-                    let initialValue = cell.["initial_value"].ToObject<int64>()
+                    let initialValue = cellValue.["initial_value"].ToObject<int64>()
                     sprintf "let %s = reactor.createInputCell %s" cellName (renderObj initialValue)
                 | _ -> ""
             )
             |> Seq.toList
         [ reactorVar ] @ cellVars
      
-    let renderExpectedCellValueOperation (op: JObject) =
+    let renderExpectedCellValueOperation (op: JToken) =
         seq { 
             let cellName = op.["cell"].ToObject<string>()
             let expectedValue = op.["value"].ToObject<int>()
@@ -1142,13 +1131,13 @@ type React() =
         | _ -> Seq.empty
 
     let renderExpectedCallbacksNotToBeCalled (jToken: JToken) =
-        match jToken with
-        | :? JArray as jArray -> 
-            jArray.ToObject<string list>() 
+        if not (isNull jToken) && jToken.Type = JTokenType.Array then
+            jToken.ToObject<string list>() 
             |> Seq.map (sprintf "A.CallTo(fun() -> %sHandler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore")
-        | _ -> Seq.empty
+        else        
+            Seq.empty
 
-    let renderSetValueOperation (op: JObject) = 
+    let renderSetValueOperation (op: JToken) = 
         seq { 
             let cellName = op.["cell"].ToObject<string>()
             let cellValue = op.["value"].ToObject<int>()
@@ -1157,7 +1146,7 @@ type React() =
             yield! renderExpectedCallbacksNotToBeCalled op.["expect_callbacks_not_to_be_called"]
         }
 
-    let renderAddCallbackOperation (op: JObject) =
+    let renderAddCallbackOperation (op: JToken) =
         seq { 
             let callbackName = op.["name"].ToObject<string>()
             let cellName = op.["cell"].ToObject<string>() 
@@ -1166,14 +1155,14 @@ type React() =
             yield sprintf "%s.Changed.AddHandler %s" cellName callbackHandlerName 
         }
 
-    let renderRemoveCallbackOperation (op: JObject) =
+    let renderRemoveCallbackOperation (op: JToken) =
         seq {
             let cellName = op.["cell"].ToObject<string>()
             let callbackName = op.["name"].ToObject<string>()
             yield sprintf "%s.Changed.RemoveHandler %sHandler" cellName callbackName
         }
 
-    let renderOperation (op: JObject) =
+    let renderOperation (op: JToken) =
         let opType = op.["type"].ToObject<string>()
         match opType with
         | "expect_cell_value" -> renderExpectedCellValueOperation op
@@ -1183,8 +1172,7 @@ type React() =
         | _ -> failwith "Unknown operation type"
 
     let renderOperations canonicalDataCase = 
-        canonicalDataCase.Input.["operations"] :?> JArray
-        |> Seq.cast<JObject>
+        canonicalDataCase.Input.["operations"]
         |> Seq.collect renderOperation
         |> Seq.toList
 
@@ -1215,8 +1203,7 @@ type ReverseString() =
 type RobotSimulator() =
     inherit GeneratorExercise()
 
-    let parseInput (input: obj) = 
-        let token = input :?> JToken
+    let parseInput (token: JToken) =
         let direction = token.SelectToken "direction" |> Option.ofObj
         let position  = token.SelectToken "position"  |> Option.ofObj
         (direction, position)
@@ -1307,7 +1294,7 @@ type RomanNumerals() =
 type SaddlePoints() =
     inherit GeneratorExercise()
 
-    let renderSaddlePoint (input: JObject) =
+    let renderSaddlePoint (input: JToken) =
         (input.Value<int>("row"), input.Value<int>("column")) |> renderTuple
 
     override __.RenderInput (_, _, value) =
@@ -1316,7 +1303,7 @@ type SaddlePoints() =
         |> List.renderMultiLine
 
     override __.RenderExpected (_, _, value) =
-        (value :?> JArray).Values<JObject>()
+        value
         |> Seq.map renderSaddlePoint
         |> List.renderStrings
 
@@ -1430,7 +1417,7 @@ type Transpose() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override __.IdentifierTypeAnnotation (_, _, value) = 
-        match value :?> JArray |> Seq.isEmpty with 
+        match Seq.isEmpty value with 
         | true  -> Some "string list"
         | false -> None
 
@@ -1475,10 +1462,9 @@ type TwoBucket() =
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override __.RenderExpected (_, _, value) =
-        let jObject = value :?> JObject
-        let moves       = jObject.Value<int>("moves")
-        let goalBucket  = jObject.Value<string>("goalBucket") |> renderBucket
-        let otherBucket = jObject.Value<int>("otherBucket")
+        let moves       = value.Value<int>("moves")
+        let goalBucket  = value.Value<string>("goalBucket") |> renderBucket
+        let otherBucket = value.Value<int>("otherBucket")
         sprintf "{ Moves = %d; GoalBucket = %s; OtherBucket = %d }" moves goalBucket otherBucket
 
 type TwoFer() =
@@ -1520,9 +1506,8 @@ type VariableLengthQuantity() =
         
 type WordCount() =
     inherit GeneratorExercise()
-    member __.FormatMap<'TKey, 'TValue> (value: obj) =
-        let input = value :?> JObject
-        let dict = input.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
+        let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
         let formattedList =
             dict
             |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
@@ -1550,10 +1535,9 @@ type WordSearch() =
         | true  -> "Option<((int * int) * (int * int))>.None"
         | false -> renderExpectedCoordinates value |> Some |> Option.renderString
 
-    override __.RenderExpected (_, _, value) = 
-        let input = value :?> JObject
+    override __.RenderExpected (_, _, value) =
         let formattedList =
-            input.ToObject<Collections.Generic.Dictionary<string, JObject>>()
+            value.ToObject<Collections.Generic.Dictionary<string, JObject>>()
             |> Seq.map (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value))
             |> List.renderMultiLineStrings
 
@@ -1639,44 +1623,44 @@ type Zipper() =
             [sprintf "%s %s" operation (Option.renderStringParenthesized expected)]            
         | _ -> failwith "Unknown operation"
 
-    let renderOperations (operations: JArray) =
+    let renderOperations (operations: JToken) =
         operations
         |> Seq.mapi (renderOperation (Seq.length operations))
         |> Seq.concat
         |> String.concat " |> "
         |> sprintf "|> %s"
 
-    let renderTreeWithIdentifier identifier (tree: JObject) =
+    let renderTreeWithIdentifier identifier (tree: JToken) =
         tree
         |> renderTree true
         |> sprintf "let %s = %s" identifier
 
-    let renderZipperWithIdentifier identifier (tree: JObject) =
+    let renderZipperWithIdentifier identifier (tree: JToken) =
         let renderedTree = renderTree true tree
         sprintf "let %s = fromTree (%s)" identifier renderedTree
 
-    let renderExpectedZipperWithIdentifier identifier (tree: JObject) (operations: JArray) =
+    let renderExpectedZipperWithIdentifier identifier (tree: JToken) (operations: JToken) =
         let renderedTree = renderTree true tree
         let renderedOperations = renderOperations operations
         sprintf "let %s = fromTree (%s) %s" identifier renderedTree renderedOperations
 
-    let renderSut (operations: JArray) =
+    let renderSut (operations: JToken) =
         operations
         |> renderOperations
         |> sprintf "let sut = zipper %s"
 
-    let renderExpected (expected: JObject) =
+    let renderExpected (expected: JToken) =
         match expected.["type"] |> string with
         | "int" -> 
             expected.["value"] |> string |> sprintf "let expected = %s"
         | "zipper" ->
             match expected.["initialTree"] with
             | :? JObject as jObject -> 
-                renderExpectedZipperWithIdentifier "expected" jObject (expected.["operations"] :?> JArray)
+                renderExpectedZipperWithIdentifier "expected" jObject expected.["operations"]
             | _ -> 
                 "let expected = None"
         | "tree" ->
-            expected.["value"] :?> JObject |> renderTreeWithIdentifier "expected"
+            expected.["value"] |> renderTreeWithIdentifier "expected"
         | _ -> failwith "Unknown expected type"
 
     override __.RenderSetup _ = 
@@ -1687,9 +1671,9 @@ type Zipper() =
     override __.PropertiesWithIdentifier _ = ["initialTree"; "sut"; "expected"]
 
     override __.RenderArrange canonicalDataCase = 
-        let tree = canonicalDataCase.Input.["initialTree"] :?> JObject |> renderZipperWithIdentifier "zipper"
-        let sut = canonicalDataCase.Input.["operations"] :?> JArray |> renderSut
-        let expected = canonicalDataCase.Expected :?> JObject |> renderExpected
+        let tree = canonicalDataCase.Input.["initialTree"] |> renderZipperWithIdentifier "zipper"
+        let sut = canonicalDataCase.Input.["operations"] |> renderSut
+        let expected = canonicalDataCase.Expected |> renderExpected
         [tree; sut; expected]
 
     override __.TestMethodName canonicalDataCase = 

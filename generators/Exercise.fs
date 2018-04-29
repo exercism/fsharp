@@ -105,9 +105,14 @@ type GeneratorExercise() =
         | Class  -> "TestMemberBody"
 
     default this.AssertTemplate canonicalDataCase =
-        match canonicalDataCase.Expected with
-        | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
-        | _ -> "AssertEqual"
+        let expectedIsArray = canonicalDataCase.Expected.Type = JTokenType.Array
+        let expectedIsEmpty = Seq.isEmpty canonicalDataCase.Expected
+        let expectedHasIdentifier = List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)
+
+        if expectedIsArray && expectedIsEmpty && not expectedHasIdentifier then
+            "AssertEmpty"
+        else        
+            "AssertEqual"
 
     default __.TestFileFormat = TestFileFormat.Module
 
