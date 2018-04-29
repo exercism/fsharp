@@ -160,7 +160,7 @@ type BookStore() =
 type Bowling() = 
     inherit GeneratorExercise()
 
-    override __.RenderSut _ ="score game"
+    override __.RenderSut _ = "score game"
 
     override __.RenderSetup _ = 
         "let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls"
