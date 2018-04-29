@@ -30,7 +30,7 @@ type Allergies() =
 
     let renderAllergicToAssert canonicalDataCase (jToken: JToken) =
         let substance = renderAllergenEnum jToken.["substance"]
-        let score = canonicalDataCase.Input.["score"].ToObject<int64>()
+        let score = canonicalDataCase.Input.["score"].ToObject<int>()
         let sut = sprintf "allergicTo %d %s" score substance
         let expected = jToken.Value<bool>("result") |> Bool.render
         
@@ -180,7 +180,7 @@ type Bowling() =
             let previousRolls = canonicalDataCase.Input.["previousRolls"].ToObject<int list>() |> List.render
             yield sprintf "let rolls = %s" previousRolls
             if canonicalDataCase.Input.ContainsKey "roll" then
-                let roll = canonicalDataCase.Input.["roll"].ToObject<int64>()
+                let roll = canonicalDataCase.Input.["roll"].ToObject<int>()
                 yield sprintf "let startingRolls = rollMany rolls (newGame())" 
                 yield sprintf "let game = roll %i startingRolls" roll
             else
@@ -209,8 +209,8 @@ type Change() =
     override __.IdentifierTypeAnnotation (canonicalDataCase, key, _) =
         match key with
         | "expected" ->
-            match canonicalDataCase.Input.["target"].ToObject<int64>() with
-            | 0L -> Some "int list option"
+            match canonicalDataCase.Input.["target"].ToObject<int>() with
+            | 0 -> Some "int list option"
             | _  -> None
         | _ -> None
 
@@ -226,7 +226,7 @@ type CircularBuffer() =
 
     override this.RenderArrange canonicalDataCase = 
         seq {
-            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Input.["capacity"].ToObject<int64>())
+            yield sprintf "let buffer1 = mkCircularBuffer %i" (canonicalDataCase.Input.["capacity"].ToObject<int>())
             let operations = canonicalDataCase.Input.["operations"]
             let mutable ind = 2
             let lastInd = Seq.length operations + 1 
@@ -248,7 +248,7 @@ type CircularBuffer() =
                     | true, false ->
                         yield this.ExceptionCheck command
                     | _, _ -> 
-                        let expected = dict.["expected"].ToObject<int64>()
+                        let expected = dict.["expected"].ToObject<int>()
                         if ind = lastInd then
                             yield sprintf "let (val%i, _) = %s" ind command
                         else
@@ -980,7 +980,7 @@ type QueenAttack() =
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "create" -> value.ToObject<int64>() <> -1L |> renderObj
+        | "create" -> value.ToObject<int>() <> -1 |> renderObj
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
@@ -1033,7 +1033,7 @@ type React() =
                     
                     sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
                 | "input" -> 
-                    let initialValue = cellValue.["initial_value"].ToObject<int64>()
+                    let initialValue = cellValue.["initial_value"].ToObject<int>()
                     sprintf "let %s = reactor.createInputCell %s" cellName (renderObj initialValue)
                 | _ -> ""
             )
