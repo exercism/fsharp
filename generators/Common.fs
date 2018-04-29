@@ -1,6 +1,5 @@
 [<AutoOpen>]
 module Generators.Common
-open System
 
 type TestMethod = 
     { Skip: bool

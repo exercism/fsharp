@@ -2,7 +2,6 @@ module Generators.CanonicalData
 
 open System
 open System.IO
-open System.Collections.Generic
 open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
