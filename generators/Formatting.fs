@@ -45,9 +45,9 @@ let renderJToken (jToken: JToken) =
     | JTokenType.Date     -> jToken.ToObject<DateTime>() |> DateTime.render
     | _ -> string jToken
 
-let renderTuple tuple = sprintf "%A" tuple
+let private renderTuple tuple = sprintf "%A" tuple
 
-let renderRecord record = sprintf "%A" record
+let private renderRecord record = sprintf "%A" record
 
 let rec renderObj (value: obj) =
     let rec renderJArray (jArray: JArray) =

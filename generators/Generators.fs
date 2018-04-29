@@ -60,7 +60,7 @@ type Alphametics() =
         else
             let formattedList = 
                 value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-                |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
+                |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
@@ -446,7 +446,7 @@ type Dominoes() =
     
     let formatAsTuple (value: JToken) =
         let items = value.ToObject<int list>()
-        renderTuple (items.[0], items.[1])
+        Obj.render (items.[0], items.[1])
 
     override __.RenderInput (_, _, value) = List.mapRender formatAsTuple value
 
@@ -459,7 +459,7 @@ type Etl() =
         
         let formattedList =
             value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-            |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
+            |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -772,7 +772,7 @@ type NucleotideCount() =
         | _ ->
             let formattedList =
                 value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-                |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
+                |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
@@ -1225,7 +1225,7 @@ type SaddlePoints() =
     inherit GeneratorExercise()
 
     let renderSaddlePoint (input: JToken) =
-        (input.Value<int>("row"), input.Value<int>("column")) |> renderTuple
+        Obj.render (input.Value<int>("row"), input.Value<int>("column"))
 
     override __.RenderInput (_, _, value) = List.renderMultiLine value
 
@@ -1409,7 +1409,7 @@ type WordCount() =
     member __.FormatMap<'TKey, 'TValue> (value: JToken) =
         let formattedList =
             value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-            |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
+            |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -1423,10 +1423,10 @@ type WordCount() =
 type WordSearch() =
     inherit GeneratorExercise()
 
-    let toCoordinates (value: JToken) = value.Value<int>("column"), value.Value<int>("row")
+    let toCoordinates (value: JToken) = (value.Value<int>("column"), value.Value<int>("row"))
 
     let renderExpectedCoordinates (value: JObject) =
-        renderTuple (value.Item("start") |> toCoordinates, value.Item("end") |> toCoordinates)
+        Obj.render (value.Item("start") |> toCoordinates, value.Item("end") |> toCoordinates)
 
     let renderExpectedValue (value: JObject) =
         match isNull value with
