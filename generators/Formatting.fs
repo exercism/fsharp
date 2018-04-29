@@ -127,17 +127,22 @@ module List =
 
     let render value = 
         value
-        |> List.map renderObj
+        |> Seq.map renderObj
         |> renderStrings
 
     let renderMultiLine value =
         value
-        |> List.map renderObj
+        |> Seq.map renderObj
         |> renderMultiLineStrings
 
 module Array =
 
     let renderStrings value = renderCollection "[|%s|]" value
+
+    let render value = 
+        value
+        |> Seq.map renderObj
+        |> renderStrings
 
 module Obj =
 

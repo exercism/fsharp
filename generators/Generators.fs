@@ -41,8 +41,8 @@ type Allergies() =
         match canonicalDataCase.Property with
         | "allergicTo" ->
             canonicalDataCase.Expected
-            |> List.ofObj
-            |> List.map (renderAllergicToAssert canonicalDataCase)
+            |> Seq.map (renderAllergicToAssert canonicalDataCase)
+            |> Seq.toList
         | _ -> 
             base.RenderAssert canonicalDataCase
 
@@ -50,8 +50,7 @@ type Allergies() =
         match canonicalDataCase.Property with
         | "list" ->
             canonicalDataCase.Expected
-            |> List.ofObj
-            |> List.map renderAllergenEnum
+            |> Seq.map renderAllergenEnum
             |> List.renderStrings
         | _ -> 
             base.RenderExpected (canonicalDataCase, key, value)
@@ -94,11 +93,7 @@ type BeerSong() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, _, value) = 
-        value
-        |> List.ofObj
-        |> List.map renderObj
-        |> List.renderMultiLineStrings
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type BinarySearch() = 
     inherit GeneratorExercise()
@@ -107,11 +102,7 @@ type BinarySearch() =
 
     override __.RenderValue (canonicalDataCase, key, value) =
         match key with
-        | "array" ->
-            value
-            |> Array.ofObj
-            |> Array.map renderObj          
-            |> Array.renderStrings
+        | "array" -> Array.render value
         | "expected" ->
             value
             |> Option.ofNonNegativeNumber
@@ -161,8 +152,7 @@ type BinarySearchTree() =
 
     override __.RenderInput (_, _, value) = 
         value
-        |> List.ofObj
-        |> List.map string
+        |> Seq.map string
         |> List.renderStrings
         |> sprintf "create %s"
 
@@ -399,9 +389,8 @@ type CustomSet() =
 
     override __.AssertTemplate _ = "AssertEqual"
 
-    member __.RenderSet (jToken: obj) =
+    member __.RenderSet (jToken: JToken) =
         jToken
-        |> List.ofObj
         |> List.render
         |> sprintf "CustomSet.fromList %s"
 
@@ -468,8 +457,7 @@ type Dominoes() =
 
     override __.RenderInput (_, _, value) =
         value
-        |> List.ofObj
-        |> List.map formatAsTuple
+        |> Seq.map formatAsTuple
         |> List.renderStrings
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
@@ -505,11 +493,7 @@ type FoodChain() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.map Obj.render
-        |> List.renderMultiLineStrings
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type Forth() =
     inherit GeneratorExercise()
@@ -596,10 +580,7 @@ type GoCounting() =
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
-        | "board" -> 
-            value
-            |> List.ofObj
-            |> List.renderMultiLine
+        | "board" -> List.renderMultiLine value
         | "position" ->
             (value.SelectToken("x").ToObject<int>(), value.SelectToken("y").ToObject<int>())
             |> Obj.render
@@ -649,11 +630,7 @@ type Grep() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
-        |> indentExpected
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value |> indentExpected
 
     override __.RenderSetup _ = renderPartialTemplate "Generators/GrepSetup" Map.empty<string, obj>
 
@@ -691,10 +668,7 @@ type House() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type IsbnVerifier() =
     inherit GeneratorExercise()
@@ -709,8 +683,7 @@ type KindergartenGarden() =
 
     override __.RenderExpected (_, _, value) = 
         value
-        |> List.ofObj
-        |> List.map renderPlantEnum
+        |> Seq.map renderPlantEnum
         |> List.renderStrings
 
     override __.PropertiesWithIdentifier _ = ["student"; "diagram"; "expected"]
@@ -787,15 +760,9 @@ type Meetup() =
 type Minesweeper() =
     inherit GeneratorExercise()
 
-    let renderValue (value: obj) = 
-        value
-        |> List.ofObj
-        |> List.map renderObj
-        |> List.renderMultiLineStrings
+    override __.RenderInput (_, _, value) = List.renderMultiLine value
 
-    override __.RenderInput (_, _, value) = renderValue value
-
-    override __.RenderExpected (_, _, value) = renderValue value
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -845,10 +812,7 @@ type OcrNumbers() =
         |> Option.ofNonNegativeNumber 
         |> Option.renderParenthesized
 
-    override __.RenderInput (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderInput (_, _, value) = List.renderMultiLine value
 
 type Pangram() =
     inherit GeneratorExercise()
@@ -862,9 +826,8 @@ type PalindromeProducts() =
     let toPalindromeProducts (value: JToken) =
         let palindromeValue = value.Value<int>("value")
         let factors = 
-            value.Value<obj>("factors") 
-            |> List.ofObj
-            |> List.map toFactors
+            value.SelectToken("factors")
+            |> Seq.map toFactors
             |> List.renderStrings
 
         sprintf "(%d, %s)" palindromeValue factors
@@ -885,11 +848,7 @@ type PascalsTriangle() =
     override __.RenderExpected (_, _, value) = 
         match value.Type with
         | JTokenType.Array  ->
-            let formattedList =
-                value
-                |> List.ofObj       
-                |> List.map Obj.render         
-                |> List.renderMultiLineStrings
+            let formattedList = List.renderMultiLine value
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s" formattedList (String.indent 2 "|> Some")
@@ -1032,10 +991,7 @@ type Proverb() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
     
     override __.IdentifierTypeAnnotation (_, _, value) = 
         match Seq.isEmpty value with 
@@ -1192,10 +1148,7 @@ type Rectangles() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
-    override __.RenderInput (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderInput (_, _, value) = List.renderMultiLine value
 
 type ReverseString() =
     inherit GeneratorExercise()
@@ -1297,10 +1250,7 @@ type SaddlePoints() =
     let renderSaddlePoint (input: JToken) =
         (input.Value<int>("row"), input.Value<int>("column")) |> renderTuple
 
-    override __.RenderInput (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderInput (_, _, value) = List.renderMultiLine value
 
     override __.RenderExpected (_, _, value) =
         value
@@ -1344,11 +1294,6 @@ type ScrabbleScore() =
 type Sieve() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.render
-
 type SecretHandshake() =
     inherit GeneratorExercise()
 
@@ -1372,11 +1317,7 @@ type SpaceAge() =
 type SpiralMatrix() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.map Obj.render
-        |> List.renderMultiLineStrings
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type Sublist() =
     inherit GeneratorExercise()
@@ -1394,10 +1335,7 @@ type Tournament() =
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
-    override __.RenderValue (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderValue (_, _, value) = List.renderMultiLine value
 
 type TwelveDays() =
     inherit GeneratorExercise()
@@ -1406,10 +1344,7 @@ type TwelveDays() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type Transpose() =
     inherit GeneratorExercise()
@@ -1421,10 +1356,7 @@ type Transpose() =
         | true  -> Some "string list"
         | false -> None
 
-    override __.RenderValue (_, _, value) =
-        value
-        |> List.ofObj
-        |> List.renderMultiLine
+    override __.RenderValue (_, _, value) = List.renderMultiLine value
 
 type Triangle() =
     inherit GeneratorExercise()
@@ -1444,8 +1376,7 @@ type Triangle() =
 
     override __.RenderInput (_, _, value) =
         value
-        |> List.ofObj
-        |> List.map formatFloat
+        |> Seq.map formatFloat
         |> List.renderStrings
 
 type TwoBucket() =
@@ -1548,10 +1479,7 @@ type WordSearch() =
 
     override __.RenderInput (canonicalDataCase, key, value) = 
         match key with
-        | "grid" -> 
-            value
-            |> List.ofObj
-            |> List.renderMultiLine
+        | "grid" -> List.renderMultiLine value
         | _ -> 
             base.RenderInput(canonicalDataCase, key, value)
 

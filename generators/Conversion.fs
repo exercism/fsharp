@@ -70,11 +70,3 @@ module Dict =
     let toSeq d = d |> Seq.map (fun (KeyValue(k,v)) -> (k, v))
 
     let toMap d = d |> toSeq |> Map.ofSeq
-
-module Array =
-
-    let ofObj (value: obj) = value :?> JArray |> Seq.toArray
-
-module List =
-
-    let ofObj (value: obj) = value :?> JArray |> Seq.toList
