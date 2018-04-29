@@ -65,8 +65,11 @@ module String =
 
     let split (separator: string) (str: string) = str.Split(separator)
 
-module Dict =
+module Map =
 
-    let toSeq d = d |> Seq.map (fun (KeyValue(k,v)) -> (k, v))
+    open System.Collections.Generic    
 
-    let toMap d = d |> toSeq |> Map.ofSeq
+    let ofJToken<'TKey, 'TValue when 'TKey: comparison> (jToken: JToken)   =
+        jToken.ToObject<IDictionary<'TKey, 'TValue>>()
+        |> Seq.map (fun (KeyValue(k,v)) -> (k, v))
+        |> Map.ofSeq

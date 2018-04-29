@@ -145,4 +145,28 @@ module Obj =
     let renderEnum typeName value = 
         let enumType = String.upperCaseFirst typeName
         let enumValue = String.dehumanize (string value)
-        sprintf "%s.%s" enumType enumValue   
+        sprintf "%s.%s" enumType enumValue
+
+module Map =
+
+    let private renderMap<'TKey, 'TValue> map suffix (value: JToken) =
+        let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+        let formattedList = List.mapRenderMultiLine map dict
+        let whitespace = if Seq.length dict < 2 then " " else sprintf "\n%s" (String.indent 2 "")
+        sprintf "%s%s|> Map.ofList%s" formattedList whitespace suffix
+
+    let mapRender<'TKey, 'TValue> map (value: JToken) =
+        renderMap<'TKey, 'TValue> map "" value
+
+    let render<'TKey, 'TValue> (value: JToken) =
+        mapRender<'TKey, 'TValue> (fun kv -> Obj.render(kv.Key, kv.Value)) value
+
+    let mapRenderOption<'TKey, 'TValue> map (option: JToken option) =
+        match option with 
+        | None -> "None"
+        | Some value ->
+            let suffix = if Seq.length value < 2 then " |> Some" else sprintf "\n%s" (String.indent 2 "|> Some")
+            renderMap<'TKey, 'TValue> map suffix value
+
+    let renderOption<'TKey, 'TValue> (option: JToken option) =
+        mapRenderOption<'TKey, 'TValue> (fun kv -> Obj.render(kv.Key, kv.Value)) option

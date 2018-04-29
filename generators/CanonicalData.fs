@@ -67,10 +67,6 @@ type CanonicalDataConverter() =
 
         helper [] currentToken
 
-    let jTokenToMap (jToken: JToken) =
-        jToken.ToObject<IDictionary<string, JToken>>()
-        |> Dict.toMap
-
     let createDescriptionPathFromJToken (jToken: JToken): string list =
         let descriptionFromJToken (currentToken: JToken) =
             match currentToken.SelectToken("description") with
@@ -82,9 +78,9 @@ type CanonicalDataConverter() =
         |> List.choose descriptionFromJToken
 
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
-        let properties = jTokenToMap jToken
+        let properties = Map.ofJToken jToken
 
-        { Input = jTokenToMap properties.["input"]
+        { Input = Map.ofJToken properties.["input"]
           Expected = properties.["expected"]
           Property = string properties.["property"]
           Properties = properties

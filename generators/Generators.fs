@@ -54,20 +54,10 @@ type Allergies() =
 type Alphametics() =
     inherit GeneratorExercise()
 
-    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
-        if value.Type = JTokenType.Null then
-            "None"
-        else
-            let formattedList = 
-                value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-                |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
-
-            if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
-            else   
-                sprintf "%s |> Map.ofList |> Some" formattedList
-
-    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
+    override __.RenderExpected (_, _, value) = 
+        value
+        |> Option.ofNonNull
+        |> Map.renderOption<char, int>
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -455,20 +445,9 @@ type Dominoes() =
 type Etl() =
     inherit GeneratorExercise()
 
-    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
-        
-        let formattedList =
-            value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-            |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
+    override __.RenderInput (_, _, value) = Map.render<int, char list> value
 
-        if (formattedList.Contains("\n")) then
-            sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
-        else   
-            sprintf "%s |> Map.ofList" formattedList
-
-    override this.RenderInput (_, _, value) = this.FormatMap<int, List<char>> value
-
-    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
+    override __.RenderExpected (_, _, value) = Map.render<char, int> value
 
     override __.MapCanonicalDataCase canonicalDataCase = 
         { canonicalDataCase with Input = Map.empty |> Map.add "lettersByScore" (canonicalDataCase.Properties.["input"]) }
@@ -765,21 +744,10 @@ type NthPrime() =
 type NucleotideCount() =
     inherit GeneratorExercise()
 
-    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
-        match Option.ofNonErrorObject value with
-        | None -> 
-            "None"
-        | _ ->
-            let formattedList =
-                value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-                |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
-
-            if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
-            else   
-                sprintf "%s |> Map.ofList |> Some" formattedList
-
-    override this.RenderExpected (_, _, value) = this.FormatMap<char, int> value
+    override __.RenderExpected (_, _, value) = 
+        value
+        |> Option.ofNonErrorObject
+        |> Map.renderOption<char, int>
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -1406,17 +1374,8 @@ type VariableLengthQuantity() =
         
 type WordCount() =
     inherit GeneratorExercise()
-    member __.FormatMap<'TKey, 'TValue> (value: JToken) =
-        let formattedList =
-            value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-            |> List.mapRenderMultiLine (fun kv -> Obj.render (kv.Key, kv.Value))
 
-        if (formattedList.Contains("\n")) then
-            sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
-        else   
-            sprintf "%s |> Map.ofList" formattedList
-
-    override this.RenderExpected (_, _, value) = this.FormatMap<string, int> value
+    override __.RenderExpected (_, _, value) = Map.render<string, int> value
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
@@ -1433,15 +1392,8 @@ type WordSearch() =
         | true  -> "Option<((int * int) * (int * int))>.None"
         | false -> renderExpectedCoordinates value |> Some |> Option.renderString
 
-    override __.RenderExpected (_, _, value) =
-        let formattedList =
-            value.ToObject<Collections.Generic.Dictionary<string, JObject>>()
-            |> List.mapRenderMultiLine (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value))
-
-        if (formattedList.Contains("\n")) then
-            sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
-        else   
-            sprintf "%s |> Map.ofList" formattedList
+    override __.RenderExpected (_, _, value) = 
+        Map.mapRender (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value)) value
 
     override __.RenderInput (canonicalDataCase, key, value) = 
         match key with
