@@ -1,4 +1,4 @@
-module Generators.Formatting
+module Generators.Rendering
 
 open System
 open FSharp.Reflection

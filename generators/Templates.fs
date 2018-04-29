@@ -6,7 +6,7 @@ open System.Reflection
 open FSharp.Reflection
 open DotLiquid
 open DotLiquid.FileSystems
-open Formatting
+open Rendering
 
 type OutputFilter() =
     static member Format (input: string) = renderObj input
