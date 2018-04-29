@@ -485,10 +485,13 @@ type Forth() =
 type Gigasecond() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) = value.ToObject<DateTime>() |> DateTime.renderParenthesized
+    override __.RenderExpected (_, _, value) =
+        value.ToObject<DateTime>()
+        |> DateTime.renderParenthesized
  
     override __.RenderInput (_, _, value) =
-         DateTime.Parse(string value, CultureInfo.InvariantCulture) |> DateTime.renderParenthesized
+         DateTime.Parse(string value, CultureInfo.InvariantCulture)
+         |> DateTime.renderParenthesized
 
     override __.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
