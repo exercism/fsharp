@@ -48,12 +48,8 @@ type Allergies() =
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "list" ->
-            canonicalDataCase.Expected
-            |> Seq.map renderAllergenEnum
-            |> List.renderStrings
-        | _ -> 
-            base.RenderExpected (canonicalDataCase, key, value)
+        | "list" -> List.mapRender renderAllergenEnum canonicalDataCase.Expected
+        | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
 type Alphametics() =
     inherit GeneratorExercise()
@@ -62,11 +58,9 @@ type Alphametics() =
         if value.Type = JTokenType.Null then
             "None"
         else
-            let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
-            let formattedList =
-                dict
-                |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
-                |> List.renderMultiLineStrings
+            let formattedList = 
+                value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+                |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
@@ -152,8 +146,7 @@ type BinarySearchTree() =
 
     override __.RenderInput (_, _, value) = 
         value
-        |> Seq.map string
-        |> List.renderStrings
+        |> List.mapRender string
         |> sprintf "create %s"
 
     override __.RenderExpected (canonicalDataCase, key, value) = 
@@ -184,8 +177,8 @@ type Bowling() =
 
     override __.RenderArrange canonicalDataCase =
         seq {
-            let arr = canonicalDataCase.Input.["previousRolls"].ToObject<string[]>()
-            yield sprintf "let rolls = %s" (List.renderStrings arr)
+            let previousRolls = canonicalDataCase.Input.["previousRolls"].ToObject<int list>() |> List.render
+            yield sprintf "let rolls = %s" previousRolls
             if canonicalDataCase.Input.ContainsKey "roll" then
                 let roll = canonicalDataCase.Input.["roll"].ToObject<int64>()
                 yield sprintf "let startingRolls = rollMany rolls (newGame())" 
@@ -366,8 +359,8 @@ type Connect() =
         let padSize = List.last lines |> String.length
 
         lines
-        |> List.map (fun line -> line.PadRight(padSize) |> renderObj)
-        |> List.renderMultiLineStrings
+        |> Seq.map (fun line -> line.PadRight(padSize))
+        |> List.renderMultiLine
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -455,10 +448,7 @@ type Dominoes() =
         let items = value.ToObject<int list>()
         renderTuple (items.[0], items.[1])
 
-    override __.RenderInput (_, _, value) =
-        value
-        |> Seq.map formatAsTuple
-        |> List.renderStrings
+    override __.RenderInput (_, _, value) = List.mapRender formatAsTuple value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -466,11 +456,10 @@ type Etl() =
     inherit GeneratorExercise()
 
     member __.FormatMap<'TKey, 'TValue> (value: JToken) =
-        let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+        
         let formattedList =
-            dict
-            |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
-            |> List.renderMultiLineStrings
+            value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+            |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -539,10 +528,7 @@ type GoCounting() =
         (arr.[0], arr.[1])
         |> renderObj
 
-    let renderTerritory (value: JToken) = 
-        value
-        |> Seq.map renderTerritoryPosition
-        |> List.renderStrings
+    let renderTerritory (value: JToken) = List.mapRender renderTerritoryPosition value
 
     let renderTerritoryWithOwner (value: JToken) =
         let owner = value.["owner"] |> renderOwner
@@ -559,7 +545,7 @@ type GoCounting() =
         let white = sprintf "(Owner.White, %s)" (expected.["territoryWhite"] |> renderTerritory)
         let none  = sprintf "(Owner.None, %s)"  (expected.["territoryNone"]  |> renderTerritory)
 
-        let formattedList = List.renderMultiLineStrings [black; white; none]
+        let formattedList = List.mapRenderMultiLine id [black; white; none]
         sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
 
     let territoryPosition (input: Map<string, JToken>) =
@@ -681,10 +667,7 @@ type KindergartenGarden() =
 
     let renderPlantEnum value = Obj.renderEnum "Plant" value
 
-    override __.RenderExpected (_, _, value) = 
-        value
-        |> Seq.map renderPlantEnum
-        |> List.renderStrings
+    override __.RenderExpected (_, _, value) = List.mapRender renderPlantEnum value
 
     override __.PropertiesWithIdentifier _ = ["student"; "diagram"; "expected"]
 
@@ -787,11 +770,9 @@ type NucleotideCount() =
         | None -> 
             "None"
         | _ ->
-            let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
             let formattedList =
-                dict
-                |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
-                |> List.renderMultiLineStrings
+                value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+                |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
 
             if (formattedList.Contains("\n")) then
                 sprintf "%s\n%s\n%s" formattedList (String.indent 2 "|> Map.ofList") (String.indent 2 "|> Some")
@@ -827,8 +808,7 @@ type PalindromeProducts() =
         let palindromeValue = value.Value<int>("value")
         let factors = 
             value.SelectToken("factors")
-            |> Seq.map toFactors
-            |> List.renderStrings
+            |> List.mapRender toFactors
 
         sprintf "(%d, %s)" palindromeValue factors
 
@@ -914,10 +894,8 @@ type Pov() =
         | false ->
             let node = tree.ToObject<Collections.Generic.Dictionary<string, JToken>>()
             let children = 
-                if node.ContainsKey "children" then 
-                    node.["children"]
-                    |> Seq.map this.RenderNode
-                    |> List.renderStrings
+                if node.ContainsKey "children" then
+                    List.mapRender this.RenderNode node.["children"]
                 else
                     "[]"
             let label =
@@ -972,8 +950,7 @@ type Pov() =
             | true -> "None" 
             | false ->
                 canonicalDataCase.Expected
-                |> Seq.map renderObj
-                |> List.renderStrings
+                |> List.render 
                 |> sprintf "<| Some %s" 
         | _ -> ""
 
@@ -1052,7 +1029,7 @@ type React() =
                     let funBody = 
                         cellValue.["compute_function"].ToObject<string>().Replace ("inputs", "values.")
                     let inputParams = 
-                        (cellValue.["inputs"].ToObject<seq<string>>() |> List.renderStrings)
+                        (cellValue.["inputs"].ToObject<string list>() |> List.mapRender id)
                     
                     sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
                 | "input" -> 
@@ -1252,10 +1229,7 @@ type SaddlePoints() =
 
     override __.RenderInput (_, _, value) = List.renderMultiLine value
 
-    override __.RenderExpected (_, _, value) =
-        value
-        |> Seq.map renderSaddlePoint
-        |> List.renderStrings
+    override __.RenderExpected (_, _, value) = List.mapRender renderSaddlePoint value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -1374,10 +1348,7 @@ type Triangle() =
         | true  -> base.TestMethodName canonicalDataCase
         | false -> sprintf "%s returns %s" (String.upperCaseFirst canonicalDataCase.Property) canonicalDataCase.Description
 
-    override __.RenderInput (_, _, value) =
-        value
-        |> Seq.map formatFloat
-        |> List.renderStrings
+    override __.RenderInput (_, _, value) = List.mapRender formatFloat value
 
 type TwoBucket() =
     inherit GeneratorExercise()
@@ -1411,13 +1382,11 @@ type VariableLengthQuantity() =
 
     let formatUnsignedByteList (value: JToken) =
         value.ToObject<byte list>()
-        |> Seq.map (sprintf "0x%xuy")
-        |> List.renderStrings
+        |> List.mapRender (sprintf "0x%xuy")
 
     let formatUnsignedIntList (value: JToken) =
         value.ToObject<uint32 list>()
-        |> Seq.map (sprintf "0x%xu")
-        |> List.renderStrings
+        |> List.mapRender (sprintf "0x%xu")
 
     override __.RenderInput (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
@@ -1438,11 +1407,9 @@ type VariableLengthQuantity() =
 type WordCount() =
     inherit GeneratorExercise()
     member __.FormatMap<'TKey, 'TValue> (value: JToken) =
-        let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
         let formattedList =
-            dict
-            |> Seq.map (fun kv -> renderTuple (kv.Key, kv.Value))
-            |> List.renderMultiLineStrings
+            value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+            |> List.mapRenderMultiLine (fun kv -> renderTuple (kv.Key, kv.Value))
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")
@@ -1469,8 +1436,7 @@ type WordSearch() =
     override __.RenderExpected (_, _, value) =
         let formattedList =
             value.ToObject<Collections.Generic.Dictionary<string, JObject>>()
-            |> Seq.map (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value))
-            |> List.renderMultiLineStrings
+            |> List.mapRenderMultiLine (fun kv -> sprintf "(%s, %s)" (renderObj kv.Key) (renderExpectedValue kv.Value))
 
         if (formattedList.Contains("\n")) then
             sprintf "%s\n%s" formattedList (String.indent 2 "|> Map.ofList")

@@ -79,12 +79,12 @@ let private renderCollection formatString collection =
     |> String.concat "; "
     |> sprintf formatString
 
-let private renderMultiLineCollection (openPrefix, closePostfix) collection indentation =
+let private renderMultiLineCollection (openPrefix, closePostfix) collection =
     match Seq.length collection with
     | 0 -> 
         sprintf "%s%s" openPrefix closePostfix
     | 1 -> 
-        sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix    
+        sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix
     | length -> 
         let lineIndent = String(' ', String.length openPrefix)
 
@@ -100,7 +100,7 @@ let private renderMultiLineCollection (openPrefix, closePostfix) collection inde
         collection
         |> Seq.mapi formatLine
         |> Seq.toList
-        |> List.map (String.indent indentation)
+        |> List.map (String.indent 2)
         |> String.concat "\n"
         |> sprintf "\n%s"
 
@@ -121,19 +121,13 @@ module Option =
 
 module List =
 
-    let renderStrings value = renderCollection "[%s]" value
+    let mapRender map value = renderCollection "[%s]" (Seq.map map value)
 
-    let renderMultiLineStrings value = renderMultiLineCollection ("[", "]") value 2
+    let mapRenderMultiLine map value = renderMultiLineCollection ("[", "]") (Seq.map map value)
 
-    let render value = 
-        value
-        |> Seq.map renderObj
-        |> renderStrings
+    let render value = mapRender renderObj value
 
-    let renderMultiLine value =
-        value
-        |> Seq.map renderObj
-        |> renderMultiLineStrings
+    let renderMultiLine value = mapRenderMultiLine renderObj value
 
 module Array =
 
