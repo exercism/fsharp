@@ -43,10 +43,9 @@ Render the input of a test method.
 The `Gigasecond` generator renders the input value as a (parenthesized) `DateTime` value:
 
 ```fsharp
-override __.RenderInput (canonicalDataCase, key, value) =
+override __.RenderInput (_, _, value) =
     DateTime.Parse(string value, CultureInfo.InvariantCulture)
-    |> formatDateTime
-    |> parenthesize
+    |> DateTime.renderParenthesized
 ```
 
 Note that you could use the `key` field to only customize the output for specific input fields. The `Yacht` generator does this:
@@ -54,7 +53,7 @@ Note that you could use the `key` field to only customize the output for specifi
 ```fsharp
 override __.RenderInput (canonicalDataCase, key, value) =
     match key with
-    | "category" -> sprintf "Category.%s" (string value |> String.dehumanize)
+    | "category" -> Obj.renderEnum "Category" value
     | _ -> base.RenderInput (canonicalDataCase, key, value)
 ```
 
@@ -136,11 +135,10 @@ Render a single value (which is used to render input parameters, the expected va
 The `ComplexNumbers` generator renders different values based on the value's type:
 
 ```fsharp
-override __.RenderValue (canonicalDataCase, key, value) =
-    match value with
-    | :? JArray as jArray -> renderComplexNumber jArray
-    | :? int64 as i -> sprintf "%d.0" i
-    | _ -> base.RenderValue (canonicalDataCase, key, value)
+override __.PropertiesWithIdentifier canonicalDataCase =
+    match canonicalDataCase.Expected.Type with
+    | JTokenType.Array -> ["sut"]
+    | _ -> base.PropertiesWithIdentifier canonicalDataCase
 ```
 
 ### Method: MapCanonicalDataCase
@@ -196,8 +194,8 @@ In some cases, you want an identifier to have an explicit type. A common use cas
 The `Minesweeper` generator adds a `string list` type annotation for empty values:
 
 ```fsharp
-override __.IdentifierTypeAnnotation (_, _, value) = 
-    match value :?> JArray |> Seq.isEmpty with 
+override __.IdentifierTypeAnnotation (_, _, value) =
+    match Seq.isEmpty value with
     | true  -> Some "string list"
     | false -> None
 ```
@@ -224,9 +222,9 @@ The `RationalNumbers` generator uses the `"AssertEqualWithin"` template to allow
 
 ```fsharp
 override __.AssertTemplate canonicalDataCase =
-    match canonicalDataCase.Expected with
-    | :? double -> "AssertEqualWithin"
-    | _ -> base.TestMethodBodyAssertTemplate(canonicalDataCase)
+    match canonicalDataCase.Expected.Type with
+    | JTokenType.Float -> "AssertEqualWithin"
+    | _ -> base.AssertTemplate(canonicalDataCase)
 ```
 
 ### Method: TestFileFormat

@@ -6,9 +6,8 @@ open System.Reflection
 open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Humanizer
-open Serilog
-open Formatting
 open Rendering
+open Templates
 open CanonicalData
 open Track
 
@@ -18,19 +17,19 @@ let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebabe
 type GeneratorExercise() =
 
     // Customize rendered output
-    abstract member RenderExpected : CanonicalDataCase * string * obj -> string
-    abstract member RenderInput : CanonicalDataCase * string * obj -> string
+    abstract member RenderExpected : CanonicalDataCase * string * JToken -> string
+    abstract member RenderInput : CanonicalDataCase * string * JToken -> string
     abstract member RenderArrange : CanonicalDataCase -> string list
     abstract member RenderAssert : CanonicalDataCase -> string list
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSetup : CanonicalData -> string
-    abstract member RenderValue : CanonicalDataCase * string * obj -> string
+    abstract member RenderValue : CanonicalDataCase * string * JToken -> string
     
     // Utility methods to customize rendered output
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
-    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * obj -> string option    
+    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * JToken -> string option    
     abstract member AdditionalNamespaces : string list    
     abstract member AssertTemplate : CanonicalDataCase -> string    
     abstract member TestFileFormat: TestFileFormat
@@ -105,9 +104,14 @@ type GeneratorExercise() =
         | Class  -> "TestMemberBody"
 
     default this.AssertTemplate canonicalDataCase =
-        match canonicalDataCase.Expected with
-        | :? JArray as jArray when jArray.Count = 0 && not (List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)) -> "AssertEmpty"
-        | _ -> "AssertEqual"
+        let expectedIsArray = canonicalDataCase.Expected.Type = JTokenType.Array
+        let expectedIsEmpty = Seq.isEmpty canonicalDataCase.Expected
+        let expectedHasIdentifier = List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)
+
+        if expectedIsArray && expectedIsEmpty && not expectedHasIdentifier then
+            "AssertEmpty"
+        else        
+            "AssertEqual"
 
     default __.TestFileFormat = TestFileFormat.Module
 
@@ -145,7 +149,7 @@ type GeneratorExercise() =
 
     // Generic value/identifier rendering methods
 
-    default __.RenderValue (_, _, value) = formatValue value
+    default __.RenderValue (_, _, value) = Obj.render value
 
     member this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
         let properties = this.PropertiesWithIdentifier canonicalDataCase
@@ -172,7 +176,7 @@ type GeneratorExercise() =
     
         match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
         | Some identifierType -> 
-            identifier |> addTypeAnnotation identifierType
+            sprintf "%s: %s" identifier identifierType
         | None -> 
             identifier
 

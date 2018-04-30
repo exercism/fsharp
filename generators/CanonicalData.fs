@@ -2,7 +2,6 @@ module Generators.CanonicalData
 
 open System
 open System.IO
-open System.Collections.Generic
 open Serilog
 open LibGit2Sharp
 open Newtonsoft.Json
@@ -10,10 +9,10 @@ open Newtonsoft.Json.Linq
 open Options
 
 type CanonicalDataCase = 
-    { Input: Map<string, obj>
-      Expected: obj
+    { Input: Map<string, JToken>
+      Expected: JToken
       Property: string
-      Properties: Map<string, obj>
+      Properties: Map<string, JToken>
       Description: string
       DescriptionPath: string list }
 
@@ -58,10 +57,14 @@ let private downloadData options =
 
 type CanonicalDataConverter() =
     inherit JsonConverter()
+    
+    let rec parentsAndSelf (currentToken: JToken) =
+        let rec helper acc (token: JToken) =
+            match token with
+            | null -> acc
+            | _ -> helper (token::acc) token.Parent
 
-    let jTokenToMap (jToken: JToken) =
-        jToken.ToObject<IDictionary<string, obj>>()
-        |> Dict.toMap
+        helper [] currentToken
 
     let createDescriptionPathFromJToken (jToken: JToken): string list =
         let descriptionFromJToken (currentToken: JToken) =
@@ -70,18 +73,14 @@ type CanonicalDataConverter() =
             | description -> Some (description.ToObject<string>())
 
         jToken
-        |> Json.parentsAndSelf
+        |> parentsAndSelf
         |> List.choose descriptionFromJToken
 
-    let createInputFromJToken (properties: Map<string, obj>) = 
-        properties.["input"] :?> JObject
-        |> jTokenToMap
-
     let createCanonicalDataCaseFromJToken (jToken: JToken) =
-        let properties = jTokenToMap jToken
+        let properties = Map.ofJToken jToken
 
-        { Input = createInputFromJToken properties
-          Expected = if properties.ContainsKey "expected" then properties.["expected"] else ("" :> obj)
+        { Input = Map.ofJToken properties.["input"]
+          Expected = properties.["expected"]
           Property = string properties.["property"]
           Properties = properties
           Description = string properties.["description"]

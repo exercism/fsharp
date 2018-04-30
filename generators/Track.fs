@@ -14,12 +14,12 @@ let private convertTrackConfig trackConfigContents = JsonConvert.DeserializeObje
 
 let private trackConfigFile = Path.Combine("..", "config.json")
 
-let private readTrackConfig = File.ReadAllText trackConfigFile
+let private readTrackConfig() = File.ReadAllText trackConfigFile
 
-let private parseTrackConfig = convertTrackConfig readTrackConfig
+let private parseTrackConfig() = convertTrackConfig (readTrackConfig())
 
 let isDeprecated =
-    let config = parseTrackConfig
+    let config = parseTrackConfig()
 
     fun exercise -> 
         config.Exercises

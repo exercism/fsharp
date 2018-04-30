@@ -1,64 +1,172 @@
 module Generators.Rendering
 
-open System.IO
-open System.Collections.Generic
-open System.Reflection
+open System
 open FSharp.Reflection
-open DotLiquid
-open DotLiquid.FileSystems
-open Formatting
+open Newtonsoft.Json.Linq
+open Conversion
 
-type OutputFilter() =
-    static member Format (input: string) = formatValue input
+module String =
 
-    static member Indent (input: string) = indent 1 input
+    let private escapeSpecialCharacters(str: string) =
+        str.Replace("\n", "\\n")
+           .Replace("\t", "\\t")
+           .Replace("\r", "\\r")
+           .Replace("\"", "\\\"")
 
-let private fileSystem = LocalFileSystem(Path.GetFullPath("./Templates"))
-Template.RegisterFilter(OutputFilter().GetType())
-Template.FileSystem <- fileSystem :> DotLiquid.FileSystems.IFileSystem
+    let render (str: string) =
+        str
+        |> escapeSpecialCharacters
+        |> String.enquote
 
-let private registrations = Dictionary<_,_>()
-let rec private registerTypeTree templateDataType =
-    if registrations.ContainsKey templateDataType then ()
-    elif FSharpType.IsRecord templateDataType then
-        let properties = templateDataType.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
-        Template.RegisterSafeType(templateDataType, [| for p in properties -> p.Name |])
-        registrations.[templateDataType] <- true
-        for p in properties do registerTypeTree p.PropertyType
-    elif templateDataType.IsGenericType then
-        let t = templateDataType.GetGenericTypeDefinition()
-        if t = typedefof<seq<_>> || t = typedefof<list<_>> then
-            registrations.[templateDataType] <- true
-            registerTypeTree (templateDataType.GetGenericArguments().[0])
-        elif t = typedefof<IDictionary<_,_>> || t = typedefof<Map<_,_>> then
-            registrations.[templateDataType] <- true
-            registerTypeTree (templateDataType.GetGenericArguments().[0])
-            registerTypeTree (templateDataType.GetGenericArguments().[1])
-        elif t = typedefof<option<_>> then
-            Template.RegisterSafeType(templateDataType, [|"Value"; "IsSome"; "IsNone";|])
-            registrations.[templateDataType] <- true
-            registerTypeTree (templateDataType.GetGenericArguments().[0])
-        elif templateDataType.IsArray then          
-            registrations.[templateDataType] <- true
-            registerTypeTree (templateDataType.GetElementType())
-    else 
-        let properties = templateDataType.GetProperties(BindingFlags.Instance ||| BindingFlags.Public)
-        Template.RegisterSafeType(templateDataType, [| for p in properties -> p.Name |])
-        registrations.[templateDataType] <- true
-        for p in properties do registerTypeTree p.PropertyType
+module Bool =    
 
-let private hashFromData (data: obj) =
-    match FSharpType.IsRecord (data.GetType()) with
-    | true  -> Hash.FromAnonymousObject(data)
-    | false -> Hash.FromDictionary(data :?> IDictionary<string, obj>)
+    let render b = if b then "true" else "false"
 
-let renderInlineTemplate template data =
-    data.GetType() |> registerTypeTree
+module DateTime =
 
-    let parsedTemplate = Template.Parse template
-    let hash = hashFromData data
-    parsedTemplate.Render(hash)
+    let render (dateTime: DateTime) = 
+        if dateTime.TimeOfDay = TimeSpan.Zero then
+            sprintf "DateTime(%d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day
+        else
+            sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
 
-let renderPartialTemplate templateName data =
-    let template = sprintf "{%% include \"%s\" %%}" templateName
-    renderInlineTemplate template data
+    let renderParenthesized (dateTime: DateTime) = 
+        dateTime
+        |> render
+        |> String.parenthesize
+
+module Obj =
+
+    let private renderJToken (jToken: JToken) =
+        match jToken.Type with
+        | JTokenType.Integer  -> jToken.ToObject<int64>()    |> string
+        | JTokenType.Float    -> jToken.ToObject<float>()    |> string
+        | JTokenType.Boolean  -> jToken.ToObject<bool>()     |> Bool.render
+        | JTokenType.String   -> jToken.ToObject<string>()   |> String.render
+        | JTokenType.Date     -> jToken.ToObject<DateTime>() |> DateTime.render
+        | _ -> string jToken
+
+    let private renderTuple tuple = sprintf "%A" tuple
+
+    let private renderRecord record = sprintf "%A" record
+
+    let rec private renderObj (value: obj) =
+        let rec renderJArray (jArray: JArray) =
+            jArray
+            |> Seq.map renderObj
+            |> String.concat "; "
+            |> sprintf "[%s]"
+
+        match value with
+        | :? string as s -> 
+            String.render s
+        | :? bool as b -> 
+            Bool.render b
+        | :? DateTime as dateTime -> 
+            DateTime.render dateTime
+        | :? JArray as jArray -> 
+            renderJArray jArray
+        | :? JToken as jToken -> 
+            renderJToken jToken
+        | _ when FSharpType.IsTuple (value.GetType()) -> 
+            renderTuple value
+        | _ when FSharpType.IsRecord (value.GetType()) -> 
+            renderRecord value
+        | _ -> 
+            string value
+
+    let render value = renderObj value
+
+    let renderEnum typeName value = 
+        let enumType = String.upperCaseFirst typeName
+        let enumValue = String.dehumanize (string value)
+        sprintf "%s.%s" enumType enumValue    
+
+module Option =
+
+    let private renderMap valueMap someMap option =
+        match option with
+        | None -> "None"
+        | Some value -> sprintf "Some %s" (valueMap value) |> someMap
+
+    let renderString option = renderMap id id option
+
+    let renderStringParenthesized option = renderMap id String.parenthesize option
+
+    let render option = renderMap Obj.render id option
+
+    let renderParenthesized option = renderMap Obj.render String.parenthesize option
+
+module Collection =
+    let render formatString collection =
+        collection
+        |> String.concat "; "
+        |> sprintf formatString
+
+    let renderMultiLine openPrefix closePostfix collection =
+        match Seq.length collection with
+        | 0 -> 
+            sprintf "%s%s" openPrefix closePostfix
+        | 1 -> 
+            sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix
+        | length -> 
+            let lineIndent = String(' ', String.length openPrefix)
+
+            let formatLine i line = 
+                match i with
+                | 0 -> 
+                    sprintf "%s %s;" openPrefix line
+                | _ when i = length - 1 -> 
+                    sprintf "%s %s %s" lineIndent line closePostfix
+                | _ ->
+                    sprintf "%s %s;" lineIndent line
+
+            collection
+            |> Seq.mapi formatLine
+            |> Seq.toList
+            |> List.map (String.indent 2)
+            |> String.concat "\n"
+            |> sprintf "\n%s"
+
+module List =
+
+    let mapRender map value = Collection.render "[%s]" (Seq.map map value)
+
+    let mapRenderMultiLine map value = Collection.renderMultiLine "[" "]" (Seq.map map value)
+
+    let render value = mapRender Obj.render value
+
+    let renderMultiLine value = mapRenderMultiLine Obj.render value
+
+module Array =
+
+    let renderStrings value = Collection.render "[|%s|]" value
+
+    let render value = 
+        value
+        |> Seq.map Obj.render
+        |> renderStrings
+
+module Map =
+
+    let private renderMap<'TKey, 'TValue> map suffix (value: JToken) =
+        let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
+        let formattedList = List.mapRenderMultiLine map dict
+        let whitespace = if Seq.length dict < 2 then " " else sprintf "\n%s" (String.indent 2 "")
+        sprintf "%s%s|> Map.ofList%s" formattedList whitespace suffix
+
+    let mapRender<'TKey, 'TValue> map (value: JToken) =
+        renderMap<'TKey, 'TValue> map "" value
+
+    let render<'TKey, 'TValue> (value: JToken) =
+        mapRender<'TKey, 'TValue> (fun kv -> Obj.render(kv.Key, kv.Value)) value
+
+    let mapRenderOption<'TKey, 'TValue> map (option: JToken option) =
+        match option with 
+        | None -> "None"
+        | Some value ->
+            let suffix = if Seq.length value < 2 then " |> Some" else sprintf "\n%s" (String.indent 2 "|> Some")
+            renderMap<'TKey, 'TValue> map suffix value
+
+    let renderOption<'TKey, 'TValue> (option: JToken option) =
+        mapRenderOption<'TKey, 'TValue> (fun kv -> Obj.render(kv.Key, kv.Value)) option
