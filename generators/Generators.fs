@@ -431,6 +431,59 @@ type Diamond() =
 type DifferenceOfSquares() =
     inherit GeneratorExercise()
 
+type DiffieHellman() =
+    inherit GeneratorExercise()
+
+    override __.RenderValue (canonicalDataCase, key, value) = 
+        match canonicalDataCase.Property, value.Type with
+        | _, JTokenType.Integer ->
+            sprintf "%dI" (value.ToObject<int>())
+        | "keyExchange", _ ->
+            value.ToObject<string>().Replace(",", "").Replace("(", " ").Replace(")", "")
+        | _ ->
+            base.RenderValue(canonicalDataCase, key, value)
+
+    override __.RenderArrange canonicalDataCase =
+        let arrange = base.RenderArrange canonicalDataCase
+
+        match canonicalDataCase.Property with
+        | "privateKeyIsInRange" | "privateKeyIsRandom" ->
+            List.append arrange ["let privateKeys = [for _ in 0 .. 10 -> privateKey p]" ]
+        | _ -> arrange
+
+    override __.RenderAssert canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "privateKeyIsInRange" ->
+            let greaterThan = canonicalDataCase.Expected.["greaterThan"].ToObject<int>()
+            let lessThan = canonicalDataCase.Expected.["lessThan"].ToObject<string>()
+
+            [ sprintf "privateKeys |> List.iter (fun x -> x |> should be (greaterThan %dI))" greaterThan;
+              sprintf "privateKeys |> List.iter (fun x -> x |> should be (lessThan %s))" lessThan ]
+        | "privateKeyIsRandom" -> 
+            [ "List.distinct privateKeys |> List.length |> should equal (List.length privateKeys)" ]
+        | "keyExchange" ->
+            [ "secretA |> should equal secretB" ]
+        | _ -> base.RenderAssert canonicalDataCase
+
+    override __.MapCanonicalDataCase canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "privateKeyIsInRange" | "privateKeyIsRandom" ->
+            { canonicalDataCase with Input = Map.add "p" (JToken.Parse("7919")) canonicalDataCase.Input }
+        | _ -> base.MapCanonicalDataCase canonicalDataCase
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
+
+    override __.PropertiesUsedAsSutParameter canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "publicKey" -> 
+            ["p"; "g"; "privateKey"]
+        | "secret" ->
+            ["p"; "theirPublicKey"; "myPrivateKey"]
+        | "keyExchange" ->
+            ["p"; "g"; "alicePrivateKey"; "alicePublicKey"; "bobPrivateKey"; "bobPublicKey"; "secretA"; "secretB"]
+        | _ ->
+            base.PropertiesUsedAsSutParameter canonicalDataCase
+
 type Dominoes() =
     inherit GeneratorExercise()
     
