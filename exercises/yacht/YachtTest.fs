@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module YachtTest
 
@@ -58,6 +58,10 @@ let ``Full house three small, two big`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Two pair is not a full house`` () =
     score Category.FullHouse [2; 2; 4; 4; 5] |> should equal 0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Four of a kind is not a full house`` () =
+    score Category.FullHouse [1; 4; 4; 4; 4] |> should equal 0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Yacht is not a full house`` () =
