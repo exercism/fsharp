@@ -52,13 +52,10 @@ let private hashFromData (data: obj) =
     | true  -> Hash.FromAnonymousObject(data)
     | false -> Hash.FromDictionary(data :?> IDictionary<string, obj>)
 
-let renderInlineTemplate template data =
+let renderTemplate name data =
+    let template = sprintf "{%% include \"%s\" %%}" name
     data.GetType() |> registerTypeTree
 
     let parsedTemplate = Template.Parse template
     let hash = hashFromData data
     parsedTemplate.Render(hash)
-
-let renderPartialTemplate templateName data =
-    let template = sprintf "{%% include \"%s\" %%}" templateName
-    renderInlineTemplate template data

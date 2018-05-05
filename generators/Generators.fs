@@ -35,7 +35,7 @@ type Allergies() =
         let expected = jToken.Value<bool>("result") |> Bool.render
         
         { Sut = sut; Expected = expected }
-        |> renderPartialTemplate "AssertEqual"
+        |> renderTemplate "AssertEqual"
 
     override __.RenderAssert canonicalDataCase =
         match canonicalDataCase.Property with
@@ -321,7 +321,7 @@ type ComplexNumbers() =
         | JTokenType.Array ->
             let renderAssertion testedFunction expected =
                 { Sut = sprintf "%s sut" testedFunction; Expected = expected }
-                |> renderPartialTemplate "AssertEqualWithin"
+                |> renderTemplate "AssertEqualWithin"
 
             [ canonicalDataCase.Expected.[0] |> renderNumber |> renderAssertion "real"
               canonicalDataCase.Expected.[1] |> renderNumber |> renderAssertion "imaginary" ]
@@ -647,7 +647,7 @@ type Grep() =
 
     override __.RenderExpected (_, _, value) = List.renderMultiLine value |> indentExpected
 
-    override __.RenderSetup _ = renderPartialTemplate "Generators/GrepSetup" Map.empty<string, obj>
+    override __.RenderSetup _ = renderTemplate "Generators/GrepSetup" Map.empty<string, obj>
 
     override __.RenderArrange canonicalDataCase =
         base.RenderArrange canonicalDataCase @ [""; "createFiles() |> ignore"]
@@ -1172,7 +1172,7 @@ type RobotSimulator() =
             let expected = this.RenderExpected (canonicalDataCase, "expected", canonicalDataCase.Expected)
 
             { Sut = sprintf "sut.%s" prop; Expected = expected }
-            |> renderPartialTemplate "AssertEqual"
+            |> renderTemplate "AssertEqual"
 
         match parseInput canonicalDataCase.Expected with
         | None, Some _ -> [renderAssertWithProperty "position"]

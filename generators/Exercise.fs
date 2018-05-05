@@ -120,21 +120,21 @@ type GeneratorExercise() =
     member this.Render canonicalData =
         canonicalData
         |> this.ToTestFile
-        |> renderPartialTemplate this.TestFileTemplate
+        |> renderTemplate this.TestFileTemplate
 
     member this.RenderTestMethod (index, canonicalDataCase) = 
         let template = this.TestMethodTemplate (index, canonicalDataCase)
 
         (index, canonicalDataCase)
         |> this.ToTestMethod 
-        |> renderPartialTemplate template
+        |> renderTemplate template
 
     member this.RenderTestMethodBody canonicalDataCase = 
         let template = this.TestMethodBodyTemplate canonicalDataCase
 
         canonicalDataCase
         |> this.ToTestMethodBody
-        |> renderPartialTemplate template
+        |> renderTemplate template
 
     default this.TestMethodName canonicalDataCase = 
         match this.UseFullMethodName canonicalDataCase with
@@ -213,7 +213,7 @@ type GeneratorExercise() =
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert
-        |> renderPartialTemplate template
+        |> renderTemplate template
         |> List.singleton
 
     default this.RenderSut canonicalDataCase =
