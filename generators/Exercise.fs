@@ -11,6 +11,11 @@ open Templates
 open CanonicalData
 open Track
 
+let [<Literal>] private AssertEmptyTemplate = "AssertEmpty"
+let [<Literal>] private AssertEqualTemplate = "AssertEqual"
+let [<Literal>] private AssertEqualWithinTemplate = "AssertEqualWithin"
+let [<Literal>] private AssertThrowsTemplate = "AssertThrows"
+
 let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebaberize()
 
 [<AbstractClass>]
@@ -109,9 +114,25 @@ type GeneratorExercise() =
         let expectedHasIdentifier = List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)
 
         if expectedIsArray && expectedIsEmpty && not expectedHasIdentifier then
-            "AssertEmpty"
+            AssertEmptyTemplate
         else        
-            "AssertEqual"
+            AssertEqualTemplate
+
+    member __.RenderAssertEmpty sut expected =
+        { Sut = sut; Expected = expected }
+        |> renderTemplate AssertEmptyTemplate 
+
+    member __.RenderAssertEqual sut expected =
+        { Sut = sut; Expected = expected }
+        |> renderTemplate AssertEqualTemplate
+
+    member __.RenderAssertEqualWithin sut expected =
+        { Sut = sut; Expected = expected }
+        |> renderTemplate AssertEqualWithinTemplate
+
+    member __.RenderAssertThrows sut expected =
+        { Sut = sut; Expected = expected }
+        |> renderTemplate AssertThrowsTemplate
 
     default __.TestFileFormat = TestFileFormat.Module
 
@@ -120,21 +141,21 @@ type GeneratorExercise() =
     member this.Render canonicalData =
         canonicalData
         |> this.ToTestFile
-        |> renderPartialTemplate this.TestFileTemplate
+        |> renderTemplate this.TestFileTemplate
 
     member this.RenderTestMethod (index, canonicalDataCase) = 
         let template = this.TestMethodTemplate (index, canonicalDataCase)
 
         (index, canonicalDataCase)
         |> this.ToTestMethod 
-        |> renderPartialTemplate template
+        |> renderTemplate template
 
     member this.RenderTestMethodBody canonicalDataCase = 
         let template = this.TestMethodBodyTemplate canonicalDataCase
 
         canonicalDataCase
         |> this.ToTestMethodBody
-        |> renderPartialTemplate template
+        |> renderTemplate template
 
     default this.TestMethodName canonicalDataCase = 
         match this.UseFullMethodName canonicalDataCase with
@@ -213,7 +234,7 @@ type GeneratorExercise() =
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert
-        |> renderPartialTemplate template
+        |> renderTemplate template
         |> List.singleton
 
     default this.RenderSut canonicalDataCase =

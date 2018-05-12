@@ -28,20 +28,18 @@ type Allergies() =
 
     let renderAllergenEnum (jToken: JToken) = Obj.renderEnum "Allergen" jToken
 
-    let renderAllergicToAssert canonicalDataCase (jToken: JToken) =
+    member this.RenderAllergicToAssert canonicalDataCase (jToken: JToken) =
         let substance = renderAllergenEnum jToken.["substance"]
         let score = canonicalDataCase.Input.["score"].ToObject<int>()
         let sut = sprintf "allergicTo %d %s" score substance
         let expected = jToken.Value<bool>("result") |> Bool.render
-        
-        { Sut = sut; Expected = expected }
-        |> renderPartialTemplate "AssertEqual"
+        this.RenderAssertEqual sut expected
 
-    override __.RenderAssert canonicalDataCase =
+    override this.RenderAssert canonicalDataCase =
         match canonicalDataCase.Property with
         | "allergicTo" ->
             canonicalDataCase.Expected
-            |> Seq.map (renderAllergicToAssert canonicalDataCase)
+            |> Seq.map (this.RenderAllergicToAssert canonicalDataCase)
             |> Seq.toList
         | _ -> 
             base.RenderAssert canonicalDataCase
@@ -97,7 +95,7 @@ type BinarySearch() =
 type BinarySearchTree() =
     inherit GeneratorExercise()
 
-    let rec renderAssertions previousPaths (tree: JToken) =
+    member this.RenderAssertions previousPaths (tree: JToken) =
         let previousPath = previousPaths |> List.rev |> String.concat " |> "
         let rootPath = List.length previousPaths = 1
 
@@ -108,30 +106,30 @@ type BinarySearchTree() =
             match data.Type with
             | JTokenType.Null -> 
                 let expected = if rootPath then failwith "Invalid data" else "None"
-                [ sprintf "%s |> %s |> should equal %s" previousPath dataPath expected ]
+                [ this.RenderAssertEqual (sprintf "%s |> %s" previousPath dataPath) expected ]
             | _ -> 
                 let expected = if rootPath then string data else sprintf "(Some %s)" (string data)
-                [ sprintf "%s |> %s |> should equal %s" previousPath dataPath expected ]
+                [ this.RenderAssertEqual (sprintf "%s |> %s" previousPath dataPath) expected ]
 
         let renderNodeAssertions nodeName (node: JToken) = 
             let nodePath = if rootPath then nodeName else sprintf "Option.bind %s" nodeName
 
             match node.Type with
             | JTokenType.Null -> 
-                [ sprintf "%s |> %s |> should equal None" previousPath nodePath ]
+                [ this.RenderAssertEqual (sprintf "%s |> %s" previousPath nodePath) "None" ]
             | _ ->
-                renderAssertions (nodePath :: previousPaths) node
+                this.RenderAssertions (nodePath :: previousPaths) node
 
         [ renderDataAssertions
           renderNodeAssertions "left" tree.["left"] 
           renderNodeAssertions "right" tree.["right"] ]
         |> List.concat
 
-    override __.RenderAssert canonicalDataCase = 
+    override this.RenderAssert canonicalDataCase = 
         match canonicalDataCase.Property with
         | "data" ->
             canonicalDataCase.Expected
-            |> renderAssertions ["treeData"]
+            |> this.RenderAssertions ["treeData"]
         | _ -> base.RenderAssert canonicalDataCase
 
     override __.RenderInput (_, _, value) = 
@@ -211,8 +209,7 @@ type CircularBuffer() =
 
     override __.RenderAssert _ = []
 
-    member __.ExceptionCheck command = 
-        sprintf "(fun () -> %s |> ignore) |> should throw typeof<Exception>" command 
+    member this.ExceptionCheck command = this.RenderAssertThrows command typeof<Exception>.Name
 
     override this.RenderArrange canonicalDataCase = 
         seq {
@@ -243,16 +240,14 @@ type CircularBuffer() =
                             yield sprintf "let (val%i, _) = %s" ind command
                         else
                             yield sprintf "let (val%i, buffer%i) = %s" ind ind command
-                        yield sprintf "val%i |> should equal %i" ind expected
+                        yield this.RenderAssertEqual (sprintf "val%i" ind) (string expected)
                 | "overwrite" ->
                     yield sprintf "let buffer%i = forceWrite %i buffer%i" ind (dict.["item"].ToObject<int>()) (ind-1)
                 | "clear" -> 
                     yield sprintf "let buffer%i = clear buffer%i" ind (ind - 1) 
                 | _ -> ()
                 ind <- ind + 1
-
-        }
-        |> Seq.toList
+        } |> Seq.toList
 
 type Clock() =
     inherit GeneratorExercise()
@@ -316,12 +311,11 @@ type ComplexNumbers() =
         | JTokenType.Integer -> sprintf "%d.0" (value.ToObject<int>())
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
-    override __.RenderAssert canonicalDataCase = 
+    override this.RenderAssert canonicalDataCase = 
         match canonicalDataCase.Expected.Type with
         | JTokenType.Array ->
             let renderAssertion testedFunction expected =
-                { Sut = sprintf "%s sut" testedFunction; Expected = expected }
-                |> renderPartialTemplate "AssertEqualWithin"
+                this.RenderAssertEqualWithin (sprintf "%s sut" testedFunction) expected
 
             [ canonicalDataCase.Expected.[0] |> renderNumber |> renderAssertion "real"
               canonicalDataCase.Expected.[1] |> renderNumber |> renderAssertion "imaginary" ]
@@ -451,7 +445,7 @@ type DiffieHellman() =
             List.append arrange ["let privateKeys = [for _ in 0 .. 10 -> privateKey p]" ]
         | _ -> arrange
 
-    override __.RenderAssert canonicalDataCase =
+    override this.RenderAssert canonicalDataCase =
         match canonicalDataCase.Property with
         | "privateKeyIsInRange" ->
             let greaterThan = canonicalDataCase.Expected.["greaterThan"].ToObject<int>()
@@ -460,9 +454,9 @@ type DiffieHellman() =
             [ sprintf "privateKeys |> List.iter (fun x -> x |> should be (greaterThan %dI))" greaterThan;
               sprintf "privateKeys |> List.iter (fun x -> x |> should be (lessThan %s))" lessThan ]
         | "privateKeyIsRandom" -> 
-            [ "List.distinct privateKeys |> List.length |> should equal (List.length privateKeys)" ]
+            [ this.RenderAssertEqual "List.distinct privateKeys |> List.length" "(List.length privateKeys)" ]
         | "keyExchange" ->
-            [ "secretA |> should equal secretB" ]
+            [ this.RenderAssertEqual "secretA" "secretB" ]
         | _ -> base.RenderAssert canonicalDataCase
 
     override __.MapCanonicalDataCase canonicalDataCase =
@@ -647,7 +641,7 @@ type Grep() =
 
     override __.RenderExpected (_, _, value) = List.renderMultiLine value |> indentExpected
 
-    override __.RenderSetup _ = renderPartialTemplate "Generators/GrepSetup" Map.empty<string, obj>
+    override __.RenderSetup _ = renderTemplate "Generators/GrepSetup" Map.empty<string, obj>
 
     override __.RenderArrange canonicalDataCase =
         base.RenderArrange canonicalDataCase @ [""; "createFiles() |> ignore"]
@@ -1046,13 +1040,6 @@ type React() =
             )
             |> Seq.toList
         [ reactorVar ] @ cellVars
-     
-    let renderExpectedCellValueOperation (op: JToken) =
-        seq { 
-            let cellName = op.["cell"].ToObject<string>()
-            let expectedValue = op.["value"].ToObject<int>()
-            yield sprintf "%s.Value |> should equal %i" cellName expectedValue 
-        }
 
     let renderExpectedCallbacks (jToken: JToken) =
         match jToken with
@@ -1101,28 +1088,35 @@ type React() =
             let callbackName = op.["name"].ToObject<string>()
             yield sprintf "%s.Changed.RemoveHandler %sHandler" cellName callbackName
         }
+     
+    member this.RenderExpectedCellValueOperation (op: JToken) =
+        seq { 
+            let cellName = op.["cell"].ToObject<string>()
+            let expectedValue = op.["value"].ToObject<string>()
+            yield this.RenderAssertEqual (sprintf "%s.Value" cellName) expectedValue 
+        }
 
-    let renderOperation (op: JToken) =
+    member this.RenderOperations canonicalDataCase = 
+        canonicalDataCase.Input.["operations"]
+        |> Seq.collect this.renderOperation
+        |> Seq.toList
+
+    member this.renderOperation (op: JToken) =
         let opType = op.["type"].ToObject<string>()
         match opType with
-        | "expect_cell_value" -> renderExpectedCellValueOperation op
+        | "expect_cell_value" -> this.RenderExpectedCellValueOperation op
         | "set_value" -> renderSetValueOperation op
         | "add_callback" -> renderAddCallbackOperation op
         | "remove_callback" -> renderRemoveCallbackOperation op
         | _ -> failwith "Unknown operation type"
 
-    let renderOperations canonicalDataCase = 
-        canonicalDataCase.Input.["operations"]
-        |> Seq.collect renderOperation
-        |> Seq.toList
-
     override __.PropertiesWithIdentifier _ = []
 
     override __.RenderAssert _ = []
 
-    override __.RenderArrange canonicalDataCase =
+    override this.RenderArrange canonicalDataCase =
         let initialVars = renderCells canonicalDataCase
-        let operations = renderOperations canonicalDataCase
+        let operations = this.RenderOperations canonicalDataCase
         initialVars @ operations
 
     override __.AdditionalNamespaces = ["FakeItEasy"]
@@ -1170,9 +1164,7 @@ type RobotSimulator() =
     override this.RenderAssert canonicalDataCase = 
         let renderAssertWithProperty prop =
             let expected = this.RenderExpected (canonicalDataCase, "expected", canonicalDataCase.Expected)
-
-            { Sut = sprintf "sut.%s" prop; Expected = expected }
-            |> renderPartialTemplate "AssertEqual"
+            this.RenderAssertEqual (sprintf "sut.%s" prop) expected
 
         match parseInput canonicalDataCase.Expected with
         | None, Some _ -> [renderAssertWithProperty "position"]
