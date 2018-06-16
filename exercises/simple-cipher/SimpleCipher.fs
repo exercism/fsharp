@@ -1,7 +1,11 @@
 ﻿module SimpleCipher
-        
-let encode key input = failwith "You need to implement this function."
 
-let decode key input = failwith "You need to implement this function."
+type SimpleCipher(key: string) =
     
-let encodeRandom input = failwith "You need to implement this function."
+    member __.Key with get() = failwith "You need to implement this function."
+    
+    member __.Encode(plaintext) = failwith "You need to implement this function."
+    
+    member __.Decode(ciphertext) = failwith "You need to implement this function."
+    
+    new() = failwith "You need to implement this function."

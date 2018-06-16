@@ -1,100 +1,78 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
 module SimpleCipherTest
 
-open System
-open System.Text.RegularExpressions
-open Xunit
 open FsUnit.Xunit
+open Xunit
+open System.Text.RegularExpressions
+open System
 
 open SimpleCipher
 
-let plainText = "abcdefghij"
-let key = "abcdefghij";
-
 [<Fact>]
-let ``Encode random uses key made of letters`` () =
-    let (key, _) = encodeRandom plainText
-    Regex.IsMatch(key, "[a-z]+") |> should equal true
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Encode random uses key of 100 characters`` () =
-    let (key, _) = encodeRandom plainText
-    key |> should haveLength 100
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Encode random uses randomly generated key`` () =
-    let keys = List.init 100 (fun _ -> encodeRandom plainText |> fst)
-    keys |> List.distinct |> should equal keys
-
-// Here we take advantage of the fact that plaintext of "aaa..." outputs
-// the key. This is a critical problem with shift ciphers, some characters
-// will always output the key verbatim.
-[<Fact(Skip = "Remove to run test")>]
-let ``Encode random can encode`` () =
-    let (key, encoded) = encodeRandom "aaaaaaaaaa"
-    encoded |> should equal <| key.Substring(0, 10)
+let ``Random key cipher - Can encode`` () =
+    let sut = SimpleCipher()
+    sut.Encode("aaaaaaaaaa") |> should equal sut.Key.[0..9]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode random can decode`` () =    
-    let (key, _) = encodeRandom "aaaaaaaaaa"
-    decode key (key.Substring(0, 10)) |> should equal "aaaaaaaaaa"
+let ``Random key cipher - Can decode`` () =
+    let sut = SimpleCipher()
+    sut.Decode(sut.Key.[0..9]) |> should equal "aaaaaaaaaa"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode random is reversible`` () =
-    let (key, encoded) = encodeRandom plainText
-    decode key encoded |> should equal plainText
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher can encode with given key`` () =
-    encode key "aaaaaaaaaa" |> should equal "abcdefghij"
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher can decode with given key`` () =
-    decode key "abcdefghij" |> should equal "aaaaaaaaaa"
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher is reversible given key`` () =
-    encode key plainText |> decode key |> should equal plainText
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher can double shift encode`` () =
-    let plainText = "iamapandabear"
-    encode plainText plainText |> should equal "qayaeaagaciai"
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher can wrap encode`` () =
-    encode key "zzzzzzzzzz" |> should equal "zabcdefghi"
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher can encode a message that is shorter than the key`` () =
-    encode key "aaaaa" |> should equal "abcde"
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Cipher can decode a message that is shorter than the key`` () =
-    decode key "abcde" |> should equal "aaaaa"
+let ``Random key cipher - Is reversible. I.e., if you apply decode in a encoded result, you must see the same plaintext encode parameter as a result of the decode method`` () =
+    let sut = SimpleCipher()
+    sut.Decode(sut.Encode("abcdefghij")) |> should equal "abcdefghij"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode throws with an all caps key`` () =
-    let key = "ABCDEF"
-    (fun () -> encode key plainText |> ignore) |> should throw typeof<Exception>
-    
-[<Fact(Skip = "Remove to run test")>]
-let ``Encode throws with any caps key`` () =
-    let key = "abcdEFg"
-    (fun () -> encode key plainText |> ignore) |> should throw typeof<Exception>
+let ``Random key cipher - Key is made only of lowercase letters`` () =
+    let sut = SimpleCipher()
+    Regex.IsMatch(sut.Key, "^[a-z]+$") |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode throws with numeric key`` () =
-    let key = "12345"
-    (fun () -> encode key plainText |> ignore) |> should throw typeof<Exception>
+let ``Substitution cipher - Can encode`` () =
+    let sut = SimpleCipher("abcdefghij")
+    sut.Encode("aaaaaaaaaa") |> should equal "abcdefghij"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode throws with any numeric key`` () =
-    let key = "abcd345ef"
-    (fun () -> encode key plainText |> ignore) |> should throw typeof<Exception>
-    
+let ``Substitution cipher - Can decode`` () =
+    let sut = SimpleCipher("abcdefghij")
+    sut.Decode("abcdefghij") |> should equal "aaaaaaaaaa"
+
 [<Fact(Skip = "Remove to run test")>]
-let ``Encode throws with empty key`` () =
-    let key = ""
-    (fun () -> encode key plainText |> ignore) |> should throw typeof<Exception>
+let ``Substitution cipher - Is reversible. I.e., if you apply decode in a encoded result, you must see the same plaintext encode parameter as a result of the decode method`` () =
+    let sut = SimpleCipher("abcdefghij")
+    sut.Decode(sut.Encode("abcdefghij")) |> should equal "abcdefghij"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Substitution cipher - Can double shift encode`` () =
+    let sut = SimpleCipher("iamapandabear")
+    sut.Encode("iamapandabear") |> should equal "qayaeaagaciai"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Substitution cipher - Can wrap on encode`` () =
+    let sut = SimpleCipher("abcdefghij")
+    sut.Encode("zzzzzzzzzz") |> should equal "zabcdefghi"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Substitution cipher - Can wrap on decode`` () =
+    let sut = SimpleCipher("abcdefghij")
+    sut.Decode("zabcdefghi") |> should equal "zzzzzzzzzz"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Substitution cipher - Can handle messages longer than the key`` () =
+    let sut = SimpleCipher("abc")
+    sut.Encode("iamapandabear") |> should equal "iboaqcnecbfcr"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Incorrect key cipher - Throws an error with an all uppercase key`` () =
+    (fun () -> SimpleCipher("ABCDEF") |> ignore) |> should throw typeof<ArgumentException>
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Incorrect key cipher - Throws an error with a numeric key`` () =
+    (fun () -> SimpleCipher("12345") |> ignore) |> should throw typeof<ArgumentException>
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Incorrect key cipher - Throws an error with empty key`` () =
+    (fun () -> SimpleCipher("") |> ignore) |> should throw typeof<ArgumentException>
+
