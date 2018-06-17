@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.5.0 of the canonical data.
+// This file was auto-generated based on version 1.6.0 of the canonical data.
 
 module ForthTest
 
@@ -186,6 +186,16 @@ let ``User-defined words - can override built-in words`` () =
 let ``User-defined words - can override built-in operators`` () =
     let expected = Some [12]
     evaluate [": + * ;"; "3 4 +"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - can use different words with the same name`` () =
+    let expected = Some [5; 6]
+    evaluate [": foo 5 ;"; ": bar foo ;"; ": foo 6 ;"; "bar foo"] |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``User-defined words - can define word that uses word with the same name`` () =
+    let expected = Some [11]
+    evaluate [": foo 10 ;"; ": foo foo 1 + ;"; "foo"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``User-defined words - cannot redefine numbers`` () =
