@@ -9,6 +9,7 @@ open Rendering
 open Templates
 open Exercise
 open Generators.Common
+open System.Runtime.CompilerServices
 
 type Acronym() =
     inherit GeneratorExercise()
@@ -1098,10 +1099,10 @@ type React() =
 
     member this.RenderOperations canonicalDataCase = 
         canonicalDataCase.Input.["operations"]
-        |> Seq.collect this.renderOperation
+        |> Seq.collect this.RenderOperation
         |> Seq.toList
 
-    member this.renderOperation (op: JToken) =
+    member this.RenderOperation (op: JToken) =
         let opType = op.["type"].ToObject<string>()
         match opType with
         | "expect_cell_value" -> this.RenderExpectedCellValueOperation op
@@ -1275,6 +1276,56 @@ type Series() =
         value 
         |> Option.ofNonErrorObject
         |> Option.renderParenthesized
+
+type SimpleCipher() = 
+    inherit GeneratorExercise()
+
+    let normalizeText input =
+        if string input = "cipher.key" then
+            "sut.Key.[0..9]" 
+        else
+            Obj.render input
+
+    override __.RenderArrange canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "new" -> []
+        | _ ->
+            let key = 
+                match canonicalDataCase.Input.TryFind "key" with
+                | (Some x) -> Obj.render x
+                | None -> ""
+            [sprintf "let sut = SimpleCipher(%s)" key]
+
+    override this.RenderAssert canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "new" ->
+            let key = Obj.render canonicalDataCase.Input.["key"]
+            [this.RenderAssertThrows (sprintf "SimpleCipher(%s)" key) typeof<ArgumentException>.Name]
+        | "key" ->
+            let pattern = Obj.render canonicalDataCase.Expected.["match"]
+            [this.RenderAssertEqual (sprintf "Regex.IsMatch(sut.Key, %s)" pattern) (Obj.render true)]
+        | _ -> base.RenderAssert canonicalDataCase
+
+    override __.RenderSut canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "encode" ->
+            sprintf "sut.Encode(%s)" (normalizeText canonicalDataCase.Input.["plaintext"])
+        | "decode" -> 
+            match canonicalDataCase.Input.TryFind "plaintext" with
+            | Some plaintext ->
+                sprintf "sut.Decode(sut.Encode(%s))" (Obj.render plaintext)
+            | None -> 
+                sprintf "sut.Decode(%s)" (normalizeText canonicalDataCase.Input.["ciphertext"])
+        | _ ->
+            base.RenderSut canonicalDataCase
+
+    override __.RenderExpected (_, _, value) = normalizeText value
+
+    override __.UseFullMethodName _ = true
+
+    override __.AdditionalNamespaces =
+        [ typeof<System.Text.RegularExpressions.Regex>.Namespace;
+          typeof<System.ArgumentException>.Namespace ]
 
 type SpaceAge() =
     inherit GeneratorExercise()
