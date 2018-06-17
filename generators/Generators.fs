@@ -205,7 +205,7 @@ type Change() =
 type CircularBuffer() = 
     inherit GeneratorExercise()
 
-    override __.AdditionalNamespaces = [ "System" ]
+    override __.AdditionalNamespaces = [typeof<Exception>.Namespace]
 
     override __.RenderAssert _ = []
 
