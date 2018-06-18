@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module LuhnTest
 
@@ -58,4 +58,8 @@ let ``More than a single zero is valid`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Input digit 9 is correctly converted to output digit 9`` () =
     valid "091" |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Strings with non-digits is invalid`` () =
+    valid ":9" |> should equal false
 

@@ -99,6 +99,17 @@ let evalWord word state =
     | None -> None
     | Some op -> applyOp op state
 
+let flattenOperation state (operation: Item)  =
+    match operation with
+    | Word word ->
+        match state.sMapping.TryFind word with
+        | Some (User operations) -> operations
+        | _ -> [operation]
+    | Value _ -> [operation]
+    
+let flattenOperations state (operations: Item list) =
+    List.collect (flattenOperation state) operations
+
 let rec evalState state =
     match state with
     | None -> state
@@ -111,7 +122,8 @@ let rec evalState state =
             | ":" -> 
                 match breakBy (fun c -> c = Word ";") xs with
                 | ((Word userWord::operations), remainder) ->
-                    { s with sInput = List.tail remainder; sMapping = Map.add (userWord.ToLower()) (User operations) s.sMapping } 
+                    let flattenedOperations = flattenOperations s operations
+                    { s with sInput = List.tail remainder; sMapping = Map.add (userWord.ToLower()) (User flattenedOperations) s.sMapping } 
                     |> Some
                     |> evalState
                 | _ -> None

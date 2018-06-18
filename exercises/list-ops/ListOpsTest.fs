@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.2.0 of the canonical data.
+// This file was auto-generated based on version 2.3.0 of the canonical data.
 
 module ListOpsTest
 
@@ -26,6 +26,10 @@ let ``concat empty list`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``concat list of lists`` () =
     concat [[1; 2]; [3]; []; [4; 5; 6]] |> should equal [1; 2; 3; 4; 5; 6]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``concat list of nested lists`` () =
+    concat [[[1]; [2]]; [[3]]; [[]]; [[4; 5; 6]]] |> should equal [[1]; [2]; [3]; []; [4; 5; 6]]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``filter empty list`` () =

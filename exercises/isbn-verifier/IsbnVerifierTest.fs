@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.4.0 of the canonical data.
+// This file was auto-generated based on version 2.5.0 of the canonical data.
 
 module IsbnVerifierTest
 
@@ -66,4 +66,8 @@ let ``Empty isbn`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Input is 9 characters`` () =
     isValid "134456729" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Invalid characters are not ignored`` () =
+    isValid "3132P34035" |> should equal false
 
