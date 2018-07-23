@@ -49,7 +49,7 @@ let formatStack (state: ForthState) =
         |> List.map string
         |> List.reduce (fun x y -> x + " " + y)
     
-let parseItem text = 
+let parseItem (text: string) = 
     match Int32.TryParse text with
     | true, value -> Value value
     | _ -> Word text

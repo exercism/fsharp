@@ -17,7 +17,6 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
     <PackageReference Include="FsUnit.xUnit" Version="3.1.0" />
     <PackageReference Include="FsCheck.Xunit" Version="2.10.4" />
-    <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
 
 </Project>
