@@ -1336,6 +1336,8 @@ type SpaceAge() =
         | JTokenType.Integer -> sprintf "%dL" (value.ToObject<int64>())
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
+    override __.AssertTemplate _ = "AssertEqualWithin"
+
 type SpiralMatrix() =
     inherit GeneratorExercise()
 

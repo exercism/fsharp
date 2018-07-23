@@ -117,15 +117,15 @@ let ``Raise a negative rational number to the power of zero`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Raise a real number to a positive rational number`` () =
-    expreal (create 4 3) 8 |> should (equalWithin 0.000000001) 16
+    expreal (create 4 3) 8 |> should (equalWithin 0.01) 16
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Raise a real number to a negative rational number`` () =
-    expreal (create -1 2) 9 |> should (equalWithin 0.000000001) 0.333333333333333
+    expreal (create -1 2) 9 |> should (equalWithin 0.01) 0.333333333333333
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Raise a real number to a zero rational number`` () =
-    expreal (create 0 1) 2 |> should (equalWithin 0.000000001) 1
+    expreal (create 0 1) 2 |> should (equalWithin 0.01) 1
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Reduce a positive rational number to lowest terms`` () =
