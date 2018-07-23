@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module IsogramTest
 
@@ -18,6 +18,10 @@ let ``Isogram with only lower case characters`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Word with one duplicated character`` () =
     isIsogram "eleven" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Word with one duplicated character from the end of the alphabet`` () =
+    isIsogram "zzyzx" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Longest reported english isogram`` () =
