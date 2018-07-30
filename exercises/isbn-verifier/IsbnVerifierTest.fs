@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.5.0 of the canonical data.
+// This file was auto-generated based on version 2.7.0 of the canonical data.
 
 module IsbnVerifierTest
 
@@ -48,12 +48,12 @@ let ``Too long isbn and no dashes`` () =
     isValid "3598215078X" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Isbn without check digit`` () =
-    isValid "3-598-21507" |> should equal false
+let ``Too short isbn`` () =
+    isValid "00" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Too long isbn`` () =
-    isValid "3-598-21507-XX" |> should equal false
+let ``Isbn without check digit`` () =
+    isValid "3-598-21507" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Check digit of X should not be used for 0`` () =
@@ -70,4 +70,8 @@ let ``Input is 9 characters`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Invalid characters are not ignored`` () =
     isValid "3132P34035" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Input is too long but contains a valid isbn`` () =
+    isValid "98245726788" |> should equal false
 

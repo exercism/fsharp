@@ -9,7 +9,6 @@ open Rendering
 open Templates
 open Exercise
 open Generators.Common
-open System.Runtime.CompilerServices
 
 type Acronym() =
     inherit GeneratorExercise()
@@ -1280,10 +1279,13 @@ type Series() =
 type SimpleCipher() = 
     inherit GeneratorExercise()
 
-    let normalizeText input =
-        if string input = "cipher.key" then
-            "sut.Key.[0..9]" 
-        else
+    let normalizeText input (canonicalDataCase: CanonicalDataCase) =
+        match string input with
+        | "cipher.key.substring(0, plaintext.length)" ->
+            sprintf "sut.Key.[0..%d]" (canonicalDataCase.Input.["plaintext"].ToObject<string>().Length - 1)
+        | "cipher.key.substring(0, expected.length)" ->
+            sprintf "sut.Key.[0..%d]" (canonicalDataCase.Expected.ToObject<string>().Length - 1)
+        | _ ->
             Obj.render input
 
     override __.RenderArrange canonicalDataCase =
@@ -1309,17 +1311,17 @@ type SimpleCipher() =
     override __.RenderSut canonicalDataCase =
         match canonicalDataCase.Property with
         | "encode" ->
-            sprintf "sut.Encode(%s)" (normalizeText canonicalDataCase.Input.["plaintext"])
+            sprintf "sut.Encode(%s)" (normalizeText canonicalDataCase.Input.["plaintext"] canonicalDataCase)
         | "decode" -> 
             match canonicalDataCase.Input.TryFind "plaintext" with
             | Some plaintext ->
                 sprintf "sut.Decode(sut.Encode(%s))" (Obj.render plaintext)
             | None -> 
-                sprintf "sut.Decode(%s)" (normalizeText canonicalDataCase.Input.["ciphertext"])
+                sprintf "sut.Decode(%s)" (normalizeText canonicalDataCase.Input.["ciphertext"] canonicalDataCase)
         | _ ->
             base.RenderSut canonicalDataCase
 
-    override __.RenderExpected (_, _, value) = normalizeText value
+    override __.RenderExpected (canonicalDataCase, _, value) = normalizeText value canonicalDataCase
 
     override __.UseFullMethodName _ = true
 
