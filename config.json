@@ -348,7 +348,6 @@
       "unlocked_by": "space-age",
       "difficulty": 3,
       "topics": [
-        "discriminated_unions",
         "integers"
       ]
     },
