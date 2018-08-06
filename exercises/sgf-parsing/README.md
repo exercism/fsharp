@@ -1,4 +1,4 @@
-# Sgf Parsing
+# SGF Parsing
 
 Parsing a Smart Game Format string.
 
@@ -12,7 +12,7 @@ multiple values.
 
 An SGF file may look like this:
 
-```
+```text
 (;FF[4]C[root]SZ[19];B[aa];W[ab])
 ```
 
@@ -34,7 +34,7 @@ SGF can encode variations of play. Go players do a lot of backtracking
 in their reviews (let's try this, doesn't work, let's try that) and SGF
 supports variations of play sequences. For example:
 
-```
+```text
 (;FF[4](;B[aa];W[ab])(;B[dd];W[ee]))
 ```
 
@@ -46,7 +46,7 @@ opening to take the corner).
 
 A key can have multiple values associated with it. For example:
 
-```
+```text
 (;FF[4];AB[aa][ab][ba])
 ```
 
@@ -63,6 +63,15 @@ The exercise will have you parse an SGF string and return a tree
 structure of properties. You do not need to encode knowledge about the
 data types of properties, just use the rules for the
 [text](http://www.red-bean.com/sgf/sgf4.html#text) type everywhere.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

@@ -7,7 +7,7 @@ letters in words are replaced with numbers.
 
 For example `SEND + MORE = MONEY`:
 
-```
+```text
   S E N D
   M O R E +
 -----------
@@ -16,7 +16,7 @@ M O N E Y
 
 Replacing these with valid numbers gives:
 
-```
+```text
   9 5 6 7
   1 0 8 5 +
 -----------
@@ -36,6 +36,15 @@ Write a function to solve alphametics puzzles.
 - You can solve this exercise with a brute force algorithm, but this will possibly have a poor runtime performance.
 Try to find a more sophisticated solution. Hint: You could try the column-wise addition algorithm that is usually taught in school.
 
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

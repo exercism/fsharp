@@ -33,6 +33,16 @@ found in the array and a special "not found" indication is returned.
 A binary search halves the number of items to check with each iteration,
 so locating an item (or determining its absence) takes logarithmic time.
 A binary search is a dichotomic divide and conquer search algorithm.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Wikipedia [http://en.wikipedia.org/wiki/Binary_search_algorithm](http://en.wikipedia.org/wiki/Binary_search_algorithm)

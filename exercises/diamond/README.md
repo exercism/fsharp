@@ -1,7 +1,7 @@
 # Diamond
 
-The diamond kata takes as its input a letter, and outputs it in a diamond 
-shape. Given a letter, it prints a diamond starting with 'A', with the 
+The diamond kata takes as its input a letter, and outputs it in a diamond
+shape. Given a letter, it prints a diamond starting with 'A', with the
 supplied letter at the widest point.
 
 ## Requirements
@@ -15,7 +15,7 @@ supplied letter at the widest point.
 * The diamond has a square shape (width equals height).
 * The letters form a diamond shape.
 * The top half has the letters in ascending order.
-* The bottom half has the letters in descending order. 
+* The bottom half has the letters in descending order.
 * The four corners (containing the spaces) are triangles.
 
 ## Examples
@@ -24,13 +24,13 @@ In the following examples, spaces are indicated by `·` characters.
 
 Diamond for letter 'A':
 
-```plain
+```text
 A
 ```
 
 Diamond for letter 'C':
 
-```plain
+```text
 ··A··
 ·B·B·
 C···C
@@ -40,7 +40,7 @@ C···C
 
 Diamond for letter 'E':
 
-```plain
+```text
 ····A····
 ···B·B···
 ··C···C··
@@ -53,7 +53,16 @@ E·······E
 ```
 
 ## Hints
-- Testing this one can be tricky without simply hardcoding a bunch of inputs and outputs. [Property based testing](https://fsharpforfunandprofit.com/posts/property-based-testing/) is another way to think about testing that allows you to more easily test this type of algorithm. The test suite uses the [FsCheck](https://fscheck.github.io/FsCheck/) property-based testing framework to define the tests.
+- Testing this one can be tricky without simply hardcoding a bunch of inputs and outputs. [Property based testing](https://fsharpforfunandprofit.com/posts/property-based-testing/) is another way to think about testing that allows you to more easily test this type of algorithm.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
 

@@ -6,6 +6,16 @@ On the web we use hexadecimal to represent colors, e.g. green: 008000,
 teal: 008080, navy: 000080).
 
 The program should handle invalid hexadecimal strings.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 All of Computer Science [http://www.wolframalpha.com/examples/NumberBases.html](http://www.wolframalpha.com/examples/NumberBases.html)

@@ -2,7 +2,7 @@
 
 Output the lyrics to 'The Twelve Days of Christmas'.
 
-```
+```text
 On the first day of Christmas my true love gave to me, a Partridge in a Pear Tree.
 
 On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.
@@ -30,6 +30,16 @@ On the twelfth day of Christmas my true love gave to me, twelve Drummers Drummin
 
 ## Hints
 - Try to capture the structure of the song in your code, where you build up the song by composing its parts.
+
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
 

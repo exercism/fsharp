@@ -41,6 +41,16 @@ secret s.
 For this exercise the following F# feature comes in handy:
 - [BigInt](https://msdn.microsoft.com/en-us/visualfsharpdocs/conceptual/numerics.biginteger-structure-%5Bfsharp%5D)
 
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Wikipedia, 1024 bit key from www.cryptopp.com/wiki. [http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange](http://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)

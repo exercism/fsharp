@@ -17,5 +17,14 @@ be described in the language/track specific files of the exercise.
 [Hangman]: https://en.wikipedia.org/wiki/Hangman_%28game%29
 [frp]: https://en.wikipedia.org/wiki/Functional_reactive_programming
 
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

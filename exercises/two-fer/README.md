@@ -1,28 +1,29 @@
 # Two Fer
 
-Create a sentence of the form "One for X, one for me."
-
 `Two-fer` or `2-fer` is short for two for one. One for you and one for me.
 
-```plain
+```text
 "One for X, one for me."
 ```
 
 When X is a name or "you".
 
-If the given name is "Alice", the result should be "One for Alice, one for me." If no name is given, the result should be "One for you, one for me."
+If the given name is "Alice", the result should be "One for Alice, one for me."
+If no name is given, the result should be "One for you, one for me."
 
-### Submitting Exercises
 
-Note that, when trying to submit an exercise, make sure the exercise file that you're submitting is in the `exercism/csharp/<exerciseName>` directory.
+## Running the tests
 
-For example, if you're submitting `bob.cs` for the Bob exercise, the submit command would be something like `exercism submit <path_to_exercism_dir>/csharp/bob/bob.cs`.
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
-This is an exercise to introduce users to basic programming constructs, just after Hello World. [https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
 
-## Hints
-- Input for the problem is passed an Option. If you're not familiar with options in F# you can read more about them [here](https://fsharpforfunandprofit.com/posts/the-option-type/).
+[https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

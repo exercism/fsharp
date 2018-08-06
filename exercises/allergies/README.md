@@ -29,6 +29,15 @@ allergens that score 256, 512, 1024, etc.).  Your program should
 ignore those components of the score.  For example, if the allergy
 score is 257, your program should only report the eggs (1) allergy.
 
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Jumpstart Lab Warm-up [http://jumpstartlab.com](http://jumpstartlab.com)

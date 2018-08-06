@@ -21,7 +21,6 @@ In the end, you should be able to:
 Note that all our students only have one name.  (It's a small town, what
 do you want?)
 
-
 ## For bonus points
 
 Did you get the tests passing and the code clean? If you want to, these
@@ -38,6 +37,17 @@ experiment make the code better? Worse? Did you learn anything from it?
 ## Hints
 For this exercise the following F# feature comes in handy:
 - The [Map](https://en.wikibooks.org/wiki/F_Sharp_Programming/Sets_and_Maps#Maps) type associates keys with values. It is very similar to .NET's `Dictionary<TKey, TValue>` type, but with one major difference: `Map` is [immutable](https://fsharpforfunandprofit.com/posts/correctness-immutability/).
+- A [type abbreviation](https://fsharpforfunandprofit.com/posts/type-abbreviations/) is used to create a descriptive alias for a more complex type.
+
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
 

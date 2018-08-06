@@ -9,7 +9,7 @@ letter, the second with the second-last, and so on.
 
 An Atbash cipher for the Latin alphabet would be as follows:
 
-```plain
+```text
 Plain:  abcdefghijklmnopqrstuvwxyz
 Cipher: zyxwvutsrqponmlkjihgfedcba
 ```
@@ -23,9 +23,20 @@ being 5 letters, and punctuation is excluded. This is to make it harder to guess
 things based on word boundaries.
 
 ## Examples
+
 - Encoding `test` gives `gvhg`
 - Decoding `gvhg` gives `test`
 - Decoding `gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt` gives `thequickbrownfoxjumpsoverthelazydog`
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Wikipedia [http://en.wikipedia.org/wiki/Atbash](http://en.wikipedia.org/wiki/Atbash)

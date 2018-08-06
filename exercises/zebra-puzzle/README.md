@@ -24,6 +24,16 @@ drink different beverages and smoke different brands of cigarettes.
 
 Which of the residents drinks water?
 Who owns the zebra?
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Wikipedia [https://en.wikipedia.org/wiki/Zebra_Puzzle](https://en.wikipedia.org/wiki/Zebra_Puzzle)

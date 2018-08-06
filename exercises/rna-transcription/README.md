@@ -1,4 +1,4 @@
-# Rna Transcription
+# RNA Transcription
 
 Given a DNA strand, return its RNA complement (per RNA transcription).
 
@@ -21,9 +21,19 @@ each nucleotide with its complement:
 ## Hints
 For this exercise the following F# feature comes in handy:
 - [Match Expressions](https://fsharpforfunandprofit.com/posts/match-expression/) While this can be solved using a dictionary, using a match expression is more idiomatic.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
-Rosalind [http://rosalind.info/problems/rna](http://rosalind.info/problems/rna)
+Hyperphysics [http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html](http://hyperphysics.phy-astr.gsu.edu/hbase/Organic/transcription.html)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

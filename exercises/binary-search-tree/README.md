@@ -52,6 +52,16 @@ And if we then added 1, 5, and 7, it would look like this
       2       6
      / \     / \
     1   3   5   7
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Josh Cheek [https://twitter.com/josh_cheek](https://twitter.com/josh_cheek)

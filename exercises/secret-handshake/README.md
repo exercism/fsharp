@@ -6,7 +6,7 @@
 You and your fellow cohort of those in the "know" when it comes to
 binary decide to come up with a secret "handshake".
 
-```
+```text
 1 = wink
 10 = double blink
 100 = close your eyes
@@ -27,6 +27,16 @@ Given the input 19, the function would return the array
 ["double blink", "wink"] because 19 is 10011 in binary.
 Notice that the addition of 16 (10000 in binary)
 has caused the array to be reversed.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Bert, in Mary Poppins [http://www.imdb.com/title/tt0058331/quotes/qt0437047](http://www.imdb.com/title/tt0058331/quotes/qt0437047)

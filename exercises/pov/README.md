@@ -1,14 +1,12 @@
-# Pov
+# POV
 
 Reparent a graph on a selected node.
-
-# Tree Reparenting
 
 This exercise is all about re-orientating a graph to see things from a different
 point of view. For example family trees are usually presented from the
 ancestor's perspective:
 
-```
+```text
     +------0------+
     |      |      |
   +-1-+  +-2-+  +-3-+
@@ -20,7 +18,7 @@ But the same information can be presented from the perspective of any other node
 in the graph, by pulling it up to the root and dragging its relationships along
 with it. So the same graph from 6's perspective would look like:
 
-```
+```text
         6
         |
   +-----2-----+
@@ -38,6 +36,16 @@ a different leaf node) can be seen to follow the path 6-2-0-3-9
 
 This exercise involves taking an input graph and re-orientating it from the point
 of view of one of the nodes.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Adaptation of exercise from 4clojure [https://www.4clojure.com/](https://www.4clojure.com/)

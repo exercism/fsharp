@@ -5,13 +5,15 @@ that matrix.
 
 So given a string with embedded newlines like:
 
-> 9 8 7  
-> 5 3 2  
-> 6 6 7  
+```text
+9 8 7
+5 3 2
+6 6 7
+```
 
 representing this matrix:
 
-```plain
+```text
     0  1  2
   |---------
 0 | 9  8  7
@@ -37,6 +39,16 @@ And its columns:
 - 9, 5, 6
 - 8, 3, 6
 - 7, 2, 7
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 Warmup to the `saddle-points` warmup. [http://jumpstartlab.com](http://jumpstartlab.com)

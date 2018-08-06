@@ -19,6 +19,16 @@ Convert a number to a string, the contents of which depend on the number's facto
 
 ## Hints
 - Think of this in a generic way. If you're familiar with the (fizz buzz)[https://en.wikipedia.org/wiki/Fizz_buzz] problem this is similar except there are three conditions instead of two. How would you implement this knowing that one day we might want to extend to four, five, or even ten types of raindrops?
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Source
 
 A variation on a famous interview question intended to weed out potential candidates. [http://jumpstartlab.com](http://jumpstartlab.com)

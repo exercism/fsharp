@@ -14,5 +14,14 @@ It would be helpful if you made notes of what you did in your refactoring in
 comments so reviewers can see that, but it isn't strictly necessary. The most
 important thing is to make the code better!
 
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
