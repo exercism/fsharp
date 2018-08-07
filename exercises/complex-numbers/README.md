@@ -1,4 +1,4 @@
-# Complex numbers
+# Complex Numbers
 
 A complex number is a number in the form `a + b * i` where `a` and `b` are real and `i` satisfies `i^2 = -1`.
 
@@ -19,10 +19,7 @@ The reciprocal of a non-zero complex number is
 Dividing a complex number `a + i * b` by another `c + i * d` gives:
 `(a + i * b) / (c + i * d) = (a * c + b * d)/(c^2 + d^2) + (b * c - a * d)/(c^2 + d^2) * i`.
 
-Exponent of a complex number can be expressed as
-`exp(a + i * b) = exp(a) * exp(i * b)`,
-and the last term is given by Euler's formula `exp(i * b) = cos(b) + i * sin(b)`.
-
+Raising e to a complex exponent can be expressed as `e^(a + i * b) = e^a * e^(i * b)`, the last term of which is given by Euler's formula `e^(i * b) = cos(b) + i * sin(b)`.
 
 Implement the following operations:
  - addition, subtraction, multiplication and division of two complex numbers,
@@ -30,6 +27,19 @@ Implement the following operations:
 
 
 Assume the programming language you are using does not have an implementation of complex numbers.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
+
+## Source
+
+Wikipedia [https://en.wikipedia.org/wiki/Complex_number](https://en.wikipedia.org/wiki/Complex_number)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

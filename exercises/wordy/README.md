@@ -2,7 +2,6 @@
 
 Parse and evaluate simple math word problems returning the answer as an integer.
 
-
 ## Iteration 1 — Addition
 
 Add two numbers together.
@@ -12,7 +11,6 @@ Add two numbers together.
 Evaluates to 18.
 
 Handle large numbers and negative numbers.
-
 
 ## Iteration 2 — Subtraction, Multiplication and Division
 
@@ -30,7 +28,6 @@ Now, perform the other three operations.
 
 5
 
-
 ## Iteration 3 — Multiple Operations
 
 Handle a set of operations, in sequence.
@@ -46,7 +43,6 @@ left-to-right, _ignoring the typical order of operations._
 
 15  (i.e. not 9)
 
-
 ## Bonus — Exponentials
 
 If you'd like, handle exponentials.
@@ -55,10 +51,19 @@ If you'd like, handle exponentials.
 
 32
 
-
 ## Hints
 - To parse the text, you could try to use the [FParsec](http://www.quanttec.com/fparsec/tutorial.html) library.
 - As an exercise, you could try to represent a question as an [Abstract Syntax Tree](https://en.wikipedia.org/wiki/Abstract_syntax_tree).
+
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
 

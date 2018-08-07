@@ -25,12 +25,20 @@ Keep your hands off that collect/map/fmap/whatchamacallit functionality
 provided by your standard library!
 Solve this one yourself using other basic tools instead.
 
-Lisp specific: it's perfectly fine to use `MAPCAR` or the equivalent,
-as this is idiomatic Lisp, not a library function.
-
 ## Hints
 For this exercise the following F# feature comes in handy:
 - [Tail recursion](https://blogs.msdn.microsoft.com/fsharpteam/2011/07/08/tail-calls-in-f/) Prevent stack overflows with large input by using tail recursion. While there are no test cases checking explicitly for this, using tail recursion leads to a more performant solution. Another good resource on tail recursion is [this blog post](http://blog.ploeh.dk/2015/12/22/tail-recurse/).
+- [Type inference](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/generics/#implicitly-generic-constructs) The F# compiler can automatically infer types, which means you often don't have to add any types at all. For more information on how this works and its advantages, see [this page](https://fsharpforfunandprofit.com/posts/type-inference/).
+
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
 

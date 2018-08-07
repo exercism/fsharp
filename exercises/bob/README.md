@@ -8,9 +8,21 @@ He answers 'Whoa, chill out!' if you yell at him.
 
 He answers 'Calm down, I know what I'm doing!' if you yell a question at him.
 
-He says 'Fine. Be that way!' if you address him without actually saying anything.
+He says 'Fine. Be that way!' if you address him without actually saying
+anything.
 
 He answers 'Whatever.' to anything else.
+
+Bob's conversational partner is a purist when it comes to written communication and always follows normal rules regarding sentence punctuation in English.
+
+## Running the tests
+
+To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Further information
+
+For more detailed information about the F# track, including how to get help if
+you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
 ## Source
 
