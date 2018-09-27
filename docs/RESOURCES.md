@@ -3,6 +3,7 @@
 ### Blogs
 * Sergey Tihon's [F# Weekly blog](https://sergeytihon.wordpress.com/) is a weekly-updated website that lists recent F# news and articles.
 * Mark Seemann's [blog](http://blog.ploeh.dk/) also has lots of interesting F# articles, usually focusing on how to design your application.
+* Scott Wlaschin's [F# for fun and profit](https://fsharpforfunandprofit.com/) is a blog for experienced developers. He describes complex patterns and concepts clearly and with a good sense of humor. Also, check out his talks on F# and functional programming topics.
 
 ### Social media
 * [StackOverflow ](http://stackoverflow.com/questions/tagged/f%23) can be used to search for your problem and see if it has been answered already. You can also ask and answer questions.
