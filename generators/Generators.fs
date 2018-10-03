@@ -1496,27 +1496,19 @@ type Wordy() =
 type Yacht() =
     inherit GeneratorExercise()
 
-    let dieValueToEnumName = function
-        | 1 -> "One"
-        | 2 -> "Two"
-        | 3 -> "Three"
-        | 4 -> "Four"
-        | 5 -> "Five"
-        | 6 -> "Six"
+    let renderDieEnum = function
+        | 1 -> "Die.One"
+        | 2 -> "Die.Two"
+        | 3 -> "Die.Three"
+        | 4 -> "Die.Four"
+        | 5 -> "Die.Five"
+        | 6 -> "Die.Six"
         | n -> failwith ("Invalid die value: " + n.ToString())
 
-    let formatDieList (value: JToken) =
-        let listValues = 
-            value.ToObject<int list>()
-            |> List.map dieValueToEnumName
-            |> List.map (Obj.renderEnum "Die")
-            |> String.concat "; "
-        in
-        "[" + listValues + "]"
     override __.RenderInput (canonicalDataCase, key, value) =
         match key with
         | "category" -> Obj.renderEnum "Category" value
-        | "dice" -> formatDieList value
+        | "dice" -> List.mapRender renderDieEnum (value.ToObject<int list>())
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
 type ZebraPuzzle() =
