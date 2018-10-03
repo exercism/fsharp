@@ -14,6 +14,21 @@ type Category =
     | Choice
     | Yacht
 
+type DieValue =
+    | One 
+    | Two 
+    | Three
+    | Four 
+    | Five 
+    | Six
+    static member eval = function
+        | One -> 1 
+        | Two -> 2 
+        | Three -> 3
+        | Four -> 4 
+        | Five -> 5 
+        | Six -> 6
+
 let private diceWithCount dice = 
     dice
     |> List.countBy id
@@ -24,39 +39,39 @@ let private valueScore value dice =
         dice 
         |> List.filter ((=) value) 
         |> List.length 
-    count * value
+    count * (DieValue.eval value)
 
 let private fullHouseScore dice =
     match diceWithCount dice with
-    | [(_, 3); (_, 2)] -> List.sum dice
+    | [(_, 3); (_, 2)] -> (List.sumBy DieValue.eval dice)
     | _ -> 0
 
 let private fourOfAKindScore dice =
     match diceWithCount dice with
-    | [(value, 4); _] -> value * 4
-    | [(value, 5)]    -> value * 4
+    | [(d, 4); _] -> (DieValue.eval d) * 4
+    | [(d, 5)]    -> (DieValue.eval d) * 4
     | _ -> 0
 
 let private littleStraightScore dice =
-    if List.sort dice = [1; 2; 3; 4; 5] then 30 else 0
+    if List.sort dice = [One; Two; Three; Four; Five] then 30 else 0
 
 let private bigStraightScore dice =
-    if List.sort dice = [2; 3; 4; 5; 6] then 30 else 0
+    if List.sort dice = [Two; Three; Four; Five; Six] then 30 else 0
 
 let private choiceScore dice = 
-    List.sum dice
+    List.sumBy DieValue.eval dice 
 
 let private yachtScore dice = 
     if dice |> List.distinct |> List.length = 1 then 50 else 0
 
 let score category dice = 
     match category with
-    | Ones           -> valueScore 1 dice
-    | Twos           -> valueScore 2 dice
-    | Threes         -> valueScore 3 dice
-    | Fours          -> valueScore 4 dice
-    | Fives          -> valueScore 5 dice
-    | Sixes          -> valueScore 6 dice
+    | Ones           -> valueScore One dice
+    | Twos           -> valueScore Two dice
+    | Threes         -> valueScore Three dice
+    | Fours          -> valueScore Four dice
+    | Fives          -> valueScore Five dice
+    | Sixes          -> valueScore Six dice
     | FullHouse      -> fullHouseScore dice
     | FourOfAKind    -> fourOfAKindScore dice
     | LittleStraight -> littleStraightScore dice

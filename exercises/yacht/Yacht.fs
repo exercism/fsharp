@@ -14,4 +14,12 @@ type Category =
     | Choice
     | Yacht
 
+type DieValue =
+    | One 
+    | Two 
+    | Three
+    | Four 
+    | Five 
+    | Six
+
 let score category dice = failwith "You need to implement this function."
