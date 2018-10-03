@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module BobTest
 
@@ -48,11 +48,11 @@ let ``Shouting numbers`` () =
     response "1, 2, 3 GO!" |> should equal "Whoa, chill out!"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Only numbers`` () =
+let ``No letters`` () =
     response "1, 2, 3" |> should equal "Whatever."
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Question with only numbers`` () =
+let ``Question with no letters`` () =
     response "4?" |> should equal "Sure."
 
 [<Fact(Skip = "Remove to run test")>]
@@ -61,7 +61,7 @@ let ``Shouting with special characters`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Shouting with no exclamation mark`` () =
-    response "I HATE YOU" |> should equal "Whoa, chill out!"
+    response "I HATE THE DMV" |> should equal "Whoa, chill out!"
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Statement containing question mark`` () =
@@ -89,7 +89,7 @@ let ``Alternate silence`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple line question`` () =
-    response "\nDoes this cryogenic chamber make me look fat?\nno" |> should equal "Whatever."
+    response "\nDoes this cryogenic chamber make me look fat?\nNo." |> should equal "Whatever."
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Starting with whitespace`` () =
