@@ -49,16 +49,22 @@ let ``64`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Square 0 raises an exception`` () =
-    let expected: Result<uint64,string> = Error "Invalid input"
+    let expected: Result<uint64,string> = Ok {
+  "error": "square must be between 1 and 64"
+}UL
     square 0 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Negative square raises an exception`` () =
-    let expected: Result<uint64,string> = Error "Invalid input"
+    let expected: Result<uint64,string> = Ok {
+  "error": "square must be between 1 and 64"
+}UL
     square -1 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Square greater than 64 raises an exception`` () =
-    let expected: Result<uint64,string> = Error "Invalid input"
+    let expected: Result<uint64,string> = Ok {
+  "error": "square must be between 1 and 64"
+}UL
     square 65 |> should equal expected
 
