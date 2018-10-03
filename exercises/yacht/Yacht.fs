@@ -14,7 +14,7 @@ type Category =
     | Choice
     | Yacht
 
-type DieValue =
+type Die =
     | One 
     | Two 
     | Three

@@ -14,7 +14,7 @@ type Category =
     | Choice
     | Yacht
 
-type DieValue =
+type Die =
     | One 
     | Two 
     | Three
@@ -39,17 +39,17 @@ let private valueScore value dice =
         dice 
         |> List.filter ((=) value) 
         |> List.length 
-    count * (DieValue.eval value)
+    count * (Die.eval value)
 
 let private fullHouseScore dice =
     match diceWithCount dice with
-    | [(_, 3); (_, 2)] -> (List.sumBy DieValue.eval dice)
+    | [(_, 3); (_, 2)] -> (List.sumBy Die.eval dice)
     | _ -> 0
 
 let private fourOfAKindScore dice =
     match diceWithCount dice with
-    | [(d, 4); _] -> (DieValue.eval d) * 4
-    | [(d, 5)]    -> (DieValue.eval d) * 4
+    | [(d, 4); _] -> (Die.eval d) * 4
+    | [(d, 5)]    -> (Die.eval d) * 4
     | _ -> 0
 
 let private littleStraightScore dice =
@@ -59,7 +59,7 @@ let private bigStraightScore dice =
     if List.sort dice = [Two; Three; Four; Five; Six] then 30 else 0
 
 let private choiceScore dice = 
-    List.sumBy DieValue.eval dice 
+    List.sumBy Die.eval dice 
 
 let private yachtScore dice = 
     if dice |> List.distinct |> List.length = 1 then 50 else 0

@@ -1509,7 +1509,7 @@ type Yacht() =
         let listValues = 
             value.ToObject<int list>()
             |> List.map dieValueToEnumName
-            |> List.map (Obj.renderEnum "DieValue")
+            |> List.map (Obj.renderEnum "Die")
             |> String.concat "; "
         in
         "[" + listValues + "]"
