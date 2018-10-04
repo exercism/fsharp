@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.2.1 of the canonical data.
+// This file was auto-generated based on version 2.3.0 of the canonical data.
 
 module ClockTest
 
@@ -270,5 +270,11 @@ let ``Clocks with negative hours and minutes`` () =
 let ``Clocks with negative hours and minutes that wrap`` () =
     let clock1 = create 18 7
     let clock2 = create -54 -11513
+    clock1 = clock2 |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Full clock and zeroed clock`` () =
+    let clock1 = create 24 0
+    let clock2 = create 0 0
     clock1 = clock2 |> should equal true
 
