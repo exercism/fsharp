@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module MarkdownTest
 
@@ -59,5 +59,23 @@ let ``Unordered lists`` () =
 let ``With a little bit of everything`` () =
     let markdown = "# Header!\n* __Bold Item__\n* _Italic Item_"
     let expected = "<h1>Header!</h1><ul><li><strong>Bold Item</strong></li><li><em>Italic Item</em></li></ul>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``With markdown symbols in the header text that should not be interpreted`` () =
+    let markdown = "# This is a header with # and * in the text"
+    let expected = "<h1>This is a header with # and * in the text</h1>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``With markdown symbols in the list item text that should not be interpreted`` () =
+    let markdown = "* Item 1 with a # in the text\n* Item 2 with * in the text"
+    let expected = "<ul><li>Item 1 with a # in the text</li><li>Item 2 with * in the text</li></ul>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``With markdown symbols in the paragraph text that should not be interpreted`` () =
+    let markdown = "This is a paragraph with # and * in the text"
+    let expected = "<p>This is a paragraph with # and * in the text</p>"
     parse markdown |> should equal expected
 
