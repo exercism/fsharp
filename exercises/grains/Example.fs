@@ -4,7 +4,7 @@ open System.Numerics
 
 let square (n:int) = 
     if n <= 0 || n > 64 then 
-        Error "Invalid input"
+        Error "square must be between 1 and 64"
     else
         Ok (2I ** (n - 1) |> uint64)
 
