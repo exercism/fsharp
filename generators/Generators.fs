@@ -1235,7 +1235,7 @@ type Say() =
 
     override __.RenderExpected (_, _, value) =
         value 
-        |> Option.ofNonNegativeNumber
+        |> Option.ofNonErrorObject
         |> Option.renderParenthesized
 
     override __.RenderInput (_, _, value) = sprintf "%sL" (string value)
