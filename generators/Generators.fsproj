@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,17 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.2.1" />    
-    <PackageReference Include="DotLiquid" Version="2.0.262" />
-    <PackageReference Include="Humanizer" Version="2.3.3" />
+    <PackageReference Include="CommandLineParser" Version="2.3.0" />
+    <PackageReference Include="DotLiquid" Version="2.0.298" />
+    <PackageReference Include="Humanizer" Version="2.5.1" />
     <PackageReference Include="LibGit2Sharp.Portable" Version="0.24.10" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="serilog" Version="2.7.1" />
     <PackageReference Include="serilog.sinks.literate" Version="3.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="FSharp.Core" Version="4.3.4" />
   </ItemGroup>
 
 </Project>
