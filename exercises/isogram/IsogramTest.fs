@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.4.0 of the canonical data.
+// This file was auto-generated based on version 1.6.0 of the canonical data.
 
 module IsogramTest
 
@@ -32,6 +32,10 @@ let ``Word with duplicated character in mixed case`` () =
     isIsogram "Alphabet" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
+let ``Word with duplicated character in mixed case, lowercase first`` () =
+    isIsogram "alphAbet" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
 let ``Hypothetical isogrammic word with hyphen`` () =
     isIsogram "thumbscrew-japingly" |> should equal true
 
@@ -46,4 +50,8 @@ let ``Made-up name that is an isogram`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Duplicated character in the middle`` () =
     isIsogram "accentor" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Same first and last characters`` () =
+    isIsogram "angola" |> should equal false
 
