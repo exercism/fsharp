@@ -58,16 +58,19 @@ let private regenerateTestClasses options =
 let private checkOutdated options =
     Log.Information("Checking for outdated test classes...")
     
+    let parseCanonicalData' = parseCanonicalData options
+    
     let e = createExercises options
     e |> List.iter (fun ex ->
         match ex with
         | Generator g -> 
             let what = g.Properties
             printfn "generator test: %s" g.Name
+            let cData = parseCanonicalData' g.Name
+            printfn "cdata version %s" cData.Version
         | _ -> ()
 //        printfn "%s %s" ex.
     )
-    let parseCanonicalData' = parseCanonicalData options
     ()
     
 

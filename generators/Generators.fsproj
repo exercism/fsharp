@@ -28,4 +28,18 @@
     <PackageReference Include="serilog.sinks.literate" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Templates\Generators\_GrepSetup.liquid" />
+    <Content Include="Templates\_AssertEmpty.liquid" />
+    <Content Include="Templates\_AssertEqual.liquid" />
+    <Content Include="Templates\_AssertEqualWithin.liquid" />
+    <Content Include="Templates\_AssertThrows.liquid" />
+    <Content Include="Templates\_TestClass.liquid" />
+    <Content Include="Templates\_TestFunction.liquid" />
+    <Content Include="Templates\_TestFunctionBody.liquid" />
+    <Content Include="Templates\_TestMember.liquid" />
+    <Content Include="Templates\_TestMemberBody.liquid" />
+    <Content Include="Templates\_TestModule.liquid" />
+  </ItemGroup>
+
 </Project>
