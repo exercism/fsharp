@@ -50,7 +50,7 @@ let private regenerateTestClasses options =
     createExercises options
     |> List.filter (shouldBeIncluded options)
     |> function
-        | [] -> Log.Error "No exercises matched given options."
+        | [] -> Log.Warning"No exercises matched given options."
         | exercises ->
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
