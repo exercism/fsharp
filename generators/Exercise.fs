@@ -57,9 +57,18 @@ type GeneratorExercise() =
         |> this.MapCanonicalData
         |> this.Render  
         |> this.WriteToFile
+        
+    member this.ReadVersion () =
+        let testFilePath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
+        // todo: handle absent test
+        
+        // This file was auto-generated based on version 1.2.0 of the canonical data.
+        let line = (File.ReadLines testFilePath) |> Seq.head
+        let isNum c = c >= '0' && c <= '9'
+        let version = line |> String.split " " |> Seq.find (fun s -> s.[0] |> isNum) 
+        version
 
     // Allow changes in canonical data    
-
     member this.MapCanonicalData canonicalData = 
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 

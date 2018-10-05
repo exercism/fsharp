@@ -68,8 +68,9 @@ let private checkOutdated options =
             printfn "generator test: %s" g.Name
             let cData = parseCanonicalData' g.Name
             printfn "cdata version %s" cData.Version
+            let ver = g.ReadVersion ()
+            printfn "exercise version %s" ver
         | _ -> ()
-//        printfn "%s %s" ex.
     )
     ()
     
