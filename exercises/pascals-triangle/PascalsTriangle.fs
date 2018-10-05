@@ -1,3 +1,3 @@
 ﻿module PascalsTriangle
 
-let rows numberOfRows : int list list option = failwith "You need to implement this function."
+let rows numberOfRows : int list list = failwith "You need to implement this function."

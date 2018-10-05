@@ -839,22 +839,13 @@ type PascalsTriangle() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, _, value) = 
-        match value.Type with
-        | JTokenType.Array  ->
-            let formattedList = List.renderMultiLine value
-
-            if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s" formattedList (String.indent 2 "|> Some")
-            else   
-                sprintf "%s |> Some" formattedList
-        | _ -> "None"
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
     override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match key, value.Type with 
         | "expected", JTokenType.Array ->
             match Seq.isEmpty value with 
-            | true  -> Some "int list list option"
+            | true  -> Some "int list list"
             | false -> None    
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 
