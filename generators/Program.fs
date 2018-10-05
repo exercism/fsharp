@@ -49,12 +49,11 @@ let private regenerateTestClasses options =
     
     createExercises options
     |> List.filter (shouldBeIncluded options)
-    |> (function
-        | [] -> failwith "no exercises matched given options"
-        | x -> x )
-    |> List.iter regenerateTestClass'
-
-    Log.Information("Re-generated test classes.")
+    |> function
+        | [] -> Log.Error "No exercises matched given options."
+        | x ->
+            List.iter regenerateTestClass' x
+            Log.Information("Re-generated test classes.")
 
 [<EntryPoint>]
 let main argv = 
