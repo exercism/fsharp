@@ -49,6 +49,9 @@ let private regenerateTestClasses options =
     
     createExercises options
     |> List.filter (shouldBeIncluded options)
+    |> (function
+        | [] -> failwith "no exercises matched given options"
+        | x -> x )
     |> List.iter regenerateTestClass'
 
     Log.Information("Re-generated test classes.")
