@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.5.0 of the canonical data.
 
 module PascalsTriangleTest
 
@@ -82,9 +82,4 @@ let ``Ten rows`` () =
           [1; 9; 36; 84; 126; 126; 84; 36; 9; 1] ]
         |> Some
     rows 10 |> should equal expected
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Negative rows`` () =
-    let expected = None
-    rows -1 |> should equal expected
 
