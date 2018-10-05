@@ -80,6 +80,11 @@ type BeerSong() =
 type BinarySearch() = 
     inherit GeneratorExercise()
 
+    let nonNegativeNumberFromNonErrorObject value =
+        match Option.ofNonErrorObject value with 
+        | None -> None
+        | _ -> Option.ofNonNegativeNumber value
+    
     override __.PropertiesWithIdentifier _ = ["array"; "value"; "expected"]
 
     override __.RenderValue (canonicalDataCase, key, value) =
@@ -87,7 +92,7 @@ type BinarySearch() =
         | "array" -> Array.render value
         | "expected" ->
             value
-            |> Option.ofNonNegativeNumber
+            |> nonNegativeNumberFromNonErrorObject
             |> Option.render
         | _ ->
             base.RenderValue (canonicalDataCase, key, value)
