@@ -55,11 +55,30 @@ let private regenerateTestClasses options =
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
 
+let private checkOutdated options =
+    Log.Information("Checking for outdated test classes...")
+    
+    let e = createExercises options
+    e |> List.iter (fun ex ->
+        match ex with
+        | Generator g -> 
+            let what = g.Properties
+            printfn "generator test: %s" g.Name
+        | _ -> ()
+//        printfn "%s %s" ex.
+    )
+    let parseCanonicalData' = parseCanonicalData options
+    ()
+    
+
 [<EntryPoint>]
 let main argv = 
     Logging.setupLogger()
 
     match parseOptions argv with
+    | Ok(options) when options.CheckOutdated ->
+        checkOutdated options
+        0
     | Ok(options) -> 
         regenerateTestClasses options
         0

@@ -19,13 +19,16 @@ type CommandLineOptions =
       [<Option('d', "canonicaldatadirectory", Required = false, 
         HelpText = "Canonical data directory. If the directory does not exist, the canonical data will be downloaded.")>] CanonicalDataDirectory : string;
       [<Option('c', "cachecanonicaldata", Required = false,
-        HelpText = "Use the cached canonical data and don't update the data.")>] CacheCanonicalData : bool; }
+        HelpText = "Use the cached canonical data and don't update the data.")>] CacheCanonicalData : bool; 
+      [<Option('o', "outdated", Required = false,
+        HelpText = "Check for outdated exercises")>] CheckOutdated: bool; }
 
 type Options =
     { Exercise : string option
       Status : Status option
       CanonicalDataDirectory : string
-      CacheCanonicalData : bool }
+      CacheCanonicalData : bool
+      CheckOutdated: bool }
 
 let private normalizeCanonicalDataDirectory canonicalDataDirectory = 
     if not (String.IsNullOrWhiteSpace(canonicalDataDirectory)) then
@@ -57,7 +60,8 @@ let private mapOptions (options: CommandLineOptions) =
     { Exercise = normalizeExercise options.Exercise
       Status = normalizeStatus options.Status
       CanonicalDataDirectory = normalizeCanonicalDataDirectory options.CanonicalDataDirectory
-      CacheCanonicalData = options.CacheCanonicalData }
+      CacheCanonicalData = options.CacheCanonicalData
+      CheckOutdated = options.CheckOutdated }
 
 let parseOptions argv =  
     let result = CommandLine.Parser.Default.ParseArguments<CommandLineOptions>(argv)
