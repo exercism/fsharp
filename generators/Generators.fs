@@ -82,8 +82,8 @@ type BinarySearch() =
 
     let nonNegativeNumberFromNonErrorObject value =
         match Option.ofNonErrorObject value with 
-            | None -> None
-            | _ -> Option.ofNonNegativeNumber value
+        | None -> None
+        | _ -> Option.ofNonNegativeNumber value
     
     override __.PropertiesWithIdentifier _ = ["array"; "value"; "expected"]
 
