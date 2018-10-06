@@ -628,10 +628,10 @@ type Grains() =
 
     override __.IdentifierTypeAnnotation (_, _, _) = Some "Result<uint64,string>"
 
-    override __.RenderExpected (_, _, value) = 
-        match string value with
-        | "-1" -> "Error \"Invalid input\""
-        | x    -> sprintf "Ok %sUL" x
+    override __.RenderExpected (_, _, value) =
+        match value.SelectToken "error" with
+        | null  -> sprintf "Ok %sUL" (string value)
+        | error -> sprintf "Error \"%s\"" (string error)
 
 type Grep() =
     inherit GeneratorExercise()
