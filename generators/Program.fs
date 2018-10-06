@@ -55,23 +55,48 @@ let private regenerateTestClasses options =
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
 
+type ExerciseVersionStatus =
+        | UpToDate
+        | OutDated of string * string * string
+        
 let private checkOutdated options =
     Log.Information("Checking for outdated test classes...")
     
     let parseCanonicalData' = parseCanonicalData options
     
     let e = createExercises options
-    e |> List.iter (fun ex ->
+    let gens = e |> List.choose (fun ex ->
         match ex with
-        | Generator g -> 
-            let what = g.Properties
-            printfn "generator test: %s" g.Name
-            let cData = parseCanonicalData' g.Name
-            printfn "cdata version %s" cData.Version
-            let ver = g.ReadVersion ()
-            printfn "exercise version %s" ver
-        | _ -> ()
+        | Generator g -> Some g
+        | _ -> None
     )
+    let results = gens |> List.map (fun ge ->
+        let cData = parseCanonicalData' ge.Name
+//            printfn "cdata version %s" cData.Version
+        let cDataVersion = cData.Version
+        let exerciseVersion = ge.ReadVersion ()
+        
+        match cDataVersion,exerciseVersion with
+        | c,e when c.Equals e -> UpToDate
+        | c,e when c.Equals(e) |> not -> OutDated (ge.Name,c,e)
+        
+    )
+    let numUpToDate = results |> List.where (fun s -> s = UpToDate) |> List.length
+    printfn "%d exercises up to date." numUpToDate
+    let outdated = results |> List.choose (fun s ->
+        match s with 
+        | OutDated (x,y,z) -> Some (x,y,z)
+        | UpToDate -> None
+    )
+    printfn "%d exercises outdated / mismatched:" outdated.Length
+    
+    let colLen = outdated |> List.map (fun (a,_,_) -> a.Length) |> List.max
+    outdated |> List.iter (fun (a,b,c) ->
+        let indent = colLen - a.Length + 2
+        let pad = String.replicate indent " "
+        printfn "%s%s%s -> %s" a pad c b
+    )
+    
     ()
     
 
