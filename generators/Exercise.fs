@@ -46,8 +46,12 @@ type GeneratorExercise() =
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
+        
+    member this.TestFilePath () =
+        Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
+        
     member this.WriteToFile contents =
-        let testFilePath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
+        let testFilePath = this.TestFilePath ()
 
         Directory.CreateDirectory(Path.GetDirectoryName(testFilePath)) |> ignore
         File.WriteAllText(testFilePath, contents)
@@ -59,14 +63,17 @@ type GeneratorExercise() =
         |> this.WriteToFile
         
     member this.ReadVersion () =
-        let testFilePath = Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
-        // todo: handle absent test
-        
-        // This file was auto-generated based on version 1.2.0 of the canonical data.
-        let line = (File.ReadLines testFilePath) |> Seq.head
+        (*
+            Read from the top of the file e.g.
+            "// This file was auto-generated based on version 1.2.0 of the canonical data."
+        *)
         let isNum c = c >= '0' && c <= '9'
-        let version = line |> String.split " " |> Seq.find (fun s -> s.[0] |> isNum) 
-        version
+        
+        this.TestFilePath ()
+        |> File.ReadLines
+        |> Seq.head
+        |> String.split " "
+        |> Seq.find (fun s -> s.[0] |> isNum)
 
     // Allow changes in canonical data    
     member this.MapCanonicalData canonicalData = 
