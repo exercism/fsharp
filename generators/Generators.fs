@@ -80,6 +80,11 @@ type BeerSong() =
 type BinarySearch() = 
     inherit GeneratorExercise()
 
+    let nonNegativeNumberFromNonErrorObject value =
+        match Option.ofNonErrorObject value with 
+        | None -> None
+        | _ -> Option.ofNonNegativeNumber value
+    
     override __.PropertiesWithIdentifier _ = ["array"; "value"; "expected"]
 
     override __.RenderValue (canonicalDataCase, key, value) =
@@ -87,7 +92,7 @@ type BinarySearch() =
         | "array" -> Array.render value
         | "expected" ->
             value
-            |> Option.ofNonNegativeNumber
+            |> nonNegativeNumberFromNonErrorObject
             |> Option.render
         | _ ->
             base.RenderValue (canonicalDataCase, key, value)
@@ -623,10 +628,10 @@ type Grains() =
 
     override __.IdentifierTypeAnnotation (_, _, _) = Some "Result<uint64,string>"
 
-    override __.RenderExpected (_, _, value) = 
-        match string value with
-        | "-1" -> "Error \"Invalid input\""
-        | x    -> sprintf "Ok %sUL" x
+    override __.RenderExpected (_, _, value) =
+        match value.SelectToken "error" with
+        | null  -> sprintf "Ok %sUL" (string value)
+        | error -> sprintf "Error \"%s\"" (string error)
 
 type Grep() =
     inherit GeneratorExercise()
@@ -834,22 +839,13 @@ type PascalsTriangle() =
 
     override __.PropertiesWithIdentifier _ = ["expected"]
 
-    override __.RenderExpected (_, _, value) = 
-        match value.Type with
-        | JTokenType.Array  ->
-            let formattedList = List.renderMultiLine value
-
-            if (formattedList.Contains("\n")) then
-                sprintf "%s\n%s" formattedList (String.indent 2 "|> Some")
-            else   
-                sprintf "%s |> Some" formattedList
-        | _ -> "None"
+    override __.RenderExpected (_, _, value) = List.renderMultiLine value
 
     override __.IdentifierTypeAnnotation (canonicalDataCase, key, value) = 
         match key, value.Type with 
         | "expected", JTokenType.Array ->
             match Seq.isEmpty value with 
-            | true  -> Some "int list list option"
+            | true  -> Some "int list list"
             | false -> None    
         | _ -> base.IdentifierTypeAnnotation (canonicalDataCase, key, value)       
 

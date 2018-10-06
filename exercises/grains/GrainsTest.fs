@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module GrainsTest
 
@@ -49,16 +49,16 @@ let ``64`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Square 0 raises an exception`` () =
-    let expected: Result<uint64,string> = Error "Invalid input"
+    let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square 0 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Negative square raises an exception`` () =
-    let expected: Result<uint64,string> = Error "Invalid input"
+    let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square -1 |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Square greater than 64 raises an exception`` () =
-    let expected: Result<uint64,string> = Error "Invalid input"
+    let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square 65 |> should equal expected
 
