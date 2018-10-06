@@ -3,6 +3,7 @@
 open Serilog
 open Exercise
 open CanonicalData
+open Generators
 open Options
 
 let private isNotFilteredByName options (exercise: Exercise) =
@@ -64,37 +65,37 @@ let private checkOutdated options =
     
     let parseCanonicalData' = parseCanonicalData options
     
-    let e = createExercises options
-    let gens = e |> List.choose (fun ex ->
-        match ex with
-        | Generator g -> Some g
-        | _ -> None
-    )
-    let results = gens |> List.map (fun ge ->
-        let cData = parseCanonicalData' ge.Name
-//            printfn "cdata version %s" cData.Version
-        let cDataVersion = cData.Version
-        let exerciseVersion = ge.ReadVersion ()
-        
-        match cDataVersion,exerciseVersion with
-        | c,e when c.Equals e -> UpToDate
-        | c,e when c.Equals(e) |> not -> OutDated (ge.Name,c,e)
-        
-    )
+    let results = 
+        createExercises options
+        |> List.choose (function
+                            | Generator g -> Some g
+                            | _ -> None )
+        |> List.map (fun exercise ->
+            let cData = parseCanonicalData' exercise.Name
+            
+            match cData.Version,exercise.ReadVersion() with
+            | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> UpToDate
+            | canonVersion,exerciseVersion -> OutDated (exercise.Name,canonVersion,exerciseVersion)
+        )
+    
     let numUpToDate = results |> List.where (fun s -> s = UpToDate) |> List.length
-    printfn "%d exercises up to date." numUpToDate
+    
+    Log.Information (sprintf "%d exercises up to date." numUpToDate)
+    
     let outdated = results |> List.choose (fun s ->
         match s with 
         | OutDated (x,y,z) -> Some (x,y,z)
         | UpToDate -> None
     )
-    printfn "%d exercises outdated / mismatched:" outdated.Length
     
-    let colLen = outdated |> List.map (fun (a,_,_) -> a.Length) |> List.max
-    outdated |> List.iter (fun (a,b,c) ->
-        let indent = colLen - a.Length + 2
-        let pad = String.replicate indent " "
-        printfn "%s%s%s -> %s" a pad c b
+    Log.Information (sprintf "%d exercises outdated / mismatched:" outdated.Length)
+    
+    let longestNameLength = outdated |> List.map (fun (a,_,_) -> a.Length) |> List.max
+    
+    outdated |> List.iter (fun (name,canonVersion,exerciseVersion) ->
+        let numSpaces = longestNameLength - name.Length + 2
+        let indentation = String.replicate numSpaces " "
+        Log.Information (sprintf "%s%s%s -> %s" name indentation exerciseVersion canonVersion)
     )
     
     ()
