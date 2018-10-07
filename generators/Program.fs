@@ -75,9 +75,11 @@ let private summarizeExercise options (parseCanonicalData':string -> CanonicalDa
         "are deprecated", deprecated.Name
     | Exercise.Generator generator ->
         let cData = parseCanonicalData' generator.Name
+        
+        let indent = String.replicate (30-generator.Name.Length) " "
         match generator.ReadVersion (), cData.Version with
         | a,b when a.Equals b -> "are up to date",generator.Name
-        | a,b -> "are outdated",sprintf "%s (%s -> %s)" generator.Name a b
+        | a,b -> "are outdated",sprintf "%s%s(%s -> %s)" generator.Name indent a b
                              
 let private listExercises options =
     Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
@@ -90,12 +92,16 @@ let private listExercises options =
                         |> List.groupBy fst
     
     exercises |> List.iter (fun category ->
-        printfn "%d exercises %s:" (snd category).Length (fst category)
-        (snd category) |> List.iter (fun e ->
-            printfn "\t%s" (snd e)
-            ()
-        )
-        ()
+        let exList = snd category
+        Log.Information(sprintf "%d exercises %s:" exList.Length (fst category))
+        if fst category = "are outdated" then
+            exList |> List.iter (fun e -> Log.Information(sprintf " %s" (snd e)))
+        else
+            let s = exList |> List.map snd |> List.reduce (sprintf "%s, %s")
+            Log.Information(s)
+            
+        printfn ""
+        
     )
     
     ()
