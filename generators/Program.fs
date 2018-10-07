@@ -87,48 +87,48 @@ let private listExercises options =
         | exercises ->
             exercises |> List.iter (summarizeExercise options)
 
-type ExerciseVersionStatus =
-        | UpToDate
-        | OutDated of string * string * string
+//type ExerciseVersionStatus =
+//        | UpToDate
+//        | OutDated of string * string * string
         
-let private checkOutdated options parseCanonicalData' =
-    Log.Information("Checking for outdated test classes...")
-    
-    
-    let results = 
-        createExercises options
-        |> List.choose (function
-                            | Generator g -> Some g
-                            | _ -> None )
-        |> List.map (fun exercise ->
-            let cData = parseCanonicalData' exercise.Name
-            
-            match cData.Version,exercise.ReadVersion() with
-            | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> UpToDate
-            | canonVersion,exerciseVersion -> OutDated (exercise.Name,canonVersion,exerciseVersion)
-        )
-    
-    let numUpToDate = results |> List.where (fun s -> s = UpToDate) |> List.length
-    
-    Log.Information (sprintf "%d exercises up to date." numUpToDate)
-    
-    let outdated = results |> List.choose (fun s ->
-        match s with 
-        | OutDated (x,y,z) -> Some (x,y,z)
-        | UpToDate -> None
-    )
-    
-    Log.Information (sprintf "%d exercises outdated / mismatched:" outdated.Length)
-    
-    let longestNameLength = outdated |> List.map (fun (a,_,_) -> a.Length) |> List.max
-    
-    outdated |> List.iter (fun (name,canonVersion,exerciseVersion) ->
-        let numSpaces = longestNameLength - name.Length + 2
-        let indentation = String.replicate numSpaces " "
-        Log.Information (sprintf "%s%s%s -> %s" name indentation exerciseVersion canonVersion)
-    )
-    
-    ()
+//let private checkOutdated options parseCanonicalData' =
+//    Log.Information("Checking for outdated test classes...")
+//    
+//    
+//    let results = 
+//        createExercises options
+//        |> List.choose (function
+//                            | Generator g -> Some g
+//                            | _ -> None )
+//        |> List.map (fun exercise ->
+//            let cData = parseCanonicalData' exercise.Name
+//            
+//            match cData.Version,exercise.ReadVersion() with
+//            | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> UpToDate
+//            | canonVersion,exerciseVersion -> OutDated (exercise.Name,canonVersion,exerciseVersion)
+//        )
+//    
+//    let numUpToDate = results |> List.where (fun s -> s = UpToDate) |> List.length
+//    
+//    Log.Information (sprintf "%d exercises up to date." numUpToDate)
+//    
+//    let outdated = results |> List.choose (fun s ->
+//        match s with 
+//        | OutDated (x,y,z) -> Some (x,y,z)
+//        | UpToDate -> None
+//    )
+//    
+//    Log.Information (sprintf "%d exercises outdated / mismatched:" outdated.Length)
+//    
+//    let longestNameLength = outdated |> List.map (fun (a,_,_) -> a.Length) |> List.max
+//    
+//    outdated |> List.iter (fun (name,canonVersion,exerciseVersion) ->
+//        let numSpaces = longestNameLength - name.Length + 2
+//        let indentation = String.replicate numSpaces " "
+//        Log.Information (sprintf "%s%s%s -> %s" name indentation exerciseVersion canonVersion)
+//    )
+//    
+//    ()
     
 
 [<EntryPoint>]
