@@ -61,7 +61,7 @@ let private regenerateTestClasses options =
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
             
-let private summarizeExercise options (exercise:Exercise)  =
+let private summarizeExercise options (parseCanonicalData':string -> CanonicalData) (exercise:Exercise)  =
 
     match exercise with
     | Exercise.Custom custom ->
@@ -73,7 +73,12 @@ let private summarizeExercise options (exercise:Exercise)  =
     | Exercise.Deprecated deprecated ->
         Log.Warning("{Exercise}: deprecated", deprecated.Name)
     | Exercise.Generator generator ->
-        Log.Information("{Exercise}: ", generator.Name)
+        let cData = parseCanonicalData' generator.Name
+        let versionSummary = match cData.Version,generator.ReadVersion () with
+                             | a,b when a.Equals b -> "Up to date"
+                             | a,b -> sprintf "%s -> %s" a b
+                             
+        Log.Information("{Exercise}: {versionSummary}", generator.Name, versionSummary)
 
 let private listExercises options =
     Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
@@ -85,7 +90,7 @@ let private listExercises options =
     |> function
         | [] -> Log.Warning "No exercises matched given options."
         | exercises ->
-            exercises |> List.iter (summarizeExercise options)
+            exercises |> List.iter (summarizeExercise options parseCanonicalData')
 
 //type ExerciseVersionStatus =
 //        | UpToDate
