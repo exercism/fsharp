@@ -28,6 +28,7 @@ let private filterByStatus options (parseCanonicalData':string -> CanonicalData)
     | Some Status.Deprecated,    Exercise.Deprecated _    -> true
     | Some Status.Custom,        Exercise.Custom _        -> true
     | Some Status.Outdated,      Exercise.Generator exercise when isOutdated exercise options parseCanonicalData' -> true
+    | Some Status.All,           _                        -> true
     | _ -> false
 
 let private regenerateTestClass options =
@@ -65,75 +66,39 @@ let private summarizeExercise options (parseCanonicalData':string -> CanonicalDa
 
     match exercise with
     | Exercise.Custom custom ->
-        Log.Information("{Exercise}: has customized tests", custom.Name)
+        "have customized tests", custom.Name
     | Exercise.Unimplemented unimplemented ->
-        Log.Error("{Exercise}: missing test generator", unimplemented.Name)
+        "are missing test generator", unimplemented.Name
     | Exercise.MissingData missingData ->
-        Log.Warning("{Exercise}: missing canonical data", missingData.Name)
+        "are missing canonical data", missingData.Name
     | Exercise.Deprecated deprecated ->
-        Log.Warning("{Exercise}: deprecated", deprecated.Name)
+        "are deprecated", deprecated.Name
     | Exercise.Generator generator ->
         let cData = parseCanonicalData' generator.Name
-        let versionSummary = match cData.Version,generator.ReadVersion () with
-                             | a,b when a.Equals b -> "Up to date"
-                             | a,b -> sprintf "%s -> %s" a b
+        match generator.ReadVersion (), cData.Version with
+        | a,b when a.Equals b -> "are up to date",generator.Name
+        | a,b -> "are outdated",sprintf "%s (%s -> %s)" generator.Name a b
                              
-        Log.Information("{Exercise}: {versionSummary}", generator.Name, versionSummary)
-
 let private listExercises options =
     Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
     
     let parseCanonicalData' = parseCanonicalData options
     
-    createExercises options
-    |> List.filter (filterByStatus options parseCanonicalData')
-    |> function
-        | [] -> Log.Warning "No exercises matched given options."
-        | exercises ->
-            exercises |> List.iter (summarizeExercise options parseCanonicalData')
-
-//type ExerciseVersionStatus =
-//        | UpToDate
-//        | OutDated of string * string * string
-        
-//let private checkOutdated options parseCanonicalData' =
-//    Log.Information("Checking for outdated test classes...")
-//    
-//    
-//    let results = 
-//        createExercises options
-//        |> List.choose (function
-//                            | Generator g -> Some g
-//                            | _ -> None )
-//        |> List.map (fun exercise ->
-//            let cData = parseCanonicalData' exercise.Name
-//            
-//            match cData.Version,exercise.ReadVersion() with
-//            | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> UpToDate
-//            | canonVersion,exerciseVersion -> OutDated (exercise.Name,canonVersion,exerciseVersion)
-//        )
-//    
-//    let numUpToDate = results |> List.where (fun s -> s = UpToDate) |> List.length
-//    
-//    Log.Information (sprintf "%d exercises up to date." numUpToDate)
-//    
-//    let outdated = results |> List.choose (fun s ->
-//        match s with 
-//        | OutDated (x,y,z) -> Some (x,y,z)
-//        | UpToDate -> None
-//    )
-//    
-//    Log.Information (sprintf "%d exercises outdated / mismatched:" outdated.Length)
-//    
-//    let longestNameLength = outdated |> List.map (fun (a,_,_) -> a.Length) |> List.max
-//    
-//    outdated |> List.iter (fun (name,canonVersion,exerciseVersion) ->
-//        let numSpaces = longestNameLength - name.Length + 2
-//        let indentation = String.replicate numSpaces " "
-//        Log.Information (sprintf "%s%s%s -> %s" name indentation exerciseVersion canonVersion)
-//    )
-//    
-//    ()
+    let exercises = createExercises options
+                        |> List.filter (filterByStatus options parseCanonicalData')
+                        |> List.map (summarizeExercise options parseCanonicalData')
+                        |> List.groupBy fst
+    
+    exercises |> List.iter (fun category ->
+        printfn "%d exercises %s:" (snd category).Length (fst category)
+        (snd category) |> List.iter (fun e ->
+            printfn "\t%s" (snd e)
+            ()
+        )
+        ()
+    )
+    
+    ()
     
 
 [<EntryPoint>]

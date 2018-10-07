@@ -12,6 +12,7 @@ type Status =
     | Deprecated
     | Custom
     | Outdated
+    | All
 
 type CommandLineOptions =
     { [<Option('e', "exercise", Required = false, 
@@ -68,7 +69,7 @@ let private normalizeStatus status =
     | Some "custom"        -> Some Custom
     | Some "deprecated"    -> Some Deprecated
     | Some "outdated"      -> Some Outdated
-    | Some "all"           -> None
+    | Some "all"           -> Some All
     | Some _               -> failwith "Invalid status" 
     | None                 -> None
 
