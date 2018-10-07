@@ -68,7 +68,7 @@ let private normalizeStatus status =
     | Some "deprecated"    -> Some Deprecated
     | Some "all"           -> None
     | Some _               -> failwith "Invalid status" 
-    | None                 -> Some Implemented
+    | None                 -> None
 
 let private mapOptions (options: CommandLineOptions) =
     { Exercise = normalizeExercise options.Exercise
@@ -84,8 +84,6 @@ let conflictingStatusAndExerciseParams (parsed:Parsed<CommandLineOptions>) =
 let parseOptions argv =  
     let result = CommandLine.Parser.Default.ParseArguments<CommandLineOptions>(argv)
     match result with
-    | :? Parsed<CommandLineOptions> as parsed when parsed |> conflictingStatusAndExerciseParams ->  
-        Result.Error(["Cannot have both -e and -s"] |> Seq.ofList)
     | :? Parsed<CommandLineOptions> as parsed -> 
         Result.Ok(mapOptions parsed.Value)
     | :? NotParsed<CommandLineOptions> as notParsed -> 

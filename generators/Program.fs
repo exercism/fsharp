@@ -21,10 +21,6 @@ let private isNotFilteredByStatus options (exercise: Exercise) =
     | Some Status.Custom,        Exercise.Custom _        -> true
     | _ -> false
 
-let private shouldBeIncluded options (exercise: Exercise) =
-    isNotFilteredByName options exercise &&
-    isNotFilteredByStatus options exercise
-
 let private regenerateTestClass options =
     let parseCanonicalData' = parseCanonicalData options
 
@@ -49,12 +45,36 @@ let private regenerateTestClasses options =
     let regenerateTestClass' = regenerateTestClass options
     
     createExercises options
-    |> List.filter (shouldBeIncluded options)
+    |> List.filter (isNotFilteredByName options)
     |> function
         | [] -> Log.Warning "No exercises matched given options."
         | exercises ->
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
+            
+let private summarizeExercise options (exercise:Exercise)  =
+
+    match exercise with
+    | Exercise.Custom custom ->
+        Log.Information("{Exercise}: has customized tests", custom.Name)
+    | Exercise.Unimplemented unimplemented ->
+        Log.Error("{Exercise}: missing test generator", unimplemented.Name)
+    | Exercise.MissingData missingData ->
+        Log.Warning("{Exercise}: missing canonical data", missingData.Name)
+    | Exercise.Deprecated deprecated ->
+        Log.Warning("{Exercise}: deprecated", deprecated.Name)
+    | Exercise.Generator generator ->
+        Log.Information("{Exercise}: ", generator.Name)
+
+let private listExercises options =
+    Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
+
+    createExercises options
+    |> List.filter (isNotFilteredByStatus options)
+    |> function
+        | [] -> Log.Warning "No exercises matched given options."
+        | exercises ->
+            exercises |> List.iter (summarizeExercise options)
 
 type ExerciseVersionStatus =
         | UpToDate
@@ -106,6 +126,12 @@ let main argv =
     Logging.setupLogger()
 
     match parseOptions argv with
+    | Ok(options) when options.Status.IsSome && options.Exercise.IsSome -> 
+        Log.Error("Can't have both -s and -e.")
+        1
+    | Ok(options) when options.Status.IsSome -> 
+        listExercises options
+        0
     | Ok(options) -> 
         regenerateTestClasses options
         0
