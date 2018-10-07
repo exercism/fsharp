@@ -51,7 +51,7 @@ let private regenerateTestClasses options =
     createExercises options
     |> List.filter (shouldBeIncluded options)
     |> function
-        | [] -> Log.Warning"No exercises matched given options."
+        | [] -> Log.Warning "No exercises matched given options."
         | exercises ->
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
@@ -106,11 +106,10 @@ let main argv =
     Logging.setupLogger()
 
     match parseOptions argv with
-    | Ok(options) when options.CheckOutdated ->
-        checkOutdated options
-        0
     | Ok(options) -> 
         regenerateTestClasses options
+        0
+    | Error(errors) when errors |> Seq.contains "CommandLine.HelpRequestedError" ->
         0
     | Error(errors) -> 
         Log.Error("Error(s) parsing commandline arguments: {Errors}", errors)
