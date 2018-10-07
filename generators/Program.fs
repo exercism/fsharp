@@ -11,7 +11,15 @@ let private isNotFilteredByName options (exercise: Exercise) =
     | Some filteredExerciseName -> filteredExerciseName = exerciseName exercise
     | None -> true
     
-let private isNotFilteredByStatus options (exercise: Exercise) =
+let private isOutdated (exercise: GeneratorExercise) options (parseCanonicalData':string -> CanonicalData) =
+//    let parseCanonicalData' = parseCanonicalData options
+    let cData = parseCanonicalData' exercise.Name
+    match cData.Version,exercise.ReadVersion() with
+    | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> false
+    | canonVersion,exerciseVersion -> true
+    //OutDated (exercise.Name,canonVersion,exerciseVersion)
+    
+let private filterByStatus options (parseCanonicalData':string -> CanonicalData) (exercise: Exercise) =
     match options.Status, exercise with
     | None, _ -> true
     | Some Status.Implemented,   Exercise.Generator _     -> true
@@ -19,6 +27,7 @@ let private isNotFilteredByStatus options (exercise: Exercise) =
     | Some Status.MissingData,   Exercise.MissingData _   -> true
     | Some Status.Deprecated,    Exercise.Deprecated _    -> true
     | Some Status.Custom,        Exercise.Custom _        -> true
+    | Some Status.Outdated,      Exercise.Generator exercise when isOutdated exercise options parseCanonicalData' -> true
     | _ -> false
 
 let private regenerateTestClass options =
@@ -68,9 +77,11 @@ let private summarizeExercise options (exercise:Exercise)  =
 
 let private listExercises options =
     Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
-
+    
+    let parseCanonicalData' = parseCanonicalData options
+    
     createExercises options
-    |> List.filter (isNotFilteredByStatus options)
+    |> List.filter (filterByStatus options parseCanonicalData')
     |> function
         | [] -> Log.Warning "No exercises matched given options."
         | exercises ->
@@ -80,10 +91,9 @@ type ExerciseVersionStatus =
         | UpToDate
         | OutDated of string * string * string
         
-let private checkOutdated options =
+let private checkOutdated options parseCanonicalData' =
     Log.Information("Checking for outdated test classes...")
     
-    let parseCanonicalData' = parseCanonicalData options
     
     let results = 
         createExercises options
