@@ -1,4 +1,4 @@
-# xFSharp
+# Exercism F# Track
 
 [![Build Status](https://travis-ci.org/exercism/fsharp.svg?branch=master)](https://travis-ci.org/exercism/fsharp)
 
@@ -11,8 +11,8 @@ We have a [gitter channel](https://gitter.im/exercism/xfsharp) where you can get
 
 ## Contributing Guide
 
-Please see the [contributing guide](https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#the-exercise-data)
+Please see the [contributing guide](https://github.com/exercism/docs/tree/master/contributing-to-language-tracks)
 
 
 ### F# icon
-The F# Software Foundation logo for F# is an asset of the F# Software Foundation. We have adapted it --changing the color-- with permission.
+The F# Software Foundation logo for F# is an asset of the F# Software Foundation. We have adapted it with permission.
