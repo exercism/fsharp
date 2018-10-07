@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.6.0 of the canonical data.
+// This file was auto-generated based on version 1.7.0 of the canonical data.
 
 module ForthTest
 
@@ -19,12 +19,16 @@ let ``Addition - can add two numbers`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Addition - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["+"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Addition - errors if there is only one value on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "only one value on stack"
+}
     evaluate ["1 +"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -34,12 +38,16 @@ let ``Subtraction - can subtract two numbers`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Subtraction - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["-"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Subtraction - errors if there is only one value on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "only one value on the stack"
+}
     evaluate ["1 -"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -49,12 +57,16 @@ let ``Multiplication - can multiply two numbers`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiplication - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["*"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiplication - errors if there is only one value on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "only one value on the stack"
+}
     evaluate ["1 *"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -69,17 +81,23 @@ let ``Division - performs integer division`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Division - errors if dividing by zero`` () =
-    let expected = None
+    let expected = Some {
+  "error": "divide by zero"
+}
     evaluate ["4 0 /"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Division - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["/"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Division - errors if there is only one value on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "only one value on the stack"
+}
     evaluate ["1 /"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -104,7 +122,9 @@ let ``Dup - copies the top value on the stack`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Dup - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["dup"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -119,7 +139,9 @@ let ``Drop - removes the top value on the stack if it is not the only one`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Drop - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["drop"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -134,12 +156,16 @@ let ``Swap - swaps the top two values on the stack if they are not the only ones
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Swap - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["swap"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Swap - errors if there is only one value on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "only one value on the stack"
+}
     evaluate ["1 swap"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -154,12 +180,16 @@ let ``Over - copies the second element if there are more than two`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Over - errors if there is nothing on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "empty stack"
+}
     evaluate ["over"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Over - errors if there is only one value on the stack`` () =
-    let expected = None
+    let expected = Some {
+  "error": "only one value on the stack stack"
+}
     evaluate ["1 over"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
@@ -199,12 +229,16 @@ let ``User-defined words - can define word that uses word with the same name`` (
 
 [<Fact(Skip = "Remove to run test")>]
 let ``User-defined words - cannot redefine numbers`` () =
-    let expected = None
+    let expected = Some {
+  "error": "illegal operation"
+}
     evaluate [": 1 2 ;"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``User-defined words - errors if executing a non-existent word`` () =
-    let expected = None
+    let expected = Some {
+  "error": "undefined operation"
+}
     evaluate ["foo"] |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
