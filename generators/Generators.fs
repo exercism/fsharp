@@ -522,7 +522,7 @@ type Forth() =
     
     override __.RenderExpected (_, _, value) = 
         value 
-        |> Option.ofNonNull 
+        |> Option.ofNonErrorObject
         |> Option.render
 
     override __.IdentifierTypeAnnotation (_, _, value) = 
