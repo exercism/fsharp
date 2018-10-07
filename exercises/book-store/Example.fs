@@ -27,6 +27,7 @@ let rec private calculateTotalCostHelper books priceSoFar =
         let groups =
             books
             |> List.groupBy id
+            |> List.sortByDescending (fun (key, value) -> value.Length)
             |> List.map fst
         
         let prices =
