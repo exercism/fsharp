@@ -31,6 +31,14 @@ type SummaryTypes =
     | UpToDate of string
     | Outdated of string * string * string
     
+let nameFromSummaryType = function
+    | Custom n -> n
+    | Unimplemented  n -> n
+    | MissingData n -> n
+    | Deprecated n -> n
+    | UpToDate n -> n
+    | Outdated (n,_,_) -> n
+    
 let private summarizeExercise options (parseCanonicalData':string -> CanonicalData) (exercise:Exercise)  =
 
     match exercise with
@@ -73,12 +81,8 @@ let listExercises options =
         
         group |> List.iter (fun exercise -> 
             match exercise with
-            | SummaryTypes.Custom name ->                   Log.Information(" {name}",name)
-            | SummaryTypes.Unimplemented name ->            Log.Information(" {name}",name)
-            | SummaryTypes.MissingData name ->              Log.Information(" {name}",name)
-            | SummaryTypes.Deprecated name ->               Log.Information(" {name}",name)
-            | SummaryTypes.UpToDate name ->                 Log.Information(" {name}",name)
             | SummaryTypes.Outdated (name,oldVer,newVer) -> Log.Information(" {name}{indent}({oldVer} -> {newVer})", name, indentAfter name, oldVer, newVer)
+            | _ -> Log.Information(" {name}", nameFromSummaryType exercise)
         )
             
         printfn ""
