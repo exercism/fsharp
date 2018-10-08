@@ -76,7 +76,7 @@ type GeneratorExercise() =
         |> Seq.find (fun s -> s.[0] |> isNum)
 
     // Allow changes in canonical data    
-    
+
     member this.MapCanonicalData canonicalData = 
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
