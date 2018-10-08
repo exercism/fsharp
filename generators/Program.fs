@@ -15,7 +15,7 @@ let private isOutdated (exercise: GeneratorExercise) options (parseCanonicalData
     let cData = parseCanonicalData' exercise.Name
     match cData.Version,exercise.ReadVersion() with
     | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> false
-    | canonVersion,exerciseVersion -> true
+    | _,_ -> true
     
 let private filterByStatus options (parseCanonicalData':string -> CanonicalData) (exercise: Exercise) =
     match options.Status, exercise with
