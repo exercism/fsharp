@@ -12,12 +12,10 @@ let private isNotFilteredByName options (exercise: Exercise) =
     | None -> true
     
 let private isOutdated (exercise: GeneratorExercise) options (parseCanonicalData':string -> CanonicalData) =
-//    let parseCanonicalData' = parseCanonicalData options
     let cData = parseCanonicalData' exercise.Name
     match cData.Version,exercise.ReadVersion() with
     | canonVersion,exerciseVersion when canonVersion.Equals exerciseVersion -> false
     | canonVersion,exerciseVersion -> true
-    //OutDated (exercise.Name,canonVersion,exerciseVersion)
     
 let private filterByStatus options (parseCanonicalData':string -> CanonicalData) (exercise: Exercise) =
     match options.Status, exercise with
@@ -62,49 +60,69 @@ let private regenerateTestClasses options =
             List.iter regenerateTestClass' exercises
             Log.Information("Re-generated test classes.")
             
+            
+type SummaryTypes =
+    | Custom of string
+    | Unimplemented of string
+    | MissingData of string
+    | Deprecated of string
+    | UpToDate of string
+    | Outdated of string * string * string
+    
 let private summarizeExercise options (parseCanonicalData':string -> CanonicalData) (exercise:Exercise)  =
 
     match exercise with
-    | Exercise.Custom custom ->
-        "have customized tests", custom.Name
-    | Exercise.Unimplemented unimplemented ->
-        "are missing test generator", unimplemented.Name
-    | Exercise.MissingData missingData ->
-        "are missing canonical data", missingData.Name
-    | Exercise.Deprecated deprecated ->
-        "are deprecated", deprecated.Name
+    | Exercise.Custom custom ->                 SummaryTypes.Custom custom.Name
+    | Exercise.Unimplemented unimplemented ->   SummaryTypes.Unimplemented unimplemented.Name
+    | Exercise.MissingData missingData ->       SummaryTypes.MissingData missingData.Name
+    | Exercise.Deprecated deprecated ->         SummaryTypes.Deprecated deprecated.Name
     | Exercise.Generator generator ->
         let cData = parseCanonicalData' generator.Name
         
-        let indent = String.replicate (30-generator.Name.Length) " "
         match generator.ReadVersion (), cData.Version with
-        | a,b when a.Equals b -> "are up to date",generator.Name
-        | a,b -> "are outdated",sprintf "%s%s(%s -> %s)" generator.Name indent a b
+        | a,b when a.Equals b ->  UpToDate generator.Name
+        | a,b -> Outdated (generator.Name,a,b)
                              
 let private listExercises options =
     Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
     
     let parseCanonicalData' = parseCanonicalData options
     
-    let exercises = createExercises options
-                        |> List.filter (filterByStatus options parseCanonicalData')
-                        |> List.map (summarizeExercise options parseCanonicalData')
-                        |> List.groupBy fst
+    let allExercises = createExercises options
     
-    exercises |> List.iter (fun category ->
-        let exList = snd category
-        Log.Information(sprintf "%d exercises %s:" exList.Length (fst category))
-        if fst category = "are outdated" then
-            exList |> List.iter (fun e -> Log.Information(sprintf " %s" (snd e)))
-        else
-            let s = exList |> List.map snd |> List.reduce (sprintf "%s, %s")
-            Log.Information(s)
+    let longestNameLength = allExercises |> List.map exerciseName |> List.map (fun e -> e.Length) |> List.max
+    let indentAfter (name:string) = String.replicate (longestNameLength+2-name.Length) " "
+    
+    let exerciseGroups = allExercises
+                            |> List.filter (filterByStatus options parseCanonicalData')
+                            |> List.map (summarizeExercise options parseCanonicalData')
+                            |> List.groupBy (fun x -> x.GetType())
+    
+    exerciseGroups |> List.iter (fun (groupType,group) ->
+        let description = match group.Head with
+                          | SummaryTypes.Custom _ -> "have customized tests"
+                          | SummaryTypes.Unimplemented _ -> "are missing test generator"
+                          | SummaryTypes.MissingData _ -> "are missing canonical data"
+                          | SummaryTypes.Deprecated _ -> "are deprecated"
+                          | SummaryTypes.UpToDate _ -> "are up to date"
+                          | SummaryTypes.Outdated _ -> "are outdated"
+                          
+        Log.Information("{num} exercises {description}", group.Length, description)
+        
+        group |> List.iter (fun exercise -> 
+            match exercise with
+            | SummaryTypes.Custom name ->                   Log.Information(" {name}",name)
+            | SummaryTypes.Unimplemented name ->            Log.Information(" {name}",name)
+            | SummaryTypes.MissingData name ->              Log.Information(" {name}",name)
+            | SummaryTypes.Deprecated name ->               Log.Information(" {name}",name)
+            | SummaryTypes.UpToDate name ->                 Log.Information(" {name}",name)
+            | SummaryTypes.Outdated (name,oldVer,newVer) -> Log.Information(" {name}{indent}({oldVer} -> {newVer})", name, indentAfter name, oldVer, newVer)
+        )
             
         printfn ""
         
     )
     
-    ()
     
 
 [<EntryPoint>]
