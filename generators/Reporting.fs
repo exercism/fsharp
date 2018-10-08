@@ -69,7 +69,7 @@ let listExercises options =
                           | SummaryTypes.UpToDate _ -> "are up to date"
                           | SummaryTypes.Outdated _ -> "are outdated"
                           
-        Log.Information("{num} exercises {description}", group.Length, description)
+        Log.Information("{num} exercises {description}:", group.Length, description)
         
         group |> List.iter (fun exercise -> 
             match exercise with
