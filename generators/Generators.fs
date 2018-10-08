@@ -1486,7 +1486,7 @@ type Wordy() =
 
     override __.RenderExpected (_, _, value) =
         value 
-        |> Option.ofNonFalseBoolean
+        |> Option.ofNonErrorObject
         |> Option.renderParenthesized
 
 type Yacht() =
