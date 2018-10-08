@@ -67,13 +67,12 @@ type GeneratorExercise() =
             Read from the top of the file e.g.
             "// This file was auto-generated based on version 1.2.0 of the canonical data."
         *)
-        let isNum c = c >= '0' && c <= '9'
         
         this.TestFilePath ()
         |> File.ReadLines
         |> Seq.head
         |> String.split " "
-        |> Seq.find (fun s -> s.[0] |> isNum)
+        |> Seq.find (fun s -> s.[0] |> System.Char.IsDigit)
 
     // Allow changes in canonical data    
 

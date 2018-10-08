@@ -5,6 +5,7 @@ open Exercise
 open CanonicalData
 open Generators
 open Options
+open Reporting
 
 let private isNotFilteredByName options (exercise: Exercise) =
     match options.Exercise with
@@ -52,10 +53,10 @@ let main argv =
 
     match parseOptions argv with
     | Ok(options) when options.Status.IsSome && options.Exercise.IsSome -> 
-        Log.Error("Can't have both -s and -e.")
+        Log.Error("Can't have both -s/--status and -e/--exercise.")
         1
     | Ok(options) when options.Status.IsSome -> 
-        Reporting.listExercises options
+        listExercises options
         0
     | Ok(options) -> 
         regenerateTestClasses options

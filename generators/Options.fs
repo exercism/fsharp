@@ -80,9 +80,9 @@ let private mapOptions (options: CommandLineOptions) =
       CacheCanonicalData = options.CacheCanonicalData }
 
 let conflictingStatusAndExerciseParams (parsed:Parsed<CommandLineOptions>) =
-    let s = parsed.Value.Status |> String.IsNullOrWhiteSpace |> not
-    let e = parsed.Value.Exercise |> String.IsNullOrWhiteSpace |> not
-    s && e
+    let statusParameterSpecified = parsed.Value.Status |> String.IsNullOrWhiteSpace |> not
+    let exerciseParameterSpecified = parsed.Value.Exercise |> String.IsNullOrWhiteSpace |> not
+    statusParameterSpecified && exerciseParameterSpecified
     
 let parseOptions argv =  
     let result = CommandLine.Parser.Default.ParseArguments<CommandLineOptions>(argv)
