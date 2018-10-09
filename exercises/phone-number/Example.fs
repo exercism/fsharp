@@ -1,8 +1,6 @@
 ﻿module PhoneNumber
 
 open System
-open System.Numerics
-open System.Text.RegularExpressions
 
 let private deleteFillers (input: string):string = 
     input
