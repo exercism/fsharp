@@ -14,10 +14,10 @@ let triplet x y z =
 
 let isPythagorean triplet = square triplet.x + square triplet.y = square triplet.z
 
-let pythagoreanTriplets min max = 
-    [for x in min .. (max - 2) do
-        for y in x .. (max - 1) do
-            let target = square x + square y
-            let z = squareRoot target
-            if z <= max && square z = target then
-                yield triplet x y z]
+let tripletsWithSum sum = 
+    [for x in 1 .. (sum - 1) do
+        for y in (x + 1) .. (sum - 1 - x) do
+            let target = sum - (x + y)
+            let triplet = triplet x y target
+            if isPythagorean triplet then
+                    yield triplet] |> List.distinct
