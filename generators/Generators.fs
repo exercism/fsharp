@@ -977,7 +977,7 @@ type QueenAttack() =
 
     override __.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
-        | "create" -> value.ToObject<int>() <> -1 |> Obj.render
+        | "create" -> value.Type <> JTokenType.Object |> Obj.render
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
     override __.RenderInput (canonicalDataCase, key, value) =
