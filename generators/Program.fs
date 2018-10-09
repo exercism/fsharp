@@ -19,17 +19,17 @@ let private regenerateTestClass options =
     fun (exercise) ->
         match exercise with
         | Exercise.Custom custom ->
-            Log.Information("{Exercise}: has customized tests", custom.Name)
+            Log.Information(" {Exercise}: has customized tests", custom.Name)
         | Exercise.Unimplemented unimplemented ->
-            Log.Error("{Exercise}: missing test generator", unimplemented.Name)
+            Log.Error(" {Exercise}: missing test generator", unimplemented.Name)
         | Exercise.MissingData missingData ->
-            Log.Warning("{Exercise}: missing canonical data", missingData.Name)
+            Log.Warning(" {Exercise}: missing canonical data", missingData.Name)
         | Exercise.Deprecated deprecated ->
-            Log.Warning("{Exercise}: deprecated", deprecated.Name)
+            Log.Warning(" {Exercise}: deprecated", deprecated.Name)
         | Exercise.Generator generator ->
             let canonicalData = parseCanonicalData' generator.Name
             generator.Regenerate(canonicalData)
-            Log.Information("{Exercise}: tests generated", generator.Name)
+            Log.Information(" {Exercise}: tests generated", generator.Name)
 
 let private regenerateTestClasses options =
     Log.Information("Re-generating test classes...")

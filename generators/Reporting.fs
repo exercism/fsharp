@@ -55,8 +55,8 @@ let private summarizeExercise options (parseCanonicalData':string -> CanonicalDa
 
 let printExercise indentAfter exercise =
     match exercise with
-    | SummaryTypes.Outdated (name, oldVer, newVer) -> Log.Information("   {name}{indent}({oldVer} -> {newVer})", name, indentAfter name, oldVer, newVer)
-    | _ -> Log.Information("   {name}", nameFromSummaryType exercise)
+    | SummaryTypes.Outdated (name, oldVer, newVer) -> Log.Information(" {name}{indent}({oldVer} -> {newVer})", name, indentAfter name, oldVer, newVer)
+    | _ -> Log.Information(" {name}", nameFromSummaryType exercise)
 
 let printExerciseGroup indentAfter (groupType:System.Type, group:SummaryTypes list)=
     let description =
