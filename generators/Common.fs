@@ -33,5 +33,6 @@ module Logging =
 
     let setupLogger() =
         Log.Logger <- LoggerConfiguration()
-            .WriteTo.LiterateConsole()
+            .WriteTo
+            .Console(outputTemplate = "{Message:lj}{NewLine}{Exception}")
             .CreateLogger()
