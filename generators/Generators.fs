@@ -1445,7 +1445,7 @@ type VariableLengthQuantity() =
         | "encode" -> formatUnsignedByteList value
         | "decode" -> 
             value
-            |> Option.ofNonNull
+            |> Option.ofNonErrorObject
             |> Option.map formatUnsignedIntList
             |> Option.renderStringParenthesized
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
