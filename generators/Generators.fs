@@ -981,6 +981,13 @@ type Proverb() =
         match Seq.isEmpty value with 
         | true  -> Some "string list"
         | false -> None
+
+type PythagoreanTriplet() =
+    inherit GeneratorExercise()
+    
+    override __.RenderExpected (_, _, value) = 
+        let render value = sprintf "(%s)" (value |> Seq.map Obj.render |> String.concat ", ")
+        List.mapRender render value
     
 type QueenAttack() =
     inherit GeneratorExercise()

@@ -1,36 +1,37 @@
-// This file was created manually and its version is 1.0.0.
+// This file was auto-generated based on version 1.0.0 of the canonical data.
 
 module PythagoreanTripletTest
 
-open Xunit
 open FsUnit.Xunit
+open Xunit
 
 open PythagoreanTriplet
-    
-[<Theory(Skip = "Remove to run test")>]
-[<InlineData(3, 4, 5, true)>]
-[<InlineData(3, 5, 4, true)>]
-[<InlineData(4, 3, 5, true)>]
-[<InlineData(4, 5, 3, true)>]
-[<InlineData(5, 3, 4, true)>]
-[<InlineData(5, 4, 3, true)>]
-[<InlineData(3, 3, 3, false)>]
-[<InlineData(5, 6, 7, false)>]
-let ``Can recognize a valid pythagorean`` (x: int) (y: int) (z: int) (expected: bool) =
-    let actual = triplet x y z
-    isPythagorean actual |> should equal expected
-   
-[<Fact(Skip = "Remove to run test")>]
-let ``Can create simple triplets`` () =
-    let actual = pythagoreanTriplets 1 10
-    actual |> should equal [triplet 3 4 5; triplet 6 8 10]
+
+[<Fact>]
+let ``Triplets whose sum is 12`` () =
+    tripletsWithSum 12 |> should equal [(3, 4, 5)]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can create more triplets`` () =
-    let actual = pythagoreanTriplets 11 20
-    actual |> should equal [triplet 12 16 20]
+let ``Triplets whose sum is 108`` () =
+    tripletsWithSum 108 |> should equal [(27, 36, 45)]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can create complex triplets`` () =
-    let actual = pythagoreanTriplets 56 95
-    actual |> should equal [triplet 57 76 95; triplet 60 63 87]
+let ``Triplets whose sum is 1000`` () =
+    tripletsWithSum 1000 |> should equal [(200, 375, 425)]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``No matching triplets for 1001`` () =
+    tripletsWithSum 1001 |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Returns all matching triplets`` () =
+    tripletsWithSum 90 |> should equal [(9, 40, 41); (15, 36, 39)]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Several matching triplets`` () =
+    tripletsWithSum 840 |> should equal [(40, 399, 401); (56, 390, 394); (105, 360, 375); (120, 350, 370); (140, 336, 364); (168, 315, 357); (210, 280, 350); (240, 252, 348)]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Triplets for large number`` () =
+    tripletsWithSum 30000 |> should equal [(1200, 14375, 14425); (1875, 14000, 14125); (5000, 12000, 13000); (6000, 11250, 12750); (7500, 10000, 12500)]
+
