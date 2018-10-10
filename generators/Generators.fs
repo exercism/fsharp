@@ -976,7 +976,7 @@ type PythagoreanTriplet() =
     inherit GeneratorExercise()
     
     override __.RenderExpected (_, _, value) = 
-        let render value = sprintf "triplet %s" (value |> Seq.map Obj.render |> String.concat " ")
+        let render value = sprintf "(%s)" (value |> Seq.map Obj.render |> String.concat ", ")
         List.mapRender render value
     
 type QueenAttack() =
