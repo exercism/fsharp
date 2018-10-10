@@ -445,7 +445,7 @@
       "uuid": "929f98e4-a16c-464b-ac6c-59ca86dbd2b6",
       "core": false,
       "unlocked_by": "hello-world",
-      "difficulty": 3,
+      "difficulty": 5,
       "topics": [
         "parsing",
         "transforming"
