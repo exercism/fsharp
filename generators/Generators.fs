@@ -864,11 +864,21 @@ type PerfectNumbers() =
 
 type PhoneNumber() =
     inherit GeneratorExercise()
+
+    override __.PropertiesWithIdentifier _ = ["expected"]
+
+    override __.IdentifierTypeAnnotation (_, _, _) = Some "Result<uint64,string>"
     
     override __.RenderExpected (_, _, value) =
-        value 
-        |> Option.ofNonNull
-        |> Option.renderParenthesized
+        match value.SelectToken "error" with
+        | null  -> 
+            value
+            |> string
+            |> sprintf "Ok %sUL"
+        | error -> 
+            error
+            |> string
+            |> sprintf "Error \"%s\""
 
 type PigLatin() =
     inherit GeneratorExercise()
