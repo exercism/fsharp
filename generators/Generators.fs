@@ -879,7 +879,6 @@ type PhoneNumber() =
             error
             |> string
             |> sprintf "Error \"%s\""
-        |> String.parenthesize
 
 type PigLatin() =
     inherit GeneratorExercise()
