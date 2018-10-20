@@ -75,8 +75,7 @@ Task("AddPackagesUsedInExampleImplementations")
 Task("TestUsingExampleImplementation")
     .IsDependentOn("AddPackagesUsedInExampleImplementations")
     .Does(() => {
-        var projects = GetFiles(buildDir + "/*/*.fsproj");
-        Parallel.ForEach(projects, parallelOptions, (project) => DotNetCoreTest(project.FullPath));
+        DotNetCoreTest(buildDir + "/Exercises.sln");
     });
 
 Task("Default")
