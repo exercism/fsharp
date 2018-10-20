@@ -15,9 +15,15 @@ Task("Clean")
 		CleanDirectory(buildDir);   
     }); 
 
+Task("BuildGenerators")
+    .IsDependentOn("Clean")
+    .Does(() => {
+       DotNetCoreBuild("./generators/Generators.fsproj");
+    });
+
 // Copy everything to build so we make no changes in the actual files.
 Task("CopyExercises")
-    .IsDependentOn("Clean")
+    .IsDependentOn("BuildGenerators")
     .Does(() => {
         CopyDirectory($"{sourceDir}/{exercise}", $"{buildDir}/{exercise}");
     });
