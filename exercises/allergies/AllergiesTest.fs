@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module AllergiesTest
 
@@ -22,6 +22,13 @@ let ``Allergic to eggs in addition to other stuff`` () =
     allergicTo 5 Allergen.Eggs |> should equal true
     allergicTo 5 Allergen.Shellfish |> should equal true
     allergicTo 5 Allergen.Strawberries |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Allergic to strawberries but not peanuts`` () =
+    allergicTo 9 Allergen.Eggs |> should equal true
+    allergicTo 9 Allergen.Peanuts |> should equal false
+    allergicTo 9 Allergen.Shellfish |> should equal false
+    allergicTo 9 Allergen.Strawberries |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
 let ``No allergies at all`` () =
