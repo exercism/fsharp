@@ -1326,6 +1326,42 @@ type Series() =
         |> Option.ofNonErrorObject
         |> Option.renderParenthesized
 
+type SgfParsing() = 
+    inherit GeneratorExercise()
+
+    override __.RenderArrange (canonicalDataCase: CanonicalDataCase) =
+        let rec renderTree (tree: JToken) = 
+            let props = 
+                (tree.SelectToken("properties") :?> JObject).ToObject<Map<string, string[]>>()
+                |> Map.map (fun key value -> List.render value) |> Map.toList
+                |> List.map (fun (key, value) -> sprintf ".Add(\"%s\", %s)" key value)
+                |> String.concat ""
+
+            let children = 
+                if tree.SelectToken("children") <> null then
+                    [| for item in (tree.SelectToken("children"):?> JArray).Children() -> renderTree item |]
+                    |> String.concat "; "
+                else ""
+
+            sprintf "Node (Map.empty%s, [%s])" props children
+
+        seq {
+            if canonicalDataCase.Expected.SelectToken("properties") <> null then
+                yield sprintf "let expected = Some (%s)" (canonicalDataCase.Expected |> renderTree)
+        }
+        |> Seq.toList
+
+    override __.RenderSut (canonicalDataCase: CanonicalDataCase) =
+        let input = string <| canonicalDataCase.Input.["encoded"]
+        sprintf "parseSgf \"%s\"" input
+
+    override self.RenderExpected (canonicalDataCase, _, value) = 
+        if canonicalDataCase.Expected.SelectToken("error") <> null then
+            "None"
+        else
+            "expected"
+    
+
 type SimpleCipher() = 
     inherit GeneratorExercise()
 
