@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module AlphameticsTest
 
@@ -28,6 +28,17 @@ let ``Solution must have unique value for each letter`` () =
 let ``Leading zero solution is invalid`` () =
     let puzzle = "ACA + DD == BD"
     let expected = None
+    solve puzzle |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Puzzle with two digits final carry`` () =
+    let puzzle = "A + A + A + A + A + A + A + A + A + A + A + B == BCC"
+    let expected = 
+        [ ('A', 9);
+          ('B', 1);
+          ('C', 0) ]
+        |> Map.ofList
+        |> Some
     solve puzzle |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
