@@ -628,15 +628,10 @@ type GradeSchool() =
         this.RenderInput(canonicalDataCase, propertyName, Map.find propertyName canonicalDataCase.Input)
 
     member private __.RenderStudent (student: JToken) =
-        let values = student.Values<JToken>()
-        sprintf "(\"%s\",%s)" (student.First|>string) (student.Last|>string)
+        Obj.render (string student.First ,int student.Last)
 
-    member private this.RenderArrangeList canonicalDataCase = 
-        canonicalDataCase.Input.["students"]
-        |> Seq.toList
-        |> List.map this.RenderStudent
-        |> String.concat ";"
-        |> sprintf "[%s]"
+    member private this.RenderStudentList canonicalDataCase = 
+        List.mapRender this.RenderStudent canonicalDataCase.Input.["students"]
 
     override __.RenderSetup _ =
         [
@@ -650,7 +645,7 @@ type GradeSchool() =
     override this.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
         | "roster" | "grade" -> 
-            [sprintf "let school = studentsToSchool %s" (this.RenderArrangeList canonicalDataCase)]
+            [sprintf "let school = studentsToSchool %s" (this.RenderStudentList canonicalDataCase)]
         | _ -> 
             base.RenderArrange canonicalDataCase
     

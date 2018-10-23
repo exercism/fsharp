@@ -11,8 +11,8 @@ let add student grade school =
 let roster school =
     school
     |> Map.toList
-    |> List.sortBy (fun (a, _) -> a)
-    |> List.map (fun (_, b) -> b)
+    |> List.sortBy fst
+    |> List.map snd
     |> List.fold (fun finalList listItem -> finalList @ (List.sort listItem)) []
 
 let grade number school = 
