@@ -621,6 +621,43 @@ type GoCounting() =
                     None            
         | _ -> None
 
+type GradeSchool() =
+    inherit GeneratorExercise()
+
+    member private this.RenderPropertyValue canonicalDataCase propertyName =
+        this.RenderInput(canonicalDataCase, propertyName, Map.find propertyName canonicalDataCase.Input)
+
+    member private __.RenderStudent (student: JToken) =
+        Obj.render (string student.First ,int student.Last)
+
+    member private this.RenderStudentList canonicalDataCase = 
+        List.mapRender this.RenderStudent canonicalDataCase.Input.["students"]
+
+    override __.RenderSetup _ =
+        [
+            "let studentsToSchool (students: List<string*int>):School =";
+            "    let schoolFolder school (name,grade) =";
+            "        add name grade school";
+            "    List.fold schoolFolder empty students"
+        ]
+        |> String.concat "\n"
+
+    override this.RenderArrange canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "roster" | "grade" -> 
+            [sprintf "let school = studentsToSchool %s" (this.RenderStudentList canonicalDataCase)]
+        | _ -> 
+            base.RenderArrange canonicalDataCase
+    
+    override this.RenderSut canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "roster" -> 
+            sprintf "roster school"
+        | "grade" ->
+            let grade  = this.RenderPropertyValue canonicalDataCase "desiredGrade"
+            sprintf "grade %s school" grade
+        | _ -> base.RenderSut canonicalDataCase
+        
 type Grains() =
     inherit GeneratorExercise()
 
