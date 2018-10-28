@@ -9,55 +9,61 @@ open SgfParsing
 
 [<Fact>]
 let ``Empty input`` () =
-    parseSgf "" |> should equal None
+    let expected = None
+    parseSgf "" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Tree with no nodes`` () =
-    parseSgf "()" |> should equal None
+    let expected = None
+    parseSgf "()" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Node without tree`` () =
-    parseSgf ";" |> should equal None
+    let expected = None
+    parseSgf ";" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Node without properties`` () =
-    let expected = Some (Node (Map.empty, []))
-    parseSgf "(;)" |> should equal expected   
+    let expected = Some (Node (Map.ofList [], []))
+    parseSgf "(;)" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Single node tree`` () =
-    let expected = Some (Node (Map.empty.Add("A", ["B"]), []))
-    parseSgf "(;A[B])" |> should equal expected   
+    let expected = Some (Node (Map.ofList [("A", ["B"])], []))
+    parseSgf "(;A[B])" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Properties without delimiter`` () =
-    parseSgf "(;A)" |> should equal None
+    let expected = None
+    parseSgf "(;A)" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``All lowercase property`` () =
-    parseSgf "(;a[b])" |> should equal None
+    let expected = None
+    parseSgf "(;a[b])" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Upper and lowercase property`` () =
-    parseSgf "(;Aa[b])" |> should equal None
+    let expected = None
+    parseSgf "(;Aa[b])" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Two nodes`` () =
-    let expected = Some (Node (Map.empty.Add("A", ["B"]), [Node (Map.empty.Add("B", ["C"]), [])]))
-    parseSgf "(;A[B];B[C])" |> should equal expected   
+    let expected = Some (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], [])]))
+    parseSgf "(;A[B];B[C])" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Two child trees`` () =
-    let expected = Some (Node (Map.empty.Add("A", ["B"]), [Node (Map.empty.Add("B", ["C"]), []); Node (Map.empty.Add("C", ["D"]), [])]))
-    parseSgf "(;A[B](;B[C])(;C[D]))" |> should equal expected   
+    let expected = Some (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], []); Node (Map.ofList [("C", ["D"])], [])]))
+    parseSgf "(;A[B](;B[C])(;C[D]))" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple property values`` () =
-    let expected = Some (Node (Map.empty.Add("A", ["b"; "c"; "d"]), []))
-    parseSgf "(;A[b][c][d])" |> should equal expected   
+    let expected = Some (Node (Map.ofList [("A", ["b"; "c"; "d"])], []))
+    parseSgf "(;A[b][c][d])" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Escaped property`` () =
-    let expected = Some (Node (Map.empty.Add("A", ["]b\nc\nd  e \n]"]), []))
-    parseSgf "(;A[\]b\nc\nd\t\te \n\]])" |> should equal expected   
+    let expected = Some (Node (Map.ofList [("A", ["]b\nc\nd  e \n]"])], []))
+    parseSgf "(;A[\]b\nc\nd\t\te \n\]])" |> should equal expected
 

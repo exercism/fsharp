@@ -1329,13 +1329,20 @@ type Series() =
 type SgfParsing() = 
     inherit GeneratorExercise()
 
-    override __.RenderArrange (canonicalDataCase: CanonicalDataCase) =
+    override this.PropertiesWithIdentifier _ = ["expected"]
+
+    override __.RenderSut (canonicalDataCase: CanonicalDataCase) =
+        let input = string <| canonicalDataCase.Input.["encoded"]
+        sprintf "parseSgf \"%s\"" input
+
+    override self.RenderExpected (canonicalDataCase, _, value) = 
         let rec renderTree (tree: JToken) = 
+
             let props = 
                 (tree.SelectToken("properties") :?> JObject).ToObject<Map<string, string[]>>()
                 |> Map.map (fun key value -> List.render value) |> Map.toList
-                |> List.map (fun (key, value) -> sprintf ".Add(\"%s\", %s)" key value)
-                |> String.concat ""
+                |> List.map (fun (key, value) -> sprintf "(\"%s\", %s)" key value)
+                |> String.concat "; "
 
             let children = 
                 if tree.SelectToken("children") <> null then
@@ -1343,23 +1350,12 @@ type SgfParsing() =
                     |> String.concat "; "
                 else ""
 
-            sprintf "Node (Map.empty%s, [%s])" props children
+            sprintf "Node (Map.ofList [%s], [%s])" props children
 
-        seq {
-            if canonicalDataCase.Expected.SelectToken("properties") <> null then
-                yield sprintf "let expected = Some (%s)" (canonicalDataCase.Expected |> renderTree)
-        }
-        |> Seq.toList
-
-    override __.RenderSut (canonicalDataCase: CanonicalDataCase) =
-        let input = string <| canonicalDataCase.Input.["encoded"]
-        sprintf "parseSgf \"%s\"" input
-
-    override self.RenderExpected (canonicalDataCase, _, value) = 
-        if canonicalDataCase.Expected.SelectToken("error") <> null then
-            "None"
-        else
-            "expected"
+        value
+        |> Option.ofNonErrorObject
+        |> Option.map renderTree
+        |> Option.renderParenthesizedString
     
 
 type SimpleCipher() = 
