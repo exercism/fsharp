@@ -23,21 +23,18 @@ let rec nodesToTree (nodes, trees) =
 let expr, exprImpl = createParserForwardedToRef()
 
 let normalChar = satisfy (fun c -> c <> '\\' && c <> ']')
-let unescape =
-    function
-    | 'n' | 'r' | 't' -> ' '
-    | c -> c
-let escapedChar = pchar '\\' >>. (anyChar |>> unescape)
+let escapedChar = pchar '\\' >>. anyChar 
 let cValueType = manyChars (normalChar <|> escapedChar)
 let propValue = between (pchar '[') (pchar ']') cValueType
 let propIdent = asciiUpper
-let property = (propIdent |>> string) .>>. many propValue
+let property = (propIdent |>> string) .>>. many1 propValue
 let node = (pchar ';') >>. opt property |>> propertyToData
 let gameTree = (pchar '(') >>. (many1 node) .>>. (many expr) .>> (pchar ')') |>> nodesToTree
 
 exprImpl := gameTree
 
-let parseSgf sgf = 
+let parse (sgfLine: string) = 
+    let sgf = sgfLine.Replace("\t", " ")
     match run gameTree sgf with
     | Success (result, _, _) -> Some result
     | Failure _ -> None

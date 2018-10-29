@@ -1326,6 +1326,36 @@ type Series() =
         |> Option.ofNonErrorObject
         |> Option.renderParenthesized
 
+type SgfParsing() = 
+    inherit GeneratorExercise()
+
+    override __.PropertiesWithIdentifier _ = ["input"; "expected"]
+
+    override __.RenderInput (_, _, value) = value |> Obj.render
+
+    override self.RenderExpected (_, _, value) = 
+        let rec renderTree (tree: JToken) = 
+
+            let props = 
+                (tree.SelectToken("properties") :?> JObject).ToObject<Map<string, string[]>>()
+                |> Map.map (fun key value -> List.render value) |> Map.toList
+                |> List.map (fun (key, value) -> sprintf "(\"%s\", %s)" key value)
+                |> String.concat "; "
+
+            let children = 
+                if tree.SelectToken("children") <> null then
+                    [| for item in (tree.SelectToken("children"):?> JArray).Children() -> renderTree item |]
+                    |> String.concat "; "
+                else ""
+
+            sprintf "Node (Map.ofList [%s], [%s])" props children
+
+        value
+        |> Option.ofNonErrorObject
+        |> Option.map renderTree
+        |> Option.renderParenthesizedString
+    
+
 type SimpleCipher() = 
     inherit GeneratorExercise()
 

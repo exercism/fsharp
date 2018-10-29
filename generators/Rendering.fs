@@ -97,6 +97,8 @@ module Option =
 
     let renderParenthesized option = renderMap Obj.render String.parenthesize option
 
+    let renderParenthesizedString option = renderMap String.parenthesize id option
+
 module Collection =
     let render formatString collection =
         collection
