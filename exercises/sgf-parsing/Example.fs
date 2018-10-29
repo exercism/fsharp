@@ -33,7 +33,7 @@ let gameTree = (pchar '(') >>. (many1 node) .>>. (many expr) .>> (pchar ')') |>>
 
 exprImpl := gameTree
 
-let parseSgf (sgfLine: string) = 
+let parse (sgfLine: string) = 
     let sgf = sgfLine.Replace("\t", " ")
     match run gameTree sgf with
     | Success (result, _, _) -> Some result

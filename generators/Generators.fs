@@ -1329,13 +1329,11 @@ type Series() =
 type SgfParsing() = 
     inherit GeneratorExercise()
 
-    override this.PropertiesWithIdentifier _ = ["expected"]
+    override __.PropertiesWithIdentifier _ = ["input"; "expected"]
 
-    override __.RenderSut (canonicalDataCase: CanonicalDataCase) =
-        let input = string <| canonicalDataCase.Input.["encoded"]
-        sprintf "parseSgf \"%s\"" input
+    override __.RenderInput (_, _, value) = value |> Obj.render
 
-    override self.RenderExpected (canonicalDataCase, _, value) = 
+    override self.RenderExpected (_, _, value) = 
         let rec renderTree (tree: JToken) = 
 
             let props = 
