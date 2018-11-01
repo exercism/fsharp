@@ -81,7 +81,12 @@ Task("AddPackagesUsedInExampleImplementations")
 Task("TestUsingExampleImplementation")
     .IsDependentOn("AddPackagesUsedInExampleImplementations")
     .Does(() => {
-        DotNetCoreTest(buildDir + "/Exercises.sln");
+        if (string.IsNullOrEmpty(exercise)) {
+            DotNetCoreTest($"{buildDir}/Exercises.sln");
+        }
+        else {
+            DotNetCoreTest($"{buildDir}/{exercise}/{exercise}.fsproj");
+        }
     });
 
 Task("Default")
