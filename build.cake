@@ -85,7 +85,7 @@ Task("TestUsingExampleImplementation")
             DotNetCoreTest($"{buildDir}/Exercises.sln");
         }
         else {
-            DotNetCoreTest($"{buildDir}/{exercise}/{exercise}.fsproj");
+            DotNetCoreTest($"{buildDir}/{exercise}");
         }
     });
 
