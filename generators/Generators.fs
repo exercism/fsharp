@@ -424,6 +424,13 @@ type CustomSet() =
             arrangeLines @ [ expectedSetVar; actualBoolVar ]
         | _ -> arrangeLines
 
+type Darts() =
+    inherit GeneratorExercise()
+
+    let formatFloat (jToken: JToken) = jToken.ToObject<float>() |> sprintf "%.1f"
+
+    override __.RenderInput (_, _, value) = formatFloat value
+
 type Diamond() =
     inherit CustomExercise()
 

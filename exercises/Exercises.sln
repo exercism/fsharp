@@ -230,6 +230,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "RationalNumbers", "rational
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Yacht", "yacht\Yacht.fsproj", "{0CB237A3-DD45-4EE9-B43A-5B03D3A0724A}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Darts", "darts\Darts.fsproj", "{2CF579C6-8E49-4A92-9A13-D9A083C65730}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -692,6 +694,10 @@ Global
 		{0CB237A3-DD45-4EE9-B43A-5B03D3A0724A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CB237A3-DD45-4EE9-B43A-5B03D3A0724A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CB237A3-DD45-4EE9-B43A-5B03D3A0724A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CF579C6-8E49-4A92-9A13-D9A083C65730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CF579C6-8E49-4A92-9A13-D9A083C65730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CF579C6-8E49-4A92-9A13-D9A083C65730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CF579C6-8E49-4A92-9A13-D9A083C65730}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

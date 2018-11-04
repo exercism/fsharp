@@ -342,6 +342,17 @@
       ]
     },
     {
+      "slug": "darts",
+      "uuid": "fb3b73e1-673b-4907-821c-f85a157f53c1",
+      "core": false,
+      "unlocked_by": "leap",
+      "difficulty": 2,
+      "topics": [
+        "floating_point_numbers",
+        "math"
+      ]
+    },
+    {
       "slug": "triangle",
       "uuid": "47fd8f98-20d3-43fe-825f-27745e13908d",
       "core": false,
