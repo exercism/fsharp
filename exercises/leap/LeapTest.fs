@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module LeapTest
 
@@ -22,4 +22,8 @@ let ``Year divisible by 100, not divisible by 400: common year`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Year divisible by 400: leap year`` () =
     leapYear 2000 |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Year divisible by 200, not divisible by 400: common year`` () =
+    leapYear 1800 |> should equal false
 

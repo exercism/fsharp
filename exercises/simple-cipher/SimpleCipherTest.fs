@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module SimpleCipherTest
 
@@ -63,16 +63,4 @@ let ``Substitution cipher - Can wrap on decode`` () =
 let ``Substitution cipher - Can handle messages longer than the key`` () =
     let sut = SimpleCipher("abc")
     sut.Encode("iamapandabear") |> should equal "iboaqcnecbfcr"
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Incorrect key cipher - Throws an error with an all uppercase key`` () =
-    (fun () -> SimpleCipher("ABCDEF") |> ignore) |> should throw typeof<ArgumentException>
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Incorrect key cipher - Throws an error with a numeric key`` () =
-    (fun () -> SimpleCipher("12345") |> ignore) |> should throw typeof<ArgumentException>
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Incorrect key cipher - Throws an error with empty key`` () =
-    (fun () -> SimpleCipher("") |> ignore) |> should throw typeof<ArgumentException>
 

@@ -11,8 +11,6 @@ let private generateKey() =
     let numberOfLetters = List.length letters 
     Array.init keyLength (fun _ -> List.item (random.Next(numberOfLetters)) letters) 
     |> String
-    
-let private isInvalidKey key = Seq.length key = 0 || not (Seq.forall (fun c -> List.contains c letters) key)
 
 let private modulo x y = ((x % y) + y) % y
 
@@ -31,10 +29,6 @@ let encode key input = shift (+) key input
 let decode key input = shift (-) key input
 
 type SimpleCipher(key: string) =
-    do 
-        if isInvalidKey key then 
-            invalidArg "key" "Invalid key"
-    
     member __.Key with get() = key
     
     member __.Encode(plaintext: string) = encode key plaintext

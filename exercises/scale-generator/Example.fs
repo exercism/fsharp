@@ -11,17 +11,15 @@ let intervals = [('m', 1); ('M', 2); ('A', 3)] |> Map.ofList
 
 let skipInterval interval scale = List.skip (Map.find interval intervals) scale 
 
-let pitches tonic intervals = 
+let interval intervals tonic =
     let scale = if List.contains tonic flatKeys then flatChromaticScale else chromaticScale
     let index = List.findIndex (fun pitch -> String.Equals(pitch, tonic, StringComparison.InvariantCultureIgnoreCase)) scale
     let shiftedScale = shift index scale
 
-    match intervals with
-    | None -> 
-        shiftedScale
-    | Some x ->
-        x
-        |> List.ofSeq
-        |> List.fold (fun (acc, remainder) item -> (List.head remainder :: acc, skipInterval item remainder)) ([], shiftedScale)
-        |> fst
-        |> List.rev
+    intervals
+    |> List.ofSeq
+    |> List.fold (fun (acc, remainder) item -> (List.head remainder :: acc, skipInterval item remainder)) ([], shiftedScale)
+    |> fst
+    |> List.rev
+
+let chromatic tonic = interval "mmmmmmmmmmmm" tonic

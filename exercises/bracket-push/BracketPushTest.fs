@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module BracketPushTest
 
@@ -58,6 +58,10 @@ let ``Unpaired and nested brackets`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Paired and wrong nested brackets`` () =
     isPaired "[({]})" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Paired and incomplete brackets`` () =
+    isPaired "{}[" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Math expression`` () =

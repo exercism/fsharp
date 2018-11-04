@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module AtbashCipherTest
 
@@ -54,4 +54,12 @@ let ``Decode numbers`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Decode all the letters`` () =
     decode "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" |> should equal "thequickbrownfoxjumpsoverthelazydog"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode with too many spaces`` () =
+    decode "vc vix    r hn" |> should equal "exercism"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Decode with no spaces`` () =
+    decode "zmlyhgzxovrhlugvmzhgvkkrmthglmv" |> should equal "anobstacleisoftenasteppingstone"
 

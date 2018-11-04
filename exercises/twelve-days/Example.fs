@@ -52,7 +52,7 @@ let subject =
 
 let subjectToStr number = sprintf "%s %s" (numberToStr number) (subject number)
 
-let verseBegin number = sprintf "On the %s day of Christmas my true love gave to me, " (countToStr number)
+let verseBegin number = sprintf "On the %s day of Christmas my true love gave to me: " (countToStr number)
 
 let verseEnd = 
     function

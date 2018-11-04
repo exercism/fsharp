@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module TriangleTest
 
@@ -48,8 +48,16 @@ let ``Isosceles returns false if no sides are equal`` () =
     isosceles [2.0; 3.0; 4.0] |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Sides that violate triangle inequality are not isosceles, even if two are equal`` () =
+let ``Sides that violate triangle inequality are not isosceles, even if two are equal (1)`` () =
     isosceles [1.0; 1.0; 3.0] |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Sides that violate triangle inequality are not isosceles, even if two are equal (2)`` () =
+    isosceles [1.0; 3.0; 1.0] |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Sides that violate triangle inequality are not isosceles, even if two are equal (3)`` () =
+    isosceles [3.0; 1.0; 1.0] |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Isosceles returns sides may be floats`` () =

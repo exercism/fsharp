@@ -745,7 +745,7 @@ type LargestSeriesProduct() =
 
     override __.RenderExpected (_, _, value) = 
         value
-        |> Option.ofNonNegativeNumber
+        |> Option.ofNonErrorObject
         |> Option.renderParenthesized
 
 type Leap() =
@@ -1194,52 +1194,31 @@ type RobotSimulator() =
     let renderPosition (position: JToken) = 
         Obj.render (position.["x"].ToObject<int>(), position.["y"].ToObject<int>())
 
-    let renderRobot direction position = 
-        sprintf "create %s %s" (renderDirection direction) (renderPosition position)
+    let renderRobot (robot: JToken) = 
+        sprintf "create %s %s" (renderDirection robot.["direction"]) (renderPosition robot.["position"])
 
-    let renderInput input = 
-        match input with
-        | None,           Some position -> renderPosition position
-        | Some direction, None          -> renderDirection direction
-        | Some direction, Some position -> renderRobot direction position
-        | None,           None          -> failwith "No direction or position"
-
-    override __.PropertiesWithIdentifier canonicalDataCase =
-        match parseInput canonicalDataCase.Expected with
-        | None,   Some _ -> ["sut"] 
-        | Some _, None   -> ["sut"]
-        | Some _, Some _ -> ["expected"]
-        | None,   None   -> ["sut"; "expected"]
-
-    override this.RenderAssert canonicalDataCase = 
-        let renderAssertWithProperty prop =
-            let expected = this.RenderExpected (canonicalDataCase, "expected", canonicalDataCase.Expected)
-            this.RenderAssertEqual (sprintf "sut.%s" prop) expected
-
-        match parseInput canonicalDataCase.Expected with
-        | None, Some _ -> [renderAssertWithProperty "position"]
-        | Some _, None -> [renderAssertWithProperty "direction"]
-        | _ -> base.RenderAssert canonicalDataCase
-
-    override __.RenderArrange canonicalDataCase =
-        sprintf "let robot = %s" (canonicalDataCase.Properties.["input"] |> parseInput |> renderInput) :: base.RenderArrange canonicalDataCase
-
-    override __.RenderExpected (_, _, value) = 
-        value |> parseInput |> renderInput
-
-    override __.RenderSut canonicalDataCase = 
+    override __.MapCanonicalDataCase canonicalDataCase =
+    
         match canonicalDataCase.Property with
-        | "create" -> "robot"
-        | "turnLeft" | "turnRight" | "advance" -> sprintf "%s robot" canonicalDataCase.Property
-        | "instructions" -> sprintf "instructions %s robot" (Obj.render canonicalDataCase.Input.["instructions"])
-        | _ -> base.RenderSut canonicalDataCase
+        | "move" ->
+            let updatedInput =
+                canonicalDataCase.Input
+                |> Map.remove "direction"
+                |> Map.remove "position"
+                |> Map.add "robot" (canonicalDataCase.Properties.["input"])
+            { canonicalDataCase with Input = updatedInput }
+        | _ -> base.MapCanonicalDataCase canonicalDataCase
 
-    override __.TestMethodName canonicalDataCase =
-        let testMethodName = base.TestMethodName canonicalDataCase
+    override __.RenderInput (canonicalDataCase, key, value) = 
+        match key with
+        | "robot" -> renderRobot value
+        | "position" -> renderPosition value
+        | "direction" -> renderDirection value
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
 
-        match canonicalDataCase.Property with
-        | "create" | "instructions" -> testMethodName
-        | _ -> sprintf "%s %s" canonicalDataCase.Property (String.lowerCaseFirst testMethodName)
+    override __.RenderExpected (_, _, value) = renderRobot value
+
+    override __.PropertiesWithIdentifier _ = ["robot"; "expected"]
 
 type RotationalCipher() =
     inherit GeneratorExercise()
@@ -1271,12 +1250,16 @@ type RomanNumerals() =
 type SaddlePoints() =
     inherit GeneratorExercise()
 
-    let renderSaddlePoint (input: JToken) =
-        Obj.render (input.Value<int>("row"), input.Value<int>("column"))
+    let toTuple (input: JToken) = (input.Value<int>("row"), input.Value<int>("column"))
 
     override __.RenderInput (_, _, value) = List.renderMultiLine value
 
-    override __.RenderExpected (_, _, value) = List.mapRender renderSaddlePoint value
+    override __.RenderExpected (_, _, value) = 
+        value
+        |> Seq.map toTuple
+        |> Seq.sort
+        |> Seq.toList
+        |> List.render 
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -1292,22 +1275,6 @@ type Say() =
 
 type ScaleGenerator() =
     inherit GeneratorExercise()
-
-    override __.MapCanonicalDataCase canonicalDataCase =
-        let input = canonicalDataCase.Input
-        match Map.tryFind "intervals" input with
-        | Some _ -> canonicalDataCase
-        | None   -> { canonicalDataCase with Input = Map.add "intervals" null input }
-
-    override __.RenderInput (canonicalDataCase, key, value) =
-        match key with 
-        | "intervals" -> 
-            value 
-            |> Option.ofObj
-            |> Option.renderParenthesized
-        | _ -> base.RenderInput (canonicalDataCase, key, value)
-
-    override __.PropertiesUsedAsSutParameter _ = ["tonic"; "intervals"]
 
 type ScrabbleScore() =
     inherit GeneratorExercise()
