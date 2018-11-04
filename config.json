@@ -342,6 +342,17 @@
       ]
     },
     {
+      "slug": "darts",
+      "uuid": "fb3b73e1-673b-4907-821c-f85a157f53c1",
+      "core": false,
+      "unlocked_by": "leap",
+      "difficulty": 2,
+      "topics": [
+        "floating_point_numbers",
+        "math"
+      ]
+    }, 
+    {
       "slug": "high-scores",
       "uuid": "c67d7118-2388-4421-baa1-cc3e4f0e2867",
       "core": false,
