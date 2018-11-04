@@ -8,11 +8,6 @@ open Xunit
 open Grains
 
 [<Fact>]
-let ``Returns the total number of grains on the board`` () =
-    let expected: Result<uint64,string> = Ok 18446744073709551615UL
-    total |> should equal expected
-
-[<Fact(Skip = "Remove to run test")>]
 let ``1`` () =
     let expected: Result<uint64,string> = Ok 1UL
     square 1 |> should equal expected
@@ -61,4 +56,9 @@ let ``Negative square raises an exception`` () =
 let ``Square greater than 64 raises an exception`` () =
     let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square 65 |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Returns the total number of grains on the board`` () =
+    let expected: Result<uint64,string> = Ok 18446744073709551615UL
+    total |> should equal expected
 
