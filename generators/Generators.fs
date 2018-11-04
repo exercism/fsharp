@@ -712,6 +712,9 @@ type Hamming() =
 type HelloWorld() =
     inherit GeneratorExercise()
 
+type HighScores() =
+    inherit GeneratorExercise()
+
 type House() =
     inherit GeneratorExercise()
 

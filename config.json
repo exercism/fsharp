@@ -342,6 +342,17 @@
       ]
     },
     {
+      "slug": "high-scores",
+      "uuid": "c67d7118-2388-4421-baa1-cc3e4f0e2867",
+      "core": false,
+      "unlocked_by": "two-fer",
+      "difficulty": 2,
+      "topics": [
+        "lists",
+        "strings"
+      ]
+    },
+    {
       "slug": "triangle",
       "uuid": "47fd8f98-20d3-43fe-825f-27745e13908d",
       "core": false,
