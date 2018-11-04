@@ -15,25 +15,6 @@ let ``Data is retained`` () =
     treeData |> right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Can create complex tree`` () =
-    let treeData = create [4; 2; 6; 1; 3; 5; 7]
-    treeData |> data |> should equal 4
-    treeData |> left |> Option.map data |> should equal (Some 2)
-    treeData |> left |> Option.bind left |> Option.map data |> should equal (Some 1)
-    treeData |> left |> Option.bind left |> Option.bind left |> should equal None
-    treeData |> left |> Option.bind left |> Option.bind right |> should equal None
-    treeData |> left |> Option.bind right |> Option.map data |> should equal (Some 3)
-    treeData |> left |> Option.bind right |> Option.bind left |> should equal None
-    treeData |> left |> Option.bind right |> Option.bind right |> should equal None
-    treeData |> right |> Option.map data |> should equal (Some 6)
-    treeData |> right |> Option.bind left |> Option.map data |> should equal (Some 5)
-    treeData |> right |> Option.bind left |> Option.bind left |> should equal None
-    treeData |> right |> Option.bind left |> Option.bind right |> should equal None
-    treeData |> right |> Option.bind right |> Option.map data |> should equal (Some 7)
-    treeData |> right |> Option.bind right |> Option.bind left |> should equal None
-    treeData |> right |> Option.bind right |> Option.bind right |> should equal None
-
-[<Fact(Skip = "Remove to run test")>]
 let ``Smaller number at left node`` () =
     let treeData = create [4; 2]
     treeData |> data |> should equal 4
@@ -59,6 +40,25 @@ let ``Greater number at right node`` () =
     treeData |> right |> Option.map data |> should equal (Some 5)
     treeData |> right |> Option.bind left |> should equal None
     treeData |> right |> Option.bind right |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Can create complex tree`` () =
+    let treeData = create [4; 2; 6; 1; 3; 5; 7]
+    treeData |> data |> should equal 4
+    treeData |> left |> Option.map data |> should equal (Some 2)
+    treeData |> left |> Option.bind left |> Option.map data |> should equal (Some 1)
+    treeData |> left |> Option.bind left |> Option.bind left |> should equal None
+    treeData |> left |> Option.bind left |> Option.bind right |> should equal None
+    treeData |> left |> Option.bind right |> Option.map data |> should equal (Some 3)
+    treeData |> left |> Option.bind right |> Option.bind left |> should equal None
+    treeData |> left |> Option.bind right |> Option.bind right |> should equal None
+    treeData |> right |> Option.map data |> should equal (Some 6)
+    treeData |> right |> Option.bind left |> Option.map data |> should equal (Some 5)
+    treeData |> right |> Option.bind left |> Option.bind left |> should equal None
+    treeData |> right |> Option.bind left |> Option.bind right |> should equal None
+    treeData |> right |> Option.bind right |> Option.map data |> should equal (Some 7)
+    treeData |> right |> Option.bind right |> Option.bind left |> should equal None
+    treeData |> right |> Option.bind right |> Option.bind right |> should equal None
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Can sort single number`` () =

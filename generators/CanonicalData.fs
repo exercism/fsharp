@@ -86,8 +86,19 @@ type CanonicalDataConverter() =
           Description = string properties.["description"]
           DescriptionPath = createDescriptionPathFromJToken jToken }
 
+    let rec getCanonicalDataCaseJTokens(jToken: JToken) =
+        match jToken with
+        | :? JArray as jArray ->
+            Seq.collect getCanonicalDataCaseJTokens jArray
+        | :? JObject as jObject when jObject.ContainsKey("property") ->
+            Seq.singleton jObject
+        | :? JObject as jObject when jObject.ContainsKey("cases") ->
+            Seq.collect getCanonicalDataCaseJTokens jObject.["cases"]
+        | _ -> Seq.empty
+
     let createCanonicalDataCasesFromJToken (jToken: JToken) =  
-        jToken.["cases"].SelectTokens("$..*[?(@.property)]")
+        jToken.["cases"]
+        |> getCanonicalDataCaseJTokens
         |> Seq.map createCanonicalDataCaseFromJToken
         |> Seq.toList
 

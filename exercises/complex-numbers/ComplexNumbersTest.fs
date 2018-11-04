@@ -9,12 +9,6 @@ open System
 open ComplexNumbers
 
 [<Fact>]
-let ``Imaginary unit`` () =
-    let sut = mul (create 0.0 1.0) (create 0.0 1.0)
-    real sut |> should (equalWithin 0.01) -1.0
-    imaginary sut |> should (equalWithin 0.01) 0.0
-
-[<Fact(Skip = "Remove to run test")>]
 let ``Real part of a purely real number`` () =
     real (create 1.0 0.0) |> should equal 1.0
 
@@ -37,6 +31,12 @@ let ``Imaginary part of a purely imaginary number`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Imaginary part of a number with real and imaginary part`` () =
     imaginary (create 1.0 2.0) |> should equal 2.0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Imaginary unit`` () =
+    let sut = mul (create 0.0 1.0) (create 0.0 1.0)
+    real sut |> should (equalWithin 0.01) -1.0
+    imaginary sut |> should (equalWithin 0.01) 0.0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Add purely real numbers`` () =

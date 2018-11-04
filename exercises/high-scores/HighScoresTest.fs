@@ -20,18 +20,6 @@ let ``Highest score`` () =
     highest [40; 100; 70] |> should equal 100
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Message for new personal best`` () =
-    report [20; 40; 0; 30; 70] |> should equal "Your latest score was 70. That's your personal best!"
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Message when latest score is not the highest score`` () =
-    report [20; 100; 0; 30; 70] |> should equal "Your latest score was 70. That's 30 short of your personal best!"
-
-[<Fact(Skip = "Remove to run test")>]
-let ``Message for repeated personal best`` () =
-    report [20; 70; 50; 70; 30] |> should equal "Your latest score was 30. That's 40 short of your personal best!"
-
-[<Fact(Skip = "Remove to run test")>]
 let ``Personal bests`` () =
     top [50; 30; 10] |> should equal [50; 30; 10]
 
@@ -54,4 +42,16 @@ let ``Personal bests when there is only one`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Personal bests from a long list`` () =
     top [10; 30; 90; 30; 100; 20; 10; 0; 30; 40; 40; 70; 70] |> should equal [100; 90; 70]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Message for new personal best`` () =
+    report [20; 40; 0; 30; 70] |> should equal "Your latest score was 70. That's your personal best!"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Message when latest score is not the highest score`` () =
+    report [20; 100; 0; 30; 70] |> should equal "Your latest score was 70. That's 30 short of your personal best!"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Message for repeated personal best`` () =
+    report [20; 70; 50; 70; 30] |> should equal "Your latest score was 30. That's 40 short of your personal best!"
 
