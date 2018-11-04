@@ -1,3 +1,5 @@
 ﻿module ScaleGenerator
 
-let pitches tonic intervals = failwith "You need to implement this function."
+let chromatic tonic = failwith "You need to implement this function."
+
+let interval intervals tonic = failwith "You need to implement this function."

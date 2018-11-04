@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module AnagramTest
 
@@ -63,7 +63,7 @@ let ``Anagrams must use all letters exactly once`` () =
     findAnagrams candidates "tapper" |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Capital word is not own anagram`` () =
-    let candidates = ["Banana"]
+let ``Words are not anagrams of themselves (case-insensitive)`` () =
+    let candidates = ["BANANA"; "Banana"; "banana"]
     findAnagrams candidates "BANANA" |> should be Empty
 

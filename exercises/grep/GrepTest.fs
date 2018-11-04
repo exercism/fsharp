@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module GrepTest
 
@@ -182,6 +182,34 @@ type GrepTest() =
         grep files flags pattern |> should equal expected
 
     [<Fact(Skip = "Remove to run test")>]
+    member this.``One file, one match, file flag takes precedence over line flag`` () =
+        let files = ["iliad.txt"]
+        let flags = ["-n"; "-l"]
+        let pattern = "ten"
+        let expected = ["iliad.txt"]
+        
+        createFiles() |> ignore
+        grep files flags pattern |> should equal expected
+
+    [<Fact(Skip = "Remove to run test")>]
+    member this.``One file, several matches, inverted and match entire lines flags`` () =
+        let files = ["iliad.txt"]
+        let flags = ["-x"; "-v"]
+        let pattern = "Illustrious into Ades premature,"
+        let expected = 
+            [ "Achilles sing, O Goddess! Peleus' son;";
+              "His wrath pernicious, who ten thousand woes";
+              "Caused to Achaia's host, sent many a soul";
+              "And Heroes gave (so stood the will of Jove)";
+              "To dogs and to all ravening fowls a prey,";
+              "When fierce dispute had separated once";
+              "The noble Chief Achilles from the son";
+              "Of Atreus, Agamemnon, King of men." ]
+        
+        createFiles() |> ignore
+        grep files flags pattern |> should equal expected
+
+    [<Fact(Skip = "Remove to run test")>]
     member this.``Multiple files, one match, no flags`` () =
         let files = ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
         let flags = []
@@ -289,6 +317,51 @@ type GrepTest() =
         let flags = ["-n"; "-l"; "-x"; "-i"]
         let pattern = "Frodo"
         let expected: string list = []
+        
+        createFiles() |> ignore
+        grep files flags pattern |> should equal expected
+
+    [<Fact(Skip = "Remove to run test")>]
+    member this.``Multiple files, several matches, file flag takes precedence over line number flag`` () =
+        let files = ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
+        let flags = ["-n"; "-l"]
+        let pattern = "who"
+        let expected = 
+            [ "iliad.txt";
+              "paradise-lost.txt" ]
+        
+        createFiles() |> ignore
+        grep files flags pattern |> should equal expected
+
+    [<Fact(Skip = "Remove to run test")>]
+    member this.``Multiple files, several matches, inverted and match entire lines flags`` () =
+        let files = ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
+        let flags = ["-x"; "-v"]
+        let pattern = "Illustrious into Ades premature,"
+        let expected = 
+            [ "iliad.txt:Achilles sing, O Goddess! Peleus' son;";
+              "iliad.txt:His wrath pernicious, who ten thousand woes";
+              "iliad.txt:Caused to Achaia's host, sent many a soul";
+              "iliad.txt:And Heroes gave (so stood the will of Jove)";
+              "iliad.txt:To dogs and to all ravening fowls a prey,";
+              "iliad.txt:When fierce dispute had separated once";
+              "iliad.txt:The noble Chief Achilles from the son";
+              "iliad.txt:Of Atreus, Agamemnon, King of men.";
+              "midsummer-night.txt:I do entreat your grace to pardon me.";
+              "midsummer-night.txt:I know not by what power I am made bold,";
+              "midsummer-night.txt:Nor how it may concern my modesty,";
+              "midsummer-night.txt:In such a presence here to plead my thoughts;";
+              "midsummer-night.txt:But I beseech your grace that I may know";
+              "midsummer-night.txt:The worst that may befall me in this case,";
+              "midsummer-night.txt:If I refuse to wed Demetrius.";
+              "paradise-lost.txt:Of Mans First Disobedience, and the Fruit";
+              "paradise-lost.txt:Of that Forbidden Tree, whose mortal tast";
+              "paradise-lost.txt:Brought Death into the World, and all our woe,";
+              "paradise-lost.txt:With loss of Eden, till one greater Man";
+              "paradise-lost.txt:Restore us, and regain the blissful Seat,";
+              "paradise-lost.txt:Sing Heav'nly Muse, that on the secret top";
+              "paradise-lost.txt:Of Oreb, or of Sinai, didst inspire";
+              "paradise-lost.txt:That Shepherd, who first taught the chosen Seed" ]
         
         createFiles() |> ignore
         grep files flags pattern |> should equal expected
