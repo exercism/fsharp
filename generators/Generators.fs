@@ -194,7 +194,7 @@ type Change() =
 
     override __.RenderExpected (_, _, value) =
         value
-        |> Option.ofNonNegativeNumber
+        |> Option.ofNonErrorObject
         |> Option.render
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase

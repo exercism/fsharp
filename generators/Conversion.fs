@@ -10,11 +10,6 @@ module Option =
         | JTokenType.Integer -> if jToken.ToObject<int>() < 0 then None else Some jToken
         | _ -> Some jToken
 
-    let ofNonFalseBoolean (jToken: JToken) =
-        match jToken.Type with
-        | JTokenType.Boolean -> if jToken.ToObject<bool>() then Some jToken else None
-        | _ -> Some jToken
-
     let ofNonNull (jToken: JToken) =
         match jToken.Type with
         | JTokenType.Null -> None
