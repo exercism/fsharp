@@ -1,4 +1,5 @@
 !bin/fetch-configlet
+!bin/fetch-configlet.ps1
 bin/
 build/
 obj/
