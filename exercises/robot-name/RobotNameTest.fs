@@ -10,7 +10,7 @@ open RobotName
 [<Fact>]
 let ``Robot has a name`` () =     
     let robot = mkRobot()
-    Regex.IsMatch(name robot, @"\w{2}\d{3}") |> should equal true
+    Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$") |> should equal true
     
 [<Fact(Skip = "Remove to run test")>]
 let ``Name is the same each time`` () =     
