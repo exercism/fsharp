@@ -17,61 +17,61 @@ let ``Chromatic scale with flats`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Simple major scale`` () =
-    interval "MMmMMMm" "C" |> should equal ["C"; "D"; "E"; "F"; "G"; "A"; "B"]
+    interval "MMmMMM" "C" |> should equal ["C"; "D"; "E"; "F"; "G"; "A"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Major scale with sharps`` () =
-    interval "MMmMMMm" "G" |> should equal ["G"; "A"; "B"; "C"; "D"; "E"; "F#"]
+    interval "MMmMMM" "G" |> should equal ["G"; "A"; "B"; "C"; "D"; "E"; "F#"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Major scale with flats`` () =
-    interval "MMmMMMm" "F" |> should equal ["F"; "G"; "A"; "Bb"; "C"; "D"; "E"]
+    interval "MMmMMM" "F" |> should equal ["F"; "G"; "A"; "Bb"; "C"; "D"; "E"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Minor scale with sharps`` () =
-    interval "MmMMmMM" "f#" |> should equal ["F#"; "G#"; "A"; "B"; "C#"; "D"; "E"]
+    interval "MmMMmM" "f#" |> should equal ["F#"; "G#"; "A"; "B"; "C#"; "D"; "E"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Minor scale with flats`` () =
-    interval "MmMMmMM" "bb" |> should equal ["Bb"; "C"; "Db"; "Eb"; "F"; "Gb"; "Ab"]
+    interval "MmMMmM" "bb" |> should equal ["Bb"; "C"; "Db"; "Eb"; "F"; "Gb"; "Ab"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Dorian mode`` () =
-    interval "MmMMMmM" "d" |> should equal ["D"; "E"; "F"; "G"; "A"; "B"; "C"]
+    interval "MmMMMm" "d" |> should equal ["D"; "E"; "F"; "G"; "A"; "B"; "C"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Mixolydian mode`` () =
-    interval "MMmMMmM" "Eb" |> should equal ["Eb"; "F"; "G"; "Ab"; "Bb"; "C"; "Db"]
+    interval "MMmMMm" "Eb" |> should equal ["Eb"; "F"; "G"; "Ab"; "Bb"; "C"; "Db"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Lydian mode`` () =
-    interval "MMMmMMm" "a" |> should equal ["A"; "B"; "C#"; "D#"; "E"; "F#"; "G#"]
+    interval "MMMmMM" "a" |> should equal ["A"; "B"; "C#"; "D#"; "E"; "F#"; "G#"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Phrygian mode`` () =
-    interval "mMMMmMM" "e" |> should equal ["E"; "F"; "G"; "A"; "B"; "C"; "D"]
+    interval "mMMMmM" "e" |> should equal ["E"; "F"; "G"; "A"; "B"; "C"; "D"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Locrian mode`` () =
-    interval "mMMmMMM" "g" |> should equal ["G"; "Ab"; "Bb"; "C"; "Db"; "Eb"; "F"]
+    interval "mMMmMM" "g" |> should equal ["G"; "Ab"; "Bb"; "C"; "Db"; "Eb"; "F"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Harmonic minor`` () =
-    interval "MmMMmAm" "d" |> should equal ["D"; "E"; "F"; "G"; "A"; "Bb"; "Db"]
+    interval "MmMMmA" "d" |> should equal ["D"; "E"; "F"; "G"; "A"; "Bb"; "Db"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Octatonic`` () =
-    interval "MmMmMmMm" "C" |> should equal ["C"; "D"; "D#"; "F"; "F#"; "G#"; "A"; "B"]
+    interval "MmMmMmM" "C" |> should equal ["C"; "D"; "D#"; "F"; "F#"; "G#"; "A"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Hexatonic`` () =
-    interval "MMMMMM" "Db" |> should equal ["Db"; "Eb"; "F"; "G"; "A"; "B"]
+    interval "MMMMM" "Db" |> should equal ["Db"; "Eb"; "F"; "G"; "A"; "B"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Pentatonic`` () =
-    interval "MMAMA" "A" |> should equal ["A"; "B"; "C#"; "E"; "F#"]
+    interval "MMAM" "A" |> should equal ["A"; "B"; "C#"; "E"; "F#"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Enigmatic`` () =
-    interval "mAMMMmm" "G" |> should equal ["G"; "G#"; "B"; "C#"; "D#"; "F"; "F#"]
+    interval "mAMMMm" "G" |> should equal ["G"; "G#"; "B"; "C#"; "D#"; "F"; "F#"]
 
