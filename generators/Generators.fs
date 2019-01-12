@@ -1693,8 +1693,8 @@ type RestApi() =
     override __.RenderArrange canonicalDataCase =
         base.RenderArrange(canonicalDataCase) @ ["let api = RestApi(database)"]
 
-    override this.RenderAssert canonicalDataCase = 
+    override this.RenderSut canonicalDataCase =
         match canonicalDataCase.Property with
-        | "get" -> if canonicalDataCase.Input.ContainsKey("payload") then ["api.Get (url, payload) |> should equal expected"] else ["api.Get url |> should equal expected"]
-        | "post" -> ["api.Post (url, payload) |> should equal expected"]
-        | _ -> base.RenderAssert canonicalDataCase
+            | "get" -> if canonicalDataCase.Input.ContainsKey("payload") then "api.Get (url, payload)" else "api.Get url"
+            | "post" -> "api.Post (url, payload)"
+            | _ -> base.RenderSut canonicalDataCase 

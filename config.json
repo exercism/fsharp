@@ -1344,10 +1344,9 @@
       "slug": "rest-api",
       "uuid": "b0aaf5ac-f94d-4995-af4a-b27068cf540e",
       "core": false,
-      "unlocked_by": null,
-      "difficulty": 0,
-      "topics": null,
-      "deprecated": false
+      "unlocked_by": "clock",
+      "difficulty": 5,
+      "topics": [ "json", "parsing" ]
     }
   ]
 }
