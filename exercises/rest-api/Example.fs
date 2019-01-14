@@ -4,12 +4,12 @@ open Newtonsoft.Json
 open System.Collections.Generic
 open Newtonsoft.Json.Linq
 
-type User(name: string, owes : SortedDictionary<string,decimal>, owed_by : SortedDictionary<string,decimal>) =
+type User(name : string, owes : SortedDictionary<string,decimal>, owed_by : SortedDictionary<string,decimal>) =
     member this.name = name
     member this.owes = owes
     member this.owed_by = owed_by
 
-    member this.lend(name:string, amount:decimal) =
+    member this.lend(name: string, amount: decimal) =
         let remaining = 
             match owes.TryGetValue(name) with
                 | (true,value) when value - amount > 0m -> 
@@ -28,7 +28,7 @@ type User(name: string, owes : SortedDictionary<string,decimal>, owed_by : Sorte
             owed_by.Add(name, remaining)
         | _ -> ()
 
-    member this.borrow(name:string, amount:decimal) =
+    member this.borrow(name: string, amount: decimal) =
         let remaining = 
             match owed_by.TryGetValue(name) with
                 | (true,value) when value - amount > 0m -> 
@@ -57,7 +57,7 @@ type User(name: string, owes : SortedDictionary<string,decimal>, owed_by : Sorte
 type Database(users : User[]) =
     member this.users = users
 
-type IOU(lender:string, borrower: string, amount : decimal) =
+type IOU(lender: string, borrower: string, amount : decimal) =
     member this.lender = lender
     member this.borrower = borrower
     member this.amount = amount
@@ -66,16 +66,16 @@ type IOU(lender:string, borrower: string, amount : decimal) =
 type RestApi(database : string) =
     let Source = JsonConvert.DeserializeObject<Database>(database)   
 
-    member this.Get (url:string) =
+    member this.Get(url: string) =
         JsonConvert.SerializeObject(Source)
 
-    member this.Get (url:string,payload:string) =
+    member this.Get(url: string, payload: string) =
         let jt = JToken.Parse(payload)
         let toGet = JsonConvert.DeserializeObject<string[]>(jt.SelectToken("users").ToString())
         let users = Source.users |> Seq.filter (fun p -> Seq.contains p.name toGet) |> Seq.toArray
         JsonConvert.SerializeObject(Database(users))
 
-    member this.Post (url:string,payload:string)  =
+    member this.Post(url: string, payload: string)  =
         match url with
         | "/add" -> 
             let userName = JToken.Parse(payload).SelectToken("user").ToString()
