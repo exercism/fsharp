@@ -1673,3 +1673,28 @@ type Zipper() =
 
     override __.TestMethodName canonicalDataCase = 
         base.TestMethodName canonicalDataCase |> String.replace "Set_" "Set "
+
+type RestApi() = 
+    inherit GeneratorExercise()
+
+    override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "database" -> "\"\"\"" + value.ToString(Newtonsoft.Json.Formatting.None) + "\"\"\""
+        | "payload" -> "\"\"\"" + value.ToString(Newtonsoft.Json.Formatting.None) + "\"\"\""
+        | _ -> base.RenderInput (canonicalDataCase, key, value)
+
+    override __.RenderExpected (canonicalDataCase, key, value) =
+        match key with
+        | "expected" -> ("\"\"\"" + value.ToString(Newtonsoft.Json.Formatting.None) + "\"\"\"")
+        | _ -> base.RenderExpected (canonicalDataCase, key, value)
+
+    override __.RenderArrange canonicalDataCase =
+        base.RenderArrange(canonicalDataCase) @ ["let api = RestApi(database)"]
+
+    override __.RenderSut canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "get" -> if canonicalDataCase.Input.ContainsKey("payload") then "api.Get (url, payload)" else "api.Get url"
+        | "post" -> "api.Post (url, payload)"
+        | _ -> base.RenderSut canonicalDataCase 

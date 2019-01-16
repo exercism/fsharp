@@ -351,7 +351,7 @@
         "floating_point_numbers",
         "math"
       ]
-    }, 
+    },
     {
       "slug": "high-scores",
       "uuid": "c67d7118-2388-4421-baa1-cc3e4f0e2867",
@@ -1339,6 +1339,14 @@
       "difficulty": 0,
       "topics": null,
       "deprecated": true
+    },
+    {
+      "slug": "rest-api",
+      "uuid": "b0aaf5ac-f94d-4995-af4a-b27068cf540e",
+      "core": false,
+      "unlocked_by": "clock",
+      "difficulty": 5,
+      "topics": [ "json", "parsing" ]
     }
   ]
 }
