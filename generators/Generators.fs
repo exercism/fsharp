@@ -1698,3 +1698,46 @@ type RestApi() =
         | "get" -> if canonicalDataCase.Input.ContainsKey("payload") then "api.Get (url, payload)" else "api.Get url"
         | "post" -> "api.Post (url, payload)"
         | _ -> base.RenderSut canonicalDataCase 
+
+type DndCharacter() =
+    inherit GeneratorExercise()
+
+    let testRandomAbility() =
+        ["for i in 1 .. 10 do";"    ability |> should be (greaterThanOrEqualTo 3)";"    ability |> should be (lessThanOrEqualTo  18)"]
+
+    let testCharacterGeneration() =
+        ["for i in 1 .. 10 do";
+         "    let character = DndCharacter()";
+         "    character.strength |> should be (greaterThanOrEqualTo 3)";"    character.strength |> should be (lessThanOrEqualTo  18)";
+         "    character.dexterity |> should be (greaterThanOrEqualTo 3)";"    character.dexterity |> should be (lessThanOrEqualTo  18)";
+         "    character.constitution |> should be (greaterThanOrEqualTo 3)";"    character.constitution |> should be (lessThanOrEqualTo  18)";
+         "    character.intelligence |> should be (greaterThanOrEqualTo 3)";"    character.intelligence |> should be (lessThanOrEqualTo  18)";
+         "    character.wisdom |> should be (greaterThanOrEqualTo 3)";"    character.wisdom |> should be (lessThanOrEqualTo  18)";
+         "    character.charisma |> should be (greaterThanOrEqualTo 3)";"    character.charisma |> should be (lessThanOrEqualTo  18)";
+         "    character.hitpoints |> should equal (10 + modifier(character.constitution))"]
+
+    let testAbilityCalculatedOnce() =
+        ["for i in 1 .. 10 do";
+         "    let character = DndCharacter()";
+         "    character.strength |> should equal character.strength";
+         "    character.dexterity |> should equal character.dexterity";
+         "    character.constitution |> should equal character.constitution";
+         "    character.intelligence |> should equal character.intelligence";
+         "    character.wisdom |> should equal character.wisdom";
+         "    character.charisma |> should equal character.charisma";
+         "    character.hitpoints |> should equal character.hitpoints"]
+
+    override __.RenderArrange canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "ability" -> ["let ability = ability()"]
+        | _ -> base.RenderArrange(canonicalDataCase)
+
+
+    override __.RenderAssert canonicalDataCase =
+        match canonicalDataCase.Property with
+        | "ability" -> testRandomAbility()
+        | "character" -> testCharacterGeneration() 
+        | "strength" -> testAbilityCalculatedOnce()
+        | _ -> base.RenderAssert canonicalDataCase
+
+
