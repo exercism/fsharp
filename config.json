@@ -1347,6 +1347,14 @@
       "unlocked_by": "clock",
       "difficulty": 5,
       "topics": [ "json", "parsing" ]
+    },
+    {
+      "slug": "dnd-character",
+      "uuid": "93550ca5-cd8c-42e3-88f3-e6ce41608342",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": ["randomness"]
     }
   ]
 }
