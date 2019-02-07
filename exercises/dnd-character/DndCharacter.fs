@@ -9,11 +9,11 @@ let ability() =
     failwith "You need to implement this function."
 
 type DndCharacter() =
-    member __.strength with get() = failwith "You need to implement this function."
-    member __.dexterity with get() = failwith "You need to implement this function."
-    member __.constitution with get() = failwith "You need to implement this function."
-    member __.intelligence with get() = failwith "You need to implement this function."
-    member __.wisdom with get() = failwith "You need to implement this function."
-    member __.charisma with get() = failwith "You need to implement this function."
-    member __.hitpoints with get() = failwith "You need to implement this function."
+    member __.Strength with get() = failwith "You need to implement this function."
+    member __.Dexterity with get() = failwith "You need to implement this function."
+    member __.Constitution with get() = failwith "You need to implement this function."
+    member __.Intelligence with get() = failwith "You need to implement this function."
+    member __.Wisdom with get() = failwith "You need to implement this function."
+    member __.Charisma with get() = failwith "You need to implement this function."
+    member __.Hitpoints with get() = failwith "You need to implement this function."
 

@@ -2,8 +2,8 @@
 
 open System
 
-let modifier x =
-    if x > 10 then (x-10) / 2 else (x-11) / 2
+let modifier score =
+    if score > 10 then (score-10) / 2 else (score-11) / 2
 
 let ability() = 
         let random = Random()
@@ -14,18 +14,18 @@ let ability() =
         |> List.sum
 
 type DndCharacter() =
-    let _strength = ability()
-    let _dexterity = ability()
-    let _constitution = ability()
-    let _intelligence = ability()
-    let _wisdom = ability()
-    let _charisma = ability()
-    let _hitpoints = 10 + modifier(_constitution)
-    member __.strength with get() = _strength
-    member __.dexterity with get() = _dexterity
-    member __.constitution with get() = _constitution
-    member __.intelligence with get() = _intelligence
-    member __.wisdom with get() = _wisdom
-    member __.charisma with get() = _charisma
-    member __.hitpoints with get() = _hitpoints
+    let strength = ability()
+    let dexterity = ability()
+    let constitution = ability()
+    let intelligence = ability()
+    let wisdom = ability()
+    let charisma = ability()
+    let hitpoints = 10 + modifier(constitution)
+    member __.Strength with get() = strength
+    member __.Dexterity with get() = dexterity
+    member __.Constitution with get() = constitution
+    member __.Intelligence with get() = intelligence
+    member __.Wisdom with get() = wisdom
+    member __.Charisma with get() = charisma
+    member __.Hitpoints with get() = hitpoints
 

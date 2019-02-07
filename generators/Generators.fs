@@ -1708,24 +1708,24 @@ type DndCharacter() =
     let testCharacterGeneration() =
         ["for i in 1 .. 10 do";
          "    let character = DndCharacter()";
-         "    character.strength |> should be (greaterThanOrEqualTo 3)";"    character.strength |> should be (lessThanOrEqualTo  18)";
-         "    character.dexterity |> should be (greaterThanOrEqualTo 3)";"    character.dexterity |> should be (lessThanOrEqualTo  18)";
-         "    character.constitution |> should be (greaterThanOrEqualTo 3)";"    character.constitution |> should be (lessThanOrEqualTo  18)";
-         "    character.intelligence |> should be (greaterThanOrEqualTo 3)";"    character.intelligence |> should be (lessThanOrEqualTo  18)";
-         "    character.wisdom |> should be (greaterThanOrEqualTo 3)";"    character.wisdom |> should be (lessThanOrEqualTo  18)";
-         "    character.charisma |> should be (greaterThanOrEqualTo 3)";"    character.charisma |> should be (lessThanOrEqualTo  18)";
-         "    character.hitpoints |> should equal (10 + modifier(character.constitution))"]
+         "    character.Strength |> should be (greaterThanOrEqualTo 3)";"    character.Strength |> should be (lessThanOrEqualTo  18)";
+         "    character.Dexterity |> should be (greaterThanOrEqualTo 3)";"    character.Dexterity |> should be (lessThanOrEqualTo  18)";
+         "    character.Constitution |> should be (greaterThanOrEqualTo 3)";"    character.Constitution |> should be (lessThanOrEqualTo  18)";
+         "    character.Intelligence |> should be (greaterThanOrEqualTo 3)";"    character.Intelligence |> should be (lessThanOrEqualTo  18)";
+         "    character.Wisdom |> should be (greaterThanOrEqualTo 3)";"    character.Wisdom |> should be (lessThanOrEqualTo  18)";
+         "    character.Charisma |> should be (greaterThanOrEqualTo 3)";"    character.Charisma |> should be (lessThanOrEqualTo  18)";
+         "    character.Hitpoints |> should equal (10 + modifier(character.Constitution))"]
 
     let testAbilityCalculatedOnce() =
         ["for i in 1 .. 10 do";
          "    let character = DndCharacter()";
-         "    character.strength |> should equal character.strength";
-         "    character.dexterity |> should equal character.dexterity";
-         "    character.constitution |> should equal character.constitution";
-         "    character.intelligence |> should equal character.intelligence";
-         "    character.wisdom |> should equal character.wisdom";
-         "    character.charisma |> should equal character.charisma";
-         "    character.hitpoints |> should equal character.hitpoints"]
+         "    character.Strength |> should equal character.Strength";
+         "    character.Dexterity |> should equal character.Dexterity";
+         "    character.Constitution |> should equal character.Constitution";
+         "    character.Intelligence |> should equal character.Intelligence";
+         "    character.Wisdom |> should equal character.Wisdom";
+         "    character.Charisma |> should equal character.Charisma";
+         "    character.Hitpoints |> should equal character.Hitpoints"]
 
     override __.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
