@@ -1,7 +1,7 @@
 ## Learning F# 
 
 ### Websites
-* The [F# Hello World tutorial](https://dotnet.microsoft.com/learn/languages/fsharp-hello-world-tutorial/intro) is a nice and gently introduction to working with F#.
+* The [F# Hello World tutorial](https://dotnet.microsoft.com/learn/languages/fsharp-hello-world-tutorial/intro) is a nice and gentle introduction to working with F#.
 * The [F# for Fun and Profit](http://fsharpforfunandprofit.com/) website has tons of great F# content. From a [gentle introduction](http://fsharpforfunandprofit.com/posts/key-concepts/) to the world of F# to more advanced concepts, it's all covered. Bonus: all content is also available as an [eBook](https://www.gitbook.com/book/swlaschin/fsharpforfunandprofit/details).
 * The [Tour of F#](https://docs.microsoft.com/en-us/dotnet/fsharp/tour) page nicely demonstrates many of the core F# language features.
 * The [F# Foundation](http://fsharp.org/) is a non-profit organisation which aim is to promote F#. The website has lots of links to great F# content. Perhaps even more interesting is their [mentorship program](http://fsharp.org/mentorship/index.html), where you can apply to learn F# from an experienced F# mentor.
