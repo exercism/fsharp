@@ -12,6 +12,10 @@ Hence the difference between the square of the sum of the first
 ten natural numbers and the sum of the squares of the first ten
 natural numbers is 3025 - 385 = 2640.
 
+You are not expected to discover an efficient solution to this yourself from
+first principles; research is allowed, indeed, encouraged. Finding the best
+algorithm for the problem is a key skill in software engineering.
+
 ## Hints
 For this exercise the following F# features come in handy:
 - The [range operator](https://msdn.microsoft.com/en-us/visualfsharpdocs/conceptual/operators.%5B-..-%5D%5B%5Et%5D-function-%5Bfsharp%5D) allows you to succinctly create a range of values.
@@ -31,5 +35,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 Problem 6 at Project Euler [http://projecteuler.net/problem=6](http://projecteuler.net/problem=6)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

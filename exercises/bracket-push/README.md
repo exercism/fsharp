@@ -17,5 +17,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 Ginna Baker
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

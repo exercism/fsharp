@@ -38,7 +38,6 @@ Your task is to implement a simple [RESTful API](https://en.wikipedia.org/wiki/R
 - Example RESTful APIs
   - [GitHub](https://developer.github.com/v3/)
   - [Reddit](https://www.reddit.com/dev/api/)
-
 ## Running the tests
 
 To run the tests, run the command `dotnet test` from within the exercise directory.
@@ -48,5 +47,3 @@ To run the tests, run the command `dotnet test` from within the exercise directo
 For more detailed information about the F# track, including how to get help if
 you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

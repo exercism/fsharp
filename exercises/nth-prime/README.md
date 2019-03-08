@@ -27,5 +27,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 A variation on Problem 7 at Project Euler [http://projecteuler.net/problem=7](http://projecteuler.net/problem=7)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

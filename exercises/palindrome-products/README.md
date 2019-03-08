@@ -49,5 +49,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 Problem 4 at Project Euler [http://projecteuler.net/problem=4](http://projecteuler.net/problem=4)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

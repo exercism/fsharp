@@ -66,5 +66,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 Josh Cheek [https://twitter.com/josh_cheek](https://twitter.com/josh_cheek)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

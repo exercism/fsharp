@@ -33,5 +33,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 A variation on a famous interview question intended to weed out potential candidates. [http://jumpstartlab.com](http://jumpstartlab.com)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
