@@ -35,5 +35,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 The Ruby Koans triangle project, parts 1 & 2 [http://rubykoans.com](http://rubykoans.com)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.

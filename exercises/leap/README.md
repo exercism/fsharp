@@ -13,9 +13,6 @@ on every year that is evenly divisible by 4
 For example, 1997 is not a leap year, but 1996 is.  1900 is not a leap
 year, but 2000 is.
 
-If your language provides a method in the standard library that does
-this look-up, pretend it doesn't exist and implement it yourself.
-
 ## Notes
 
 Though our exercise adopts some very simple rules, there is more to
@@ -44,5 +41,3 @@ you're having trouble, please visit the exercism.io [F# language page](http://ex
 
 JavaRanch Cattle Drive, exercise 3 [http://www.javaranch.com/leap.jsp](http://www.javaranch.com/leap.jsp)
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
