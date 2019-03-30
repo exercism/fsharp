@@ -1,23 +1,26 @@
 ﻿module PalindromeProducts
 
 let isPalindrome n = 
-    let mutable current = n
-    let mutable result = 0
+    let mutable current = n / 10
+    let mutable result = n % 10
     while(current > 0) do
         result <- result * 10 + current % 10
         current <- current / 10
 
     result = n
 
-let palindrome predicate minFactor maxFactor = 
+let palindrome predicate compare startValue minFactor maxFactor = 
     if minFactor > maxFactor then
         None
     else
         let allPalindromes = 
+            let mutable compareValue = startValue
             [for y in minFactor..maxFactor do
                  for x in minFactor ..y do
-                     if isPalindrome (x * y) then
-                        yield x * y, (x, y)]
+                     let prod = x * y
+                     if (compare prod compareValue) && isPalindrome prod then
+                        compareValue <- prod
+                        yield prod, (x, y)]
 
         match List.isEmpty allPalindromes with
         | true -> 
@@ -36,6 +39,6 @@ let palindrome predicate minFactor maxFactor =
 
             Some (value, factors)
 
-let largest minFactor maxFactor = palindrome List.max minFactor maxFactor
+let largest minFactor maxFactor = palindrome List.max (>=) 0 minFactor maxFactor
 
-let smallest minFactor maxFactor = palindrome List.min minFactor maxFactor
+let smallest minFactor maxFactor = palindrome List.min (<=) System.Int32.MaxValue minFactor maxFactor
