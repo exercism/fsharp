@@ -10,23 +10,24 @@ var buildDir  = "./build";
 
 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = System.Environment.ProcessorCount };
 
+Task("FetchConfiglet")
+    .Does(() => StartProcess("./bin/fetch-configlet"));
+
+Task("ConfigletLint")
+    .IsDependentOn("FetchConfiglet")
+    .Does(() => StartProcess("./bin/configlet", "lint ."));
+
 Task("Clean")
-    .Does(() => {
-		CleanDirectory(buildDir);   
-    }); 
+    .Does(() => CleanDirectory(buildDir)); 
 
 Task("BuildGenerators")
     .IsDependentOn("Clean")
-    .Does(() => {
-       DotNetCoreBuild("./generators/Generators.fsproj");
-    });
+    .Does(() => DotNetCoreBuild("./generators/Generators.fsproj"));
 
 // Copy everything to build so we make no changes in the actual files.
 Task("CopyExercises")
-    .IsDependentOn("BuildGenerators")
-    .Does(() => {
-        CopyDirectory($"{sourceDir}/{exercise}", $"{buildDir}/{exercise}");
-    });
+    .IsDependentOn("Clean")
+    .Does(() => CopyDirectory($"{sourceDir}/{exercise}", $"{buildDir}/{exercise}"));
 
 Task("EnableAllTests")
     .IsDependentOn("CopyExercises")
@@ -90,6 +91,13 @@ Task("TestUsingExampleImplementation")
     });
 
 Task("Default")
+    .IsDependentOn("BuildGenerators")
+    .IsDependentOn("TestUsingExampleImplementation")
+    .Does(() => { });
+
+Task("CI")
+    .IsDependentOn("ConfigletLint")
+    .IsDependentOn("BuildGenerators")
     .IsDependentOn("TestUsingExampleImplementation")
     .Does(() => { });
 
