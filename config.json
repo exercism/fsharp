@@ -1035,7 +1035,7 @@
       ]
     },
     {
-      "slug": "bracket-push",
+      "slug": "matching-brackets",
       "uuid": "677ca063-70fe-4cfc-8112-c5d78bd1ea44",
       "core": false,
       "unlocked_by": "kindergarten-garden",

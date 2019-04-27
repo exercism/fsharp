@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="BracketPush.fs" />
-    <Compile Include="BracketPushTest.fs" />
+    <Compile Include="MatchingBrackets.fs" />
+    <Compile Include="MatchingBracketsTest.fs" />
   </ItemGroup>
 
   <ItemGroup>
