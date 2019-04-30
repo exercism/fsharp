@@ -1,4 +1,4 @@
-﻿module BracketPush
+﻿module MatchingBrackets
 
 open System
 

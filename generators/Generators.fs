@@ -185,9 +185,6 @@ type Bowling() =
         value
         |> Option.ofNonErrorObject
         |> Option.renderParenthesized
-    
-type BracketPush() =
-    inherit GeneratorExercise()
 
 type Change() =
     inherit GeneratorExercise()
@@ -791,6 +788,9 @@ type Markdown() =
     override __.SkipTestMethod (_, _) = false
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
+
+type MatchingBrackets() =
+    inherit GeneratorExercise()
 
 type Matrix() =
     inherit GeneratorExercise()

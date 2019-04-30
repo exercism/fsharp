@@ -1,11 +1,11 @@
-// This file was auto-generated based on version 1.4.0 of the canonical data.
+// This file was auto-generated based on version 2.0.0 of the canonical data.
 
-module BracketPushTest
+module MatchingBracketsTest
 
 open FsUnit.Xunit
 open Xunit
 
-open BracketPush
+open MatchingBrackets
 
 [<Fact>]
 let ``Paired square brackets`` () =
@@ -62,6 +62,10 @@ let ``Paired and wrong nested brackets`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Paired and incomplete brackets`` () =
     isPaired "{}[" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Too many closing brackets`` () =
+    isPaired "[]]" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Math expression`` () =
