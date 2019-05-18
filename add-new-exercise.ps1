@@ -1,6 +1,6 @@
 param (
     [Parameter(Mandatory=$true)][string]$exercise,
-    [Parameter()][string[]]$topics,
+    [Parameter()][string]$topics,
     [Parameter()][bool]$core,
     [Parameter()][int32]$difficulty,
     [Parameter()][string]$unlocked_by
@@ -11,10 +11,10 @@ class Exercise {
     [guid]$uuid = [Guid]::Empty
     [Boolean]$core = $false
     [int32]$difficulty = 1
-    [string[]]$topics
+    [string]$topics
     [string]$unlocked_by = $null
 
-    Exercise ([String]$slug, [String[]]$topics, [Boolean]$core,[int32]$difficulty,[string]$unlocked_by)
+    Exercise ([String]$slug, [String]$topics, [Boolean]$core,[int32]$difficulty,[string]$unlocked_by)
     {
         $this.slug = $slug
         $this.topics = $topics
