@@ -1,10 +1,10 @@
 param (
-    [Parameter(Mandatory=$true)][string]$Exercise,
+    [Parameter(Mandatory = $true)][string]$Exercise,
     [Parameter()][string[]]$Topics = $null,
     [Parameter()][bool]$Core,
     [Parameter()][int32]$Difficulty = 1,
     [Parameter()][String]$UnlockedBy = $null
- )
+)
 
 class Exercise {
     [String]$slug = ""
@@ -14,10 +14,9 @@ class Exercise {
     [int32]$difficulty = 1
     [string[]]$topics = $null
 
-    Exercise ([String]$slug, [String[]]$Topics, [Boolean]$Core,[int32]$Difficulty,[String]$UnlockedBy)
-    {
-        $this.slug = $slug
-        $this.Topics = $Topics
+    Exercise ([String]$Slug, [String[]]$Topics, [Boolean]$Core, [int32]$Difficulty, [String]$UnlockedBy) {
+        $this.slug = $Slug
+        $this.topics = $Topics
         $this.uuid = [Guid]::NewGuid()
         $this.core = $Core
         $this.difficulty = $Difficulty
@@ -25,15 +24,30 @@ class Exercise {
     }
 }
 
+function Restore-Indentation {
+    $newContent = $args[0]
+    $newContent = $newContent -replace " {41}", "        "
+    $newContent = $newContent -replace " {37}", "      "
+    $newContent = $newContent -replace " {26}", "      "
+    $newContent = $newContent -replace " {22}", "    "
+    $newContent = $newContent -replace " {21}", "    "
+    $newContent = $newContent -replace " {17}", "  "
+    $newContent = $newContent -replace "(?<! |\n) {2}(?! )", " "
+    $newContent
+}
+
 $projectName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
-New-Item -Path "Exercises\$Exercise" -ItemType Directory
-$config =  ConvertFrom-JSON -InputObject ([IO.File]::ReadAllText("./config.json"))
+New-Item -Path "Exercises/$Exercise" -ItemType Directory
+$config = ConvertFrom-JSON -InputObject ([IO.File]::ReadAllText("./config.json"))
 $Exercises = $config.Exercises
 $newExercise = New-Object -Typename Exercise -ArgumentList $Exercise, $Topics, $Core, $Difficulty, $UnlockedBy
 $Exercises += $newExercise
 $config.Exercises = $Exercises;
 $newContent = ConvertTo-Json -InputObject $config -Depth 10
-[IO.File]::WriteAllText("./config.json",$newContent)
+$newContent = Restore-Indentation $newContent
+$newContent = $newContent -replace "\\u0027", "'"
+$newContent = $newContent -replace 'unlocked_by": ""', 'unlocked_by": null'
+[IO.File]::WriteAllText("./config.json", $newContent)
 
 $fsProj = "Exercises/$Exercise/$projectName.fsproj"
 dotnet new xunit -lang F# -o "Exercises/$Exercise" -n $projectName
