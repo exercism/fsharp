@@ -28,19 +28,18 @@ type Allergies() =
 
     let renderAllergenEnum (jToken: JToken) = Obj.renderEnum "Allergen" jToken
 
-    member this.RenderAllergicToAssert canonicalDataCase (jToken: JToken) =
-        let substance = renderAllergenEnum jToken.["substance"]
+    member this.RenderAllergicToAssert canonicalDataCase =
+        let substance = renderAllergenEnum canonicalDataCase.Input.["item"]
         let score = canonicalDataCase.Input.["score"].ToObject<int>()
         let sut = sprintf "allergicTo %d %s" score substance
-        let expected = jToken.Value<bool>("result") |> Bool.render
+        let expected = canonicalDataCase.Expected.ToObject<bool>() |> Bool.render
         this.RenderAssertEqual sut expected
 
     override this.RenderAssert canonicalDataCase =
         match canonicalDataCase.Property with
         | "allergicTo" ->
-            canonicalDataCase.Expected
-            |> Seq.map (this.RenderAllergicToAssert canonicalDataCase)
-            |> Seq.toList
+            this.RenderAllergicToAssert canonicalDataCase
+            |> List.singleton
         | _ -> 
             base.RenderAssert canonicalDataCase
 
