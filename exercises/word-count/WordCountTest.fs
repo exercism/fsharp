@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module WordCountTest
 
@@ -108,4 +108,13 @@ let ``Multiple spaces not detected as a word`` () =
           ("whitespaces", 1) ]
         |> Map.ofList
     countWords " multiple   whitespaces" |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Alternating word separators not detected as a word`` () =
+    let expected = 
+        [ ("one", 1);
+          ("two", 1);
+          ("three", 1) ]
+        |> Map.ofList
+    countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
 

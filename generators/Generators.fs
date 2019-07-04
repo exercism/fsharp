@@ -501,7 +501,7 @@ type Dominoes() =
 type Etl() =
     inherit GeneratorExercise()
 
-    override __.RenderInput (_, _, value) = Map.render<int, char list> value
+    override __.RenderInput (_, _, value) = Map.render<int, char list> value.["legacy"]
 
     override __.RenderExpected (_, _, value) = Map.render<char, int> value
 

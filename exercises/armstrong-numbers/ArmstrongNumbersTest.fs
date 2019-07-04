@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module ArmstrongNumbersTest
 
@@ -8,6 +8,10 @@ open Xunit
 open ArmstrongNumbers
 
 [<Fact>]
+let ``Zero is an Armstrong number`` () =
+    isArmstrongNumber 0 |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
 let ``Single digit numbers are Armstrong numbers`` () =
     isArmstrongNumber 5 |> should equal true
 

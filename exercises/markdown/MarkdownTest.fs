@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module MarkdownTest
 
@@ -77,5 +77,11 @@ let ``With markdown symbols in the list item text that should not be interpreted
 let ``With markdown symbols in the paragraph text that should not be interpreted`` () =
     let markdown = "This is a paragraph with # and * in the text"
     let expected = "<p>This is a paragraph with # and * in the text</p>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``Unordered lists close properly with preceding and following lines`` () =
+    let markdown = "# Start a list\n* Item 1\n* Item 2\nEnd a list"
+    let expected = "<h1>Start a list</h1><ul><li>Item 1</li><li>Item 2</li></ul><p>End a list</p>"
     parse markdown |> should equal expected
 

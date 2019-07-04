@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module YachtTest
 
@@ -106,6 +106,10 @@ let ``Big Straight`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Big Straight as little straight`` () =
     score Category.LittleStraight [Die.Six; Die.Five; Die.Four; Die.Three; Die.Two] |> should equal 0
+
+[<Fact(Skip = "Remove to run test")>]
+let ``No pairs but not a big straight`` () =
+    score Category.BigStraight [Die.Six; Die.Five; Die.Four; Die.Three; Die.One] |> should equal 0
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Choice`` () =

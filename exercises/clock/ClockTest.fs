@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.3.0 of the canonical data.
+// This file was auto-generated based on version 2.4.0 of the canonical data.
 
 module ClockTest
 
@@ -91,6 +91,11 @@ let ``Negative minutes roll over`` () =
 let ``Negative minutes roll over continuously`` () =
     let clock = create 1 -4820
     display clock |> should equal "16:40"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Negative sixty minutes is previous hour`` () =
+    let clock = create 2 -60
+    display clock |> should equal "01:00"
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Negative hour and minutes both roll over`` () =

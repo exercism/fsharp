@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 2.0.0 of the canonical data.
 
 module EtlTest
 
@@ -8,7 +8,7 @@ open Xunit
 open Etl
 
 [<Fact>]
-let ``A single letter`` () =
+let ``Single letter`` () =
     let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList
     transform lettersByScore |> should equal expected

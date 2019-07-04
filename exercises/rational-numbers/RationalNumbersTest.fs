@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.1.0 of the canonical data.
 
 module RationalNumbersTest
 
@@ -84,8 +84,16 @@ let ``Absolute value of a positive rational number`` () =
     abs (create 1 2) |> should equal (create 1 2)
 
 [<Fact(Skip = "Remove to run test")>]
+let ``Absolute value of a positive rational number with negative numerator and denominator`` () =
+    abs (create -1 -2) |> should equal (create 1 2)
+
+[<Fact(Skip = "Remove to run test")>]
 let ``Absolute value of a negative rational number`` () =
     abs (create -1 2) |> should equal (create 1 2)
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Absolute value of a negative rational number with negative denominator`` () =
+    abs (create 1 -2) |> should equal (create 1 2)
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Absolute value of zero`` () =

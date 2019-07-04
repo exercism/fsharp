@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.2.0 of the canonical data.
+// This file was auto-generated based on version 2.3.0 of the canonical data.
 
 module QueenAttackTest
 
@@ -65,7 +65,7 @@ let ``Can attack on third diagonal`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Can attack on fourth diagonal`` () =
-    let whiteQueen = (2, 2)
-    let blackQueen = (5, 5)
+    let whiteQueen = (1, 7)
+    let blackQueen = (0, 6)
     canAttack blackQueen whiteQueen |> should equal true
 

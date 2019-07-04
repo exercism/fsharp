@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.6.1 of the canonical data.
+// This file was auto-generated based on version 1.7.0 of the canonical data.
 
 module PhoneNumberTest
 
@@ -49,7 +49,7 @@ let ``Invalid when more than 11 digits`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Invalid with letters`` () =
-    let expected: Result<uint64,string> = Error "alphanumerics not permitted"
+    let expected: Result<uint64,string> = Error "letters not permitted"
     clean "123-abc-7890" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
