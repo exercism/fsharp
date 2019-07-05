@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.5.0 of the canonical data.
 
 module WordyTest
 
@@ -8,6 +8,10 @@ open Xunit
 open Wordy
 
 [<Fact>]
+let ``Just a number`` () =
+    answer "What is 5?" |> should equal (Some 5)
+
+[<Fact(Skip = "Remove to run test")>]
 let ``Addition`` () =
     answer "What is 1 plus 1?" |> should equal (Some 2)
 
@@ -70,4 +74,28 @@ let ``Unknown operation`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Non math question`` () =
     answer "Who is the President of the United States?" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Reject problem missing an operand`` () =
+    answer "What is 1 plus?" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Reject problem with no operands or operators`` () =
+    answer "What is?" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Reject two operations in a row`` () =
+    answer "What is 1 plus plus 2?" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Reject two numbers in a row`` () =
+    answer "What is 1 plus 2 1?" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Reject postfix notation`` () =
+    answer "What is 1 2 plus?" |> should equal None
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Reject prefix notation`` () =
+    answer "What is plus 1 2?" |> should equal None
 

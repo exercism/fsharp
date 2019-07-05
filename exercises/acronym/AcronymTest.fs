@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.5.0 of the canonical data.
+// This file was auto-generated based on version 1.7.0 of the canonical data.
 
 module AcronymTest
 
@@ -34,4 +34,12 @@ let ``Very long abbreviation`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Consecutive delimiters`` () =
     abbreviate "Something - I made up from thin air" |> should equal "SIMUFTA"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Apostrophes`` () =
+    abbreviate "Halley's Comet" |> should equal "HC"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Underscore emphasis`` () =
+    abbreviate "The Road _Not_ Taken" |> should equal "TRNT"
 

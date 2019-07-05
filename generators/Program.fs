@@ -12,7 +12,6 @@ let private isNotFilteredByName options (exercise: Exercise) =
     | Some filteredExerciseName -> filteredExerciseName = exerciseName exercise
     | None -> true
     
-
 let private regenerateTestClass options =
     let parseCanonicalData' = parseCanonicalData options
 
@@ -42,10 +41,7 @@ let private regenerateTestClasses options =
         | [] -> Log.Warning "No exercises matched given options."
         | exercises ->
             List.iter regenerateTestClass' exercises
-            Log.Information("Re-generated test classes.")
-            
-            
-                      
+            Log.Information("Re-generated test classes.")     
 
 [<EntryPoint>]
 let main argv = 

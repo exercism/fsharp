@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.0.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module SgfParsingTest
 
@@ -31,6 +31,11 @@ let ``Node without properties`` () =
 let ``Single node tree`` () =
     let expected = Some (Node (Map.ofList [("A", ["B"])], []))
     parse "(;A[B])" |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Multiple properties`` () =
+    let expected = Some (Node (Map.ofList [("A", ["b"]); ("C", ["d"])], []))
+    parse "(;A[b]C[d])" |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Properties without delimiter`` () =

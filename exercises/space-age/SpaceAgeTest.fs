@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module SpaceAgeTest
 
@@ -21,7 +21,7 @@ let ``Age on Venus`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Age on Mars`` () =
-    age Mars 2329871239L |> should (equalWithin 0.01) 39.25
+    age Mars 2129871239L |> should (equalWithin 0.01) 35.88
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Age on Jupiter`` () =
@@ -29,13 +29,13 @@ let ``Age on Jupiter`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Age on Saturn`` () =
-    age Saturn 3000000000L |> should (equalWithin 0.01) 3.23
+    age Saturn 2000000000L |> should (equalWithin 0.01) 2.15
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Age on Uranus`` () =
-    age Uranus 3210123456L |> should (equalWithin 0.01) 1.21
+    age Uranus 1210123456L |> should (equalWithin 0.01) 0.46
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Age on Neptune`` () =
-    age Neptune 8210123456L |> should (equalWithin 0.01) 1.58
+    age Neptune 1821023456L |> should (equalWithin 0.01) 0.35
 

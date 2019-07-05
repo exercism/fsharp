@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 2.0.0 of the canonical data.
 
 module SimpleCipherTest
 
@@ -60,7 +60,12 @@ let ``Substitution cipher - Can wrap on decode`` () =
     sut.Decode("zabcdefghi") |> should equal "zzzzzzzzzz"
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Substitution cipher - Can handle messages longer than the key`` () =
+let ``Substitution cipher - Can encode messages longer than the key`` () =
     let sut = SimpleCipher("abc")
     sut.Encode("iamapandabear") |> should equal "iboaqcnecbfcr"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Substitution cipher - Can decode messages longer than the key`` () =
+    let sut = SimpleCipher("abc")
+    sut.Decode("iboaqcnecbfcr") |> should equal "iamapandabear"
 

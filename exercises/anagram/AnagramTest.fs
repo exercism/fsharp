@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.4.0 of the canonical data.
+// This file was auto-generated based on version 1.4.1 of the canonical data.
 
 module AnagramTest
 
@@ -53,7 +53,7 @@ let ``Detects anagrams using case-insensitive possible matches`` () =
     findAnagrams candidates "orchestra" |> should equal ["Carthorse"]
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Does not detect a anagram if the original word is repeated`` () =
+let ``Does not detect an anagram if the original word is repeated`` () =
     let candidates = ["go Go GO"]
     findAnagrams candidates "go" |> should be Empty
 

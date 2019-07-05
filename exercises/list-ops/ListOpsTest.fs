@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.3.0 of the canonical data.
+// This file was auto-generated based on version 2.4.0 of the canonical data.
 
 module ListOpsTest
 
@@ -86,4 +86,8 @@ let ``reverse empty list`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``reverse non-empty list`` () =
     reverse [1; 3; 5; 7] |> should equal [7; 5; 3; 1]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``reverse list of lists is not flattened`` () =
+    reverse [[1; 2]; [3]; []; [4; 5; 6]] |> should equal [[4; 5; 6]; []; [3]; [1; 2]]
 

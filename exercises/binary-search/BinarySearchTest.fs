@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.3.0 of the canonical data.
 
 module BinarySearchTest
 
@@ -57,23 +57,30 @@ let ``Identifies that a value is not included in the array`` () =
     find array value |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``A value smaller than the array's smallest value is not included`` () =
+let ``A value smaller than the array's smallest value is not found`` () =
     let array = [|1; 3; 4; 6; 8; 9; 11|]
     let value = 0
     let expected = None
     find array value |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``A value larger than the array's largest value is not included`` () =
+let ``A value larger than the array's largest value is not found`` () =
     let array = [|1; 3; 4; 6; 8; 9; 11|]
     let value = 13
     let expected = None
     find array value |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Nothing is included in an empty array`` () =
+let ``Nothing is found in an empty array`` () =
     let array = [||]
     let value = 1
+    let expected = None
+    find array value |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Nothing is found when the left and right bounds cross`` () =
+    let array = [|1; 2|]
+    let value = 0
     let expected = None
     find array value |> should equal expected
 

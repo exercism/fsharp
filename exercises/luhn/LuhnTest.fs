@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
+// This file was auto-generated based on version 1.6.1 of the canonical data.
 
 module LuhnTest
 
@@ -36,8 +36,16 @@ let ``Invalid credit card`` () =
     valid "8273 1232 7352 0569" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Valid strings with a non-digit included become invalid`` () =
-    valid "055a 444 285" |> should equal false
+let ``Valid number with an even number of digits`` () =
+    valid "095 245 88" |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Valid number with an odd number of spaces`` () =
+    valid "234 567 891 234" |> should equal true
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Valid strings with a non-digit added at the end become invalid`` () =
+    valid "059a" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Valid strings with punctuation included become invalid`` () =
@@ -45,7 +53,7 @@ let ``Valid strings with punctuation included become invalid`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Valid strings with symbols included become invalid`` () =
-    valid "055£ 444$ 285" |> should equal false
+    valid "055# 444$ 285" |> should equal false
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Single zero with space is invalid`` () =
@@ -60,6 +68,10 @@ let ``Input digit 9 is correctly converted to output digit 9`` () =
     valid "091" |> should equal true
 
 [<Fact(Skip = "Remove to run test")>]
-let ``Strings with non-digits is invalid`` () =
+let ``Using ascii value for non-doubled non-digit isn't allowed`` () =
+    valid "055b 444 285" |> should equal false
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Using ascii value for doubled non-digit isn't allowed`` () =
     valid ":9" |> should equal false
 

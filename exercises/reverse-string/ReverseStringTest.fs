@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module ReverseStringTest
 
@@ -26,4 +26,8 @@ let ``A sentence with punctuation`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``A palindrome`` () =
     reverse "racecar" |> should equal "racecar"
+
+[<Fact(Skip = "Remove to run test")>]
+let ``An even-sized word`` () =
+    reverse "drawer" |> should equal "reward"
 
