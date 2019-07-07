@@ -63,3 +63,5 @@ New-Item -Path "Exercises/$Exercise/Example.fs" -ItemType File
 $proj.Project.ItemGroup[0].Compile[0].Include = "$projectName.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${projectName}Test.fs"
 $proj.Save($fsProj)
+
+exit $LastExitCode
