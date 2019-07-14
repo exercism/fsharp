@@ -11,5 +11,6 @@ paket-files
 .idea/
 .vs/
 .vscode/
+.ionide/
 .dotnet
 *.fsproj.user
