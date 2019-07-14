@@ -7,11 +7,6 @@ type Tree = Node of Data * Tree list
 
 let mkTree node children = Node (node, children)
 
-let propertyToData = 
-    function 
-    | Some (prop, values) -> Map.ofList [(prop, values)]
-    | None -> Map.empty
-
 let rec nodesToTree (nodes, trees) = 
     match nodes with
     | [] -> failwith "Can only create tree from non-empty nodes list"
@@ -28,7 +23,7 @@ let cValueType = manyChars (normalChar <|> escapedChar)
 let propValue = between (pchar '[') (pchar ']') cValueType
 let propIdent = asciiUpper
 let property = (propIdent |>> string) .>>. many1 propValue
-let node = (pchar ';') >>. opt property |>> propertyToData
+let node = (pchar ';') >>. many property |>> Map.ofList
 let gameTree = (pchar '(') >>. (many1 node) .>>. (many expr) .>> (pchar ')') |>> nodesToTree
 
 exprImpl := gameTree
