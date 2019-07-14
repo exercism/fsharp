@@ -48,6 +48,12 @@ type Allergies() =
         | "list" -> List.mapRender renderAllergenEnum canonicalDataCase.Expected
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
 
+    override __.UseFullMethodName _ = true
+
+    override __.TestMethodName canonicalDataCase =
+        let testMethodName = base.TestMethodName canonicalDataCase
+        testMethodName.Replace(" when:", "")
+
 type Alphametics() =
     inherit GeneratorExercise()
 
