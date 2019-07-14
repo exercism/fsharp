@@ -17,7 +17,7 @@ let private checkNumberLength (input:string): Result<string, string> =
 
 let private checkNoneNumericChars (input:string): Result<string, string> =
     match input with
-    | i when Seq.exists Char.IsLetter i -> Error "alphanumerics not permitted"
+    | i when Seq.exists Char.IsLetter i -> Error "letters not permitted"
     | i when Seq.exists Char.IsPunctuation i -> Error "punctuations not permitted"
     | i when Seq.forall Char.IsNumber i -> Ok input
     | _ -> Error "some char is not a number"

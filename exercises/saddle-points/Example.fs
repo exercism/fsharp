@@ -22,6 +22,6 @@ let saddlePoints (matrix: int list list) =
         let isSaddlePoint x y = element x y = rowMax x && element x y = colMin y
 
         [for x in 0 .. (rows - 1) do
-            for y in 0 .. (cols - 1) do            
+            for y in 0 .. (cols - 1) do
                 if isSaddlePoint x y then
-                    yield (x, y)]
+                    yield (x + 1, y + 1)]

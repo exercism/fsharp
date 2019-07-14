@@ -66,7 +66,11 @@ let rec parse (markdown: string) =
                html <- html + "<h2>" + lines.[i].[3..] + "</h2>"
            else
                html <- html + "<h1>" + lines.[i].[2..] + "</h1>"
-       else 
+       else
+           if isList then  
+               html <- html + "</ul>"
+               isList <- false
+           
            let mutable line = lines.[i]            
            let mutable __pos = line.IndexOf "__"
 

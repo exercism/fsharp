@@ -31,8 +31,6 @@ Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BookStore", "book-store\Boo
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Bowling", "bowling\Bowling.fsproj", "{9CC473BB-F839-486B-9C7F-B2A8ADF51877}"
 EndProject
-Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "BracketPush", "bracket-push\BracketPush.fsproj", "{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}"
-EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Change", "change\Change.fsproj", "{11C9FBD6-8261-4171-A3E0-FF3E06F220CB}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "CircularBuffer", "circular-buffer\CircularBuffer.fsproj", "{6DC8D401-73A7-41CF-B2CD-B1E6134E2340}"
@@ -100,6 +98,8 @@ EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Luhn", "luhn\Luhn.fsproj", "{627C4E77-1833-49B4-955E-62D2734EBDF4}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Markdown", "markdown\Markdown.fsproj", "{BE4BEAE0-39EF-47E8-B50F-F0185F4F67E0}"
+EndProject
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "MatchingBrackets", "matching-brackets\MatchingBrackets.fsproj", "{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}"
 EndProject
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Matrix", "matrix\Matrix.fsproj", "{38635346-7531-40A8-AEDC-08EF4C59F516}"
 EndProject
