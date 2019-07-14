@@ -13,9 +13,9 @@ let private parseRows (matrix: string) =
 let row index matrix = 
     matrix
     |> parseRows
-    |> List.item index
+    |> List.item (index - 1)
 
 let column index matrix =
     matrix
     |> parseRows
-    |> List.map (List.item index)
+    |> List.map (List.item (index - 1))
