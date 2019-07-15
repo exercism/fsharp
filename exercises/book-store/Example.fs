@@ -3,14 +3,14 @@
 let private costPerGroup groupSize =
     let discountPercentage =
         match groupSize with
-        | 1 ->  0.
-        | 2 ->  5.
-        | 3 -> 10.
-        | 4 -> 20.
-        | 5 -> 25.
+        | 1 ->  0m
+        | 2 ->  5m
+        | 3 -> 10m
+        | 4 -> 20m
+        | 5 -> 25m
         | _ -> failwith "Invalid group size"
 
-    8. * (groupSize |> float) * (100. - discountPercentage) / 100.
+    8m * (groupSize |> decimal) * (100m - discountPercentage) / 100m
 
 let private remove n list =
     let rec removeTail n list acc =
@@ -50,4 +50,4 @@ let rec private calculateTotalCostHelper books priceSoFar =
         |> List.min
 
 let total books =
-    calculateTotalCostHelper books 0.
+    calculateTotalCostHelper books 0m

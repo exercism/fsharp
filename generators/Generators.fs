@@ -160,7 +160,7 @@ type Bob() =
 type BookStore() =
     inherit GeneratorExercise()
 
-    override __.RenderExpected (_, _, value) = value.ToObject<float>() / 100.0 |> sprintf "%.2f"
+    override __.RenderExpected (_, _, value) = value.ToObject<decimal>() / 100m |> sprintf "%.2fm"
 
     override __.PropertiesUsedAsSutParameter canonicalDataCase =
         base.PropertiesUsedAsSutParameter canonicalDataCase |> List.except ["targetgrouping"]
