@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
+// This file was auto-generated based on version 1.2.0 of the canonical data.
 
 module CircularBufferTest
 
@@ -128,4 +128,18 @@ let ``Overwrite replaces the oldest item remaining in buffer following a read`` 
     val9 |> should equal 4
     let (val10, _) = read buffer9
     val10 |> should equal 5
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Initial clear does not affect wrapping around`` () =
+    let buffer1 = mkCircularBuffer 2
+    let buffer2 = clear buffer1
+    let buffer3 = write 1 buffer2
+    let buffer4 = write 2 buffer3
+    let buffer5 = forceWrite 3 buffer4
+    let buffer6 = forceWrite 4 buffer5
+    let (val7, buffer7) = read buffer6
+    val7 |> should equal 3
+    let (val8, buffer8) = read buffer7
+    val8 |> should equal 4
+    (fun () -> read buffer8 |> ignore) |> should throw typeof<Exception>
 

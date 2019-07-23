@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.4.1 of the canonical data.
+// This file was auto-generated based on version 1.5.0 of the canonical data.
 
 module AnagramTest
 
@@ -31,6 +31,11 @@ let ``Detects anagram`` () =
 let ``Detects three anagrams`` () =
     let candidates = ["gallery"; "ballerina"; "regally"; "clergy"; "largely"; "leading"]
     findAnagrams candidates "allergy" |> should equal ["gallery"; "regally"; "largely"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Detects multiple anagrams with different case`` () =
+    let candidates = ["Eons"; "ONES"]
+    findAnagrams candidates "nose" |> should equal ["Eons"; "ONES"]
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Does not detect non-anagrams with identical checksum`` () =
@@ -66,4 +71,9 @@ let ``Anagrams must use all letters exactly once`` () =
 let ``Words are not anagrams of themselves (case-insensitive)`` () =
     let candidates = ["BANANA"; "Banana"; "banana"]
     findAnagrams candidates "BANANA" |> should be Empty
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Words other than themselves can be anagrams`` () =
+    let candidates = ["Listen"; "Silent"; "LISTEN"]
+    findAnagrams candidates "LISTEN" |> should equal ["Silent"]
 
