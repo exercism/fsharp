@@ -3,18 +3,18 @@ param (
     [Parameter()][string[]]$Topics = $null,
     [Parameter()][bool]$Core,
     [Parameter()][int32]$Difficulty = 1,
-    [Parameter()][String]$UnlockedBy = $null
+    [Parameter()][NullString]$UnlockedBy
 )
 
 class Exercise {
     [String]$slug = ""
     [guid]$uuid = [Guid]::Empty
     [Boolean]$core = $false
-    [string]$unlocked_by = $null
+    [NullString]$unlocked_by
     [int32]$difficulty = 1
     [string[]]$topics = $null
 
-    Exercise ([String]$Slug, [String[]]$Topics, [Boolean]$Core, [int32]$Difficulty, [String]$UnlockedBy) {
+    Exercise ([String]$Slug, [String[]]$Topics, [Boolean]$Core, [int32]$Difficulty, [NullString]$UnlockedBy) {
         $this.slug = $Slug
         $this.topics = $Topics
         $this.uuid = [Guid]::NewGuid()
@@ -45,8 +45,6 @@ $config.Exercises = $Exercises;
 
 $newContent = ConvertTo-Json -InputObject $config -Depth 10
 $newContent = Restore-Indentation $newContent
-$newContent = $newContent -replace "\\u0027", "'"
-$newContent = $newContent -replace 'unlocked_by": ""', 'unlocked_by": null'
 [IO.File]::WriteAllText("./config.json", $newContent)
 
 $exercisesDir = Resolve-Path "exercises"
