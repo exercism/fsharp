@@ -1,7 +1,7 @@
 param (
     [Parameter(Mandatory = $true)][string]$Exercise,
     [Parameter()][string[]]$Topics = @(),
-    [Parameter()][bool]$Core,
+    [Parameter()][switch]$Core,
     [Parameter()][int]$Difficulty = 1,
     [Parameter()]$UnlockedBy
 )
@@ -10,7 +10,7 @@ class Exercise {
     [guid]$uuid
     [string]$slug
     [string[]]$topics
-    [Boolean]$core
+    [bool]$core
     [int]$difficulty
     $unlocked_by
 
@@ -39,7 +39,7 @@ function Restore-Indentation {
 $projectName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $config = ConvertFrom-JSON -InputObject ([IO.File]::ReadAllText("./config.json"))
 $Exercises = $config.Exercises
-$newExercise = [Exercise]::new($Exercise, $Topics, $Core, $Difficulty, $UnlockedBy)
+$newExercise = [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
 $Exercises += $newExercise
 $config.Exercises = $Exercises;
 
