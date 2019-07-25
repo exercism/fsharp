@@ -1,6 +1,6 @@
 param (
     [Parameter(Mandatory = $true)][string]$Exercise,
-    [Parameter()][string[]]$Topics = $null,
+    [Parameter()][string[]]$Topics = @(),
     [Parameter()][bool]$Core,
     [Parameter()][int32]$Difficulty = 1,
     [Parameter()][NullString]$UnlockedBy
