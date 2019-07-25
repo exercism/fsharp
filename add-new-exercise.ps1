@@ -37,29 +37,33 @@ function Restore-Indentation {
 }
 
 $projectName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
-New-Item -Path "Exercises/$Exercise" -ItemType Directory
 $config = ConvertFrom-JSON -InputObject ([IO.File]::ReadAllText("./config.json"))
 $Exercises = $config.Exercises
 $newExercise = New-Object -Typename Exercise -ArgumentList $Exercise, $Topics, $Core, $Difficulty, $UnlockedBy
 $Exercises += $newExercise
 $config.Exercises = $Exercises;
+
 $newContent = ConvertTo-Json -InputObject $config -Depth 10
 $newContent = Restore-Indentation $newContent
 $newContent = $newContent -replace "\\u0027", "'"
 $newContent = $newContent -replace 'unlocked_by": ""', 'unlocked_by": null'
 [IO.File]::WriteAllText("./config.json", $newContent)
 
-$fsProj = "Exercises/$Exercise/$projectName.fsproj"
-dotnet new xunit -lang F# -o "Exercises/$Exercise" -n $projectName
-dotnet sln "Exercises/Exercises.sln" add $fsProj
-Remove-Item -Path "Exercises/$Exercise/Program.fs" 
-Remove-Item -Path "Exercises/$Exercise/Tests.fs"
+$exercisesDir = Resolve-Path "exercises"
+$exerciseDir = Join-Path $exercisesDir $Exercise
+$fsProj = "$exerciseDir/$projectName.fsproj"
 
-New-Item -Path "Exercises/$Exercise/$projectName.fs" -ItemType File
-New-Item -Path ("Exercises/$Exercise/${projectName}Test.fs") -ItemType File
-New-Item -Path "Exercises/$Exercise/Example.fs" -ItemType File
+dotnet new xunit -lang "F#" -o $exerciseDir -n $projectName
+dotnet sln "$exercisesDir/Exercises.sln" add $fsProj
+
+Remove-Item -Path "$exerciseDir/Program.fs" 
+Remove-Item -Path "$exerciseDir/Tests.fs"
+
+New-Item -ItemType File -Path "$exerciseDir/$projectName.fs"
+New-Item -ItemType File -Path "$exerciseDir/${projectName}Test.fs"
+New-Item -ItemType File -Path "$exerciseDir/Example.fs"
+
 [xml]$proj = Get-Content $fsProj
-
 $proj.Project.ItemGroup[0].Compile[0].Include = "$projectName.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${projectName}Test.fs"
 $proj.Save($fsProj)
