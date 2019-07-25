@@ -7,17 +7,17 @@ param (
 )
 
 class Exercise {
-    [String]$slug = ""
-    [guid]$uuid = [Guid]::Empty
-    [Boolean]$core = $false
+    [guid]$uuid
+    [String]$slug
+    [string[]]$topics
+    [Boolean]$core
+    [int32]$difficulty
     [NullString]$unlocked_by
-    [int32]$difficulty = 1
-    [string[]]$topics = $null
 
     Exercise ([String]$Slug, [String[]]$Topics, [Boolean]$Core, [int32]$Difficulty, [NullString]$UnlockedBy) {
+        $this.uuid = [Guid]::NewGuid()
         $this.slug = $Slug
         $this.topics = $Topics
-        $this.uuid = [Guid]::NewGuid()
         $this.core = $Core
         $this.difficulty = $Difficulty
         $this.unlocked_by = $UnlockedBy
