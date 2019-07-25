@@ -40,10 +40,7 @@ $projectName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $configJson = Resolve-Path "config.json"
 
 $config = Get-Content $configJson | ConvertFrom-JSON
-$Exercises = $config.Exercises
-$newExercise = [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
-$Exercises += $newExercise
-$config.Exercises = $Exercises;
+$config.Exercises += [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
 
 $newContent = ConvertTo-Json -InputObject $config -Depth 10
 $newContent = Restore-Indentation $newContent
