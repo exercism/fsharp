@@ -37,7 +37,9 @@ function Restore-Indentation {
 }
 
 $projectName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
-$config = ConvertFrom-JSON -InputObject ([IO.File]::ReadAllText("./config.json"))
+$configJson = Resolve-Path "config.json"
+
+$config = Get-Content $configJson | ConvertFrom-JSON
 $Exercises = $config.Exercises
 $newExercise = [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
 $Exercises += $newExercise
@@ -45,7 +47,7 @@ $config.Exercises = $Exercises;
 
 $newContent = ConvertTo-Json -InputObject $config -Depth 10
 $newContent = Restore-Indentation $newContent
-[IO.File]::WriteAllText("./config.json", $newContent)
+Set-Content -Path $configJson -Value $newContent
 
 $exercisesDir = Resolve-Path "exercises"
 $exerciseDir = Join-Path $exercisesDir $Exercise
