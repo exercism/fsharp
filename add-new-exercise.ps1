@@ -59,9 +59,9 @@ dotnet sln "$exercisesDir/Exercises.sln" add $fsProj
 Remove-Item -Path "$exerciseDir/Program.fs" 
 Remove-Item -Path "$exerciseDir/Tests.fs"
 
-New-Item -ItemType File -Path "$exerciseDir/$projectName.fs"
-New-Item -ItemType File -Path "$exerciseDir/${projectName}Test.fs"
-New-Item -ItemType File -Path "$exerciseDir/Example.fs"
+New-Item -ItemType File -Path "$exerciseDir/$projectName.fs" -Value "module $projectName"
+New-Item -ItemType File -Path "$exerciseDir/${projectName}Test.fs" -Value "open $projectName"
+New-Item -ItemType File -Path "$exerciseDir/Example.fs" -Value "module $projectName"
 
 [xml]$proj = Get-Content $fsProj
 $proj.Project.ItemGroup[0].Compile[0].Include = "$projectName.fs"
