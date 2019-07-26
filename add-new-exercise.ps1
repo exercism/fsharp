@@ -51,4 +51,6 @@ $proj.Project.ItemGroup[0].Compile[0].Include = "$projectName.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${projectName}Test.fs"
 $proj.Save($fsProj)
 
+./update-docs.ps1 -o $Exercise
+
 exit $LastExitCode
