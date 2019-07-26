@@ -43,7 +43,6 @@ Remove-Item -Path "$exerciseDir/Program.fs"
 Remove-Item -Path "$exerciseDir/Tests.fs"
 
 New-Item -ItemType File -Path "$exerciseDir/$projectName.fs" -Value "module $projectName"
-New-Item -ItemType File -Path "$exerciseDir/${projectName}Test.fs" -Value "open $projectName"
 New-Item -ItemType File -Path "$exerciseDir/Example.fs" -Value "module $projectName"
 
 [xml]$proj = Get-Content $fsProj
@@ -52,5 +51,11 @@ $proj.Project.ItemGroup[0].Compile[1].Include = "${projectName}Test.fs"
 $proj.Save($fsProj)
 
 ./update-docs.ps1 -o $Exercise
+
+$generatorsDir = Resolve-Path "generators"
+$generator = "type $projectName() =`n    inherit GeneratorExercise()`n"
+Add-Content -Path "$generatorsDir/Generators.fs" -Value $generator
+
+./generate-tests.ps1 $Exercise
 
 exit $LastExitCode
