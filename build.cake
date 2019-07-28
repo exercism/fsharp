@@ -2,7 +2,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-var target = Argument("target", "Default");
 var exercise = Argument<string>("exercise", null);
 
 var sourceDir = "./exercises";
@@ -90,15 +89,9 @@ Task("TestUsingExampleImplementation")
         }
     });
 
-Task("Default")
-    .IsDependentOn("BuildGenerators")
-    .IsDependentOn("TestUsingExampleImplementation")
-    .Does(() => { });
-
-Task("CI")
+Task("Build")
     .IsDependentOn("ConfigletLint")
     .IsDependentOn("BuildGenerators")
-    .IsDependentOn("TestUsingExampleImplementation")
-    .Does(() => { });
+    .IsDependentOn("TestUsingExampleImplementation");
 
-RunTarget(target);
+RunTarget("Build");
