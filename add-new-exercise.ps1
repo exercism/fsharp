@@ -51,7 +51,7 @@ class Exercise {
     }
 }
 
-$projectName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
+$exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $configJson = Resolve-Path "config.json"
 
 $config = Get-Content $configJson | ConvertFrom-JSON
@@ -61,26 +61,26 @@ ConvertTo-Json -InputObject $config -Depth 10 | Set-Content -Path $configJson
 
 $exercisesDir = Resolve-Path "exercises"
 $exerciseDir = Join-Path $exercisesDir $Exercise
-$fsProj = "$exerciseDir/$projectName.fsproj"
+$fsProj = "$exerciseDir/$exerciseName.fsproj"
 
-dotnet new xunit -lang "F#" -o $exerciseDir -n $projectName
+dotnet new xunit -lang "F#" -o $exerciseDir -n $exerciseName
 dotnet sln "$exercisesDir/Exercises.sln" add $fsProj
 
 Remove-Item -Path "$exerciseDir/Program.fs" 
 Remove-Item -Path "$exerciseDir/Tests.fs"
 
-New-Item -ItemType File -Path "$exerciseDir/$projectName.fs" -Value "module $projectName"
-New-Item -ItemType File -Path "$exerciseDir/Example.fs" -Value "module $projectName"
+New-Item -ItemType File -Path "$exerciseDir/$exerciseName.fs" -Value "module $exerciseName"
+New-Item -ItemType File -Path "$exerciseDir/Example.fs" -Value "module $exerciseName"
 
 [xml]$proj = Get-Content $fsProj
-$proj.Project.ItemGroup[0].Compile[0].Include = "$projectName.fs"
-$proj.Project.ItemGroup[0].Compile[1].Include = "${projectName}Test.fs"
+$proj.Project.ItemGroup[0].Compile[0].Include = "$exerciseName.fs"
+$proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Test.fs"
 $proj.Save($fsProj)
 
 ./update-docs.ps1 $Exercise
 
 $generatorsDir = Resolve-Path "generators"
-$generator = "type $projectName() =`n    inherit GeneratorExercise()`n"
+$generator = "type $exerciseName() =`n    inherit GeneratorExercise()`n"
 Add-Content -Path "$generatorsDir/Generators.fs" -Value $generator
 
 ./generate-tests.ps1 $Exercise
