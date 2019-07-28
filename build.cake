@@ -1,3 +1,5 @@
+#addin nuget:?package=Cake.FileHelpers&version=3.2.0
+
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -9,11 +11,8 @@ var buildDir  = "./build";
 
 var parallelOptions = new ParallelOptions { MaxDegreeOfParallelism = System.Environment.ProcessorCount };
 
-Task("FetchConfiglet")
-    .Does(() => StartProcess("./bin/fetch-configlet"));
-
 Task("ConfigletLint")
-    .IsDependentOn("FetchConfiglet")
+    .Does(() => StartProcess("./bin/fetch-configlet"))
     .Does(() => StartProcess("./bin/configlet", "lint ."));
 
 Task("Clean")
@@ -30,19 +29,7 @@ Task("CopyExercises")
 
 Task("EnableAllTests")
     .IsDependentOn("CopyExercises")
-    .Does(() => {
-        var skipRegex = new Regex(@"Skip = ""Remove to run test""", RegexOptions.Compiled);
-        var testFiles = GetFiles(buildDir + "/*/*Test.fs");
-
-        foreach (var testFile in testFiles) {
-            var contents = System.IO.File.ReadAllText(testFile.FullPath);
-
-            if (skipRegex.IsMatch(contents)) {
-                var updatedContents = skipRegex.Replace(contents, "");
-                System.IO.File.WriteAllText(testFile.FullPath, updatedContents);
-            }
-        }
-    });
+    .Does(() => ReplaceTextInFiles($"{buildDir}/*/*Test.fs", "Skip = \"Remove to run test\"", ""));
 
 Task("TestRefactoringProjects")
     .IsDependentOn("EnableAllTests")
