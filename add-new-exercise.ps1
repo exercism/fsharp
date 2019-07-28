@@ -55,7 +55,7 @@ $exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $configJson = Resolve-Path "config.json"
 
 $config = Get-Content $configJson | ConvertFrom-JSON
-$config.Exercises += [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
+$config.exercises += [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
 
 ConvertTo-Json -InputObject $config -Depth 10 | Set-Content -Path $configJson
 
