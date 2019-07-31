@@ -22,7 +22,7 @@
 .EXAMPLE
     The example below will add the "acronym" exercise as a core exercise, with
     two topics, a specified difficulty and being unlocked by "two-fer"
-    PS C:\> ./add-new-exercise.ps1 acronym -Core -Topics strings -Difficulty 3 -UnlockedBy two-fer
+    PS C:\> ./add-new-exercise.ps1 acronym -Core -Topics strings,optional -Difficulty 3 -UnlockedBy two-fer
 #>
 
 param (
@@ -33,56 +33,76 @@ param (
     [Parameter()]$UnlockedBy
 )
 
-class Exercise {
-    [string]$slug
-    [guid]$uuid
-    [bool]$core
-    $unlocked_by
-    [int]$difficulty
-    [string[]]$topics
-
-    Exercise ([string]$Exercise, [string[]]$Topics, [bool]$Core, [int]$Difficulty, $UnlockedBy) {
-        $this.uuid = [Guid]::NewGuid()
-        $this.slug = $Exercise
-        $this.topics = $Topics
-        $this.core = $Core
-        $this.difficulty = $Difficulty
-        $this.unlocked_by = $UnlockedBy
-    }
-}
+# Import shared functionality
+. ./shared.ps1
 
 $exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
-$configJson = Resolve-Path "config.json"
-
-$config = Get-Content $configJson | ConvertFrom-JSON
-$config.exercises += [Exercise]::new($Exercise, $Topics, $Core.IsPresent, $Difficulty, $UnlockedBy)
-
-ConvertTo-Json -InputObject $config -Depth 10 | Set-Content -Path $configJson
-
 $exercisesDir = Resolve-Path "exercises"
 $exerciseDir = Join-Path $exercisesDir $Exercise
-$fsProj = "$exerciseDir/$exerciseName.fsproj"
 
-dotnet new xunit -lang "F#" -o $exerciseDir -n $exerciseName
-dotnet sln "$exercisesDir/Exercises.sln" add $fsProj
+function Add-Project {
+    Write-Output "Adding project"
 
-Remove-Item -Path "$exerciseDir/Program.fs" 
-Remove-Item -Path "$exerciseDir/Tests.fs"
+    $fsProj = "$exerciseDir/$exerciseName.fsproj"
 
-New-Item -ItemType File -Path "$exerciseDir/$exerciseName.fs" -Value "module $exerciseName"
-New-Item -ItemType File -Path "$exerciseDir/Example.fs" -Value "module $exerciseName"
+    Run-Command "dotnet new xunit -lang ""F#"" -o $exerciseDir -n $exerciseName"
+    Run-Command "dotnet sln ""$exercisesDir/Exercises.sln"" add $fsProj"
+    
+    Remove-Item -Path "$exerciseDir/Program.fs" 
+    Remove-Item -Path "$exerciseDir/Tests.fs"
 
-[xml]$proj = Get-Content $fsProj
-$proj.Project.ItemGroup[0].Compile[0].Include = "$exerciseName.fs"
-$proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Test.fs"
-$proj.Save($fsProj)
+    New-Item -ItemType File -Path "$exerciseDir/$exerciseName.fs" -Value "module $exerciseName"
+    New-Item -ItemType File -Path "$exerciseDir/Example.fs" -Value "module $exerciseName"
 
-./update-docs.ps1 $Exercise
+    [xml]$proj = Get-Content $fsProj
+    $proj.Project.ItemGroup[0].Compile[0].Include = "$exerciseName.fs"
+    $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Test.fs"
+    $proj.Save($fsProj)
+}
 
-$generatorsDir = Resolve-Path "generators"
-$generator = "type $exerciseName() =`n    inherit GeneratorExercise()`n"
-Add-Content -Path "$generatorsDir/Generators.fs" -Value $generator
+function Add-Generator {
+    Write-Output "Adding generator"
 
-./generate-tests.ps1 $Exercise
+    $generatorsDir = Resolve-Path "generators"
+    $generator = "type $exerciseName() =`n    inherit GeneratorExercise()`n"
+    Add-Content -Path "$generatorsDir/Generators.fs" -Value $generator
+}
+
+function Update-Readme {
+    Write-Output "Updating README"
+    ./update-docs.ps1 $Exercise
+}
+
+function Update-Tests { 
+    Write-Output "Updating test suite"
+    ./generate-tests.ps1 $Exercise
+}
+
+function Update-Config-Json {
+    Write-Output "Updating config.json"
+
+    $configJson = Resolve-Path "config.json"
+
+    $config = Get-Content $configJson | ConvertFrom-JSON
+    $config.exercises += [pscustomobject]@{
+        slug        = $Exercise;
+        uuid        = [Guid]::NewGuid();
+        core        = $Core.IsPresent;
+        unlocked_by = $UnlockedBy;
+        difficulty  = $Difficulty;
+        topics      = $Topics;
+    }
+    
+    ConvertTo-Json -InputObject $config -Depth 10 | Set-Content -Path $configJson
+
+    Run-Command "./bin/fetch-configlet"
+    Run-Command "./bin/configlet fmt ."
+}
+
+Add-Project
+Add-Generator
+Update-Readme
+Update-Tests
+Update-Config-Json
 
 exit $LastExitCode
