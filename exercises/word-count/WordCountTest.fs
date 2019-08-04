@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
+// This file was auto-generated based on version 1.4.0 of the canonical data.
 
 module WordCountTest
 
@@ -100,6 +100,20 @@ let ``With quotations`` () =
           ("and", 1) ]
         |> Map.ofList
     countWords "Joe can't tell between 'large' and large." |> should equal expected
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Substrings from the beginning`` () =
+    let expected = 
+        [ ("joe", 1);
+          ("can't", 1);
+          ("tell", 1);
+          ("between", 1);
+          ("app", 1);
+          ("apple", 1);
+          ("and", 1);
+          ("a", 1) ]
+        |> Map.ofList
+    countWords "Joe can't tell between app, apple and a." |> should equal expected
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Multiple spaces not detected as a word`` () =
