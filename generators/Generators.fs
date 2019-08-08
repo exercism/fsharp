@@ -871,18 +871,28 @@ type PalindromeProducts() =
         sprintf "(%s, %s)" (string value.[0]) (string value.[1])
 
     let toPalindromeProducts (value: JToken) =
-        let palindromeValue = value.Value<int>("value")
+        let palindromeValue = value.Value("value")
         let factors = 
             value.SelectToken("factors")
             |> List.mapRender toFactors
 
-        sprintf "(%d, %s)" palindromeValue factors
+        match palindromeValue with
+        | null -> sprintf "(None, %s)" factors
+        | _ -> sprintf "(Some %s, %s)" palindromeValue factors
+        
+    let isError (expected: JToken) =
+        match expected.Value("error") with
+        | null -> false 
+        | _ -> true
 
     override __.RenderExpected (_, _, value) = 
-        value 
-        |> Option.ofNonErrorObject
-        |> Option.map toPalindromeProducts
-        |> Option.renderStringParenthesized
+        match value.SelectToken "error" with
+        | null  -> value |> toPalindromeProducts
+        | _ -> "System.Exception"
+
+    override __.AssertTemplate canonicalDataCase =
+        if isError canonicalDataCase.Expected then "AssertThrows"
+        else base.AssertTemplate canonicalDataCase
 
     override __.PropertiesUsedAsSutParameter _ = ["min"; "max"]
 

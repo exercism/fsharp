@@ -11,7 +11,7 @@ let isPalindrome n =
 
 let palindrome predicate compare startValue minFactor maxFactor = 
     if minFactor > maxFactor then
-        None
+        failwith "min must be <= max"
     else
         let allPalindromes = 
             let mutable compareValue = startValue
@@ -22,10 +22,8 @@ let palindrome predicate compare startValue minFactor maxFactor =
                         compareValue <- prod
                         yield prod, (x, y)]
 
-        match List.isEmpty allPalindromes with
-        | true -> 
-            None
-        | false ->
+        if List.isEmpty allPalindromes then (None,[])
+        else
             let value = 
                 allPalindromes 
                 |> List.map fst 
@@ -37,7 +35,7 @@ let palindrome predicate compare startValue minFactor maxFactor =
                 |> List.map snd 
                 |> List.sort
 
-            Some (value, factors)
+            (Some value, factors)
 
 let largest minFactor maxFactor = palindrome List.max (>=) 0 minFactor maxFactor
 
