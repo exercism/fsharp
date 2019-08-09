@@ -880,21 +880,28 @@ type PalindromeProducts() =
         | null -> sprintf "(None, %s)" factors
         | _ -> sprintf "(Some %s, %s)" palindromeValue factors
         
-    let isError (expected: JToken) =
-        match expected.Value("error") with
+    let isError (canonicalDataCase: CanonicalDataCase) =
+        match canonicalDataCase.Expected.Value("error") with
         | null -> false 
         | _ -> true
 
-    override __.RenderExpected (_, _, value) = 
-        match value.SelectToken "error" with
-        | null  -> value |> toPalindromeProducts
-        | _ -> "System.Exception"
+    override __.RenderExpected (canonicalDataCase, _, value) = 
+        if isError canonicalDataCase then "System.Exception"
+        else value |> toPalindromeProducts
 
     override __.AssertTemplate canonicalDataCase =
-        if isError canonicalDataCase.Expected then "AssertThrows"
+        if isError canonicalDataCase then "AssertThrows"
         else base.AssertTemplate canonicalDataCase
 
     override __.PropertiesUsedAsSutParameter _ = ["min"; "max"]
+    
+    override __.PropertiesWithIdentifier canonicalDataCase =
+        if isError canonicalDataCase then []
+        else ["expected"]
+
+    override __.IdentifierTypeAnnotation (canonicalDataCase, _, _) = 
+        if isError canonicalDataCase then None
+        else Some "int option * (int * int) list"
 
 type PascalsTriangle() =
     inherit GeneratorExercise()
