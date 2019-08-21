@@ -1346,7 +1346,10 @@
       "core": false,
       "unlocked_by": "clock",
       "difficulty": 5,
-      "topics": [ "json", "parsing" ]
+      "topics": [
+        "json",
+        "parsing"
+      ]
     },
     {
       "slug": "dnd-character",
@@ -1354,7 +1357,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 3,
-      "topics": ["randomness"]
+      "topics": [
+        "randomness"
+      ]
     }
   ]
 }
