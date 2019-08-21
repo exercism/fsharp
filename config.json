@@ -22,40 +22,6 @@
       ]
     },
     {
-      "slug": "leap",
-      "uuid": "66d974b5-18fc-4993-b5f2-7beda4f4afa3",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "control_flow_if_else_statements",
-        "integers"
-      ]
-    },
-    {
-      "slug": "bob",
-      "uuid": "b3c4d578-10c8-47bc-b0ae-149ed8da530a",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "control_flow_if_else_statements",
-        "strings"
-      ]
-    },
-    {
-      "slug": "sum-of-multiples",
-      "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "lists",
-        "math",
-        "transforming"
-      ]
-    },
-    {
       "slug": "two-fer",
       "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
       "core": true,
@@ -67,14 +33,24 @@
       ]
     },
     {
-      "slug": "space-age",
-      "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
+      "slug": "leap",
+      "uuid": "66d974b5-18fc-4993-b5f2-7beda4f4afa3",
       "core": true,
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "discriminated_unions",
-        "floating_point_numbers"
+        "control_flow_if_else_statements",
+        "integers"
+      ]
+    },
+    {
+      "slug": "queen-attack",
+      "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "tuples"
       ]
     },
     {
@@ -100,6 +76,17 @@
       ]
     },
     {
+      "slug": "space-age",
+      "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "discriminated_unions",
+        "floating_point_numbers"
+      ]
+    },
+    {
       "slug": "grade-school",
       "uuid": "cf058dc8-db6f-4034-ac5b-22f1d8d0decc",
       "core": true,
@@ -111,28 +98,25 @@
       ]
     },
     {
-      "slug": "collatz-conjecture",
-      "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
-      "core": false,
-      "unlocked_by": "sum-of-multiples",
-      "difficulty": 2,
+      "slug": "clock",
+      "uuid": "30c3a38e-1e44-4711-887e-fca301c26c1b",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 3,
       "topics": [
-        "algorithms",
-        "control_flow_conditionals",
-        "control_flow_loops",
-        "integers",
-        "math"
+        "structural_equality",
+        "time"
       ]
     },
     {
-      "slug": "armstrong-numbers",
-      "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938",
-      "core": false,
-      "unlocked_by": "sum-of-multiples",
-      "difficulty": 2,
+      "slug": "bob",
+      "uuid": "b3c4d578-10c8-47bc-b0ae-149ed8da530a",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
       "topics": [
-        "integers",
-        "math"
+        "control_flow_if_else_statements",
+        "strings"
       ]
     },
     {
@@ -147,16 +131,6 @@
       ]
     },
     {
-      "slug": "queen-attack",
-      "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "tuples"
-      ]
-    },
-    {
       "slug": "kindergarten-garden",
       "uuid": "cf64cddf-63e2-4c71-ac15-0af617f82856",
       "core": true,
@@ -165,17 +139,6 @@
       "topics": [
         "enumerations",
         "parsing"
-      ]
-    },
-    {
-      "slug": "clock",
-      "uuid": "30c3a38e-1e44-4711-887e-fca301c26c1b",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "structural_equality",
-        "time"
       ]
     },
     {
@@ -213,6 +176,17 @@
       ]
     },
     {
+      "slug": "pig-latin",
+      "uuid": "a002e3db-8e9c-4cbf-b00f-f2090bae5d5a",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+        "strings",
+        "transforming"
+      ]
+    },
+    {
       "slug": "tree-building",
       "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
       "core": true,
@@ -221,6 +195,43 @@
       "topics": [
         "refactoring",
         "trees"
+      ]
+    },
+    {
+      "slug": "sum-of-multiples",
+      "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "lists",
+        "math",
+        "transforming"
+      ]
+    },
+    {
+      "slug": "collatz-conjecture",
+      "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
+      "core": false,
+      "unlocked_by": "space-age",
+      "difficulty": 2,
+      "topics": [
+        "algorithms",
+        "control_flow_conditionals",
+        "control_flow_loops",
+        "integers",
+        "math"
+      ]
+    },
+    {
+      "slug": "armstrong-numbers",
+      "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938",
+      "core": false,
+      "unlocked_by": "space-age",
+      "difficulty": 2,
+      "topics": [
+        "integers",
+        "math"
       ]
     },
     {
@@ -233,17 +244,6 @@
         "optional_values",
         "searching",
         "trees"
-      ]
-    },
-    {
-      "slug": "pig-latin",
-      "uuid": "a002e3db-8e9c-4cbf-b00f-f2090bae5d5a",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 6,
-      "topics": [
-        "strings",
-        "transforming"
       ]
     },
     {
@@ -421,7 +421,7 @@
       "slug": "protein-translation",
       "uuid": "612395a5-238e-4be0-8ce0-4ac66f57056e",
       "core": false,
-      "unlocked_by": "sum-of-multiples",
+      "unlocked_by": "space-age",
       "difficulty": 3,
       "topics": [
         "lists",
@@ -489,7 +489,7 @@
       "slug": "binary-search",
       "uuid": "c5b38251-14ba-4d98-a420-7a930f06167f",
       "core": false,
-      "unlocked_by": "sum-of-multiples",
+      "unlocked_by": "space-age",
       "difficulty": 3,
       "topics": [
         "lists",
@@ -567,7 +567,7 @@
       "slug": "simple-linked-list",
       "uuid": "e86e88a0-802c-41f4-b2a1-c7a81b8e87de",
       "core": false,
-      "unlocked_by": "sum-of-multiples",
+      "unlocked_by": "space-age",
       "difficulty": 4,
       "topics": [
         "lists"
@@ -647,7 +647,7 @@
       "slug": "saddle-points",
       "uuid": "526fc5b4-e96b-419a-8987-9b78e9bddc19",
       "core": false,
-      "unlocked_by": "sum-of-multiples",
+      "unlocked_by": "space-age",
       "difficulty": 4,
       "topics": [
         "lists",
@@ -735,7 +735,7 @@
       "slug": "linked-list",
       "uuid": "253f040d-35c2-4e1c-8651-d7a7410d7d0d",
       "core": false,
-      "unlocked_by": "sum-of-multiples",
+      "unlocked_by": "space-age",
       "difficulty": 5,
       "topics": [
         "lists"
@@ -1346,7 +1346,10 @@
       "core": false,
       "unlocked_by": "clock",
       "difficulty": 5,
-      "topics": [ "json", "parsing" ]
+      "topics": [
+        "json",
+        "parsing"
+      ]
     },
     {
       "slug": "dnd-character",
@@ -1354,7 +1357,9 @@
       "core": false,
       "unlocked_by": null,
       "difficulty": 3,
-      "topics": ["randomness"]
+      "topics": [
+        "randomness"
+      ]
     }
   ]
 }
