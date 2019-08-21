@@ -44,14 +44,13 @@
       ]
     },
     {
-      "slug": "accumulate",
-      "uuid": "e7085050-1611-4773-9032-0e0ffb56c20e",
+      "slug": "queen-attack",
+      "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
       "core": true,
       "unlocked_by": null,
-      "difficulty": 2,
+      "difficulty": 3,
       "topics": [
-        "recursion",
-        "transforming"
+        "tuples"
       ]
     },
     {
@@ -66,6 +65,17 @@
       ]
     },
     {
+      "slug": "accumulate",
+      "uuid": "e7085050-1611-4773-9032-0e0ffb56c20e",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "recursion",
+        "transforming"
+      ]
+    },
+    {
       "slug": "space-age",
       "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
       "core": true,
@@ -74,16 +84,6 @@
       "topics": [
         "discriminated_unions",
         "floating_point_numbers"
-      ]
-    },
-    {
-      "slug": "queen-attack",
-      "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "tuples"
       ]
     },
     {
