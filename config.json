@@ -44,18 +44,6 @@
       ]
     },
     {
-      "slug": "sum-of-multiples",
-      "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "lists",
-        "math",
-        "transforming"
-      ]
-    },
-    {
       "slug": "two-fer",
       "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
       "core": true,
@@ -108,31 +96,6 @@
       "topics": [
         "maps",
         "sorting"
-      ]
-    },
-    {
-      "slug": "collatz-conjecture",
-      "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
-      "core": false,
-      "unlocked_by": "space-age",
-      "difficulty": 2,
-      "topics": [
-        "algorithms",
-        "control_flow_conditionals",
-        "control_flow_loops",
-        "integers",
-        "math"
-      ]
-    },
-    {
-      "slug": "armstrong-numbers",
-      "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938",
-      "core": false,
-      "unlocked_by": "space-age",
-      "difficulty": 2,
-      "topics": [
-        "integers",
-        "math"
       ]
     },
     {
@@ -224,6 +187,54 @@
       ]
     },
     {
+      "slug": "pig-latin",
+      "uuid": "a002e3db-8e9c-4cbf-b00f-f2090bae5d5a",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 6,
+      "topics": [
+        "strings",
+        "transforming"
+      ]
+    },
+    {
+      "slug": "sum-of-multiples",
+      "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "lists",
+        "math",
+        "transforming"
+      ]
+    },
+    {
+      "slug": "collatz-conjecture",
+      "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
+      "core": false,
+      "unlocked_by": "space-age",
+      "difficulty": 2,
+      "topics": [
+        "algorithms",
+        "control_flow_conditionals",
+        "control_flow_loops",
+        "integers",
+        "math"
+      ]
+    },
+    {
+      "slug": "armstrong-numbers",
+      "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938",
+      "core": false,
+      "unlocked_by": "space-age",
+      "difficulty": 2,
+      "topics": [
+        "integers",
+        "math"
+      ]
+    },
+    {
       "slug": "binary-search-tree",
       "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
       "core": false,
@@ -233,17 +244,6 @@
         "optional_values",
         "searching",
         "trees"
-      ]
-    },
-    {
-      "slug": "pig-latin",
-      "uuid": "a002e3db-8e9c-4cbf-b00f-f2090bae5d5a",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 6,
-      "topics": [
-        "strings",
-        "transforming"
       ]
     },
     {
