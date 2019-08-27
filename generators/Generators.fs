@@ -868,23 +868,37 @@ type PalindromeProducts() =
     inherit GeneratorExercise()
 
     let toFactors (value: JToken) =
-        sprintf "(%s, %s)" (string value.[0]) (string value.[1])
+        Obj.render (int value.[0], int value.[1])
 
     let toPalindromeProducts (value: JToken) =
-        let palindromeValue = value.Value<int>("value")
+        let palindromeValue = value.Value("value")
         let factors = 
             value.SelectToken("factors")
             |> List.mapRender toFactors
+        match palindromeValue with
+        | null -> "(None, [])"
+        | _ -> sprintf "(Some %s, %s)" palindromeValue factors
+        
+    let isError (canonicalDataCase: CanonicalDataCase) =
+        canonicalDataCase.Expected.Value("error") <> null
 
-        sprintf "(%d, %s)" palindromeValue factors
+    override __.RenderExpected (canonicalDataCase, _, value) = 
+        if isError canonicalDataCase then "System.ArgumentException"
+        else value |> toPalindromeProducts
 
-    override __.RenderExpected (_, _, value) = 
-        value 
-        |> Option.ofNonErrorObject
-        |> Option.map toPalindromeProducts
-        |> Option.renderStringParenthesized
+    override __.AssertTemplate canonicalDataCase =
+        if isError canonicalDataCase then "AssertThrows"
+        else base.AssertTemplate canonicalDataCase
 
     override __.PropertiesUsedAsSutParameter _ = ["min"; "max"]
+    
+    override __.PropertiesWithIdentifier canonicalDataCase =
+        if isError canonicalDataCase then []
+        else ["expected"]
+
+    override __.IdentifierTypeAnnotation (canonicalDataCase, _, _) = 
+        if isError canonicalDataCase then None
+        else Some "int option * (int * int) list"
 
 type PascalsTriangle() =
     inherit GeneratorExercise()
