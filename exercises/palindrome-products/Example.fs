@@ -11,7 +11,7 @@ let isPalindrome n =
 
 let palindrome predicate compare startValue minFactor maxFactor = 
     if minFactor > maxFactor then
-        failwith "min must be <= max"
+        invalidArg "minFactor" "min must be <= max"
     else
         let allPalindromes = 
             let mutable compareValue = startValue

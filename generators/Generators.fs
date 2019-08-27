@@ -868,25 +868,22 @@ type PalindromeProducts() =
     inherit GeneratorExercise()
 
     let toFactors (value: JToken) =
-        sprintf "(%s, %s)" (string value.[0]) (string value.[1])
+        Obj.render (int value.[0], int value.[1])
 
     let toPalindromeProducts (value: JToken) =
         let palindromeValue = value.Value("value")
         let factors = 
             value.SelectToken("factors")
             |> List.mapRender toFactors
-
         match palindromeValue with
-        | null -> sprintf "(None, %s)" factors
+        | null -> "(None, [])"
         | _ -> sprintf "(Some %s, %s)" palindromeValue factors
         
     let isError (canonicalDataCase: CanonicalDataCase) =
-        match canonicalDataCase.Expected.Value("error") with
-        | null -> false 
-        | _ -> true
+        canonicalDataCase.Expected.Value("error") <> null
 
     override __.RenderExpected (canonicalDataCase, _, value) = 
-        if isError canonicalDataCase then "System.Exception"
+        if isError canonicalDataCase then "System.ArgumentException"
         else value |> toPalindromeProducts
 
     override __.AssertTemplate canonicalDataCase =

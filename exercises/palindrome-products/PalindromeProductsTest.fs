@@ -59,9 +59,9 @@ let ``Empty result for largest if no palindrome in the range`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Error result for smallest if min is more than max`` () =
-    (fun () -> smallest 10000 1 |> ignore) |> should throw typeof<System.Exception>
+    (fun () -> smallest 10000 1 |> ignore) |> should throw typeof<System.ArgumentException>
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Error result for largest if min is more than max`` () =
-    (fun () -> largest 2 1 |> ignore) |> should throw typeof<System.Exception>
+    (fun () -> largest 2 1 |> ignore) |> should throw typeof<System.ArgumentException>
 
