@@ -1365,7 +1365,7 @@
       "slug": "affine-cipher",
       "uuid": "ae2f8b66-1d5f-4c19-ad84-b9a7e9e87d0e",
       "core": false,
-      "unlocked_by": null,
+      "unlocked_by": "bob",
       "difficulty": 3,
       "topics": [
         "cryptography",
