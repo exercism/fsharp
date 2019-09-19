@@ -1760,3 +1760,18 @@ type DndCharacter() =
         | _ -> base.RenderAssert canonicalDataCase
 
 
+type AffineCipher() =
+    inherit GeneratorExercise()
+
+    override __.RenderInput (canonicalDataCase, key, value) =
+        match key with
+        | "key" -> sprintf "%d %d" (value.["a"].ToObject<int>()) (value.["b"].ToObject<int>())
+        | _ -> base.RenderInput (canonicalDataCase,key,value)
+
+    override __.AssertTemplate canonicalDataCase =
+        if canonicalDataCase.Expected.HasValues then "AssertThrows"
+        else base.AssertTemplate canonicalDataCase
+
+    override __.RenderExpected (canonicalDataCase, key, value) = 
+        if canonicalDataCase.Expected.HasValues then "System.ArgumentException"
+        else base.RenderExpected (canonicalDataCase, key,value)
