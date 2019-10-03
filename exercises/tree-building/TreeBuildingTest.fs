@@ -10,20 +10,20 @@ open TreeBuilding
 
 [<Fact>]
 let ``One node`` () =
-    let input = 
-        [ 
-            { RecordId = 0; ParentId = 0 } 
+    let input =
+        [
+            { RecordId = 0; ParentId = 0 }
         ]
 
     let tree = buildTree input
 
     isBranch tree |> should equal false
-    recordId tree |> should equal 0    
+    recordId tree |> should equal 0
     children tree |> should be Empty
 
 [<Fact>]
 let ``Three nodes in order`` () =
-    let input = 
+    let input =
         [
             { RecordId = 0; ParentId = 0 };
             { RecordId = 1; ParentId = 0 };
@@ -44,7 +44,7 @@ let ``Three nodes in order`` () =
 
 [<Fact>]
 let ``Three nodes in reverse order`` () =
-    let input = 
+    let input =
         [
             { RecordId = 2; ParentId = 0 };
             { RecordId = 1; ParentId = 0 };
@@ -52,7 +52,7 @@ let ``Three nodes in reverse order`` () =
         ]
 
     let tree = buildTree input
-    
+
     isBranch tree |> should equal true
     recordId tree |> should equal 0
     children tree |> List.length |> should equal 2
@@ -65,7 +65,7 @@ let ``Three nodes in reverse order`` () =
 
 [<Fact>]
 let ``More than two children`` () =
-    let input = 
+    let input =
         [
             { RecordId = 3; ParentId = 0 };
             { RecordId = 2; ParentId = 0 };
@@ -74,7 +74,7 @@ let ``More than two children`` () =
         ]
 
     let tree = buildTree input
-    
+
     isBranch tree |> should equal true
     recordId tree |> should equal 0
     children tree |> List.length |> should equal 3
@@ -90,7 +90,7 @@ let ``More than two children`` () =
 
 [<Fact>]
 let ``Binary tree`` () =
-    let input = 
+    let input =
         [
             { RecordId = 5; ParentId = 1 };
             { RecordId = 3; ParentId = 2 };
@@ -102,13 +102,13 @@ let ``Binary tree`` () =
         ]
 
     let tree = buildTree input
-        
+
     isBranch tree |> should equal true
     recordId tree |> should equal 0
     children tree |> List.length |> should equal 2
 
     children tree |> List.item 0 |> isBranch |> should equal true
-    children tree |> List.item 0 |> recordId |> should equal 1    
+    children tree |> List.item 0 |> recordId |> should equal 1
     children tree |> List.item 0 |> children |> List.length |> should equal 2
 
     children tree |> List.item 0 |> children |> List.item 0 |> isBranch |> should equal false
@@ -116,11 +116,11 @@ let ``Binary tree`` () =
 
     children tree |> List.item 0 |> children |> List.item 1 |> isBranch |> should equal false
     children tree |> List.item 0 |> children |> List.item 1 |> recordId |> should equal 5
-    
+
     children tree |> List.item 1 |> isBranch |> should equal true
-    children tree |> List.item 1 |> recordId |> should equal 2    
+    children tree |> List.item 1 |> recordId |> should equal 2
     children tree |> List.item 1 |> children |> List.length |> should equal 2
-    
+
     children tree |> List.item 1 |> children |> List.item 0 |> isBranch |> should equal false
     children tree |> List.item 1 |> children |> List.item 0 |> recordId |> should equal 3
 
@@ -141,22 +141,22 @@ let ``Unbalanced tree`` () =
         ]
 
     let tree = buildTree input
-        
+
     isBranch tree |> should equal true
     recordId tree |> should equal 0
     children tree |> List.length |> should equal 2
 
     children tree |> List.item 0 |> isBranch |> should equal true
-    children tree |> List.item 0 |> recordId |> should equal 1    
+    children tree |> List.item 0 |> recordId |> should equal 1
     children tree |> List.item 0 |> children |> List.length |> should equal 1
 
     children tree |> List.item 0 |> children |> List.item 0 |> isBranch |> should equal false
     children tree |> List.item 0 |> children |> List.item 0 |> recordId |> should equal 4
-    
+
     children tree |> List.item 1 |> isBranch |> should equal true
     children tree |> List.item 1 |> recordId |> should equal 2
     children tree |> List.item 1 |> children |> List.length |> should equal 3
-    
+
     children tree |> List.item 1 |> children |> List.item 0 |> isBranch |> should equal false
     children tree |> List.item 1 |> children |> List.item 0 |> recordId |> should equal 3
 
@@ -173,7 +173,7 @@ let ``Empty input`` () =
 
 [<Fact>]
 let ``Root node has parent`` () =
-    let input = 
+    let input =
         [ { RecordId = 0; ParentId = 1 };
           { RecordId = 1; ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
@@ -182,21 +182,21 @@ let ``Root node has parent`` () =
 let ``No root node`` () =
     let input = [ { RecordId = 1; ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
-    
+
 [<Fact>]
 let ``Non-continuous`` () =
-    let input = 
+    let input =
         [
             { RecordId = 2; ParentId = 0 };
             { RecordId = 4; ParentId = 2 };
             { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 } 
+            { RecordId = 0; ParentId = 0 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 [<Fact>]
 let ``Cycle directly`` () =
-    let input = 
+    let input =
         [
             { RecordId = 5; ParentId = 2 };
             { RecordId = 3; ParentId = 2 };
@@ -204,30 +204,30 @@ let ``Cycle directly`` () =
             { RecordId = 4; ParentId = 1 };
             { RecordId = 1; ParentId = 0 };
             { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 3 } 
+            { RecordId = 6; ParentId = 3 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 [<Fact>]
 let ``Cycle indirectly`` () =
-    let input = 
-        [ 
+    let input =
+        [
             { RecordId = 5; ParentId = 2 };
             { RecordId = 3; ParentId = 2 };
             { RecordId = 2; ParentId = 6 };
             { RecordId = 4; ParentId = 1 };
             { RecordId = 1; ParentId = 0 };
             { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 3 } 
+            { RecordId = 6; ParentId = 3 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 [<Fact>]
 let ``Higher id parent of lower id`` () =
-    let input = 
-        [ 
+    let input =
+        [
             { RecordId = 0; ParentId = 0 };
             { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 2 } 
+            { RecordId = 1; ParentId = 2 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
