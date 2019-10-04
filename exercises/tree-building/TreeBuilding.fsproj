@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="TreeBuildingTypes.fs" />
+    <Compile Include="TreeBuildingBaseline.fs" />
     <Compile Include="TreeBuilding.fs" />
     <Compile Include="TreeBuildingTest.fs" />
   </ItemGroup>

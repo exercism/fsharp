@@ -6,6 +6,7 @@ open Xunit
 open FsUnit.Xunit
 open System
 
+open TreeBuildingTypes
 open TreeBuilding
 
 [<Fact>]
