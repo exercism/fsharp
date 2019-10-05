@@ -1,4 +1,12 @@
-﻿module TreeBuilding
+﻿// This is the file you need to modify for your own solution.
+// The unit tests will use this code, and it will be used by the benchmark tests
+// for the "Mine" row of the summary table.
+
+// Remember to not only run the unit tests for this exercise, but also the
+// benchmark tests using `dotnet run -c Release`.
+// Please refer to the instructions for more information about the benchmark tests.
+
+module TreeBuilding
 
 open TreeBuildingTypes
 

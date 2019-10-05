@@ -1,4 +1,7 @@
-﻿module TreeBuildingBaseline
+﻿// This file was created manually and its version is 1.0.0.
+// This file supports running the performance benchmarks. Do not modify it.
+
+module TreeBuildingBaseline
 
 open TreeBuildingTypes
 
