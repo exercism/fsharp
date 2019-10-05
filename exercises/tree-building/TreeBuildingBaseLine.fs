@@ -47,15 +47,14 @@ let buildTree records =
                         else
                             prev <- r.RecordId
                             if (r.RecordId = 0) then
-                                leafs <- (-1, r.RecordId) :: leafs
+                                leafs <- leafs @ [(-1, r.RecordId)]
                             else
-                                leafs <- (r.ParentId, r.RecordId) :: leafs
+                                leafs <- leafs @ [(r.ParentId, r.RecordId)]
 
-                leafs <- List.rev leafs
                 let root = leafs.[0]
 
                 let grouped = leafs |> List.groupBy fst |> List.map (fun (x, y) -> (x, List.map snd y))
-                let parens = List.map fst grouped
+                let parents = List.map fst grouped
                 let map = grouped |> Map.ofSeq
 
                 let rec helper key =
