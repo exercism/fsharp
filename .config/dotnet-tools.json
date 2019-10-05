@@ -13,6 +13,12 @@
       "commands": [
         "fantomas"
       ]
+    },
+    "powershell": {
+      "version": "6.2.3",
+      "commands": [
+        "pwsh"
+      ]
     }
   }
 }
