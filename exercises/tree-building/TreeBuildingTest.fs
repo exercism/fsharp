@@ -1,10 +1,11 @@
-// This file was created manually and its version is 1.0.0.
+// This file was created manually and its version is 2.0.0.
 
 module TreeBuildingTest
 
-open Xunit
-open FsUnit.Xunit
 open System
+
+open FsUnit.Xunit
+open Xunit
 
 open TreeBuildingTypes
 open TreeBuilding
