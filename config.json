@@ -1129,7 +1129,7 @@
       "slug": "hangman",
       "uuid": "ab0f1b66-011f-4aa3-89c5-c89427121279",
       "core": false,
-      "unlocked_by": "tree-building",
+      "unlocked_by": "pig-latin",
       "difficulty": 8,
       "topics": [
         "reactive_programming"
@@ -1206,7 +1206,7 @@
       "slug": "react",
       "uuid": "8eef5619-f331-46b3-a2c1-d581f523a815",
       "core": false,
-      "unlocked_by": "tree-building",
+      "unlocked_by": "pig-latin",
       "difficulty": 9,
       "topics": [
         "classes",
@@ -1241,7 +1241,7 @@
       "slug": "lens-person",
       "uuid": "443fdb8c-1a97-4086-be6a-b541faa961a5",
       "core": false,
-      "unlocked_by": "tree-building",
+      "unlocked_by": "pig-latin",
       "difficulty": 9,
       "topics": [
         "lenses"
