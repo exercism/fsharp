@@ -15,7 +15,7 @@ Please see the [contributing guide](https://github.com/exercism/docs/tree/master
 
 ## Local Tools
 
-[PowerShell](https://github.com/PowerShell/PowerShell), [Fantomas](https://github.com/fsprojects/fantomas), and [FSharpLint](https://github.com/fsprojects/FSharpLint) are are available in this repo as [local tools](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#local-tools). Example usage:
+[PowerShell](https://github.com/PowerShell/PowerShell), [Fantomas](https://github.com/fsprojects/fantomas), and [FSharpLint](https://github.com/fsprojects/FSharpLint) are are available in this repo as [local tools](https://docs.microsoft.com/en-us/dotnet/core/whats-new/dotnet-core-3-0#local-tools). (This requires [.NET Core](https://dotnet.microsoft.com/download) >=3.0) Example usage:
 
 ```
 > dotnet tool restore
