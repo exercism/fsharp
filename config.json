@@ -189,7 +189,7 @@
     {
       "slug": "tree-building",
       "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
-      "core": true,
+      "core": false,
       "unlocked_by": null,
       "difficulty": 5,
       "topics": [
