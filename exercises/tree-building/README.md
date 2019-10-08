@@ -68,7 +68,7 @@ In addition to identifying the particular version of the code tested, the table
 provides two columns with metrics - `Mean` and `Allocated`.
 
 - The `Mean` column shows the average running time of the respective solution. BenchmarkDotNet runs each solution a number of times and then reports the the average time needed.
-- The `Allocated` column shows the amount of memory that each solution allocates per single benchmark run. This has performance implications, because memory allocated by .NET code is cleaned up by a _Garbage Collector_, and this cleanup process takes time, slowing down the overall execution. For ths exercise, reducing the amount of memory allocated should typically also improve overall performance.
+- The `Allocated` column shows the amount of memory that each solution allocates per single benchmark run. This has performance implications, because memory allocated by .NET code is cleaned up by a _Garbage Collector_, and this cleanup process takes time, slowing down the overall execution. For this exercise, reducing the amount of memory allocated should typically also improve overall performance.
 
 ## Further information
 
