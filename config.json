@@ -1049,7 +1049,7 @@
       "slug": "sublist",
       "uuid": "d17b0c35-49a7-4ea6-b68c-7b2b56dc5968",
       "core": false,
-      "unlocked_by": "tree-building",
+      "unlocked_by": "pig-latin",
       "difficulty": 7,
       "topics": [
         "lists",
