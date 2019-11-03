@@ -35,3 +35,8 @@ let ``Accumulate reversed strings`` () =
 let ``Accumulate within accumulate`` () =
     accumulate (fun (x:string) -> String.concat " " (accumulate (fun y -> x + y) ["1"; "2"; "3"])) ["a"; "b"; "c"]
     |> should equal ["a1 a2 a3"; "b1 b2 b3"; "c1 c2 c3"]
+
+[<Fact(Skip = "Remove to run test")>]
+let ``Accumulate large data set without stack overflow`` () =
+    accumulate id [1..100000]
+    |> should equal [1..100000]
