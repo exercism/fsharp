@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 2.4.0 of the canonical data.
+// This file was auto-generated based on version 2.4.1 of the canonical data.
 
 module ListOpsTest
 
@@ -12,7 +12,7 @@ let ``append empty lists`` () =
     append [] [] |> should be Empty
 
 [<Fact(Skip = "Remove to run test")>]
-let ``append empty list to list`` () =
+let ``append list to empty list`` () =
     append [] [1; 2; 3; 4] |> should equal [1; 2; 3; 4]
 
 [<Fact(Skip = "Remove to run test")>]
