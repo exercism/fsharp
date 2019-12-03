@@ -186,7 +186,7 @@ let ``No root node`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 [<Fact>]
-let ``Out of bound record id`` () =
+let ``Out of bounds record id`` () =
     let input =
         [
             { RecordId = 2; ParentId = 0 };
