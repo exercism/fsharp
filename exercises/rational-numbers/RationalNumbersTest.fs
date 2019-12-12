@@ -129,7 +129,7 @@ let ``Raise a real number to a positive rational number`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Raise a real number to a negative rational number`` () =
-    expreal (create -1 2) 9 |> should (equalWithin 0.01) 0.333333333333333
+    expreal (create -1 2) 9 |> should (equalWithin 0.01) 0.3333333333333333
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Raise a real number to a zero rational number`` () =
