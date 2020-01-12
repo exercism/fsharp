@@ -13,19 +13,20 @@ let ability() =
         |> List.take 3 
         |> List.sum
 
-type DndCharacter() =
-    let strength = ability()
-    let dexterity = ability()
-    let constitution = ability()
-    let intelligence = ability()
-    let wisdom = ability()
-    let charisma = ability()
-    let hitpoints = 10 + modifier(constitution)
-    member __.Strength with get() = strength
-    member __.Dexterity with get() = dexterity
-    member __.Constitution with get() = constitution
-    member __.Intelligence with get() = intelligence
-    member __.Wisdom with get() = wisdom
-    member __.Charisma with get() = charisma
-    member __.Hitpoints with get() = hitpoints
+type DndCharacter = { Strength : int 
+                      Dexterity: int
+                      Constitution : int
+                      Intelligence : int
+                      Wisdom : int
+                      Charisma : int
+                      Hitpoints : int }
 
+let mkCharacter() = 
+    let constitution = ability()
+    { Strength = ability(); 
+      Dexterity = ability(); 
+      Constitution = constitution; 
+      Intelligence = ability() ; 
+      Wisdom = ability(); 
+      Charisma = ability(); 
+      Hitpoints = 10 + modifier(constitution) }

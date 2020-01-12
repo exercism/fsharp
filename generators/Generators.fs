@@ -1722,11 +1722,11 @@ type DndCharacter() =
     inherit GeneratorExercise()
 
     let testRandomAbility() =
-        ["for i in 1 .. 10 do";"    ability |> should be (greaterThanOrEqualTo 3)";"    ability |> should be (lessThanOrEqualTo  18)"]
+        ["for i in 1 .. 10 do"; "    let ability = ability()" ;"    ability |> should be (greaterThanOrEqualTo 3)";"    ability |> should be (lessThanOrEqualTo  18)"]
 
     let testCharacterGeneration() =
         ["for i in 1 .. 10 do";
-         "    let character = DndCharacter()";
+         "    let character = mkCharacter()";
          "    character.Strength |> should be (greaterThanOrEqualTo 3)";"    character.Strength |> should be (lessThanOrEqualTo  18)";
          "    character.Dexterity |> should be (greaterThanOrEqualTo 3)";"    character.Dexterity |> should be (lessThanOrEqualTo  18)";
          "    character.Constitution |> should be (greaterThanOrEqualTo 3)";"    character.Constitution |> should be (lessThanOrEqualTo  18)";
@@ -1737,7 +1737,7 @@ type DndCharacter() =
 
     let testAbilityCalculatedOnce() =
         ["for i in 1 .. 10 do";
-         "    let character = DndCharacter()";
+         "    let character = mkCharacter()";
          "    character.Strength |> should equal character.Strength";
          "    character.Dexterity |> should equal character.Dexterity";
          "    character.Constitution |> should equal character.Constitution";
@@ -1748,7 +1748,6 @@ type DndCharacter() =
 
     override __.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
-        | "ability" -> ["let ability = ability()"]
         | _ -> base.RenderArrange(canonicalDataCase)
 
 
