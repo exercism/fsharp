@@ -8,5 +8,7 @@ let modifier x =
 let ability() = 
     failwith "You need to implement this function."
 
+// TODO: define the Character type
+
 let mkCharacter() =
     failwith "You need to implement this function."
