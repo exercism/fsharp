@@ -81,7 +81,7 @@ let ``Random ability is within range`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Random character is valid`` () =
     for i in 1 .. 10 do
-        let character = mkCharacter()
+        let character = createCharacter()
         character.Strength |> should be (greaterThanOrEqualTo 3)
         character.Strength |> should be (lessThanOrEqualTo  18)
         character.Dexterity |> should be (greaterThanOrEqualTo 3)
@@ -99,7 +99,7 @@ let ``Random character is valid`` () =
 [<Fact(Skip = "Remove to run test")>]
 let ``Each ability is only calculated once`` () =
     for i in 1 .. 10 do
-        let character = mkCharacter()
+        let character = createCharacter()
         character.Strength |> should equal character.Strength
         character.Dexterity |> should equal character.Dexterity
         character.Constitution |> should equal character.Constitution

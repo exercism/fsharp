@@ -21,7 +21,7 @@ type DndCharacter = { Strength : int
                       Charisma : int
                       Hitpoints : int }
 
-let mkCharacter() = 
+let createCharacter() = 
     let constitution = ability()
     { Strength = ability(); 
       Dexterity = ability(); 

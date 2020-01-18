@@ -10,5 +10,5 @@ let ability() =
 
 // TODO: define the Character type
 
-let mkCharacter() =
+let createCharacter() =
     failwith "You need to implement this function."
