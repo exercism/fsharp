@@ -1,4 +1,4 @@
-// This file was auto-generated based on version 1.4.0 of the canonical data.
+// This file was auto-generated based on version 1.6.0 of the canonical data.
 
 module BobTest
 
@@ -33,15 +33,15 @@ let ``Asking gibberish`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Talking forcefully`` () =
-    response "Let's go make out behind the gym!" |> should equal "Whatever."
+    response "Hi there!" |> should equal "Whatever."
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Using acronyms in regular speech`` () =
-    response "It's OK if you don't want to go to the DMV." |> should equal "Whatever."
+    response "It's OK if you don't want to go work for NASA." |> should equal "Whatever."
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Forceful question`` () =
-    response "WHAT THE HELL WERE YOU THINKING?" |> should equal "Calm down, I know what I'm doing!"
+    response "WHAT'S GOING ON?" |> should equal "Calm down, I know what I'm doing!"
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Shouting numbers`` () =
@@ -61,7 +61,7 @@ let ``Shouting with special characters`` () =
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Shouting with no exclamation mark`` () =
-    response "I HATE THE DMV" |> should equal "Whoa, chill out!"
+    response "I HATE THE DENTIST" |> should equal "Whoa, chill out!"
 
 [<Fact(Skip = "Remove to run test")>]
 let ``Statement containing question mark`` () =
