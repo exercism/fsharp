@@ -2,9 +2,9 @@
 
 Bob is a lackadaisical teenager. In conversation, his responses are very limited.
 
-Bob answers 'Sure.' if you ask him a question.
+Bob answers 'Sure.' if you ask him a question, such as "How are you?".
 
-He answers 'Whoa, chill out!' if you yell at him.
+He answers 'Whoa, chill out!' if you YELL AT HIM (in all capitals).
 
 He answers 'Calm down, I know what I'm doing!' if you yell a question at him.
 
@@ -18,6 +18,12 @@ Bob's conversational partner is a purist when it comes to written communication 
 ## Running the tests
 
 To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Autoformatting the code
+
+F# source code can be formatted with the [Fantomas](https://github.com/fsprojects/fantomas) tool.
+
+After installing it with `dotnet tool restore`, run `dotnet fantomas .` to format code within the current directory.
 
 ## Further information
 
