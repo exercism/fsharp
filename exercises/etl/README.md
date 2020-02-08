@@ -13,7 +13,7 @@ moaning about how stupid we could possibly be.)
 
 ### The goal
 
-We're going to extract some scrabble scores from a legacy system.
+We're going to extract some Scrabble scores from a legacy system.
 
 The old system stored a list of letters per score:
 
@@ -25,7 +25,7 @@ The old system stored a list of letters per score:
 - 8 points: "J", "X",
 - 10 points: "Q", "Z",
 
-The shiny new scrabble system instead stores the score per letter, which
+The shiny new Scrabble system instead stores the score per letter, which
 makes it much faster and easier to calculate the score for a word. It
 also stores the letters in lower-case regardless of the case of the
 input letters:
@@ -49,6 +49,12 @@ game while being scored at 4 in the Hawaiian-language version.
 ## Running the tests
 
 To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Autoformatting the code
+
+F# source code can be formatted with the [Fantomas](https://github.com/fsprojects/fantomas) tool.
+
+After installing it with `dotnet tool restore`, run `dotnet fantomas .` to format code within the current directory.
 
 ## Further information
 

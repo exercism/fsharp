@@ -1,6 +1,7 @@
 # Anagram
 
-Given a word and a list of possible anagrams, select the correct sublist.
+An anagram is a rearrangement of letters to form a new word.
+Given a word and a list of candidates, select the sublist of anagrams of the given word.
 
 Given `"listen"` and a list of candidates like `"enlists" "google"
 "inlets" "banana"` the program should return a list containing
@@ -9,6 +10,12 @@ Given `"listen"` and a list of candidates like `"enlists" "google"
 ## Running the tests
 
 To run the tests, run the command `dotnet test` from within the exercise directory.
+
+## Autoformatting the code
+
+F# source code can be formatted with the [Fantomas](https://github.com/fsprojects/fantomas) tool.
+
+After installing it with `dotnet tool restore`, run `dotnet fantomas .` to format code within the current directory.
 
 ## Further information
 
