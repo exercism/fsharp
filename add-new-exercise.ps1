@@ -46,6 +46,8 @@ function Add-Project {
     $fsProj = "$exerciseDir/$exerciseName.fsproj"
 
     Run-Command "dotnet new xunit -lang ""F#"" -o $exerciseDir -n $exerciseName"
+    Run-Command "dotnet new tool-manifest -o $exerciseDir"
+    Run-Command "dotnet tool install --tool-manifest $exerciseDir/.config/dotnet-tools.json fantomas-tool"
     Run-Command "dotnet sln ""$exercisesDir/Exercises.sln"" add $fsProj"
     
     Remove-Item -Path "$exerciseDir/Program.fs" 
