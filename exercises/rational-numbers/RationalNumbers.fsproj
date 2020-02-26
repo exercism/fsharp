@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="RationalNumbers.fs" />
-    <Compile Include="RationalNumbersTest.fs" />
+    <Compile Include="RationalNumbersTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

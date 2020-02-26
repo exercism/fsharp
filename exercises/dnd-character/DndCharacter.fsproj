@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="DndCharacter.fs" />
-    <Compile Include="DndCharacterTest.fs" />
+    <Compile Include="DndCharacterTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

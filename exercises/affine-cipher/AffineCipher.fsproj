@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AffineCipher.fs" />
-    <Compile Include="AffineCipherTest.fs" />
+    <Compile Include="AffineCipherTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FsUnit.xUnit" Version="3.8.0" />

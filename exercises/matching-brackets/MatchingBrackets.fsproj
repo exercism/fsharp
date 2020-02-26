@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="MatchingBrackets.fs" />
-    <Compile Include="MatchingBracketsTest.fs" />
+    <Compile Include="MatchingBracketsTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

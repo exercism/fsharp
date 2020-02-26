@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="GradeSchool.fs" />
-    <Compile Include="GradeSchoolTest.fs" />
+    <Compile Include="GradeSchoolTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

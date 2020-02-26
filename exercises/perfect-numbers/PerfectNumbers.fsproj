@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="PerfectNumbers.fs" />
-    <Compile Include="PerfectNumbersTest.fs" />
+    <Compile Include="PerfectNumbersTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Acronym.fs" />
-    <Compile Include="AcronymTest.fs" />
+    <Compile Include="AcronymTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

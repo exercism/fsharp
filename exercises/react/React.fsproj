@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="React.fs" />
-    <Compile Include="ReactTest.fs" />
+    <Compile Include="ReactTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

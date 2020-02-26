@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Zipper.fs" />
-    <Compile Include="ZipperTest.fs" />
+    <Compile Include="ZipperTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

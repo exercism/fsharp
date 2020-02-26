@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="SgfParsing.fs" />
-    <Compile Include="SgfParsingTest.fs" />
+    <Compile Include="SgfParsingTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

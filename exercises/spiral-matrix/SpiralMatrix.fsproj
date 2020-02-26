@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="SpiralMatrix.fs" />
-    <Compile Include="SpiralMatrixTest.fs" />
+    <Compile Include="SpiralMatrixTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

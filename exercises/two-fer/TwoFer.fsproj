@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="TwoFer.fs" />
-    <Compile Include="TwoFerTest.fs" />
+    <Compile Include="TwoFerTests.fs" />
   </ItemGroup>
 
   <ItemGroup>
