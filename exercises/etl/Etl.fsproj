@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Etl.fs" />
-    <Compile Include="EtlTest.fs" />
+    <Compile Include="EtlTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

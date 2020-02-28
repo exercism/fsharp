@@ -305,7 +305,7 @@ If you only need to run a single generator, you can do so by running the followi
 
 Once the generator has been run, you can view the output of your generation by navigating to the test file for that exercise. As an example, the test suite for the Bob exercise can be found at:
 
-`exercises/bob/BobTest.fs`
+`exercises/bob/BobTests.fs`
 
 ## Submitting a generator
 

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Clock.fs" />
-    <Compile Include="ClockTest.fs" />
+    <Compile Include="ClockTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

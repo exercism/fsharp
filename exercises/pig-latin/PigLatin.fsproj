@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="PigLatin.fs" />
-    <Compile Include="PigLatinTest.fs" />
+    <Compile Include="PigLatinTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

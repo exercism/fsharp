@@ -43,7 +43,7 @@ type GeneratorExercise() =
     abstract member SkipTestMethod : int * CanonicalDataCase -> bool
 
     member this.Name = this.GetType() |> exerciseNameFromType 
-    member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTest"
+    member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTests"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
         

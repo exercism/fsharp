@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="OcrNumbers.fs" />
-    <Compile Include="OcrNumbersTest.fs" />
+    <Compile Include="OcrNumbersTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

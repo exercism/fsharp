@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="CollatzConjecture.fs" />
-    <Compile Include="CollatzConjectureTest.fs" />
+    <Compile Include="CollatzConjectureTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

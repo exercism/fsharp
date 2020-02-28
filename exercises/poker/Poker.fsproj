@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Poker.fs" />
-    <Compile Include="PokerTest.fs" />
+    <Compile Include="PokerTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Change.fs" />
-    <Compile Include="ChangeTest.fs" />
+    <Compile Include="ChangeTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

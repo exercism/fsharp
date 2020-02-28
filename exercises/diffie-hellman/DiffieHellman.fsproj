@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="DiffieHellman.fs" />
-    <Compile Include="DiffieHellmanTest.fs" />
+    <Compile Include="DiffieHellmanTests.fs" />
   </ItemGroup>
 
   <ItemGroup>
