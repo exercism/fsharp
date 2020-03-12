@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Octal.fs" />
-    <Compile Include="OctalTest.fs" />
+    <Compile Include="OctalTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Ledger.fs" />
-    <Compile Include="LedgerTest.fs" />
+    <Compile Include="LedgerTests.fs" />
   </ItemGroup>
 
   <ItemGroup>
