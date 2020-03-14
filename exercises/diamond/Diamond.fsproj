@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Diamond.fs" />
-    <Compile Include="DiamondTest.fs" />
+    <Compile Include="DiamondTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

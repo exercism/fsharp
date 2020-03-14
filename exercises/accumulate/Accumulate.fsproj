@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Compile Include="Accumulate.fs" />
-    <Compile Include="AccumulateTest.fs" />
+    <Compile Include="AccumulateTests.fs" />
   </ItemGroup>
 
   <ItemGroup>

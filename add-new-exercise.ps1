@@ -58,7 +58,7 @@ function Add-Project {
 
     [xml]$proj = Get-Content $fsProj
     $proj.Project.ItemGroup[0].Compile[0].Include = "$exerciseName.fs"
-    $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Test.fs"
+    $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Tests.fs"
     $proj.Save($fsProj)
 }
 
