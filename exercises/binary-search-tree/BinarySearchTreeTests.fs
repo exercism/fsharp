@@ -14,7 +14,7 @@ let ``Data is retained`` () =
     treeData |> left |> should equal None
     treeData |> right |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Smaller number at left node`` () =
     let treeData = create [4; 2]
     treeData |> data |> should equal 4
@@ -23,7 +23,7 @@ let ``Smaller number at left node`` () =
     treeData |> left |> Option.bind right |> should equal None
     treeData |> right |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Same number at left node`` () =
     let treeData = create [4; 4]
     treeData |> data |> should equal 4
@@ -32,7 +32,7 @@ let ``Same number at left node`` () =
     treeData |> left |> Option.bind right |> should equal None
     treeData |> right |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Greater number at right node`` () =
     let treeData = create [4; 5]
     treeData |> data |> should equal 4
@@ -41,7 +41,7 @@ let ``Greater number at right node`` () =
     treeData |> right |> Option.bind left |> should equal None
     treeData |> right |> Option.bind right |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can create complex tree`` () =
     let treeData = create [4; 2; 6; 1; 3; 5; 7]
     treeData |> data |> should equal 4
@@ -60,27 +60,27 @@ let ``Can create complex tree`` () =
     treeData |> right |> Option.bind right |> Option.bind left |> should equal None
     treeData |> right |> Option.bind right |> Option.bind right |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can sort single number`` () =
     let treeData = create [2]
     sortedData treeData |> should equal [2]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can sort if second number is smaller than first`` () =
     let treeData = create [2; 1]
     sortedData treeData |> should equal [1; 2]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can sort if second number is same as first`` () =
     let treeData = create [2; 2]
     sortedData treeData |> should equal [2; 2]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can sort if second number is greater than first`` () =
     let treeData = create [2; 3]
     sortedData treeData |> should equal [2; 3]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can sort complex tree`` () =
     let treeData = create [2; 1; 3; 6; 7; 5]
     sortedData treeData |> should equal [1; 2; 3; 5; 6; 7]

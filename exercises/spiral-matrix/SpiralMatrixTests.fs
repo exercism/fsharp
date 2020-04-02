@@ -11,24 +11,24 @@ open SpiralMatrix
 let ``Empty spiral`` () =
     spiralMatrix 0 |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Trivial spiral`` () =
     spiralMatrix 1 |> should equal [[1]]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Spiral of size 2`` () =
     spiralMatrix 2 |> should equal 
         [ [1; 2];
           [4; 3] ]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Spiral of size 3`` () =
     spiralMatrix 3 |> should equal 
         [ [1; 2; 3];
           [8; 9; 4];
           [7; 6; 5] ]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Spiral of size 4`` () =
     spiralMatrix 4 |> should equal 
         [ [1; 2; 3; 4];
@@ -36,7 +36,7 @@ let ``Spiral of size 4`` () =
           [11; 16; 15; 6];
           [10; 9; 8; 7] ]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Spiral of size 5`` () =
     spiralMatrix 5 |> should equal 
         [ [1; 2; 3; 4; 5];
