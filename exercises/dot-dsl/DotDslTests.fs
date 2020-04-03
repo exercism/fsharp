@@ -15,7 +15,7 @@ let ``Empty graph`` () =
     edges g |> should be Empty
     attrs g |> should be Empty
     
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Graph with one node`` () =
     let g = graph [
                 node "a" []
@@ -25,7 +25,7 @@ let ``Graph with one node`` () =
     edges g |> should be Empty
     attrs g |> should be Empty
     
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Graph with one node with keywords`` () =    
     let g = graph [
                 node "a" [("color", "green")]
@@ -35,7 +35,7 @@ let ``Graph with one node with keywords`` () =
     edges g |> should be Empty
     attrs g |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Graph with one edge`` () =    
     let g = graph [
                 edge "a" "b" []
@@ -45,7 +45,7 @@ let ``Graph with one edge`` () =
     edges g |> should equal [edge "a" "b" []]
     attrs g |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Graph with one attribute`` () = 
     let g = graph [
                 attr "foo" "1"
@@ -55,7 +55,7 @@ let ``Graph with one attribute`` () =
     edges g |> should be Empty
     attrs g |> should equal [attr "foo" "1"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Graph with attributes`` () =    
     let g = graph [
                 attr "foo" "1"

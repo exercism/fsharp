@@ -33,7 +33,7 @@ let ``First row contains 'A'`` (letter:char) =
 
     firstRowCharacters |> should equal "A"
 
-[<DiamondProperty(Skip = "Remove to run test")>]
+[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``All rows must have symmetric contour`` (letter:char) =
     let actual = make letter
     let rows = actual |> split
@@ -41,7 +41,7 @@ let ``All rows must have symmetric contour`` (letter:char) =
 
     rows |> Array.iter (fun x -> symmetric x |> should equal true)
 
-[<DiamondProperty(Skip = "Remove to run test")>]
+[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Top of figure has letters in correct order`` (letter:char) =
     let actual = make letter
 
@@ -55,7 +55,7 @@ let ``Top of figure has letters in correct order`` (letter:char) =
 
     expected |> should equal firstNonSpaceLetters
 
-[<DiamondProperty(Skip = "Remove to run test")>]
+[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Figure is symmetric around the horizontal axis`` (letter:char) =
     let actual = make letter
 
@@ -73,7 +73,7 @@ let ``Figure is symmetric around the horizontal axis`` (letter:char) =
 
     top |> should equal bottom
 
-[<DiamondProperty(Skip = "Remove to run test")>]
+[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Diamond has square shape`` (letter:char) =
     let actual = make letter
 
@@ -83,7 +83,7 @@ let ``Diamond has square shape`` (letter:char) =
 
     rows |> Array.iter (fun x -> correctWidth x |> should equal true)
 
-[<DiamondProperty(Skip = "Remove to run test")>]
+[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``All rows except top and bottom have two identical letters`` (letter:char) =
     let actual = make letter
 
@@ -99,7 +99,7 @@ let ``All rows except top and bottom have two identical letters`` (letter:char) 
 
     rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
 
-[<DiamondProperty(Skip = "Remove to run test")>]
+[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Bottom left corner spaces are triangle`` (letter:char) =
     let actual = make letter
 

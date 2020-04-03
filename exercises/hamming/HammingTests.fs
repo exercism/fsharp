@@ -11,35 +11,35 @@ open Hamming
 let ``Empty strands`` () =
     distance "" "" |> should equal (Some 0)
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Single letter identical strands`` () =
     distance "A" "A" |> should equal (Some 0)
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Single letter different strands`` () =
     distance "G" "T" |> should equal (Some 1)
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Long identical strands`` () =
     distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> should equal (Some 0)
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Long different strands`` () =
     distance "GGACGGATTCTG" "AGGACGGATTCT" |> should equal (Some 9)
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow first strand longer`` () =
     distance "AATG" "AAA" |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow second strand longer`` () =
     distance "ATA" "AGTG" |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow left empty strand`` () =
     distance "" "G" |> should equal None
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow right empty strand`` () =
     distance "G" "" |> should equal None
 

@@ -14,35 +14,35 @@ let ``Should accept an initial game grid and a target search word`` () =
     let expected = [("clojure", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate one word written left to right`` () =
     let grid = ["clojurermt"]
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((1, 1), (7, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate the same word written left to right in a different position`` () =
     let grid = ["mtclojurer"]
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((3, 1), (9, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate a different left to right word`` () =
     let grid = ["coffeelplx"]
     let wordsToSearchFor = ["coffee"]
     let expected = [("coffee", Some ((1, 1), (6, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate that different left to right word in a different position`` () =
     let grid = ["xcoffeezlp"]
     let wordsToSearchFor = ["coffee"]
     let expected = [("coffee", Some ((2, 1), (7, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate a left to right word in two line grid`` () =
     let grid = 
         [ "jefblpepre";
@@ -51,7 +51,7 @@ let ``Should locate a left to right word in two line grid`` () =
     let expected = [("clojure", Some ((2, 2), (8, 2)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate a left to right word in three line grid`` () =
     let grid = 
         [ "camdcimgtc";
@@ -61,7 +61,7 @@ let ``Should locate a left to right word in three line grid`` () =
     let expected = [("clojure", Some ((1, 3), (7, 3)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate a left to right word in ten line grid`` () =
     let grid = 
         [ "jefblpepre";
@@ -78,7 +78,7 @@ let ``Should locate a left to right word in ten line grid`` () =
     let expected = [("clojure", Some ((1, 10), (7, 10)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate that left to right word in a different position in a ten line grid`` () =
     let grid = 
         [ "jefblpepre";
@@ -95,7 +95,7 @@ let ``Should locate that left to right word in a different position in a ten lin
     let expected = [("clojure", Some ((1, 9), (7, 9)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate a different left to right word in a ten line grid`` () =
     let grid = 
         [ "jefblpepre";
@@ -112,7 +112,7 @@ let ``Should locate a different left to right word in a ten line grid`` () =
     let expected = [("fortran", Some ((1, 7), (7, 7)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate multiple words`` () =
     let grid = 
         [ "jefblpepre";
@@ -132,14 +132,14 @@ let ``Should locate multiple words`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate a single word written right to left`` () =
     let grid = ["rixilelhrs"]
     let wordsToSearchFor = ["elixir"]
     let expected = [("elixir", Some ((6, 1), (1, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate multiple words written in different horizontal directions`` () =
     let grid = 
         [ "jefblpepre";
@@ -159,7 +159,7 @@ let ``Should locate multiple words written in different horizontal directions`` 
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate words written top to bottom`` () =
     let grid = 
         [ "jefblpepre";
@@ -180,7 +180,7 @@ let ``Should locate words written top to bottom`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate words written bottom to top`` () =
     let grid = 
         [ "jefblpepre";
@@ -202,7 +202,7 @@ let ``Should locate words written bottom to top`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate words written top left to bottom right`` () =
     let grid = 
         [ "jefblpepre";
@@ -225,7 +225,7 @@ let ``Should locate words written top left to bottom right`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate words written bottom right to top left`` () =
     let grid = 
         [ "jefblpepre";
@@ -249,7 +249,7 @@ let ``Should locate words written bottom right to top left`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate words written bottom left to top right`` () =
     let grid = 
         [ "jefblpepre";
@@ -274,7 +274,7 @@ let ``Should locate words written bottom left to top right`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should locate words written top right to bottom left`` () =
     let grid = 
         [ "jefblpepre";
@@ -300,7 +300,7 @@ let ``Should locate words written top right to bottom left`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Should fail to locate a word that is not in the puzzle`` () =
     let grid = 
         [ "jefblpepre";
