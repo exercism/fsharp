@@ -381,8 +381,8 @@
       "slug": "robot-name",
       "uuid": "3fbd466a-caf4-48ac-9a1e-796bc406ff1e",
       "core": false,
-      "unlocked_by": "hello-world",
-      "difficulty": 3,
+      "unlocked_by": "raindrops",
+      "difficulty": 4,
       "topics": [
         "randomness",
         "strings"
