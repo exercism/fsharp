@@ -39,7 +39,7 @@ secret s.
 
 ## Hints
 For this exercise the following F# feature comes in handy:
-- [BigInt](https://msdn.microsoft.com/en-us/visualfsharpdocs/conceptual/numerics.biginteger-structure-%5Bfsharp%5D)
+- [BigInteger](https://docs.microsoft.com/en-us/dotnet/api/system.numerics.biginteger?view=netcore-3.1)
 
 
 ## Running the tests
