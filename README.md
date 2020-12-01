@@ -1,6 +1,6 @@
 # Exercism F# Track
 
-[![Build Status](https://travis-ci.org/exercism/fsharp.svg?branch=master)](https://travis-ci.org/exercism/fsharp)
+![Test](https://github.com/exercism/fsharp/workflows/Test/badge.svg)
 
 Exercism exercises in F#
 
