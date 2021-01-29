@@ -118,12 +118,12 @@ When implementing an exericse, it can be very useful to look at already-implemen
 If you have any questions regarding implementing this exercise, please post them as comments in the exercise's GitHub issue.
 
 [concept-exercises]: ../exercises/concept/README.md
-[how-to-implement-a-concept-exercise]: ../../../docs/maintainers/generic-how-to-implement-a-concept-exercise.md
-[docs-concept-exercises]: ../../../docs/concept-exercises.md
-[docs-rationale-for-v3]: ../../../docs/rationale-for-v3.md
-[docs-features-of-v3]: ../../../docs/features-of-v3.md
+[how-to-implement-a-concept-exercise]: https://github.com/exercism/v3/blob/main/docs/maintainers/generic-how-to-implement-a-concept-exercise.md
+[docs-concept-exercises]: https://github.com/exercism/v3/blob/main/docs/concept-exercises.md
+[docs-rationale-for-v3]: https://github.com/exercism/v3/blob/main/docs/rationale-for-v3.md
+[docs-features-of-v3]: https://github.com/exercism/v3/blob/main/docs/features-of-v3.md
 [anatomy-of-a-concept-exercise]: https://www.youtube.com/watch?v=gkbBqd7hPrA
-[reference]: ../../../reference
+[reference]: https://github.com/exercism/v3/blob/main/reference
 [fantomas]: https://github.com/fsprojects/fantomas
 [implemented-exercises]: ../exercises/concept/README.md#implemented-exercises
 [concept-exercise-cars-assemble]: ../exercises/concept/cars-assemble
@@ -135,9 +135,9 @@ If you have any questions regarding implementing this exercise, please post them
 [fsunit]: https://fsprojects.github.io/FsUnit/index.html
 [failwith]: ../exercises/concept/log-levels/LogLevels.fs#L3
 [todo]: ../exercises/concept/lucians-luscious-lasagna/LuciansLusciousLasagna.fs
-[stub-file]: ../../../docs/concept-exercises.md#stub-implementation-file
-[tests-file]: ../../../docs/concept-exercises.md#tests-file
-[example-file]: ../../../docs/concept-exercises.md#example-implementation-file
+[stub-file]: https://github.com/exercism/v3/blob/main/docs/concept-exercises.md#stub-implementation-file
+[tests-file]: https://github.com/exercism/v3/blob/main/docs/concept-exercises.md#tests-file
+[example-file]: https://github.com/exercism/v3/blob/main/docs/concept-exercises.md#example-implementation-file
 [video-stub-file]: https://www.youtube.com/watch?v=gkbBqd7hPrA&t=1171
 [video-tests-file]: https://www.youtube.com/watch?v=gkbBqd7hPrA&t=1255
 [video-example-file]: https://www.youtube.com/watch?v=gkbBqd7hPrA&t=781
