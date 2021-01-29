@@ -14,13 +14,6 @@
     "indent_style": "space",
     "indent_size": 4
   },
-  "foregone": [
-    "flatten-array",
-    "nucleotide-codons",
-    "paasio",
-    "point-mutations",
-    "counter"
-  ],
   "exercises": {
     "practice": [
       {
@@ -1385,6 +1378,13 @@
           "trees"
         ]
       }
+    ],
+    "foregone": [
+      "flatten-array",
+      "nucleotide-codons",
+      "paasio",
+      "point-mutations",
+      "counter"
     ]
   }
 }
