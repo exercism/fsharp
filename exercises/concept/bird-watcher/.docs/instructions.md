@@ -56,3 +56,4 @@ Over the last year, you've found that some weeks for the same, odd pattern, wher
 oddWeek [| 1; 0; 1; 0; 1; 0; 1 |]
 // => true
 ```
+ 
