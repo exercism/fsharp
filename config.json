@@ -1,5 +1,6 @@
 {
   "language": "F#",
+  "slug": "fsharp",
   "active": true,
   "status": {
     "concept_exercises": false,
