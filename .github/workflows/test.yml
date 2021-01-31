@@ -4,12 +4,12 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@f90c7b395dac7c5a277c1a6d93d5057c1cddb74e # v2
+      - uses: actions/checkout@v2.3.4
       - uses: actions/setup-dotnet@v1.7.2
         with:
-          dotnet-version: "3.0.100"
+          dotnet-version: "5.0.102"
       - run: pwsh ./test.ps1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
