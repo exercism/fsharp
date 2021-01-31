@@ -1,4 +1,4 @@
-module Strings
+module LogLevels
 
 let message (logLine: string): string = logLine.Substring(logLine.IndexOf(':') + 1).Trim()
 

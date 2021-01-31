@@ -1,4 +1,4 @@
-module Arrays
+module BirdWatcher
 
 let lastWeek: int [] = [| 0; 2; 5; 3; 7; 8; 4 |]
 

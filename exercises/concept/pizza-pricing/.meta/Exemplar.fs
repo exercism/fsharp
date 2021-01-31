@@ -1,4 +1,4 @@
-module Recursion
+module PizzaPricing
 
 type Pizza =
     | Margherita

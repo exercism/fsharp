@@ -1,4 +1,4 @@
-module DiscriminatedUnions
+module ValentinesDay
 
 type Approval =
     | Yes
