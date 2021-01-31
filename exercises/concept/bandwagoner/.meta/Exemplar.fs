@@ -1,4 +1,4 @@
-module Stats
+module Bandwagoner
 
 type Coach = { Name: string; FormerPlayer: bool }
 
