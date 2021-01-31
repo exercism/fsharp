@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Accumulate", "accumulate\Accumulate.fsproj", "{7CB7E520-6504-4E60-9B30-FB8512A17A21}"
 EndProject
@@ -303,10 +303,6 @@ Global
 		{9CC473BB-F839-486B-9C7F-B2A8ADF51877}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CC473BB-F839-486B-9C7F-B2A8ADF51877}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CC473BB-F839-486B-9C7F-B2A8ADF51877}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{11C9FBD6-8261-4171-A3E0-FF3E06F220CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{11C9FBD6-8261-4171-A3E0-FF3E06F220CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11C9FBD6-8261-4171-A3E0-FF3E06F220CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -443,6 +439,10 @@ Global
 		{BE4BEAE0-39EF-47E8-B50F-F0185F4F67E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE4BEAE0-39EF-47E8-B50F-F0185F4F67E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE4BEAE0-39EF-47E8-B50F-F0185F4F67E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDEE4FD-96AF-4150-AED3-4D9EF61C09E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38635346-7531-40A8-AEDC-08EF4C59F516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38635346-7531-40A8-AEDC-08EF4C59F516}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38635346-7531-40A8-AEDC-08EF4C59F516}.Release|Any CPU.ActiveCfg = Release|Any CPU
