@@ -3,8 +3,9 @@
 let private isValid triangle = 
     let nonZero = List.sum triangle <> 0.0
     let equality =
-        let [x; y; z] = triangle
-        x + y >= z && x + z >= y && y + z >= x
+        match triangle with
+        | [ x; y; z ] -> x + y >= z && x + z >= y && y + z >= x
+        | _ -> false
     
     equality && nonZero
 
