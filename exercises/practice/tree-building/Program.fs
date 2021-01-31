@@ -13,38 +13,31 @@ open BenchmarkDotNet.Running
 
 open TreeBuildingBenchmark
 
-type BenchmarkConfig() =
-    inherit ManualConfig()
-
+type AllocatedColumnProvider() =
     let distinctWithComparer (comparer: IEqualityComparer<'T>) (sequence: 'T seq) =
         sequence.Distinct(comparer)
 
-    let columnProvider =
-        {
-            new IColumnProvider with
-                member __.GetColumns(summary: Summary) =
-                    seq {
-                        yield TargetMethodColumn.Method
-                        yield StatisticColumn.Mean
+    interface  IColumnProvider with
+        member __.GetColumns(summary: Summary) =
+            seq {
+                yield TargetMethodColumn.Method
+                yield StatisticColumn.Mean
 
-                        yield!
-                            summary.Reports
-                            |> Seq.collect (fun r ->
-                                r.Metrics.Values
-                                |> Seq.filter (fun m -> m.Descriptor.DisplayName = "Allocated")
-                                |> Seq.map (fun m -> m.Descriptor))
-                            |> distinctWithComparer MetricDescriptorEqualityComparer.Instance
-                            |> Seq.map (fun d -> MetricColumn d :> IColumn)
-                    }
-        }
-
-    do
-        base.Add(columnProvider)
-        base.Add(MemoryDiagnoser.Default)
-        base.Add(new ConsoleLogger());
+                yield!
+                    summary.Reports
+                    |> Seq.collect (fun r ->
+                        r.Metrics.Values
+                        |> Seq.filter (fun m -> m.Descriptor.DisplayName = "Allocated")
+                        |> Seq.map (fun m -> m.Descriptor))
+                    |> distinctWithComparer MetricDescriptorEqualityComparer.Instance
+                    |> Seq.map (fun d -> MetricColumn d :> IColumn)
+            }
 
 [<EntryPoint>]
 let main _ =
-    BenchmarkRunner.Run<Benchmarks>(BenchmarkConfig()) |> ignore
+    let  manuelConfig = ManualConfig()
+    let benchmarkConfig = manuelConfig.AddColumnProvider(new AllocatedColumnProvider()).AddDiagnoser(MemoryDiagnoser.Default).AddLogger(ConsoleLogger.Default);
+
+    BenchmarkRunner.Run<Benchmarks>(benchmarkConfig) |> ignore
 
     0
