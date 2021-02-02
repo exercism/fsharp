@@ -1,4 +1,4 @@
-module PatternMatching
+module GuessingGame
 
 let reply guess =
     match guess with

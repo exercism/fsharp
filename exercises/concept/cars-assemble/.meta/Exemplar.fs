@@ -1,4 +1,4 @@
-module Numbers
+module CarsAssemble
 
 let private ProductionRatePerHourForDefaultSpeed = 221
 

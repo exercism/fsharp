@@ -1,4 +1,4 @@
-module Booleans
+module AnnalynsInfiltration
 
 let canFastAttack (knightIsAwake: bool): bool = not knightIsAwake
 

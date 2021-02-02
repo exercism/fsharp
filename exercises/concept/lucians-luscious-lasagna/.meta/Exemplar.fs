@@ -1,4 +1,4 @@
-module Basics
+module LuciansLusciousLasagna
 
 let expectedMinutesInOven = 40
 
