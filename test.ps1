@@ -26,7 +26,7 @@ param (
 . ./shared.ps1
 
 $buildDir = Join-Path $PSScriptRoot "build"
-$exercisesDir = Resolve-Path "exercises"
+$exercisesDir = Resolve-Path "exercises/practice"
 
 function Configlet-Lint {
     Write-Output "Linting config.json"
@@ -77,7 +77,7 @@ function Add-Packages-Used-In-Example-Implementations {
 
 function Test-Using-Example-Implementation {
     Write-Output "Running tests"
-    $testTarget = if ($Exercise) { "$buildDir/$Exercise" } else { "$buildDir/Exercises.sln" }
+    $testTarget = if ($Exercise) { "$buildDir/$Exercise" } else { "$buildDir/Practices.sln" }
     Run-Command "dotnet test $testTarget"
 }
 

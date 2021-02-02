@@ -29,27 +29,26 @@ type GeneratorExercise() =
     abstract member RenderSut : CanonicalDataCase -> string
     abstract member RenderSetup : CanonicalData -> string
     abstract member RenderValue : CanonicalDataCase * string * JToken -> string
-    
+
     // Utility methods to customize rendered output
     abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
     abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
     abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
-    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * JToken -> string option    
-    abstract member AdditionalNamespaces : string list    
-    abstract member AssertTemplate : CanonicalDataCase -> string    
+    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * JToken -> string option
+    abstract member AdditionalNamespaces : string list
+    abstract member AssertTemplate : CanonicalDataCase -> string
     abstract member TestFileFormat: TestFileFormat
     abstract member TestMethodName : CanonicalDataCase -> string
     abstract member UseFullMethodName : CanonicalDataCase -> bool
     abstract member SkipTestMethod : int * CanonicalDataCase -> bool
 
-    member this.Name = this.GetType() |> exerciseNameFromType 
+    member this.Name = this.GetType() |> exerciseNameFromType
     member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTests"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
-        
     member this.TestFilePath () =
-        Path.Combine("..", "exercises", this.Name, sprintf "%s.fs" this.TestModuleName)
-        
+        Path.Combine("..", "exercises", "practice", this.Name, sprintf "%s.fs" this.TestModuleName)
+
     member this.WriteToFile contents =
         let testFilePath = this.TestFilePath ()
 
@@ -59,24 +58,24 @@ type GeneratorExercise() =
     member this.Regenerate(canonicalData) =
         canonicalData
         |> this.MapCanonicalData
-        |> this.Render  
+        |> this.Render
         |> this.WriteToFile
-        
+
     member this.ReadVersion () =
         (*
             Read from the top of the file e.g.
             "// This file was auto-generated based on version 1.2.0 of the canonical data."
         *)
-        
+
         this.TestFilePath ()
         |> File.ReadLines
         |> Seq.head
         |> String.split " "
         |> Seq.find (fun s -> s.[0] |> System.Char.IsDigit)
 
-    // Allow changes in canonical data    
+    // Allow changes in canonical data
 
-    member this.MapCanonicalData canonicalData = 
+    member this.MapCanonicalData canonicalData =
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
     default __.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
@@ -86,7 +85,7 @@ type GeneratorExercise() =
     member this.ToTestFile canonicalData =
         let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
 
-        { Version = canonicalData.Version              
+        { Version = canonicalData.Version
           ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
@@ -99,21 +98,21 @@ type GeneratorExercise() =
           Name = this.TestMethodName canonicalDataCase
           Body = this.RenderTestMethodBody canonicalDataCase }
 
-    member this.ToTestMethodBody canonicalDataCase =         
+    member this.ToTestMethodBody canonicalDataCase =
         { Arrange = this.RenderArrange canonicalDataCase
           Assert = this.RenderAssert canonicalDataCase }
 
-    member this.ToTestMethodBodyAssert canonicalDataCase =         
+    member this.ToTestMethodBodyAssert canonicalDataCase =
         { Sut = this.RenderValueOrIdentifier (canonicalDataCase, "sut", canonicalDataCase.Expected)
           Expected = this.RenderValueOrIdentifier (canonicalDataCase, "expected", canonicalDataCase.Expected) }
 
     // Determine the templates to use when rendering
 
-    member this.TestFileTemplate = 
+    member this.TestFileTemplate =
         match this.TestFileFormat with
         | Module -> "TestModule"
         | Class  -> "TestClass"
-    
+
     member this.TestMethodTemplate (_, _) =
         match this.TestFileFormat with
         | Module -> "TestFunction"
@@ -131,12 +130,12 @@ type GeneratorExercise() =
 
         if expectedIsArray && expectedIsEmpty && not expectedHasIdentifier then
             AssertEmptyTemplate
-        else        
+        else
             AssertEqualTemplate
 
     member __.RenderAssertEmpty sut expected =
         { Sut = sut; Expected = expected }
-        |> renderTemplate AssertEmptyTemplate 
+        |> renderTemplate AssertEmptyTemplate
 
     member __.RenderAssertEqual sut expected =
         { Sut = sut; Expected = expected }
@@ -159,28 +158,28 @@ type GeneratorExercise() =
         |> this.ToTestFile
         |> renderTemplate this.TestFileTemplate
 
-    member this.RenderTestMethod (index, canonicalDataCase) = 
+    member this.RenderTestMethod (index, canonicalDataCase) =
         let template = this.TestMethodTemplate (index, canonicalDataCase)
 
         (index, canonicalDataCase)
-        |> this.ToTestMethod 
+        |> this.ToTestMethod
         |> renderTemplate template
 
-    member this.RenderTestMethodBody canonicalDataCase = 
+    member this.RenderTestMethodBody canonicalDataCase =
         let template = this.TestMethodBodyTemplate canonicalDataCase
 
         canonicalDataCase
         |> this.ToTestMethodBody
         |> renderTemplate template
 
-    default this.TestMethodName canonicalDataCase = 
+    default this.TestMethodName canonicalDataCase =
         match this.UseFullMethodName canonicalDataCase with
         | false ->
             String.upperCaseFirst canonicalDataCase.Description
-        | true -> 
+        | true ->
             canonicalDataCase.DescriptionPath
             |> String.concat " - "
-            |> String.upperCaseFirst   
+            |> String.upperCaseFirst
 
     default __.RenderSetup _ = ""
 
@@ -195,26 +194,26 @@ type GeneratorExercise() =
         | true  -> this.RenderIdentifier (canonicalDataCase, key, value)
         | false -> this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
 
-    member this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) = 
+    member this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) =
         match key with
         | "expected" -> this.RenderExpected (canonicalDataCase, key, value)
         | "sut" -> this.RenderSut canonicalDataCase
         | _  -> this.RenderInput (canonicalDataCase, key, value)
 
-    member this.RenderValueWithIdentifier (canonicalDataCase, key, value) = 
+    member this.RenderValueWithIdentifier (canonicalDataCase, key, value) =
         let identifier = this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value)
         let value = this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
-        sprintf "let %s = %s" identifier value  
+        sprintf "let %s = %s" identifier value
 
     member __.RenderIdentifier (_, key, _) = String.camelize key
 
-    member this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) = 
+    member this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) =
         let identifier = this.RenderIdentifier (canonicalDataCase, key, value)
-    
+
         match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
-        | Some identifierType -> 
+        | Some identifierType ->
             sprintf "%s: %s" identifier identifierType
-        | None -> 
+        | None ->
             identifier
 
     // Canonical-data specific rendering methods
@@ -235,18 +234,18 @@ type GeneratorExercise() =
             | None -> None
             | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, prop, value))
 
-        let renderArrangeProperty prop: string option = 
+        let renderArrangeProperty prop: string option =
             match prop with
             | "expected" -> renderExpected prop
             | "sut" -> renderSut prop
             | _ -> renderInput prop
 
         canonicalDataCase
-        |> this.PropertiesWithIdentifier 
+        |> this.PropertiesWithIdentifier
         |> List.choose renderArrangeProperty
 
-    default this.RenderAssert canonicalDataCase = 
-        let template = this.AssertTemplate canonicalDataCase                
+    default this.RenderAssert canonicalDataCase =
+        let template = this.AssertTemplate canonicalDataCase
 
         canonicalDataCase
         |> this.ToTestMethodBodyAssert
@@ -264,20 +263,20 @@ type GeneratorExercise() =
 
         sutParameterProperties
         |> List.map renderSutParameter
-    
+
     member this.RenderSutParameter (canonicalDataCase, key, value) =
-        this.RenderValueOrIdentifier (canonicalDataCase, key, value) 
+        this.RenderValueOrIdentifier (canonicalDataCase, key, value)
 
     member __.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
 
     member this.Properties canonicalDataCase =
         List.append (this.PropertiesUsedAsSutParameter canonicalDataCase) ["expected"]
 
-    default __.PropertiesUsedAsSutParameter canonicalDataCase = 
+    default __.PropertiesUsedAsSutParameter canonicalDataCase =
         canonicalDataCase.Input
         |> Map.toList
         |> List.map fst
-    
+
     // Utility methods to customize rendered output
 
     default __.PropertiesWithIdentifier _ = []
@@ -289,7 +288,7 @@ type GeneratorExercise() =
     default __.AdditionalNamespaces = []
 
     default __.SkipTestMethod (index, _) = index > 0
-    
+
 type CustomExercise() =
 
     member this.Name = this.GetType().Name.Kebaberize()
@@ -299,27 +298,27 @@ type MissingDataExercise = { Name: string }
 type UnimplementedExercise = { Name: string }
 
 type DeprecatedExercise = { Name: string }
-    
+
 type Exercise =
     | Generator of GeneratorExercise
     | Custom of CustomExercise
     | MissingData of MissingDataExercise
     | Unimplemented of UnimplementedExercise
     | Deprecated of DeprecatedExercise
-    
+
 let exerciseName exercise =
     match exercise with
     | Generator generator -> generator.Name
     | Custom custom -> custom.Name
     | Unimplemented unimplemented -> unimplemented.Name
-    | MissingData missingData -> missingData.Name    
-    | Deprecated deprecated -> deprecated.Name    
+    | MissingData missingData -> missingData.Name
+    | Deprecated deprecated -> deprecated.Name
 
 type ConfigExercise = { Slug: string }
 
 type Config = { Exercises: ConfigExercise[] }
 
-let private exerciseNames = 
+let private exerciseNames =
     let configFilePath = "../config.json"
     let configFileContents = File.ReadAllText configFilePath
     let config = JsonConvert.DeserializeObject<Config>(configFileContents)
@@ -335,7 +334,7 @@ let private isGeneratorExercise (ty: Type) = typeof<GeneratorExercise>.IsAssigna
 
 let private isCustomExercise (ty: Type) = typeof<CustomExercise>.IsAssignableFrom(ty)
 
-let private concreteAssemblyTypes = 
+let private concreteAssemblyTypes =
     Assembly.GetEntryAssembly().GetTypes()
     |> Array.filter isConcreteType
 
@@ -347,29 +346,29 @@ let private exerciseTypesByName<'T> predicate =
     |> Array.filter predicate
     |> Array.map exerciseTypeByName<'T>
     |> Map.ofArray
-    
+
 let private generatorExercises = exerciseTypesByName<GeneratorExercise> isGeneratorExercise
 
 let private customExercises = exerciseTypesByName<CustomExercise> isCustomExercise
 
 let private tryFindGeneratorExercise exerciseName =
     generatorExercises
-    |> Map.tryFind exerciseName 
+    |> Map.tryFind exerciseName
     |> Option.map Generator
-    
+
 let private tryFindCustomExercise exerciseName =
     customExercises
-    |> Map.tryFind exerciseName 
+    |> Map.tryFind exerciseName
     |> Option.map Custom
-    
+
 let private tryFindDeprecatedExercise exerciseName =
     match isDeprecated exerciseName with
-    | true  -> Deprecated { Name = exerciseName } |> Some 
+    | true  -> Deprecated { Name = exerciseName } |> Some
     | false -> None
-    
+
 let private tryFindUnimplementedExercise options exerciseName =
     match hasCanonicalData options exerciseName with
-    | true  -> Unimplemented { Name = exerciseName } |> Some 
+    | true  -> Unimplemented { Name = exerciseName } |> Some
     | false -> None
 
 let private createExercise options exerciseName =

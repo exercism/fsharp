@@ -11,7 +11,7 @@ let private isNotFilteredByName options (exercise: Exercise) =
     match options.Exercise with
     | Some filteredExerciseName -> filteredExerciseName = exerciseName exercise
     | None -> true
-    
+
 let private regenerateTestClass options =
     let parseCanonicalData' = parseCanonicalData options
 
@@ -34,31 +34,31 @@ let private regenerateTestClasses options =
     Log.Information("Re-generating test classes...")
 
     let regenerateTestClass' = regenerateTestClass options
-    
+
     createExercises options
     |> List.filter (isNotFilteredByName options)
     |> function
         | [] -> Log.Warning "No exercises matched given options."
         | exercises ->
             List.iter regenerateTestClass' exercises
-            Log.Information("Re-generated test classes.")     
+            Log.Information("Re-generated test classes.")
 
 [<EntryPoint>]
-let main argv = 
+let main argv =
     Logging.setupLogger()
 
     match parseOptions argv with
-    | Ok(options) when options.Status.IsSome && options.Exercise.IsSome -> 
+    | Ok(options) when options.Status.IsSome && options.Exercise.IsSome ->
         Log.Error("Can't have both -s/--status and -e/--exercise.")
         1
-    | Ok(options) when options.Status.IsSome -> 
+    | Ok(options) when options.Status.IsSome ->
         listExercises options
         0
-    | Ok(options) -> 
+    | Ok(options) ->
         regenerateTestClasses options
         0
     | Error(errors) when errors |> Seq.contains "CommandLine.HelpRequestedError" ->
         0
-    | Error(errors) -> 
+    | Error(errors) ->
         Log.Error("Error(s) parsing commandline arguments: {Errors}", errors)
         1
