@@ -35,8 +35,8 @@ type AllocatedColumnProvider() =
 
 [<EntryPoint>]
 let main _ =
-    let  manuelConfig = ManualConfig()
-    let benchmarkConfig = manuelConfig.AddColumnProvider(new AllocatedColumnProvider()).AddDiagnoser(MemoryDiagnoser.Default).AddLogger(ConsoleLogger.Default);
+    let manualConfig = ManualConfig()
+    let benchmarkConfig = manualConfig.AddColumnProvider(new AllocatedColumnProvider()).AddDiagnoser(MemoryDiagnoser.Default).AddLogger(ConsoleLogger.Default);
 
     BenchmarkRunner.Run<Benchmarks>(benchmarkConfig) |> ignore
 
