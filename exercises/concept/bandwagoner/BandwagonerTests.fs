@@ -104,7 +104,7 @@ let ``Same team is duplicate`` () =
     let stats = createStats 57 25
     let team = createTeam "Los Angeles Lakers" coach stats
 
-    isDuplicate team team
+    isSameTeam team team
     |> should equal true
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -116,7 +116,7 @@ let ``Same team with different stats is not a duplicate`` () =
     let newStats = createStats 62 20
     let teamWithDifferentStats = createTeam "Los Angeles Lakers" coach newStats
 
-    isDuplicate team teamWithDifferentStats
+    isSameTeam team teamWithDifferentStats
     |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -128,7 +128,7 @@ let ``Same team with different coach is not a duplicate`` () =
     let newCoach = createCoach "John Kundla" true
     let teamWithDifferentCoach = createTeam "Los Angeles Lakers" newCoach stats
 
-    isDuplicate team teamWithDifferentCoach
+    isSameTeam team teamWithDifferentCoach
     |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -139,7 +139,7 @@ let ``Different team with same coach and stats`` () =
     let team = createTeam "Denver Nuggets" coach stats
     let otherTeam = createTeam "Phoenix Suns" coach stats
 
-    isDuplicate team otherTeam
+    isSameTeam team otherTeam
     |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -152,7 +152,7 @@ let ``Different team with different coach and stats`` () =
     let otherCoach = createCoach "Larry Costello" true
     let otherTeam = createTeam "Milwaukee Bucks" otherCoach otherStats
 
-    isDuplicate team otherTeam
+    isSameTeam team otherTeam
     |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
