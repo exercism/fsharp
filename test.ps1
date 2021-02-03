@@ -31,7 +31,7 @@ $exercisesDir = Resolve-Path "exercises/practice"
 function Configlet-Lint {
     Write-Output "Linting config.json"
     Run-Command "./bin/fetch-configlet"
-    Run-Command "./bin/configlet lint ."
+    Run-Command "./bin/configlet lint"
 }
 
 function Build-Generators { 
@@ -81,8 +81,7 @@ function Test-Using-Example-Implementation {
     Run-Command "dotnet test $testTarget"
 }
 
-# Currently, configlet isn't stable and fails intermittently, so this check is removed until the root issue is fixed 
-# Configlet-Lint
+Configlet-Lint
 Clean
 Copy-Exercises
 Enable-All-Tests
