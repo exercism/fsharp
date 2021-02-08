@@ -26,12 +26,14 @@ param (
 . ./shared.ps1
 
 $buildDir = Join-Path $PSScriptRoot "build"
-$exercisesDir = Resolve-Path "exercises/practice"
+$conceptExercisesDir = Join-Path $buildDir "concept"
+$practiceExercisesDir = Join-Path $buildDir "practice"
+$sourceDir = Resolve-Path "exercises"
 
 function Configlet-Lint {
     Write-Output "Linting config.json"
     Run-Command "./bin/fetch-configlet"
-    Run-Command "./bin/configlet lint ."
+    Run-Command "./bin/configlet lint"
 }
 
 function Build-Generators { 
@@ -46,7 +48,7 @@ function Clean {
 
 function Copy-Exercises {
     Write-Output "Copying exercises"
-    Copy-Item $exercisesDir -Destination $buildDir -Recurse
+    Copy-Item $sourceDir -Destination $buildDir -Recurse
 }
 
 function Enable-All-Tests {
@@ -58,12 +60,20 @@ function Enable-All-Tests {
 
 function Test-Refactoring-Projects {
     Write-Output "Testing refactoring projects"
-    @("tree-building", "ledger", "markdown") | ForEach-Object { Run-Command "dotnet test $buildDir/$_" }
+    @("tree-building", "ledger", "markdown") | ForEach-Object { Run-Command "dotnet test $practiceExercisesDir/$_" }
 }
 
-function Replace-Stubs-With-Example {
-    Write-Output "Replacing stubs with example"
-    Get-ChildItem -Path $buildDir -Include "*.fsproj" -Recurse | ForEach-Object {
+function Replace-Stubs {
+    Write-Output "Replacing concept exercise stubs with exemplar"
+    Get-ChildItem -Path $conceptExercisesDir -Include "*.fsproj" -Recurse | ForEach-Object {
+        $stub = Join-Path $_.Directory ($_.BaseName + ".fs")
+        $example = Join-Path $_.Directory ".meta" "Exemplar.fs"
+    
+        Move-Item -Path $example -Destination $stub -Force
+    }
+
+    Write-Output "Replacing practice exercise stubs with example"
+    Get-ChildItem -Path $practiceExercisesDir -Include "*.fsproj" -Recurse | ForEach-Object {
         $stub = Join-Path $_.Directory ($_.BaseName + ".fs")
         $example = Join-Path $_.Directory "Example.fs"
     
@@ -72,17 +82,27 @@ function Replace-Stubs-With-Example {
 }
 
 function Add-Packages-Used-In-Example-Implementations {
-    Run-Command "dotnet add $buildDir/sgf-parsing package FParsec"
+    Run-Command "dotnet add $practiceExercisesDir/sgf-parsing package FParsec"
 }
 
 function Test-Using-Example-Implementation {
     Write-Output "Running tests"
-    $testTarget = if ($Exercise) { "$buildDir/$Exercise" } else { "$buildDir/Practices.sln" }
-    Run-Command "dotnet test $testTarget"
+
+    if (-Not $Exercise) {
+        Run-Command "dotnet test $buildDir/Exercises.sln"
+    }
+    elseif (Test-Path "$conceptExercisesDir/$exercise") {
+        Run-Command "dotnet test $conceptExercisesDir/$exercise"
+    }
+    elseif (Test-Path "$practiceExercisesDir/$exercise") {
+        Run-Command "dotnet test $practiceExercisesDir/$exercise"
+    }
+    else {
+        throw "Could not find exercise '$exercise'"
+    }
 }
 
-# Currently, configlet isn't stable and fails intermittently, so this check is removed until the root issue is fixed 
-# Configlet-Lint
+Configlet-Lint
 Clean
 Copy-Exercises
 Enable-All-Tests
@@ -92,7 +112,7 @@ if (!$Exercise) {
     Test-Refactoring-Projects
 }
 
-Replace-Stubs-With-Example
+Replace-Stubs
 Add-Packages-Used-In-Example-Implementations
 Test-Using-Example-Implementation
 
