@@ -3,9 +3,9 @@
   "slug": "fsharp",
   "active": true,
   "status": {
-    "concept_exercises": false,
-    "test_runner": false,
-    "representer": false,
+    "concept_exercises": true,
+    "test_runner": true,
+    "representer": true,
     "analyzer": false
   },
   "blurb": "F# is a strongly-typed, functional language that is part of Microsoft's .NET language stack. Although F# is great for data science problems, it can elegantly handle almost every problem you throw at it.",
