@@ -1,3 +1,5 @@
+# Instructions
+
 In this exercise, you are playing a number guessing game with a friend. The rules are simple: you secretly choose a number between `1` and `100` and your friend tries to guess what number you've chosen. To help your friend, you respond differently depending on how close the guess was to the number you've chosen (`42`). These are the rules for the different replies:
 
 - If the guess is `42`: "Correct"

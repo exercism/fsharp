@@ -1,3 +1,5 @@
+# About
+
 Booleans in F# are represented by the `bool` type, which values can be either `true` or `false`.
 
 F# supports three [boolean operators][operators]: `not` (NOT), `&&` (AND), and `||` (OR). The `&&` and `||` operators use _short-circuit evaluation_, which means that the right-hand side of the operator is only evaluated when needed.

@@ -1,3 +1,5 @@
+# Introduction
+
 A `string` in F# is an object that represents immutable text as a sequence of Unicode characters (letters, digits, punctuation, etc.) and is defined as follows:
 
 ```fsharp

@@ -1,4 +1,4 @@
-## Hints
+# Hints
 
 A [doubly linked list](https://en.wikipedia.org/wiki/Doubly_linked_list) is a mutable data structure. As F# is a functional-first language, immutability is generally preferred, but there are language features that allow the use of mutation where it is required.
 

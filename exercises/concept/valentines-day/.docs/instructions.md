@@ -1,3 +1,5 @@
+# Instructions
+
 In this exercise, it's Valentine's day and you and your partner are planning on doing something nice together. Your partner has lots of ideas, and is now asking you to rate the ideas, in order to find the activity to engage in.
 
 The following ideas are proposed by your partner:

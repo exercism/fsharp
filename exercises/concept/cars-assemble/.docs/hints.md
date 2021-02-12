@@ -1,3 +1,5 @@
+# Hints
+
 ## 1. Calculate the production rate per second
 
 - Determining the success rate can be done through a [conditional expression][conditional-expression].

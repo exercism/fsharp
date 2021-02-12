@@ -1,3 +1,5 @@
+# Hints
+
 ## 1. Define the approval
 
 - [This page][define] shows how to define a discriminated union.

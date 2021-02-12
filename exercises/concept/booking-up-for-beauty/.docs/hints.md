@@ -1,3 +1,5 @@
+# Hints
+
 ## General
 
 - To work with the `DateTime` class, the `System` namespace has to be _opened_.
