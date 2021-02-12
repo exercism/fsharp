@@ -6,7 +6,7 @@ As you don't yet have a favorite team, you'll also be developing an algorithm to
 
 You have seven tasks to help you develop your proprietary _root-for-a-team_ algorithm.
 
-### 1. Define the model
+## 1. Define the model
 
 Define the `Coach` record with the following two fields:
 
@@ -24,7 +24,7 @@ Define the `Team` record with the following three fields:
 - `Coach`: the team's coach, of type `Coach`.
 - `Stats`: the team's stats, of type `Stats`.
 
-### 2. Create a team's coach
+## 2. Create a team's coach
 
 Implement the `createCoach` function that takes the coach name and its former player status as parameters, and returns its `Coach` record:
 
@@ -33,7 +33,7 @@ createCoach "Larry Bird" true
 // => { Name = "Larry Bird"; FormerPlayer = true }
 ```
 
-### 3. Create a team's stats
+## 3. Create a team's stats
 
 Implement the `createStats` function that takes the number of wins and the number losses as parameters, and returns its `Stats` record:
 
@@ -42,7 +42,7 @@ createStats 58 24
 // => { Wins = 58; Losses = 24 }
 ```
 
-### 4. Create a team
+## 4. Create a team
 
 Implement the `createTeam` function that takes the team name, coach and record as parameters, and returns its `Team` record:
 
@@ -55,7 +55,7 @@ createTeam "Indiana Pacers" coach record
 //      Stats = { Wins = 58; Losses = 24 } }
 ```
 
-### 5. Replace the coach
+## 5. Replace the coach
 
 NBA owners being impatient, you found that bad team results would often lead to the coach being replaced. Implement the `replaceCoach` function that takes the team and its new coach as parameters, and returns the team but with the new coach:
 
@@ -71,7 +71,7 @@ replaceCoach team newCoach
 //      Stats = { Wins = 58; Losses = 24 } }
 ```
 
-### 6. Check for same team
+## 6. Check for same team
 
 While digging into stats, you're keeping lists of teams and their records. Sometimes, you get things wrong and there are duplicate entries on your list. Implement the `isSameTeam` function that takes two teams and returns `true` if they are the same team; otherwise, return `false`:
 
@@ -88,7 +88,7 @@ isSameTeam pacersTeam lakersTeam
 // => false
 ```
 
-### 7. Check if you should root for a team
+## 7. Check if you should root for a team
 
 Having looked at many teams and matches, you've come up with an algorithm. If one of the following is true, you root for that team:
 
