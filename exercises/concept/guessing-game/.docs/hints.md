@@ -1,3 +1,5 @@
+# Hints
+
 ## General
 
 - [This page][pattern-matching] has a nice introduction to pattern matching in F#.

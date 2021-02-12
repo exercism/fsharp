@@ -1,4 +1,4 @@
-## Recommended Learning Resources
+# Recommended Learning Resources
 
 ### Blogs
 * Sergey Tihon's [F# Weekly blog](https://sergeytihon.wordpress.com/) is a weekly-updated website that lists recent F# news and articles.

@@ -1,4 +1,4 @@
-## Learning F# 
+# Learning F# 
 
 ### Websites
 * The [F# Hello World tutorial](https://dotnet.microsoft.com/learn/languages/fsharp-hello-world-tutorial/intro) is a nice and gentle introduction to working with F#.

@@ -1,3 +1,5 @@
+# About
+
 A [record][records] is a collection of fields (which can be of different types) that belong together. To [define a record][define] the `type` keyword is used. A record's fields are defined between `{` and `}` characters, and each field has a name _and_ a type.
 
 ```fsharp

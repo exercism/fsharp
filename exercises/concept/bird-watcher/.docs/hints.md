@@ -1,3 +1,5 @@
+# Hints
+
 ## General
 
 - The bird counts arrays always contain exactly 7 integers.

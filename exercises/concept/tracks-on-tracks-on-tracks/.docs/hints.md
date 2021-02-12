@@ -1,3 +1,5 @@
+# Hints
+
 ## 1. Create a new list
 
 - How to define an empty list can be found on [this page][create-and-initialize].

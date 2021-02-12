@@ -1,3 +1,5 @@
+# About
+
 A [`list`][lists] in F# is an immutable collection of zero or more values. The values in a list must all have the same type. As lists are immutable, once a list has been constructed, its value can never change. F# list have a _head_ (the first element) and a _tail_ (everything after the first element). The tail of a list is itself a list.
 
 Lists can be defined as follows:
