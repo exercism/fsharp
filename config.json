@@ -15,18 +15,10 @@
     "indent_size": 4
   },
   "files": {
-    "solution": [
-      "path/to/%{kebab_slug}.ext"
-    ],
-    "test": [
-      "path/to/%{kebab_slug}.ext"
-    ],
-    "example": [
-      "path/to/%{kebab_slug}.ext"
-    ],
-    "exemplar": [
-      "path/to/%{kebab_slug}.ext"
-    ]
+    "solution": ["%{pascal_slug}.fs"],
+    "test": ["%{pascal_slug}Tests.fs"],
+    "example": [".meta/Example.fs"],
+    "exemplar": [".meta/Exemplar.fs"]
   },
   "exercises": {
     "concept": [
