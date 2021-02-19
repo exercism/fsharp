@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Bowling.fs"
+    ],
+    "test": [
+      "BowlingTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "CustomSet.fs"
+    ],
+    "test": [
+      "CustomSetTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

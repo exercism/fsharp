@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "HighScores.fs"
+    ],
+    "test": [
+      "HighScoresTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

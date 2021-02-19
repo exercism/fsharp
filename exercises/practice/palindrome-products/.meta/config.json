@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "PalindromeProducts.fs"
+    ],
+    "test": [
+      "PalindromeProductsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "IsbnVerifier.fs"
+    ],
+    "test": [
+      "IsbnVerifierTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

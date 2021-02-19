@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Isogram.fs"
+    ],
+    "test": [
+      "IsogramTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "QueenAttack.fs"
+    ],
+    "test": [
+      "QueenAttackTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

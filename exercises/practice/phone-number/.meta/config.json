@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "PhoneNumber.fs"
+    ],
+    "test": [
+      "PhoneNumberTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

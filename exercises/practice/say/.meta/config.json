@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Say.fs"
+    ],
+    "test": [
+      "SayTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

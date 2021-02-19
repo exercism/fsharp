@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ComplexNumbers.fs"
+    ],
+    "test": [
+      "ComplexNumbersTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

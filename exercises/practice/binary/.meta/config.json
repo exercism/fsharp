@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Binary.fs"
+    ],
+    "test": [
+      "BinaryTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

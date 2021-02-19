@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Hamming.fs"
+    ],
+    "test": [
+      "HammingTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

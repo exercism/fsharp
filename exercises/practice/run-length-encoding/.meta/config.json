@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RunLengthEncoding.fs"
+    ],
+    "test": [
+      "RunLengthEncodingTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

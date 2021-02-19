@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "LinkedList.fs"
+    ],
+    "test": [
+      "LinkedListTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

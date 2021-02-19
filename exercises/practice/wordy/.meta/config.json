@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Wordy.fs"
+    ],
+    "test": [
+      "WordyTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

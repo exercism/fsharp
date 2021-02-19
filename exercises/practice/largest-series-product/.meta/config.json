@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "LargestSeriesProduct.fs"
+    ],
+    "test": [
+      "LargestSeriesProductTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

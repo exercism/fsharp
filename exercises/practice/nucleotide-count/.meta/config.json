@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "NucleotideCount.fs"
+    ],
+    "test": [
+      "NucleotideCountTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

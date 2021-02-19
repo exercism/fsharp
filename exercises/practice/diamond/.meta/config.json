@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Diamond.fs"
+    ],
+    "test": [
+      "DiamondTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

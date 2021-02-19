@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ReverseString.fs"
+    ],
+    "test": [
+      "ReverseStringTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

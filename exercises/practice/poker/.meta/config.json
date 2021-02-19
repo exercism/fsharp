@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Poker.fs"
+    ],
+    "test": [
+      "PokerTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "KindergartenGarden.fs"
+    ],
+    "test": [
+      "KindergartenGardenTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

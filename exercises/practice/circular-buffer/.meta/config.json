@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "CircularBuffer.fs"
+    ],
+    "test": [
+      "CircularBufferTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "LensPerson.fs"
+    ],
+    "test": [
+      "LensPersonTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

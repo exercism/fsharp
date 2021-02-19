@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "AtbashCipher.fs"
+    ],
+    "test": [
+      "AtbashCipherTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RailFenceCipher.fs"
+    ],
+    "test": [
+      "RailFenceCipherTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

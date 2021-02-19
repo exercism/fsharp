@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Accumulate.fs"
+    ],
+    "test": [
+      "AccumulateTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

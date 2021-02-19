@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Sieve.fs"
+    ],
+    "test": [
+      "SieveTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

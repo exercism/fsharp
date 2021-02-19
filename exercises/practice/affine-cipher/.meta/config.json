@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "AffineCipher.fs"
+    ],
+    "test": [
+      "AffineCipherTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

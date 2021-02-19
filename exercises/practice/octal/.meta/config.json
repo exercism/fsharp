@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Octal.fs"
+    ],
+    "test": [
+      "OctalTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

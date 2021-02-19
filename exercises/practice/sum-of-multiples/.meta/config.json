@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "SumOfMultiples.fs"
+    ],
+    "test": [
+      "SumOfMultiplesTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

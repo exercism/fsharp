@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RotationalCipher.fs"
+    ],
+    "test": [
+      "RotationalCipherTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

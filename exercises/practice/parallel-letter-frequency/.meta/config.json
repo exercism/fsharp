@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ParallelLetterFrequency.fs"
+    ],
+    "test": [
+      "ParallelLetterFrequencyTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

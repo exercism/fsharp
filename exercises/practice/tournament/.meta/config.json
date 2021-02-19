@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Tournament.fs"
+    ],
+    "test": [
+      "TournamentTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

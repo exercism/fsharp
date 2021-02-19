@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ZebraPuzzle.fs"
+    ],
+    "test": [
+      "ZebraPuzzleTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

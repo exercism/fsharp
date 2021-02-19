@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "PascalsTriangle.fs"
+    ],
+    "test": [
+      "PascalsTriangleTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

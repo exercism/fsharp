@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Grep.fs"
+    ],
+    "test": [
+      "GrepTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

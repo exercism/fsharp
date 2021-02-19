@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RobotSimulator.fs"
+    ],
+    "test": [
+      "RobotSimulatorTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

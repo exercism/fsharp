@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "DndCharacter.fs"
+    ],
+    "test": [
+      "DndCharacterTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]
