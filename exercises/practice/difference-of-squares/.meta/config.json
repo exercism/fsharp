@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "DifferenceOfSquares.fs"
+    ],
+    "test": [
+      "DifferenceOfSquaresTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

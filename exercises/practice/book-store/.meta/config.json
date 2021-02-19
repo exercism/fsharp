@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "BookStore.fs"
+    ],
+    "test": [
+      "BookStoreTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

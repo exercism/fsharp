@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Hexadecimal.fs"
+    ],
+    "test": [
+      "HexadecimalTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

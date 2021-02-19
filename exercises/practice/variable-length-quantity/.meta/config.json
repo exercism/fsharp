@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "VariableLengthQuantity.fs"
+    ],
+    "test": [
+      "VariableLengthQuantityTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

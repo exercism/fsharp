@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "DiffieHellman.fs"
+    ],
+    "test": [
+      "DiffieHellmanTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

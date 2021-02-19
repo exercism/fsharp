@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Leap.fs"
+    ],
+    "test": [
+      "LeapTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

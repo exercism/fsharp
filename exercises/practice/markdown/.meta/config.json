@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Markdown.fs"
+    ],
+    "test": [
+      "MarkdownTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

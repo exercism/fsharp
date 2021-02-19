@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Allergies.fs"
+    ],
+    "test": [
+      "AllergiesTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

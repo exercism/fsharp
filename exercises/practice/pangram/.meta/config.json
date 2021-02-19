@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Pangram.fs"
+    ],
+    "test": [
+      "PangramTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

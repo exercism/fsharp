@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RomanNumerals.fs"
+    ],
+    "test": [
+      "RomanNumeralsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

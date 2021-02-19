@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "FoodChain.fs"
+    ],
+    "test": [
+      "FoodChainTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

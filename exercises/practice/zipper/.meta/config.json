@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Zipper.fs"
+    ],
+    "test": [
+      "ZipperTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

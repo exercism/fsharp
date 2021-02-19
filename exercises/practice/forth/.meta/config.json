@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Forth.fs"
+    ],
+    "test": [
+      "ForthTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

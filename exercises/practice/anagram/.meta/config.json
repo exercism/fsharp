@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Anagram.fs"
+    ],
+    "test": [
+      "AnagramTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

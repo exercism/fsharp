@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Grains.fs"
+    ],
+    "test": [
+      "GrainsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

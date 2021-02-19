@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ListOps.fs"
+    ],
+    "test": [
+      "ListOpsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

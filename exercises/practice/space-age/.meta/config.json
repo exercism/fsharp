@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "SpaceAge.fs"
+    ],
+    "test": [
+      "SpaceAgeTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

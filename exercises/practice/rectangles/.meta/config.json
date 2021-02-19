@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Rectangles.fs"
+    ],
+    "test": [
+      "RectanglesTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

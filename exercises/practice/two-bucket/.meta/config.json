@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "TwoBucket.fs"
+    ],
+    "test": [
+      "TwoBucketTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "GoCounting.fs"
+    ],
+    "test": [
+      "GoCountingTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

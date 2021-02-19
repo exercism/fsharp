@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Dominoes.fs"
+    ],
+    "test": [
+      "DominoesTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

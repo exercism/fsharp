@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "TreeBuilding.fs"
+    ],
+    "test": [
+      "TreeBuildingTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

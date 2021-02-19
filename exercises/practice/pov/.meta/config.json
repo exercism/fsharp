@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Pov.fs"
+    ],
+    "test": [
+      "PovTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

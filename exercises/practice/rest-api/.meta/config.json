@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RestApi.fs"
+    ],
+    "test": [
+      "RestApiTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

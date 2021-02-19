@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Luhn.fs"
+    ],
+    "test": [
+      "LuhnTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

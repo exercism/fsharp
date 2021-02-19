@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ProteinTranslation.fs"
+    ],
+    "test": [
+      "ProteinTranslationTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

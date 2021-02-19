@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Ledger.fs"
+    ],
+    "test": [
+      "LedgerTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

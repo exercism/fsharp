@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Clock.fs"
+    ],
+    "test": [
+      "ClockTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

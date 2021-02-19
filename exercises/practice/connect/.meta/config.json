@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Connect.fs"
+    ],
+    "test": [
+      "ConnectTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

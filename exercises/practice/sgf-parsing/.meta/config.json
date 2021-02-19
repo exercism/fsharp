@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "SgfParsing.fs"
+    ],
+    "test": [
+      "SgfParsingTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

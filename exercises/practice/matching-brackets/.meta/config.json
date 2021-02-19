@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "MatchingBrackets.fs"
+    ],
+    "test": [
+      "MatchingBracketsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

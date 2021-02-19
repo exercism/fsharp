@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "WordCount.fs"
+    ],
+    "test": [
+      "WordCountTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

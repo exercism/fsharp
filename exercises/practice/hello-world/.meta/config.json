@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "HelloWorld.fs"
+    ],
+    "test": [
+      "HelloWorldTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

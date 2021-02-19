@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Raindrops.fs"
+    ],
+    "test": [
+      "RaindropsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

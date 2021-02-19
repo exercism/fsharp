@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "CryptoSquare.fs"
+    ],
+    "test": [
+      "CryptoSquareTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "PerfectNumbers.fs"
+    ],
+    "test": [
+      "PerfectNumbersTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

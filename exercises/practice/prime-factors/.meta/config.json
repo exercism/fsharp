@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "PrimeFactors.fs"
+    ],
+    "test": [
+      "PrimeFactorsTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

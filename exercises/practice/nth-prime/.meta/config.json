@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "NthPrime.fs"
+    ],
+    "test": [
+      "NthPrimeTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

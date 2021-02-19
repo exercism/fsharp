@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "RnaTranscription.fs"
+    ],
+    "test": [
+      "RnaTranscriptionTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

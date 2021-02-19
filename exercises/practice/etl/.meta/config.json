@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Etl.fs"
+    ],
+    "test": [
+      "EtlTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

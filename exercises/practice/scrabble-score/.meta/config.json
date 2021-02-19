@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ScrabbleScore.fs"
+    ],
+    "test": [
+      "ScrabbleScoreTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

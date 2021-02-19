@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "DotDsl.fs"
+    ],
+    "test": [
+      "DotDslTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

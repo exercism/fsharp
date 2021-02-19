@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "ScaleGenerator.fs"
+    ],
+    "test": [
+      "ScaleGeneratorTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

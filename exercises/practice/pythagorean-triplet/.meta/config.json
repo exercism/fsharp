@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "PythagoreanTriplet.fs"
+    ],
+    "test": [
+      "PythagoreanTripletTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

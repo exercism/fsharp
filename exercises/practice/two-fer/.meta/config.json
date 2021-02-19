@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "TwoFer.fs"
+    ],
+    "test": [
+      "TwoFerTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

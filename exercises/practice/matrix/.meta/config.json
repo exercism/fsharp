@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "Matrix.fs"
+    ],
+    "test": [
+      "MatrixTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

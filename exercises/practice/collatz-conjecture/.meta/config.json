@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "CollatzConjecture.fs"
+    ],
+    "test": [
+      "CollatzConjectureTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]

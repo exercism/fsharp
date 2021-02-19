@@ -1,8 +1,12 @@
 {
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "SecretHandshake.fs"
+    ],
+    "test": [
+      "SecretHandshakeTests.fs"
+    ],
     "example": [
       ".meta/Example.fs"
     ]
