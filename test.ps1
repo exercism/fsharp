@@ -17,6 +17,7 @@
     PS C:\> ./test.ps1 acronym
 #>
 
+[CmdletBinding(SupportsShouldProcess)]
 param (
     [Parameter(Position = 0, Mandatory = $false)]
     [string]$Exercise
@@ -25,95 +26,107 @@ param (
 # Import shared functionality
 . ./shared.ps1
 
-$buildDir = Join-Path $PSScriptRoot "build"
-$conceptExercisesDir = Join-Path $buildDir "concept"
-$practiceExercisesDir = Join-Path $buildDir "practice"
-$sourceDir = Resolve-Path "exercises"
-
-function Configlet-Lint {
+function Invoke-Configlet-Lint {
     Write-Output "Linting config.json"
     Run-Command "./bin/fetch-configlet"
     Run-Command "./bin/configlet lint"
 }
 
-function Build-Generators { 
+function Invoke-Build-Generators {
     Write-Output "Building generators"
     Run-Command "dotnet build ./generators"
 }
 
-function Clean {
+function Clean($BuildDir) {
     Write-Output "Cleaning previous build"
-    Remove-Item -Recurse -Force $buildDir -ErrorAction Ignore
+    Remove-Item -Recurse -Force $BuildDir -ErrorAction Ignore
 }
 
-function Copy-Exercises {
+function Copy-Exercise($SourceDir, $BuildDir) {
     Write-Output "Copying exercises"
-    Copy-Item $sourceDir -Destination $buildDir -Recurse
+    Copy-Item $SourceDir -Destination $BuildDir -Recurse
 }
 
-function Enable-All-Tests {
+function Enable-All-UnitTests($BuildDir) {
     Write-Output "Enabling all tests"
-    Get-ChildItem -Path $buildDir -Include "*Tests.fs" -Recurse | ForEach-Object {
+    Get-ChildItem -Path $BuildDir -Include "*Tests.fs" -Recurse | ForEach-Object {
         (Get-Content $_.FullName) -replace "Skip = ""Remove this Skip property to run this test""", "" | Set-Content $_.FullName
     }
 }
 
-function Test-Refactoring-Projects {
+function Test-Refactoring-Projects($PracticeExercisesDir) {
     Write-Output "Testing refactoring projects"
-    @("tree-building", "ledger", "markdown") | ForEach-Object { Run-Command "dotnet test $practiceExercisesDir/$_" }
-}
-
-function Replace-Stubs {
-    Write-Output "Replacing concept exercise stubs with exemplar"
-    Get-ChildItem -Path $conceptExercisesDir -Include "*.fsproj" -Recurse | ForEach-Object {
-        $stub = Join-Path $_.Directory ($_.BaseName + ".fs")
-        $example = Join-Path $_.Directory ".meta" "Exemplar.fs"
-    
-        Move-Item -Path $example -Destination $stub -Force
-    }
-
-    Write-Output "Replacing practice exercise stubs with example"
-    Get-ChildItem -Path $practiceExercisesDir -Include "*.fsproj" -Recurse | ForEach-Object {
-        $stub = Join-Path $_.Directory ($_.BaseName + ".fs")
-        $example = Join-Path $_.Directory "Example.fs"
-    
-        Move-Item -Path $example -Destination $stub -Force
+    @("tree-building", "ledger", "markdown") | ForEach-Object {
+        Run-Command "dotnet test $practiceExercisesDir/$_"
     }
 }
 
-function Add-Packages-Used-In-Example-Implementations {
-    Run-Command "dotnet add $practiceExercisesDir/sgf-parsing package FParsec"
+function Set-ExerciseImplementation {
+    [CmdletBinding(SupportsShouldProcess)]
+    param($ExercisesDir, $ReplaceFileName)
+
+    if ($PSCmdlet.ShouldProcess("Exercise $ReplaceFileName", "replace solution with example")) {
+        Get-ChildItem -Path $ExercisesDir -Include "*.fsproj" -Recurse | ForEach-Object {
+            $stub = Join-Path -Path $_.Directory ($_.BaseName + ".fs")
+            $example = Join-Path -Path $_.Directory ".meta" $ReplaceFileName
+
+            Move-Item -Path $example -Destination $stub -Force
+        }
+    }
 }
 
-function Test-Using-Example-Implementation {
+function Use-ExerciseImplementation {
+    [CmdletBinding(SupportsShouldProcess)]
+    param($ConceptExercisesDir, $PracticeExercisesDir)
+
+    if ($PSCmdlet.ShouldProcess("Exercises directory", "replace all solutions with corresponding examples")) {
+        Write-Output "Replacing concept exercise stubs with exemplar"
+        Set-ExerciseImplementation $ConceptExercisesDir "Exemplar.fs"
+
+        Write-Output "Replacing practice exercise stubs with example"
+        Set-ExerciseImplementation $PracticeExercisesDir "Example.fs"
+    }
+}
+
+function Add-Packages-ExerciseImplementation($PracticeExercisesDir) {
+    Run-Command "dotnet add $PracticeExercisesDir/sgf-parsing package FParsec"
+}
+
+function Test-ExerciseImplementation($Exercise, $BuildDir, $ConceptExercisesDir, $PracticeExercisesDir) {
     Write-Output "Running tests"
 
     if (-Not $Exercise) {
         Run-Command "dotnet test $buildDir/Exercises.sln"
     }
-    elseif (Test-Path "$conceptExercisesDir/$exercise") {
+    elseif (Test-Path "$ConceptExercisesDir/$Exercise") {
         Run-Command "dotnet test $conceptExercisesDir/$exercise"
     }
-    elseif (Test-Path "$practiceExercisesDir/$exercise") {
+    elseif (Test-Path "$PracticeExercisesDir/$Exercise") {
         Run-Command "dotnet test $practiceExercisesDir/$exercise"
     }
     else {
-        throw "Could not find exercise '$exercise'"
+        throw "Could not find exercise '$Exercise'"
     }
 }
 
-Configlet-Lint
-Clean
-Copy-Exercises
-Enable-All-Tests
+
+$buildDir = Join-Path $PSScriptRoot "build"
+$conceptExercisesDir = Join-Path $buildDir "concept"
+$practiceExercisesDir = Join-Path $buildDir "practice"
+$sourceDir = Resolve-Path "exercises"
+
+Invoke-Configlet-Lint
+Clean $buildDir
+Copy-Exercise $sourceDir $buildDir
+Enable-All-UnitTests $buildDir
 
 if (!$Exercise) {
-    Build-Generators
-    Test-Refactoring-Projects
+    Invoke-Build-Generators
+    Test-Refactoring-Projects -PracticeExercisesDir $practiceExercisesDir
 }
 
-Replace-Stubs
-Add-Packages-Used-In-Example-Implementations
-Test-Using-Example-Implementation
+Use-ExerciseImplementation -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir
+Add-Packages-ExerciseImplementation -PracticeExercisesDir $practiceExercisesDir
+Test-ExerciseImplementation -Exercise $Exercise -BuildDir $buildDir -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir
 
 exit $LastExitCode
