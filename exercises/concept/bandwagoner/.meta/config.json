@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for bandwagoner exercise",
   "contributors": [
     {
       "github_username": "valentin-p",
@@ -12,8 +13,14 @@
     }
   ],
   "files": {
-    "solution": ["Bandwagoner.fs"],
-    "test": ["BandwagonerTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "Bandwagoner.fs"
+    ],
+    "test": [
+      "BandwagonerTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }

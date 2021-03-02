@@ -1,14 +1,23 @@
 {
+  "blurb": "TODO: add blurb for cars-assemble exercise",
   "authors": [
     {
       "github_username": "ErikSchierboom",
       "exercism_username": "ErikSchierboom"
     }
   ],
-  "forked_from": ["csharp/numbers"],
+  "forked_from": [
+    "csharp/numbers"
+  ],
   "files": {
-    "solution": ["CarsAssemble.fs"],
-    "test": ["CarsAssembleTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "CarsAssemble.fs"
+    ],
+    "test": [
+      "CarsAssembleTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }

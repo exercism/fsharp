@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for valentines-day exercise",
   "authors": [
     {
       "github_username": "ErikSchierboom",
@@ -6,8 +7,14 @@
     }
   ],
   "files": {
-    "solution": ["ValentinesDay.fs"],
-    "test": ["ValentinesDayTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "ValentinesDay.fs"
+    ],
+    "test": [
+      "ValentinesDayTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }
