@@ -1,14 +1,23 @@
 {
+  "blurb": "TODO: add blurb for tracks-on-tracks-on-tracks exercise",
   "authors": [
     {
       "github_username": "ErikSchierboom",
       "exercism_username": "ErikSchierboom"
     }
   ],
-  "forked_from": ["clojure/lists"],
+  "forked_from": [
+    "clojure/lists"
+  ],
   "files": {
-    "solution": ["TracksOnTracksOnTracks.fs"],
-    "test": ["TracksOnTracksOnTracksTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "TracksOnTracksOnTracks.fs"
+    ],
+    "test": [
+      "TracksOnTracksOnTracksTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }

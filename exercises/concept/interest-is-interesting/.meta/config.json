@@ -1,14 +1,23 @@
 {
+  "blurb": "TODO: add blurb for interest-is-interesting exercise",
   "authors": [
     {
       "github_username": "ErikSchierboom",
       "exercism_username": "ErikSchierboom"
     }
   ],
-  "forked_from": ["csharp/floating-point-numbers"],
+  "forked_from": [
+    "csharp/floating-point-numbers"
+  ],
   "files": {
-    "solution": ["InterestIsInteresting.fs"],
-    "test": ["InterestIsInterestingTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "InterestIsInteresting.fs"
+    ],
+    "test": [
+      "InterestIsInterestingTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }

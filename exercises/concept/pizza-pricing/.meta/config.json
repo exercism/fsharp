@@ -1,4 +1,5 @@
 {
+  "blurb": "TODO: add blurb for pizza-pricing exercise",
   "authors": [
     {
       "github_username": "ErikSchierboom",
@@ -6,8 +7,14 @@
     }
   ],
   "files": {
-    "solution": ["PizzaPricing.fs"],
-    "test": ["PizzaPricingTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "PizzaPricing.fs"
+    ],
+    "test": [
+      "PizzaPricingTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }

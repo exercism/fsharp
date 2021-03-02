@@ -1,14 +1,23 @@
 {
+  "blurb": "TODO: add blurb for log-levels exercise",
   "authors": [
     {
       "github_username": "ErikSchierboom",
       "exercism_username": "ErikSchierboom"
     }
   ],
-  "forked_from": ["csharp/strings"],
+  "forked_from": [
+    "csharp/strings"
+  ],
   "files": {
-    "solution": ["LogLevels.fs"],
-    "test": ["LogLevelsTests.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "LogLevels.fs"
+    ],
+    "test": [
+      "LogLevelsTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   }
 }
