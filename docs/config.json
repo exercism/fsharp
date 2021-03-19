@@ -1,28 +1,28 @@
 {
   "docs": [
     {
-      "uuid": "06010418-d8d4-4537-bc34-215b75e7e422",
+      "uuid": "410d95ba-6294-4f40-af4a-6bb052977a3e",
       "slug": "installation",
       "path": "docs/INSTALLATION.md",
       "title": "Installing F# locally",
       "blurb": "Learn how to install F# locally to solve Exercism's exercises on your own machine"
     },
     {
-      "uuid": "e7bad53c-24fd-47d7-944d-30a4c2d28562",
+      "uuid": "e0862775-d757-4d21-826f-b7cc2640ae8f",
       "slug": "learning",
       "path": "docs/LEARNING.md",
       "title": "How to learn F#",
       "blurb": "An overview of how to get started from scratch with F#"
     },
     {
-      "uuid": "6f695076-4d6f-4c13-8706-9948678c01d3",
+      "uuid": "bca11b18-be81-468a-a34e-f5e6ac16bfd6",
       "slug": "tests",
       "path": "docs/TESTS.md",
       "title": "Testing on the F# track",
       "blurb": "Learn how to test your F# exercises on Exercism"
     },
     {
-      "uuid": "d404a103-ef48-490c-9520-443cc9b9b06a",
+      "uuid": "39a578fe-e4ae-479e-b648-733882e244ef",
       "slug": "resources",
       "path": "docs/RESOURCES.md",
       "title": "Useful F# resources",
