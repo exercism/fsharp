@@ -1,10 +1,7 @@
 {
   "blurb": "TODO: add blurb for tracks-on-tracks-on-tracks exercise",
   "authors": [
-    {
-      "github_username": "ErikSchierboom",
-      "exercism_username": "ErikSchierboom"
-    }
+    "ErikSchierboom"
   ],
   "forked_from": [
     "clojure/lists"
