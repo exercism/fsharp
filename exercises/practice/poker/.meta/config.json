@@ -1,6 +1,16 @@
 {
   "blurb": "Pick the best hand(s) from a list of poker hands.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "roman-shuhov",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "Poker.fs"

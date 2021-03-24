@@ -1,6 +1,14 @@
 {
   "blurb": "Refactor a ledger printer.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p"
+  ],
   "files": {
     "solution": [
       "Ledger.fs"

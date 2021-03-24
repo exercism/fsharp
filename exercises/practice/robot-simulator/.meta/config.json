@@ -1,6 +1,16 @@
 {
   "blurb": "Write a robot simulator.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "roman-shuhov",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "RobotSimulator.fs"

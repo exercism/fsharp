@@ -1,6 +1,17 @@
 {
   "blurb": "Refactor a Markdown parser",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "balazsbotond",
+    "bob0the0mighty",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "theprash",
+    "valentin-p"
+  ],
   "files": {
     "solution": [
       "Markdown.fs"

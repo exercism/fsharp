@@ -1,6 +1,16 @@
 {
   "blurb": "Implement variable length quantity encoding and decoding.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "nemesv",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "VariableLengthQuantity.fs"

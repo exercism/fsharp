@@ -1,6 +1,15 @@
 {
   "blurb": "Given two buckets of different size, demonstrate how to measure an exact number of liters.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "TwoBucket.fs"

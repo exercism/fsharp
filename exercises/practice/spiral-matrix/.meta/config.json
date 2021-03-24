@@ -1,6 +1,15 @@
 {
   "blurb": " Given the size, return a square matrix of numbers in spiral order.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "SpiralMatrix.fs"

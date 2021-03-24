@@ -1,6 +1,15 @@
 {
   "blurb": "Use lenses to update nested records (specific to languages with immutable data).",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "LensPerson.fs"

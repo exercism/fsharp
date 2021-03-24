@@ -1,6 +1,16 @@
 {
   "blurb": "Diffie-Hellman key exchange.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "Llcoolsouder",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "DiffieHellman.fs"

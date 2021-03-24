@@ -1,6 +1,17 @@
 {
   "blurb": "Given a DNA strand, return its RNA Complement Transcription.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "kytrinyx",
+    "lestephane",
+    "robkeim",
+    "roman-shuhov",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "RnaTranscription.fs"

@@ -1,6 +1,17 @@
 {
   "blurb": "To try and encourage more sales of different books from a popular 5 book series, a bookshop has decided to offer discounts of multiple-book purchases.",
-  "authors": [],
+  "authors": [
+    "robkeim"
+  ],
+  "contributors": [
+    "bob0the0mighty",
+    "davidelettieri",
+    "ErikSchierboom",
+    "jrr",
+    "lestephane",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "BookStore.fs"

@@ -1,6 +1,15 @@
 {
   "blurb": "Refactor a tree building algorithm.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "TeaDrivenDev",
+    "valentin-p"
+  ],
   "files": {
     "solution": [
       "TreeBuilding.fs"

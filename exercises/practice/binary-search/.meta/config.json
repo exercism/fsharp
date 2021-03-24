@@ -1,6 +1,17 @@
 {
   "blurb": "Implement a binary search algorithm.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "roman-shuhov",
+    "valentin-p",
+    "vrnithinkumar",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "BinarySearch.fs"

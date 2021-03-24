@@ -1,6 +1,15 @@
 {
   "blurb": "Determine if a number is an Armstrong number",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "ArmstrongNumbers.fs"

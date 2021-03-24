@@ -1,6 +1,15 @@
 {
   "blurb": "Generate musical scales, given a starting note and a set of intervals. ",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "ScaleGenerator.fs"

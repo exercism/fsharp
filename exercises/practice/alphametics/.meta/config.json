@@ -1,6 +1,17 @@
 {
   "blurb": "Write a function to solve alphametics puzzles.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "davidelettieri",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "roman-shuhov",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "Alphametics.fs"

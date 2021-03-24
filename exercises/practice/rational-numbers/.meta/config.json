@@ -1,6 +1,16 @@
 {
   "blurb": "Implement rational numbers.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "MaritimeMartin",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "RationalNumbers.fs"

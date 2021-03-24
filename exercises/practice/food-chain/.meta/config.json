@@ -1,6 +1,15 @@
 {
   "blurb": "Generate the lyrics of the song 'I Know an Old Lady Who Swallowed a Fly'",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "FoodChain.fs"

@@ -1,6 +1,17 @@
 {
   "blurb": "Given a year, report if it is a leap year.",
-  "authors": [],
+  "authors": [
+    "jwood803"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "vrnithinkumar",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "Leap.fs"

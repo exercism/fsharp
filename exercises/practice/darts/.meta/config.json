@@ -1,6 +1,14 @@
 {
   "blurb": "Write a function that returns the earned points in a single toss of a Darts game",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "Darts.fs"

@@ -1,6 +1,15 @@
 {
   "blurb": "Detect saddle points in a matrix.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "SaddlePoints.fs"
