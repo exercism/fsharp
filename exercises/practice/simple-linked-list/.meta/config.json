@@ -1,6 +1,16 @@
 {
   "blurb": "Write a simple linked list implementation that uses Elements and a List",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "alexyarovoy",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "SimpleLinkedList.fs"

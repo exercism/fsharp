@@ -1,6 +1,19 @@
 {
   "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
-  "authors": [],
+  "authors": [
+    "jwood803"
+  ],
+  "contributors": [
+    "austinlyons",
+    "ErikSchierboom",
+    "jkaan",
+    "jrr",
+    "kytrinyx",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "Bob.fs"

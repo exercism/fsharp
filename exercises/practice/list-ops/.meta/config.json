@@ -1,6 +1,16 @@
 {
   "blurb": "Implement basic list operations",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "hobbitjoe",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "ListOps.fs"

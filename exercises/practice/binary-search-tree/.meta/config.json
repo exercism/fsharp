@@ -1,6 +1,16 @@
 {
   "blurb": "Insert and search for numbers in a binary tree.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "theprash",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "BinarySearchTree.fs"

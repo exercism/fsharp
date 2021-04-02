@@ -1,6 +1,18 @@
 {
   "blurb": "Implement the `accumulate` operation, which, given a collection and an operation to perform on each element of the collection, returns a new collection containing the result of applying that operation to each element of the input collection.",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "connorads",
+    "jrr",
+    "kytrinyx",
+    "lestephane",
+    "mpriestman",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "Accumulate.fs"

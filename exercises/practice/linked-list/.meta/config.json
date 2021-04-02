@@ -1,6 +1,17 @@
 {
   "blurb": "Implement a doubly linked list",
-  "authors": [],
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "balazsbotond",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "theprash",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "LinkedList.fs"

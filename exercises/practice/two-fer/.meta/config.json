@@ -1,6 +1,15 @@
 {
   "blurb": "Create a sentence of the form \"One for X, one for me.\"",
-  "authors": [],
+  "authors": [
+    "robkeim"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "jrr",
+    "lestephane",
+    "valentin-p",
+    "wolf99"
+  ],
   "files": {
     "solution": [
       "TwoFer.fs"
