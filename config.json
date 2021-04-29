@@ -12,13 +12,23 @@
   "version": 3,
   "online_editor": {
     "indent_style": "space",
-    "indent_size": 4
+    "indent_size": 4,
+    "ace_editor_language": "fsharp",
+    "highlightjs_language": "fsharp"
   },
   "files": {
-    "solution": ["%{pascal_slug}.fs"],
-    "test": ["%{pascal_slug}Tests.fs"],
-    "example": [".meta/Example.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "solution": [
+      "%{pascal_slug}.fs"
+    ],
+    "test": [
+      "%{pascal_slug}Tests.fs"
+    ],
+    "example": [
+      ".meta/Example.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
   },
   "exercises": {
     "concept": [
