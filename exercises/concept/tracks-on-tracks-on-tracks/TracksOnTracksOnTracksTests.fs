@@ -80,7 +80,7 @@ let ``Four-item list with fsharp as first item is exciting``() =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Four-item list with fsharp as second item is not exciting``() =
-    excitingList [ "Elm"; "Erlang"; "C#"; "Scheme" ] |> should equal false
+    excitingList [ "Elm"; "F#"; "C#"; "Scheme" ] |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Four-item list with fsharp as third item is not exciting``() =
