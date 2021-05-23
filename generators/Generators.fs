@@ -31,7 +31,7 @@ type Allergies() =
     member this.RenderAllergicToAssert canonicalDataCase =
         let substance = renderAllergenEnum canonicalDataCase.Input.["item"]
         let score = canonicalDataCase.Input.["score"].ToObject<int>()
-        let sut = sprintf "allergicTo %d %s" score substance
+        let sut = $"allergicTo %d{score} %s{substance}"
         let expected = canonicalDataCase.Expected.ToObject<bool>() |> Bool.render
         this.RenderAssertEqual sut expected
 
@@ -116,17 +116,17 @@ type BinarySearchTree() =
             match data.Type with
             | JTokenType.Null -> 
                 let expected = if rootPath then failwith "Invalid data" else "None"
-                [ this.RenderAssertEqual (sprintf "%s |> %s" previousPath dataPath) expected ]
+                [ this.RenderAssertEqual $"%s{previousPath} |> %s{dataPath}" expected ]
             | _ -> 
-                let expected = if rootPath then string data else sprintf "(Some %s)" (string data)
-                [ this.RenderAssertEqual (sprintf "%s |> %s" previousPath dataPath) expected ]
+                let expected = if rootPath then string data else $"(Some %s{string data})"
+                [ this.RenderAssertEqual $"%s{previousPath} |> %s{dataPath}" expected ]
 
         let renderNodeAssertions nodeName (node: JToken) = 
-            let nodePath = if rootPath then nodeName else sprintf "Option.bind %s" nodeName
+            let nodePath = if rootPath then nodeName else $"Option.bind %s{nodeName}"
 
             match node.Type with
             | JTokenType.Null -> 
-                [ this.RenderAssertEqual (sprintf "%s |> %s" previousPath nodePath) "None" ]
+                [ this.RenderAssertEqual $"%s{previousPath} |> %s{nodePath}" "None" ]
             | _ ->
                 this.RenderAssertions (nodePath :: previousPaths) node
 
@@ -176,11 +176,11 @@ type Bowling() =
     override _.RenderArrange canonicalDataCase =
         seq {
             let previousRolls = canonicalDataCase.Input.["previousRolls"].ToObject<int list>() |> List.render
-            yield sprintf "let rolls = %s" previousRolls
+            yield $"let rolls = %s{previousRolls}"
             if canonicalDataCase.Input.ContainsKey "roll" then
                 let roll = canonicalDataCase.Input.["roll"].ToObject<int>()
                 yield sprintf "let startingRolls = rollMany rolls (newGame())" 
-                yield sprintf "let game = roll %i startingRolls" roll
+                yield $"let game = roll %i{roll} startingRolls"
             else
                 yield sprintf "let game = rollMany rolls (newGame())" 
         }
@@ -230,28 +230,28 @@ type CircularBuffer() =
                 match funcName with
                 | "write" as operation -> 
                     let item = dict.["item"].ToObject<int>()
-                    let command = sprintf "%s %i buffer%i" operation item (ind - 1)
+                    let command = $"%s{operation} %i{item} buffer%i{ind - 1}"
                     match dict.ContainsKey "should_succeed", (dict.["should_succeed"].ToObject<bool>()) with
                     | true, false ->
                         yield this.ExceptionCheck command
                     | _, _ ->
-                        yield sprintf "let buffer%i = %s" ind command
+                        yield $"let buffer%i{ind} = %s{command}"
                 | "read" as operation -> 
-                    let command = sprintf "%s buffer%i" operation (ind - 1)
+                    let command = $"%s{operation} buffer%i{ind - 1}"
                     match dict.ContainsKey "should_succeed", dict.["should_succeed"].ToObject<bool>() with
                     | true, false ->
                         yield this.ExceptionCheck command
                     | _, _ -> 
                         let expected = dict.["expected"].ToObject<int>()
                         if ind = lastInd then
-                            yield sprintf "let (val%i, _) = %s" ind command
+                            yield $"let (val%i{ind}, _) = %s{command}"
                         else
-                            yield sprintf "let (val%i, buffer%i) = %s" ind ind command
-                        yield this.RenderAssertEqual (sprintf "val%i" ind) (string expected)
+                            yield $"let (val%i{ind}, buffer%i{ind}) = %s{command}"
+                        yield this.RenderAssertEqual $"val%i{ind}" (string expected)
                 | "overwrite" ->
                     yield sprintf "let buffer%i = forceWrite %i buffer%i" ind (dict.["item"].ToObject<int>()) (ind-1)
                 | "clear" -> 
-                    yield sprintf "let buffer%i = clear buffer%i" ind (ind - 1) 
+                    yield $"let buffer%i{ind} = clear buffer%i{ind - 1}" 
                 | _ -> ()
                 ind <- ind + 1
         } |> Seq.toList
@@ -262,7 +262,7 @@ type Clock() =
     let createClock (value: JToken) =
         let hour = value.["hour"].ToObject<string>()
         let minute = value.["minute"].ToObject<string>()
-        sprintf "create %s %s" hour minute
+        $"create %s{hour} %s{minute}"
 
     member private this.RenderPropertyValue canonicalDataCase propertyName =
         this.RenderSutParameter (canonicalDataCase, propertyName, Map.find propertyName canonicalDataCase.Input)
@@ -279,7 +279,7 @@ type Clock() =
         | "create" | "add" | "subtract" -> 
             let hour = this.RenderPropertyValue canonicalDataCase "hour"
             let minute = this.RenderPropertyValue canonicalDataCase "minute"
-            [sprintf "let clock = create %s %s" hour minute]
+            [ $"let clock = create %s{hour} %s{minute}"]
         | _ -> 
             base.RenderArrange canonicalDataCase
 
@@ -306,23 +306,23 @@ type ComplexNumbers() =
         | "e"     -> "Math.E"
         | "pi"    -> "Math.PI"
         | "ln(2)" -> "(Math.Log(2.0))"
-        | i when i.IndexOf('.') = -1  -> sprintf "%s.0" i
+        | i when i.IndexOf('.') = -1  -> $"%s{i}.0"
         | float   -> float
     
     let renderComplexNumber (input: JArray) =
-        sprintf "(create %s %s)" (renderNumber input.[0]) (renderNumber input.[1])
+        $"(create %s{renderNumber input.[0]} %s{renderNumber input.[1]})"
 
     override _.RenderValue (canonicalDataCase, key, value) = 
         match value.Type with
         | JTokenType.Array -> renderComplexNumber (value.ToObject<JArray>())
-        | JTokenType.Integer -> sprintf "%d.0" (value.ToObject<int>())
+        | JTokenType.Integer -> $"%d{value.ToObject<int>()}.0"
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
     override this.RenderAssert canonicalDataCase = 
         match canonicalDataCase.Expected.Type with
         | JTokenType.Array ->
             let renderAssertion testedFunction expected =
-                this.RenderAssertEqualWithin (sprintf "%s sut" testedFunction) expected
+                this.RenderAssertEqualWithin $"%s{testedFunction} sut" expected
 
             [ canonicalDataCase.Expected.[0] |> renderNumber |> renderAssertion "real"
               canonicalDataCase.Expected.[1] |> renderNumber |> renderAssertion "imaginary" ]
@@ -381,7 +381,7 @@ type CustomSet() =
     override this.RenderSut canonicalDataCase =
         match canonicalDataCase.Property with
         | "add" | "intersection" | "difference" | "union" -> 
-            sprintf "%sBool" this.SutName
+            $"%s{this.SutName}Bool"
         | _ -> this.SutName
 
     override _.RenderExpected (canonicalDataCase, _, _) =
@@ -395,7 +395,7 @@ type CustomSet() =
             match canonicalDataCase.Property with
             | "empty" ->
                 let setValue = this.RenderSet canonicalDataCase.Input.["set"]
-                [ sprintf "let %s = CustomSet.isEmpty (%s)" this.SutName setValue ]
+                [ $"let %s{this.SutName} = CustomSet.isEmpty (%s{setValue})" ]
             | "add" | "contains" ->
                 let methodName = 
                     match canonicalDataCase.Property with
@@ -403,7 +403,7 @@ type CustomSet() =
                     | s -> s
                 let setVar = sprintf "let setValue = %s" (this.RenderSet canonicalDataCase.Input.["set"])
                 let valueVar = sprintf "let element = %s" (Obj.render canonicalDataCase.Input.["element"])
-                let resultVar = sprintf "let %s = CustomSet.%s element setValue" this.SutName methodName 
+                let resultVar = $"let %s{this.SutName} = CustomSet.%s{methodName} element setValue" 
                 [ setVar; valueVar; resultVar ]
             | "intersection" | "difference" | "union" | "disjoint" | "subset" | "equal" ->
                 let methodName = 
@@ -414,15 +414,15 @@ type CustomSet() =
                     | s -> s
                 let firstSetVar = sprintf "let set1 = %s" (this.RenderSet canonicalDataCase.Input.["set1"])
                 let secondSetVar = sprintf "let set2 = %s" (this.RenderSet canonicalDataCase.Input.["set2"])
-                let resultVar = sprintf "let %s = CustomSet.%s set1 set2" this.SutName methodName
+                let resultVar = $"let %s{this.SutName} = CustomSet.%s{methodName} set1 set2"
                 [ firstSetVar; secondSetVar; resultVar ]
             | _ -> 
                 [ "" ]
 
         match canonicalDataCase.Property with
         | "add" | "intersection" | "difference" | "union" -> 
-            let expectedSetVar = sprintf "let expectedSet = %s" (this.RenderSet canonicalDataCase.Expected)
-            let actualBoolVar = sprintf "let %sBool = CustomSet.isEqualTo %s expectedSet" this.SutName this.SutName
+            let expectedSetVar = $"let expectedSet = %s{this.RenderSet canonicalDataCase.Expected}"
+            let actualBoolVar = $"let %s{this.SutName}Bool = CustomSet.isEqualTo %s{this.SutName} expectedSet"
             arrangeLines @ [ expectedSetVar; actualBoolVar ]
         | _ -> arrangeLines
 
@@ -445,7 +445,7 @@ type DiffieHellman() =
     override _.RenderValue (canonicalDataCase, key, value) = 
         match canonicalDataCase.Property, value.Type with
         | _, JTokenType.Integer ->
-            sprintf "%dI" (value.ToObject<int>())
+            $"%d{value.ToObject<int>()}I"
         | "keyExchange", _ ->
             value.ToObject<string>().Replace(",", "").Replace("(", " ").Replace(")", "")
         | _ ->
@@ -465,8 +465,8 @@ type DiffieHellman() =
             let greaterThan = canonicalDataCase.Expected.["greaterThan"].ToObject<int>()
             let lessThan = canonicalDataCase.Expected.["lessThan"].ToObject<string>()
 
-            [ sprintf "privateKeys |> List.iter (fun x -> x |> should be (greaterThan %dI))" greaterThan;
-              sprintf "privateKeys |> List.iter (fun x -> x |> should be (lessThan %s))" lessThan ]
+            [ $"privateKeys |> List.iter (fun x -> x |> should be (greaterThan %d{greaterThan}I))";
+              $"privateKeys |> List.iter (fun x -> x |> should be (lessThan %s{lessThan}))" ]
         | "privateKeyIsRandom" -> 
             [ this.RenderAssertEqual "List.distinct privateKeys |> List.length" "(List.length privateKeys)" ]
         | "keyExchange" ->
@@ -570,7 +570,7 @@ type GoCounting() =
     let renderTerritoryWithOwner (value: JToken) =
         let owner = renderOwner value.["owner"]
         let territory = renderTerritory value.["territory"]
-        sprintf "(%s, %s)" owner territory
+        $"(%s{owner}, %s{territory})"
 
     let renderExpectedTerritory (expected: JToken) = 
         match Option.ofNonErrorObject expected with
@@ -654,7 +654,7 @@ type GradeSchool() =
     override this.RenderArrange canonicalDataCase =
         match canonicalDataCase.Property with
         | "roster" | "grade" -> 
-            [sprintf "let school = studentsToSchool %s" (this.RenderStudentList canonicalDataCase)]
+            [ $"let school = studentsToSchool %s{this.RenderStudentList canonicalDataCase}"]
         | _ -> 
             base.RenderArrange canonicalDataCase
     
@@ -664,7 +664,7 @@ type GradeSchool() =
             sprintf "roster school"
         | "grade" ->
             let grade  = this.RenderPropertyValue canonicalDataCase "desiredGrade"
-            sprintf "grade %s school" grade
+            $"grade %s{grade} school"
         | _ -> base.RenderSut canonicalDataCase
         
 type Grains() =
@@ -676,8 +676,8 @@ type Grains() =
 
     override _.RenderExpected (_, _, value) =
         match value.SelectToken "error" with
-        | null  -> sprintf "Ok %sUL" (string value)
-        | error -> sprintf "Error \"%s\"" (string error)
+        | null  -> $"Ok %s{string value}UL"
+        | error -> $"Error \"%s{string error}\""
 
 type Grep() =
     inherit GeneratorExercise()
@@ -782,7 +782,7 @@ type ListOps() =
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override _.TestMethodName canonicalDataCase =
-        sprintf "%s %s" canonicalDataCase.Property canonicalDataCase.Description
+        $"%s{canonicalDataCase.Property} %s{canonicalDataCase.Description}"
 
 type Luhn() =
     inherit GeneratorExercise()
@@ -877,7 +877,7 @@ type PalindromeProducts() =
             |> List.mapRender toFactors
         match palindromeValue with
         | null -> "(None, [])"
-        | _ -> sprintf "(Some %s, %s)" palindromeValue factors
+        | _ -> $"(Some %s{palindromeValue}, %s{factors})"
         
     let isError (canonicalDataCase: CanonicalDataCase) =
         canonicalDataCase.Expected.Value("error") <> null
@@ -980,7 +980,7 @@ type Pov() =
                 else
                     "[]"
             let label = Obj.render node.["label"]
-            sprintf "mkGraph %s %s" label children
+            $"mkGraph %s{label} %s{children}"
 
     override this.RenderArrange canonicalDataCase =
         seq {
@@ -1004,12 +1004,12 @@ type Pov() =
         | "fromPov" -> 
             let from = Obj.render canonicalDataCase.Input.["from"]
             match isNull canonicalDataCase.Expected with
-            | false -> sprintf "fromPOV %s tree |> mapToList " from
-            | true -> sprintf "fromPOV %s tree " from
+            | false -> $"fromPOV %s{from} tree |> mapToList "
+            | true -> $"fromPOV %s{from} tree "
         | "pathTo" -> 
             let fromValue = Obj.render canonicalDataCase.Input.["from"]
             let toValue = Obj.render canonicalDataCase.Input.["to"]
-            sprintf "tracePathBetween %s %s tree" fromValue toValue
+            $"tracePathBetween %s{fromValue} %s{toValue} tree"
         | _ -> ""
  
     override _.RenderExpected (canonicalDataCase, key, value) =
@@ -1017,7 +1017,7 @@ type Pov() =
         | "fromPov" -> 
             match isNull value with 
             | true -> "None"
-            | false -> sprintf "<| graphToList %s" key
+            | false -> $"<| graphToList %s{key}"
         | "pathTo" -> 
             match isNull value with
             | true -> "None" 
@@ -1087,7 +1087,7 @@ type RationalNumbers() =
 
     override _.RenderValue (canonicalDataCase, key, value) =
         match value.Type with
-        | JTokenType.Array -> sprintf "(create %d %d)" (value.[0].Value<int>()) (value.[1].Value<int>())
+        | JTokenType.Array -> $"(create %d{value.[0].Value<int>()} %d{value.[1].Value<int>()})"
         | _ -> base.RenderValue (canonicalDataCase, key, value)
 
     override _.AssertTemplate canonicalDataCase =
@@ -1111,10 +1111,10 @@ type React() =
                     let inputParams = 
                         (cellValue.["inputs"].ToObject<string list>() |> List.mapRender id)
                     
-                    sprintf "let %s = reactor.createComputeCell %s (fun values -> %s)" cellName inputParams funBody
+                    $"let %s{cellName} = reactor.createComputeCell %s{inputParams} (fun values -> %s{funBody})"
                 | "input" -> 
                     let initialValue = cellValue.["initial_value"].ToObject<int>()
-                    sprintf "let %s = reactor.createInputCell %s" cellName (Obj.render initialValue)
+                    $"let %s{cellName} = reactor.createInputCell %s{Obj.render initialValue}"
                 | _ -> ""
             )
             |> Seq.toList
@@ -1127,11 +1127,11 @@ type React() =
                 for child in jObject.Children<JProperty>() ->
                     let callbackName = child.Name
                     let callbackValue = child.Value |> string
-                    let callbackHandlerName = sprintf "%sHandler" callbackName
+                    let callbackHandlerName = $"%s{callbackName}Handler"
 
                     seq {
-                        yield sprintf "A.CallTo(fun() -> %s.Invoke(A<obj>.``_``, %s)).MustHaveHappenedOnceExactly() |> ignore" callbackHandlerName callbackValue
-                        yield sprintf "Fake.ClearRecordedCalls(%s) |> ignore" callbackHandlerName
+                        yield $"A.CallTo(fun() -> %s{callbackHandlerName}.Invoke(A<obj>.``_``, %s{callbackValue})).MustHaveHappenedOnceExactly() |> ignore"
+                        yield $"Fake.ClearRecordedCalls(%s{callbackHandlerName}) |> ignore"
                     }                
             } |> Seq.concat
         | _ -> Seq.empty
@@ -1147,7 +1147,7 @@ type React() =
         seq { 
             let cellName = op.["cell"].ToObject<string>()
             let cellValue = op.["value"].ToObject<int>()
-            yield sprintf "%s.Value <- %i" cellName cellValue
+            yield $"%s{cellName}.Value <- %i{cellValue}"
             yield! renderExpectedCallbacks op.["expect_callbacks"]
             yield! renderExpectedCallbacksNotToBeCalled op.["expect_callbacks_not_to_be_called"]
         }
@@ -1156,23 +1156,23 @@ type React() =
         seq { 
             let callbackName = op.["name"].ToObject<string>()
             let cellName = op.["cell"].ToObject<string>() 
-            let callbackHandlerName = sprintf "%sHandler" callbackName
-            yield sprintf "let %s = A.Fake<Handler<int>>()" callbackHandlerName
-            yield sprintf "%s.Changed.AddHandler %s" cellName callbackHandlerName 
+            let callbackHandlerName = $"%s{callbackName}Handler"
+            yield $"let %s{callbackHandlerName} = A.Fake<Handler<int>>()"
+            yield $"%s{cellName}.Changed.AddHandler %s{callbackHandlerName}" 
         }
 
     let renderRemoveCallbackOperation (op: JToken) =
         seq {
             let cellName = op.["cell"].ToObject<string>()
             let callbackName = op.["name"].ToObject<string>()
-            yield sprintf "%s.Changed.RemoveHandler %sHandler" cellName callbackName
+            yield $"%s{cellName}.Changed.RemoveHandler %s{callbackName}Handler"
         }
      
     member this.RenderExpectedCellValueOperation (op: JToken) =
         seq { 
             let cellName = op.["cell"].ToObject<string>()
             let expectedValue = op.["value"].ToObject<string>()
-            yield this.RenderAssertEqual (sprintf "%s.Value" cellName) expectedValue 
+            yield this.RenderAssertEqual $"%s{cellName}.Value" expectedValue 
         }
 
     member this.RenderOperations canonicalDataCase = 
@@ -1262,7 +1262,7 @@ type RunLengthEncoding() =
         match canonicalDataCase.Property with
         | "consistency" ->
             let parameters = this.RenderSutParameters canonicalDataCase |> String.concat " "
-            sprintf "%s |> encode |> decode" parameters
+            $"%s{parameters} |> encode |> decode"
         | _ -> 
             base.RenderSut canonicalDataCase
 
@@ -1271,7 +1271,7 @@ type RunLengthEncoding() =
         | "consistency" -> 
             base.TestMethodName canonicalDataCase
         | _ -> 
-            sprintf "%s %s" canonicalDataCase.Property canonicalDataCase.Description |> String.upperCaseFirst
+            $"%s{canonicalDataCase.Property} %s{canonicalDataCase.Description}" |> String.upperCaseFirst
 
 type RomanNumerals() =
     inherit GeneratorExercise()
@@ -1300,7 +1300,7 @@ type Say() =
         |> Option.ofNonErrorObject
         |> Option.renderParenthesized
 
-    override _.RenderInput (_, _, value) = sprintf "%sL" (string value)
+    override _.RenderInput (_, _, value) = $"%s{string value}L"
 
 type ScaleGenerator() =
     inherit GeneratorExercise()
@@ -1335,7 +1335,7 @@ type SgfParsing() =
             let props = 
                 (tree.SelectToken("properties") :?> JObject).ToObject<Map<string, string[]>>()
                 |> Map.map (fun key value -> List.render value) |> Map.toList
-                |> List.map (fun (key, value) -> sprintf "(\"%s\", %s)" key value)
+                |> List.map (fun (key, value) -> $"(\"%s{key}\", %s{value})")
                 |> String.concat "; "
 
             let children = 
@@ -1344,7 +1344,7 @@ type SgfParsing() =
                     |> String.concat "; "
                 else ""
 
-            sprintf "Node (Map.ofList [%s], [%s])" props children
+            $"Node (Map.ofList [%s{props}], [%s{children}])"
 
         value
         |> Option.ofNonErrorObject
@@ -1360,7 +1360,7 @@ type SimpleCipher() =
         | "cipher.key.substring(0, plaintext.length)" ->
             sprintf "sut.Key.[0..%d]" (canonicalDataCase.Input.["plaintext"].ToObject<string>().Length - 1)
         | "cipher.key.substring(0, expected.length)" ->
-            sprintf "sut.Key.[0..%d]" (canonicalDataCase.Expected.ToObject<string>().Length - 1)
+            $"sut.Key.[0..%d{canonicalDataCase.Expected.ToObject<string>().Length - 1}]"
         | _ ->
             Obj.render input
 
@@ -1372,16 +1372,16 @@ type SimpleCipher() =
                 match canonicalDataCase.Input.TryFind "key" with
                 | (Some x) -> Obj.render x
                 | None -> ""
-            [sprintf "let sut = SimpleCipher(%s)" key]
+            [ $"let sut = SimpleCipher(%s{key})"]
 
     override this.RenderAssert canonicalDataCase =
         match canonicalDataCase.Property with
         | "new" ->
             let key = Obj.render canonicalDataCase.Input.["key"]
-            [this.RenderAssertThrows (sprintf "SimpleCipher(%s)" key) typeof<ArgumentException>.Name]
+            [this.RenderAssertThrows $"SimpleCipher(%s{key})" typeof<ArgumentException>.Name]
         | "key" ->
             let pattern = Obj.render canonicalDataCase.Expected.["match"]
-            [this.RenderAssertEqual (sprintf "Regex.IsMatch(sut.Key, %s)" pattern) (Obj.render true)]
+            [this.RenderAssertEqual $"Regex.IsMatch(sut.Key, %s{pattern})" (Obj.render true)]
         | _ -> base.RenderAssert canonicalDataCase
 
     override _.RenderSut canonicalDataCase =
@@ -1391,7 +1391,7 @@ type SimpleCipher() =
         | "decode" -> 
             match canonicalDataCase.Input.TryFind "plaintext" with
             | Some plaintext ->
-                sprintf "sut.Decode(sut.Encode(%s))" (Obj.render plaintext)
+                $"sut.Decode(sut.Encode(%s{Obj.render plaintext}))"
             | None -> 
                 sprintf "sut.Decode(%s)" (normalizeText canonicalDataCase.Input.["ciphertext"] canonicalDataCase)
         | _ ->
@@ -1411,7 +1411,7 @@ type SpaceAge() =
     override _.RenderInput (canonicalDataCase, key, value) =
         match value.Type with
         | JTokenType.String -> value.ToObject<string>()
-        | JTokenType.Integer -> sprintf "%dL" (value.ToObject<int64>())
+        | JTokenType.Integer -> $"%d{value.ToObject<int64>()}L"
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
     override _.AssertTemplate _ = "AssertEqualWithin"
@@ -1463,7 +1463,7 @@ type Triangle() =
     inherit GeneratorExercise()
 
     let formatFloat (jToken: JToken) = 
-        sprintf "%.1f" (jToken.ToObject<float>())
+        $"%.1f{jToken.ToObject<float>()}"
 
     let hasUniqueTestMethodName canonicalDataCase = 
         canonicalDataCase.Description.Contains "equilateral" ||
@@ -1473,7 +1473,7 @@ type Triangle() =
     override _.TestMethodName canonicalDataCase =
         match hasUniqueTestMethodName canonicalDataCase with
         | true  -> base.TestMethodName canonicalDataCase
-        | false -> sprintf "%s returns %s" (String.upperCaseFirst canonicalDataCase.Property) canonicalDataCase.Description
+        | false -> $"%s{String.upperCaseFirst canonicalDataCase.Property} returns %s{canonicalDataCase.Description}"
 
     override _.RenderInput (_, _, value) = List.mapRender formatFloat value
 
@@ -1493,7 +1493,7 @@ type TwoBucket() =
         let moves       = value.["moves"].ToObject<int>()
         let goalBucket  = renderBucket value.["goalBucket"]
         let otherBucket = value.["otherBucket"].ToObject<int>()
-        sprintf "{ Moves = %d; GoalBucket = %s; OtherBucket = %d }" moves goalBucket otherBucket
+        $"{{ Moves = %d{moves}; GoalBucket = %s{goalBucket}; OtherBucket = %d{otherBucket} }}"
 
 type TwoFer() =
     inherit GeneratorExercise()
@@ -1551,7 +1551,7 @@ type WordSearch() =
         | false -> renderExpectedCoordinates value |> Some |> Option.renderString
 
     override _.RenderExpected (_, _, value) = 
-        Map.mapRender (fun kv -> sprintf "(%s, %s)" (Obj.render kv.Key) (renderExpectedValue kv.Value)) value
+        Map.mapRender (fun kv -> $"(%s{Obj.render kv.Key}, %s{renderExpectedValue kv.Value})") value
 
     override _.RenderInput (canonicalDataCase, key, value) = 
         match key with
@@ -1609,7 +1609,7 @@ type Zipper() =
                 | "None", "None" -> 
                     $"(leaf %d{value})"
                 | _ -> 
-                    sprintf "(subTree %d %s %s)" value left right
+                    $"(subTree %d{value} %s{left} %s{right})"
         | _ -> 
             "None"
 
@@ -1634,7 +1634,7 @@ type Zipper() =
                 | _ ->
                     None
 
-            [sprintf "%s %s" operation (Option.renderStringParenthesized expected)]            
+            [ $"%s{operation} %s{Option.renderStringParenthesized expected}"]            
         | _ -> failwith "Unknown operation"
 
     let renderOperations (operations: JToken) =
@@ -1651,12 +1651,12 @@ type Zipper() =
 
     let renderZipperWithIdentifier identifier (tree: JToken) =
         let renderedTree = renderTree true tree
-        sprintf "let %s = fromTree (%s)" identifier renderedTree
+        $"let %s{identifier} = fromTree (%s{renderedTree})"
 
     let renderExpectedZipperWithIdentifier identifier (tree: JToken) (operations: JToken) =
         let renderedTree = renderTree true tree
         let renderedOperations = renderOperations operations
-        sprintf "let %s = fromTree (%s) %s" identifier renderedTree renderedOperations
+        $"let %s{identifier} = fromTree (%s{renderedTree}) %s{renderedOperations}"
 
     let renderSut (operations: JToken) =
         operations
