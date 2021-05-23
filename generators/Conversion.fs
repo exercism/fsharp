@@ -52,11 +52,9 @@ module String =
         let indentation = String.replicate level oneLevelIndentation
         $"%s{indentation}%s{str}"
 
-    let enclose before after str = $"%s{before}%s{str}%s{after}"
+    let enquote str = $"\"%s{str}\""
 
-    let enquote str = enclose "\"" "\"" str
-
-    let parenthesize str = enclose "(" ")" str
+    let parenthesize str = $"(%s{str})"
 
     let split (separator: string) (str: string) = str.Split(separator)
 
