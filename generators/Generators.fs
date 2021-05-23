@@ -10,10 +10,10 @@ open Exercise
 open Generators.Common
 
 type Acronym() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type AllYourBase() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = 
         value
@@ -23,7 +23,7 @@ type AllYourBase() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Allergies() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderAllergenEnum (jToken: JToken) = Obj.renderEnum "Allergen" jToken
 
@@ -54,7 +54,7 @@ type Allergies() =
         testMethodName.Replace(" when:", "")
 
 type Alphametics() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = 
         value
@@ -64,25 +64,25 @@ type Alphametics() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Anagram() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["candidates"]
 
 type ArmstrongNumbers() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type AtbashCipher() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type BeerSong() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["expected"]
 
     override _.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type BinarySearch() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let nonNegativeNumberFromNonErrorObject value =
         match Option.ofNonErrorObject value with 
@@ -102,7 +102,7 @@ type BinarySearch() =
             base.RenderValue (canonicalDataCase, key, value)
 
 type BinarySearchTree() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     member this.RenderAssertions previousPaths (tree: JToken) =
         let previousPath = previousPaths |> List.rev |> String.concat " |> "
@@ -154,10 +154,10 @@ type BinarySearchTree() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
 type Bob() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type BookStore() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = value.ToObject<decimal>() / 100m |> sprintf "%.2fm"
 
@@ -165,7 +165,7 @@ type BookStore() =
         base.PropertiesUsedAsSutParameter canonicalDataCase |> List.except ["targetgrouping"]
 
 type Bowling() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderSut _ = "score game"
 
@@ -191,7 +191,7 @@ type Bowling() =
         |> Option.renderParenthesized
 
 type Change() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         value
@@ -209,7 +209,7 @@ type Change() =
         | _ -> None
 
 type CircularBuffer() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.AdditionalNamespaces = [typeof<Exception>.Namespace]
 
@@ -256,7 +256,7 @@ type CircularBuffer() =
         } |> Seq.toList
 
 type Clock() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let createClock (value: JToken) =
         let hour = value.["hour"].ToObject<string>()
@@ -298,7 +298,7 @@ type Clock() =
             base.RenderSut canonicalDataCase
 
 type ComplexNumbers() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderNumber (input: JToken) =
         match string input with
@@ -336,7 +336,7 @@ type ComplexNumbers() =
     override _.AdditionalNamespaces = [typeof<Math>.Namespace]
 
 type Connect() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         match string value with
@@ -355,7 +355,7 @@ type Connect() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
 type CollatzConjecture() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         value
@@ -363,10 +363,10 @@ type CollatzConjecture() =
         |> Option.renderParenthesized
 
 type CryptoSquare() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type CustomSet() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     member _.SutName = "actual"
 
@@ -426,20 +426,20 @@ type CustomSet() =
         | _ -> arrangeLines
 
 type Darts() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let formatFloat (jToken: JToken) = jToken.ToObject<float>() |> sprintf "%.1f"
 
     override _.RenderInput (_, _, value) = formatFloat value
 
 type Diamond() =
-    inherit CustomExercise()
+    inherit ExerciseGenerator()
 
 type DifferenceOfSquares() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type DiffieHellman() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderValue (canonicalDataCase, key, value) = 
         match canonicalDataCase.Property, value.Type with
@@ -492,7 +492,7 @@ type DiffieHellman() =
             base.PropertiesUsedAsSutParameter canonicalDataCase
 
 type Dominoes() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
     
     let formatAsTuple (value: JToken) =
         let items = value.ToObject<int list>()
@@ -503,7 +503,7 @@ type Dominoes() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
 type Etl() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderInput (_, _, value) = Map.render<int, char list> value.["legacy"]
 
@@ -515,7 +515,7 @@ type Etl() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type FoodChain() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesUsedAsSutParameter _ = ["startVerse"; "endVerse"]
 
@@ -524,7 +524,7 @@ type FoodChain() =
     override _.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type Forth() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["expected"]
     
@@ -543,7 +543,7 @@ type Forth() =
     override _.UseFullMethodName _ = true
 
 type Gigasecond() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         value.ToObject<DateTime>()
@@ -556,7 +556,7 @@ type Gigasecond() =
     override _.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type GoCounting() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderOwner (value: JToken) = Obj.renderEnum "Owner" (string value |> String.toLower)
 
@@ -630,7 +630,7 @@ type GoCounting() =
         | _ -> None
 
 type GradeSchool() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     member private this.RenderPropertyValue canonicalDataCase propertyName =
         this.RenderInput(canonicalDataCase, propertyName, Map.find propertyName canonicalDataCase.Input)
@@ -667,7 +667,7 @@ type GradeSchool() =
         | _ -> base.RenderSut canonicalDataCase
         
 type Grains() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["expected"]
 
@@ -679,7 +679,7 @@ type Grains() =
         | error -> $"Error \"%s{string error}\""
 
 type Grep() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let indentExpected expected =
         expected
@@ -710,7 +710,7 @@ type Grep() =
     override _.TestFileFormat = TestFileFormat.Class
 
 type Hamming() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = 
         value
@@ -718,13 +718,13 @@ type Hamming() =
         |> Option.renderParenthesized
 
 type HelloWorld() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type HighScores() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type House() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesUsedAsSutParameter _ = ["startVerse"; "endVerse"]
 
@@ -733,13 +733,13 @@ type House() =
     override _.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type IsbnVerifier() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Isogram() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type KindergartenGarden() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderPlantEnum value = Obj.renderEnum "Plant" value
 
@@ -750,7 +750,7 @@ type KindergartenGarden() =
     override _.UseFullMethodName _ = true
 
 type LargestSeriesProduct() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -760,10 +760,10 @@ type LargestSeriesProduct() =
         |> Option.renderParenthesized
 
 type Leap() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type ListOps() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderFunction (value: obj) =
         value
@@ -784,23 +784,23 @@ type ListOps() =
         $"%s{canonicalDataCase.Property} %s{canonicalDataCase.Description}"
 
 type Luhn() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Markdown() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.SkipTestMethod (_, _) = false
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type MatchingBrackets() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Matrix() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
     
 type Meetup() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         DateTime.Parse(string value) 
@@ -817,7 +817,7 @@ type Meetup() =
     override _.AdditionalNamespaces = [typeof<DateTime>.Namespace]
 
 type Minesweeper() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderInput (_, _, value) = List.renderMultiLine value
 
@@ -831,7 +831,7 @@ type Minesweeper() =
         | false -> None
 
 type NthPrime() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = 
         value
@@ -839,7 +839,7 @@ type NthPrime() =
         |> Option.renderParenthesized
 
 type NucleotideCount() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = 
         value
@@ -849,7 +849,7 @@ type NucleotideCount() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type OcrNumbers() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
@@ -861,10 +861,10 @@ type OcrNumbers() =
     override _.RenderInput (_, _, value) = List.renderMultiLine value
 
 type Pangram() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type PalindromeProducts() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let toFactors (value: JToken) =
         Obj.render (int value.[0], int value.[1])
@@ -900,7 +900,7 @@ type PalindromeProducts() =
         else Some "int option * (int * int) list"
 
 type PascalsTriangle() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["expected"]
 
@@ -917,7 +917,7 @@ type PascalsTriangle() =
     override _.AssertTemplate _ = "AssertEqual"
     
 type PerfectNumbers() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let toClassification value = Obj.renderEnum "Classification" value
 
@@ -928,7 +928,7 @@ type PerfectNumbers() =
         |> Option.renderStringParenthesized
 
 type PhoneNumber() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["expected"]
 
@@ -946,15 +946,15 @@ type PhoneNumber() =
             |> sprintf "Error \"%s\""
 
 type PigLatin() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Poker() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Pov() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let isNull (jToken: JToken) = jToken.Type = JTokenType.Null
 
@@ -1027,16 +1027,16 @@ type Pov() =
         | _ -> ""
 
 type PrimeFactors() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
     
     override _.RenderInput (canonicalDataCase, key, value) =
         base.RenderInput (canonicalDataCase, key, value) |> sprintf "%sL"
 
 type ProteinTranslation() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Proverb() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -1048,14 +1048,14 @@ type Proverb() =
         | false -> None
 
 type PythagoreanTriplet() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
     
     override _.RenderExpected (_, _, value) = 
         let render value = sprintf "(%s)" (value |> Seq.map Obj.render |> String.concat ", ")
         List.mapRender render value
     
 type QueenAttack() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (canonicalDataCase, key, value) =
         match canonicalDataCase.Property with
@@ -1072,17 +1072,17 @@ type QueenAttack() =
     override _.PropertiesWithIdentifier _ = ["white_queen"; "black_queen"]
 
 type RailFenceCipher() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesUsedAsSutParameter _ = ["rails"; "msg"]
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Raindrops() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type RationalNumbers() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderValue (canonicalDataCase, key, value) =
         match value.Type with
@@ -1095,7 +1095,7 @@ type RationalNumbers() =
         | _ -> base.AssertTemplate(canonicalDataCase)
 
 type React() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderCells canonicalDataCase = 
         let reactorVar = sprintf "let %s = new %s()" "reactor" "Reactor"
@@ -1200,17 +1200,17 @@ type React() =
     override _.AdditionalNamespaces = ["FakeItEasy"]
 
 type Rectangles() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
     override _.RenderInput (_, _, value) = List.renderMultiLine value
 
 type ReverseString() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type RobotSimulator() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let parseInput (token: JToken) =
         let direction = token.SelectToken "direction" |> Option.ofObj
@@ -1249,13 +1249,13 @@ type RobotSimulator() =
     override _.PropertiesWithIdentifier _ = ["robot"; "expected"]
 
 type RotationalCipher() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type RnaTranscription() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type RunLengthEncoding() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.RenderSut canonicalDataCase =
         match canonicalDataCase.Property with
@@ -1273,10 +1273,10 @@ type RunLengthEncoding() =
             $"%s{canonicalDataCase.Property} %s{canonicalDataCase.Description}" |> String.upperCaseFirst
 
 type RomanNumerals() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type SaddlePoints() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let toTuple (input: JToken) = (input.Value<int>("row"), input.Value<int>("column"))
 
@@ -1292,7 +1292,7 @@ type SaddlePoints() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
 type Say() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         value 
@@ -1302,19 +1302,19 @@ type Say() =
     override _.RenderInput (_, _, value) = $"%s{string value}L"
 
 type ScaleGenerator() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type ScrabbleScore() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Sieve() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type SecretHandshake() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Series() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
     
     override _.RenderExpected (_, _, value) =
         value 
@@ -1322,7 +1322,7 @@ type Series() =
         |> Option.renderParenthesized
 
 type SgfParsing() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesWithIdentifier _ = ["input"; "expected"]
 
@@ -1352,7 +1352,7 @@ type SgfParsing() =
     
 
 type SimpleCipher() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let normalizeText input (canonicalDataCase: CanonicalDataCase) =
         match string input with
@@ -1405,7 +1405,7 @@ type SimpleCipher() =
           typeof<System.ArgumentException>.Namespace ]
 
 type SpaceAge() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderInput (canonicalDataCase, key, value) =
         match value.Type with
@@ -1416,29 +1416,29 @@ type SpaceAge() =
     override _.AssertTemplate _ = "AssertEqualWithin"
 
 type SpiralMatrix() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type Sublist() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = Obj.renderEnum "SublistType" value
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.PropertiesUsedAsSutParameter canonicalDataCase
 
 type SumOfMultiples() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
 type Tournament() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
     override _.RenderValue (_, _, value) = List.renderMultiLine value
 
 type TwelveDays() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.PropertiesUsedAsSutParameter _ = ["startVerse"; "endVerse"]
 
@@ -1447,7 +1447,7 @@ type TwelveDays() =
     override _.RenderExpected (_, _, value) = List.renderMultiLine value
 
 type Transpose() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -1459,7 +1459,7 @@ type Transpose() =
     override _.RenderValue (_, _, value) = List.renderMultiLine value
 
 type Triangle() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let formatFloat (jToken: JToken) = 
         $"%.1f{jToken.ToObject<float>()}"
@@ -1477,7 +1477,7 @@ type Triangle() =
     override _.RenderInput (_, _, value) = List.mapRender formatFloat value
 
 type TwoBucket() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderBucket (value: JToken) = Obj.renderEnum "Bucket" value
 
@@ -1495,7 +1495,7 @@ type TwoBucket() =
         $"{{ Moves = %d{moves}; GoalBucket = %s{goalBucket}; OtherBucket = %d{otherBucket} }}"
 
 type TwoFer() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderInput (_, _, value) =
         value
@@ -1503,7 +1503,7 @@ type TwoFer() =
         |> Option.renderParenthesized
 
 type VariableLengthQuantity() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let formatUnsignedByteList (value: JToken) =
         value.ToObject<byte list>()
@@ -1530,14 +1530,14 @@ type VariableLengthQuantity() =
         | _ -> base.RenderExpected (canonicalDataCase, key, value)
         
 type WordCount() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = Map.render<string, int> value
 
     override _.PropertiesWithIdentifier _ = ["expected"]
 
 type WordSearch() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let toCoordinates (value: JToken) = (value.Value<int>("column"), value.Value<int>("row"))
 
@@ -1561,7 +1561,7 @@ type WordSearch() =
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
 type Wordy() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) =
         value 
@@ -1569,7 +1569,7 @@ type Wordy() =
         |> Option.renderParenthesized
 
 type Yacht() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let renderDieEnum = function
         | 1 -> "Die.One"
@@ -1587,12 +1587,12 @@ type Yacht() =
         | _ -> base.RenderInput (canonicalDataCase, key, value)
 
 type ZebraPuzzle() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderExpected (_, _, value) = string value
 
 type Zipper() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let rec renderTree root (tree: JToken) =
         match tree with
@@ -1693,7 +1693,7 @@ type Zipper() =
         base.TestMethodName canonicalDataCase |> String.replace "Set_" "Set "
 
 type RestApi() = 
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override this.PropertiesWithIdentifier canonicalDataCase = this.Properties canonicalDataCase
 
@@ -1718,7 +1718,7 @@ type RestApi() =
         | _ -> base.RenderSut canonicalDataCase 
 
 type DndCharacter() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     let testRandomAbility() =
         ["for i in 1 .. 10 do"; "    let ability = ability()" ;"    ability |> should be (greaterThanOrEqualTo 3)";"    ability |> should be (lessThanOrEqualTo  18)"]
@@ -1754,7 +1754,7 @@ type DndCharacter() =
 
 
 type AffineCipher() =
-    inherit GeneratorExercise()
+    inherit ExerciseGenerator()
 
     override _.RenderInput (canonicalDataCase, key, value) =
         match key with
