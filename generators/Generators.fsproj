@@ -13,7 +13,6 @@
     <Compile Include="Templates.fs" />
     <Compile Include="Exercise.fs" />
     <Compile Include="Generators.fs" />
-    <Compile Include="Reporting.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
