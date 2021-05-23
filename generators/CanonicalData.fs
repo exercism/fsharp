@@ -116,14 +116,10 @@ let private readCanonicalData options exercise =
     canonicalDataFile options exercise
     |> File.ReadAllText
 
-let hasCanonicalData options exercise =
-    canonicalDataFile options exercise
-    |> File.Exists
-
 let parseCanonicalData options = 
     downloadData options 
 
     fun exercise ->
-        exercise 
+        exercise
         |> readCanonicalData options 
         |> convertCanonicalData

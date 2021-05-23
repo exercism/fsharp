@@ -3,7 +3,6 @@ module Generators.Exercise
 open System
 open System.IO
 open System.Reflection
-open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Humanizer
 open Rendering
@@ -15,8 +14,6 @@ let [<Literal>] private AssertEmptyTemplate = "AssertEmpty"
 let [<Literal>] private AssertEqualTemplate = "AssertEqual"
 let [<Literal>] private AssertEqualWithinTemplate = "AssertEqualWithin"
 let [<Literal>] private AssertThrowsTemplate = "AssertThrows"
-
-let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebaberize()
 
 type ExerciseGenerator() =
     // Customize rendered output
@@ -268,33 +265,24 @@ type ExerciseGenerator() =
 
     default _.SkipTestMethod (index, _) = index > 0
 
-let private isConcreteType (ty: Type) = not ty.IsAbstract
+let private tryCreateExerciseGenerator exerciseType =
+    if typeof<ExerciseGenerator>.IsAssignableFrom(exerciseType) then
+        let exerciseName = exerciseType.Name.Kebaberize()
+        let exerciseGenerator = Activator.CreateInstance(exerciseType) :?> ExerciseGenerator 
+        Some (exerciseName, exerciseGenerator)
+    else
+        None
 
-let private isGeneratorExercise (ty: Type) = typeof<ExerciseGenerator>.IsAssignableFrom(ty)
-
-let private concreteAssemblyTypes =
+let private generatorExercises =
     Assembly.GetEntryAssembly().GetTypes()
-    |> Array.filter isConcreteType
+    |> Seq.choose tryCreateExerciseGenerator
+    |> Map.ofSeq
 
-let private exerciseTypeByName<'T> exerciseType =
-    (exerciseNameFromType exerciseType, Activator.CreateInstance(exerciseType) :?> 'T)
+let private tryFindGeneratorExercise (exerciseName: string) =
+    generatorExercises
+    |> Map.tryFind exerciseName
 
-let private exerciseTypesByName<'T> predicate =
-    concreteAssemblyTypes
-    |> Array.filter predicate
-    |> Array.map exerciseTypeByName<'T>
-    |> Map.ofArray
-
-//let private generatorExercises = exerciseTypesByName<GeneratorExercise> isGeneratorExercise
-//
-//let private customExercises = exerciseTypesByName<CustomExercise> isCustomExercise
-//
-//let private tryFindGeneratorExercise exerciseName =
-//    generatorExercises
-//    |> Map.tryFind exerciseName
-//    |> Option.map Generator
-    
-let regenerateTestClass options =
+let regenerateTestClass options exercise =
     let parseCanonicalData' = parseCanonicalData options
 
     fun (exercise) ->
