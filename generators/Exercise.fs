@@ -78,7 +78,7 @@ type GeneratorExercise() =
     member this.MapCanonicalData canonicalData =
         { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
 
-    default __.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
+    default _.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
 
     // Convert canonical data to representation used when rendering
 
@@ -133,23 +133,23 @@ type GeneratorExercise() =
         else
             AssertEqualTemplate
 
-    member __.RenderAssertEmpty sut expected =
+    member _.RenderAssertEmpty sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertEmptyTemplate
 
-    member __.RenderAssertEqual sut expected =
+    member _.RenderAssertEqual sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertEqualTemplate
 
-    member __.RenderAssertEqualWithin sut expected =
+    member _.RenderAssertEqualWithin sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertEqualWithinTemplate
 
-    member __.RenderAssertThrows sut expected =
+    member _.RenderAssertThrows sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertThrowsTemplate
 
-    default __.TestFileFormat = TestFileFormat.Module
+    default _.TestFileFormat = TestFileFormat.Module
 
     // Rendering of canonical data
 
@@ -181,11 +181,11 @@ type GeneratorExercise() =
             |> String.concat " - "
             |> String.upperCaseFirst
 
-    default __.RenderSetup _ = ""
+    default _.RenderSetup _ = ""
 
     // Generic value/identifier rendering methods
 
-    default __.RenderValue (_, _, value) = Obj.render value
+    default _.RenderValue (_, _, value) = Obj.render value
 
     member this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
         let properties = this.PropertiesWithIdentifier canonicalDataCase
@@ -205,7 +205,7 @@ type GeneratorExercise() =
         let value = this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
         sprintf "let %s = %s" identifier value
 
-    member __.RenderIdentifier (_, key, _) = String.camelize key
+    member _.RenderIdentifier (_, key, _) = String.camelize key
 
     member this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) =
         let identifier = this.RenderIdentifier (canonicalDataCase, key, value)
@@ -267,27 +267,27 @@ type GeneratorExercise() =
     member this.RenderSutParameter (canonicalDataCase, key, value) =
         this.RenderValueOrIdentifier (canonicalDataCase, key, value)
 
-    member __.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
+    member _.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
 
     member this.Properties canonicalDataCase =
         List.append (this.PropertiesUsedAsSutParameter canonicalDataCase) ["expected"]
 
-    default __.PropertiesUsedAsSutParameter canonicalDataCase =
+    default _.PropertiesUsedAsSutParameter canonicalDataCase =
         canonicalDataCase.Input
         |> Map.toList
         |> List.map fst
 
     // Utility methods to customize rendered output
 
-    default __.PropertiesWithIdentifier _ = []
+    default _.PropertiesWithIdentifier _ = []
 
-    default __.IdentifierTypeAnnotation (_, _, _) = None
+    default _.IdentifierTypeAnnotation (_, _, _) = None
 
-    default __.UseFullMethodName _ = false
+    default _.UseFullMethodName _ = false
 
-    default __.AdditionalNamespaces = []
+    default _.AdditionalNamespaces = []
 
-    default __.SkipTestMethod (index, _) = index > 0
+    default _.SkipTestMethod (index, _) = index > 0
 
 type CustomExercise() =
 

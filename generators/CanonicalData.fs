@@ -107,13 +107,13 @@ type CanonicalDataConverter() =
           Version = jToken.["version"].Value<string>()
           Cases = createCanonicalDataCasesFromJToken jToken }
 
-    override __.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
+    override _.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
 
-    override __.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
+    override _.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
         let jToken = JToken.ReadFrom(reader)
         createCanonicalDataFromJToken jToken :> obj
 
-    override __.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
+    override _.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
 
 let private convertCanonicalData canonicalDataContents = 
     let converter = CanonicalDataConverter()
