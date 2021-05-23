@@ -12,19 +12,7 @@ let private isOutdated (exercise: GeneratorExercise) options (parseCanonicalData
 //    match canonicalData.Version, exercise.ReadVersion() with
 //    | canonicalDataVersion, exerciseVersion when canonicalDataVersion.Equals exerciseVersion -> false
 //    | _ -> true
-    
-let private filterByStatus options (parseCanonicalData':string -> CanonicalData) (exercise: Exercise) =
-    match options.Status, exercise with
-    | None, _ -> true
-    | Some Status.Implemented,   Exercise.Generator _     -> true
-    | Some Status.Unimplemented, Exercise.Unimplemented _ -> true
-    | Some Status.MissingData,   Exercise.MissingData _   -> true
-    | Some Status.Deprecated,    Exercise.Deprecated _    -> true
-    | Some Status.Custom,        Exercise.Custom _        -> true
-    | Some Status.Outdated,      Exercise.Generator exercise when isOutdated exercise options parseCanonicalData' -> true
-    | Some Status.All,           _                        -> true
-    | _ -> false
-    
+
 type SummaryTypes =
     | Custom of string
     | Unimplemented of string
@@ -76,27 +64,3 @@ let printExerciseGroup indentAfter (groupType:System.Type, group:SummaryTypes li
     group |> List.iter (printExercise indentAfter)
 
     printfn ""
-        
-let listExercises options =
-    Log.Information $"Listing exercises with status %s{options.Status.Value.ToString()}..."
-    
-    let parseCanonicalData' = CanonicalData.parseCanonicalData options
-    
-    let allExercises = createExercises options
-    
-    let longestNameLength =
-        allExercises
-        |> List.map exerciseName
-        |> List.map (fun e -> e.Length)
-        |> List.max
-
-    let indentAfter (name:string) = "".PadRight(longestNameLength + 2 - name.Length)
-    
-    let exerciseGroups = allExercises
-                         |> List.filter (filterByStatus options parseCanonicalData')
-                         |> List.map (summarizeExercise options parseCanonicalData')
-                         |> List.groupBy (fun x -> x.GetType())
-    
-    exerciseGroups |> List.iter (printExerciseGroup indentAfter)
-    
-    

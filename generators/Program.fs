@@ -48,17 +48,10 @@ let main argv =
     Logging.setupLogger()
 
     match parseOptions argv with
-    | Ok(options) when options.Status.IsSome && options.Exercise.IsSome ->
-        Log.Error("Can't have both -s/--status and -e/--exercise.")
-        1
-    | Ok(options) when options.Status.IsSome ->
-        listExercises options
-        0
     | Ok(options) ->
-        regenerateTestClasses options
-        0
-    | Error(errors) when errors |> Seq.contains "CommandLine.HelpRequestedError" ->
+        printfn "%A" options
+//        regenerateTestClasses options
         0
     | Error(errors) ->
-        Log.Error("Error(s) parsing commandline arguments: {Errors}", errors)
+        Log.Error("Errors: {Errors}", errors)
         1

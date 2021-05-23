@@ -26,15 +26,15 @@ let [<Literal>] private ProblemSpecificationsRemote = "origin";
 let [<Literal>] private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
 
 let private cloneRepository options =
-    if not (Directory.Exists(options.CanonicalDataDirectory)) then
+    if not (Directory.Exists(options.ProbSpecsDir)) then
         Log.Information("Cloning repository...")
-        Repository.Clone(ProblemSpecificationsGitUrl, options.CanonicalDataDirectory) |> ignore
+        Repository.Clone(ProblemSpecificationsGitUrl, options.ProbSpecsDir) |> ignore
         Log.Information("Repository cloned.")
 
 let private updateToLatestVersion options =
     Log.Information("Updating repository to latest version...");
 
-    use repository = new Repository(options.CanonicalDataDirectory)
+    use repository = new Repository(options.ProbSpecsDir)
     Commands.Fetch(repository, ProblemSpecificationsRemote, Seq.empty, FetchOptions(), null)
     
     let remoteBranch = repository.Branches.[ProblemSpecificationsRemoteBranch];
@@ -43,9 +43,8 @@ let private updateToLatestVersion options =
     Log.Information("Updated repository to latest version.");
 
 let private downloadData options =
-    if not options.CacheCanonicalData then
-        cloneRepository options
-        updateToLatestVersion options
+    cloneRepository options
+    updateToLatestVersion options
 
 type CanonicalDataConverter() =
     inherit JsonConverter()
@@ -111,7 +110,7 @@ let private convertCanonicalData canonicalDataContents =
     JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, converter)
 
 let private canonicalDataFile options exercise = 
-    Path.Combine(options.CanonicalDataDirectory, "exercises", exercise, "canonical-data.json")
+    Path.Combine(options.ProbSpecsDir, "exercises", exercise, "canonical-data.json")
 
 let private readCanonicalData options exercise = 
     canonicalDataFile options exercise
