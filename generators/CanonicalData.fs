@@ -26,20 +26,15 @@ let [<Literal>] private ProblemSpecificationsRemote = "origin";
 let [<Literal>] private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
 
 let private cloneRepository options =
-    if (Directory.Exists(options.CanonicalDataDirectory)) then
-        ()
-    else
+    if not (Directory.Exists(options.CanonicalDataDirectory)) then
         Log.Information("Cloning repository...")
-
         Repository.Clone(ProblemSpecificationsGitUrl, options.CanonicalDataDirectory) |> ignore
-
         Log.Information("Repository cloned.")
 
 let private updateToLatestVersion options =
     Log.Information("Updating repository to latest version...");
 
     use repository = new Repository(options.CanonicalDataDirectory)
-    
     Commands.Fetch(repository, ProblemSpecificationsRemote, Seq.empty, FetchOptions(), null)
     
     let remoteBranch = repository.Branches.[ProblemSpecificationsRemoteBranch];
@@ -48,9 +43,7 @@ let private updateToLatestVersion options =
     Log.Information("Updated repository to latest version.");
 
 let private downloadData options =
-    if options.CacheCanonicalData then
-        ()
-    else
+    if not options.CacheCanonicalData then
         cloneRepository options
         updateToLatestVersion options
 
