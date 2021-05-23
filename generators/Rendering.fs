@@ -26,9 +26,9 @@ module DateTime =
 
     let render (dateTime: DateTime) = 
         if dateTime.TimeOfDay = TimeSpan.Zero then
-            sprintf "DateTime(%d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day
+            $"DateTime(%d{dateTime.Year}, %d{dateTime.Month}, %d{dateTime.Day})"
         else
-            sprintf "DateTime(%d, %d, %d, %d, %d, %d)" dateTime.Year dateTime.Month dateTime.Day dateTime.Hour dateTime.Minute dateTime.Second
+            $"DateTime(%d{dateTime.Year}, %d{dateTime.Month}, %d{dateTime.Day}, %d{dateTime.Hour}, %d{dateTime.Minute}, %d{dateTime.Second})"
 
     let renderParenthesized (dateTime: DateTime) = 
         dateTime
@@ -46,9 +46,9 @@ module Obj =
         | JTokenType.Date     -> jToken.ToObject<DateTime>() |> DateTime.render
         | _ -> string jToken
 
-    let private renderTuple tuple = sprintf "%A" tuple
+    let private renderTuple tuple = $"%A{tuple}"
 
-    let private renderRecord record = sprintf "%A" record
+    let private renderRecord record = $"%A{record}"
 
     let rec private renderObj (value: obj) =
         let rec renderJArray (jArray: JArray) =
@@ -80,14 +80,14 @@ module Obj =
     let renderEnum typeName value = 
         let enumType = String.upperCaseFirst typeName
         let enumValue = String.dehumanize (string value)
-        sprintf "%s.%s" enumType enumValue    
+        $"%s{enumType}.%s{enumValue}"    
 
 module Option =
 
     let private renderMap valueMap someMap option =
         match option with
         | None -> "None"
-        | Some value -> sprintf "Some %s" (valueMap value) |> someMap
+        | Some value -> $"Some %s{valueMap value}" |> someMap
 
     let renderString option = renderMap id id option
 
@@ -108,20 +108,20 @@ module Collection =
     let renderMultiLine openPrefix closePostfix collection =
         match Seq.length collection with
         | 0 -> 
-            sprintf "%s%s" openPrefix closePostfix
+            $"%s{openPrefix}%s{closePostfix}"
         | 1 -> 
-            sprintf "%s%s%s" openPrefix (Seq.head collection) closePostfix
+            $"%s{openPrefix}%s{Seq.head collection}%s{closePostfix}"
         | length -> 
             let lineIndent = String(' ', String.length openPrefix)
 
             let formatLine i line = 
                 match i with
                 | 0 -> 
-                    sprintf "%s %s;" openPrefix line
+                    $"%s{openPrefix} %s{line};"
                 | _ when i = length - 1 -> 
-                    sprintf "%s %s %s" lineIndent line closePostfix
+                    $"%s{lineIndent} %s{line} %s{closePostfix}"
                 | _ ->
-                    sprintf "%s %s;" lineIndent line
+                    $"%s{lineIndent} %s{line};"
 
             collection
             |> Seq.mapi formatLine
@@ -155,7 +155,7 @@ module Map =
         let dict = value.ToObject<Collections.Generic.Dictionary<'TKey, 'TValue>>()
         let formattedList = List.mapRenderMultiLine map dict
         let whitespace = if Seq.length dict < 2 then " " else sprintf "\n%s" (String.indent 2 "")
-        sprintf "%s%s|> Map.ofList%s" formattedList whitespace suffix
+        $"%s{formattedList}%s{whitespace}|> Map.ofList%s{suffix}"
 
     let mapRender<'TKey, 'TValue> map (value: JToken) =
         renderMap<'TKey, 'TValue> map "" value

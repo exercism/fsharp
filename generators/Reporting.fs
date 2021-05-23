@@ -75,7 +75,7 @@ let printExerciseGroup indentAfter (groupType:System.Type, group:SummaryTypes li
     printfn ""
         
 let listExercises options =
-    Log.Information(sprintf "Listing exercises with status %s..." (options.Status.Value.ToString()))
+    Log.Information $"Listing exercises with status %s{options.Status.Value.ToString()}..."
     
     let parseCanonicalData' = CanonicalData.parseCanonicalData options
     

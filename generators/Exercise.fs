@@ -43,7 +43,7 @@ type GeneratorExercise() =
     abstract member SkipTestMethod : int * CanonicalDataCase -> bool
 
     member this.Name = this.GetType() |> exerciseNameFromType
-    member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTests"
+    member this.TestModuleName = $"%s{this.GetType().Name.Pascalize()}Tests"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
     member this.TestFilePath () =
@@ -212,7 +212,7 @@ type GeneratorExercise() =
 
         match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
         | Some identifierType ->
-            sprintf "%s: %s" identifier identifierType
+            $"%s{identifier}: %s{identifierType}"
         | None ->
             identifier
 

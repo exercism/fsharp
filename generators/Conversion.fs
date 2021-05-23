@@ -35,12 +35,12 @@ module String =
     let upperCaseFirst (str: string) = 
         match str with
         | "" -> str
-        | _  -> sprintf "%c%s" (Char.ToUpper(str.[0])) str.[1..]
+        | _  -> $"%c{Char.ToUpper(str.[0])}%s{str.[1..]}"
 
     let lowerCaseFirst (str: string) = 
         match str with
         | "" -> str
-        | _  -> sprintf "%c%s" (Char.ToLower(str.[0])) str.[1..]
+        | _  -> $"%c{Char.ToLower(str.[0])}%s{str.[1..]}"
 
     let replace (oldValue: string) (newValue: string) (str: string) =
         str.Replace(oldValue, newValue)    
@@ -50,9 +50,9 @@ module String =
     let indent level str =
         let oneLevelIndentation = "    "
         let indentation = String.replicate level oneLevelIndentation
-        sprintf "%s%s" indentation str
+        $"%s{indentation}%s{str}"
 
-    let enclose before after str = sprintf "%s%s%s" before str after
+    let enclose before after str = $"%s{before}%s{str}%s{after}"
 
     let enquote str = enclose "\"" "\"" str
 
