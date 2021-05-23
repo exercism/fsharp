@@ -3,7 +3,6 @@ module Generators.Rendering
 open System
 open FSharp.Reflection
 open Newtonsoft.Json.Linq
-open Conversion
 
 module String =
 

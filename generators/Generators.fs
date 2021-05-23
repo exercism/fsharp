@@ -4,7 +4,6 @@ open System
 open System.Globalization
 open Newtonsoft.Json.Linq
 open CanonicalData
-open Conversion
 open Rendering
 open Templates
 open Exercise

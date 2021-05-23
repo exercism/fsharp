@@ -10,7 +10,6 @@ open Rendering
 open Serilog
 open Templates
 open CanonicalData
-open Track
 
 let [<Literal>] private AssertEmptyTemplate = "AssertEmpty"
 let [<Literal>] private AssertEqualTemplate = "AssertEqual"
@@ -349,19 +348,13 @@ let private tryFindCustomExercise exerciseName =
     |> Map.tryFind exerciseName
     |> Option.map Custom
 
-let private tryFindDeprecatedExercise exerciseName =
-    match isDeprecated exerciseName with
-    | true  -> Deprecated { Name = exerciseName } |> Some
-    | false -> None
-
 let private tryFindUnimplementedExercise options exerciseName =
     match hasCanonicalData options exerciseName with
     | true  -> Unimplemented { Name = exerciseName } |> Some
     | false -> None
 
 let private createExercise options exerciseName =
-    tryFindDeprecatedExercise exerciseName
-    |> Option.orElse (tryFindGeneratorExercise exerciseName)
+    tryFindGeneratorExercise exerciseName
     |> Option.orElse (tryFindCustomExercise exerciseName)
     |> Option.orElse (tryFindUnimplementedExercise options exerciseName)
     |> Option.orElse (MissingData { Name = exerciseName } |> Some)
