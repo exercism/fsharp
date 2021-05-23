@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <Compile Include="Common.fs" />
-    <Compile Include="Conversion.fs" />
     <Compile Include="Options.fs" />
     <Compile Include="CanonicalData.fs" />
     <Compile Include="Track.fs" />

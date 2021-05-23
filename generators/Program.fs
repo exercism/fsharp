@@ -2,56 +2,27 @@
 
 open Serilog
 open Exercise
-open CanonicalData
 open Generators
 open Options
-open Reporting
 
-let private isNotFilteredByName options (exercise: Exercise) =
+let onParseSuccess options =
     match options.Exercise with
-    | Some filteredExerciseName -> filteredExerciseName = exerciseName exercise
-    | None -> true
-
-let private regenerateTestClass options =
-    let parseCanonicalData' = parseCanonicalData options
-
-    fun (exercise) ->
-        match exercise with
-        | Exercise.Custom custom ->
-            Log.Information(" {Exercise}: has customized tests", custom.Name)
-        | Exercise.Unimplemented unimplemented ->
-            Log.Error(" {Exercise}: missing test generator", unimplemented.Name)
-        | Exercise.MissingData missingData ->
-            Log.Warning(" {Exercise}: missing canonical data", missingData.Name)
-        | Exercise.Deprecated deprecated ->
-            Log.Warning(" {Exercise}: deprecated", deprecated.Name)
-        | Exercise.Generator generator ->
-            let canonicalData = parseCanonicalData' generator.Name
-            generator.Regenerate(canonicalData)
-            Log.Information(" {Exercise}: tests generated", generator.Name)
-
-let private regenerateTestClasses options =
-    Log.Information("Re-generating test classes...")
-
-    let regenerateTestClass' = regenerateTestClass options
-
-    createExercises options
-    |> List.filter (isNotFilteredByName options)
-    |> function
-        | [] -> Log.Warning "No exercises matched given options."
-        | exercises ->
-            List.iter regenerateTestClass' exercises
-            Log.Information("Re-generated test classes.")
+    | Some exercise ->
+        regenerateTestClass options exercise
+    | None ->
+        regenerateTestClasses options
+    
+let onParseError (errors: string) =
+    Log.Error("Errors: {Errors}", errors)
 
 [<EntryPoint>]
 let main argv =
-    Logging.setupLogger()
+    Logging.setup()
 
     match parseOptions argv with
-    | Ok(options) ->
-        printfn "%A" options
-//        regenerateTestClasses options
+    | Ok options ->
+        onParseSuccess options
         0
-    | Error(errors) ->
-        Log.Error("Errors: {Errors}", errors)
+    | Error errors ->
+        onParseError errors
         1

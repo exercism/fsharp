@@ -7,6 +7,7 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Humanizer
 open Rendering
+open Serilog
 open Templates
 open CanonicalData
 open Track
@@ -368,3 +369,26 @@ let private createExercise options exerciseName =
 let createExercises options =
     exerciseNames
     |> List.choose (createExercise options)
+    
+let regenerateTestClass options =
+    let parseCanonicalData' = parseCanonicalData options
+
+    fun (exercise) ->
+      ()
+//        let canonicalData = parseCanonicalData' generator.Name
+//        generator.Regenerate(canonicalData)
+//        Log.Information(" {Exercise}: tests generated", generator.Name)
+
+let regenerateTestClasses options =
+    Log.Information("Re-generating test classes...")
+
+    let regenerateTestClass' = regenerateTestClass options
+    
+//    createExercises options
+//    |> List.filter (isNotFilteredByName options)
+//    |> function
+//        | [] -> Log.Warning "No exercises matched given options."
+//        | exercises ->
+//            List.iter regenerateTestClass' exercises
+//            Log.Information("Re-generated test classes.")
+    ()
