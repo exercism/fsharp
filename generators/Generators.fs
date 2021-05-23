@@ -1609,7 +1609,7 @@ type Zipper() =
                 | "None", "None" -> 
                     $"(leaf %d{value})"
                 | _ -> 
-                    $"(subTree %d{value} %s{left} %s{right})"
+                    sprintf "(subTree %d %s %s)" value left right
         | _ -> 
             "None"
 
@@ -1634,7 +1634,7 @@ type Zipper() =
                 | _ ->
                     None
 
-            [ $"%s{operation} %s{Option.renderStringParenthesized expected}"]            
+            [sprintf "%s %s" operation (Option.renderStringParenthesized expected)]            
         | _ -> failwith "Unknown operation"
 
     let renderOperations (operations: JToken) =
@@ -1651,12 +1651,12 @@ type Zipper() =
 
     let renderZipperWithIdentifier identifier (tree: JToken) =
         let renderedTree = renderTree true tree
-        $"let %s{identifier} = fromTree (%s{renderedTree})"
+        sprintf "let %s = fromTree (%s)" identifier renderedTree
 
     let renderExpectedZipperWithIdentifier identifier (tree: JToken) (operations: JToken) =
         let renderedTree = renderTree true tree
         let renderedOperations = renderOperations operations
-        $"let %s{identifier} = fromTree (%s{renderedTree}) %s{renderedOperations}"
+        sprintf "let %s = fromTree (%s) %s" identifier renderedTree renderedOperations
 
     let renderSut (operations: JToken) =
         operations

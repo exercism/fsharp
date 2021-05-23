@@ -6,10 +6,12 @@ open Exercise
 open Options
        
 let private isOutdated (exercise: GeneratorExercise) options (parseCanonicalData':string -> CanonicalData) =
-    let canonicalData = parseCanonicalData' exercise.Name
-    match canonicalData.Version, exercise.ReadVersion() with
-    | canonicalDataVersion, exerciseVersion when canonicalDataVersion.Equals exerciseVersion -> false
-    | _ -> true
+    // TODO: compare tests.toml with canonical data
+    false
+//    let canonicalData = parseCanonicalData' exercise.Name
+//    match canonicalData.Version, exercise.ReadVersion() with
+//    | canonicalDataVersion, exerciseVersion when canonicalDataVersion.Equals exerciseVersion -> false
+//    | _ -> true
     
 let private filterByStatus options (parseCanonicalData':string -> CanonicalData) (exercise: Exercise) =
     match options.Status, exercise with
@@ -48,10 +50,11 @@ let private summarizeExercise options (parseCanonicalData':string -> CanonicalDa
     | Exercise.Deprecated deprecated ->         SummaryTypes.Deprecated deprecated.Name
     | Exercise.Generator generator ->
         let canonicalData = parseCanonicalData' generator.Name
-        
-        match generator.ReadVersion (), canonicalData.Version with
-        | generatorVersion, canonicalDataVersion when generatorVersion.Equals canonicalDataVersion -> UpToDate generator.Name
-        | generatorVersion, canonicalDataVersion -> Outdated (generator.Name, generatorVersion, canonicalDataVersion)
+        // TODO: use tests.toml
+        UpToDate generator.Name
+//        match generator.ReadVersion (), canonicalData.Version with
+//        | generatorVersion, canonicalDataVersion when generatorVersion.Equals canonicalDataVersion -> UpToDate generator.Name
+//        | generatorVersion, canonicalDataVersion -> Outdated (generator.Name, generatorVersion, canonicalDataVersion)
 
 let printExercise indentAfter exercise =
     match exercise with

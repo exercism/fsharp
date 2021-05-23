@@ -18,7 +18,6 @@ type CanonicalDataCase =
 
 type CanonicalData = 
     { Exercise: string
-      Version: string
       Cases: CanonicalDataCase list }
 
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
@@ -104,7 +103,6 @@ type CanonicalDataConverter() =
 
     let createCanonicalDataFromJToken (jToken: JToken) =
         { Exercise = jToken.["exercise"].Value<string>()
-          Version = jToken.["version"].Value<string>()
           Cases = createCanonicalDataCasesFromJToken jToken }
 
     override _.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"

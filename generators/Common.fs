@@ -15,8 +15,7 @@ type TestMethodBodyAssert =
       Expected: string }
 
 type TestFile = 
-    { Version: string
-      ExerciseName: string
+    { ExerciseName: string
       TestModuleName: string
       TestedModuleName: string
       Namespaces: string list

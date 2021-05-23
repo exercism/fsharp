@@ -61,18 +61,6 @@ type GeneratorExercise() =
         |> this.Render
         |> this.WriteToFile
 
-    member this.ReadVersion () =
-        (*
-            Read from the top of the file e.g.
-            "// This file was auto-generated based on version 1.2.0 of the canonical data."
-        *)
-
-        this.TestFilePath ()
-        |> File.ReadLines
-        |> Seq.head
-        |> String.split " "
-        |> Seq.find (fun s -> s.[0] |> System.Char.IsDigit)
-
     // Allow changes in canonical data
 
     member this.MapCanonicalData canonicalData =
@@ -82,11 +70,10 @@ type GeneratorExercise() =
 
     // Convert canonical data to representation used when rendering
 
-    member this.ToTestFile canonicalData =
+    member this.ToTestFile (canonicalData: CanonicalData) =
         let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
 
-        { Version = canonicalData.Version
-          ExerciseName = this.Name
+        { ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
