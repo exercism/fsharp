@@ -8,6 +8,9 @@ description = "empty lists"
 [2c894696-b609-4569-b149-8672134d340a]
 description = "list to empty list"
 
+[e842efed-3bf6-4295-b371-4d67a4fdf19c]
+description = "empty list to list"
+
 [71dcf5eb-73ae-4a0e-b744-a52ee387922f]
 description = "non-empty lists"
 
@@ -40,20 +43,44 @@ description = "non-empty list"
 
 [613b20b7-1873-4070-a3a6-70ae5f50d7cc]
 description = "empty list"
+include = false
 
 [e56df3eb-9405-416a-b13a-aabb4c3b5194]
 description = "direction independent function applied to non-empty list"
+include = false
 
 [d2cf5644-aee1-4dfc-9b88-06896676fe27]
+description = "direction dependent function applied to non-empty list"
+include = false
+
+[36549237-f765-4a4c-bfd9-5d3a8f7b07d2]
+description = "empty list"
+
+[7a626a3c-03ec-42bc-9840-53f280e13067]
+description = "direction independent function applied to non-empty list"
+
+[d7fcad99-e88e-40e1-a539-4c519681f390]
 description = "direction dependent function applied to non-empty list"
 
 [aeb576b9-118e-4a57-a451-db49fac20fdc]
 description = "empty list"
+include = false
 
 [c4b64e58-313e-4c47-9c68-7764964efb8e]
 description = "direction independent function applied to non-empty list"
+include = false
 
 [be396a53-c074-4db3-8dd6-f7ed003cce7c]
+description = "direction dependent function applied to non-empty list"
+include = false
+
+[17214edb-20ba-42fc-bda8-000a5ab525b0]
+description = "empty list"
+
+[e1c64db7-9253-4a3d-a7c4-5273b9e2a1bd]
+description = "direction independent function applied to non-empty list"
+
+[8066003b-f2ff-437e-9103-66e6df474844]
 description = "direction dependent function applied to non-empty list"
 
 [94231515-050e-4841-943d-d4488ab4ee30]

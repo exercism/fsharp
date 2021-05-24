@@ -2,6 +2,9 @@
 # file is regenerated. Regenerating will not touch any manually added keys,
 # so comments can be added in a "comment" key.
 
+[d0ebd0e1-9d27-4609-a654-df5c0ba1d83a]
+description = "change for 1 cent"
+
 [36887bea-7f92-4a9c-b0cc-c0e886b3ecc8]
 description = "single coin change"
 

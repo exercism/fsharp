@@ -25,3 +25,9 @@ description = "Personal top when there are less than 3"
 
 [16608eae-f60f-4a88-800e-aabce5df2865]
 description = "Personal top when there is only one"
+
+[2df075f9-fec9-4756-8f40-98c52a11504f]
+description = "Latest score after personal top scores"
+
+[809c4058-7eb1-4206-b01e-79238b9b71bc]
+description = "Scores after personal top scores"
