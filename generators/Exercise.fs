@@ -15,6 +15,7 @@ let [<Literal>] private AssertEqualTemplate = "AssertEqual"
 let [<Literal>] private AssertEqualWithinTemplate = "AssertEqualWithin"
 let [<Literal>] private AssertThrowsTemplate = "AssertThrows"
 
+[<AbstractClass>]
 type ExerciseGenerator() =
     // Customize rendered output
     abstract member RenderExpected : CanonicalDataCase * string * JToken -> string
@@ -37,7 +38,7 @@ type ExerciseGenerator() =
     abstract member UseFullMethodName : CanonicalDataCase -> bool
     abstract member SkipTestMethod : int * CanonicalDataCase -> bool
 
-    member this.Name = this.GetType() |> exerciseNameFromType
+    member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = $"%s{this.GetType().Name.Pascalize()}Tests"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
 
@@ -266,41 +267,34 @@ type ExerciseGenerator() =
     default _.SkipTestMethod (index, _) = index > 0
 
 let private tryCreateExerciseGenerator exerciseType =
-    if typeof<ExerciseGenerator>.IsAssignableFrom(exerciseType) then
-        let exerciseName = exerciseType.Name.Kebaberize()
-        let exerciseGenerator = Activator.CreateInstance(exerciseType) :?> ExerciseGenerator 
-        Some (exerciseName, exerciseGenerator)
+    if typeof<ExerciseGenerator>.IsAssignableFrom(exerciseType) && typeof<ExerciseGenerator> <> exerciseType then
+        Some (Activator.CreateInstance(exerciseType) :?> ExerciseGenerator)
     else
         None
 
-let private generatorExercises =
+let private exerciseGenerators =
     Assembly.GetEntryAssembly().GetTypes()
     |> Seq.choose tryCreateExerciseGenerator
+    |> Seq.map (fun generator -> generator.Name, generator)
     |> Map.ofSeq
 
-let private tryFindGeneratorExercise (exerciseName: string) =
-    generatorExercises
-    |> Map.tryFind exerciseName
+let private tryFindExerciseGenerator (exerciseName: string) =
+    Map.tryFind exerciseName exerciseGenerators
+
+let private runExerciseGenerator parseCanonicalData (generator: ExerciseGenerator) =
+    generator.Regenerate(parseCanonicalData generator.Name)
+    Log.Information("{Exercise}: updated", generator.Name)
+
+let private runExerciseGenerators options (generators: ExerciseGenerator seq) =
+    let parseCanonicalData' = parseCanonicalData options
+    Seq.iter (runExerciseGenerator parseCanonicalData') generators
 
 let regenerateTestClass options exercise =
-    let parseCanonicalData' = parseCanonicalData options
-
-    fun (exercise) ->
-      ()
-//        let canonicalData = parseCanonicalData' generator.Name
-//        generator.Regenerate(canonicalData)
-//        Log.Information(" {Exercise}: tests generated", generator.Name)
+    match tryFindExerciseGenerator exercise with
+    | Some generator ->
+        runExerciseGenerators options [generator]
+    | None ->
+        Log.Error("Could not find generator for {Exercise} exercise", exercise)
 
 let regenerateTestClasses options =
-    Log.Information("Re-generating test classes...")
-
-    let regenerateTestClass' = regenerateTestClass options
-    
-//    createExercises options
-//    |> List.filter (isNotFilteredByName options)
-//    |> function
-//        | [] -> Log.Warning "No exercises matched given options."
-//        | exercises ->
-//            List.iter regenerateTestClass' exercises
-//            Log.Information("Re-generated test classes.")
-    ()
+    runExerciseGenerators options (Map.values exerciseGenerators)

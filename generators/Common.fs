@@ -94,7 +94,12 @@ module String =
 
 module Map =
     open Newtonsoft.Json.Linq
-    open System.Collections.Generic    
+    open System.Collections.Generic
+    
+    let values map =
+        map
+        |> Map.toSeq
+        |> Seq.map snd
 
     let ofJToken<'TKey, 'TValue when 'TKey: comparison> (jToken: JToken)   =
         jToken.ToObject<Dictionary<'TKey, 'TValue>>()

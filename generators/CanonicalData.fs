@@ -21,18 +21,18 @@ type CanonicalData =
       Cases: CanonicalDataCase list }
 
 let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
-let [<Literal>] private ProblemSpecificationsBranch = "master";
+let [<Literal>] private ProblemSpecificationsBranch = "main";
 let [<Literal>] private ProblemSpecificationsRemote = "origin";
 let [<Literal>] private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
 
 let private cloneRepository options =
     if not (Directory.Exists(options.ProbSpecsDir)) then
-        Log.Information("Cloning repository...")
+        Log.Debug("Cloning problem-specifications repository...")
         Repository.Clone(ProblemSpecificationsGitUrl, options.ProbSpecsDir) |> ignore
-        Log.Information("Repository cloned.")
+        Log.Debug("Problem-specifications repository cloned.")
 
 let private updateToLatestVersion options =
-    Log.Information("Updating repository to latest version...");
+    Log.Debug("Updating problem-specifications latest version...");
 
     use repository = new Repository(options.ProbSpecsDir)
     Commands.Fetch(repository, ProblemSpecificationsRemote, Seq.empty, FetchOptions(), null)
@@ -40,7 +40,7 @@ let private updateToLatestVersion options =
     let remoteBranch = repository.Branches.[ProblemSpecificationsRemoteBranch];
     repository.Reset(ResetMode.Hard, remoteBranch.Tip);
 
-    Log.Information("Updated repository to latest version.");
+    Log.Debug("Updated problem-specifications to latest version.");
 
 let private downloadData options =
     cloneRepository options
