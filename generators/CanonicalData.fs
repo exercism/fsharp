@@ -25,26 +25,39 @@ let [<Literal>] private ProblemSpecificationsBranch = "main";
 let [<Literal>] private ProblemSpecificationsRemote = "origin";
 let [<Literal>] private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
 
+let private probSpecsDir options =
+    let defaultProbSpecsDir =
+        let appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+        Path.Combine(appDataDirectory, "exercism", "problem-specifications")
+        
+    Option.defaultValue defaultProbSpecsDir options.ProbSpecsDir 
+
 let private cloneRepository options =
-    if not (Directory.Exists(options.ProbSpecsDir)) then
-        Log.Debug("Cloning problem-specifications repository...")
-        Repository.Clone(ProblemSpecificationsGitUrl, options.ProbSpecsDir) |> ignore
-        Log.Debug("Problem-specifications repository cloned.")
+    Log.Debug("Cloning problem-specifications repository...")
+    Repository.Clone(ProblemSpecificationsGitUrl, probSpecsDir options) |> ignore
+    Log.Debug("Problem-specifications repository cloned.")
 
 let private updateToLatestVersion options =
     Log.Debug("Updating problem-specifications latest version...");
 
-    use repository = new Repository(options.ProbSpecsDir)
+    use repository = new Repository(probSpecsDir options)
     Commands.Fetch(repository, ProblemSpecificationsRemote, Seq.empty, FetchOptions(), null)
-    
+
     let remoteBranch = repository.Branches.[ProblemSpecificationsRemoteBranch];
     repository.Reset(ResetMode.Hard, remoteBranch.Tip);
 
     Log.Debug("Updated problem-specifications to latest version.");
 
+let shouldCloneRepository options = options.ProbSpecsDir.IsNone && not (Directory.Exists(probSpecsDir options))
+
+let shouldUpdateToLatestVersion options = options.ProbSpecsDir.IsNone
+
 let private downloadData options =
-    cloneRepository options
-    updateToLatestVersion options
+    if shouldCloneRepository options then
+        cloneRepository options
+        
+    if shouldUpdateToLatestVersion options then
+        updateToLatestVersion options
 
 type CanonicalDataConverter() =
     inherit JsonConverter()
@@ -110,7 +123,7 @@ let private convertCanonicalData canonicalDataContents =
     JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, converter)
 
 let private canonicalDataFile options exercise = 
-    Path.Combine(options.ProbSpecsDir, "exercises", exercise, "canonical-data.json")
+    Path.Combine(probSpecsDir options, "exercises", exercise, "canonical-data.json")
 
 let private readCanonicalData options exercise = 
     canonicalDataFile options exercise

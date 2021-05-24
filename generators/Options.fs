@@ -1,7 +1,5 @@
 module Generators.Options
 
-open System
-open System.IO
 open CommandLine
 
 type CommandLineOptions =
@@ -13,21 +11,20 @@ type CommandLineOptions =
 
 type Options =
     { Exercise : string option
-      ProbSpecsDir : string }
+      ProbSpecsDir : string option }
 
-let defaultProbSpecsDir =
-    let appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-    Path.Combine(appDataDirectory, "exercism", "problem-specifications")
-
-let private mapOptions (options: CommandLineOptions) =
+let private fromCommandLineOptions (options: CommandLineOptions) =
     { Exercise = options.Exercise
-      ProbSpecsDir = Option.defaultValue defaultProbSpecsDir options.ProbSpecsDir }
-    
+      ProbSpecsDir = options.ProbSpecsDir }
+
+let private formatErrors errors =
+    Seq.map string errors |> String.concat ", "
+
 let parseOptions argv =
     match Parser.Default.ParseArguments<CommandLineOptions>(argv) with
     | :? Parsed<CommandLineOptions> as parsed ->
-        Result.Ok(mapOptions parsed.Value)
+        Result.Ok(fromCommandLineOptions parsed.Value)
     | :? NotParsed<CommandLineOptions> as notParsed ->
-        Result.Error(Seq.map string notParsed.Errors |> String.concat ", ")
+        Result.Error(formatErrors notParsed.Errors)
     | _ ->
         failwith "Invalid parsing result"
