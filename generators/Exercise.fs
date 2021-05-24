@@ -8,7 +8,7 @@ open Humanizer
 open Rendering
 open Serilog
 open Templates
-open CanonicalData
+open Tests
 
 let private AssertEmptyTemplate = "AssertEmpty"
 let private AssertEqualTemplate = "AssertEqual"
@@ -18,25 +18,25 @@ let private AssertThrowsTemplate = "AssertThrows"
 [<AbstractClass>]
 type ExerciseGenerator() =
     // Customize rendered output
-    abstract member RenderExpected : CanonicalDataCase * string * JToken -> string
-    abstract member RenderInput : CanonicalDataCase * string * JToken -> string
-    abstract member RenderArrange : CanonicalDataCase -> string list
-    abstract member RenderAssert : CanonicalDataCase -> string list
-    abstract member RenderSut : CanonicalDataCase -> string
-    abstract member RenderSetup : CanonicalData -> string
-    abstract member RenderValue : CanonicalDataCase * string * JToken -> string
+    abstract member RenderExpected : TestCase * string * JToken -> string
+    abstract member RenderInput : TestCase * string * JToken -> string
+    abstract member RenderArrange : TestCase -> string list
+    abstract member RenderAssert : TestCase -> string list
+    abstract member RenderSut : TestCase -> string
+    abstract member RenderSetup : TestCase list -> string
+    abstract member RenderValue : TestCase * string * JToken -> string
 
     // Utility methods to customize rendered output
-    abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
-    abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
-    abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
-    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * JToken -> string option
+    abstract member MapCanonicalDataCase : TestCase -> TestCase
+    abstract member PropertiesUsedAsSutParameter : TestCase -> string list
+    abstract member PropertiesWithIdentifier : TestCase -> string list
+    abstract member IdentifierTypeAnnotation: TestCase * string * JToken -> string option
     abstract member AdditionalNamespaces : string list
-    abstract member AssertTemplate : CanonicalDataCase -> string
+    abstract member AssertTemplate : TestCase -> string
     abstract member TestFileFormat: TestFileFormat
-    abstract member TestMethodName : CanonicalDataCase -> string
-    abstract member UseFullMethodName : CanonicalDataCase -> bool
-    abstract member SkipTestMethod : int * CanonicalDataCase -> bool
+    abstract member TestMethodName : TestCase -> string
+    abstract member UseFullMethodName : TestCase -> bool
+    abstract member SkipTestMethod : int * TestCase -> bool
 
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = $"%s{this.GetType().Name.Pascalize()}Tests"
@@ -58,21 +58,20 @@ type ExerciseGenerator() =
         |> this.WriteToFile
 
     // Allow changes in canonical data
-    member this.MapCanonicalData canonicalData =
-        { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
+    member this.MapCanonicalData canonicalData = List.map this.MapCanonicalDataCase canonicalData
 
     default _.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
 
     // Convert canonical data to representation used when rendering
 
-    member this.ToTestFile (canonicalData: CanonicalData) =
+    member this.ToTestFile (canonicalData: TestCase list) =
         let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
 
         { ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
-          Methods = List.mapi renderTestMethod canonicalData.Cases
+          Methods = List.mapi renderTestMethod canonicalData
           Setup = this.RenderSetup canonicalData }
 
     member this.ToTestMethod (index, canonicalDataCase) =
@@ -286,7 +285,7 @@ let private runExerciseGenerator parseCanonicalData (generator: ExerciseGenerato
     Log.Information("{Exercise}: updated", generator.Name)
 
 let private runExerciseGenerators options (generators: ExerciseGenerator seq) =
-    let parseCanonicalData' = parseCanonicalData options
+    let parseCanonicalData' = findTestCases options
     Seq.iter (runExerciseGenerator parseCanonicalData') generators
 
 let regenerateTestClass options exercise =

@@ -3,7 +3,7 @@ module Generators.Generators
 open System
 open System.Globalization
 open Newtonsoft.Json.Linq
-open CanonicalData
+open Tests
 open Rendering
 open Templates
 open Exercise
@@ -1013,7 +1013,7 @@ type PalindromeProducts() =
         | null -> "(None, [])"
         | _ -> $"(Some %s{palindromeValue}, %s{factors})"
 
-    let isError (canonicalDataCase: CanonicalDataCase) =
+    let isError (canonicalDataCase: TestCase) =
         canonicalDataCase.Expected.Value("error") <> null
 
     override _.RenderExpected(canonicalDataCase, _, value) =
@@ -1538,7 +1538,7 @@ type SgfParsing() =
 type SimpleCipher() =
     inherit ExerciseGenerator()
 
-    let normalizeText input (canonicalDataCase: CanonicalDataCase) =
+    let normalizeText input (canonicalDataCase: TestCase) =
         match string input with
         | "cipher.key.substring(0, plaintext.length)" ->
             sprintf

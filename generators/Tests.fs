@@ -1,4 +1,4 @@
-module Generators.CanonicalData
+module Generators.Tests
 
 open System
 open System.IO
@@ -8,7 +8,7 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Options
 
-type CanonicalDataCase = 
+type TestCase = 
     { Input: Map<string, JToken>
       Expected: JToken
       Property: string
@@ -16,14 +16,10 @@ type CanonicalDataCase =
       Description: string
       DescriptionPath: string list }
 
-type CanonicalData = 
-    { Exercise: string
-      Cases: CanonicalDataCase list }
-
-let private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
-let private ProblemSpecificationsBranch = "main";
-let private ProblemSpecificationsRemote = "origin";
-let private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
+let private probSpecsCloneUrl = "https://github.com/exercism/problem-specifications.git";
+let private probSpecsBranch = "main";
+let private probSpecsRemote = "origin";
+let private probSpecsRemoteBranch = $"{probSpecsRemote}/{probSpecsBranch}";
 
 let private probSpecsDir options =
     let defaultProbSpecsDir =
@@ -34,16 +30,16 @@ let private probSpecsDir options =
 
 let private cloneRepository options =
     Log.Debug("Cloning problem-specifications repository...")
-    Repository.Clone(ProblemSpecificationsGitUrl, probSpecsDir options) |> ignore
+    Repository.Clone(probSpecsCloneUrl, probSpecsDir options) |> ignore
     Log.Debug("Problem-specifications repository cloned.")
 
 let private updateToLatestVersion options =
     Log.Debug("Updating problem-specifications latest version...");
 
     use repository = new Repository(probSpecsDir options)
-    Commands.Fetch(repository, ProblemSpecificationsRemote, Seq.empty, FetchOptions(), null)
+    Commands.Fetch(repository, probSpecsRemote, Seq.empty, FetchOptions(), null)
 
-    let remoteBranch = repository.Branches.[ProblemSpecificationsRemoteBranch];
+    let remoteBranch = repository.Branches.[probSpecsRemoteBranch];
     repository.Reset(ResetMode.Hard, remoteBranch.Tip);
 
     Log.Debug("Updated problem-specifications to latest version.");
@@ -106,21 +102,17 @@ type CanonicalDataConverter() =
         |> Seq.map createCanonicalDataCaseFromJToken
         |> Seq.toList
 
-    let createCanonicalDataFromJToken (jToken: JToken) =
-        { Exercise = jToken.["exercise"].Value<string>()
-          Cases = createCanonicalDataCasesFromJToken jToken }
-
     override _.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
 
     override _.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
         let jToken = JToken.ReadFrom(reader)
-        createCanonicalDataFromJToken jToken :> obj
+        createCanonicalDataCasesFromJToken jToken :> obj
 
-    override _.CanConvert(objectType: Type) = objectType = typeof<CanonicalData>
+    override _.CanConvert(objectType: Type) = objectType = typeof<TestCase list>
 
 let private convertCanonicalData canonicalDataContents = 
     let converter = CanonicalDataConverter()
-    JsonConvert.DeserializeObject<CanonicalData>(canonicalDataContents, converter)
+    JsonConvert.DeserializeObject<TestCase list>(canonicalDataContents, converter)
 
 let private canonicalDataFile options exercise = 
     Path.Combine(probSpecsDir options, "exercises", exercise, "canonical-data.json")
@@ -129,7 +121,7 @@ let private readCanonicalData options exercise =
     canonicalDataFile options exercise
     |> File.ReadAllText
 
-let parseCanonicalData options = 
+let findTestCases options = 
     downloadData options 
 
     fun exercise ->
