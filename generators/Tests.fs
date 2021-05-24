@@ -55,7 +55,7 @@ let private downloadData options =
     if shouldUpdateToLatestVersion options then
         updateToLatestVersion options
 
-type CanonicalDataConverter() =
+type TestCaseListConverter() =
     inherit JsonConverter()
     
     let rec parentsAndSelf (currentToken: JToken) =
@@ -76,7 +76,7 @@ type CanonicalDataConverter() =
         |> parentsAndSelf
         |> List.choose descriptionFromJToken
 
-    let createCanonicalDataCaseFromJToken (jToken: JToken) =
+    let createTestsFromJToken (jToken: JToken) =
         let properties = Map.ofJToken jToken
 
         { Input = Map.ofJToken properties.["input"]
@@ -86,33 +86,33 @@ type CanonicalDataConverter() =
           Description = string properties.["description"]
           DescriptionPath = createDescriptionPathFromJToken jToken }
 
-    let rec getCanonicalDataCaseJTokens(jToken: JToken) =
+    let rec getTestCaseJTokens(jToken: JToken) =
         match jToken with
         | :? JArray as jArray ->
-            Seq.collect getCanonicalDataCaseJTokens jArray
+            Seq.collect getTestCaseJTokens jArray
         | :? JObject as jObject when jObject.ContainsKey("property") ->
             Seq.singleton jObject
         | :? JObject as jObject when jObject.ContainsKey("cases") ->
-            Seq.collect getCanonicalDataCaseJTokens jObject.["cases"]
+            Seq.collect getTestCaseJTokens jObject.["cases"]
         | _ -> Seq.empty
 
-    let createCanonicalDataCasesFromJToken (jToken: JToken) =  
+    let createTestCaseListFromJToken (jToken: JToken) =  
         jToken.["cases"]
-        |> getCanonicalDataCaseJTokens
-        |> Seq.map createCanonicalDataCaseFromJToken
+        |> getTestCaseJTokens
+        |> Seq.map createTestsFromJToken
         |> Seq.toList
 
     override _.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
 
     override _.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
         let jToken = JToken.ReadFrom(reader)
-        createCanonicalDataCasesFromJToken jToken :> obj
+        createTestCaseListFromJToken jToken :> obj
 
     override _.CanConvert(objectType: Type) = objectType = typeof<TestCase list>
 
-let private convertCanonicalData canonicalDataContents = 
-    let converter = CanonicalDataConverter()
-    JsonConvert.DeserializeObject<TestCase list>(canonicalDataContents, converter)
+let private parseTestCaseList canonicalDataJson = 
+    let converter = TestCaseListConverter()
+    JsonConvert.DeserializeObject<TestCase list>(canonicalDataJson, converter)
 
 let private canonicalDataFile options exercise = 
     Path.Combine(probSpecsDir options, "exercises", exercise, "canonical-data.json")
@@ -127,4 +127,4 @@ let findTestCases options =
     fun exercise ->
         exercise
         |> readCanonicalData options 
-        |> convertCanonicalData
+        |> parseTestCaseList
