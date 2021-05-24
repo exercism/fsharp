@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 2.3.0 of the canonical data.
-
 module QueenAttackTests
 
 open FsUnit.Xunit
@@ -28,7 +26,7 @@ let ``Queen must have column on board`` () =
     create (4, 8) |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Can not attack`` () =
+let ``Cannot attack`` () =
     let whiteQueen = (2, 4)
     let blackQueen = (6, 6)
     canAttack blackQueen whiteQueen |> should equal false

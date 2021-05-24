@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.5.0 of the canonical data.
-
 module AnagramTests
 
 open FsUnit.Xunit
@@ -16,6 +14,11 @@ let ``No matches`` () =
 let ``Detects two anagrams`` () =
     let candidates = ["stream"; "pigeon"; "maters"]
     findAnagrams candidates "master" |> should equal ["stream"; "maters"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Detects two anagrams`` () =
+    let candidates = ["lemons"; "cherry"; "melons"]
+    findAnagrams candidates "solemn" |> should equal ["lemons"; "melons"]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Does not detect anagram subsets`` () =

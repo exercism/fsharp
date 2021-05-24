@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.6.0 of the canonical data.
-
 module LeapTests
 
 open FsUnit.Xunit
@@ -32,7 +30,7 @@ let ``Year divisible by 100 but not by 3 is still not a leap year`` () =
     leapYear 1900 |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Year divisible by 400 in leap year`` () =
+let ``Year divisible by 400 is leap year`` () =
     leapYear 2000 |> should equal true
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]

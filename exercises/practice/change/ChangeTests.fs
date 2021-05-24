@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.3.0 of the canonical data.
-
 module ChangeTests
 
 open FsUnit.Xunit
@@ -8,6 +6,13 @@ open Xunit
 open Change
 
 [<Fact>]
+let ``Change for 1 cent`` () =
+    let coins = [1; 5; 10; 25]
+    let target = 1
+    let expected = Some [1]
+    findFewestCoins coins target |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Single coin change`` () =
     let coins = [1; 5; 10; 25; 100]
     let target = 25

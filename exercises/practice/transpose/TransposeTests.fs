@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
-
 module TransposeTests
 
 open FsUnit.Xunit
@@ -183,5 +181,23 @@ let ``Triangle`` () =
           "   SER";
           "    ER";
           "     R" ]
+    transpose lines |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Jagged triangle`` () =
+    let lines = 
+        [ "11";
+          "2";
+          "3333";
+          "444";
+          "555555";
+          "66666" ]
+    let expected = 
+        [ "123456";
+          "1 3456";
+          "  3456";
+          "  3 56";
+          "    56";
+          "    5" ]
     transpose lines |> should equal expected
 

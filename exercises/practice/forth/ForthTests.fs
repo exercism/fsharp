@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.7.1 of the canonical data.
-
 module ForthTests
 
 open FsUnit.Xunit
@@ -198,9 +196,14 @@ let ``User-defined words - can define word that uses word with the same name`` (
     evaluate [": foo 10 ;"; ": foo foo 1 + ;"; "foo"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``User-defined words - cannot redefine numbers`` () =
+let ``User-defined words - cannot redefine non-negative numbers`` () =
     let expected = None
     evaluate [": 1 2 ;"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``User-defined words - cannot redefine negative numbers`` () =
+    let expected = None
+    evaluate [": -1 2 ;"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``User-defined words - errors if executing a non-existent word`` () =

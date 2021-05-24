@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.7.0 of the canonical data.
-
 module AcronymTests
 
 open FsUnit.Xunit

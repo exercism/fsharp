@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 2.1.0 of the canonical data.
-
 module FoodChainTests
 
 open FsUnit.Xunit

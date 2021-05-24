@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 2.4.1 of the canonical data.
-
 module ListOpsTests
 
 open FsUnit.Xunit
@@ -14,6 +12,10 @@ let ``append empty lists`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``append list to empty list`` () =
     append [] [1; 2; 3; 4] |> should equal [1; 2; 3; 4]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``append empty list to list`` () =
+    append [1; 2; 3; 4] [] |> should equal [1; 2; 3; 4]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``append non-empty lists`` () =
@@ -68,6 +70,18 @@ let ``foldl direction dependent function applied to non-empty list`` () =
     foldl (fun x y -> x / y) 5 [2; 5] |> should equal 0
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``foldl empty list`` () =
+    foldl (fun acc el -> el * acc) 2 [] |> should equal 2
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``foldl direction independent function applied to non-empty list`` () =
+    foldl (fun acc el -> el + acc) 5 [1; 2; 3; 4] |> should equal 15
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``foldl direction dependent function applied to non-empty list`` () =
+    foldl (fun acc el -> el / acc) 24 [1; 2; 3; 4] |> should equal 64
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``foldr empty list`` () =
     foldr (fun x y -> x * y) 2 [] |> should equal 2
 
@@ -78,6 +92,18 @@ let ``foldr direction independent function applied to non-empty list`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``foldr direction dependent function applied to non-empty list`` () =
     foldr (fun x y -> x / y) 5 [2; 5] |> should equal 2
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``foldr empty list`` () =
+    foldr (fun acc el -> el * acc) 2 [] |> should equal 2
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``foldr direction independent function applied to non-empty list`` () =
+    foldr (fun acc el -> el + acc) 5 [1; 2; 3; 4] |> should equal 15
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``foldr direction dependent function applied to non-empty list`` () =
+    foldr (fun acc el -> el / acc) 24 [1; 2; 3; 4] |> should equal 9
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``reverse empty list`` () =

@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
-
 module PrimeFactorsTests
 
 open FsUnit.Xunit
@@ -16,12 +14,32 @@ let ``Prime number`` () =
     factors 2L |> should equal [2]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Another prime number`` () =
+    factors 3L |> should equal [3]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Square of a prime`` () =
     factors 9L |> should equal [3; 3]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Product of first prime`` () =
+    factors 4L |> should equal [2; 2]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cube of a prime`` () =
     factors 8L |> should equal [2; 2; 2]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Product of second prime`` () =
+    factors 27L |> should equal [3; 3; 3]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Product of third prime`` () =
+    factors 625L |> should equal [5; 5; 5; 5]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Product of first and second prime`` () =
+    factors 6L |> should equal [2; 3]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Product of primes and non-primes`` () =

@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 2.3.0 of the canonical data.
-
 module HammingTests
 
 open FsUnit.Xunit
@@ -32,6 +30,14 @@ let ``Disallow first strand longer`` () =
     distance "AATG" "AAA" |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Disallow first strand longer`` () =
+    distance "AATG" "AAA" |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Disallow second strand longer`` () =
+    distance "ATA" "AGTG" |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow second strand longer`` () =
     distance "ATA" "AGTG" |> should equal None
 
@@ -40,6 +46,22 @@ let ``Disallow left empty strand`` () =
     distance "" "G" |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Disallow left empty strand`` () =
+    distance "" "G" |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Disallow empty first strand`` () =
+    distance "" "G" |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow right empty strand`` () =
+    distance "G" "" |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Disallow right empty strand`` () =
+    distance "G" "" |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Disallow empty second strand`` () =
     distance "G" "" |> should equal None
 

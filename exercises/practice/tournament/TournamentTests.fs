@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.4.0 of the canonical data.
-
 module TournamentTests
 
 open FsUnit.Xunit
@@ -131,5 +129,19 @@ let ``Ties broken alphabetically`` () =
           "Courageous Californians        |  3 |  2 |  1 |  0 |  7";
           "Blithering Badgers             |  3 |  0 |  1 |  2 |  1";
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
+    tally rows |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Ensure points sorted numerically`` () =
+    let rows = 
+        [ "Devastating Donkeys;Blithering Badgers;win";
+          "Devastating Donkeys;Blithering Badgers;win";
+          "Devastating Donkeys;Blithering Badgers;win";
+          "Devastating Donkeys;Blithering Badgers;win";
+          "Blithering Badgers;Devastating Donkeys;win" ]
+    let expected = 
+        [ "Team                           | MP |  W |  D |  L |  P";
+          "Devastating Donkeys            |  5 |  4 |  0 |  1 | 12";
+          "Blithering Badgers             |  5 |  1 |  0 |  4 |  3" ]
     tally rows |> should equal expected
 
