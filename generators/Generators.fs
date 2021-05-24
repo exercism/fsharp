@@ -519,9 +519,6 @@ type Darts() =
 
     override _.RenderInput(_, _, value) = formatFloat value
 
-type Diamond() =
-    inherit ExerciseGenerator()
-
 type DifferenceOfSquares() =
     inherit ExerciseGenerator()
 

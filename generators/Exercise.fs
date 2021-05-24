@@ -41,15 +41,13 @@ type ExerciseGenerator() =
     member this.Name = this.GetType().Name.Kebaberize()
     member this.TestModuleName = $"%s{this.GetType().Name.Pascalize()}Tests"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
-
-    member this.TestFilePath () =
-        Path.Combine("..", "exercises", "practice", this.Name, $"%s{this.TestModuleName}.fs")
+    
+    member this.ExerciseDir = Path.Combine("..", "exercises", "practice", this.Name)    
+    member this.TestFilePath = Path.Combine(this.ExerciseDir, $"%s{this.TestModuleName}.fs")     
 
     member this.WriteToFile contents =
-        let testFilePath = this.TestFilePath ()
-
-        Directory.CreateDirectory(Path.GetDirectoryName(testFilePath)) |> ignore
-        File.WriteAllText(testFilePath, contents)
+        Directory.CreateDirectory(Path.GetDirectoryName(this.TestFilePath)) |> ignore
+        File.WriteAllText(this.TestFilePath, contents)
 
     member this.Regenerate(canonicalData) =
         canonicalData

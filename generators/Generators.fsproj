@@ -27,4 +27,7 @@
     <PackageReference Include="Tomlyn" Version="0.1.2" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
+  </PropertyGroup>
 </Project>

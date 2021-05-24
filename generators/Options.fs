@@ -11,11 +11,13 @@ type CommandLineOptions =
 
 type Options =
     { Exercise : string option
-      ProbSpecsDir : string option }
+      ProbSpecsDir : string option      
+      PracticeExercisesDir: string }
 
 let private fromCommandLineOptions (options: CommandLineOptions) =
     { Exercise = options.Exercise
-      ProbSpecsDir = options.ProbSpecsDir }
+      ProbSpecsDir = options.ProbSpecsDir
+      PracticeExercisesDir = System.IO.Path.Combine("..", "exercises", "practice") }
 
 let private formatErrors errors =
     Seq.map string errors |> String.concat ", "
