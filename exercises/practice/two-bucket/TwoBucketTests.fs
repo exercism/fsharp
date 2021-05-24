@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.4.0 of the canonical data.
-
 module TwoBucketTests
 
 open FsUnit.Xunit
@@ -59,5 +57,14 @@ let ``Measure using bucket one of size 2 and bucket two of size 3 - start with b
     let goal = 3
     let startBucket = Bucket.One
     let expected = { Moves = 2; GoalBucket = Bucket.Two; OtherBucket = 2 }
+    measure bucketOne bucketTwo goal startBucket |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``With the same buckets but a different goal, then it is possible`` () =
+    let bucketOne = 6
+    let bucketTwo = 15
+    let goal = 9
+    let startBucket = Bucket.One
+    let expected = { Moves = 10; GoalBucket = Bucket.Two; OtherBucket = 0 }
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 

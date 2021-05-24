@@ -1672,12 +1672,6 @@ type TwoBucket() =
 
     let renderBucket (value: JToken) = Obj.renderEnum "Bucket" value
 
-    let renderMoves (value: JToken) =
-        let moves = value.["moves"].ToObject<int>()
-        let goalBucket = renderBucket value.["goalBucket"]
-        let otherBucket = value.["otherBucket"].ToObject<int>()
-        $"{{ Moves = %d{moves}; GoalBucket = %s{goalBucket}; OtherBucket = %d{otherBucket} }}"
-
     override this.PropertiesWithIdentifier testCase = this.Properties testCase
 
     override _.RenderInput(testCase, key, value) =
@@ -1685,11 +1679,11 @@ type TwoBucket() =
         | "startBucket" -> renderBucket value
         | _ -> base.RenderInput(testCase, key, value)
 
-    override _.RenderExpected(_, _, value) =
-        value
-        |> Option.ofNonErrorObject
-        |> Option.map renderMoves
-        |> Option.renderString
+    override __.RenderExpected (_, _, value) =
+        let moves       = value.["moves"].ToObject<int>()
+        let goalBucket  = renderBucket value.["goalBucket"]
+        let otherBucket = value.["otherBucket"].ToObject<int>()
+        sprintf "{ Moves = %d; GoalBucket = %s; OtherBucket = %d }" moves goalBucket otherBucket
 
 type TwoFer() =
     inherit ExerciseGenerator()

@@ -59,18 +59,6 @@ let ``map non-empty list`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``foldl empty list`` () =
-    foldl (fun x y -> x * y) 2 [] |> should equal 2
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``foldl direction independent function applied to non-empty list`` () =
-    foldl (fun x y -> x + y) 5 [1; 2; 3; 4] |> should equal 15
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``foldl direction dependent function applied to non-empty list`` () =
-    foldl (fun x y -> x / y) 5 [2; 5] |> should equal 0
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``foldl empty list`` () =
     foldl (fun acc el -> el * acc) 2 [] |> should equal 2
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -80,18 +68,6 @@ let ``foldl direction independent function applied to non-empty list`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``foldl direction dependent function applied to non-empty list`` () =
     foldl (fun acc el -> el / acc) 24 [1; 2; 3; 4] |> should equal 64
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``foldr empty list`` () =
-    foldr (fun x y -> x * y) 2 [] |> should equal 2
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``foldr direction independent function applied to non-empty list`` () =
-    foldr (fun x y -> x + y) 5 [1; 2; 3; 4] |> should equal 15
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``foldr direction dependent function applied to non-empty list`` () =
-    foldr (fun x y -> x / y) 5 [2; 5] |> should equal 2
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``foldr empty list`` () =
