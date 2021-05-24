@@ -20,10 +20,10 @@ type CanonicalData =
     { Exercise: string
       Cases: CanonicalDataCase list }
 
-let [<Literal>] private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
-let [<Literal>] private ProblemSpecificationsBranch = "main";
-let [<Literal>] private ProblemSpecificationsRemote = "origin";
-let [<Literal>] private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
+let private ProblemSpecificationsGitUrl = "https://github.com/exercism/problem-specifications.git";
+let private ProblemSpecificationsBranch = "main";
+let private ProblemSpecificationsRemote = "origin";
+let private ProblemSpecificationsRemoteBranch = ProblemSpecificationsRemote + "/" + ProblemSpecificationsBranch;
 
 let private probSpecsDir options =
     let defaultProbSpecsDir =

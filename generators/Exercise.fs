@@ -10,10 +10,10 @@ open Serilog
 open Templates
 open CanonicalData
 
-let [<Literal>] private AssertEmptyTemplate = "AssertEmpty"
-let [<Literal>] private AssertEqualTemplate = "AssertEqual"
-let [<Literal>] private AssertEqualWithinTemplate = "AssertEqualWithin"
-let [<Literal>] private AssertThrowsTemplate = "AssertThrows"
+let private AssertEmptyTemplate = "AssertEmpty"
+let private AssertEqualTemplate = "AssertEqual"
+let private AssertEqualWithinTemplate = "AssertEqualWithin"
+let private AssertThrowsTemplate = "AssertThrows"
 
 [<AbstractClass>]
 type ExerciseGenerator() =
