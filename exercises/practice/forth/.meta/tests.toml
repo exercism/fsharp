@@ -117,7 +117,10 @@ description = "can use different words with the same name"
 description = "can define word that uses word with the same name"
 
 [35958cee-a976-4a0f-9378-f678518fa322]
-description = "cannot redefine numbers"
+description = "cannot redefine non-negative numbers"
+
+[df5b2815-3843-4f55-b16c-c3ed507292a7]
+description = "cannot redefine negative numbers"
 
 [5180f261-89dd-491e-b230-62737e09806f]
 description = "errors if executing a non-existent word"

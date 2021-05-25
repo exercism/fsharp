@@ -3,57 +3,51 @@ module Generators.Exercise
 open System
 open System.IO
 open System.Reflection
-open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 open Humanizer
 open Rendering
+open Serilog
 open Templates
-open CanonicalData
-open Track
+open Tests
 
-let [<Literal>] private AssertEmptyTemplate = "AssertEmpty"
-let [<Literal>] private AssertEqualTemplate = "AssertEqual"
-let [<Literal>] private AssertEqualWithinTemplate = "AssertEqualWithin"
-let [<Literal>] private AssertThrowsTemplate = "AssertThrows"
-
-let private exerciseNameFromType (exerciseType: Type) = exerciseType.Name.Kebaberize()
+let private AssertEmptyTemplate = "AssertEmpty"
+let private AssertEqualTemplate = "AssertEqual"
+let private AssertEqualWithinTemplate = "AssertEqualWithin"
+let private AssertThrowsTemplate = "AssertThrows"
 
 [<AbstractClass>]
-type GeneratorExercise() =
-
+type ExerciseGenerator() =
     // Customize rendered output
-    abstract member RenderExpected : CanonicalDataCase * string * JToken -> string
-    abstract member RenderInput : CanonicalDataCase * string * JToken -> string
-    abstract member RenderArrange : CanonicalDataCase -> string list
-    abstract member RenderAssert : CanonicalDataCase -> string list
-    abstract member RenderSut : CanonicalDataCase -> string
-    abstract member RenderSetup : CanonicalData -> string
-    abstract member RenderValue : CanonicalDataCase * string * JToken -> string
+    abstract member RenderExpected : TestCase * string * JToken -> string
+    abstract member RenderInput : TestCase * string * JToken -> string
+    abstract member RenderArrange : TestCase -> string list
+    abstract member RenderAssert : TestCase -> string list
+    abstract member RenderSut : TestCase -> string
+    abstract member RenderSetup : TestCase list -> string
+    abstract member RenderValue : TestCase * string * JToken -> string
 
     // Utility methods to customize rendered output
-    abstract member MapCanonicalDataCase : CanonicalDataCase -> CanonicalDataCase
-    abstract member PropertiesUsedAsSutParameter : CanonicalDataCase -> string list
-    abstract member PropertiesWithIdentifier : CanonicalDataCase -> string list
-    abstract member IdentifierTypeAnnotation: CanonicalDataCase * string * JToken -> string option
+    abstract member MapTestCase : TestCase -> TestCase
+    abstract member PropertiesUsedAsSutParameter : TestCase -> string list
+    abstract member PropertiesWithIdentifier : TestCase -> string list
+    abstract member IdentifierTypeAnnotation: TestCase * string * JToken -> string option
     abstract member AdditionalNamespaces : string list
-    abstract member AssertTemplate : CanonicalDataCase -> string
+    abstract member AssertTemplate : TestCase -> string
     abstract member TestFileFormat: TestFileFormat
-    abstract member TestMethodName : CanonicalDataCase -> string
-    abstract member UseFullMethodName : CanonicalDataCase -> bool
-    abstract member SkipTestMethod : int * CanonicalDataCase -> bool
+    abstract member TestMethodName : TestCase -> string
+    abstract member UseFullMethodName : TestCase -> bool
+    abstract member SkipTestMethod : int * TestCase -> bool
 
-    member this.Name = this.GetType() |> exerciseNameFromType
-    member this.TestModuleName = this.GetType().Name.Pascalize() |> sprintf "%sTests"
+    member this.Name = this.GetType().Name.Kebaberize()
+    member this.TestModuleName = $"%s{this.GetType().Name.Pascalize()}Tests"
     member this.TestedModuleName = this.GetType().Name.Pascalize()
-
-    member this.TestFilePath () =
-        Path.Combine("..", "exercises", "practice", this.Name, sprintf "%s.fs" this.TestModuleName)
+    
+    member this.ExerciseDir = Path.Combine("..", "exercises", "practice", this.Name)    
+    member this.TestFilePath = Path.Combine(this.ExerciseDir, $"%s{this.TestModuleName}.fs")     
 
     member this.WriteToFile contents =
-        let testFilePath = this.TestFilePath ()
-
-        Directory.CreateDirectory(Path.GetDirectoryName(testFilePath)) |> ignore
-        File.WriteAllText(testFilePath, contents)
+        Directory.CreateDirectory(Path.GetDirectoryName(this.TestFilePath)) |> ignore
+        File.WriteAllText(this.TestFilePath, contents)
 
     member this.Regenerate(canonicalData) =
         canonicalData
@@ -61,53 +55,36 @@ type GeneratorExercise() =
         |> this.Render
         |> this.WriteToFile
 
-    member this.ReadVersion () =
-        (*
-            Read from the top of the file e.g.
-            "// This file was auto-generated based on version 1.2.0 of the canonical data."
-        *)
-
-        this.TestFilePath ()
-        |> File.ReadLines
-        |> Seq.head
-        |> String.split " "
-        |> Seq.find (fun s -> s.[0] |> System.Char.IsDigit)
-
     // Allow changes in canonical data
+    member this.MapCanonicalData canonicalData = List.map this.MapTestCase canonicalData
 
-    member this.MapCanonicalData canonicalData =
-        { canonicalData with Cases = List.map this.MapCanonicalDataCase canonicalData.Cases }
-
-    default __.MapCanonicalDataCase canonicalDataCase = canonicalDataCase
+    default _.MapTestCase testCase = testCase
 
     // Convert canonical data to representation used when rendering
+    member this.ToTestFile (testCases: TestCase list) =
+        let renderTestMethod i testCase = this.RenderTestMethod(i, testCase)
 
-    member this.ToTestFile canonicalData =
-        let renderTestMethod i canonicalDataCase = this.RenderTestMethod(i, canonicalDataCase)
-
-        { Version = canonicalData.Version
-          ExerciseName = this.Name
+        { ExerciseName = this.Name
           TestModuleName = this.TestModuleName
           TestedModuleName = this.TestedModuleName
           Namespaces = ["FsUnit.Xunit"; "Xunit"] @ this.AdditionalNamespaces
-          Methods = List.mapi renderTestMethod canonicalData.Cases
-          Setup = this.RenderSetup canonicalData }
+          Methods = List.mapi renderTestMethod testCases
+          Setup = this.RenderSetup testCases }
 
-    member this.ToTestMethod (index, canonicalDataCase) =
-        { Skip = this.SkipTestMethod (index, canonicalDataCase)
-          Name = this.TestMethodName canonicalDataCase
-          Body = this.RenderTestMethodBody canonicalDataCase }
+    member this.ToTestMethod (index, testCase) =
+        { Skip = this.SkipTestMethod (index, testCase)
+          Name = this.TestMethodName testCase
+          Body = this.RenderTestMethodBody testCase }
 
-    member this.ToTestMethodBody canonicalDataCase =
-        { Arrange = this.RenderArrange canonicalDataCase
-          Assert = this.RenderAssert canonicalDataCase }
+    member this.ToTestMethodBody testCase =
+        { Arrange = this.RenderArrange testCase
+          Assert = this.RenderAssert testCase }
 
-    member this.ToTestMethodBodyAssert canonicalDataCase =
-        { Sut = this.RenderValueOrIdentifier (canonicalDataCase, "sut", canonicalDataCase.Expected)
-          Expected = this.RenderValueOrIdentifier (canonicalDataCase, "expected", canonicalDataCase.Expected) }
+    member this.ToTestMethodBodyAssert testCase =
+        { Sut = this.RenderValueOrIdentifier (testCase, "sut", testCase.Expected)
+          Expected = this.RenderValueOrIdentifier (testCase, "expected", testCase.Expected) }
 
     // Determine the templates to use when rendering
-
     member this.TestFileTemplate =
         match this.TestFileFormat with
         | Module -> "TestModule"
@@ -123,116 +100,113 @@ type GeneratorExercise() =
         | Module -> "TestFunctionBody"
         | Class  -> "TestMemberBody"
 
-    default this.AssertTemplate canonicalDataCase =
-        let expectedIsArray = canonicalDataCase.Expected.Type = JTokenType.Array
-        let expectedIsEmpty = Seq.isEmpty canonicalDataCase.Expected
-        let expectedHasIdentifier = List.contains "expected" (this.PropertiesWithIdentifier canonicalDataCase)
+    default this.AssertTemplate testCase =
+        let expectedIsArray = testCase.Expected.Type = JTokenType.Array
+        let expectedIsEmpty = Seq.isEmpty testCase.Expected
+        let expectedHasIdentifier = List.contains "expected" (this.PropertiesWithIdentifier testCase)
 
         if expectedIsArray && expectedIsEmpty && not expectedHasIdentifier then
             AssertEmptyTemplate
         else
             AssertEqualTemplate
 
-    member __.RenderAssertEmpty sut expected =
+    member _.RenderAssertEmpty sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertEmptyTemplate
 
-    member __.RenderAssertEqual sut expected =
+    member _.RenderAssertEqual sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertEqualTemplate
 
-    member __.RenderAssertEqualWithin sut expected =
+    member _.RenderAssertEqualWithin sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertEqualWithinTemplate
 
-    member __.RenderAssertThrows sut expected =
+    member _.RenderAssertThrows sut expected =
         { Sut = sut; Expected = expected }
         |> renderTemplate AssertThrowsTemplate
 
-    default __.TestFileFormat = TestFileFormat.Module
+    default _.TestFileFormat = TestFileFormat.Module
 
     // Rendering of canonical data
-
     member this.Render canonicalData =
         canonicalData
         |> this.ToTestFile
         |> renderTemplate this.TestFileTemplate
 
-    member this.RenderTestMethod (index, canonicalDataCase) =
-        let template = this.TestMethodTemplate (index, canonicalDataCase)
+    member this.RenderTestMethod (index, testCase) =
+        let template = this.TestMethodTemplate (index, testCase)
 
-        (index, canonicalDataCase)
+        (index, testCase)
         |> this.ToTestMethod
         |> renderTemplate template
 
-    member this.RenderTestMethodBody canonicalDataCase =
-        let template = this.TestMethodBodyTemplate canonicalDataCase
+    member this.RenderTestMethodBody testCase =
+        let template = this.TestMethodBodyTemplate testCase
 
-        canonicalDataCase
+        testCase
         |> this.ToTestMethodBody
         |> renderTemplate template
 
-    default this.TestMethodName canonicalDataCase =
-        match this.UseFullMethodName canonicalDataCase with
+    default this.TestMethodName testCase =
+        match this.UseFullMethodName testCase with
         | false ->
-            String.upperCaseFirst canonicalDataCase.Description
+            String.upperCaseFirst testCase.Description
         | true ->
-            canonicalDataCase.DescriptionPath
+            testCase.DescriptionPath
             |> String.concat " - "
             |> String.upperCaseFirst
 
-    default __.RenderSetup _ = ""
+    default _.RenderSetup _ = ""
 
     // Generic value/identifier rendering methods
+    default _.RenderValue (_, _, value) = Obj.render value
 
-    default __.RenderValue (_, _, value) = Obj.render value
-
-    member this.RenderValueOrIdentifier (canonicalDataCase, key, value) =
-        let properties = this.PropertiesWithIdentifier canonicalDataCase
+    member this.RenderValueOrIdentifier (testCase, key, value) =
+        let properties = this.PropertiesWithIdentifier testCase
 
         match List.contains key properties with
-        | true  -> this.RenderIdentifier (canonicalDataCase, key, value)
-        | false -> this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
+        | true  -> this.RenderIdentifier (testCase, key, value)
+        | false -> this.RenderValueWithoutIdentifier (testCase, key, value)
 
-    member this.RenderValueWithoutIdentifier (canonicalDataCase, key, value) =
+    member this.RenderValueWithoutIdentifier (testCase, key, value) =
         match key with
-        | "expected" -> this.RenderExpected (canonicalDataCase, key, value)
-        | "sut" -> this.RenderSut canonicalDataCase
-        | _  -> this.RenderInput (canonicalDataCase, key, value)
+        | "expected" -> this.RenderExpected (testCase, key, value)
+        | "sut" -> this.RenderSut testCase
+        | _  -> this.RenderInput (testCase, key, value)
 
-    member this.RenderValueWithIdentifier (canonicalDataCase, key, value) =
-        let identifier = this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value)
-        let value = this.RenderValueWithoutIdentifier (canonicalDataCase, key, value)
-        sprintf "let %s = %s" identifier value
+    member this.RenderValueWithIdentifier (testCase, key, value) =
+        let identifier = this.RenderIdentifierWithTypeAnnotation (testCase, key, value)
+        let value = this.RenderValueWithoutIdentifier (testCase, key, value)
+        $"let %s{identifier} = %s{value}"
 
-    member __.RenderIdentifier (_, key, _) = String.camelize key
+    member _.RenderIdentifier (_, key, _) = String.camelize key
 
-    member this.RenderIdentifierWithTypeAnnotation (canonicalDataCase, key, value) =
-        let identifier = this.RenderIdentifier (canonicalDataCase, key, value)
+    member this.RenderIdentifierWithTypeAnnotation (testCase, key, value) =
+        let identifier = this.RenderIdentifier (testCase, key, value)
 
-        match this.IdentifierTypeAnnotation (canonicalDataCase, key, value) with
+        match this.IdentifierTypeAnnotation (testCase, key, value) with
         | Some identifierType ->
-            sprintf "%s: %s" identifier identifierType
+            $"%s{identifier}: %s{identifierType}"
         | None ->
             identifier
 
     // Canonical-data specific rendering methods
+    default this.RenderExpected (testCase, key, value) = this.RenderValue (testCase, key, value)
 
-    default this.RenderExpected (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
+    default this.RenderInput (testCase, key, value) = this.RenderValue (testCase, key, value)
 
-    default this.RenderInput (canonicalDataCase, key, value) = this.RenderValue (canonicalDataCase, key, value)
-
-    default this.RenderArrange canonicalDataCase =
+    default this.RenderArrange testCase =
         let renderExpected prop =
-            this.RenderValueWithIdentifier (canonicalDataCase, prop, canonicalDataCase.Expected) |> Some
+            this.RenderValueWithIdentifier (testCase, prop, testCase.Expected) |> Some
 
         let renderSut prop =
-            this.RenderValueWithIdentifier (canonicalDataCase, prop, canonicalDataCase.Expected) |> Some
+            this.RenderValueWithIdentifier (testCase, prop, testCase.Expected) |> Some
 
         let renderInput prop =
-            match Map.tryFind prop canonicalDataCase.Input with
+            match Map.tryFind prop testCase.Input with
             | None -> None
-            | Some value -> Some (this.RenderValueWithIdentifier (canonicalDataCase, prop, value))
+            | Some value -> Some (this.RenderValueWithIdentifier (testCase, prop, value))
 
         let renderArrangeProperty prop: string option =
             match prop with
@@ -240,144 +214,83 @@ type GeneratorExercise() =
             | "sut" -> renderSut prop
             | _ -> renderInput prop
 
-        canonicalDataCase
+        testCase
         |> this.PropertiesWithIdentifier
         |> List.choose renderArrangeProperty
 
-    default this.RenderAssert canonicalDataCase =
-        let template = this.AssertTemplate canonicalDataCase
+    default this.RenderAssert testCase =
+        let template = this.AssertTemplate testCase
 
-        canonicalDataCase
+        testCase
         |> this.ToTestMethodBodyAssert
         |> renderTemplate template
         |> List.singleton
 
-    default this.RenderSut canonicalDataCase =
-        let parameters = this.RenderSutParameters canonicalDataCase
-        let prop = this.RenderSutProperty canonicalDataCase
+    default this.RenderSut testCase =
+        let parameters = this.RenderSutParameters testCase
+        let prop = this.RenderSutProperty testCase
         prop :: parameters |> String.concat " "
 
-    member this.RenderSutParameters canonicalDataCase =
-        let sutParameterProperties = this.PropertiesUsedAsSutParameter canonicalDataCase
-        let renderSutParameter key = this.RenderSutParameter (canonicalDataCase, key, Map.find key canonicalDataCase.Input)
+    member this.RenderSutParameters testCase =
+        let sutParameterProperties = this.PropertiesUsedAsSutParameter testCase
+        let renderSutParameter key = this.RenderSutParameter (testCase, key, Map.find key testCase.Input)
 
         sutParameterProperties
         |> List.map renderSutParameter
 
-    member this.RenderSutParameter (canonicalDataCase, key, value) =
-        this.RenderValueOrIdentifier (canonicalDataCase, key, value)
+    member this.RenderSutParameter (testCase, key, value) =
+        this.RenderValueOrIdentifier (testCase, key, value)
 
-    member __.RenderSutProperty canonicalDataCase = string canonicalDataCase.Property
+    member _.RenderSutProperty testCase = string testCase.Property
 
-    member this.Properties canonicalDataCase =
-        List.append (this.PropertiesUsedAsSutParameter canonicalDataCase) ["expected"]
+    member this.Properties testCase =
+        List.append (this.PropertiesUsedAsSutParameter testCase) ["expected"]
 
-    default __.PropertiesUsedAsSutParameter canonicalDataCase =
-        canonicalDataCase.Input
+    default _.PropertiesUsedAsSutParameter testCase =
+        testCase.Input
         |> Map.toList
         |> List.map fst
 
     // Utility methods to customize rendered output
+    default _.PropertiesWithIdentifier _ = []
 
-    default __.PropertiesWithIdentifier _ = []
+    default _.IdentifierTypeAnnotation (_, _, _) = None
 
-    default __.IdentifierTypeAnnotation (_, _, _) = None
+    default _.UseFullMethodName _ = false
 
-    default __.UseFullMethodName _ = false
+    default _.AdditionalNamespaces = []
 
-    default __.AdditionalNamespaces = []
+    default _.SkipTestMethod (index, _) = index > 0
 
-    default __.SkipTestMethod (index, _) = index > 0
+let private tryCreateExerciseGenerator exerciseType =
+    if typeof<ExerciseGenerator>.IsAssignableFrom(exerciseType) && typeof<ExerciseGenerator> <> exerciseType then
+        Some (Activator.CreateInstance(exerciseType) :?> ExerciseGenerator)
+    else
+        None
 
-type CustomExercise() =
-
-    member this.Name = this.GetType().Name.Kebaberize()
-
-type MissingDataExercise = { Name: string }
-
-type UnimplementedExercise = { Name: string }
-
-type DeprecatedExercise = { Name: string }
-
-type Exercise =
-    | Generator of GeneratorExercise
-    | Custom of CustomExercise
-    | MissingData of MissingDataExercise
-    | Unimplemented of UnimplementedExercise
-    | Deprecated of DeprecatedExercise
-
-let exerciseName exercise =
-    match exercise with
-    | Generator generator -> generator.Name
-    | Custom custom -> custom.Name
-    | Unimplemented unimplemented -> unimplemented.Name
-    | MissingData missingData -> missingData.Name
-    | Deprecated deprecated -> deprecated.Name
-
-type ConfigExercise = { Slug: string }
-
-type Config = { Exercises: ConfigExercise[] }
-
-let private exerciseNames =
-    let configFilePath = "../config.json"
-    let configFileContents = File.ReadAllText configFilePath
-    let config = JsonConvert.DeserializeObject<Config>(configFileContents)
-
-    config.Exercises
-    |> Seq.map (fun exercise -> exercise.Slug)
-    |> Seq.sort
-    |> Seq.toList
-
-let private isConcreteType (ty: Type) = not ty.IsAbstract
-
-let private isGeneratorExercise (ty: Type) = typeof<GeneratorExercise>.IsAssignableFrom(ty)
-
-let private isCustomExercise (ty: Type) = typeof<CustomExercise>.IsAssignableFrom(ty)
-
-let private concreteAssemblyTypes =
+let private exerciseGenerators =
     Assembly.GetEntryAssembly().GetTypes()
-    |> Array.filter isConcreteType
+    |> Seq.choose tryCreateExerciseGenerator
+    |> Seq.map (fun generator -> generator.Name, generator)
+    |> Map.ofSeq
 
-let private exerciseTypeByName<'T> exerciseType =
-    (exerciseNameFromType exerciseType, Activator.CreateInstance(exerciseType) :?> 'T)
+let private tryFindExerciseGenerator (exerciseName: string) =
+    Map.tryFind exerciseName exerciseGenerators
 
-let private exerciseTypesByName<'T> predicate =
-    concreteAssemblyTypes
-    |> Array.filter predicate
-    |> Array.map exerciseTypeByName<'T>
-    |> Map.ofArray
+let private runExerciseGenerator parseCanonicalData (generator: ExerciseGenerator) =
+    generator.Regenerate(parseCanonicalData generator.Name)
+    Log.Information("{Exercise}: updated", generator.Name)
 
-let private generatorExercises = exerciseTypesByName<GeneratorExercise> isGeneratorExercise
+let private runExerciseGenerators options (generators: ExerciseGenerator seq) =
+    let parseCanonicalData' = findTestCases options
+    Seq.iter (runExerciseGenerator parseCanonicalData') generators
 
-let private customExercises = exerciseTypesByName<CustomExercise> isCustomExercise
+let regenerateTestClass options exercise =
+    match tryFindExerciseGenerator exercise with
+    | Some generator ->
+        runExerciseGenerators options [generator]
+    | None ->
+        Log.Error("Could not find generator for {Exercise} exercise", exercise)
 
-let private tryFindGeneratorExercise exerciseName =
-    generatorExercises
-    |> Map.tryFind exerciseName
-    |> Option.map Generator
-
-let private tryFindCustomExercise exerciseName =
-    customExercises
-    |> Map.tryFind exerciseName
-    |> Option.map Custom
-
-let private tryFindDeprecatedExercise exerciseName =
-    match isDeprecated exerciseName with
-    | true  -> Deprecated { Name = exerciseName } |> Some
-    | false -> None
-
-let private tryFindUnimplementedExercise options exerciseName =
-    match hasCanonicalData options exerciseName with
-    | true  -> Unimplemented { Name = exerciseName } |> Some
-    | false -> None
-
-let private createExercise options exerciseName =
-    tryFindDeprecatedExercise exerciseName
-    |> Option.orElse (tryFindGeneratorExercise exerciseName)
-    |> Option.orElse (tryFindCustomExercise exerciseName)
-    |> Option.orElse (tryFindUnimplementedExercise options exerciseName)
-    |> Option.orElse (MissingData { Name = exerciseName } |> Some)
-
-let createExercises options =
-    exerciseNames
-    |> List.choose (createExercise options)
+let regenerateTestClasses options =
+    runExerciseGenerators options (Map.values exerciseGenerators)

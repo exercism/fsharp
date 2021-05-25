@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.0.1 of the canonical data.
-
 module GradeSchoolTests
 
 open FsUnit.Xunit
@@ -18,7 +16,7 @@ let ``Adding a student adds them to the sorted roster`` () =
     roster school |> should equal ["Aimee"]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Adding more student adds them to the sorted roster`` () =
+let ``Adding more students adds them to the sorted roster`` () =
     let school = studentsToSchool [("Blair", 2); ("James", 2); ("Paul", 2)]
     roster school |> should equal ["Blair"; "James"; "Paul"]
 

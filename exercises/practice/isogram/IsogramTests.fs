@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.7.0 of the canonical data.
-
 module IsogramTests
 
 open FsUnit.Xunit
@@ -58,4 +56,8 @@ let ``Duplicated character in the middle`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Same first and last characters`` () =
     isIsogram "angola" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Word with duplicated character and with two hyphens`` () =
+    isIsogram "up-to-date" |> should equal false
 

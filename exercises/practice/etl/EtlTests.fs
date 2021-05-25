@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 2.0.1 of the canonical data.
-
 module EtlTests
 
 open FsUnit.Xunit

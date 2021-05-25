@@ -7,30 +7,27 @@
 
   <ItemGroup>
     <Compile Include="Common.fs" />
-    <Compile Include="Conversion.fs" />
     <Compile Include="Options.fs" />
-    <Compile Include="CanonicalData.fs" />
-    <Compile Include="Track.fs" />
+    <Compile Include="Tests.fs" />
     <Compile Include="Rendering.fs" />
     <Compile Include="Templates.fs" />
     <Compile Include="Exercise.fs" />
     <Compile Include="Generators.fs" />
-    <Compile Include="Reporting.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommandLineParser" Version="2.8.0" />
-    <PackageReference Include="DotLiquid" Version="2.0.366" />
-    <PackageReference Include="Humanizer" Version="2.8.26" />
-    <PackageReference Include="LibGit2Sharp.Portable" Version="0.24.10" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="CommandLineParser.FSharp" Version="2.8.0" />
+    <PackageReference Include="DotLiquid" Version="2.1.436" />
+    <PackageReference Include="Humanizer" Version="2.10.1" />
+    <PackageReference Include="LibGit2Sharp" Version="0.26.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Serilog" Version="2.10.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
+    <PackageReference Include="Tomlyn" Version="0.1.2" />
   </ItemGroup>
 
   <PropertyGroup>
     <RunWorkingDirectory>$(MSBuildProjectDirectory)</RunWorkingDirectory>
   </PropertyGroup>
-
 </Project>

@@ -18,13 +18,37 @@ description = "second student's garden"
 description = "third student's garden"
 
 [149b4290-58e1-40f2-8ae4-8b87c46e765b]
-description = "first student's garden"
+description = "for Alice, first student's garden"
 
 [ba25dbbc-10bd-4a37-b18e-f89ecd098a5e]
-description = "second student's garden"
+description = "for Bob, second student's garden"
+
+[566b621b-f18e-4c5f-873e-be30544b838c]
+description = "for Charlie"
+
+[3ad3df57-dd98-46fc-9269-1877abf612aa]
+description = "for David"
+
+[0f0a55d1-9710-46ed-a0eb-399ba8c72db2]
+description = "for Eve"
+
+[a7e80c90-b140-4ea1-aee3-f4625365c9a4]
+description = "for Fred"
+
+[9d94b273-2933-471b-86e8-dba68694c615]
+description = "for Ginny"
+
+[f55bc6c2-ade8-4844-87c4-87196f1b7258]
+description = "for Harriet"
+
+[759070a3-1bb1-4dd4-be2c-7cce1d7679ae]
+description = "for Ileana"
+
+[78578123-2755-4d4a-9c7d-e985b8dda1c6]
+description = "for Joseph"
 
 [6bb66df7-f433-41ab-aec2-3ead6e99f65b]
-description = "second to last student's garden"
+description = "for Kincaid, second to last student's garden"
 
 [d7edec11-6488-418a-94e6-ed509e0fa7eb]
-description = "last student's garden"
+description = "for Larry, last student's garden"

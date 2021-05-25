@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
-
 module RunLengthEncodingTests
 
 open FsUnit.Xunit
@@ -52,7 +50,7 @@ let ``Decode multiple whitespace mixed in string`` () =
     decode "2 hs2q q2w2 " |> should equal "  hsqq qww  "
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Decode lower case string`` () =
+let ``Decode lowercase string`` () =
     decode "2a3b4c" |> should equal "aabbbcccc"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]

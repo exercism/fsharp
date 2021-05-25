@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 2.7.0 of the canonical data.
-
 module IsbnVerifierTests
 
 open FsUnit.Xunit
@@ -8,7 +6,7 @@ open Xunit
 open IsbnVerifier
 
 [<Fact>]
-let ``Valid isbn number`` () =
+let ``Valid isbn`` () =
     isValid "3-598-21508-8" |> should equal true
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -16,7 +14,7 @@ let ``Invalid isbn check digit`` () =
     isValid "3-598-21508-9" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Valid isbn number with a check digit of 10`` () =
+let ``Valid isbn with a check digit of 10`` () =
     isValid "3-598-21507-X" |> should equal true
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]

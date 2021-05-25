@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.2.0 of the canonical data.
-
 module RomanNumeralsTests
 
 open FsUnit.Xunit
@@ -8,78 +6,78 @@ open Xunit
 open RomanNumerals
 
 [<Fact>]
-let ``1 is a single I`` () =
+let ``1 is I`` () =
     roman 1 |> should equal "I"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``2 is two I's`` () =
+let ``2 is II`` () =
     roman 2 |> should equal "II"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``3 is three I's`` () =
+let ``3 is III`` () =
     roman 3 |> should equal "III"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``4, being 5 - 1, is IV`` () =
+let ``4 is IV`` () =
     roman 4 |> should equal "IV"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``5 is a single V`` () =
+let ``5 is V`` () =
     roman 5 |> should equal "V"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``6, being 5 + 1, is VI`` () =
+let ``6 is VI`` () =
     roman 6 |> should equal "VI"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``9, being 10 - 1, is IX`` () =
+let ``9 is IX`` () =
     roman 9 |> should equal "IX"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``20 is two X's`` () =
+let ``27 is XXVII`` () =
     roman 27 |> should equal "XXVII"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``48 is not 50 - 2 but rather 40 + 8`` () =
+let ``48 is XLVIII`` () =
     roman 48 |> should equal "XLVIII"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``49 is not 40 + 5 + 4 but rather 50 - 10 + 10 - 1`` () =
+let ``49 is XLIX`` () =
     roman 49 |> should equal "XLIX"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``50 is a single L`` () =
+let ``59 is LIX`` () =
     roman 59 |> should equal "LIX"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``90, being 100 - 10, is XC`` () =
+let ``93 is XCIII`` () =
     roman 93 |> should equal "XCIII"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``100 is a single C`` () =
+let ``141 is CXLI`` () =
     roman 141 |> should equal "CXLI"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``60, being 50 + 10, is LX`` () =
+let ``163 is CLXIII`` () =
     roman 163 |> should equal "CLXIII"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``400, being 500 - 100, is CD`` () =
+let ``402 is CDII`` () =
     roman 402 |> should equal "CDII"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``500 is a single D`` () =
+let ``575 is DLXXV`` () =
     roman 575 |> should equal "DLXXV"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``900, being 1000 - 100, is CM`` () =
+let ``911 is CMXI`` () =
     roman 911 |> should equal "CMXI"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``1000 is a single M`` () =
+let ``1024 is MXXIV`` () =
     roman 1024 |> should equal "MXXIV"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``3000 is three M's`` () =
+let ``3000 is MMM`` () =
     roman 3000 |> should equal "MMM"
 

@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.1.0 of the canonical data.
-
 module PerfectNumbersTests
 
 open FsUnit.Xunit
@@ -52,10 +50,10 @@ let ``Edge case (no factors other than itself) is classified correctly`` () =
     classify 1 |> should equal (Some Classification.Deficient)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Zero is rejected (not a natural number)`` () =
+let ``Zero is rejected (as it is not a positive integer)`` () =
     classify 0 |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Negative integer is rejected (not a natural number)`` () =
+let ``Negative integer is rejected (as it is not a positive integer)`` () =
     classify -1 |> should equal None
 

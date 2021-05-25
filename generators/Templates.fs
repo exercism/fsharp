@@ -18,7 +18,7 @@ let private initTemplate() =
     Template.RegisterSafeType(typeof<TestMethodBodyAssert>, [| "Sut"; "Expected" |])
     Template.RegisterSafeType(typeof<TestMethodBody>, [| "Arrange"; "Assert" |])
     Template.RegisterSafeType(typeof<TestMethod>, [| "Skip"; "Name"; "Body" |])
-    Template.RegisterSafeType(typeof<TestFile>, [| "Version"; "TestModuleName"; "TestedModuleName"; "Namespaces"; "Setup"; "Methods" |])
+    Template.RegisterSafeType(typeof<TestFile>, [| "TestModuleName"; "TestedModuleName"; "Namespaces"; "Setup"; "Methods" |])
 
 let private hashFromData (data: obj) =
     match FSharpType.IsRecord (data.GetType()) with

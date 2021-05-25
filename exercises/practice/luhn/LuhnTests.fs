@@ -1,5 +1,3 @@
-// This file was auto-generated based on version 1.7.0 of the canonical data.
-
 module LuhnTests
 
 open FsUnit.Xunit
@@ -78,4 +76,8 @@ let ``Using ascii value for non-doubled non-digit isn't allowed`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Using ascii value for doubled non-digit isn't allowed`` () =
     valid ":9" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed`` () =
+    valid "59%59" |> should equal false
 
