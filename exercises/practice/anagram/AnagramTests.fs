@@ -12,11 +12,6 @@ let ``No matches`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Detects two anagrams`` () =
-    let candidates = ["stream"; "pigeon"; "maters"]
-    findAnagrams candidates "master" |> should equal ["stream"; "maters"]
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Detects two anagrams`` () =
     let candidates = ["lemons"; "cherry"; "melons"]
     findAnagrams candidates "solemn" |> should equal ["lemons"; "melons"]
 
