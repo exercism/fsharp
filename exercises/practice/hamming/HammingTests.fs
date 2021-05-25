@@ -30,36 +30,12 @@ let ``Disallow first strand longer`` () =
     distance "AATG" "AAA" |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Disallow first strand longer`` () =
-    distance "AATG" "AAA" |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow second strand longer`` () =
     distance "ATA" "AGTG" |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Disallow second strand longer`` () =
-    distance "ATA" "AGTG" |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Disallow left empty strand`` () =
-    distance "" "G" |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Disallow left empty strand`` () =
-    distance "" "G" |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow empty first strand`` () =
     distance "" "G" |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Disallow right empty strand`` () =
-    distance "G" "" |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Disallow right empty strand`` () =
-    distance "G" "" |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Disallow empty second strand`` () =
