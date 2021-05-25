@@ -900,6 +900,9 @@ type ListOps() =
         |> String.replace "," ""
         |> String.replace "==" "="
         |> String.replace "modulo" "%"
+        |> String.replace "x" "acc"
+        |> String.replace "y" "el"
+        |> String.replace "acc / el" "el / acc"        
         |> sprintf "(fun %s)"
 
     override _.RenderInput(testCase, key, value) =

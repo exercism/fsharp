@@ -61,6 +61,8 @@ description = "direction independent function applied to non-empty list"
 
 [d7fcad99-e88e-40e1-a539-4c519681f390]
 description = "direction dependent function applied to non-empty list"
+include = false
+comment = "Input requires integer division to retain fragments"
 
 [aeb576b9-118e-4a57-a451-db49fac20fdc]
 description = "empty list"
@@ -82,6 +84,8 @@ description = "direction independent function applied to non-empty list"
 
 [8066003b-f2ff-437e-9103-66e6df474844]
 description = "direction dependent function applied to non-empty list"
+include = false
+comment = "Input requires integer division to retain fragments"
 
 [94231515-050e-4841-943d-d4488ab4ee30]
 description = "empty list"
