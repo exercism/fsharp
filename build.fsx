@@ -84,11 +84,12 @@ let findExercise exercise =
     else
         exitWithErrorMessage $"Could not find directory for exercise with slug '{exercise}'"
 
-Target("clean", (fun () -> Run("rm", "-r ./output")))
+Target("clean", (fun () -> Run("rm", "-r ./build")))
 Target("build", (fun () -> Run("dotnet", "build")))
 
 Target(
     "default",
+    DependsOn("clean"),
     (fun () ->
         let exercise = findExercise "word-count"
         copyExercise exercise
