@@ -9,7 +9,9 @@ open Humanizer
 open type Bullseye.Targets
 open type SimpleExec.Command
 
-type ExerciseType = ConceptExercise | PracticeExercise
+type ExerciseType =
+    | ConceptExercise
+    | PracticeExercise
 
 type ExercisePaths =
     { Dir: string
@@ -34,14 +36,16 @@ let exitWithErrorMessage (message: string) =
     exit 1
 
 let copyExercise exercise =
-    Directory.CreateDirectory(exercise.BuildPaths.Dir) |> ignore
+    Directory.CreateDirectory(exercise.BuildPaths.Dir)
+    |> ignore
 
     File.Copy(exercise.SourcePaths.ImplementationFile, exercise.BuildPaths.SolutionFile, overwrite = true)
     File.Copy(exercise.SourcePaths.TestsFile, exercise.BuildPaths.TestsFile, overwrite = true)
     File.Copy(exercise.SourcePaths.ProjectFile, exercise.BuildPaths.ProjectFile, overwrite = true)
 
 let unskipTests exercise =
-    let tests = File.ReadAllText(exercise.BuildPaths.TestsFile)
+    let tests =
+        File.ReadAllText(exercise.BuildPaths.TestsFile)
 
     let unskippedTests =
         tests.Replace("(Skip = \"Remove this Skip property to run this test\")", "")
@@ -69,7 +73,7 @@ let toExercise exerciseType (exercise: string) dir =
     { Slug = exercise
       Name = name
       SourcePaths = toExerciseFiles exerciseType dir name
-      BuildPaths = toExerciseFiles exerciseType (buildDir / dir) name }          
+      BuildPaths = toExerciseFiles exerciseType (buildDir / dir) name }
 
 let findExercise exercise =
     let conceptExerciseDir = "exercises" / "concept" / exercise
