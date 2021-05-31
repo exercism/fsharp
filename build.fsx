@@ -39,7 +39,11 @@ let copyExercise exercise =
     Directory.CreateDirectory(exercise.BuildPaths.Dir)
     |> ignore
 
-    File.Copy(exercise.SourcePaths.ImplementationFile, exercise.BuildPaths.SolutionFile, overwrite = true)
+    Directory.CreateDirectory(exercise.BuildPaths.Dir / ".meta")
+    |> ignore
+
+    File.Copy(exercise.SourcePaths.ImplementationFile, exercise.BuildPaths.ImplementationFile, overwrite = true)
+    File.Copy(exercise.SourcePaths.SolutionFile, exercise.BuildPaths.SolutionFile, overwrite = true)
     File.Copy(exercise.SourcePaths.TestsFile, exercise.BuildPaths.TestsFile, overwrite = true)
     File.Copy(exercise.SourcePaths.ProjectFile, exercise.BuildPaths.ProjectFile, overwrite = true)
 
@@ -86,9 +90,22 @@ let findExercise exercise =
     else
         exitWithErrorMessage $"Could not find directory for exercise with slug '{exercise}'"
 
+Target("build-generators", (fun () -> Run("dotnet", "build", "generators")))
+
+Target(
+    "build-refactoring-exercises",
+    ForEach("tree-building", "ledger", "markdown"),
+    new Action<string>(
+        (fun slug ->
+            let exercise = findExercise slug
+            copyExercise exercise
+            testExercise exercise)
+    )
+)
+
 Target(
     "default",
-    (fun () ->
+    new Action(fun () ->
         let exercise = findExercise "word-count"
         copyExercise exercise
         testExercise exercise)
