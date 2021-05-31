@@ -9,9 +9,20 @@ open Humanizer
 open type Bullseye.Targets
 open type SimpleExec.Command
 
+type ExerciseType = ConceptExercise | PracticeExercise
+
+type ExercisePaths =
+    { Dir: string
+      ImplementationFile: string
+      SolutionFile: string
+      TestsFile: string
+      ProjectFile: string }
+
 type Exercise =
-    | ConceptExercise of Slug: string * Name: string * Dir: string
-    | PracticeExercise of Slug: string * Name: string * Dir: string
+    { Slug: string
+      Name: string
+      SourcePaths: ExercisePaths
+      BuildPaths: ExercisePaths }
 
 let (/) left right = Path.Combine(left, right)
 
@@ -22,79 +33,61 @@ let exitWithErrorMessage (message: string) =
     Console.Error.WriteLine(message)
     exit 1
 
-let implementationFile exercise =
-    match exercise with
-    | ConceptExercise _ -> $".meta/Exemplar.fs"
-    | PracticeExercise _ -> $".meta/Example.fs"
-
-let solutionFile exercise =
-    match exercise with
-    | ConceptExercise (Name = name)
-    | PracticeExercise (Name = name) -> $"{name}.fs"
-
-let testsFile exercise =
-    match exercise with
-    | ConceptExercise (Name = name)
-    | PracticeExercise (Name = name) -> $"{name}Tests.fs"
-
-let projectFile exercise =
-    match exercise with
-    | ConceptExercise (Name = name)
-    | PracticeExercise (Name = name) -> $"{name}.fsproj"
-
 let copyExercise exercise =
-    match exercise with
-    | ConceptExercise (Dir = dir)
-    | PracticeExercise (Dir = dir) ->
-        Directory.CreateDirectory(buildDir / dir)
-        |> ignore
+    Directory.CreateDirectory(exercise.BuildPaths.Dir) |> ignore
 
-        File.Copy(dir / implementationFile exercise, buildDir / dir / solutionFile exercise)
-        File.Copy(dir / testsFile exercise, buildDir / dir / testsFile exercise)
-        File.Copy(dir / projectFile exercise, buildDir / dir / projectFile exercise)
+    File.Copy(exercise.SourcePaths.ImplementationFile, exercise.BuildPaths.SolutionFile, overwrite = true)
+    File.Copy(exercise.SourcePaths.TestsFile, exercise.BuildPaths.TestsFile, overwrite = true)
+    File.Copy(exercise.SourcePaths.ProjectFile, exercise.BuildPaths.ProjectFile, overwrite = true)
 
 let unskipTests exercise =
-    match exercise with
-    | ConceptExercise (Dir = dir)
-    | PracticeExercise (Dir = dir) ->
-        let testsFile = buildDir / dir / testsFile exercise
-        let tests = File.ReadAllText(testsFile)
+    let tests = File.ReadAllText(exercise.BuildPaths.TestsFile)
 
-        let unskippedTests =
-            tests.Replace("(Skip = \"Remove this Skip property to run this test\")", "")
+    let unskippedTests =
+        tests.Replace("(Skip = \"Remove this Skip property to run this test\")", "")
 
-        File.WriteAllText(testsFile, unskippedTests)
+    File.WriteAllText(exercise.BuildPaths.TestsFile, unskippedTests)
 
 let testExercise exercise =
     unskipTests exercise
 
-    match exercise with
-    | ConceptExercise (Dir = dir)
-    | PracticeExercise (Dir = dir) -> Run("dotnet", "test", buildDir / dir)
+    Run("dotnet", "test", exercise.BuildPaths.Dir)
+
+let toExerciseFiles exerciseType dir name =
+    { Dir = dir
+      SolutionFile = dir / $"{name}.fs"
+      TestsFile = dir / $"{name}Tests.fs"
+      ProjectFile = dir / $"{name}.fsproj"
+      ImplementationFile =
+          match exerciseType with
+          | ConceptExercise -> dir / ".meta/Exemplar.fs"
+          | PracticeExercise -> dir / ".meta/Example.fs" }
+
+let toExercise exerciseType (exercise: string) dir =
+    let name = exercise.Dehumanize().Pascalize()
+
+    { Slug = exercise
+      Name = name
+      SourcePaths = toExerciseFiles exerciseType dir name
+      BuildPaths = toExerciseFiles exerciseType (buildDir / dir) name }          
 
 let findExercise exercise =
     let conceptExerciseDir = "exercises" / "concept" / exercise
     let practiceExerciseDir = "exercises" / "practice" / exercise
-    let name = exercise.Dehumanize().Pascalize()
 
     if Directory.Exists(conceptExerciseDir) then
-        ConceptExercise(exercise, name, conceptExerciseDir)
+        toExercise ConceptExercise exercise conceptExerciseDir
     elif Directory.Exists(practiceExerciseDir) then
-        PracticeExercise(exercise, name, practiceExerciseDir)
+        toExercise PracticeExercise exercise practiceExerciseDir
     else
         exitWithErrorMessage $"Could not find directory for exercise with slug '{exercise}'"
 
-Target("clean", (fun () -> Run("rm", "-r ./build")))
-Target("build", (fun () -> Run("dotnet", "build")))
-
 Target(
     "default",
-    DependsOn("clean"),
     (fun () ->
         let exercise = findExercise "word-count"
         copyExercise exercise
-        testExercise exercise
-        printfn "%A" exercise)
+        testExercise exercise)
 )
 
 RunTargetsAndExit(Array.tail fsi.CommandLineArgs)
