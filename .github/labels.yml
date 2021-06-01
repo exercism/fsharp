@@ -76,31 +76,31 @@
   color: "4836bf"
 
 - name: "x:module/generator"
-  description: "Task related to Exercise generators"
+  description: "Task involves working on Exercise generators"
   color: "4231af"
 
 - name: "x:module/concept-exercise"
-  description: "Task related to Concept Exercises"
+  description: "Task involves working on Concept Exercises"
   color: "4231af"
 
 - name: "x:module/practice-exercise"
-  description: "Task related to Practice Exercises"
+  description: "Task involves working on Practice Exercises"
   color: "4231af"
 
 - name: "x:module/concept"
-  description: "Task related to Concepts"
+  description: "Task involves working on Concepts"
   color: "4231af"
 
 - name: "x:module/test-runner"
-  description: "Task related to Test Runners"
+  description: "Task involves working on Test Runners"
   color: "4231af"
 
 - name: "x:module/representer"
-  description: "Task related to Representers"
+  description: "Task involves working on Representers"
   color: "4231af"
 
 - name: "x:module/analyzer"
-  description: "Task related to Analyzers"
+  description: "Task involves working on Analyzers"
   color: "4231af"
 
 - name: "x:status/claimed"
