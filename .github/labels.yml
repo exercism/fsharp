@@ -24,7 +24,7 @@
   color: "6f60d2"
 
 - name: "x:action/sync"
-  description: "Syncing content with its latest version"
+  description: "Sync content with its latest version"
   color: "6f60d2"
 
 - name: "x:action/improve"
