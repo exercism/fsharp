@@ -12,7 +12,7 @@
   color: "604fcd"
 
 - name: "x:type/coding"
-  description: "Work on code that will run in production"
+  description: "Writing code that will run in production"
   color: "604fcd"
 
 - name: "x:type/content"
