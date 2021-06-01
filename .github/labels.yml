@@ -16,7 +16,7 @@
   color: "604fcd"
 
 - name: "x:type/content"
-  description: "Content like Exercises or Concepts"
+  description: "Working on content (e.g. exercises, concepts)"
   color: "604fcd"
 
 - name: "x:action/create"
