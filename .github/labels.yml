@@ -104,7 +104,7 @@
   color: "4231af"
 
 - name: "x:status/claimed"
-  description: "Someone is already working on this issue"
+  description: "Someone is working on this issue"
   color: "7e70d7"
 
 # Existing labels
