@@ -1,0 +1,107 @@
+- name: "x:type/docs"
+  description: "Everything related to Documentation"
+  color: "604fcd"
+
+- name: "x:type/ci"
+  description: "Everything related to Continuous Integration, e.g. GitHub Actions workflows"
+  color: "604fcd"
+
+- name: "x:type/docker"
+  description: "Everything related to Docker"
+  color: "604fcd"
+
+- name: "x:type/coding"
+  description: "Work on code that will run in production"
+  color: "604fcd"
+
+- name: "x:type/content"
+  description: "Content like Exercises or Concepts"
+  color: "604fcd"
+
+- name: "x:action/create"
+  description: "Add new functionality/content"
+  color: "6f60d2"
+
+- name: "x:action/sync"
+  description: "Sync content with its latest version"
+  color: "6f60d2"
+
+- name: "x:action/improve"
+  description: "Improve existing functionality/content"
+  color: "6f60d2"
+
+- name: "x:action/proofread"
+  description: "Proofread text"
+  color: "6f60d2"
+
+- name: "x:action/fix"
+  description: "Fix an issue"
+  color: "6f60d2"
+
+- name: "x:size/xs"
+  description: "Smallest amount of work"
+  color: "5240c9"
+
+- name: "x:size/s"
+  description: "Small amount of work"
+  color: "5240c9"
+
+- name: "x:size/m"
+  description: "Average amount of work"
+  color: "5240c9"
+
+- name: "x:size/l"
+  description: "Large amount of work"
+  color: "5240c9"
+
+- name: "x:size/xl"
+  description: "Largest amount of work"
+  color: "5240c9"
+
+- name: "x:knowledge/newbie"
+  description: "No existing Exercism knowledge required"
+  color: "4836bf"
+
+- name: "x:knowledge/beginner"
+  description: "Little Exercism knowledge required"
+  color: "4836bf"
+
+- name: "x:knowledge/intermediate"
+  description: "Quite a bit of Exercism knowledge required"
+  color: "4836bf"
+
+- name: "x:knowledge/advanced"
+  description: "Comprehensive Exercism knowledge required"
+  color: "4836bf"
+
+- name: "x:module/generator"
+  description: "Everything related to Exercise generators"
+  color: "4231af"
+
+- name: "x:module/concept-exercise"
+  description: "Everything related to Concept Exercises"
+  color: "4231af"
+
+- name: "x:module/practice-exercise"
+  description: "Everything related to Practice Exercises"
+  color: "4231af"
+
+- name: "x:module/concept"
+  description: "Everything related to Concepts"
+  color: "4231af"
+
+- name: "x:module/test-runner"
+  description: "Everything related to Test Runners"
+  color: "4231af"
+
+- name: "x:module/representer"
+  description: "Everything related to Representers"
+  color: "4231af"
+
+- name: "x:module/analyzer"
+  description: "Everything related to Analyzers"
+  color: "4231af"
+
+- name: "x:status/claimed"
+  description: "Someone is already working on this issue"
+  color: "7e70d7"
