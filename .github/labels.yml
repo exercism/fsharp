@@ -1,3 +1,4 @@
+# Cross-track labels
 - name: "x:type/docs"
   description: "Everything related to Documentation"
   color: "604fcd"
@@ -105,3 +106,56 @@
 - name: "x:status/claimed"
   description: "Someone is already working on this issue"
   color: "7e70d7"
+
+# Existing labels
+- name: "bug"
+  description: ""
+  color: "fc2929"
+
+- name: "dependencies"
+  description: "Pull requests that update a dependency file"
+  color: "0025ff"
+
+- name: "duplicate"
+  description: ""
+  color: "cccccc"
+
+- name: "enhancement"
+  description: ""
+  color: "84b6eb"
+
+- name: "good first issue"
+  description: ""
+  color: "159818"
+
+- name: "hacktoberfest"
+  description: ""
+  color: "ff4500"
+
+- name: "help wanted"
+  description: ""
+  color: "159818"
+
+- name: "invalid"
+  description: ""
+  color: "e6e6e6"
+
+- name: "pinned"
+  description: ""
+  color: "cccccc"
+
+- name: "question"
+  description: ""
+  color: "cc317c"
+
+- name: "v3-migration 🤖"
+  description: "Preparing for Exercism v3"
+  color: "E99695"
+
+- name: "waiting-for-external"
+  description: ""
+  color: "d4c5f9"
+
+- name: "wontfix"
+  description: ""
+  color: "ffffff"
