@@ -1,6 +1,6 @@
 # Cross-track labels
 - name: "x:type/docs"
-  description: "Everything related to Documentation"
+  description: "Task involves working on Documentation"
   color: "604fcd"
 
 - name: "x:type/ci"
