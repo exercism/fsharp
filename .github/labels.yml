@@ -1,22 +1,22 @@
 # Cross-track labels
 - name: "x:type/docs"
-  description: "Task involves working on Documentation"
+  description: "Work on Documentation"
   color: "604fcd"
 
 - name: "x:type/ci"
-  description: "Task involves working on Continuous Integration, e.g. GitHub Actions workflows"
+  description: "Work on Continuous Integration, e.g. GitHub Actions workflows"
   color: "604fcd"
 
 - name: "x:type/docker"
-  description: "Working on Dockerfiles"
+  description: "Work on Dockerfiles"
   color: "604fcd"
 
 - name: "x:type/coding"
-  description: "Writing code that will run in production"
+  description: "Work on code that will run in production"
   color: "604fcd"
 
 - name: "x:type/content"
-  description: "Working on content (e.g. exercises, concepts)"
+  description: "Work on content (e.g. exercises, concepts)"
   color: "604fcd"
 
 - name: "x:action/create"
