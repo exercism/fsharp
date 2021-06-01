@@ -20,7 +20,7 @@
   color: "604fcd"
 
 - name: "x:action/create"
-  description: "Add new functionality/content"
+  description: "Working on something from scratch"
   color: "6f60d2"
 
 - name: "x:action/sync"
