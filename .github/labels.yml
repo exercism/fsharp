@@ -4,7 +4,7 @@
   color: "604fcd"
 
 - name: "x:type/ci"
-  description: "Work on Continuous Integration, e.g. GitHub Actions workflows"
+  description: "Work on Continuous Integration (e.g. GitHub Actions workflows)"
   color: "604fcd"
 
 - name: "x:type/docker"
