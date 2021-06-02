@@ -63,7 +63,7 @@
   description: "No existing Exercism knowledge required"
   color: "4836bf"
 
-- name: "x:knowledge/beginner"
+- name: "x:knowledge/elementary"
   description: "Little Exercism knowledge required"
   color: "4836bf"
 
