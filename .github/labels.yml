@@ -59,7 +59,7 @@
   description: "Massive amount of work"
   color: "5240c9"
 
-- name: "x:knowledge/newbie"
+- name: "x:knowledge/none"
   description: "No existing Exercism knowledge required"
   color: "4836bf"
 
