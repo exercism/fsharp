@@ -16,7 +16,7 @@ While this may look like `switch` statements in other languages, pattern matchin
 ```fsharp
 match number with
 | 0 -> "Zero"
-| i -> sprintf: "Non zero: %d" i
+| i -> sprintf "Non zero: %d" i
 ```
 
 In some cases, you may want to add an additional condition to a pattern. This is known as a _guard_ (clause), which can be added using the `when` keyword:
@@ -44,7 +44,7 @@ Note that the compiler cannot use `when` clauses to infer exhaustiveness:
 ```fsharp
 match number with
 | i when i < 0 -> "Negative number"
-| i when i >= -> "Positive number"
+| i when i >= 0 -> "Positive number"
 
 // Compiler warning
 ```
