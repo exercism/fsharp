@@ -1762,7 +1762,38 @@
       "name": "Strings"
     }
   ],
-  "key_features": [],
+  "key_features": [
+    {
+      "icon": "features-oop",
+      "title": "Expressive",
+      "content": "F# code is very expressive, requiring little code for great results"
+    },
+    {
+      "icon": "features-strongly-typed",
+      "title": "Fun",
+      "content": "F#'s powerful type system is a joy to work with"
+    },
+    {
+      "icon": "features-declarative",
+      "title": "Safe",
+      "content": "F#'s type system helps catch errors at compile-time. No more null-reference exceptions!"
+    },
+    {
+      "icon": "features-functional",
+      "title": "Functional first",
+      "content": "F# is primarily a functional language, but also has great object-oriented support"
+    },
+    {
+      "icon": "features-generic",
+      "title": "Interop",
+      "content": "As a member of the .NET ecosystem, F# enjoys full, two-way compatibility with C# code/libraries"
+    },
+    {
+      "icon": "features-lazy",
+      "title": "Tooling",
+      "content": "F# has excellent tooling, with linting and refactoring options built-in"
+    }
+  ],
   "tags": [
     "paradigm/functional",
     "paradigm/declarative",
