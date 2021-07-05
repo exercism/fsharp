@@ -197,81 +197,55 @@
         "uuid": "302312cc-bd15-4ba0-8f2f-cbf411c40186",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "strings"
-        ]
+        "difficulty": 1
       },
       {
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "optional_values",
-          "strings"
-        ]
+        "practices": ["strings", "options"],
+        "prerequisites": ["strings", "options"],
+        "difficulty": 1
       },
       {
         "slug": "leap",
         "name": "Leap",
         "uuid": "66d974b5-18fc-4993-b5f2-7beda4f4afa3",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "control_flow_if_else_statements",
-          "integers"
-        ]
+        "practices": ["numbers", "conditionals"],
+        "prerequisites": ["numbers", "conditionals"],
+        "difficulty": 1
       },
       {
         "slug": "queen-attack",
         "name": "Queen Attack",
         "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 3,
-        "topics": [
-          "tuples"
-        ]
+        "practices": ["tuples"],
+        "prerequisites": ["conditionals", "tuples", "numbers"],
+        "difficulty": 3
       },
       {
         "slug": "raindrops",
         "name": "Raindrops",
         "uuid": "0c953a84-e726-4b9f-a964-1950ac2f95f2",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2,
-        "topics": [
-          "filtering",
-          "text_formatting"
-        ]
+        "practices": ["conditionals"],
+        "prerequisites": ["conditionals", "strings", "numbers"],
+        "difficulty": 2
       },
       {
         "slug": "accumulate",
         "name": "Accumulate",
         "uuid": "e7085050-1611-4773-9032-0e0ffb56c20e",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 2,
-        "topics": [
-          "recursion",
-          "transforming"
-        ]
+        "practices": ["recursion"],
+        "prerequisites": ["lists", "recursion", "higher-order-functions", "generic-functions"],
+        "difficulty": 2
       },
       {
         "slug": "space-age",
         "name": "Space Age",
         "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "discriminated_unions",
-          "floating_point_numbers"
-        ]
+        "practices": ["discriminated-unions", "floating-point-numbers"],
+        "prerequisites": ["discriminated-unions", "floating-point-numbers", "integral-numbers"],
+        "difficulty": 1
       },
       {
         "slug": "grade-school",
@@ -301,13 +275,9 @@
         "slug": "bob",
         "name": "Bob",
         "uuid": "b3c4d578-10c8-47bc-b0ae-149ed8da530a",
-        "practices": [],
-        "prerequisites": [],
-        "difficulty": 1,
-        "topics": [
-          "control_flow_if_else_statements",
-          "strings"
-        ]
+        "practices": ["strings", "conditionals"],
+        "prerequisites": ["strings", "conditionals"],
+        "difficulty": 1
       },
       {
         "slug": "beer-song",
