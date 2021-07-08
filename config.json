@@ -44,8 +44,7 @@
         "prerequisites": [
           "booleans",
           "pattern-matching"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "lucians-luscious-lasagna",
@@ -54,8 +53,7 @@
         "concepts": [
           "basics"
         ],
-        "prerequisites": [],
-        "status": "wip"
+        "prerequisites": []
       },
       {
         "slug": "annalyns-infiltration",
@@ -66,8 +64,7 @@
         ],
         "prerequisites": [
           "basics"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "booking-up-for-beauty",
@@ -80,8 +77,7 @@
           "classes",
           "numbers",
           "strings"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "valentines-day",
@@ -92,8 +88,7 @@
         ],
         "prerequisites": [
           "basics"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "interest-is-interesting",
@@ -105,8 +100,7 @@
         "prerequisites": [
           "conditionals",
           "numbers"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "tracks-on-tracks-on-tracks",
@@ -118,8 +112,7 @@
         "prerequisites": [
           "booleans",
           "strings"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "cars-assemble",
@@ -131,8 +124,7 @@
         ],
         "prerequisites": [
           "basics"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "guessing-game",
@@ -144,8 +136,7 @@
         "prerequisites": [
           "conditionals",
           "strings"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "bandwagoner",
@@ -159,8 +150,7 @@
           "numbers",
           "pattern-matching",
           "strings"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "pizza-pricing",
@@ -174,8 +164,7 @@
           "higher-order-functions",
           "lists",
           "pattern-matching"
-        ],
-        "status": "wip"
+        ]
       },
       {
         "slug": "log-levels",
@@ -186,8 +175,7 @@
         ],
         "prerequisites": [
           "basics"
-        ],
-        "status": "wip"
+        ]
       }
     ],
     "practice": [
