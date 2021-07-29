@@ -36,7 +36,7 @@ The preferred way to work with discriminated unions is through [pattern matching
 let describe number =
     match number with
     | Integer i -> sprintf "Integer: %d" i
-    | Float d  -> sprintf "Float: %d" i
+    | Float d  -> sprintf "Float: %f" d
     | Invalid   -> "Invalid"
 ```
 

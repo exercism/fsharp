@@ -60,7 +60,7 @@ let length list =
 F# supports [recursive types through discriminated union types][recursive-types]. A recursive discriminated union type has one or more of its cases refer to the discriminated union type itself in their data. Like recursive functions, recursive types must have a base case. Unlike recursive functions, recursive types don't use the `rec` keyword.
 
 ```fsharp
-type RussianDoll
+type RussianDoll =
     | Doll                 // Base case
     | Layer of RussianDoll // Recursive case
 ```

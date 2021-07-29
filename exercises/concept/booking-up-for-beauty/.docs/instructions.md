@@ -50,7 +50,7 @@ description (DateTime(2019, 03, 29, 15, 0, 0))
 
 Implement the `anniversaryDate` function that returns this year's anniversary date, which is September 15th:
 
-```csharp
+```fsharp
 anniversaryDate()
 // => DateTime(2019, 9, 15, 0, 0, 0)
 ```
