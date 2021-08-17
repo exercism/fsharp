@@ -21,7 +21,7 @@ type Number =
     | Invalid
 ```
 
-Creating a value for a specific case can be done by referring to its name (e.g, `Success`). As case names are just constructor functions, associated data can be passed as a regular function argument. If another discriminated union has defined a case with the same name, you'll need to use its full name (e.g. `Result.Succes`).
+Creating a value for a specific case can be done by referring to its name (e.g, `Success`). As case names are just constructor functions, associated data can be passed as a regular function argument. If another discriminated union has defined a case with the same name, you'll need to use its full name (e.g. `Result.Success`).
 
 ```fsharp
 let byName = Integer 2
@@ -36,6 +36,6 @@ While one can use `if/elif/else` expressions to work with discriminated unions, 
 let describe number =
     match number with
     | Integer i -> sprintf "Integer: %d" i
-    | Float d  -> sprintf "Float: %d" i
+    | Float d  -> sprintf "Float: %f" d
     | Invalid   -> "Invalid"
 ```
