@@ -1,7 +1,5 @@
 {
-  "blurb": "TODO: add blurb for numbers concept",
-  "authors": [
-    "ErikSchierboom"
-  ],
+  "blurb": "The two most commonly used number types in F# are 'int' and 'double'.",
+  "authors": ["ErikSchierboom"],
   "contributors": []
 }
