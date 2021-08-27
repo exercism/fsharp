@@ -1,7 +1,5 @@
 {
-  "blurb": "TODO: add blurb for discriminated-unions concept",
-  "authors": [
-    "ErikSchierboom"
-  ],
+  "blurb": "Discriminated union types represent a fixed number of named cases. Each value of a discriminated union corresponds to exactly one of the named cases.",
+  "authors": ["ErikSchierboom"],
   "contributors": []
 }

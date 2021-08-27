@@ -1,9 +1,5 @@
 {
-  "blurb": "TODO: add blurb for records concept",
-  "authors": [
-    "ErikSchierboom"
-  ],
-  "contributors": [
-    "valentin-p"
-  ]
+  "blurb": "A record is an collection of fields (which can be of different types) that belong together.",
+  "authors": ["ErikSchierboom"],
+  "contributors": ["valentin-p"]
 }
