@@ -228,16 +228,28 @@
         "slug": "kindergarten-garden",
         "name": "Kindergarten Garden",
         "uuid": "cf64cddf-63e2-4c71-ac15-0af617f82856",
-        "practices": ["discriminated-unions", "maps"],
-        "prerequisites": ["discriminated-unions", "strings"],
+        "practices": ["discriminated-unions", "maps", "chars"],
+        "prerequisites": ["discriminated-unions", "strings", "chars"],
         "difficulty": 3
       },
       {
         "slug": "robot-simulator",
         "name": "Robot Simulator",
         "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826",
-        "practices": ["chars", "discriminated-unions", "records", "tuples"],
-        "prerequisites": ["chars", "discriminated-unions", "records", "tuples"],
+        "practices": [
+          "chars",
+          "strings",
+          "discriminated-unions",
+          "records",
+          "tuples"
+        ],
+        "prerequisites": [
+          "chars",
+          "strings",
+          "discriminated-unions",
+          "records",
+          "tuples"
+        ],
         "difficulty": 3
       },
       {
@@ -253,10 +265,9 @@
           "discriminated-unions",
           "booleans",
           "bit-manipulation",
-          "classes"
+          "numbers"
         ],
-        "difficulty": 4,
-        "topics": ["bitwise_operations", "enumerations", "filtering"]
+        "difficulty": 4
       },
       {
         "slug": "ocr-numbers",
