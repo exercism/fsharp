@@ -339,8 +339,8 @@
         "slug": "phone-number",
         "name": "Phone Number",
         "uuid": "929f98e4-a16c-464b-ac6c-59ca86dbd2b6",
-        "practices": ["regular-expressions"],
-        "prerequisites": ["strings"],
+        "practices": ["regular-expressions", "result"],
+        "prerequisites": ["strings", "result"],
         "difficulty": 5,
         "topics": ["parsing", "transforming"]
       },
@@ -413,19 +413,19 @@
         "uuid": "fb3b73e1-673b-4907-821c-f85a157f53c1",
         "practices": ["floating-point-numbers", "if-then-else-expressions"],
         "prerequisites": ["floating-point-numbers", "if-then-else-expressions"],
-        "difficulty": 2,
-        "topics": ["floating_point_numbers", "math"]
+        "difficulty": 2
       },
       {
         "slug": "grains",
         "name": "Grains",
         "uuid": "e3751098-5a15-4350-bf5d-507583de3386",
-        "practices": ["integral-numbers", "math-operators"],
+        "practices": ["integral-numbers", "math-operators", "result"],
         "prerequisites": [
           "integral-numbers",
           "math-operators",
           "if-then-else-expressions",
-          "for-loops"
+          "for-loops",
+          "result"
         ],
         "difficulty": 2,
         "topics": ["integers"]
@@ -797,13 +797,20 @@
         "slug": "error-handling",
         "name": "Error Handling",
         "uuid": "fc7935f9-bffa-4eb1-b447-49379b45aac7",
-        "practices": ["casting", "resource-cleanup", "exceptions", "options"],
+        "practices": [
+          "casting",
+          "resource-cleanup",
+          "exceptions",
+          "options",
+          "result"
+        ],
         "prerequisites": [
           "casting",
           "resource-cleanup",
           "numbers",
           "exceptions",
-          "options"
+          "options",
+          "result"
         ],
         "difficulty": 3,
         "topics": [
