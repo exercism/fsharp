@@ -535,8 +535,14 @@
         "slug": "palindrome-products",
         "name": "Palindrome Products",
         "uuid": "471c89f9-8b27-4898-8e98-58e4b2921616",
-        "practices": ["tuples", "generic-methods"],
-        "prerequisites": ["lists", "generic-methods", "tuples", "numbers"],
+        "practices": ["tuples", "generic-methods", "exceptions"],
+        "prerequisites": [
+          "lists",
+          "generic-methods",
+          "tuples",
+          "numbers",
+          "exceptions"
+        ],
         "difficulty": 6,
         "topics": ["algorithms", "math", "strings", "tuples"]
       },
@@ -758,8 +764,13 @@
         "slug": "error-handling",
         "name": "Error Handling",
         "uuid": "fc7935f9-bffa-4eb1-b447-49379b45aac7",
-        "practices": ["casting", "resource-cleanup"],
-        "prerequisites": ["casting", "resource-cleanup", "numbers"],
+        "practices": ["casting", "resource-cleanup", "exceptions"],
+        "prerequisites": [
+          "casting",
+          "resource-cleanup",
+          "numbers",
+          "exceptions"
+        ],
         "difficulty": 3,
         "topics": [
           "discriminated_unions",
@@ -946,8 +957,8 @@
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "ae2f8b66-1d5f-4c19-ad84-b9a7e9e87d0e",
-        "practices": ["for-loops", "foreach-loops"],
-        "prerequisites": ["strings", "numbers"],
+        "practices": ["for-loops", "foreach-loops", "exceptions"],
+        "prerequisites": ["strings", "numbers", "exceptions"],
         "difficulty": 3,
         "topics": ["cryptography", "math", "strings"]
       },
@@ -1189,8 +1200,14 @@
         "slug": "circular-buffer",
         "name": "Circular Buffer",
         "uuid": "b62f8574-9bac-4b95-a76c-f13789ae2663",
-        "practices": ["queues", "records", "generic-types"],
-        "prerequisites": ["queues", "classes", "generic-types", "numbers"],
+        "practices": ["queues", "records", "generic-types", "exceptions"],
+        "prerequisites": [
+          "queues",
+          "classes",
+          "generic-types",
+          "numbers",
+          "exceptions"
+        ],
         "difficulty": 5,
         "topics": ["queues", "records"]
       },
@@ -1512,7 +1529,7 @@
         "slug": "tree-building",
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
-        "practices": ["members", "classes", "lists"],
+        "practices": ["members", "classes", "lists", "exceptions"],
         "prerequisites": [
           "classes",
           "members",
@@ -1520,7 +1537,8 @@
           "numbers",
           "booleans",
           "lists",
-          "generic-methods"
+          "generic-methods",
+          "exceptions"
         ],
         "difficulty": 5,
         "topics": ["refactoring", "trees"]
