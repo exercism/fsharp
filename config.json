@@ -399,14 +399,14 @@
           "recursion",
           "options",
           "generic-types",
-          ""lists"
+          "lists"
         ],
         "prerequisites": [
           "strings",
           "equality",
           "options",
           "generic-types",
-          ""lists"
+          "lists"
         ],
         "difficulty": 10,
         "topics": ["graphs", "recursion", "searching"]
@@ -650,6 +650,7 @@
           "yield",
           "lazy-evaluation",
           "arrays",
+          "lists",
           "lists"
         ],
         "prerequisites": [
@@ -657,6 +658,7 @@
           "numbers",
           "higher-order-functions",
           "arrays",
+          "lists",
           "lists"
         ],
         "difficulty": 3,
@@ -696,14 +698,14 @@
           "if-then-else-expressions",
           "switch-statements",
           "switch-expressions",
-          ""lists"
+          "lists"
         ],
         "prerequisites": [
           "strings",
           "flag-discriminated-unions",
           "if-then-else-expressions",
           "string-formatting",
-          ""lists"
+          "lists"
         ],
         "difficulty": 5,
         "topics": ["files", "searching", "text_formatting"]
@@ -717,7 +719,7 @@
           "strings",
           "string-formatting",
           "globalization",
-          ""lists"
+          "lists"
         ],
         "difficulty": 5,
         "topics": ["globalization", "refactoring", "text_formatting"]
@@ -906,7 +908,7 @@
           "tuples",
           "generic-methods",
           "numbers",
-          ""lists"
+          "lists"
         ],
         "difficulty": 4,
         "topics": ["lists", "matrices"]
@@ -1023,7 +1025,7 @@
           "maps",
           "parallellism",
           "options",
-          ""lists"
+          "lists"
         ],
         "difficulty": 5,
         "topics": ["parallellism", "transforming"]
@@ -1052,7 +1054,7 @@
           "classes",
           "nullability",
           "options",
-          ""lists"
+          "lists"
         ],
         "difficulty": 6,
         "topics": ["algorithms"]
@@ -1176,12 +1178,7 @@
         "name": "Tournament",
         "uuid": "b5672a0c-aac5-4274-a458-39d018b74750",
         "practices": ["streams", "string-formatting", "lists"],
-        "prerequisites": [
-          "streams",
-          "strings",
-          "string-formatting",
-          ""lists"
-        ],
+        "prerequisites": ["streams", "strings", "string-formatting", "lists"],
         "difficulty": 6,
         "topics": ["parsing", "text_formatting"]
       },
@@ -1257,7 +1254,7 @@
           "chars",
           "string-formatting",
           "if-then-else-expressions",
-          ""lists"
+          "lists"
         ],
         "difficulty": 7,
         "topics": ["parsing", "transforming"]
@@ -1272,7 +1269,7 @@
           "numbers",
           "for-loops",
           "if-then-else-expressions",
-          ""lists"
+          "lists"
         ],
         "difficulty": 7,
         "topics": ["parsing", "transforming"]
@@ -1427,7 +1424,7 @@
           "maps",
           "tuples",
           "options",
-          ""lists"
+          "lists"
         ],
         "difficulty": 9,
         "topics": ["optional_values", "parsing", "tuples"]
@@ -1655,12 +1652,7 @@
         "slug": "tree-building",
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
-        "practices": [
-          "members",
-          "classes",
-          "exceptions",
-          "lists"
-        ],
+        "practices": ["members", "classes", "exceptions", "lists", "lists"],
         "prerequisites": [
           "classes",
           "members",
@@ -1669,6 +1661,7 @@
           "booleans",
           "generic-methods",
           "exceptions",
+          "lists",
           "lists"
         ],
         "difficulty": 5,
