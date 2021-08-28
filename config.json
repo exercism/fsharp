@@ -129,8 +129,8 @@
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
-        "practices": ["strings", "string-formatting", "options"],
-        "prerequisites": ["strings", "options"],
+        "practices": ["strings", "string-formatting", "options", "options"],
+        "prerequisites": ["strings", "options", "options"],
         "difficulty": 1
       },
       {
@@ -264,12 +264,13 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["arrays", "for-loops", "chars"],
+        "practices": ["arrays", "for-loops", "chars", "options"],
         "prerequisites": [
           "strings",
           "chars",
           "for-loops",
-          "if-then-else-expressions"
+          "if-then-else-expressions",
+          "options"
         ],
         "difficulty": 5,
         "topics": ["parsing", "pattern_recognition"]
@@ -290,13 +291,15 @@
         "practices": [
           "if-then-else-expressions",
           "for-loops",
-          "collection-processing"
+          "collection-processing",
+          "options"
         ],
         "prerequisites": [
           "if-then-else-expressions",
           "for-loops",
           "strings",
-          "numbers"
+          "numbers",
+          "options"
         ],
         "difficulty": 2,
         "topics": ["filtering", "strings"]
@@ -355,8 +358,18 @@
         "slug": "bank-account",
         "name": "Bank Account",
         "uuid": "cb629d30-0351-4023-bd51-423267164c24",
-        "practices": ["members", "floating-point-numbers", "concurrency"],
-        "prerequisites": ["floating-point-numbers", "classes", "members"],
+        "practices": [
+          "members",
+          "floating-point-numbers",
+          "concurrency",
+          "options"
+        ],
+        "prerequisites": [
+          "floating-point-numbers",
+          "classes",
+          "members",
+          "options"
+        ],
         "difficulty": 5,
         "topics": ["concurrency", "optional_values"]
       },
@@ -364,14 +377,15 @@
         "slug": "binary-search-tree",
         "name": "Binary Search Tree",
         "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
-        "practices": ["generic-types", "members", "constructors"],
+        "practices": ["generic-types", "members", "constructors", "options"],
         "prerequisites": [
           "lists",
           "generic-types",
           "members",
           "numbers",
           "classes",
-          "constructors"
+          "constructors",
+          "options"
         ],
         "difficulty": 5,
         "topics": ["optional_values", "searching", "trees"]
@@ -380,8 +394,8 @@
         "slug": "pov",
         "name": "Pov",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
-        "practices": ["equality", "recursion"],
-        "prerequisites": ["strings", "arrays", "equality"],
+        "practices": ["equality", "recursion", "options"],
+        "prerequisites": ["strings", "arrays", "equality", "options"],
         "difficulty": 10,
         "topics": ["graphs", "recursion", "searching"]
       },
@@ -389,8 +403,8 @@
         "slug": "zipper",
         "name": "Zipper",
         "uuid": "5369eea9-00c8-4044-b272-1ce8d0590ecf",
-        "practices": ["immutability", "equality", "recursion"],
-        "prerequisites": ["numbers", "classes", "equality"],
+        "practices": ["immutability", "equality", "recursion", "options"],
+        "prerequisites": ["numbers", "classes", "equality", "options"],
         "difficulty": 10,
         "topics": ["recursion", "searching", "trees"]
       },
@@ -421,8 +435,14 @@
         "slug": "all-your-base",
         "name": "All Your Base",
         "uuid": "01e394ee-23d5-44e6-a37e-149ffaf5375e",
-        "practices": ["while-loops", "arrays", "math-operators"],
-        "prerequisites": ["numbers", "while-loops", "arrays", "math-operators"],
+        "practices": ["while-loops", "arrays", "math-operators", "options"],
+        "prerequisites": [
+          "numbers",
+          "while-loops",
+          "arrays",
+          "math-operators",
+          "options"
+        ],
         "difficulty": 4,
         "topics": ["integers", "math", "transforming"]
       },
@@ -430,13 +450,14 @@
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "b3643992-583b-4e7a-a970-94bc7ae6739a",
-        "practices": ["integral-numbers", "math-operators"],
+        "practices": ["integral-numbers", "math-operators", "options"],
         "prerequisites": [
           "integral-numbers",
           "math-operators",
           "strings",
           "chars",
-          "for-loops"
+          "for-loops",
+          "options"
         ],
         "difficulty": 4,
         "topics": ["integers", "math", "strings", "transforming"]
@@ -465,8 +486,8 @@
         "slug": "nth-prime",
         "name": "Nth Prime",
         "uuid": "220cbe7e-e781-4ab9-84ec-2b89a3c97670",
-        "practices": ["lazy-evaluation", "yield"],
-        "prerequisites": ["numbers"],
+        "practices": ["lazy-evaluation", "yield", "options"],
+        "prerequisites": ["numbers", "options"],
         "difficulty": 6,
         "topics": ["math"]
       },
@@ -535,13 +556,14 @@
         "slug": "palindrome-products",
         "name": "Palindrome Products",
         "uuid": "471c89f9-8b27-4898-8e98-58e4b2921616",
-        "practices": ["tuples", "generic-methods", "exceptions"],
+        "practices": ["tuples", "generic-methods", "exceptions", "options"],
         "prerequisites": [
           "lists",
           "generic-methods",
           "tuples",
           "numbers",
-          "exceptions"
+          "exceptions",
+          "options"
         ],
         "difficulty": 6,
         "topics": ["algorithms", "math", "strings", "tuples"]
@@ -550,14 +572,21 @@
         "slug": "word-search",
         "name": "Word Search",
         "uuid": "8f8a79d1-78ed-4cdd-adcc-5cd6c6781dcd",
-        "practices": ["maps", "tuples", "nullability", "constructors"],
+        "practices": [
+          "maps",
+          "tuples",
+          "nullability",
+          "constructors",
+          "options"
+        ],
         "prerequisites": [
           "strings",
           "constructors",
           "nullability",
           "tuples",
           "maps",
-          "arrays"
+          "arrays",
+          "options"
         ],
         "difficulty": 6,
         "topics": ["optional_values", "searching", "tuples"]
@@ -717,8 +746,8 @@
         "slug": "change",
         "name": "Change",
         "uuid": "03a1c773-5c48-4f70-a2de-b742197fa9d2",
-        "practices": ["collection-processing"],
-        "prerequisites": ["numbers", "arrays"],
+        "practices": ["collection-processing", "options"],
+        "prerequisites": ["numbers", "arrays", "options"],
         "difficulty": 7,
         "topics": ["integers", "recursion"]
       },
@@ -739,9 +768,15 @@
           "recursion",
           "while-loops",
           "if-then-else-expressions",
-          "numbers"
+          "numbers",
+          "options"
         ],
-        "prerequisites": ["if-then-else-expressions", "while-loops", "numbers"],
+        "prerequisites": [
+          "if-then-else-expressions",
+          "while-loops",
+          "numbers",
+          "options"
+        ],
         "difficulty": 2,
         "topics": [
           "algorithms",
@@ -755,8 +790,8 @@
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "c5b38251-14ba-4d98-a420-7a930f06167f",
-        "practices": ["arrays", "for-loops"],
-        "prerequisites": ["arrays", "numbers", "for-loops"],
+        "practices": ["arrays", "for-loops", "options"],
+        "prerequisites": ["arrays", "numbers", "for-loops", "options"],
         "difficulty": 3,
         "topics": ["lists", "searching"]
       },
@@ -764,12 +799,13 @@
         "slug": "error-handling",
         "name": "Error Handling",
         "uuid": "fc7935f9-bffa-4eb1-b447-49379b45aac7",
-        "practices": ["casting", "resource-cleanup", "exceptions"],
+        "practices": ["casting", "resource-cleanup", "exceptions", "options"],
         "prerequisites": [
           "casting",
           "resource-cleanup",
           "numbers",
-          "exceptions"
+          "exceptions",
+          "options"
         ],
         "difficulty": 3,
         "topics": [
@@ -782,8 +818,8 @@
         "slug": "perfect-numbers",
         "name": "Perfect Numbers",
         "uuid": "45fcf742-1b3a-422a-b476-5ee81d80057a",
-        "practices": ["numbers"],
-        "prerequisites": ["discriminated-unions", "numbers"],
+        "practices": ["numbers", "options"],
+        "prerequisites": ["discriminated-unions", "numbers", "options"],
         "difficulty": 3,
         "topics": ["discriminated_unions", "integers", "math"]
       },
@@ -930,8 +966,14 @@
         "slug": "parallel-letter-frequency",
         "name": "Parallel Letter Frequency",
         "uuid": "c0d0ae0f-83fb-433a-8778-d38e8a6645aa",
-        "practices": ["maps", "parallellism"],
-        "prerequisites": ["strings", "lists", "maps", "parallellism"],
+        "practices": ["maps", "parallellism", "options"],
+        "prerequisites": [
+          "strings",
+          "lists",
+          "maps",
+          "parallellism",
+          "options"
+        ],
         "difficulty": 5,
         "topics": ["parallellism", "transforming"]
       },
@@ -948,8 +990,8 @@
         "slug": "bowling",
         "name": "Bowling",
         "uuid": "1c8ad2ca-4aec-47af-94b1-ef7e2830b463",
-        "practices": ["nullability", "classes"],
-        "prerequisites": ["numbers", "classes", "nullability"],
+        "practices": ["nullability", "classes", "options"],
+        "prerequisites": ["numbers", "classes", "nullability", "options"],
         "difficulty": 6,
         "topics": ["algorithms"]
       },
@@ -1011,8 +1053,14 @@
         "slug": "series",
         "name": "Series",
         "uuid": "4b07842c-dcef-4be0-a842-0b3b7a30c499",
-        "practices": ["arrays", "yield", "for-loops"],
-        "prerequisites": ["arrays", "strings", "numbers", "for-loops"],
+        "practices": ["arrays", "yield", "for-loops", "options"],
+        "prerequisites": [
+          "arrays",
+          "strings",
+          "numbers",
+          "for-loops",
+          "options"
+        ],
         "difficulty": 4,
         "topics": ["lists", "strings", "transforming"]
       },
@@ -1173,8 +1221,8 @@
         "slug": "wordy",
         "name": "Wordy",
         "uuid": "c721b3f2-4afc-4a30-bad5-77bd002c2819",
-        "practices": ["switch-statements", "regular-expressions"],
-        "prerequisites": ["strings", "numbers"],
+        "practices": ["switch-statements", "regular-expressions", "options"],
+        "prerequisites": ["strings", "numbers", "options"],
         "difficulty": 7,
         "topics": ["parsing", "strings", "transforming"]
       },
@@ -1218,13 +1266,15 @@
         "practices": [
           "integral-numbers",
           "while-loops",
-          "if-then-else-expressions"
+          "if-then-else-expressions",
+          "options"
         ],
         "prerequisites": [
           "integral-numbers",
           "strings",
           "while-loops",
-          "if-then-else-expressions"
+          "if-then-else-expressions",
+          "options"
         ],
         "difficulty": 8,
         "topics": ["strings", "text_formatting", "transforming"]
@@ -1265,12 +1315,13 @@
         "slug": "variable-length-quantity",
         "name": "Variable Length Quantity",
         "uuid": "ef86703b-9e78-43f8-aa4c-203492ac622c",
-        "practices": ["integral-numbers", "bit-manipulation"],
+        "practices": ["integral-numbers", "bit-manipulation", "options"],
         "prerequisites": [
           "integral-numbers",
           "arrays",
           "bit-manipulation",
-          "while-loops"
+          "while-loops",
+          "options"
         ],
         "difficulty": 9,
         "topics": ["algorithms", "bitwise_operations"]
@@ -1279,13 +1330,14 @@
         "slug": "connect",
         "name": "Connect",
         "uuid": "dead8124-6942-4205-9ea8-3cb926c0dc47",
-        "practices": ["discriminated-unions", "switch-statements"],
+        "practices": ["discriminated-unions", "switch-statements", "options"],
         "prerequisites": [
           "strings",
           "chars",
           "discriminated-unions",
           "arrays",
-          "if-then-else-expressions"
+          "if-then-else-expressions",
+          "options"
         ],
         "difficulty": 8,
         "topics": ["parsing", "transforming"]
@@ -1303,13 +1355,14 @@
         "slug": "go-counting",
         "name": "Go Counting",
         "uuid": "01ffa95c-1966-4031-b0d2-64f254d85b82",
-        "practices": ["maps", "tuples"],
+        "practices": ["maps", "tuples", "options"],
         "prerequisites": [
           "strings",
           "discriminated-unions",
           "constructors",
           "maps",
-          "tuples"
+          "tuples",
+          "options"
         ],
         "difficulty": 9,
         "topics": ["optional_values", "parsing", "tuples"]
@@ -1318,13 +1371,14 @@
         "slug": "sgf-parsing",
         "name": "Sgf Parsing",
         "uuid": "fe0e98b3-d0d3-4bf6-bfaa-8aa0e61aa625",
-        "practices": ["maps", "constructors", "members"],
+        "practices": ["maps", "constructors", "members", "options"],
         "prerequisites": [
           "strings",
           "maps",
           "arrays",
           "constructors",
-          "members"
+          "members",
+          "options"
         ],
         "difficulty": 9,
         "topics": ["parsing", "transforming"]
@@ -1333,8 +1387,8 @@
         "slug": "forth",
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
-        "practices": ["lazy-evaluation"],
-        "prerequisites": ["arrays", "strings"],
+        "practices": ["lazy-evaluation", "options"],
+        "prerequisites": ["arrays", "strings", "options"],
         "difficulty": 10,
         "topics": ["parsing", "stacks"]
       },
@@ -1381,7 +1435,13 @@
         "slug": "hangman",
         "name": "Hangman",
         "uuid": "ab0f1b66-011f-4aa3-89c5-c89427121279",
-        "practices": ["sets", "immutability", "members", "inheritance"],
+        "practices": [
+          "sets",
+          "immutability",
+          "members",
+          "inheritance",
+          "options"
+        ],
         "prerequisites": [
           "sets",
           "immutability",
@@ -1390,7 +1450,8 @@
           "chars",
           "numbers",
           "inheritance",
-          "observables"
+          "observables",
+          "options"
         ],
         "difficulty": 8,
         "topics": ["reactive_programming"]
@@ -1500,12 +1561,13 @@
         "slug": "sum-of-multiples",
         "name": "Sum Of Multiples",
         "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
-        "practices": ["lists", "foreach-loops", "numbers"],
+        "practices": ["lists", "foreach-loops", "numbers", "options"],
         "prerequisites": [
           "lists",
           "numbers",
           "foreach-loops",
-          "if-then-else-expressions"
+          "if-then-else-expressions",
+          "options"
         ],
         "difficulty": 1,
         "topics": ["lists", "math", "transforming"]
