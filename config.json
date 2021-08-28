@@ -16,7 +16,7 @@
     "highlightjs_language": "fsharp"
   },
   "test_runner": {
-    "average_run_time": 8.0
+    "average_run_time": 8
   },
   "files": {
     "solution": ["%{pascal_slug}.fs"],
@@ -269,8 +269,7 @@
           "strings",
           "chars",
           "for-loops",
-          "if-then-else-expressions",
-          "exceptions"
+          "if-then-else-expressions"
         ],
         "difficulty": 5,
         "topics": ["parsing", "pattern_recognition"]
@@ -291,15 +290,13 @@
         "practices": [
           "if-then-else-expressions",
           "for-loops",
-          "collection-processing",
-          "exceptions"
+          "collection-processing"
         ],
         "prerequisites": [
           "if-then-else-expressions",
           "for-loops",
           "strings",
-          "numbers",
-          "exceptions"
+          "numbers"
         ],
         "difficulty": 2,
         "topics": ["filtering", "strings"]
@@ -340,8 +337,8 @@
         "slug": "phone-number",
         "name": "Phone Number",
         "uuid": "929f98e4-a16c-464b-ac6c-59ca86dbd2b6",
-        "practices": ["regular-expressions", "exceptions"],
-        "prerequisites": ["strings", "exceptions"],
+        "practices": ["regular-expressions"],
+        "prerequisites": ["strings"],
         "difficulty": 5,
         "topics": ["parsing", "transforming"]
       },
@@ -358,18 +355,8 @@
         "slug": "bank-account",
         "name": "Bank Account",
         "uuid": "cb629d30-0351-4023-bd51-423267164c24",
-        "practices": [
-          "members",
-          "floating-point-numbers",
-          "concurrency",
-          "exceptions"
-        ],
-        "prerequisites": [
-          "floating-point-numbers",
-          "classes",
-          "members",
-          "exceptions"
-        ],
+        "practices": ["members", "floating-point-numbers", "concurrency"],
+        "prerequisites": ["floating-point-numbers", "classes", "members"],
         "difficulty": 5,
         "topics": ["concurrency", "optional_values"]
       },
@@ -394,7 +381,7 @@
         "name": "Pov",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
         "practices": ["equality", "recursion"],
-        "prerequisites": ["strings", "arrays", "equality", "exceptions"],
+        "prerequisites": ["strings", "arrays", "equality"],
         "difficulty": 10,
         "topics": ["graphs", "recursion", "searching"]
       },
@@ -425,8 +412,7 @@
           "integral-numbers",
           "math-operators",
           "if-then-else-expressions",
-          "for-loops",
-          "exceptions"
+          "for-loops"
         ],
         "difficulty": 2,
         "topics": ["integers"]
@@ -436,13 +422,7 @@
         "name": "All Your Base",
         "uuid": "01e394ee-23d5-44e6-a37e-149ffaf5375e",
         "practices": ["while-loops", "arrays", "math-operators"],
-        "prerequisites": [
-          "numbers",
-          "while-loops",
-          "arrays",
-          "math-operators",
-          "exceptions"
-        ],
+        "prerequisites": ["numbers", "while-loops", "arrays", "math-operators"],
         "difficulty": 4,
         "topics": ["integers", "math", "transforming"]
       },
@@ -456,8 +436,7 @@
           "math-operators",
           "strings",
           "chars",
-          "for-loops",
-          "exceptions"
+          "for-loops"
         ],
         "difficulty": 4,
         "topics": ["integers", "math", "strings", "transforming"]
@@ -487,7 +466,7 @@
         "name": "Nth Prime",
         "uuid": "220cbe7e-e781-4ab9-84ec-2b89a3c97670",
         "practices": ["lazy-evaluation", "yield"],
-        "prerequisites": ["numbers", "exceptions"],
+        "prerequisites": ["numbers"],
         "difficulty": 6,
         "topics": ["math"]
       },
@@ -557,13 +536,7 @@
         "name": "Palindrome Products",
         "uuid": "471c89f9-8b27-4898-8e98-58e4b2921616",
         "practices": ["tuples", "generic-methods"],
-        "prerequisites": [
-          "lists",
-          "generic-methods",
-          "tuples",
-          "numbers",
-          "exceptions"
-        ],
+        "prerequisites": ["lists", "generic-methods", "tuples", "numbers"],
         "difficulty": 6,
         "topics": ["algorithms", "math", "strings", "tuples"]
       },
@@ -597,7 +570,7 @@
         "name": "Sieve",
         "uuid": "a6511471-bc2c-4734-92fe-c6c5cf447efd",
         "practices": ["arrays"],
-        "prerequisites": ["arrays", "numbers", "exceptions"],
+        "prerequisites": ["arrays", "numbers"],
         "difficulty": 3,
         "topics": ["filtering", "math"]
       },
@@ -738,8 +711,8 @@
         "slug": "change",
         "name": "Change",
         "uuid": "03a1c773-5c48-4f70-a2de-b742197fa9d2",
-        "practices": ["exceptions", "collection-processing"],
-        "prerequisites": ["numbers", "arrays", "exceptions"],
+        "practices": ["collection-processing"],
+        "prerequisites": ["numbers", "arrays"],
         "difficulty": 7,
         "topics": ["integers", "recursion"]
       },
@@ -762,12 +735,7 @@
           "if-then-else-expressions",
           "numbers"
         ],
-        "prerequisites": [
-          "if-then-else-expressions",
-          "while-loops",
-          "numbers",
-          "exceptions"
-        ],
+        "prerequisites": ["if-then-else-expressions", "while-loops", "numbers"],
         "difficulty": 2,
         "topics": [
           "algorithms",
@@ -790,13 +758,8 @@
         "slug": "error-handling",
         "name": "Error Handling",
         "uuid": "fc7935f9-bffa-4eb1-b447-49379b45aac7",
-        "practices": ["exceptions", "casting", "resource-cleanup"],
-        "prerequisites": [
-          "exceptions",
-          "casting",
-          "resource-cleanup",
-          "numbers"
-        ],
+        "practices": ["casting", "resource-cleanup"],
+        "prerequisites": ["casting", "resource-cleanup", "numbers"],
         "difficulty": 3,
         "topics": [
           "discriminated_unions",
@@ -809,7 +772,7 @@
         "name": "Perfect Numbers",
         "uuid": "45fcf742-1b3a-422a-b476-5ee81d80057a",
         "practices": ["numbers"],
-        "prerequisites": ["discriminated-unions", "numbers", "exceptions"],
+        "prerequisites": ["discriminated-unions", "numbers"],
         "difficulty": 3,
         "topics": ["discriminated_unions", "integers", "math"]
       },
@@ -905,14 +868,13 @@
         "slug": "nucleotide-count",
         "name": "Nucleotide Count",
         "uuid": "e6f92e96-b26a-4eba-8759-e8976a8a9097",
-        "practices": ["maps", "exceptions"],
+        "practices": ["maps"],
         "prerequisites": [
           "maps",
           "strings",
           "chars",
           "if-then-else-expressions",
-          "foreach-loops",
-          "exceptions"
+          "foreach-loops"
         ],
         "difficulty": 2,
         "topics": ["maps", "strings"]
@@ -922,7 +884,7 @@
         "name": "Word Count",
         "uuid": "0c7a2f06-1e53-4043-9e1a-386e90e945b4",
         "practices": ["maps", "regular-expressions"],
-        "prerequisites": ["strings", "maps", "numbers", "exceptions"],
+        "prerequisites": ["strings", "maps", "numbers"],
         "difficulty": 4,
         "topics": ["maps", "strings", "transforming"]
       },
@@ -949,7 +911,7 @@
         "name": "Dot Dsl",
         "uuid": "dc50364b-b5b6-4e0b-ba58-32fb7d60a93b",
         "practices": ["classes", "equality"],
-        "prerequisites": ["classes", "equality", "exceptions"],
+        "prerequisites": ["classes", "equality"],
         "difficulty": 5,
         "topics": ["domain_specific_languages"]
       },
@@ -976,7 +938,7 @@
         "name": "Bowling",
         "uuid": "1c8ad2ca-4aec-47af-94b1-ef7e2830b463",
         "practices": ["nullability", "classes"],
-        "prerequisites": ["numbers", "classes", "nullability", "exceptions"],
+        "prerequisites": ["numbers", "classes", "nullability"],
         "difficulty": 6,
         "topics": ["algorithms"]
       },
@@ -985,7 +947,7 @@
         "name": "Affine Cipher",
         "uuid": "ae2f8b66-1d5f-4c19-ad84-b9a7e9e87d0e",
         "practices": ["for-loops", "foreach-loops"],
-        "prerequisites": ["strings", "numbers", "exceptions"],
+        "prerequisites": ["strings", "numbers"],
         "difficulty": 3,
         "topics": ["cryptography", "math", "strings"]
       },
@@ -1038,14 +1000,8 @@
         "slug": "series",
         "name": "Series",
         "uuid": "4b07842c-dcef-4be0-a842-0b3b7a30c499",
-        "practices": ["arrays", "yield", "for-loops", "exceptions"],
-        "prerequisites": [
-          "arrays",
-          "strings",
-          "numbers",
-          "for-loops",
-          "exceptions"
-        ],
+        "practices": ["arrays", "yield", "for-loops"],
+        "prerequisites": ["arrays", "strings", "numbers", "for-loops"],
         "difficulty": 4,
         "topics": ["lists", "strings", "transforming"]
       },
@@ -1207,7 +1163,7 @@
         "name": "Wordy",
         "uuid": "c721b3f2-4afc-4a30-bad5-77bd002c2819",
         "practices": ["switch-statements", "regular-expressions"],
-        "prerequisites": ["strings", "numbers", "exceptions"],
+        "prerequisites": ["strings", "numbers"],
         "difficulty": 7,
         "topics": ["parsing", "strings", "transforming"]
       },
@@ -1233,14 +1189,8 @@
         "slug": "circular-buffer",
         "name": "Circular Buffer",
         "uuid": "b62f8574-9bac-4b95-a76c-f13789ae2663",
-        "practices": ["queues", "records", "generic-types", "exceptions"],
-        "prerequisites": [
-          "queues",
-          "classes",
-          "generic-types",
-          "numbers",
-          "exceptions"
-        ],
+        "practices": ["queues", "records", "generic-types"],
+        "prerequisites": ["queues", "classes", "generic-types", "numbers"],
         "difficulty": 5,
         "topics": ["queues", "records"]
       },
@@ -1257,8 +1207,7 @@
           "integral-numbers",
           "strings",
           "while-loops",
-          "if-then-else-expressions",
-          "exceptions"
+          "if-then-else-expressions"
         ],
         "difficulty": 8,
         "topics": ["strings", "text_formatting", "transforming"]
@@ -1304,8 +1253,7 @@
           "integral-numbers",
           "arrays",
           "bit-manipulation",
-          "while-loops",
-          "exceptions"
+          "while-loops"
         ],
         "difficulty": 9,
         "topics": ["algorithms", "bitwise_operations"]
@@ -1330,7 +1278,7 @@
         "name": "Alphametics",
         "uuid": "3d682945-5fa1-4121-9d5b-7bac60660de9",
         "practices": ["lazy-evaluation"],
-        "prerequisites": ["strings", "lazy-evaluation", "exceptions"],
+        "prerequisites": ["strings", "lazy-evaluation"],
         "difficulty": 9,
         "topics": ["maps", "parsing"]
       },
@@ -1359,8 +1307,7 @@
           "maps",
           "arrays",
           "constructors",
-          "members",
-          "exceptions"
+          "members"
         ],
         "difficulty": 9,
         "topics": ["parsing", "transforming"]
@@ -1370,7 +1317,7 @@
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
         "practices": ["lazy-evaluation"],
-        "prerequisites": ["arrays", "strings", "exceptions"],
+        "prerequisites": ["arrays", "strings"],
         "difficulty": 10,
         "topics": ["parsing", "stacks"]
       },
@@ -1417,13 +1364,7 @@
         "slug": "hangman",
         "name": "Hangman",
         "uuid": "ab0f1b66-011f-4aa3-89c5-c89427121279",
-        "practices": [
-          "sets",
-          "immutability",
-          "members",
-          "inheritance",
-          "exceptions"
-        ],
+        "practices": ["sets", "immutability", "members", "inheritance"],
         "prerequisites": [
           "sets",
           "immutability",
@@ -1432,7 +1373,6 @@
           "chars",
           "numbers",
           "inheritance",
-          "exceptions",
           "observables"
         ],
         "difficulty": 8,
@@ -1534,8 +1474,8 @@
         "slug": "rna-transcription",
         "name": "Rna Transcription",
         "uuid": "3a015501-58bf-427c-8c4c-2197321f4a34",
-        "practices": ["chars", "collection-processing", "exceptions"],
-        "prerequisites": ["chars", "strings", "exceptions"],
+        "practices": ["chars", "collection-processing"],
+        "prerequisites": ["chars", "strings"],
         "difficulty": 1,
         "topics": ["strings", "transforming"]
       },
@@ -1576,7 +1516,6 @@
         "prerequisites": [
           "classes",
           "members",
-          "exceptions",
           "foreach-loops",
           "numbers",
           "booleans",
