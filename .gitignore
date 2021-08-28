@@ -4,7 +4,6 @@ bin/
 build/
 obj/
 packages/
-tools/
 .fake/
 .paket/paket.exe
 paket-files

@@ -35,7 +35,7 @@ param (
     [string[]]$Exclude=@()
 )
 
-$toolDir = Resolve-Path "tools-extra/CodeFenceChecker"
+$toolDir = Resolve-Path "tools/CodeFenceChecker"
 
 # Import shared functionality
 . ./shared.ps1
