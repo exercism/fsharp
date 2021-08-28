@@ -376,10 +376,9 @@
         "slug": "binary-search-tree",
         "name": "Binary Search Tree",
         "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
-        "practices": ["generic-types", "members", "constructors", "options"],
+        "practices": ["members", "constructors", "options"],
         "prerequisites": [
           "lists",
-          "generic-types",
           "members",
           "numbers",
           "classes",
@@ -393,8 +392,8 @@
         "slug": "pov",
         "name": "Pov",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
-        "practices": ["equality", "recursion", "options"],
-        "prerequisites": ["strings", "equality", "options"],
+        "practices": ["equality", "recursion", "options", "generic-types"],
+        "prerequisites": ["strings", "equality", "options", "generic-types"],
         "difficulty": 10,
         "topics": ["graphs", "recursion", "searching"]
       },
@@ -524,13 +523,14 @@
         "slug": "custom-set",
         "name": "Custom Set",
         "uuid": "ecee74aa-41f5-42aa-b99e-31e9589378e3",
-        "practices": ["sets", "immutability", "constructors"],
+        "practices": ["sets", "immutability", "constructors", "generic-types"],
         "prerequisites": [
           "sets",
           "immutability",
           "numbers",
           "booleans",
-          "constructors"
+          "constructors",
+          "generic-types"
         ],
         "difficulty": 5,
         "topics": ["sets"]
@@ -617,7 +617,6 @@
           "arrays"
         ],
         "prerequisites": [
-          "generic-types",
           "generic-methods",
           "numbers",
           "higher-order-functions",
@@ -692,7 +691,6 @@
           "parameters",
           "lists",
           "generic-methods",
-          "generic-types",
           "higher-order-functions"
         ],
         "difficulty": 4,
@@ -802,7 +800,8 @@
           "resource-cleanup",
           "exceptions",
           "options",
-          "result"
+          "result",
+          "generic-types"
         ],
         "prerequisites": [
           "casting",
@@ -810,7 +809,8 @@
           "numbers",
           "exceptions",
           "options",
-          "result"
+          "result",
+          "generic-types"
         ],
         "difficulty": 3,
         "topics": [
@@ -869,8 +869,8 @@
         "slug": "simple-linked-list",
         "name": "Simple Linked List",
         "uuid": "e86e88a0-802c-41f4-b2a1-c7a81b8e87de",
-        "practices": ["interfaces", "generic-types", "members", "lists"],
-        "prerequisites": ["interfaces", "generic-types", "members", "numbers"],
+        "practices": ["interfaces", "members", "lists"],
+        "prerequisites": ["interfaces", "members", "numbers"],
         "difficulty": 4,
         "topics": ["lists"]
       },
@@ -879,7 +879,7 @@
         "name": "Linked List",
         "uuid": "253f040d-35c2-4e1c-8651-d7a7410d7d0d",
         "practices": ["generic-types"],
-        "prerequisites": ["numbers", "generic-types", "classes"],
+        "prerequisites": ["numbers", "classes", "generic-types"],
         "difficulty": 5,
         "topics": ["lists"]
       },
@@ -1127,10 +1127,9 @@
         "slug": "diamond",
         "name": "Diamond",
         "uuid": "736a470f-412c-41fc-b92d-9bd59ef3bcce",
-        "practices": ["chars", "string-formatting", "string-builder", "arrays"],
-        "prerequisites": ["strings", "string-formatting", "chars", "arrays"],
-        "difficulty": 8,
-        "topics": ["algorithms", "text_formatting"]
+        "practices": ["chars", "string-formatting", "string-builder"],
+        "prerequisites": ["strings", "string-formatting", "chars"],
+        "difficulty": 8
       },
       {
         "slug": "matrix",
@@ -1244,13 +1243,13 @@
         "slug": "circular-buffer",
         "name": "Circular Buffer",
         "uuid": "b62f8574-9bac-4b95-a76c-f13789ae2663",
-        "practices": ["queues", "records", "generic-types", "exceptions"],
+        "practices": ["queues", "records", "exceptions", "generic-types"],
         "prerequisites": [
           "queues",
           "classes",
-          "generic-types",
           "numbers",
-          "exceptions"
+          "exceptions",
+          "generic-types"
         ],
         "difficulty": 5,
         "topics": ["queues", "records"]
