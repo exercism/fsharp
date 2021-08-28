@@ -178,7 +178,7 @@
         "slug": "space-age",
         "name": "Space Age",
         "uuid": "277d05db-0ba0-4de6-b5f8-090c251afffc",
-        "practices": ["discriminated-unions", "floating-point-numbers"],
+        "practices": ["discriminated-unions", "floating-point-numbers", "maps"],
         "prerequisites": [
           "discriminated-unions",
           "floating-point-numbers",
@@ -190,8 +190,8 @@
         "slug": "grade-school",
         "name": "Grade School",
         "uuid": "cf058dc8-db6f-4034-ac5b-22f1d8d0decc",
-        "practices": ["maps", "ordering", "lists"],
-        "prerequisites": ["strings", "numbers", "ordering", "lists"],
+        "practices": ["lists", "maps", "ordering"],
+        "prerequisites": ["lists", "numbers", "ordering", "strings"],
         "difficulty": 2
       },
       {
@@ -228,8 +228,8 @@
         "slug": "kindergarten-garden",
         "name": "Kindergarten Garden",
         "uuid": "cf64cddf-63e2-4c71-ac15-0af617f82856",
-        "practices": ["discriminated-unions"],
-        "prerequisites": ["strings", "discriminated-unions"],
+        "practices": ["discriminated-unions", "maps"],
+        "prerequisites": ["discriminated-unions", "strings"],
         "difficulty": 3
       },
       {
@@ -262,14 +262,14 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["for-loops", "chars", "options", "lists"],
+        "practices": ["chars", "for-loops", "lists", "maps", "options"],
         "prerequisites": [
-          "strings",
           "chars",
           "for-loops",
           "if-then-else-expressions",
+          "lists",
           "options",
-          "lists"
+          "strings"
         ],
         "difficulty": 5,
         "topics": ["parsing", "pattern_recognition"]
@@ -603,21 +603,21 @@
         "name": "Word Search",
         "uuid": "8f8a79d1-78ed-4cdd-adcc-5cd6c6781dcd",
         "practices": [
-          "maps",
-          "tuples",
-          "nullability",
           "constructors",
+          "lists",
+          "maps",
+          "nullability",
           "options",
-          "lists"
+          "tuples"
         ],
         "prerequisites": [
-          "strings",
           "constructors",
-          "nullability",
-          "tuples",
+          "lists",
           "maps",
+          "nullability",
           "options",
-          "lists"
+          "strings",
+          "tuples"
         ],
         "difficulty": 6,
         "topics": ["optional_values", "searching", "tuples"]
@@ -790,8 +790,8 @@
         "slug": "change",
         "name": "Change",
         "uuid": "03a1c773-5c48-4f70-a2de-b742197fa9d2",
-        "practices": ["collection-processing", "options", "lists"],
-        "prerequisites": ["numbers", "options", "lists"],
+        "practices": ["collection-processing", "lists", "maps", "options"],
+        "prerequisites": ["lists", "numbers", "options"],
         "difficulty": 7,
         "topics": ["integers", "recursion"]
       },
@@ -958,8 +958,8 @@
         "slug": "etl",
         "name": "Etl",
         "uuid": "95e592a8-6663-4b07-894a-86a5cc310c67",
-        "practices": ["collection-processing", "maps", "lists"],
-        "prerequisites": ["strings", "numbers", "maps", "lists"],
+        "practices": ["collection-processing", "lists", "maps"],
+        "prerequisites": ["lists", "maps", "numbers", "strings"],
         "difficulty": 2,
         "topics": ["maps", "transforming"]
       },
@@ -967,14 +967,14 @@
         "slug": "nucleotide-count",
         "name": "Nucleotide Count",
         "uuid": "e6f92e96-b26a-4eba-8759-e8976a8a9097",
-        "practices": ["maps", "lists"],
+        "practices": ["lists", "maps"],
         "prerequisites": [
-          "maps",
-          "strings",
           "chars",
-          "if-then-else-expressions",
           "foreach-loops",
-          "lists"
+          "if-then-else-expressions",
+          "lists",
+          "maps",
+          "strings"
         ],
         "difficulty": 2,
         "topics": ["maps", "strings"]
@@ -983,8 +983,8 @@
         "slug": "word-count",
         "name": "Word Count",
         "uuid": "0c7a2f06-1e53-4043-9e1a-386e90e945b4",
-        "practices": ["maps", "regular-expressions", "lists"],
-        "prerequisites": ["strings", "maps", "numbers", "lists"],
+        "practices": ["lists", "maps", "regular-expressions"],
+        "prerequisites": ["lists", "maps", "numbers", "strings"],
         "difficulty": 4,
         "topics": ["maps", "strings", "transforming"]
       },
@@ -1019,13 +1019,13 @@
         "slug": "parallel-letter-frequency",
         "name": "Parallel Letter Frequency",
         "uuid": "c0d0ae0f-83fb-433a-8778-d38e8a6645aa",
-        "practices": ["maps", "parallellism", "options", "lists"],
+        "practices": ["lists", "maps", "options", "parallellism"],
         "prerequisites": [
-          "strings",
+          "lists",
           "maps",
-          "parallellism",
           "options",
-          "lists"
+          "parallellism",
+          "strings"
         ],
         "difficulty": 5,
         "topics": ["parallellism", "transforming"]
@@ -1126,8 +1126,8 @@
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "3fb37bef-a754-4a64-8493-ba4254518017",
-        "practices": ["foreach-loops"],
-        "prerequisites": ["strings", "chars", "foreach-loops"],
+        "practices": ["foreach-loops", "maps"],
+        "prerequisites": ["chars", "foreach-loops", "strings"],
         "difficulty": 5,
         "topics": ["algorithms", "strings", "transforming"]
       },
@@ -1177,8 +1177,8 @@
         "slug": "tournament",
         "name": "Tournament",
         "uuid": "b5672a0c-aac5-4274-a458-39d018b74750",
-        "practices": ["streams", "string-formatting", "lists"],
-        "prerequisites": ["streams", "strings", "string-formatting", "lists"],
+        "practices": ["lists", "maps", "streams", "string-formatting"],
+        "prerequisites": ["lists", "streams", "string-formatting", "strings"],
         "difficulty": 6,
         "topics": ["parsing", "text_formatting"]
       },
@@ -1216,8 +1216,8 @@
         "slug": "scale-generator",
         "name": "Scale Generator",
         "uuid": "02a8e767-7449-48a9-8d6b-f2cac708de50",
-        "practices": ["foreach-loops"],
-        "prerequisites": ["strings", "foreach-loops"],
+        "practices": ["foreach-loops", "maps"],
+        "prerequisites": ["foreach-loops", "strings"],
         "difficulty": 5,
         "topics": ["algorithms", "parsing"]
       },
@@ -1407,8 +1407,8 @@
         "slug": "alphametics",
         "name": "Alphametics",
         "uuid": "3d682945-5fa1-4121-9d5b-7bac60660de9",
-        "practices": ["lazy-evaluation", "lists"],
-        "prerequisites": ["strings", "lazy-evaluation", "lists"],
+        "practices": ["lazy-evaluation", "lists", "maps"],
+        "prerequisites": ["lazy-evaluation", "lists", "maps", "strings"],
         "difficulty": 9,
         "topics": ["maps", "parsing"]
       },
@@ -1416,15 +1416,15 @@
         "slug": "go-counting",
         "name": "Go Counting",
         "uuid": "01ffa95c-1966-4031-b0d2-64f254d85b82",
-        "practices": ["maps", "tuples", "options", "lists"],
+        "practices": ["lists", "maps", "options", "tuples"],
         "prerequisites": [
-          "strings",
-          "discriminated-unions",
           "constructors",
+          "discriminated-unions",
+          "lists",
           "maps",
-          "tuples",
           "options",
-          "lists"
+          "strings",
+          "tuples"
         ],
         "difficulty": 9,
         "topics": ["optional_values", "parsing", "tuples"]
@@ -1433,14 +1433,14 @@
         "slug": "sgf-parsing",
         "name": "Sgf Parsing",
         "uuid": "fe0e98b3-d0d3-4bf6-bfaa-8aa0e61aa625",
-        "practices": ["maps", "constructors", "members", "options", "lists"],
+        "practices": ["constructors", "lists", "maps", "members", "options"],
         "prerequisites": [
-          "strings",
-          "maps",
           "constructors",
+          "lists",
+          "maps",
           "members",
           "options",
-          "lists"
+          "strings"
         ],
         "difficulty": 9,
         "topics": ["parsing", "transforming"]
@@ -1449,8 +1449,8 @@
         "slug": "forth",
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
-        "practices": ["lazy-evaluation", "options", "lists"],
-        "prerequisites": ["strings", "options", "lists"],
+        "practices": ["lazy-evaluation", "lists", "maps", "options"],
+        "prerequisites": ["lists", "options", "strings"],
         "difficulty": 10,
         "topics": ["parsing", "stacks"]
       },
@@ -1652,17 +1652,16 @@
         "slug": "tree-building",
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
-        "practices": ["members", "classes", "exceptions", "lists", "lists"],
+        "practices": ["classes", "exceptions", "lists", "maps", "members"],
         "prerequisites": [
-          "classes",
-          "members",
-          "foreach-loops",
-          "numbers",
           "booleans",
-          "generic-methods",
+          "classes",
           "exceptions",
+          "foreach-loops",
+          "generic-methods",
           "lists",
-          "lists"
+          "members",
+          "numbers"
         ],
         "difficulty": 5,
         "topics": ["refactoring", "trees"]
