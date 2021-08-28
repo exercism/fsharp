@@ -252,7 +252,6 @@
         ],
         "prerequisites": [
           "discriminated-unions",
-          "arrays",
           "booleans",
           "bit-manipulation",
           "classes"
@@ -264,7 +263,7 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["arrays", "for-loops", "chars", "options"],
+        "practices": ["for-loops", "chars", "options"],
         "prerequisites": [
           "strings",
           "chars",
@@ -395,7 +394,7 @@
         "name": "Pov",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
         "practices": ["equality", "recursion", "options"],
-        "prerequisites": ["strings", "arrays", "equality", "options"],
+        "prerequisites": ["strings", "equality", "options"],
         "difficulty": 10,
         "topics": ["graphs", "recursion", "searching"]
       },
@@ -435,11 +434,10 @@
         "slug": "all-your-base",
         "name": "All Your Base",
         "uuid": "01e394ee-23d5-44e6-a37e-149ffaf5375e",
-        "practices": ["while-loops", "arrays", "math-operators", "options"],
+        "practices": ["while-loops", "math-operators", "options"],
         "prerequisites": [
           "numbers",
           "while-loops",
-          "arrays",
           "math-operators",
           "options"
         ],
@@ -529,7 +527,6 @@
         "practices": ["sets", "immutability", "constructors"],
         "prerequisites": [
           "sets",
-          "arrays",
           "immutability",
           "numbers",
           "booleans",
@@ -585,7 +582,6 @@
           "nullability",
           "tuples",
           "maps",
-          "arrays",
           "options"
         ],
         "difficulty": 6,
@@ -604,8 +600,8 @@
         "slug": "sieve",
         "name": "Sieve",
         "uuid": "a6511471-bc2c-4734-92fe-c6c5cf447efd",
-        "practices": ["arrays"],
-        "prerequisites": ["arrays", "numbers"],
+        "practices": [],
+        "prerequisites": ["numbers"],
         "difficulty": 3,
         "topics": ["filtering", "math"]
       },
@@ -617,13 +613,15 @@
           "generic-methods",
           "higher-order-functions",
           "yield",
-          "lazy-evaluation"
+          "lazy-evaluation",
+          "arrays"
         ],
         "prerequisites": [
           "generic-types",
           "generic-methods",
           "numbers",
-          "higher-order-functions"
+          "higher-order-functions",
+          "arrays"
         ],
         "difficulty": 3,
         "topics": ["filtering", "sequences"]
@@ -747,7 +745,7 @@
         "name": "Change",
         "uuid": "03a1c773-5c48-4f70-a2de-b742197fa9d2",
         "practices": ["collection-processing", "options"],
-        "prerequisites": ["numbers", "arrays", "options"],
+        "prerequisites": ["numbers", "options"],
         "difficulty": 7,
         "topics": ["integers", "recursion"]
       },
@@ -790,8 +788,8 @@
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "c5b38251-14ba-4d98-a420-7a930f06167f",
-        "practices": ["arrays", "for-loops", "options"],
-        "prerequisites": ["arrays", "numbers", "for-loops", "options"],
+        "practices": ["for-loops", "options", "arrays"],
+        "prerequisites": ["numbers", "for-loops", "options", "arrays"],
         "difficulty": 3,
         "topics": ["lists", "searching"]
       },
@@ -828,7 +826,7 @@
         "name": "Protein Translation",
         "uuid": "612395a5-238e-4be0-8ce0-4ac66f57056e",
         "practices": ["while-loops", "collection-processing"],
-        "prerequisites": ["strings", "while-loops", "arrays"],
+        "prerequisites": ["strings", "while-loops"],
         "difficulty": 3,
         "topics": ["lists", "strings", "transforming"]
       },
@@ -883,7 +881,7 @@
         "name": "Yacht",
         "uuid": "005721ef-264e-4f81-ae63-ae72b0e5310f",
         "practices": ["discriminated-unions", "collection-processing"],
-        "prerequisites": ["discriminated-unions", "arrays", "numbers"],
+        "prerequisites": ["discriminated-unions", "numbers"],
         "difficulty": 5,
         "topics": ["discriminated_unions", "games", "parsing"]
       },
@@ -1008,8 +1006,8 @@
         "slug": "proverb",
         "name": "Proverb",
         "uuid": "5ca0e0ba-20ac-4d48-b2dc-0cdde06a8f3e",
-        "practices": ["arrays"],
-        "prerequisites": ["strings", "arrays", "for-loops"],
+        "practices": [],
+        "prerequisites": ["strings", "for-loops"],
         "difficulty": 3,
         "topics": ["algorithms", "text_formatting"]
       },
@@ -1026,8 +1024,8 @@
         "slug": "anagram",
         "name": "Anagram",
         "uuid": "cffcb076-295f-497f-8ef1-059a8fa65536",
-        "practices": ["classes", "arrays", "strings"],
-        "prerequisites": ["strings", "arrays", "classes"],
+        "practices": ["classes", "strings"],
+        "prerequisites": ["strings", "classes"],
         "difficulty": 4,
         "topics": ["filtering", "strings"]
       },
@@ -1053,14 +1051,8 @@
         "slug": "series",
         "name": "Series",
         "uuid": "4b07842c-dcef-4be0-a842-0b3b7a30c499",
-        "practices": ["arrays", "yield", "for-loops", "options"],
-        "prerequisites": [
-          "arrays",
-          "strings",
-          "numbers",
-          "for-loops",
-          "options"
-        ],
+        "practices": ["yield", "for-loops", "options"],
+        "prerequisites": ["strings", "numbers", "for-loops", "options"],
         "difficulty": 4,
         "topics": ["lists", "strings", "transforming"]
       },
@@ -1128,8 +1120,8 @@
         "slug": "diamond",
         "name": "Diamond",
         "uuid": "736a470f-412c-41fc-b92d-9bd59ef3bcce",
-        "practices": ["chars", "string-formatting", "string-builder"],
-        "prerequisites": ["strings", "string-formatting", "chars"],
+        "practices": ["chars", "string-formatting", "string-builder", "arrays"],
+        "prerequisites": ["strings", "string-formatting", "chars", "arrays"],
         "difficulty": 8,
         "topics": ["algorithms", "text_formatting"]
       },
@@ -1137,8 +1129,8 @@
         "slug": "matrix",
         "name": "Matrix",
         "uuid": "632417fa-7bf7-4228-9b71-dbdd6738b223",
-        "practices": ["members", "classes", "arrays"],
-        "prerequisites": ["arrays", "classes", "numbers", "members"],
+        "practices": ["members", "classes"],
+        "prerequisites": ["classes", "numbers", "members"],
         "difficulty": 4,
         "topics": ["matrices", "parsing"]
       },
@@ -1160,7 +1152,7 @@
         "name": "Scale Generator",
         "uuid": "02a8e767-7449-48a9-8d6b-f2cac708de50",
         "practices": ["foreach-loops"],
-        "prerequisites": ["strings", "arrays", "foreach-loops"],
+        "prerequisites": ["strings", "foreach-loops"],
         "difficulty": 5,
         "topics": ["algorithms", "parsing"]
       },
@@ -1170,7 +1162,6 @@
         "uuid": "52f8f299-b93b-4f44-bd5b-b445741b285d",
         "practices": ["multi-dimensional-arrays", "numbers"],
         "prerequisites": [
-          "arrays",
           "multi-dimensional-arrays",
           "numbers",
           "if-then-else-expressions"
@@ -1196,7 +1187,6 @@
           "strings",
           "chars",
           "string-formatting",
-          "arrays",
           "if-then-else-expressions"
         ],
         "difficulty": 7,
@@ -1210,7 +1200,6 @@
         "prerequisites": [
           "strings",
           "numbers",
-          "arrays",
           "for-loops",
           "if-then-else-expressions"
         ],
@@ -1231,7 +1220,7 @@
         "name": "Prime Factors",
         "uuid": "18652e46-6dd2-4030-84af-be0965c92991",
         "practices": ["integral-numbers", "while-loops"],
-        "prerequisites": ["integral-numbers", "arrays", "while-loops"],
+        "prerequisites": ["integral-numbers", "while-loops"],
         "difficulty": 4,
         "topics": ["integers", "math"]
       },
@@ -1307,7 +1296,7 @@
         "name": "Secret Handshake",
         "uuid": "ae78a960-2c55-44cb-9fd0-49b4bd5729c5",
         "practices": ["bit-manipulation"],
-        "prerequisites": ["strings", "bit-manipulation", "arrays"],
+        "prerequisites": ["strings", "bit-manipulation"],
         "difficulty": 3,
         "topics": ["bitwise_operations", "lists"]
       },
@@ -1318,7 +1307,6 @@
         "practices": ["integral-numbers", "bit-manipulation", "options"],
         "prerequisites": [
           "integral-numbers",
-          "arrays",
           "bit-manipulation",
           "while-loops",
           "options"
@@ -1335,7 +1323,6 @@
           "strings",
           "chars",
           "discriminated-unions",
-          "arrays",
           "if-then-else-expressions",
           "options"
         ],
@@ -1375,7 +1362,6 @@
         "prerequisites": [
           "strings",
           "maps",
-          "arrays",
           "constructors",
           "members",
           "options"
@@ -1388,7 +1374,7 @@
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
         "practices": ["lazy-evaluation", "options"],
-        "prerequisites": ["arrays", "strings", "options"],
+        "prerequisites": ["strings", "options"],
         "difficulty": 10,
         "topics": ["parsing", "stacks"]
       },
