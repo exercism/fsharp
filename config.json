@@ -198,7 +198,7 @@
         "slug": "clock",
         "name": "Clock",
         "uuid": "30c3a38e-1e44-4711-887e-fca301c26c1b",
-        "practices": ["equality", "numbers"],
+        "practices": ["equality", "numbers", "records"],
         "prerequisites": ["equality", "numbers"],
         "difficulty": 3
       },
@@ -387,13 +387,14 @@
         "slug": "binary-search-tree",
         "name": "Binary Search Tree",
         "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
-        "practices": ["members", "constructors", "options"],
+        "practices": ["constructors", "members", "options", "records"],
         "prerequisites": [
-          "members",
-          "numbers",
           "classes",
           "constructors",
-          "options"
+          "members",
+          "numbers",
+          "options",
+          "records"
         ],
         "difficulty": 5,
         "topics": ["optional_values", "searching", "trees"]
@@ -404,17 +405,19 @@
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
         "practices": [
           "equality",
-          "recursion",
-          "options",
           "generic-types",
-          "lists"
+          "lists",
+          "options",
+          "records",
+          "recursion"
         ],
         "prerequisites": [
-          "strings",
           "equality",
-          "options",
           "generic-types",
-          "lists"
+          "lists",
+          "options",
+          "records",
+          "strings"
         ],
         "difficulty": 10,
         "topics": ["graphs", "recursion", "searching"]
@@ -423,8 +426,20 @@
         "slug": "zipper",
         "name": "Zipper",
         "uuid": "5369eea9-00c8-4044-b272-1ce8d0590ecf",
-        "practices": ["immutability", "equality", "recursion", "options"],
-        "prerequisites": ["numbers", "classes", "equality", "options"],
+        "practices": [
+          "equality",
+          "immutability",
+          "options",
+          "records",
+          "recursion"
+        ],
+        "prerequisites": [
+          "classes",
+          "equality",
+          "numbers",
+          "options",
+          "records"
+        ],
         "difficulty": 10,
         "topics": ["recursion", "searching", "trees"]
       },
@@ -487,17 +502,19 @@
         "name": "Complex Numbers",
         "uuid": "d993508d-b4d2-4f3f-a46d-35b753bf90a9",
         "practices": [
-          "structs",
-          "immutability",
           "extension-methods",
-          "math-operators"
+          "immutability",
+          "math-operators",
+          "records",
+          "structs"
         ],
         "prerequisites": [
           "extension-methods",
-          "numbers",
-          "structs",
           "immutability",
-          "math-operators"
+          "math-operators",
+          "numbers",
+          "records",
+          "structs"
         ],
         "difficulty": 6,
         "topics": ["math"]
@@ -516,19 +533,21 @@
         "name": "Rational Numbers",
         "uuid": "913ce020-32ae-4b65-ae64-c924d25295dc",
         "practices": [
-          "operator-overloading",
-          "structs",
-          "immutability",
           "extension-methods",
-          "math-operators"
+          "immutability",
+          "math-operators",
+          "operator-overloading",
+          "records",
+          "structs"
         ],
         "prerequisites": [
           "extension-methods",
+          "immutability",
+          "math-operators",
           "numbers",
           "operator-overloading",
-          "structs",
-          "immutability",
-          "math-operators"
+          "records",
+          "structs"
         ],
         "difficulty": 6,
         "topics": ["math"]
@@ -552,20 +571,22 @@
         "name": "Custom Set",
         "uuid": "ecee74aa-41f5-42aa-b99e-31e9589378e3",
         "practices": [
-          "sets",
-          "immutability",
           "constructors",
           "generic-types",
-          "lists"
+          "immutability",
+          "lists",
+          "records",
+          "sets"
         ],
         "prerequisites": [
-          "sets",
-          "immutability",
-          "numbers",
           "booleans",
           "constructors",
           "generic-types",
-          "lists"
+          "immutability",
+          "lists",
+          "numbers",
+          "records",
+          "sets"
         ],
         "difficulty": 5,
         "topics": ["sets"]
@@ -676,8 +697,14 @@
         "slug": "robot-name",
         "name": "Robot Name",
         "uuid": "3fbd466a-caf4-48ac-9a1e-796bc406ff1e",
-        "practices": ["classes", "randomness", "tuples"],
-        "prerequisites": ["classes", "randomness", "strings", "tuples"],
+        "practices": ["classes", "randomness", "records", "tuples"],
+        "prerequisites": [
+          "classes",
+          "randomness",
+          "records",
+          "strings",
+          "tuples"
+        ],
         "difficulty": 4,
         "topics": ["randomness", "strings"]
       },
@@ -705,6 +732,7 @@
           "flag-discriminated-unions",
           "if-then-else-expressions",
           "lists",
+          "records",
           "switch-expressions",
           "switch-statements",
           "tuples"
@@ -713,6 +741,7 @@
           "flag-discriminated-unions",
           "if-then-else-expressions",
           "lists",
+          "records",
           "string-formatting",
           "strings",
           "tuples"
@@ -724,10 +753,17 @@
         "slug": "ledger",
         "name": "Ledger",
         "uuid": "e860ad86-cd1f-474b-9e8e-d8a72ff4315c",
-        "practices": ["globalization", "lists", "string-formatting", "tuples"],
+        "practices": [
+          "globalization",
+          "lists",
+          "records",
+          "string-formatting",
+          "tuples"
+        ],
         "prerequisites": [
           "globalization",
           "lists",
+          "records",
           "string-formatting",
           "strings",
           "tuples"
@@ -939,8 +975,8 @@
         "slug": "linked-list",
         "name": "Linked List",
         "uuid": "253f040d-35c2-4e1c-8651-d7a7410d7d0d",
-        "practices": ["generic-types"],
-        "prerequisites": ["numbers", "classes", "generic-types"],
+        "practices": ["generic-types", "records"],
+        "prerequisites": ["classes", "generic-types", "numbers", "records"],
         "difficulty": 5,
         "topics": ["lists"]
       },
@@ -1194,8 +1230,20 @@
         "slug": "tournament",
         "name": "Tournament",
         "uuid": "b5672a0c-aac5-4274-a458-39d018b74750",
-        "practices": ["lists", "maps", "streams", "string-formatting"],
-        "prerequisites": ["lists", "streams", "string-formatting", "strings"],
+        "practices": [
+          "lists",
+          "maps",
+          "records",
+          "streams",
+          "string-formatting"
+        ],
+        "prerequisites": [
+          "lists",
+          "records",
+          "streams",
+          "string-formatting",
+          "strings"
+        ],
         "difficulty": 6,
         "topics": ["parsing", "text_formatting"]
       },
@@ -1277,13 +1325,14 @@
         "slug": "minesweeper",
         "name": "Minesweeper",
         "uuid": "9e3fc78d-ac3b-4195-ad4c-9f99b0ee2678",
-        "practices": ["string-formatting", "chars", "lists"],
+        "practices": ["chars", "lists", "records", "string-formatting"],
         "prerequisites": [
-          "strings",
           "chars",
-          "string-formatting",
           "if-then-else-expressions",
-          "lists"
+          "lists",
+          "records",
+          "string-formatting",
+          "strings"
         ],
         "difficulty": 7,
         "topics": ["parsing", "transforming"]
@@ -1347,6 +1396,7 @@
           "generic-types",
           "numbers",
           "queues",
+          "records",
           "tuples"
         ],
         "difficulty": 5,
@@ -1376,12 +1426,13 @@
         "slug": "two-bucket",
         "name": "Two Bucket",
         "uuid": "78472676-26f0-4bef-813b-9b958c4c35df",
-        "practices": ["members", "constructors"],
+        "practices": ["constructors", "members", "records"],
         "prerequisites": [
-          "discriminated-unions",
           "constructors",
+          "discriminated-unions",
           "members",
-          "numbers"
+          "numbers",
+          "records"
         ],
         "difficulty": 8,
         "topics": ["logic"]
@@ -1390,8 +1441,8 @@
         "slug": "zebra-puzzle",
         "name": "Zebra Puzzle",
         "uuid": "ee021156-5520-4386-8b5d-9c648f30287c",
-        "practices": ["lazy-evaluation", "discriminated-unions"],
-        "prerequisites": ["discriminated-unions"],
+        "practices": ["discriminated-unions", "lazy-evaluation", "records"],
+        "prerequisites": ["discriminated-unions", "records"],
         "difficulty": 8,
         "topics": ["logic"]
       },
@@ -1499,8 +1550,8 @@
         "slug": "forth",
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
-        "practices": ["lazy-evaluation", "lists", "maps", "options"],
-        "prerequisites": ["lists", "options", "strings"],
+        "practices": ["lazy-evaluation", "lists", "maps", "options", "records"],
+        "prerequisites": ["lists", "options", "records", "strings"],
         "difficulty": 10,
         "topics": ["parsing", "stacks"]
       },
@@ -1548,22 +1599,24 @@
         "name": "Hangman",
         "uuid": "ab0f1b66-011f-4aa3-89c5-c89427121279",
         "practices": [
-          "sets",
           "immutability",
-          "members",
           "inheritance",
-          "options"
+          "members",
+          "options",
+          "records",
+          "sets"
         ],
         "prerequisites": [
-          "sets",
-          "immutability",
-          "members",
-          "constructors",
           "chars",
-          "numbers",
+          "constructors",
+          "immutability",
           "inheritance",
+          "members",
+          "numbers",
           "observables",
-          "options"
+          "options",
+          "records",
+          "sets"
         ],
         "difficulty": 8,
         "topics": ["reactive_programming"]
@@ -1688,13 +1741,14 @@
         "slug": "dnd-character",
         "name": "D&D Character",
         "uuid": "93550ca5-cd8c-42e3-88f3-e6ce41608342",
-        "practices": ["randomness", "constructors"],
+        "practices": ["constructors", "randomness", "records"],
         "prerequisites": [
-          "randomness",
           "classes",
+          "constructors",
           "members",
           "numbers",
-          "constructors"
+          "randomness",
+          "records"
         ],
         "difficulty": 3,
         "topics": ["randomness"]
@@ -1703,7 +1757,14 @@
         "slug": "tree-building",
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
-        "practices": ["classes", "exceptions", "lists", "maps", "members"],
+        "practices": [
+          "classes",
+          "exceptions",
+          "lists",
+          "maps",
+          "members",
+          "records"
+        ],
         "prerequisites": [
           "booleans",
           "classes",
@@ -1712,7 +1773,8 @@
           "generic-methods",
           "lists",
           "members",
-          "numbers"
+          "numbers",
+          "records"
         ],
         "difficulty": 5,
         "topics": ["refactoring", "trees"]
