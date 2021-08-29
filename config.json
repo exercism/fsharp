@@ -1592,8 +1592,8 @@
         "slug": "gigasecond",
         "name": "Gigasecond",
         "uuid": "1d377268-8892-460b-a84b-011fde1ff06b",
-        "practices": ["datetimes", "tuples"],
-        "prerequisites": ["datetimes", "numbers", "tuples"],
+        "practices": ["datetimes"],
+        "prerequisites": ["datetimes", "numbers"],
         "difficulty": 1
       },
       {
@@ -1616,13 +1616,13 @@
         "slug": "sum-of-multiples",
         "name": "Sum Of Multiples",
         "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
-        "practices": ["for-loops", "lists", "numbers", "options"],
+        "practices": ["for-loops", "ranges", "lists"],
         "prerequisites": [
           "for-loops",
-          "if-then-else-expressions",
+          "booleans",
           "lists",
           "numbers",
-          "options"
+          "ranges"
         ],
         "difficulty": 1
       },
@@ -1630,7 +1630,7 @@
         "slug": "dnd-character",
         "name": "D&D Character",
         "uuid": "93550ca5-cd8c-42e3-88f3-e6ce41608342",
-        "practices": ["constructors", "randomness", "records"],
+        "practices": ["randomness", "records"],
         "prerequisites": [
           "classes",
           "constructors",
@@ -1646,23 +1646,17 @@
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
         "practices": [
-          "classes",
+          "discriminated-unions",
           "exceptions",
-          "lists",
-          "maps",
-          "members",
-          "records"
+          "collection-processing"
         ],
         "prerequisites": [
           "booleans",
-          "classes",
+          "discriminated-unions",
           "exceptions",
           "for-loops",
-          "generic-methods",
           "lists",
-          "members",
-          "numbers",
-          "records"
+          "numbers"
         ],
         "difficulty": 5
       }
