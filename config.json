@@ -16,7 +16,7 @@
     "highlightjs_language": "fsharp"
   },
   "test_runner": {
-    "average_run_time": 8
+    "average_run_time": 8.0
   },
   "files": {
     "solution": ["%{pascal_slug}.fs"],
@@ -128,16 +128,16 @@
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
-        "practices": ["strings", "string-formatting", "options", "options"],
-        "prerequisites": ["strings", "options", "options"],
+        "practices": ["options", "string-formatting", "strings"],
+        "prerequisites": ["options", "strings"],
         "difficulty": 1
       },
       {
         "slug": "leap",
         "name": "Leap",
         "uuid": "66d974b5-18fc-4993-b5f2-7beda4f4afa3",
-        "practices": ["numbers", "if-then-else-expressions"],
-        "prerequisites": ["numbers", "if-then-else-expressions"],
+        "practices": ["if-then-else-expressions", "numbers"],
+        "prerequisites": ["if-then-else-expressions", "numbers"],
         "difficulty": 1
       },
       {
@@ -153,7 +153,7 @@
         "name": "Raindrops",
         "uuid": "0c953a84-e726-4b9f-a964-1950ac2f95f2",
         "practices": ["if-then-else-expressions"],
-        "prerequisites": ["if-then-else-expressions", "strings", "numbers"],
+        "prerequisites": ["if-then-else-expressions", "numbers", "strings"],
         "difficulty": 2
       },
       {
@@ -161,16 +161,16 @@
         "name": "Accumulate",
         "uuid": "e7085050-1611-4773-9032-0e0ffb56c20e",
         "practices": [
-          "recursion",
-          "higher-order-functions",
           "generic-functions",
-          "lists"
+          "higher-order-functions",
+          "lists",
+          "recursion"
         ],
         "prerequisites": [
-          "recursion",
-          "higher-order-functions",
           "generic-functions",
-          "lists"
+          "higher-order-functions",
+          "lists",
+          "recursion"
         ],
         "difficulty": 2
       },
@@ -206,21 +206,21 @@
         "slug": "bob",
         "name": "Bob",
         "uuid": "b3c4d578-10c8-47bc-b0ae-149ed8da530a",
-        "practices": ["strings", "if-then-else-expressions"],
-        "prerequisites": ["strings", "if-then-else-expressions"],
+        "practices": ["if-then-else-expressions", "strings"],
+        "prerequisites": ["if-then-else-expressions", "strings"],
         "difficulty": 1
       },
       {
         "slug": "beer-song",
         "name": "Beer Song",
         "uuid": "0ea0d92f-5510-4ba9-b419-3f5ad029b74f",
-        "practices": ["string-formatting", "ranges", "lists"],
+        "practices": ["lists", "ranges", "string-formatting"],
         "prerequisites": [
-          "strings",
+          "lists",
           "numbers",
-          "string-formatting",
           "ranges",
-          "lists"
+          "string-formatting",
+          "strings"
         ],
         "difficulty": 3
       },
@@ -228,8 +228,8 @@
         "slug": "kindergarten-garden",
         "name": "Kindergarten Garden",
         "uuid": "cf64cddf-63e2-4c71-ac15-0af617f82856",
-        "practices": ["discriminated-unions", "maps", "chars"],
-        "prerequisites": ["discriminated-unions", "strings", "chars"],
+        "practices": ["chars", "discriminated-unions", "maps"],
+        "prerequisites": ["chars", "discriminated-unions", "strings"],
         "difficulty": 3
       },
       {
@@ -238,16 +238,16 @@
         "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826",
         "practices": [
           "chars",
-          "strings",
           "discriminated-unions",
           "records",
+          "strings",
           "tuples"
         ],
         "prerequisites": [
           "chars",
-          "strings",
           "discriminated-unions",
           "records",
+          "strings",
           "tuples"
         ],
         "difficulty": 3
@@ -262,9 +262,9 @@
           "flag-discriminated-unions"
         ],
         "prerequisites": [
-          "discriminated-unions",
-          "booleans",
           "bit-manipulation",
+          "booleans",
+          "discriminated-unions",
           "numbers"
         ],
         "difficulty": 4
@@ -297,17 +297,17 @@
         "name": "Hamming",
         "uuid": "1dadf8c0-b15c-413f-987e-187d043910f0",
         "practices": [
-          "if-then-else-expressions",
-          "for-loops",
           "collection-processing",
+          "for-loops",
+          "if-then-else-expressions",
           "options"
         ],
         "prerequisites": [
-          "if-then-else-expressions",
           "for-loops",
-          "strings",
+          "if-then-else-expressions",
           "numbers",
-          "options"
+          "options",
+          "strings"
         ],
         "difficulty": 2
       },
@@ -315,30 +315,30 @@
         "slug": "pangram",
         "name": "Pangram",
         "uuid": "dc133087-0548-49b4-8f17-0c26cf53bcdf",
-        "practices": ["chars", "strings", "sets"],
-        "prerequisites": ["chars", "strings", "booleans"],
+        "practices": ["chars", "sets", "strings"],
+        "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 2
       },
       {
         "slug": "isogram",
         "name": "Isogram",
         "uuid": "61404a27-62c3-43dc-93b7-7e4547e0a0d9",
-        "practices": ["chars", "strings", "sets"],
-        "prerequisites": ["chars", "strings", "booleans"],
+        "practices": ["chars", "sets", "strings"],
+        "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 3
       },
       {
         "slug": "twelve-days",
         "name": "Twelve Days",
         "uuid": "89cd6eb1-9671-42bd-a619-59013fb721b0",
-        "practices": ["string-formatting", "lists", "ranges"],
+        "practices": ["lists", "ranges", "string-formatting"],
         "prerequisites": [
-          "strings",
-          "numbers",
           "for-loops",
-          "string-formatting",
           "lists",
-          "ranges"
+          "numbers",
+          "ranges",
+          "string-formatting",
+          "strings"
         ],
         "difficulty": 4
       },
@@ -347,15 +347,15 @@
         "name": "Phone Number",
         "uuid": "929f98e4-a16c-464b-ac6c-59ca86dbd2b6",
         "practices": ["regular-expressions", "result"],
-        "prerequisites": ["strings", "result"],
+        "prerequisites": ["result", "strings"],
         "difficulty": 5
       },
       {
         "slug": "high-scores",
         "name": "High Scores",
         "uuid": "c67d7118-2388-4421-baa1-cc3e4f0e2867",
-        "practices": ["ordering", "collection-processing", "lists"],
-        "prerequisites": ["ordering", "constructors", "numbers", "lists"],
+        "practices": ["collection-processing", "lists", "ordering"],
+        "prerequisites": ["constructors", "lists", "numbers", "ordering"],
         "difficulty": 2
       },
       {
@@ -363,18 +363,18 @@
         "name": "Bank Account",
         "uuid": "cb629d30-0351-4023-bd51-423267164c24",
         "practices": [
-          "members",
-          "floating-point-numbers",
           "concurrency",
-          "options",
-          "lists"
+          "floating-point-numbers",
+          "lists",
+          "members",
+          "options"
         ],
         "prerequisites": [
-          "floating-point-numbers",
           "classes",
+          "floating-point-numbers",
+          "lists",
           "members",
-          "options",
-          "lists"
+          "options"
         ],
         "difficulty": 5
       },
@@ -443,10 +443,10 @@
         "uuid": "e3751098-5a15-4350-bf5d-507583de3386",
         "practices": ["integral-numbers", "math-operators", "result"],
         "prerequisites": [
+          "for-loops",
+          "if-then-else-expressions",
           "integral-numbers",
           "math-operators",
-          "if-then-else-expressions",
-          "for-loops",
           "result"
         ],
         "difficulty": 2
@@ -455,13 +455,13 @@
         "slug": "all-your-base",
         "name": "All Your Base",
         "uuid": "01e394ee-23d5-44e6-a37e-149ffaf5375e",
-        "practices": ["while-loops", "math-operators", "options", "lists"],
+        "practices": ["lists", "math-operators", "options", "while-loops"],
         "prerequisites": [
-          "numbers",
-          "while-loops",
+          "lists",
           "math-operators",
+          "numbers",
           "options",
-          "lists"
+          "while-loops"
         ],
         "difficulty": 4
       },
@@ -471,12 +471,12 @@
         "uuid": "b3643992-583b-4e7a-a970-94bc7ae6739a",
         "practices": ["integral-numbers", "math-operators", "options"],
         "prerequisites": [
-          "integral-numbers",
-          "math-operators",
-          "strings",
           "chars",
           "for-loops",
-          "options"
+          "integral-numbers",
+          "math-operators",
+          "options",
+          "strings"
         ],
         "difficulty": 4
       },
@@ -505,7 +505,7 @@
         "slug": "nth-prime",
         "name": "Nth Prime",
         "uuid": "220cbe7e-e781-4ab9-84ec-2b89a3c97670",
-        "practices": ["lazy-evaluation", "yield", "options"],
+        "practices": ["lazy-evaluation", "options", "yield"],
         "prerequisites": ["numbers", "options"],
         "difficulty": 6
       },
@@ -536,12 +536,12 @@
         "slug": "diffie-hellman",
         "name": "Diffie Hellman",
         "uuid": "2a7e3e78-ab94-40f3-8f16-1d5aa84c2f85",
-        "practices": ["randomness", "big-integers", "math-operators", "lists"],
+        "practices": ["big-integers", "lists", "math-operators", "randomness"],
         "prerequisites": [
-          "randomness",
           "big-integers",
+          "lists",
           "math-operators",
-          "lists"
+          "randomness"
         ],
         "difficulty": 7
       },
@@ -575,10 +575,10 @@
         "uuid": "0a10cd0b-ea37-4c78-a6a4-223203ac1c37",
         "practices": ["strings"],
         "prerequisites": [
-          "strings",
-          "if-then-else-expressions",
+          "booleans",
           "for-loops",
-          "booleans"
+          "if-then-else-expressions",
+          "strings"
         ],
         "difficulty": 5
       },
@@ -647,21 +647,19 @@
         "name": "Strain",
         "uuid": "48ac8887-28db-4566-a415-c2d338dea104",
         "practices": [
+          "arrays",
           "generic-methods",
           "higher-order-functions",
-          "yield",
           "lazy-evaluation",
-          "arrays",
           "lists",
-          "lists"
+          "yield"
         ],
         "prerequisites": [
-          "generic-methods",
-          "numbers",
-          "higher-order-functions",
           "arrays",
+          "generic-methods",
+          "higher-order-functions",
           "lists",
-          "lists"
+          "numbers"
         ],
         "difficulty": 3
       },
@@ -683,14 +681,14 @@
         "slug": "food-chain",
         "name": "Food Chain",
         "uuid": "f4dee9ea-fcdf-4623-8ae1-13bdf995f2cb",
-        "practices": ["string-formatting", "if-then-else-expressions", "lists"],
+        "practices": ["if-then-else-expressions", "lists", "string-formatting"],
         "prerequisites": [
-          "strings",
-          "string-formatting",
-          "numbers",
-          "if-then-else-expressions",
           "for-loops",
-          "lists"
+          "if-then-else-expressions",
+          "lists",
+          "numbers",
+          "string-formatting",
+          "strings"
         ],
         "difficulty": 5
       },
@@ -744,16 +742,16 @@
         "name": "List Ops",
         "uuid": "47602465-a92d-43a5-9e9a-8ef09ce2104d",
         "practices": [
-          "higher-order-functions",
           "generic-methods",
-          "parameters",
-          "lists"
+          "higher-order-functions",
+          "lists",
+          "parameters"
         ],
         "prerequisites": [
-          "parameters",
           "generic-methods",
           "higher-order-functions",
-          "lists"
+          "lists",
+          "parameters"
         ],
         "difficulty": 4
       },
@@ -761,8 +759,8 @@
         "slug": "pascals-triangle",
         "name": "Pascals Triangle",
         "uuid": "fef76c19-db3c-442d-b2f5-b0dfae19ee43",
-        "practices": ["yield", "lists"],
-        "prerequisites": ["for-loops", "numbers", "lists"],
+        "practices": ["lists", "yield"],
+        "prerequisites": ["for-loops", "lists", "numbers"],
         "difficulty": 4
       },
       {
@@ -771,16 +769,16 @@
         "uuid": "3741977a-adff-47bb-a9c5-c2e444805bac",
         "practices": [
           "collection-processing",
-          "for-loops",
           "floating-point-numbers",
-          "recursion",
-          "lists"
+          "for-loops",
+          "lists",
+          "recursion"
         ],
         "prerequisites": [
           "floating-point-numbers",
-          "numbers",
           "for-loops",
-          "lists"
+          "lists",
+          "numbers"
         ],
         "difficulty": 5
       },
@@ -788,12 +786,12 @@
         "slug": "roman-numerals",
         "name": "Roman Numerals",
         "uuid": "2e88193d-9f80-4d83-901b-bb5ac4b0804c",
-        "practices": ["numbers", "while-loops", "extension-methods"],
+        "practices": ["extension-methods", "numbers", "while-loops"],
         "prerequisites": [
-          "strings",
-          "while-loops",
+          "extension-methods",
           "numbers",
-          "extension-methods"
+          "strings",
+          "while-loops"
         ],
         "difficulty": 5
       },
@@ -810,7 +808,7 @@
         "name": "Armstrong Numbers",
         "uuid": "e7f74f6c-16ea-40d8-94f7-7034bc6ee938",
         "practices": ["casting"],
-        "prerequisites": ["numbers", "booleans", "casting"],
+        "prerequisites": ["booleans", "casting", "numbers"],
         "difficulty": 2
       },
       {
@@ -818,17 +816,17 @@
         "name": "Collatz Conjecture",
         "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
         "practices": [
-          "recursion",
-          "while-loops",
           "if-then-else-expressions",
           "numbers",
-          "options"
+          "options",
+          "recursion",
+          "while-loops"
         ],
         "prerequisites": [
           "if-then-else-expressions",
-          "while-loops",
           "numbers",
-          "options"
+          "options",
+          "while-loops"
         ],
         "difficulty": 2
       },
@@ -836,8 +834,8 @@
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "c5b38251-14ba-4d98-a420-7a930f06167f",
-        "practices": ["for-loops", "options", "arrays"],
-        "prerequisites": ["numbers", "for-loops", "options", "arrays"],
+        "practices": ["arrays", "for-loops", "options"],
+        "prerequisites": ["arrays", "for-loops", "numbers", "options"],
         "difficulty": 3
       },
       {
@@ -877,7 +875,7 @@
         "slug": "protein-translation",
         "name": "Protein Translation",
         "uuid": "612395a5-238e-4be0-8ce0-4ac66f57056e",
-        "practices": ["while-loops", "collection-processing"],
+        "practices": ["collection-processing", "while-loops"],
         "prerequisites": ["strings", "while-loops"],
         "difficulty": 3
       },
@@ -887,9 +885,9 @@
         "uuid": "47fd8f98-20d3-43fe-825f-27745e13908d",
         "practices": ["floating-point-numbers", "if-then-else-expressions"],
         "prerequisites": [
+          "booleans",
           "floating-point-numbers",
-          "if-then-else-expressions",
-          "booleans"
+          "if-then-else-expressions"
         ],
         "difficulty": 3
       },
@@ -911,8 +909,8 @@
         "slug": "simple-linked-list",
         "name": "Simple Linked List",
         "uuid": "e86e88a0-802c-41f4-b2a1-c7a81b8e87de",
-        "practices": ["interfaces", "members", "lists"],
-        "prerequisites": ["interfaces", "members", "numbers", "lists"],
+        "practices": ["interfaces", "lists", "members"],
+        "prerequisites": ["interfaces", "lists", "members", "numbers"],
         "difficulty": 4
       },
       {
@@ -927,7 +925,7 @@
         "slug": "yacht",
         "name": "Yacht",
         "uuid": "005721ef-264e-4f81-ae63-ae72b0e5310f",
-        "practices": ["discriminated-unions", "collection-processing"],
+        "practices": ["collection-processing", "discriminated-unions"],
         "prerequisites": ["discriminated-unions", "numbers"],
         "difficulty": 5
       },
@@ -938,9 +936,9 @@
         "practices": ["ordering"],
         "prerequisites": [
           "generic-methods",
-          "strings",
+          "if-then-else-expressions",
           "ordering",
-          "if-then-else-expressions"
+          "strings"
         ],
         "difficulty": 8
       },
@@ -963,9 +961,9 @@
           "if-then-else-expressions",
           "lists",
           "maps",
+          "options",
           "strings",
-          "tuples",
-          "options"
+          "tuples"
         ],
         "difficulty": 2
       },
@@ -1034,13 +1032,13 @@
         "slug": "bowling",
         "name": "Bowling",
         "uuid": "1c8ad2ca-4aec-47af-94b1-ef7e2830b463",
-        "practices": ["nullability", "classes", "options", "lists"],
+        "practices": ["classes", "lists", "nullability", "options"],
         "prerequisites": [
-          "numbers",
           "classes",
+          "lists",
           "nullability",
-          "options",
-          "lists"
+          "numbers",
+          "options"
         ],
         "difficulty": 6
       },
@@ -1048,8 +1046,8 @@
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "ae2f8b66-1d5f-4c19-ad84-b9a7e9e87d0e",
-        "practices": ["for-loops", "exceptions"],
-        "prerequisites": ["strings", "numbers", "exceptions"],
+        "practices": ["exceptions", "for-loops"],
+        "prerequisites": ["exceptions", "numbers", "strings"],
         "difficulty": 3
       },
       {
@@ -1057,15 +1055,15 @@
         "name": "Proverb",
         "uuid": "5ca0e0ba-20ac-4d48-b2dc-0cdde06a8f3e",
         "practices": ["lists"],
-        "prerequisites": ["strings", "for-loops", "lists"],
+        "prerequisites": ["for-loops", "lists", "strings"],
         "difficulty": 3
       },
       {
         "slug": "acronym",
         "name": "Acronym",
         "uuid": "926f9309-e0bb-457a-8f1d-8fa947ed5ce7",
-        "practices": ["chars", "strings", "regular-expressions"],
-        "prerequisites": ["chars", "strings", "booleans"],
+        "practices": ["chars", "regular-expressions", "strings"],
+        "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 4
       },
       {
@@ -1073,15 +1071,15 @@
         "name": "Anagram",
         "uuid": "cffcb076-295f-497f-8ef1-059a8fa65536",
         "practices": ["classes", "strings"],
-        "prerequisites": ["strings", "classes"],
+        "prerequisites": ["classes", "strings"],
         "difficulty": 4
       },
       {
         "slug": "house",
         "name": "House",
         "uuid": "7d339c98-74ea-49d5-a97c-c0417e28468a",
-        "practices": ["string-formatting", "lists"],
-        "prerequisites": ["strings", "string-formatting", "numbers", "lists"],
+        "practices": ["lists", "string-formatting"],
+        "prerequisites": ["lists", "numbers", "string-formatting", "strings"],
         "difficulty": 4
       },
       {
@@ -1089,15 +1087,21 @@
         "name": "Isbn Verifier",
         "uuid": "c339c32c-3310-4b8c-b4e6-0f9f651064b7",
         "practices": ["chars", "regular-expressions"],
-        "prerequisites": ["strings", "chars", "booleans"],
+        "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 4
       },
       {
         "slug": "series",
         "name": "Series",
         "uuid": "4b07842c-dcef-4be0-a842-0b3b7a30c499",
-        "practices": ["yield", "for-loops", "options"],
-        "prerequisites": ["strings", "numbers", "for-loops", "options"],
+        "practices": ["collection-processing", "for-loops", "options", "yield"],
+        "prerequisites": [
+          "collection-processing",
+          "for-loops",
+          "numbers",
+          "options",
+          "strings"
+        ],
         "difficulty": 4
       },
       {
@@ -1112,8 +1116,8 @@
         "slug": "crypto-square",
         "name": "Crypto Square",
         "uuid": "8d381a54-04a1-45d3-84d3-933b0d94f440",
-        "practices": [],
-        "prerequisites": ["strings", "generic-methods"],
+        "practices": ["collection-processing"],
+        "prerequisites": ["collection-processing", "strings"],
         "difficulty": 5
       },
       {
@@ -1121,7 +1125,7 @@
         "name": "Luhn",
         "uuid": "85ab318f-7842-486d-88de-f0ff7fbef069",
         "practices": ["chars", "for-loops"],
-        "prerequisites": ["strings", "chars", "for-loops", "numbers"],
+        "prerequisites": ["chars", "for-loops", "numbers", "strings"],
         "difficulty": 5
       },
       {
@@ -1129,7 +1133,7 @@
         "name": "Rotational Cipher",
         "uuid": "26b00c8d-6282-48a8-b017-2ed3e6d48267",
         "practices": ["chars", "strings"],
-        "prerequisites": ["chars", "strings", "numbers"],
+        "prerequisites": ["chars", "numbers", "strings"],
         "difficulty": 5
       },
       {
@@ -1191,19 +1195,19 @@
         "slug": "matrix",
         "name": "Matrix",
         "uuid": "632417fa-7bf7-4228-9b71-dbdd6738b223",
-        "practices": ["members", "classes"],
-        "prerequisites": ["classes", "numbers", "members"],
+        "practices": ["classes", "members"],
+        "prerequisites": ["classes", "members", "numbers"],
         "difficulty": 4
       },
       {
         "slug": "markdown",
         "name": "Markdown",
         "uuid": "0688eb10-9581-45c0-a69a-13f20d534cb0",
-        "practices": ["string-builder", "if-then-else-expressions"],
+        "practices": ["if-then-else-expressions", "string-builder"],
         "prerequisites": [
-          "strings",
+          "if-then-else-expressions",
           "string-formatting",
-          "if-then-else-expressions"
+          "strings"
         ],
         "difficulty": 5
       },
@@ -1219,12 +1223,12 @@
         "slug": "spiral-matrix",
         "name": "Spiral Matrix",
         "uuid": "52f8f299-b93b-4f44-bd5b-b445741b285d",
-        "practices": ["multi-dimensional-arrays", "numbers", "lists"],
+        "practices": ["lists", "multi-dimensional-arrays", "numbers"],
         "prerequisites": [
-          "multi-dimensional-arrays",
-          "numbers",
           "if-then-else-expressions",
-          "lists"
+          "lists",
+          "multi-dimensional-arrays",
+          "numbers"
         ],
         "difficulty": 5
       },
@@ -1232,8 +1236,8 @@
         "slug": "matching-brackets",
         "name": "Matching Brackets",
         "uuid": "677ca063-70fe-4cfc-8112-c5d78bd1ea44",
-        "practices": ["stacks", "lists"],
-        "prerequisites": ["stacks", "strings", "chars", "booleans", "lists"],
+        "practices": ["lists", "stacks"],
+        "prerequisites": ["booleans", "chars", "lists", "stacks", "strings"],
         "difficulty": 7
       },
       {
@@ -1255,13 +1259,13 @@
         "slug": "rectangles",
         "name": "Rectangles",
         "uuid": "d3f364e0-9866-4ec4-8197-dc248b96042b",
-        "practices": ["switch-statements", "for-loops", "lists"],
+        "practices": ["for-loops", "lists", "switch-statements"],
         "prerequisites": [
-          "strings",
-          "numbers",
           "for-loops",
           "if-then-else-expressions",
-          "lists"
+          "lists",
+          "numbers",
+          "strings"
         ],
         "difficulty": 7
       },
@@ -1269,8 +1273,8 @@
         "slug": "wordy",
         "name": "Wordy",
         "uuid": "c721b3f2-4afc-4a30-bad5-77bd002c2819",
-        "practices": ["switch-statements", "regular-expressions", "options"],
-        "prerequisites": ["strings", "numbers", "options"],
+        "practices": ["options", "regular-expressions", "switch-statements"],
+        "prerequisites": ["numbers", "options", "strings"],
         "difficulty": 7
       },
       {
@@ -1316,17 +1320,17 @@
         "name": "Say",
         "uuid": "7af901ca-24ea-4c24-a660-99b1f4338e01",
         "practices": [
-          "integral-numbers",
-          "while-loops",
           "if-then-else-expressions",
-          "options"
+          "integral-numbers",
+          "options",
+          "while-loops"
         ],
         "prerequisites": [
-          "integral-numbers",
-          "strings",
-          "while-loops",
           "if-then-else-expressions",
-          "options"
+          "integral-numbers",
+          "options",
+          "strings",
+          "while-loops"
         ],
         "difficulty": 8
       },
@@ -1357,19 +1361,19 @@
         "name": "Secret Handshake",
         "uuid": "ae78a960-2c55-44cb-9fd0-49b4bd5729c5",
         "practices": ["bit-manipulation"],
-        "prerequisites": ["strings", "bit-manipulation"],
+        "prerequisites": ["bit-manipulation", "strings"],
         "difficulty": 3
       },
       {
         "slug": "variable-length-quantity",
         "name": "Variable Length Quantity",
         "uuid": "ef86703b-9e78-43f8-aa4c-203492ac622c",
-        "practices": ["integral-numbers", "bit-manipulation", "options"],
+        "practices": ["bit-manipulation", "integral-numbers", "options"],
         "prerequisites": [
-          "integral-numbers",
           "bit-manipulation",
-          "while-loops",
-          "options"
+          "integral-numbers",
+          "options",
+          "while-loops"
         ],
         "difficulty": 9
       },
@@ -1379,17 +1383,17 @@
         "uuid": "dead8124-6942-4205-9ea8-3cb926c0dc47",
         "practices": [
           "discriminated-unions",
-          "switch-statements",
+          "lists",
           "options",
-          "lists"
+          "switch-statements"
         ],
         "prerequisites": [
-          "strings",
           "chars",
           "discriminated-unions",
           "if-then-else-expressions",
+          "lists",
           "options",
-          "lists"
+          "strings"
         ],
         "difficulty": 8
       },
@@ -1397,14 +1401,14 @@
         "slug": "alphametics",
         "name": "Alphametics",
         "uuid": "3d682945-5fa1-4121-9d5b-7bac60660de9",
-        "practices": ["lazy-evaluation", "lists", "maps", "tuples", "options"],
+        "practices": ["lazy-evaluation", "lists", "maps", "options", "tuples"],
         "prerequisites": [
           "lazy-evaluation",
           "lists",
           "maps",
+          "options",
           "strings",
-          "tuples",
-          "options"
+          "tuples"
         ],
         "difficulty": 9
       },
@@ -1459,8 +1463,8 @@
         "slug": "rail-fence-cipher",
         "name": "Rail Fence Cipher",
         "uuid": "c418bba8-2185-4b45-92f1-0cfafbbe8ce5",
-        "practices": ["constructors"],
-        "prerequisites": ["classes", "constructors", "numbers", "strings"],
+        "practices": ["collection-processing"],
+        "prerequisites": ["collection-processing", "numbers", "strings"],
         "difficulty": 6
       },
       {
@@ -1468,7 +1472,7 @@
         "name": "Transpose",
         "uuid": "3dfedd37-8159-446d-a332-e9d356f484ca",
         "practices": ["for-loops", "lists"],
-        "prerequisites": ["strings", "for-loops", "lists"],
+        "prerequisites": ["for-loops", "lists", "strings"],
         "difficulty": 6
       },
       {
@@ -1476,17 +1480,17 @@
         "name": "Sublist",
         "uuid": "d17b0c35-49a7-4ea6-b68c-7b2b56dc5968",
         "practices": [
-          "discriminated-unions",
-          "generic-methods",
-          "generic-constraints",
           "comparing",
+          "discriminated-unions",
+          "generic-constraints",
+          "generic-methods",
           "lists"
         ],
         "prerequisites": [
-          "discriminated-unions",
-          "generic-methods",
-          "generic-constraints",
           "comparing",
+          "discriminated-unions",
+          "generic-constraints",
+          "generic-methods",
           "lists"
         ],
         "difficulty": 7
@@ -1581,7 +1585,7 @@
         "name": "Difference Of Squares",
         "uuid": "3969fb29-5997-4050-adb0-8c6e95f48013",
         "practices": ["collection-processing", "math-operators", "numbers"],
-        "prerequisites": ["numbers", "math-operators"],
+        "prerequisites": ["math-operators", "numbers"],
         "difficulty": 1
       },
       {
@@ -1596,8 +1600,8 @@
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "08be451e-65c1-4306-860e-ac0c4a02a546",
-        "practices": ["strings", "collection-processing", "for-loops"],
-        "prerequisites": ["strings", "for-loops"],
+        "practices": ["collection-processing", "for-loops", "strings"],
+        "prerequisites": ["for-loops", "strings"],
         "difficulty": 1
       },
       {
@@ -1612,13 +1616,13 @@
         "slug": "sum-of-multiples",
         "name": "Sum Of Multiples",
         "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
-        "practices": ["for-loops", "numbers", "options", "lists"],
+        "practices": ["for-loops", "lists", "numbers", "options"],
         "prerequisites": [
-          "numbers",
           "for-loops",
           "if-then-else-expressions",
-          "options",
-          "lists"
+          "lists",
+          "numbers",
+          "options"
         ],
         "difficulty": 1
       },
