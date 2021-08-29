@@ -964,7 +964,8 @@
           "lists",
           "maps",
           "strings",
-          "tuples"
+          "tuples",
+          "options"
         ],
         "difficulty": 2
       },
@@ -1396,13 +1397,14 @@
         "slug": "alphametics",
         "name": "Alphametics",
         "uuid": "3d682945-5fa1-4121-9d5b-7bac60660de9",
-        "practices": ["lazy-evaluation", "lists", "maps", "tuples"],
+        "practices": ["lazy-evaluation", "lists", "maps", "tuples", "options"],
         "prerequisites": [
           "lazy-evaluation",
           "lists",
           "maps",
           "strings",
-          "tuples"
+          "tuples",
+          "options"
         ],
         "difficulty": 9
       },
