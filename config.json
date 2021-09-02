@@ -80,7 +80,7 @@
         "name": "Cars, Assemble!",
         "uuid": "85c32aba-5dc0-4dba-9226-63939f3db882",
         "concepts": ["if-then-else-expressions", "numbers"],
-        "prerequisites": ["basics"]
+        "prerequisites": ["booleans"]
       },
       {
         "slug": "guessing-game",
