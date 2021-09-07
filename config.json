@@ -52,7 +52,7 @@
         "name": "Booking up for Beauty",
         "uuid": "04379e4b-05b0-40cd-992f-705b2494d645",
         "concepts": ["datetimes"],
-        "prerequisites": ["classes", "numbers", "strings"]
+        "prerequisites": ["numbers", "strings"]
       },
       {
         "slug": "valentines-day",
@@ -101,11 +101,7 @@
         "name": "Pizza Pricing",
         "uuid": "33a9ea6f-b8c8-4b8e-85c2-45fec1684ea6",
         "concepts": ["recursion"],
-        "prerequisites": [
-          "discriminated-unions",
-          "higher-order-functions",
-          "pattern-matching"
-        ]
+        "prerequisites": ["discriminated-unions", "pattern-matching"]
       },
       {
         "slug": "log-levels",
