@@ -193,7 +193,7 @@
         "slug": "clock",
         "name": "Clock",
         "uuid": "30c3a38e-1e44-4711-887e-fca301c26c1b",
-        "practices": ["equality", "numbers", "records"],
+        "practices": ["equality", "numbers"],
         "prerequisites": ["equality", "numbers"],
         "difficulty": 3
       },
@@ -231,7 +231,7 @@
         "slug": "robot-simulator",
         "name": "Robot Simulator",
         "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826",
-        "practices": ["chars", "discriminated-unions", "records", "strings"],
+        "practices": ["chars", "discriminated-unions", "strings"],
         "prerequisites": [
           "chars",
           "discriminated-unions",
@@ -360,7 +360,7 @@
         "slug": "binary-search-tree",
         "name": "Binary Search Tree",
         "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
-        "practices": ["constructors", "members", "records"],
+        "practices": ["constructors", "members"],
         "prerequisites": [
           "classes",
           "constructors",
@@ -375,7 +375,7 @@
         "slug": "pov",
         "name": "Pov",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
-        "practices": ["equality", "generic-types", "records", "recursion"],
+        "practices": ["equality", "generic-types", "recursion"],
         "prerequisites": [
           "equality",
           "generic-types",
@@ -390,7 +390,7 @@
         "slug": "zipper",
         "name": "Zipper",
         "uuid": "5369eea9-00c8-4044-b272-1ce8d0590ecf",
-        "practices": ["equality", "immutability", "records", "recursion"],
+        "practices": ["equality", "immutability", "recursion"],
         "prerequisites": ["equality", "numbers", "options", "records"],
         "difficulty": 10
       },
@@ -453,7 +453,6 @@
           "extension-methods",
           "immutability",
           "math-operators",
-          "records",
           "structs"
         ],
         "prerequisites": [
@@ -483,7 +482,6 @@
           "immutability",
           "math-operators",
           "operator-overloading",
-          "records",
           "structs"
         ],
         "prerequisites": [
@@ -514,13 +512,7 @@
         "slug": "custom-set",
         "name": "Custom Set",
         "uuid": "ecee74aa-41f5-42aa-b99e-31e9589378e3",
-        "practices": [
-          "constructors",
-          "generic-types",
-          "immutability",
-          "records",
-          "sets"
-        ],
+        "practices": ["constructors", "generic-types", "immutability", "sets"],
         "prerequisites": [
           "booleans",
           "constructors",
@@ -617,7 +609,7 @@
         "slug": "robot-name",
         "name": "Robot Name",
         "uuid": "3fbd466a-caf4-48ac-9a1e-796bc406ff1e",
-        "practices": ["classes", "randomness", "records"],
+        "practices": ["classes", "randomness"],
         "prerequisites": [
           "classes",
           "randomness",
@@ -648,7 +640,6 @@
         "uuid": "da48b422-1c23-4272-87a4-415620d4e857",
         "practices": [
           "flag-discriminated-unions",
-          "records",
           "switch-expressions",
           "switch-statements"
         ],
@@ -667,7 +658,7 @@
         "slug": "ledger",
         "name": "Ledger",
         "uuid": "e860ad86-cd1f-474b-9e8e-d8a72ff4315c",
-        "practices": ["globalization", "records", "string-formatting"],
+        "practices": ["globalization", "string-formatting"],
         "prerequisites": [
           "globalization",
           "lists",
@@ -848,7 +839,7 @@
         "slug": "linked-list",
         "name": "Linked List",
         "uuid": "253f040d-35c2-4e1c-8651-d7a7410d7d0d",
-        "practices": ["generic-types", "records"],
+        "practices": ["generic-types"],
         "prerequisites": ["classes", "generic-types", "numbers", "records"],
         "difficulty": 5
       },
@@ -1086,7 +1077,7 @@
         "slug": "tournament",
         "name": "Tournament",
         "uuid": "b5672a0c-aac5-4274-a458-39d018b74750",
-        "practices": ["maps", "records", "streams", "string-formatting"],
+        "practices": ["maps", "streams", "string-formatting"],
         "prerequisites": [
           "lists",
           "records",
@@ -1163,7 +1154,7 @@
         "slug": "minesweeper",
         "name": "Minesweeper",
         "uuid": "9e3fc78d-ac3b-4195-ad4c-9f99b0ee2678",
-        "practices": ["chars", "records", "string-formatting"],
+        "practices": ["chars", "string-formatting"],
         "prerequisites": [
           "chars",
           "if-then-else-expressions",
@@ -1216,7 +1207,7 @@
         "slug": "circular-buffer",
         "name": "Circular Buffer",
         "uuid": "b62f8574-9bac-4b95-a76c-f13789ae2663",
-        "practices": ["exceptions", "generic-types", "queues", "records"],
+        "practices": ["exceptions", "generic-types", "queues"],
         "prerequisites": [
           "classes",
           "exceptions",
@@ -1246,7 +1237,7 @@
         "slug": "two-bucket",
         "name": "Two Bucket",
         "uuid": "78472676-26f0-4bef-813b-9b958c4c35df",
-        "practices": ["constructors", "members", "records"],
+        "practices": ["constructors", "members"],
         "prerequisites": [
           "constructors",
           "discriminated-unions",
@@ -1260,7 +1251,7 @@
         "slug": "zebra-puzzle",
         "name": "Zebra Puzzle",
         "uuid": "ee021156-5520-4386-8b5d-9c648f30287c",
-        "practices": ["discriminated-unions", "lazy-evaluation", "records"],
+        "practices": ["discriminated-unions", "lazy-evaluation"],
         "prerequisites": ["discriminated-unions", "records"],
         "difficulty": 8
       },
@@ -1351,7 +1342,7 @@
         "slug": "forth",
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
-        "practices": ["lazy-evaluation", "maps", "records"],
+        "practices": ["lazy-evaluation", "maps"],
         "prerequisites": ["lists", "options", "records", "strings"],
         "difficulty": 10
       },
@@ -1394,13 +1385,7 @@
         "slug": "hangman",
         "name": "Hangman",
         "uuid": "ab0f1b66-011f-4aa3-89c5-c89427121279",
-        "practices": [
-          "immutability",
-          "inheritance",
-          "members",
-          "records",
-          "sets"
-        ],
+        "practices": ["immutability", "inheritance", "members", "sets"],
         "prerequisites": [
           "chars",
           "constructors",
@@ -1524,7 +1509,7 @@
         "slug": "dnd-character",
         "name": "D&D Character",
         "uuid": "93550ca5-cd8c-42e3-88f3-e6ce41608342",
-        "practices": ["randomness", "records"],
+        "practices": ["randomness"],
         "prerequisites": [
           "classes",
           "constructors",
