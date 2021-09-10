@@ -16,7 +16,7 @@
     "highlightjs_language": "fsharp"
   },
   "test_runner": {
-    "average_run_time": 8.0
+    "average_run_time": 8
   },
   "files": {
     "solution": ["%{pascal_slug}.fs"],
@@ -132,7 +132,7 @@
         "slug": "leap",
         "name": "Leap",
         "uuid": "66d974b5-18fc-4993-b5f2-7beda4f4afa3",
-        "practices": ["if-then-else-expressions", "numbers"],
+        "practices": ["numbers"],
         "prerequisites": ["if-then-else-expressions", "numbers"],
         "difficulty": 1
       },
@@ -148,7 +148,7 @@
         "slug": "raindrops",
         "name": "Raindrops",
         "uuid": "0c953a84-e726-4b9f-a964-1950ac2f95f2",
-        "practices": ["if-then-else-expressions"],
+        "practices": [],
         "prerequisites": ["if-then-else-expressions", "numbers", "strings"],
         "difficulty": 2
       },
@@ -201,7 +201,7 @@
         "slug": "bob",
         "name": "Bob",
         "uuid": "b3c4d578-10c8-47bc-b0ae-149ed8da530a",
-        "practices": ["if-then-else-expressions", "strings"],
+        "practices": ["strings"],
         "prerequisites": ["if-then-else-expressions", "strings"],
         "difficulty": 1
       },
@@ -291,12 +291,7 @@
         "slug": "hamming",
         "name": "Hamming",
         "uuid": "1dadf8c0-b15c-413f-987e-187d043910f0",
-        "practices": [
-          "collection-processing",
-          "for-loops",
-          "if-then-else-expressions",
-          "options"
-        ],
+        "practices": ["collection-processing", "for-loops", "options"],
         "prerequisites": [
           "for-loops",
           "if-then-else-expressions",
@@ -426,7 +421,7 @@
         "slug": "darts",
         "name": "Darts",
         "uuid": "fb3b73e1-673b-4907-821c-f85a157f53c1",
-        "practices": ["floating-point-numbers", "if-then-else-expressions"],
+        "practices": ["floating-point-numbers"],
         "prerequisites": ["floating-point-numbers", "if-then-else-expressions"],
         "difficulty": 2
       },
@@ -665,7 +660,7 @@
         "slug": "food-chain",
         "name": "Food Chain",
         "uuid": "f4dee9ea-fcdf-4623-8ae1-13bdf995f2cb",
-        "practices": ["if-then-else-expressions", "string-formatting"],
+        "practices": ["string-formatting"],
         "prerequisites": [
           "for-loops",
           "if-then-else-expressions",
@@ -682,7 +677,6 @@
         "uuid": "da48b422-1c23-4272-87a4-415620d4e857",
         "practices": [
           "flag-discriminated-unions",
-          "if-then-else-expressions",
           "records",
           "switch-expressions",
           "switch-statements",
@@ -795,13 +789,7 @@
         "slug": "collatz-conjecture",
         "name": "Collatz Conjecture",
         "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
-        "practices": [
-          "if-then-else-expressions",
-          "numbers",
-          "options",
-          "recursion",
-          "while-loops"
-        ],
+        "practices": ["numbers", "options", "recursion", "while-loops"],
         "prerequisites": [
           "if-then-else-expressions",
           "numbers",
@@ -863,7 +851,7 @@
         "slug": "triangle",
         "name": "Triangle",
         "uuid": "47fd8f98-20d3-43fe-825f-27745e13908d",
-        "practices": ["floating-point-numbers", "if-then-else-expressions"],
+        "practices": ["floating-point-numbers"],
         "prerequisites": [
           "booleans",
           "floating-point-numbers",
@@ -1171,7 +1159,7 @@
         "slug": "markdown",
         "name": "Markdown",
         "uuid": "0688eb10-9581-45c0-a69a-13f20d534cb0",
-        "practices": ["if-then-else-expressions", "string-builder"],
+        "practices": ["string-builder"],
         "prerequisites": [
           "if-then-else-expressions",
           "string-formatting",
@@ -1287,12 +1275,7 @@
         "slug": "say",
         "name": "Say",
         "uuid": "7af901ca-24ea-4c24-a660-99b1f4338e01",
-        "practices": [
-          "if-then-else-expressions",
-          "integral-numbers",
-          "options",
-          "while-loops"
-        ],
+        "practices": ["integral-numbers", "options", "while-loops"],
         "prerequisites": [
           "if-then-else-expressions",
           "integral-numbers",
