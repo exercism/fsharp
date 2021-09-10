@@ -223,7 +223,7 @@
         "slug": "kindergarten-garden",
         "name": "Kindergarten Garden",
         "uuid": "cf64cddf-63e2-4c71-ac15-0af617f82856",
-        "practices": ["chars", "discriminated-unions"],
+        "practices": ["discriminated-unions"],
         "prerequisites": ["chars", "discriminated-unions", "strings"],
         "difficulty": 3
       },
@@ -231,7 +231,7 @@
         "slug": "robot-simulator",
         "name": "Robot Simulator",
         "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826",
-        "practices": ["chars", "discriminated-unions", "strings"],
+        "practices": ["discriminated-unions", "strings"],
         "prerequisites": [
           "chars",
           "discriminated-unions",
@@ -262,7 +262,7 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["chars", "for-loops"],
+        "practices": ["for-loops"],
         "prerequisites": [
           "chars",
           "for-loops",
@@ -299,7 +299,7 @@
         "slug": "pangram",
         "name": "Pangram",
         "uuid": "dc133087-0548-49b4-8f17-0c26cf53bcdf",
-        "practices": ["chars", "sets", "strings"],
+        "practices": ["sets", "strings"],
         "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 2
       },
@@ -307,7 +307,7 @@
         "slug": "isogram",
         "name": "Isogram",
         "uuid": "61404a27-62c3-43dc-93b7-7e4547e0a0d9",
-        "practices": ["chars", "sets", "strings"],
+        "practices": ["sets", "strings"],
         "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 3
       },
@@ -984,7 +984,7 @@
         "slug": "acronym",
         "name": "Acronym",
         "uuid": "926f9309-e0bb-457a-8f1d-8fa947ed5ce7",
-        "practices": ["chars", "regular-expressions", "strings"],
+        "practices": ["regular-expressions", "strings"],
         "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 4
       },
@@ -1008,7 +1008,7 @@
         "slug": "isbn-verifier",
         "name": "Isbn Verifier",
         "uuid": "c339c32c-3310-4b8c-b4e6-0f9f651064b7",
-        "practices": ["chars", "regular-expressions"],
+        "practices": ["regular-expressions"],
         "prerequisites": ["booleans", "chars", "strings"],
         "difficulty": 4
       },
@@ -1046,7 +1046,7 @@
         "slug": "luhn",
         "name": "Luhn",
         "uuid": "85ab318f-7842-486d-88de-f0ff7fbef069",
-        "practices": ["chars", "for-loops"],
+        "practices": ["for-loops"],
         "prerequisites": ["chars", "for-loops", "numbers", "strings"],
         "difficulty": 5
       },
@@ -1054,7 +1054,7 @@
         "slug": "rotational-cipher",
         "name": "Rotational Cipher",
         "uuid": "26b00c8d-6282-48a8-b017-2ed3e6d48267",
-        "practices": ["chars", "strings"],
+        "practices": ["strings"],
         "prerequisites": ["chars", "numbers", "strings"],
         "difficulty": 5
       },
@@ -1091,7 +1091,7 @@
         "slug": "diamond",
         "name": "Diamond",
         "uuid": "736a470f-412c-41fc-b92d-9bd59ef3bcce",
-        "practices": ["chars", "string-builder", "string-formatting"],
+        "practices": ["string-builder", "string-formatting"],
         "prerequisites": [
           "chars",
           "lists",
@@ -1154,7 +1154,7 @@
         "slug": "minesweeper",
         "name": "Minesweeper",
         "uuid": "9e3fc78d-ac3b-4195-ad4c-9f99b0ee2678",
-        "practices": ["chars", "string-formatting"],
+        "practices": ["string-formatting"],
         "prerequisites": [
           "chars",
           "if-then-else-expressions",
@@ -1487,7 +1487,7 @@
         "slug": "rna-transcription",
         "name": "Rna Transcription",
         "uuid": "3a015501-58bf-427c-8c4c-2197321f4a34",
-        "practices": ["chars", "collection-processing"],
+        "practices": ["collection-processing"],
         "prerequisites": ["chars", "strings"],
         "difficulty": 1
       },
