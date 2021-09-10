@@ -140,7 +140,7 @@
         "slug": "queen-attack",
         "name": "Queen Attack",
         "uuid": "528a0023-8687-4524-8318-516d1e432d0d",
-        "practices": ["tuples"],
+        "practices": [],
         "prerequisites": ["if-then-else-expressions", "numbers", "tuples"],
         "difficulty": 3
       },
@@ -185,7 +185,7 @@
         "slug": "grade-school",
         "name": "Grade School",
         "uuid": "cf058dc8-db6f-4034-ac5b-22f1d8d0decc",
-        "practices": ["maps", "ordering", "tuples"],
+        "practices": ["maps", "ordering"],
         "prerequisites": ["lists", "numbers", "ordering", "strings", "tuples"],
         "difficulty": 2
       },
@@ -231,13 +231,7 @@
         "slug": "robot-simulator",
         "name": "Robot Simulator",
         "uuid": "ecae4faa-c516-4a71-8d55-9c53403d8826",
-        "practices": [
-          "chars",
-          "discriminated-unions",
-          "records",
-          "strings",
-          "tuples"
-        ],
+        "practices": ["chars", "discriminated-unions", "records", "strings"],
         "prerequisites": [
           "chars",
           "discriminated-unions",
@@ -268,7 +262,7 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["chars", "for-loops", "tuples"],
+        "practices": ["chars", "for-loops"],
         "prerequisites": [
           "chars",
           "for-loops",
@@ -556,7 +550,7 @@
         "slug": "palindrome-products",
         "name": "Palindrome Products",
         "uuid": "471c89f9-8b27-4898-8e98-58e4b2921616",
-        "practices": ["exceptions", "generic-methods", "tuples"],
+        "practices": ["exceptions", "generic-methods"],
         "prerequisites": [
           "exceptions",
           "generic-methods",
@@ -571,7 +565,7 @@
         "slug": "word-search",
         "name": "Word Search",
         "uuid": "8f8a79d1-78ed-4cdd-adcc-5cd6c6781dcd",
-        "practices": ["constructors", "maps", "nullability", "tuples"],
+        "practices": ["constructors", "maps", "nullability"],
         "prerequisites": [
           "constructors",
           "lists",
@@ -587,7 +581,7 @@
         "slug": "dominoes",
         "name": "Dominoes",
         "uuid": "f09d34d3-f12c-4c9a-9083-68172478278e",
-        "practices": ["lazy-evaluation", "tuples"],
+        "practices": ["lazy-evaluation"],
         "prerequisites": ["booleans", "lists", "numbers", "tuples"],
         "difficulty": 7
       },
@@ -623,7 +617,7 @@
         "slug": "robot-name",
         "name": "Robot Name",
         "uuid": "3fbd466a-caf4-48ac-9a1e-796bc406ff1e",
-        "practices": ["classes", "randomness", "records", "tuples"],
+        "practices": ["classes", "randomness", "records"],
         "prerequisites": [
           "classes",
           "randomness",
@@ -656,8 +650,7 @@
           "flag-discriminated-unions",
           "records",
           "switch-expressions",
-          "switch-statements",
-          "tuples"
+          "switch-statements"
         ],
         "prerequisites": [
           "flag-discriminated-unions",
@@ -674,12 +667,7 @@
         "slug": "ledger",
         "name": "Ledger",
         "uuid": "e860ad86-cd1f-474b-9e8e-d8a72ff4315c",
-        "practices": [
-          "globalization",
-          "records",
-          "string-formatting",
-          "tuples"
-        ],
+        "practices": ["globalization", "records", "string-formatting"],
         "prerequisites": [
           "globalization",
           "lists",
@@ -792,8 +780,7 @@
           "exceptions",
           "generic-types",
           "resource-cleanup",
-          "result",
-          "tuples"
+          "result"
         ],
         "prerequisites": [
           "casting",
@@ -839,7 +826,7 @@
         "slug": "saddle-points",
         "name": "Saddle Points",
         "uuid": "526fc5b4-e96b-419a-8987-9b78e9bddc19",
-        "practices": ["multi-dimensional-arrays", "tuples"],
+        "practices": ["multi-dimensional-arrays"],
         "prerequisites": [
           "generic-methods",
           "lists",
@@ -890,7 +877,7 @@
         "slug": "etl",
         "name": "Etl",
         "uuid": "95e592a8-6663-4b07-894a-86a5cc310c67",
-        "practices": ["collection-processing", "maps", "tuples"],
+        "practices": ["collection-processing", "maps"],
         "prerequisites": ["lists", "maps", "numbers", "strings", "tuples"],
         "difficulty": 2
       },
@@ -898,7 +885,7 @@
         "slug": "nucleotide-count",
         "name": "Nucleotide Count",
         "uuid": "e6f92e96-b26a-4eba-8759-e8976a8a9097",
-        "practices": ["maps", "tuples"],
+        "practices": ["maps"],
         "prerequisites": [
           "chars",
           "for-loops",
@@ -915,7 +902,7 @@
         "slug": "word-count",
         "name": "Word Count",
         "uuid": "0c7a2f06-1e53-4043-9e1a-386e90e945b4",
-        "practices": ["maps", "regular-expressions", "tuples"],
+        "practices": ["maps", "regular-expressions"],
         "prerequisites": ["lists", "maps", "numbers", "strings", "tuples"],
         "difficulty": 4
       },
@@ -931,7 +918,7 @@
         "slug": "meetup",
         "name": "Meetup",
         "uuid": "3ce04665-95d1-4608-9763-5ee1b5f2584c",
-        "practices": ["datetimes", "tuples"],
+        "practices": ["datetimes"],
         "prerequisites": ["datetimes", "tuples"],
         "difficulty": 4
       },
@@ -939,7 +926,7 @@
         "slug": "dot-dsl",
         "name": "Dot Dsl",
         "uuid": "dc50364b-b5b6-4e0b-ba58-32fb7d60a93b",
-        "practices": ["classes", "equality", "tuples"],
+        "practices": ["classes", "equality"],
         "prerequisites": ["classes", "equality", "lists", "tuples"],
         "difficulty": 5
       },
@@ -947,7 +934,7 @@
         "slug": "parallel-letter-frequency",
         "name": "Parallel Letter Frequency",
         "uuid": "c0d0ae0f-83fb-433a-8778-d38e8a6645aa",
-        "practices": ["maps", "parallellism", "tuples"],
+        "practices": ["maps", "parallellism"],
         "prerequisites": [
           "lists",
           "maps",
@@ -962,7 +949,7 @@
         "slug": "rest-api",
         "name": "Rest Api",
         "uuid": "b0aaf5ac-f94d-4995-af4a-b27068cf540e",
-        "practices": ["optional-parameters", "tuples"],
+        "practices": ["optional-parameters"],
         "prerequisites": [
           "constructors",
           "lists",
@@ -1084,7 +1071,7 @@
         "slug": "simple-cipher",
         "name": "Simple Cipher",
         "uuid": "df6f311b-9deb-4d07-9a29-3d881556513e",
-        "practices": ["classes", "members", "randomness", "tuples"],
+        "practices": ["classes", "members", "randomness"],
         "prerequisites": [
           "classes",
           "for-loops",
@@ -1113,7 +1100,7 @@
         "slug": "diamond",
         "name": "Diamond",
         "uuid": "736a470f-412c-41fc-b92d-9bd59ef3bcce",
-        "practices": ["chars", "string-builder", "string-formatting", "tuples"],
+        "practices": ["chars", "string-builder", "string-formatting"],
         "prerequisites": [
           "chars",
           "lists",
@@ -1221,7 +1208,7 @@
         "slug": "pythagorean-triplet",
         "name": "Pythagorean Triplet",
         "uuid": "6bcde851-71ad-4985-b335-8ca67f99c22f",
-        "practices": ["generic-methods", "tuples"],
+        "practices": ["generic-methods"],
         "prerequisites": ["generic-methods", "numbers", "tuples"],
         "difficulty": 4
       },
@@ -1229,13 +1216,7 @@
         "slug": "circular-buffer",
         "name": "Circular Buffer",
         "uuid": "b62f8574-9bac-4b95-a76c-f13789ae2663",
-        "practices": [
-          "exceptions",
-          "generic-types",
-          "queues",
-          "records",
-          "tuples"
-        ],
+        "practices": ["exceptions", "generic-types", "queues", "records"],
         "prerequisites": [
           "classes",
           "exceptions",
@@ -1323,7 +1304,7 @@
         "slug": "alphametics",
         "name": "Alphametics",
         "uuid": "3d682945-5fa1-4121-9d5b-7bac60660de9",
-        "practices": ["lazy-evaluation", "maps", "tuples"],
+        "practices": ["lazy-evaluation", "maps"],
         "prerequisites": [
           "lazy-evaluation",
           "lists",
@@ -1338,7 +1319,7 @@
         "slug": "go-counting",
         "name": "Go Counting",
         "uuid": "01ffa95c-1966-4031-b0d2-64f254d85b82",
-        "practices": ["maps", "tuples"],
+        "practices": ["maps"],
         "prerequisites": [
           "constructors",
           "discriminated-unions",
@@ -1354,7 +1335,7 @@
         "slug": "sgf-parsing",
         "name": "Sgf Parsing",
         "uuid": "fe0e98b3-d0d3-4bf6-bfaa-8aa0e61aa625",
-        "practices": ["constructors", "maps", "members", "tuples"],
+        "practices": ["constructors", "maps", "members"],
         "prerequisites": [
           "constructors",
           "lists",
@@ -1438,7 +1419,7 @@
         "slug": "lens-person",
         "name": "Lens Person",
         "uuid": "443fdb8c-1a97-4086-be6a-b541faa961a5",
-        "practices": ["tuples"],
+        "practices": [],
         "prerequisites": ["tuples"],
         "difficulty": 9
       },
@@ -1446,7 +1427,7 @@
         "slug": "react",
         "name": "React",
         "uuid": "8eef5619-f331-46b3-a2c1-d581f523a815",
-        "practices": ["events", "tuples"],
+        "practices": ["events"],
         "prerequisites": [
           "classes",
           "events",
