@@ -16,7 +16,7 @@
     "highlightjs_language": "fsharp"
   },
   "test_runner": {
-    "average_run_time": 8
+    "average_run_time": 8.0
   },
   "files": {
     "solution": ["%{pascal_slug}.fs"],
@@ -262,7 +262,7 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["for-loops"],
+        "practices": [],
         "prerequisites": [
           "chars",
           "for-loops",
@@ -285,7 +285,7 @@
         "slug": "hamming",
         "name": "Hamming",
         "uuid": "1dadf8c0-b15c-413f-987e-187d043910f0",
-        "practices": ["collection-processing", "for-loops"],
+        "practices": ["collection-processing"],
         "prerequisites": [
           "for-loops",
           "if-then-else-expressions",
@@ -698,12 +698,7 @@
         "slug": "book-store",
         "name": "Book Store",
         "uuid": "3741977a-adff-47bb-a9c5-c2e444805bac",
-        "practices": [
-          "collection-processing",
-          "floating-point-numbers",
-          "for-loops",
-          "recursion"
-        ],
+        "practices": ["floating-point-numbers", "recursion"],
         "prerequisites": [
           "floating-point-numbers",
           "for-loops",
@@ -758,7 +753,7 @@
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "c5b38251-14ba-4d98-a420-7a930f06167f",
-        "practices": ["arrays", "for-loops"],
+        "practices": ["arrays"],
         "prerequisites": ["arrays", "for-loops", "numbers", "options"],
         "difficulty": 3
       },
@@ -968,7 +963,7 @@
         "slug": "affine-cipher",
         "name": "Affine Cipher",
         "uuid": "ae2f8b66-1d5f-4c19-ad84-b9a7e9e87d0e",
-        "practices": ["exceptions", "for-loops"],
+        "practices": ["exceptions"],
         "prerequisites": ["exceptions", "numbers", "strings"],
         "difficulty": 3
       },
@@ -1016,7 +1011,7 @@
         "slug": "series",
         "name": "Series",
         "uuid": "4b07842c-dcef-4be0-a842-0b3b7a30c499",
-        "practices": ["collection-processing", "for-loops", "yield"],
+        "practices": ["for-loops", "yield"],
         "prerequisites": [
           "collection-processing",
           "for-loops",
@@ -1030,7 +1025,7 @@
         "slug": "atbash-cipher",
         "name": "Atbash Cipher",
         "uuid": "3fb37bef-a754-4a64-8493-ba4254518017",
-        "practices": ["for-loops"],
+        "practices": [],
         "prerequisites": ["chars", "for-loops", "strings"],
         "difficulty": 5
       },
@@ -1046,7 +1041,7 @@
         "slug": "luhn",
         "name": "Luhn",
         "uuid": "85ab318f-7842-486d-88de-f0ff7fbef069",
-        "practices": ["for-loops"],
+        "practices": [],
         "prerequisites": ["chars", "for-loops", "numbers", "strings"],
         "difficulty": 5
       },
@@ -1125,7 +1120,7 @@
         "slug": "scale-generator",
         "name": "Scale Generator",
         "uuid": "02a8e767-7449-48a9-8d6b-f2cac708de50",
-        "practices": ["for-loops"],
+        "practices": [],
         "prerequisites": ["for-loops", "strings"],
         "difficulty": 5
       },
@@ -1169,7 +1164,7 @@
         "slug": "rectangles",
         "name": "Rectangles",
         "uuid": "d3f364e0-9866-4ec4-8197-dc248b96042b",
-        "practices": ["for-loops", "switch-statements"],
+        "practices": ["switch-statements"],
         "prerequisites": [
           "for-loops",
           "if-then-else-expressions",
@@ -1358,7 +1353,7 @@
         "slug": "transpose",
         "name": "Transpose",
         "uuid": "3dfedd37-8159-446d-a332-e9d356f484ca",
-        "practices": ["for-loops"],
+        "practices": [],
         "prerequisites": ["for-loops", "lists", "strings"],
         "difficulty": 6
       },
@@ -1479,7 +1474,7 @@
         "slug": "reverse-string",
         "name": "Reverse String",
         "uuid": "08be451e-65c1-4306-860e-ac0c4a02a546",
-        "practices": ["collection-processing", "for-loops", "strings"],
+        "practices": ["strings"],
         "prerequisites": ["for-loops", "strings"],
         "difficulty": 1
       },
@@ -1495,7 +1490,7 @@
         "slug": "sum-of-multiples",
         "name": "Sum Of Multiples",
         "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
-        "practices": ["for-loops", "ranges"],
+        "practices": ["ranges"],
         "prerequisites": [
           "for-loops",
           "booleans",
@@ -1524,11 +1519,7 @@
         "slug": "tree-building",
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
-        "practices": [
-          "discriminated-unions",
-          "exceptions",
-          "collection-processing"
-        ],
+        "practices": ["discriminated-unions", "exceptions"],
         "prerequisites": [
           "booleans",
           "discriminated-unions",
