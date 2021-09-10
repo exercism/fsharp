@@ -124,7 +124,7 @@
         "slug": "two-fer",
         "name": "Two Fer",
         "uuid": "2ee3cc7a-db3f-4668-9983-ed6d0fea95d1",
-        "practices": ["options", "string-formatting", "strings"],
+        "practices": ["string-formatting", "strings"],
         "prerequisites": ["options", "strings"],
         "difficulty": 1
       },
@@ -268,7 +268,7 @@
         "slug": "ocr-numbers",
         "name": "Ocr Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
-        "practices": ["chars", "for-loops", "options", "tuples"],
+        "practices": ["chars", "for-loops", "tuples"],
         "prerequisites": [
           "chars",
           "for-loops",
@@ -291,7 +291,7 @@
         "slug": "hamming",
         "name": "Hamming",
         "uuid": "1dadf8c0-b15c-413f-987e-187d043910f0",
-        "practices": ["collection-processing", "for-loops", "options"],
+        "practices": ["collection-processing", "for-loops"],
         "prerequisites": [
           "for-loops",
           "if-then-else-expressions",
@@ -352,12 +352,7 @@
         "slug": "bank-account",
         "name": "Bank Account",
         "uuid": "cb629d30-0351-4023-bd51-423267164c24",
-        "practices": [
-          "concurrency",
-          "floating-point-numbers",
-          "members",
-          "options"
-        ],
+        "practices": ["concurrency", "floating-point-numbers", "members"],
         "prerequisites": [
           "classes",
           "floating-point-numbers",
@@ -371,7 +366,7 @@
         "slug": "binary-search-tree",
         "name": "Binary Search Tree",
         "uuid": "4e786e56-2658-445f-ac91-64dd9c38dbb3",
-        "practices": ["constructors", "members", "options", "records"],
+        "practices": ["constructors", "members", "records"],
         "prerequisites": [
           "classes",
           "constructors",
@@ -386,13 +381,7 @@
         "slug": "pov",
         "name": "Pov",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
-        "practices": [
-          "equality",
-          "generic-types",
-          "options",
-          "records",
-          "recursion"
-        ],
+        "practices": ["equality", "generic-types", "records", "recursion"],
         "prerequisites": [
           "equality",
           "generic-types",
@@ -407,13 +396,7 @@
         "slug": "zipper",
         "name": "Zipper",
         "uuid": "5369eea9-00c8-4044-b272-1ce8d0590ecf",
-        "practices": [
-          "equality",
-          "immutability",
-          "options",
-          "records",
-          "recursion"
-        ],
+        "practices": ["equality", "immutability", "records", "recursion"],
         "prerequisites": ["equality", "numbers", "options", "records"],
         "difficulty": 10
       },
@@ -443,7 +426,7 @@
         "slug": "all-your-base",
         "name": "All Your Base",
         "uuid": "01e394ee-23d5-44e6-a37e-149ffaf5375e",
-        "practices": ["math-operators", "options", "while-loops"],
+        "practices": ["math-operators", "while-loops"],
         "prerequisites": [
           "lists",
           "math-operators",
@@ -457,7 +440,7 @@
         "slug": "largest-series-product",
         "name": "Largest Series Product",
         "uuid": "b3643992-583b-4e7a-a970-94bc7ae6739a",
-        "practices": ["integral-numbers", "math-operators", "options"],
+        "practices": ["integral-numbers", "math-operators"],
         "prerequisites": [
           "chars",
           "for-loops",
@@ -493,7 +476,7 @@
         "slug": "nth-prime",
         "name": "Nth Prime",
         "uuid": "220cbe7e-e781-4ab9-84ec-2b89a3c97670",
-        "practices": ["lazy-evaluation", "options", "yield"],
+        "practices": ["lazy-evaluation", "yield"],
         "prerequisites": ["numbers", "options"],
         "difficulty": 6
       },
@@ -573,7 +556,7 @@
         "slug": "palindrome-products",
         "name": "Palindrome Products",
         "uuid": "471c89f9-8b27-4898-8e98-58e4b2921616",
-        "practices": ["exceptions", "generic-methods", "options", "tuples"],
+        "practices": ["exceptions", "generic-methods", "tuples"],
         "prerequisites": [
           "exceptions",
           "generic-methods",
@@ -588,13 +571,7 @@
         "slug": "word-search",
         "name": "Word Search",
         "uuid": "8f8a79d1-78ed-4cdd-adcc-5cd6c6781dcd",
-        "practices": [
-          "constructors",
-          "maps",
-          "nullability",
-          "options",
-          "tuples"
-        ],
+        "practices": ["constructors", "maps", "nullability", "tuples"],
         "prerequisites": [
           "constructors",
           "lists",
@@ -773,7 +750,7 @@
         "slug": "change",
         "name": "Change",
         "uuid": "03a1c773-5c48-4f70-a2de-b742197fa9d2",
-        "practices": ["collection-processing", "maps", "options"],
+        "practices": ["collection-processing", "maps"],
         "prerequisites": ["lists", "numbers", "options"],
         "difficulty": 7
       },
@@ -789,7 +766,7 @@
         "slug": "collatz-conjecture",
         "name": "Collatz Conjecture",
         "uuid": "8b66e691-508f-40d9-8cee-1d6aec27366e",
-        "practices": ["numbers", "options", "recursion", "while-loops"],
+        "practices": ["numbers", "recursion", "while-loops"],
         "prerequisites": [
           "if-then-else-expressions",
           "numbers",
@@ -802,7 +779,7 @@
         "slug": "binary-search",
         "name": "Binary Search",
         "uuid": "c5b38251-14ba-4d98-a420-7a930f06167f",
-        "practices": ["arrays", "for-loops", "options"],
+        "practices": ["arrays", "for-loops"],
         "prerequisites": ["arrays", "for-loops", "numbers", "options"],
         "difficulty": 3
       },
@@ -814,7 +791,6 @@
           "casting",
           "exceptions",
           "generic-types",
-          "options",
           "resource-cleanup",
           "result",
           "tuples"
@@ -835,7 +811,7 @@
         "slug": "perfect-numbers",
         "name": "Perfect Numbers",
         "uuid": "45fcf742-1b3a-422a-b476-5ee81d80057a",
-        "practices": ["numbers", "options"],
+        "practices": ["numbers"],
         "prerequisites": ["discriminated-unions", "numbers", "options"],
         "difficulty": 3
       },
@@ -971,7 +947,7 @@
         "slug": "parallel-letter-frequency",
         "name": "Parallel Letter Frequency",
         "uuid": "c0d0ae0f-83fb-433a-8778-d38e8a6645aa",
-        "practices": ["maps", "options", "parallellism", "tuples"],
+        "practices": ["maps", "parallellism", "tuples"],
         "prerequisites": [
           "lists",
           "maps",
@@ -1000,7 +976,7 @@
         "slug": "bowling",
         "name": "Bowling",
         "uuid": "1c8ad2ca-4aec-47af-94b1-ef7e2830b463",
-        "practices": ["classes", "nullability", "options"],
+        "practices": ["classes", "nullability"],
         "prerequisites": [
           "classes",
           "lists",
@@ -1062,7 +1038,7 @@
         "slug": "series",
         "name": "Series",
         "uuid": "4b07842c-dcef-4be0-a842-0b3b7a30c499",
-        "practices": ["collection-processing", "for-loops", "options", "yield"],
+        "practices": ["collection-processing", "for-loops", "yield"],
         "prerequisites": [
           "collection-processing",
           "for-loops",
@@ -1229,7 +1205,7 @@
         "slug": "wordy",
         "name": "Wordy",
         "uuid": "c721b3f2-4afc-4a30-bad5-77bd002c2819",
-        "practices": ["options", "regular-expressions", "switch-statements"],
+        "practices": ["regular-expressions", "switch-statements"],
         "prerequisites": ["numbers", "options", "strings"],
         "difficulty": 7
       },
@@ -1275,7 +1251,7 @@
         "slug": "say",
         "name": "Say",
         "uuid": "7af901ca-24ea-4c24-a660-99b1f4338e01",
-        "practices": ["integral-numbers", "options", "while-loops"],
+        "practices": ["integral-numbers", "while-loops"],
         "prerequisites": [
           "if-then-else-expressions",
           "integral-numbers",
@@ -1319,7 +1295,7 @@
         "slug": "variable-length-quantity",
         "name": "Variable Length Quantity",
         "uuid": "ef86703b-9e78-43f8-aa4c-203492ac622c",
-        "practices": ["bit-manipulation", "integral-numbers", "options"],
+        "practices": ["bit-manipulation", "integral-numbers"],
         "prerequisites": [
           "bit-manipulation",
           "integral-numbers",
@@ -1332,7 +1308,7 @@
         "slug": "connect",
         "name": "Connect",
         "uuid": "dead8124-6942-4205-9ea8-3cb926c0dc47",
-        "practices": ["discriminated-unions", "options", "switch-statements"],
+        "practices": ["discriminated-unions", "switch-statements"],
         "prerequisites": [
           "chars",
           "discriminated-unions",
@@ -1347,7 +1323,7 @@
         "slug": "alphametics",
         "name": "Alphametics",
         "uuid": "3d682945-5fa1-4121-9d5b-7bac60660de9",
-        "practices": ["lazy-evaluation", "maps", "options", "tuples"],
+        "practices": ["lazy-evaluation", "maps", "tuples"],
         "prerequisites": [
           "lazy-evaluation",
           "lists",
@@ -1362,7 +1338,7 @@
         "slug": "go-counting",
         "name": "Go Counting",
         "uuid": "01ffa95c-1966-4031-b0d2-64f254d85b82",
-        "practices": ["maps", "options", "tuples"],
+        "practices": ["maps", "tuples"],
         "prerequisites": [
           "constructors",
           "discriminated-unions",
@@ -1378,7 +1354,7 @@
         "slug": "sgf-parsing",
         "name": "Sgf Parsing",
         "uuid": "fe0e98b3-d0d3-4bf6-bfaa-8aa0e61aa625",
-        "practices": ["constructors", "maps", "members", "options", "tuples"],
+        "practices": ["constructors", "maps", "members", "tuples"],
         "prerequisites": [
           "constructors",
           "lists",
@@ -1394,7 +1370,7 @@
         "slug": "forth",
         "name": "Forth",
         "uuid": "533981a1-632c-4ca8-a4ae-05f3ad1a810b",
-        "practices": ["lazy-evaluation", "maps", "options", "records"],
+        "practices": ["lazy-evaluation", "maps", "records"],
         "prerequisites": ["lists", "options", "records", "strings"],
         "difficulty": 10
       },
@@ -1441,7 +1417,6 @@
           "immutability",
           "inheritance",
           "members",
-          "options",
           "records",
           "sets"
         ],
