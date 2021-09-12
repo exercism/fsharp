@@ -1,10 +1,10 @@
 module Bandwagoner
 
-// TODO: please define the 'Coach' discriminated union type
+// TODO: please define the 'Coach' record type
 
-// TODO: please define the 'Stats' discriminated union type
+// TODO: please define the 'Stats' record type
 
-// TODO: please define the 'Team' discriminated union type
+// TODO: please define the 'Team' record type
 
 let createCoach (name: string) (formerPlayer: bool): Coach =
     failwith "Please implement the 'createCoach' function"
