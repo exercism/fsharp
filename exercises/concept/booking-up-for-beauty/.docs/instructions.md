@@ -43,7 +43,7 @@ Implement the `description` function that takes an appointment date and returns 
 
 ```fsharp
 description (DateTime(2019, 03, 29, 15, 0, 0))
-// => "You have an appointment on Friday 29 March 2019 at 15:00."
+// => "You have an appointment on 3/29/2019 3:00:00 PM."
 ```
 
 ## 5. Return the anniversary date
