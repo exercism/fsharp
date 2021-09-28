@@ -8,7 +8,9 @@ You have four tasks, which will all involve appointment dates. The dates and tim
 - `"July 25, 2019 13:45:00"`
 - `"Thursday, July 25, 2019 13:45:00:00"`
 
+~~~~exercism/caution
 The tests will automatically set the culture to `en-US` - you don't have to set or specify the culture yourselves.
+~~~~
 
 ## 1. Parse appointment date
 
