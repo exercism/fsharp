@@ -2,6 +2,8 @@ module BookingUpForBeauty
 
 // The following line is needed to use the DateTime type
 open System
+// The following line is needed to use the CultureInfo class for date string formatting
+open System.Globalization
 
 let schedule (appointmentDateDescription: string): DateTime = failwith "Please implement the 'schedule' function"
 
