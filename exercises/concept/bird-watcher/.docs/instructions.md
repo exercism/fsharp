@@ -42,11 +42,11 @@ dayWithoutBirds [| 3; 5; 0; 7; 4; 1 |]
 
 ## 5. Increment today's count
 
-Implement the `incrementDayCount` function to increment today's count and return the updated counts:
+Implement the `incrementTodaysCount` function to increment today's count and return the updated counts:
 
 ```fsharp
 let birdCount = [| 3; 5; 0; 7; 4; 1 |]
-incrementDayCount birdCount
+incrementTodaysCount birdCount
 // => [| 3; 5; 0; 7; 4; 2 |]
 ```
 
