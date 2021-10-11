@@ -73,7 +73,7 @@
         "name": "Tracks on Tracks on Tracks",
         "uuid": "51f626a6-8e84-4dba-9c9f-b7830000fbe8",
         "concepts": ["lists"],
-        "prerequisites": ["booleans", "strings"]
+        "prerequisites": ["booleans", "strings", "pattern-matching"]
       },
       {
         "slug": "cars-assemble",
