@@ -25,10 +25,10 @@
 - You can use pattern matching using the [cons][cons-pattern]- and [list][list-pattern] patterns to match on specific list structures.
 
 [create-and-initialize]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists#creating-and-initializing-lists
-[module]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/collections.list-module-%5Bfsharp%5D?f=255&MSPPError=-2147217396
-[reverse]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/list.rev%5B%27t%5D-function-%5Bfsharp%5D?f=255&MSPPError=-2147217396
-[length]: https://msdn.microsoft.com/nl-nl/visualfsharpdocs/conceptual/list.length%5b't%5d-function-%5bfsharp%5d
-[head]: https://msdn.microsoft.com/nl-nl/visualfsharpdocs/conceptual/list.head%5B%27t%5D-function-%5Bfsharp%5D?f=255&MSPPError=-2147217396
+[module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html
+[reverse]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#rev
+[length]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#length
+[head]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#head
 [cons]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists#operators-for-working-with-lists
 [cons-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#cons-pattern
 [list-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#list-pattern

@@ -57,7 +57,7 @@ describe [5; 7; 9] // => "Non-empty with head: 5"
 ```
 
 [lists]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists
-[list-module]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/collections.list-module-%5Bfsharp%5D?f=255&MSPPError=-2147217396
+[list-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html
 [list-properties]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/lists#properties
 [cons-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#cons-pattern
 [list-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#list-pattern

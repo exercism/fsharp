@@ -52,5 +52,5 @@ describe [| 5; 7; 9 |] // => "Other"
 [creating-arrays]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays#creating-arrays
 [array-indexer]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays#accessing-elements
 [array-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#array-pattern
-[array-module]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/collections.array-module-%5bfsharp%5d
+[array-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html
 [array-members]: https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1

@@ -33,9 +33,9 @@
 - Instead of checking all individual values, use [pattern matching][pattern-matching-array].
 
 [creating-arrays]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/arrays#creating-arrays
-[length-function]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/array.length%5b%27t%5d-function-%5bfsharp%5d
+[length-function]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html#length
 [length-property]: https://docs.microsoft.com/en-us/dotnet/api/system.array.length?redirectedfrom=MSDN&view=netcore-3.1#System_Array_Length
-[sum-function]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/array.sum%5b%5et%5d-function-%5bfsharp%5d
-[contains-function]: https://msdn.microsoft.com/nl-nl/visualfsharpdocs/conceptual/array.contains%5b't%5d-function-%5bfsharp%5d
-[set-function]: https://msdn.microsoft.com/nl-nl/visualfsharpdocs/conceptual/array.set%5b't%5d-function-%5bfsharp%5d
+[sum-function]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html#sum
+[contains-function]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html#contains
+[set-function]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html#set
 [pattern-matching-array]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#array-pattern

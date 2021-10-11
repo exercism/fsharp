@@ -36,6 +36,6 @@ let name = "Jane"
 [triple-quoted]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/strings#triple-quoted-strings
 [methods]: https://docs.microsoft.com/en-us/dotnet/api/system.string?view=netcore-3.1#methods
 [properties]: https://docs.microsoft.com/en-us/dotnet/api/system.string?view=netcore-3.1#properties
-[string-module]: https://msdn.microsoft.com/visualfsharpdocs/conceptual/core.string-module-%5bfsharp%5d
+[string-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-stringmodule.html
 [escaping]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/strings#remarks
 [plus-operator]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/strings#string-operators
