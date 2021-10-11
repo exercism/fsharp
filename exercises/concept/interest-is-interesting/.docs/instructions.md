@@ -22,7 +22,19 @@ interestRate 200.75m
 
 Note that the value returned is a `single`.
 
-## 2. Calculate the annual balance update
+
+## 2. Calculate the interest
+
+Implement the `interest` method to calculate the interest based on the specified balance:
+
+```fsharp
+interest 200.75m
+// => 9.0375m
+```
+
+Note that the value returned is a `decimal`.
+
+## 3. Calculate the annual balance update
 
 Implement the `annualBalanceUpdate` function to calculate the annual balance update, taking into account the interest rate:
 
@@ -33,7 +45,7 @@ annualBalanceUpdate 200.75m
 
 Note that the value returned is a `decimal`.
 
-## 3. Calculate how much money to donate
+## 4. Calculate how much money to donate
 
 Implement the `amountToDonate` function to calculate how much money to donate to charities based on the balance and the tax-free percentage that the government allows:
 

@@ -60,63 +60,79 @@ let ``Large negative interest rate``() = interestRate -152964.231M |> should equ
 
 [<Fact>]
 [<Task(2)>]
-let ``Annual balance update for empty start balance``() = annualBalanceUpdate 0.0m |> should equal 0.0000m
+let ``Interest on negative balance`` () = interest -10000.0m |> should equal -321.3m
 
 [<Fact>]
 [<Task(2)>]
+let ``Interest on small balance`` () = interest 555.55m |> should equal 2.77775m
+
+[<Fact>]
+[<Task(2)>]
+let ``Interest on medium balance`` () = interest 4999.99m |> should equal 81.0498379m
+
+[<Fact>]
+[<Task(2)>]
+let ``Interest on large balance`` () = interest 34600.80m |> should equal 856.3698m
+
+[<Fact>]
+[<Task(3)>]
+let ``Annual balance update for empty start balance``() = annualBalanceUpdate 0.0m |> should equal 0.0000m
+
+[<Fact>]
+[<Task(3)>]
 let ``Annual balance update for small positive start balance``() =
     annualBalanceUpdate 0.000001m |> should equal 0.000001005m
 
 [<Fact>]
-[<Task(2)>]
+[<Task(3)>]
 let ``Annual balance update for average positive start balance``() =
     annualBalanceUpdate 1_000.0m |> should equal 1016.210000m
 
 [<Fact>]
-[<Task(2)>]
+[<Task(3)>]
 let ``Annual balance update for large positive start balance``() =
     annualBalanceUpdate 1_000.0001m |> should equal 1016.210101621m
 
 [<Fact>]
-[<Task(2)>]
+[<Task(3)>]
 let ``Annual balance update for huge positive start balance``() =
     annualBalanceUpdate 898124017.826243404425m |> should equal 920352587.26744292868451875m
 
 [<Fact>]
-[<Task(2)>]
+[<Task(3)>]
 let ``Annual balance update for small negative start balance``() =
     annualBalanceUpdate -0.123M |> should equal -0.11904801M
 
 [<Fact>]
-[<Task(2)>]
+[<Task(3)>]
 let ``Annual balance update for large negative start balance``() =
     annualBalanceUpdate -152964.231M |> should equal -148049.49025797M
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for empty start balance``() = amountToDonate 0.0m 2.0 |> should equal 0
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for small positive start balance``() = amountToDonate 0.000001m 2.1 |> should equal 0
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for average positive start balance``() = amountToDonate 1_000.0m 2.0 |> should equal 40
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for large positive start balance``() = amountToDonate 1_000.0001m 0.99 |> should equal 19
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for huge positive start balance``() =
     amountToDonate 898124017.826243404425m 2.65 |> should equal 47600572
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for small negative start balance``() = amountToDonate -0.123M 3.33 |> should equal 0
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Amount to donate for large negative start balance``() = amountToDonate -152964.231M 5.4 |> should equal 0
