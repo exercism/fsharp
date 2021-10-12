@@ -19,4 +19,4 @@
 * [Real-World Functional Programming](https://books.google.nl/books?id=KfooAQAAMAAJ&q=isbn:1933988924&dq=isbn:1933988924&hl=en&sa=X&ved=0ahUKEwj-4eCii43RAhWdYFAKHdmnAEIQ6AEIHDAA)
 
 ## Misc
-* The [F# mentorship program](https://fsharp.org/mentorship/about.html) offers free mentorship by very proficient F# users.
+* The [F# mentorship program](https://fsharp.org/mentorship/) offers free mentorship by very proficient F# users.
