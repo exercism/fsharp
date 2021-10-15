@@ -1,6 +1,6 @@
 # About
 
-[F#](http://www.tryfsharp.org/Explore) is a strongly-typed, functional language that is part of Microsoft's .NET language stack.
+[F#](https://try.fsharp.org/) is a strongly-typed, functional language that is part of Microsoft's .NET language stack.
 
 Although F# is great for data science problems, it can elegantly handle almost every problem you throw at it. 
 
