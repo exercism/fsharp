@@ -5,6 +5,7 @@ open Xunit
 open Exercism.Tests
 
 open BirdWatcher
+open System
 
 [<Fact>]
 [<Task(1)>]
@@ -60,14 +61,41 @@ let ``Increment today's count with multiple previous visits`` () =
     incrementTodaysCount birdCounts
     |> should equal [| 5; 2; 4; 2; 4; 5; 8 |]
 
+let rec randomNotIn (rnd : Random) notIn = 
+    let next = rnd.Next()
+    if not <| List.contains next notIn then next
+    else randomNotIn rnd notIn
+
 [<Fact>]
 [<Task(6)>]
-let ``Odd week for week matching odd pattern`` () =
-    oddWeek [| 1; 0; 1; 0; 1; 0; 1 |]
+let ``Odd week for week matching odd days zero pattern`` () =
+    let random() = randomNotIn (Random()) [0; 5; 10]
+    oddWeek [| random(); 0; random(); 0; random(); 0; random() |]
     |> should equal true
 
 [<Fact>]
 [<Task(6)>]
-let `` Odd week for week that does not match odd pattern`` () =
+let ``Odd week for week matching odd days ten pattern`` () =
+    let random() = randomNotIn (Random()) [0; 5; 10]
+    oddWeek [| random(); 10; random(); 10; random(); 10; random() |]
+    |> should equal true
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for week matching even days five pattern`` () =
+    let random() = randomNotIn (Random()) [0; 5; 10]
+    oddWeek [| 5; random(); 5; random(); 5; random(); 5 |]
+    |> should equal true
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for week that does not match odd pattern`` () =
     oddWeek [| 2; 2; 1; 0; 1; 1; 1 |]
+    |> should equal false
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for week that does not match odd pattern with random numbers`` () =
+    let random() = randomNotIn (Random()) [0; 5; 10]
+    oddWeek [| random(); random(); random(); random(); random(); random(); random() |]
     |> should equal false

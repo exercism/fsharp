@@ -14,5 +14,7 @@ let incrementTodaysCount (counts: int []): int [] =
 
 let oddWeek (counts: int []) =
     match counts with
-    | [| 1; 0; 1; 0; 1; 0; 1 |] -> true
+    | [| _; 0; _; 0; _; 0; _ |]
+    | [| _; 10; _; 10; _; 10; _ |]
+    | [| 5; _; 5; _; 5; _; 5|] -> true
     | _ -> false
