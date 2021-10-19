@@ -22,6 +22,7 @@
       ".meta/Example.fs"
     ]
   },
+  "test_runner": false,
   "source": "Problem 4 at Project Euler",
   "source_url": "http://projecteuler.net/problem=4"
 }
