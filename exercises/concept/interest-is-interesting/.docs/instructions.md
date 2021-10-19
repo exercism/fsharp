@@ -2,7 +2,7 @@
 
 In this exercise you'll be working with savings accounts. Each year, the balance of your savings account is updated based on its interest rate. The interest rate your bank gives you depends on the amount of money in your account (its balance):
 
-- -3.213% for a negative balance.
+- 3.213% for a negative balance (results in negative interest).
 - 0.5% for a positive balance less than `1000` dollars.
 - 1.621% for a positive balance greater or equal than `1000` dollars and less than `5000` dollars.
 - 2.475% for a positive balance greater or equal than `5000` dollars.
@@ -21,7 +21,6 @@ interestRate 200.75m
 ```
 
 Note that the value returned is a `single`.
-
 
 ## 2. Calculate the interest
 
