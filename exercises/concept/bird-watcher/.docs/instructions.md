@@ -52,10 +52,13 @@ incrementTodaysCount birdCount
 
 ## 6. Check for odd week
 
-Over the last year, you've found that some weeks for the same, odd pattern, where the counts alternate between one and zero birds visiting. Implement the `oddWeek` function that returns `true` if the bird count pattern of this week matches the odd pattern:
+Over the last year, you've found that some weeks have the same "patterns". There were several weeks when each even day of the week there were no birds, and also several weeks when exactly 10 birds were spoted each even day. At the same time some weeks had exactly 5 birds each odd day of the week. Week with any of these patterns was called "Odd week". Implement the `oddWeek` function that returns `true` if the bird count pattern of this week matches one of the odd patterns:
 
 ```fsharp
-oddWeek [| 1; 0; 1; 0; 1; 0; 1 |]
+oddWeek [| 1; 0; 5; 0; 12; 0; 2 |]
+// => true
+
+oddWeek [| 5; 0; 5; 12; 5; 3; 5|]
 // => true
 ```
  
