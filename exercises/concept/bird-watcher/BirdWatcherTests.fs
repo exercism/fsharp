@@ -61,41 +61,62 @@ let ``Increment today's count with multiple previous visits`` () =
     incrementTodaysCount birdCounts
     |> should equal [| 5; 2; 4; 2; 4; 5; 8 |]
 
-let rec randomNotIn (rnd : Random) notIn = 
-    let next = rnd.Next()
-    if not <| List.contains next notIn then next
-    else randomNotIn rnd notIn
-
 [<Fact>]
 [<Task(6)>]
-let ``Odd week for week matching odd days zero pattern`` () =
-    let random() = randomNotIn (Random()) [0; 5; 10]
-    oddWeek [| random(); 0; random(); 0; random(); 0; random() |]
+let ``Odd week for first week matching odd days zero pattern`` () =
+    oddWeek [| 1; 0; 2; 0; 3; 0; 4 |]
     |> should equal true
 
 [<Fact>]
 [<Task(6)>]
-let ``Odd week for week matching odd days ten pattern`` () =
-    let random() = randomNotIn (Random()) [0; 5; 10]
-    oddWeek [| random(); 10; random(); 10; random(); 10; random() |]
+let ``Odd week for second week matching odd days zero pattern`` () =
+    oddWeek [| 10; 0; 6; 0; 9; 0; 4 |]
     |> should equal true
 
 [<Fact>]
 [<Task(6)>]
-let ``Odd week for week matching even days five pattern`` () =
-    let random() = randomNotIn (Random()) [0; 5; 10]
-    oddWeek [| 5; random(); 5; random(); 5; random(); 5 |]
+let ``Odd week for first week matching odd days ten pattern`` () =
+    oddWeek [| 6; 10; 2; 10; 5; 10; 8 |]
     |> should equal true
 
 [<Fact>]
 [<Task(6)>]
-let ``Odd week for week that does not match odd pattern`` () =
+let ``Odd week for second week matching odd days ten pattern`` () =
+    oddWeek [| 16; 10; 8; 10; 4; 10; 7 |]
+    |> should equal true
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for first week matching even days five pattern`` () =
+    oddWeek [| 5; 1; 5; 2; 5; 3; 5 |]
+    |> should equal true
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for second week matching even days five pattern`` () =
+    oddWeek [| 5; 12; 5; 6; 5; 5; 5 |]
+    |> should equal true
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for first week that does not match odd pattern`` () =
     oddWeek [| 2; 2; 1; 0; 1; 1; 1 |]
     |> should equal false
 
 [<Fact>]
 [<Task(6)>]
-let ``Odd week for week that does not match odd pattern with random numbers`` () =
-    let random() = randomNotIn (Random()) [0; 5; 10]
-    oddWeek [| random(); random(); random(); random(); random(); random(); random() |]
+let ``Odd week for second week that does not match odd pattern`` () =
+    oddWeek [| 2; 0; 1; 1; 1; 0; 1 |]
+    |> should equal false
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for third week that does not match odd pattern`` () =
+    oddWeek [| 2; 0; 1; 10; 1; 10; 1 |]
+    |> should equal false
+
+[<Fact>]
+[<Task(6)>]
+let ``Odd week for fourth week that does not match odd pattern`` () =
+    oddWeek [| 5; 0; 5; 1; 1; 0; 5 |]
     |> should equal false
