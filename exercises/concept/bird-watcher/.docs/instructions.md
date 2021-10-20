@@ -52,7 +52,12 @@ incrementTodaysCount birdCount
 
 ## 6. Check for odd week
 
-Over the last year, you've found that some weeks have the same "patterns". There were several weeks when each even day of the week there were no birds, and also several weeks when exactly 10 birds were spoted each even day. At the same time some weeks had exactly 5 birds each odd day of the week. Week with any of these patterns was called "Odd week". Implement the `oddWeek` function that returns `true` if the bird count pattern of this week matches one of the odd patterns:
+Over the last year, you've found that some weeks have the same, odd patterns:
+- On each even day of the week, there were no birds
+- On each even day of the week, exactly 10 birds were spotted
+- On each odd day of the week, exactly 5 birds were spotted
+
+Implement the `oddWeek` function that returns `true` if the bird count pattern of this week matches one of the odd patterns:
 
 ```fsharp
 oddWeek [| 1; 0; 5; 0; 12; 0; 2 |]
