@@ -1,7 +1,19 @@
-module LogLevels
+module TisburyTreasureHunt
 
-let message (logLine: string): string = logLine.Substring(logLine.IndexOf(':') + 1).Trim()
+let getCoordinate (line: string*string): string = snd line
 
-let logLevel (logLine: string): string = logLine.Substring(1, logLine.IndexOf(']') - 1).ToLower()
+let convertCoordinate (coordinate: string): string*string = 
+    string coordinate.[0], string coordinate.[1]
 
-let reformat (logLine: string): string = message logLine + " (" + logLevel logLine + ")"
+let compareRecords (azarasData: string*string) (ruisData: string*(string*string)*string) : bool = 
+    let azarasCoordinate = getCoordinate azarasData
+    let (_,ruisCoordinate,_) = ruisData
+    convertCoordinate azarasCoordinate = ruisCoordinate
+
+let createRecord (azarasData: string*string) (ruisData: string*(string*string)*string) : (string*string*string*(string*string)*string) =
+    if compareRecords azarasData ruisData then
+        match azarasData, ruisData with
+        | (treasure, coordinate), (location, coordinates, quadrant) -> 
+            (treasure, coordinate, location, coordinates, quadrant)
+    else
+        ("", "", "", ("", ""), "")

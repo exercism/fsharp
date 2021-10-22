@@ -1,7 +1,13 @@
-module LogLevels
+module TisburyTreasureHunt
 
-let message (logLine: string): string = failwith "Please implement the 'message' function"
+let getCoordinate (line: string*string): string = 
+    failwith "Please implement the 'getCoordinate' function"
 
-let logLevel(logLine: string): string = failwith "Please implement the 'logLevel' function"
+let convertCoordinate(coordinate: string): string*string = 
+    failwith "Please implement the 'convertCoordinate' function"
 
-let reformat(logLine: string): string = failwith "Please implement the 'reformat' function"
+let compareRecords (azarasData: string*string) (ruisData: string*(string*string)*string) : bool = 
+    failwith "Please implement the 'compareRecords' function"
+
+let createRecord (azarasData: string*string) (ruisData: string*(string*string)*string) : (string*string*string*(string*string)*string) =
+    failwith "Please implement the 'createRecord' function"
