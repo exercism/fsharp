@@ -1621,6 +1621,11 @@
       "uuid": "8a3e23fd-aa42-42c3-9dbd-c26159fd6774",
       "slug": "strings",
       "name": "Strings"
+    },
+    {
+      "uuid": "5bd49bb7-3487-4925-9c0e-866d56a880ee",
+      "slug": "tuples",
+      "name": "Tuples"
     }
   ],
   "key_features": [
