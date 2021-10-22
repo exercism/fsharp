@@ -1853,10 +1853,10 @@ type Zipper() =
         let renderedOperations = renderOperations operations
         $"let %s{identifier} = fromTree (%s{renderedTree}) %s{renderedOperations}"
 
-    let renderSut (operations: JToken) =
+    let renderActual (operations: JToken) =
         operations
         |> renderOperations
-        |> sprintf "let sut = zipper %s"
+        |> sprintf "let actual = zipper %s"
 
     let renderExpected (expected: JToken) =
         match expected.["type"] |> string with
@@ -1878,21 +1878,26 @@ type Zipper() =
           "let leaf value = subTree value None None" ]
         |> String.concat "\n"
 
-    override _.PropertiesWithIdentifier _ = [ "initialTree"; "sut"; "expected" ]
+    override _.PropertiesWithIdentifier _ = [ "initialTree"; "expected" ]
 
     override _.RenderArrange testCase =
         let tree =
             testCase.Input.["initialTree"]
             |> renderZipperWithIdentifier "zipper"
 
-        let sut =
-            testCase.Input.["operations"]
-            |> renderSut
-
         let expected =
             testCase.Expected |> renderExpected
 
-        [ tree; sut; expected ]
+        let actual =
+            testCase.Input.["operations"]
+            |> renderActual
+
+        [ tree; expected ; actual ]
+
+    override _.RenderAssert _ =
+        let ``assert`` = "actual |> should equal expected"
+
+        [ ``assert`` ]
 
     override _.TestMethodName testCase =
         base.TestMethodName testCase
