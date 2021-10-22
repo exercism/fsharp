@@ -98,6 +98,6 @@ Re-format the coordinate as needed for accurate comparison.
 createRecord ("Brass Spyglass", "4B") ("Abandoned Lighthouse", ("4", "B"), "Blue")
 ("Brass Spyglass", "4B", "Abandoned Lighthouse", ("4", "B"), "Blue")
 
-createRecord ("Brass Spyglass", "4B") ("Seaside Cottages", ("1", "C"), "blue"))
+createRecord ("Brass Spyglass", "4B") ("Seaside Cottages", ("1", "C"), "Blue")
 ("", "", "", ("", ""), "")
 ```
