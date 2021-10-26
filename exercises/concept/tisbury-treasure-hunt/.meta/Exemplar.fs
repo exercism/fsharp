@@ -9,7 +9,7 @@ let convertCoordinate(coordinate: string): int * char =
 
 let compareRecords (azarasData: string * string) (ruisData: string * (int * char) * string) : bool = 
     let azarasCoordinate = getCoordinate azarasData
-    let (_,ruisCoordinate,_) = ruisData
+    let (_, ruisCoordinate, _) = ruisData
     convertCoordinate azarasCoordinate = ruisCoordinate
 
 let createRecord (azarasData: string * string) (ruisData: string * (int * char) * string) : (string * string * string * string) =
