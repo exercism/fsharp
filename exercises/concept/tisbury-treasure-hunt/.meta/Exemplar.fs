@@ -1,19 +1,21 @@
 module TisburyTreasureHunt
 
-let getCoordinate (line: string*string): string = snd line
+open System
 
-let convertCoordinate (coordinate: string): string*string = 
-    string coordinate.[0], string coordinate.[1]
+let getCoordinate (line: string * string): string = snd line
 
-let compareRecords (azarasData: string*string) (ruisData: string*(string*string)*string) : bool = 
+let convertCoordinate(coordinate: string): int * char = 
+    Int32.Parse(string coordinate.[0]), coordinate.[1]
+
+let compareRecords (azarasData: string * string) (ruisData: string * (int * char) * string) : bool = 
     let azarasCoordinate = getCoordinate azarasData
     let (_,ruisCoordinate,_) = ruisData
     convertCoordinate azarasCoordinate = ruisCoordinate
 
-let createRecord (azarasData: string*string) (ruisData: string*(string*string)*string) : (string*string*string*(string*string)*string) =
+let createRecord (azarasData: string * string) (ruisData: string * (int * char) * string) : (string * string * string * string) =
     if compareRecords azarasData ruisData then
         match azarasData, ruisData with
-        | (treasure, coordinate), (location, coordinates, quadrant) -> 
-            (treasure, coordinate, location, coordinates, quadrant)
+        | (treasure, coordinate), (location, _, quadrant) -> 
+            (coordinate, location, quadrant, treasure)
     else
-        ("", "", "", ("", ""), "")
+        ("", "", "", "")
