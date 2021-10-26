@@ -1,10 +1,10 @@
 [
   {
     "url": "https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/tuples",
-    "description": "tuples"
+    "description": "Tuples"
   },
   {
     "url": "https://fsharpforfunandprofit.com/posts/tuples/",
-    "description": "understanding tuples"
+    "description": "Understanding tuples"
   }
 ]
