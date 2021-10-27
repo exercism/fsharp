@@ -8,6 +8,7 @@
 ## 1. Extract coordinates
 
 - Remember: tuples allow access using helper functions or deconstruction.
+- Check [parsing](https://docs.microsoft.com/en-us/dotnet/api/system.int32.parse?view=net-5.0) in order to get number from string.
 
 ## 2. Format coordinates
 
