@@ -3,10 +3,14 @@
 ## 1. Calculate the production rate per second
 
 - Determining the success rate can be done through a [conditional expression][conditional-expression].
+
+## 2. Calculate the production rate per second
+
 - F# does not allow for multiplication to be applied to two different number types (such as an `int` and a `float`). One thus has to convert one of the number types to the other number type using one of the built-in [conversion operators][conversion-operators].
 - Numbers can be compared using the built-in [comparison operators][comparison-operators].
+- Could you re-use your `successRate` function?
 
-## 2. Calculate the number of working items produced per second
+## 3. Calculate the number of working items produced per second
 
 - Converting from a `float` to an `int` can be done through one of the built-in [conversion operators][conversion-operators].
 

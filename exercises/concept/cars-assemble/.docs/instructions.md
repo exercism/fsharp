@@ -12,7 +12,18 @@ At its lowest speed (`1`), `221` cars are produced each hour. The production inc
 
 You have two tasks.
 
-## 1. Calculate the production rate per hour
+## 1. Calculate success rate of production
+
+Implement the `successRate` function to calculate the success rate of production, taking into account speed of production:
+
+```fsharp
+successRate 6
+// => 0.9
+successRate 10
+// => 0.77
+```
+
+## 2. Calculate the production rate per hour
 
 Implement the `productionRatePerHour` function to calculate the assembly line's production rate per hour, taking into account its success rate:
 
@@ -23,7 +34,7 @@ productionRatePerHour 6
 
 Note that the value returned is a `float`.
 
-## 2. Calculate the number of working items produced per minute
+## 3. Calculate the number of working items produced per minute
 
 Implement the `workingItemsPerMinute` function to calculate how many working cars are produced per minute:
 
