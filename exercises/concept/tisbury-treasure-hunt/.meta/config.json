@@ -14,5 +14,6 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "forked_from": ["python/tisbury-treasure-hunt"]
 }
