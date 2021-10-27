@@ -112,11 +112,11 @@ let ``Odd week for second week that does not match odd pattern`` () =
 [<Fact>]
 [<Task(6)>]
 let ``Odd week for third week that does not match odd pattern`` () =
-    oddWeek [| 2; 0; 1; 10; 1; 10; 1 |]
+    oddWeek [| 2; 9; 1; 10; 1; 11; 1 |]
     |> should equal false
 
 [<Fact>]
 [<Task(6)>]
 let ``Odd week for fourth week that does not match odd pattern`` () =
-    oddWeek [| 5; 0; 5; 1; 1; 0; 5 |]
+    oddWeek [| 5; 0; 5; 1; 4; 0; 6 |]
     |> should equal false
