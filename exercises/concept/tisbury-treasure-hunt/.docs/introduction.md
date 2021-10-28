@@ -13,15 +13,8 @@ Tuples can be formed in multiple ways, using either the `System.Tuple` class con
 ### Examples of tuples include pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code.:
 
 ```fsharp
-(1, 2)
-// Triple of strings.
-("one", "two", "three")
-// Tuple of generic types.
-(a, b)
-// Tuple that has mixed types.
-("one", 1, 2.0)
-// Tuple of integer expressions.
-(a + 1, b + 1)
+("one", 2) // Tuple pair 
+("one", 2, true) // Tuple triplet
 ```
 
 ## Obtaining Individual Values
