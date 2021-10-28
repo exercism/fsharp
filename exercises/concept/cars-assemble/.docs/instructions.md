@@ -10,7 +10,7 @@ At its lowest speed (`1`), `221` cars are produced each hour. The production inc
 - `9`: 80% success rate.
 - `10`: 77% success rate.
 
-You have two tasks.
+You have three tasks.
 
 ## 1. Calculate the success rate
 
