@@ -69,6 +69,7 @@ convertCoordinate "2A"
 Implement the `compareRecords()` function that takes a `(treasure, coordinate)` pair and a `(location, coordinate, quadrant)` record and compares coordinates from each.
 Return **`true`** if the coordinates "match", and return **`false`** if they do not.
 Re-format coordinates as needed for accurate comparison.
+
 ```fsharp
 compareRecords ("Brass Spyglass", "4B") ("Seaside Cottages", ("1", "C"), "blue")
 // false
