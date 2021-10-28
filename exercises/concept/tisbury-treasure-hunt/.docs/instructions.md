@@ -4,7 +4,6 @@ Aazra and Rui are teammates competing in a pirate-themed treasure hunt.
 One has a list of treasures with map coordinates, the other a list of location names with map coordinates.
 They've also been given blank maps with a starting place marked YOU ARE HERE.
 
-<br>
 <table>
 <tr><th>Azara's List</th><th></th><th>Rui's List</th></tr>
 <tr><td>
