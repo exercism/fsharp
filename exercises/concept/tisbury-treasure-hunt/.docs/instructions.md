@@ -59,6 +59,7 @@ getCoordinate ("Scrimshaw Whale's Tooth", "2A")
 ## 2. Format coordinates
 
 Implement the `convertCoordinate()` function that takes a coordinate in the format "2A" and returns a tuple in the format `("2", "A")`.
+
 ```fsharp
 convertCoordinate "2A"
 // ("2", "A")
