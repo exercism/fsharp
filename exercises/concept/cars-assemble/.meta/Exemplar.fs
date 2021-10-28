@@ -2,7 +2,7 @@ module CarsAssemble
 
 let private ProductionRatePerHourForDefaultSpeed = 221
 
-let private successRate (speed: int): float =
+let successRate (speed: int): float =
     if speed = 10 then 0.77
     elif speed = 9 then 0.8
     elif speed >= 5 then 0.9
