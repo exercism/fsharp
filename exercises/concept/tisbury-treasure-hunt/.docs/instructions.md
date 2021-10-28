@@ -46,8 +46,6 @@ They've also been given blank maps with a starting place marked YOU ARE HERE.
 </td></tr>
 </table>
 
-<br>
-
 But things are a bit disorganized: Azara's coordinates appear to be formatted and sorted differently from Rui's, and they have to keep looking from one list to the other to figure out which treasures go with which locations.
 Being budding fsharpistas, they have come to you for help in writing a small program (a set of functions, really) to better organize their hunt information.
 
