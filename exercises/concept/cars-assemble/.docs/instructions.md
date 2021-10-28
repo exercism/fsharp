@@ -12,7 +12,7 @@ At its lowest speed (`1`), `221` cars are produced each hour. The production inc
 
 You have two tasks.
 
-## 1. Calculate success rate of production
+## 1. Calculate the success rate
 
 Implement the `successRate` function to calculate the success rate based on the production speed:
 
