@@ -19,8 +19,6 @@ Implement the `successRate` function to calculate the success rate based on the 
 ```fsharp
 successRate 6
 // => 0.9
-successRate 10
-// => 0.77
 ```
 
 ## 2. Calculate the production rate per hour
