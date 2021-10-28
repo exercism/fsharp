@@ -59,4 +59,3 @@ Some key things to know about tuples are:
 * Tuples have structural equality. `(1, 4, 6) = (1, 4, 6) -> true`
 * Tuples can be used as arguments of function and return value of function
 
-These points are very important – if you don’t understand them you will get confused quite quickly!
