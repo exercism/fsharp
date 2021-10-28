@@ -32,27 +32,27 @@ let ``Success rate for speed 1``() = successRate 1 |> should (equalWithin 0.01) 
 
 [<Fact>]
 [<Task(2)>]
-let ``Production rate per hour for speed 0``() = productionRatePerHour 0 |> should equal 0.0
+let ``Production rate per hour for speed 0``() = productionRatePerHour 0 |> should (equalWithin 0.1) 0.0
 
 [<Fact>]
 [<Task(2)>]
-let ``Production rate per hour for speed 1``() = productionRatePerHour 1 |> should equal 221.0
+let ``Production rate per hour for speed 1``() = productionRatePerHour 1 |> should (equalWithin 0.1) 221.0
 
 [<Fact>]
 [<Task(2)>]
-let ``Production rate per hour for speed 4``() = productionRatePerHour 4 |> should equal 884.0
+let ``Production rate per hour for speed 4``() = productionRatePerHour 4 |> should (equalWithin 0.1) 884.0
 
 [<Fact>]
 [<Task(2)>]
-let ``Production rate per hour for speed 7``() = productionRatePerHour 7 |> should equal 1392.3
+let ``Production rate per hour for speed 7``() = productionRatePerHour 7 |> should (equalWithin 0.1) 1392.3
 
 [<Fact>]
 [<Task(2)>]
-let ``Production rate per hour for speed 9``() = productionRatePerHour 9 |> should equal 1591.2
+let ``Production rate per hour for speed 9``() = productionRatePerHour 9 |> should (equalWithin 0.1) 1591.2
 
 [<Fact>]
 [<Task(2)>]
-let ``Production rate per hour for speed 10``() = productionRatePerHour 10 |> should equal 1701.7
+let ``Production rate per hour for speed 10``() = productionRatePerHour 10 |> should (equalWithin 0.1) 1701.7
 
 [<Fact>]
 [<Task(3)>]
