@@ -14,7 +14,7 @@ You have two tasks.
 
 ## 1. Calculate success rate of production
 
-Implement the `successRate` function to calculate the success rate of production, taking into account speed of production:
+Implement the `successRate` function to calculate the success rate based on the production speed:
 
 ```fsharp
 successRate 6
