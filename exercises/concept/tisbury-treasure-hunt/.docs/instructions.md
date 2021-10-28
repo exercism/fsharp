@@ -51,6 +51,7 @@ Being budding fsharpies, they have come to you for help in writing a small progr
 ## 1. Extract coordinates
 
 Implement the `getCooordinate()` function that takes a `(treasure, coordinate)` pair from Azaras list and returns only the extracted map coordinate.
+
 ```fsharp
 getCoordinate ("Scrimshaw Whale's Tooth", "2A")
 // "2A"
