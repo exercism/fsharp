@@ -4,8 +4,6 @@ A [tuple][tuple] is a _immutable_ grouping of unnamed but ordered values, possib
 
 `tuples` can hold any (or multiple) data type(s) -- including other `tuples`.
 
-<br>
-
 ## Tuple Construction
 
 Tuples can be formed in multiple ways, using either the `System.Tuple` class constructor or the `(<element_1>, <element_2>)` declaration.
