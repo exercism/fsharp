@@ -6,15 +6,8 @@ A [tuple][tuple] is a _immutable_ grouping of unnamed but ordered values, possib
 
 ## Tuple Construction
 
-Tuples can be formed in multiple ways, using either the `System.Tuple` class constructor or the `(<element_1>, <element_2>)` declaration.
-
-### Using the `System.Tuple()` constructor:
-
-```fsharp
-let value = System.Tuple<int,int>(1, 2)
-```
-
-### Examples of tuples include pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code.:
+Tuples can be created using `(<element_1>, <element_2>)` declaration.
+Tuples ca be pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code.:
 
 ```fsharp
 (1, 2)
@@ -37,11 +30,13 @@ match tuple with
 | (x,y) -> printfn "Pair %A %A" x y
 ```
 Tuple deconstruction
+
 ```fsharp
 let (a,b) = (12, "twelve")
 // a = 12, b = "twelve"
 ```
 Using helper functions
+
 ```fsharp
 let tuple = (1, 2)
 let c = fst tuple
@@ -58,4 +53,3 @@ Some key things to know about tuples are:
 * The comma is the critical symbol that defines tuples, not the parentheses. You can define tuples without the parentheses, although it can sometimes be confusing. In F#, if you see a comma, it is probably part of a tuple.
 * Tuples have structural equality. `(1, 4, 6) = (1, 4, 6) -> true`
 * Tuples can be used as arguments of function and return value of function
-
