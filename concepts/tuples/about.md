@@ -7,7 +7,7 @@ A [tuple][tuple] is a _immutable_ grouping of unnamed but ordered values, possib
 ## Tuple Construction
 
 Tuples can be created using `(<element_1>, <element_2>)` declaration.
-Tuples ca be pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code.:
+Tuples can be pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code:
 
 ```fsharp
 (1, 2)
