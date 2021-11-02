@@ -1,55 +1,63 @@
 # About
 
-A [tuple][tuple] is a _immutable_ grouping of unnamed but ordered values, possibly of different types. Tuples can either be reference types or structs.
+A [tuple](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/tuples) is an _immutable_ grouping of unnamed but ordered values.
+Tuples can hold any (or multiple) data type(s) -- including other tuples.
 
-`tuples` can hold any (or multiple) data type(s) -- including other `tuples`.
-
-## Tuple Construction
-
-Tuples can be created using `(<element_1>, <element_2>)` declaration.
-Tuples can be pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code:
+Tuples are defined as comma-separated values between `(` and `)` characters: `(<element_1>, ... , <element_n>)`.
 
 ```fsharp
-(1, 2)
-// Triple of strings.
-("one", "two", "three")
-// Tuple of generic types.
-(a, b)
-// Tuple that has mixed types.
-("one", 1, 2.0)
-// Tuple of integer expressions.
-(a + 1, b + 1)
+("one", 2) // Tuple pair (2 values)
+("one", 2, true) // Tuple triplet (3 values)
 ```
 
-## Obtaining Individual Values
-
-Pattern matching
+Only tuples with the same length and the same types (in the same order) can be compared.
+Tuples have structural equality, which means they are equal _only_ if all their values are equal.
 
 ```fsharp
-match tuple with
-| (x,y) -> printfn "Pair %A %A" x y
+(1, 2) = (1, 2) // Same length, same types, same values, same order
+// => true
+
+(1, 2) = (2, 1) // Same length, same types, same values, different order
+// => false
+
+(1, 2) = (1, "2") // Same length, different types
+// compiler error
+
+(1, 2) = (1, 2, 3) // Different length
+// compiler error
 ```
-Tuple deconstruction
+
+There are [three ways in which you can extract values from a tuple](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/tuples#obtaining-individual-values):
+
+- The `fst` and `snd` functions
+- Tuple deconstruction
+- Pattern matching
 
 ```fsharp
-let (a,b) = (12, "twelve")
-// a = 12, b = "twelve"
+let person = ("Jordan", 170)
+
+// Option 1: fst/snd
+let name1 = fst person
+let length2 = snd person
+
+// Option 2: deconstruction
+let (name2, length2) = person
+// => "Mary
+
+// Option 3: pattern matching
+match person with
+| name3, length3 -> printf "%s: %d" name3 length3
 ```
-Using helper functions
 
-```fsharp
-let tuple = (1, 2)
-let c = fst tuple
-let d = snd tuple
-// c = 1, d = 2
+```exercism/note
+Technically, you can access a tuples value using its `.Item1`, `.Item2`, ... properties, but this is discouraged and results in a compiler warning.
 ```
 
 ## Key points about tuples
+
 Some key things to know about tuples are:
 
-* A particular instance of a tuple type is a single object, similar to a two-element array in C#, say. When using them with functions they count as a single parameter.
-* Tuple types cannot be given explicit names. The “name” of the tuple type is determined by the combination of types that are multiplied together.
-* The order of the multiplication is important. So `int*string` is not the same tuple type as `string*int`.
-* The comma is the critical symbol that defines tuples, not the parentheses. You can define tuples without the parentheses, although it can sometimes be confusing. In F#, if you see a comma, it is probably part of a tuple.
-* Tuples have structural equality. `(1, 4, 6) = (1, 4, 6) -> true`
-* Tuples can be used as arguments of function and return value of function
+- A particular instance of a tuple type is a single object, similar to a two-element array in C#, say. When using them with functions they count as a single parameter. The only exception is when calling non F#-code with multiple parameters, in which case you pass in a tuple and its values will automatically be extracted to the corresponding parameter value.
+- Tuple types cannot be given explicit names. The “name” of the tuple type is determined by the combination of types that are multiplied together.
+- The comma is the critical symbol that defines tuples, not the parentheses. You can define tuples without the parentheses, although it can sometimes be confusing. In F#, if you see a comma, it is probably part of a tuple.
+- Tuples can be used as arguments of function and return value of function.

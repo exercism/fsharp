@@ -3,51 +3,48 @@
 A tuple is an _immutable_ grouping of unnamed but ordered values.
 Tuples can hold any (or multiple) data type(s) -- including other tuples.
 
-Tuples support can be used when pattern matching. They can be deconstructed and constructed.
-
-Tuples have structural equality. Tuples must be of the same length and same type in order to be equal. All value of tuple compared.
-For example:
+Tuples are defined as comma-separated values between `(` and `)` characters: `(<element_1>, ... , <element_n>)`.
 
 ```fsharp
-(1, 2) = (1, 2)
-// true
-(1, 2) = (2, 1)
-// false
-(1, 2) = (1, 2, 3)
+("one", 2) // Tuple pair (2 values)
+("one", 2, true) // Tuple triplet (3 values)
+```
+
+Only tuples with the same length and the same types (in the same order) can be compared.
+Tuples have structural equality, which means they are equal _only_ if all their values are equal.
+
+```fsharp
+(1, 2) = (1, 2) // Same length, same types, same values, same order
+// => true
+
+(1, 2) = (2, 1) // Same length, same types, same values, different order
+// => false
+
+(1, 2) = (1, "2") // Same length, different types
 // compiler error
-(1, 2) = (1, "2")
+
+(1, 2) = (1, 2, 3) // Different length
 // compiler error
 ```
 
-## Tuple Construction
+There are three ways in which you can extract values from a tuple:
 
-Tuples can be created using `(<element_1>, <element_2>)` declaration.
-Tuples ca be pairs, triples, and so on, of the same or different types. Some examples are illustrated in the following code.:
-
-```fsharp
-("one", 2) // Tuple pair 
-("one", 2, true) // Tuple triplet
-```
-
-## Obtaining Individual Values
-
-Pattern matching
+- The `fst` and `snd` functions
+- Tuple deconstruction
+- Pattern matching
 
 ```fsharp
-match tuple with
-| (x,y) -> printfn "Pair %A %A" x y
-```
-Tuple deconstruction
+let person = ("Jordan", 170)
 
-```fsharp
-let (a,b) = (12, "twelve")
-// a = 12, b = "twelve"
-```
-Using helper functions
+// Option 1: fst/snd
+let name1 = fst person
+let length2 = snd person
 
-```fsharp
-let tuple = (1, 2)
-let c = fst tuple
-let d = snd tuple
-// c = 1, d = 2
+// Option 2: deconstruction
+let (name2, length2) = person
+// => "Mary
+
+// Option 3: pattern matching
+match person with
+| name3, length3 -> printf "%s: %d" name3 length3
 ```
