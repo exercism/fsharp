@@ -109,6 +109,13 @@
         "uuid": "ab0e683f-46e8-4679-99d2-def4c337e4b8",
         "concepts": ["strings"],
         "prerequisites": ["basics"]
+      },
+      {
+        "slug": "tisbury-treasure-hunt",
+        "name": "Tisbury Treasure Hunt",
+        "uuid": "2d397532-9c6c-473d-8af7-d14333e92a60",
+        "concepts": ["tuples"],
+        "prerequisites": ["pattern-matching", "strings"]
       }
     ],
     "practice": [
@@ -1614,6 +1621,11 @@
       "uuid": "8a3e23fd-aa42-42c3-9dbd-c26159fd6774",
       "slug": "strings",
       "name": "Strings"
+    },
+    {
+      "uuid": "5bd49bb7-3487-4925-9c0e-866d56a880ee",
+      "slug": "tuples",
+      "name": "Tuples"
     }
   ],
   "key_features": [
