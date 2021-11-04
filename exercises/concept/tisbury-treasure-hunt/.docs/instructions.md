@@ -28,19 +28,19 @@ They've also been given blank maps with a starting place marked YOU ARE HERE.
 
 | Location Name                         | Coordinates | Quandrant |
 | ------------------------------------- | ----------- | --------- |
-| Seaside Cottages                      | ("1", "C")  | Blue      |
-| Aqua Lagoon (Island of Mystery)       | ("1", "F")  | Yellow    |
-| Deserted Docks                        | ("2", "A")  | Blue      |
-| Spiky Rocks                           | ("3", "D")  | Yellow    |
-| Abandoned Lighthouse                  | ("4", "B")  | Blue      |
-| Hidden Spring (Island of Mystery)     | ("4", "E")  | Yellow    |
-| Stormy Breakwater                     | ("5", "B")  | Purple    |
-| Old Schooner                          | ("6", "A")  | Purple    |
-| Tangled Seaweed Patch                 | ("6", "D")  | Orange    |
-| Quiet Inlet (Island of Mystery)       | ("7", "E")  | Orange    |
-| Windswept Hilltop (Island of Mystery) | ("7", "F")  | Orange    |
-| Harbor Managers Office                | ("8", "A")  | Purple    |
-| Foggy Seacave                         | ("8", "C")  | Purple    |
+| Seaside Cottages                      | (1, 'C')    | Blue      |
+| Aqua Lagoon (Island of Mystery)       | (1, 'F')    | Yellow    |
+| Deserted Docks                        | (2, 'A')    | Blue      |
+| Spiky Rocks                           | (3, 'D')    | Yellow    |
+| Abandoned Lighthouse                  | (4, 'B')    | Blue      |
+| Hidden Spring (Island of Mystery)     | (4, 'E')    | Yellow    |
+| Stormy Breakwater                     | (5, 'B')    | Purple    |
+| Old Schooner                          | (6, 'A')    | Purple    |
+| Tangled Seaweed Patch                 | (6, 'D')    | Orange    |
+| Quiet Inlet (Island of Mystery)       | (7, 'E')    | Orange    |
+| Windswept Hilltop (Island of Mystery) | (7, 'F')    | Orange    |
+| Harbor Managers Office                | (8, 'A')    | Purple    |
+| Foggy Seacave                         | (8, 'C')    | Purple    |
 
 </td></tr>
 </table>
@@ -59,11 +59,11 @@ getCoordinate ("Scrimshaw Whale's Tooth", "2A")
 
 ## 2. Format coordinates
 
-Implement the `convertCoordinate()` function that takes a coordinate in the format "2A" and returns a tuple in the format `("2", "A")`.
+Implement the `convertCoordinate()` function that takes a coordinate in the format "2A" and returns a tuple in the format `(2, 'A')`.
 
 ```fsharp
 convertCoordinate "2A"
-// ("2", "A")
+// (2, 'A')
 ```
 
 ## 3. Match coordinates
@@ -73,10 +73,10 @@ Return **`true`** if the coordinates "match", and return **`false`** if they do 
 Re-format coordinates as needed for accurate comparison.
 
 ```fsharp
-compareRecords ("Brass Spyglass", "4B") ("Seaside Cottages", ("1", "C"), "blue")
+compareRecords ("Brass Spyglass", "4B") ("Seaside Cottages", (1, 'C'), "blue")
 // false
 
-compareRecords ("Model Ship in Large Bottle", "8A") ("Harbor Managers Office", ("8", "A"), "purple")
+compareRecords ("Model Ship in Large Bottle", "8A") ("Harbor Managers Office", (8, 'A'), "purple")
 // true
 ```
 
@@ -87,9 +87,9 @@ If the coordinates _do not_ match, return the tuple of same shape but filled wit
 Re-format the coordinate as needed for accurate comparison.
 
 ```fsharp
-createRecord ("Brass Spyglass", "4B") ("Abandoned Lighthouse", ("4", "B"), "Blue")
-("Brass Spyglass", "4B", "Abandoned Lighthouse", ("4", "B"), "Blue")
+createRecord ("Brass Spyglass", "4B") ("Abandoned Lighthouse", (4, 'B'), "Blue")
+("Brass Spyglass", "4B", "Abandoned Lighthouse", "Blue")
 
-createRecord ("Brass Spyglass", "4B") ("Seaside Cottages", ("1", "C"), "Blue")
-("", "", "", ("", ""), "")
+createRecord ("Brass Spyglass", "4B") ("Seaside Cottages", (1, 'C'), "Blue")
+("", "", "", "")
 ```
