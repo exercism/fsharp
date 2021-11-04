@@ -13,7 +13,7 @@ Strings can be concatenated or formatted a few different ways.
 ```fsharp
 let sentence = "Apple" + " is a type of fruit."
 ```
-* You can use the [sprintf function](https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/plaintext-formatting#checking-of-printf-format-strings) for formatting text, where you have placeholders in a format text (`%s` for a `string`) and provide the values as arguments:
+* You can use the `sprintf` function for formatting text, where you have placeholders in a format text (`%s` for a `string`) and provide the values as arguments:
 ```fsharp
 let sentence = sprintf "%s is a type of %s." "Apple" "fruit"
 ```
