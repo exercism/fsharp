@@ -28,7 +28,7 @@ Finally, concatenating strings can be done through the [`+` operator][plus-opera
 
 ```fsharp
 let name = "Jane"
-"Hello" + name + "!"
+"Hello " + name + "!"
 // => "Hello Jane!"
 ```
 
