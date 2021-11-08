@@ -32,3 +32,19 @@ describe []        // => "Empty list"
 describe [1]       // => "Non-empty with head: 1"
 describe [5; 7; 9] // => "Non-empty with head: 5"
 ```
+
+You can also _discard_ a value when pattern matching; when you do _not_ care about a value in a specific case (i.e. you aren't going to _use_ a value) you can use an underscore (`'_'`) to signify this:
+
+```fsharp
+let describe list =
+    match list with
+    | [] -> "Empty list"
+    | [x] -> "List with one item"
+    | _ -> "List with many items"
+
+describe []        // => "Empty list"
+describe [1]       // => "List with one item"
+describe [5; 7; 9] // => "List with many items"
+```
+
+The `'_'` should always come _last_ when pattern matching, every value that _doesn't_ match any of the other cases will be handled by this case.
