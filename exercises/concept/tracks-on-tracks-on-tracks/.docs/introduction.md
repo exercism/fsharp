@@ -40,11 +40,13 @@ let describe list =
     match list with
     | [] -> "Empty list"
     | [x] -> "List with one item"
-    | _ -> "List with many items"
+    | [_; y] -> "List with two items (first item ignored)"
+    | _ -> "List with many items (all items ignored)"
 
 describe []        // => "Empty list"
 describe [1]       // => "List with one item"
-describe [5; 7; 9] // => "List with many items"
+describe [5; 7]     // => "List with two items (first item ignored)"
+describe [5; 7; 9] // => "List with many items (all items ignored)"
 ```
 
-The `'_'` should always come _last_ when pattern matching, every value that _doesn't_ match any of the other cases will be handled by this case.
+The single `'_'` should always come _last_ when pattern matching, every value that _doesn't_ match any of the other cases will be handled by this case.
