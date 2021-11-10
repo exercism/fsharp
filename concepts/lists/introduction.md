@@ -23,7 +23,7 @@ F# list is have a _head_ (the first element) and a _tail_ (everything after the 
 Lists are either manipulated by functions and operators defined in the `List` module, or manually using pattern matching using the _list_ and _cons_ patterns:
 
 ```fsharp
-let rec describe list =
+let describe list =
     match list with
     | [] -> "Empty list"
     | head::tail -> sprintf "Non-empty list with head: %d" head

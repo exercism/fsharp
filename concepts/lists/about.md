@@ -45,7 +45,7 @@ As lists are implemented as singly linked lists, prepending an element (using th
 List can also be processed using pattern matching through the [_list_][list-pattern] and [_cons_][cons-pattern] patterns:
 
 ```fsharp
-let rec describe list =
+let describe list =
     match list with
     | [] -> "Empty list"
     | [ 1 ] -> "Singleton list with 1"
