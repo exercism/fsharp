@@ -28,7 +28,7 @@ Implement the `interest` method to calculate the interest based on the specified
 
 ```fsharp
 interest 200.75m
-// => 9.0375m
+// => 1.00375m
 ```
 
 Note that the value returned is a `decimal`.
