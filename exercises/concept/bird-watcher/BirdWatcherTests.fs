@@ -5,7 +5,6 @@ open Xunit
 open Exercism.Tests
 
 open BirdWatcher
-open System
 
 [<Fact>]
 [<Task(1)>]
