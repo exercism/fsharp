@@ -54,3 +54,21 @@ describe [| 5; 7; 9 |] // => "Other"
 [array-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#array-pattern
 [array-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html
 [array-members]: https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1
+
+You can also _discard_ a value when pattern matching; when you do _not_ care about a value in a specific case (i.e. you aren't going to _use_ a value) you can use an underscore (`'_'`) to signify this:
+
+```fsharp
+let describe array =
+    match array with
+    | [| |] -> "Empty array"
+    | [| x |] -> "Array with one item"
+    | [| _; y |] -> "Array with two items (first item ignored)"
+    | _ -> "Array with many items (all items ignored)"
+
+describe []         // => "Empty array"
+describe [1]        // => "Array with one item"
+describe [5; 7]     // => "Array with two items (first item ignored)"
+describe [5; 7; 9]  // => "Array with many items (all items ignored)"
+```
+
+The single `'_'` should always come _last_ when pattern matching, every value that _doesn't_ match any of the other cases will be handled by this case.
