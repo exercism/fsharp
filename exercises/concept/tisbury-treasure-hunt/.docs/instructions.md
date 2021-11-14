@@ -82,13 +82,13 @@ compareRecords ("Model Ship in Large Bottle", "8A") ("Harbor Managers Office", (
 
 ## 4. Combine matched records
 
-Implement the `createrecord()` function that takes a `(treasure, coordinate)` pair from Azara's list and a `(location, coordinate, quadrant)` record from Rui's list and returns `(treasure, coordinate, location, coordinate, quadrant)` **if the coordinates match**.
+Implement the `createrecord()` function that takes a `(treasure, coordinate)` pair from Azara's list and a `(location, coordinate, quadrant)` record from Rui's list and returns `(coordinate, location, quadrant, treasure)` **if the coordinates match**.
 If the coordinates _do not_ match, return the tuple of same shape but filled with `""`
 Re-format the coordinate as needed for accurate comparison.
 
 ```fsharp
 createRecord ("Brass Spyglass", "4B") ("Abandoned Lighthouse", (4, 'B'), "Blue")
-("Brass Spyglass", "4B", "Abandoned Lighthouse", "Blue")
+("4B", "Abandoned Lighthouse", "Blue", "Brass Spyglass")
 
 createRecord ("Brass Spyglass", "4B") ("Seaside Cottages", (1, 'C'), "Blue")
 ("", "", "", "")
