@@ -51,23 +51,54 @@ let ``From list`` () =
     list |> next |> next |> next |> datum |> should equal 3
     list |> next |> next |> next |> next |> datum |> should equal 2
 
-[<Theory(Skip = "Remove this Skip property to run this test")>]
-[<InlineData(1)>]
-[<InlineData(2)>]
-[<InlineData(10)>]
-[<InlineData(100)>]
-let ``Reverse`` (length: int) =
-    let values = [1..length]
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Reverse length 1`` () =
+    let values = [1..1]
+    let list = fromList values
+    let reversed = reverse list
+    reversed |> toList |> should equal <| List.rev values
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Reverse length 2`` () =
+    let values = [1..2]
     let list = fromList values
     let reversed = reverse list
     reversed |> toList |> should equal <| List.rev values 
-    
-[<Theory(Skip = "Remove this Skip property to run this test")>]
-[<InlineData(1)>]
-[<InlineData(2)>]
-[<InlineData(10)>]
-[<InlineData(100)>]
-let ``Roundtrip`` (length: int) =
-    let values = [1..length]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Reverse length 10`` () =
+    let values = [1..10]
+    let list = fromList values
+    let reversed = reverse list
+    reversed |> toList |> should equal <| List.rev values 
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Reverse length 100`` () =
+    let values = [1..100]
+    let list = fromList values
+    let reversed = reverse list
+    reversed |> toList |> should equal <| List.rev values 
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Roundtrip length 1`` () =
+    let values = [1..1]
+    let listValues = fromList values
+    listValues |> toList |> should equal values
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Roundtrip length 2`` () =
+    let values = [1..2]
+    let listValues = fromList values
+    listValues |> toList |> should equal values
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Roundtrip length 10`` () =
+    let values = [1..10]
+    let listValues = fromList values
+    listValues |> toList |> should equal values
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Roundtrip length 100`` () =
+    let values = [1..100]
     let listValues = fromList values
     listValues |> toList |> should equal values
