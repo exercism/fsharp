@@ -26,7 +26,7 @@ let ``One entry`` () =
             mkEntry "2015-01-01" "Buy present" -1000
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)"
 
     formatLedger currency locale entries |> should equal expected
@@ -41,8 +41,8 @@ let ``Credit and debit`` () =
             mkEntry "2015-01-01" "Buy present" -1000
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
-        "01/01/2015 | Buy present               |      ($10.00)\n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
+        "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/02/2015 | Get present               |       $10.00 "
 
     formatLedger currency locale entries |> should equal expected
@@ -57,8 +57,8 @@ let ``Multiple entries on same date ordered by description`` () =
             mkEntry "2015-01-01" "Get present"  1000
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
-        "01/01/2015 | Buy present               |      ($10.00)\n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
+        "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/01/2015 | Get present               |       $10.00 "
 
     formatLedger currency locale entries |> should equal expected
@@ -74,9 +74,9 @@ let ``Final order tie breaker is change`` () =
             mkEntry "2015-01-01" "Something" 1
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
-        "01/01/2015 | Something                 |       ($0.01)\n" +
-        "01/01/2015 | Something                 |        $0.00 \n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
+        "01/01/2015 | Something                 |       ($0.01)" + System.Environment.NewLine +
+        "01/01/2015 | Something                 |        $0.00 " + System.Environment.NewLine +
         "01/01/2015 | Something                 |        $0.01 "
 
     formatLedger currency locale entries |> should equal expected
@@ -90,7 +90,7 @@ let ``Overlong descriptions`` () =
             mkEntry "2015-01-01" "Freude schoner Gotterfunken" -123456
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
     formatLedger currency locale entries |> should equal expected
@@ -104,7 +104,7 @@ let ``Euros`` () =
             mkEntry "2015-01-01" "Buy present" -1000
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      (€10.00)"
 
     formatLedger currency locale entries |> should equal expected
@@ -118,7 +118,7 @@ let ``Dutch locale`` () =
             mkEntry "2015-03-12" "Buy present" 123456
         ]
     let expected =
-        "Datum      | Omschrijving              | Verandering  \n" +
+        "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
     formatLedger currency locale entries |> should equal expected
@@ -132,7 +132,7 @@ let ``Dutch negative number with 3 digits before decimal point`` () =
             mkEntry "2015-03-12" "Buy present" -12345
         ]
     let expected =
-        "Datum      | Omschrijving              | Verandering  \n" +
+        "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |     $ -123,45"
 
     formatLedger currency locale entries |> should equal expected
@@ -146,7 +146,7 @@ let ``American negative number with 3 digits before decimal point`` () =
             mkEntry "2015-03-12" "Buy present" -12345
         ]
     let expected =
-        "Date       | Description               | Change       \n" +
+        "Date       | Description               | Change       " + System.Environment.NewLine +
         "03/12/2015 | Buy present               |     ($123.45)"
 
     formatLedger currency locale entries |> should equal expected
