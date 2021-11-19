@@ -12,6 +12,7 @@ paket-files
 .vscode/
 .ionide/
 .dotnet
+.problem-specifications/
 *.fsproj.user
 *.DotSettings.user
 BenchmarkDotNet.Artifacts/

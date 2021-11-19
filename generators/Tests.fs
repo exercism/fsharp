@@ -24,22 +24,15 @@ let private probSpecsBranch = "main";
 let private probSpecsRemote = "origin";
 let private probSpecsRemoteBranch = $"{probSpecsRemote}/{probSpecsBranch}";
 
-let private probSpecsDir options =
-    let defaultProbSpecsDir =
-        let appDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-        Path.Combine(appDataDirectory, "exercism", "problem-specifications")
-        
-    Option.defaultValue defaultProbSpecsDir options.ProbSpecsDir 
-
-let private cloneRepository options =
+let private cloneProbSpecsRepo options =
     Log.Debug("Cloning problem-specifications repository...")
-    Repository.Clone(probSpecsCloneUrl, probSpecsDir options) |> ignore
+    Repository.Clone(probSpecsCloneUrl, options.ProbSpecsDir) |> ignore
     Log.Debug("Problem-specifications repository cloned.")
 
-let private updateToLatestVersion options =
+let private resetProbSpecsRepoToLatest options =
     Log.Debug("Updating problem-specifications latest version...");
 
-    use repository = new Repository(probSpecsDir options)
+    use repository = new Repository(options.ProbSpecsDir)
     Commands.Fetch(repository, probSpecsRemote, Seq.empty, FetchOptions(), null)
 
     let remoteBranch = repository.Branches.[probSpecsRemoteBranch];
@@ -47,16 +40,11 @@ let private updateToLatestVersion options =
 
     Log.Debug("Updated problem-specifications to latest version.");
 
-let shouldCloneRepository options = options.ProbSpecsDir.IsNone && not (Directory.Exists(probSpecsDir options))
-
-let shouldUpdateToLatestVersion options = options.ProbSpecsDir.IsNone
-
 let private downloadData options =
-    if shouldCloneRepository options then
-        cloneRepository options
+    if not (Directory.Exists(options.ProbSpecsDir)) then
+        cloneProbSpecsRepo options
         
-    if shouldUpdateToLatestVersion options then
-        updateToLatestVersion options
+    resetProbSpecsRepoToLatest options
 
 type TestCaseListConverter(enabledTests: Set<string>) =
     inherit JsonConverter()
@@ -122,7 +110,7 @@ let private parseTestCaseList canonicalDataJson enabledTests =
     JsonConvert.DeserializeObject<TestCase list>(canonicalDataJson, converter)
 
 let private canonicalDataJsonPath options exercise = 
-    Path.Combine(probSpecsDir options, "exercises", exercise, "canonical-data.json")
+    Path.Combine(options.ProbSpecsDir, "exercises", exercise, "canonical-data.json")
 
 let private readCanonicalDataJson options exercise = 
     canonicalDataJsonPath options exercise
