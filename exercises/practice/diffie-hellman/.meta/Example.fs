@@ -5,7 +5,7 @@ open System.Numerics
 
 let random = new Random()
 
-let privateKey (primeP: bigint) = random.Next(1, (int primeP) - 1) |> bigint
+let privateKey (primeP: bigint) = random.Next(2, (int primeP) - 1) |> bigint
 
 let publicKey (primeP: bigint) (primeG: bigint) (privateKey: bigint) = BigInteger.ModPow(primeG, privateKey, primeP)
 
