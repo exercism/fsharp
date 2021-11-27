@@ -14,3 +14,12 @@
 
 [literals]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/literals
 [math-functions]: https://www.dotnetperls.com/math-fs
+
+## 4. Formulas
+
+Note: this is pseudocode, not actual fsharp solution code.
+
+- **interest** balance = interestRate(balance) / 100 * balance
+- **annualBalanceUpdate** balance = balance + interest(balance)
+- **amountToDonate** balance _(when balance > 0)_ = balance * (taxFreePercentage / 100 * 2)
+- **amountToDonate** balance _(when balance <= 0)_ = 0
