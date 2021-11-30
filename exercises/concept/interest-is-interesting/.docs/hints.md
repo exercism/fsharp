@@ -21,5 +21,7 @@
 
 ## 4. Calculate the amount to donate
 
-- **amountToDonate** balance _(when balance > 0)_ = balance * (taxFreePercentage / 100 * 2)
-- **amountToDonate** balance _(when balance <= 0)_ = 0
+- The formula to calculate the amount to donate is:
+  - If the balance is <= 0: `0`
+  - If the balance is > 0: `balance * (tax free percentage / 100 * 2)`
+
