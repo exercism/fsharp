@@ -8,13 +8,13 @@
 
 - When calculating interest, it might be helpful to convert a negative balance to a positive one. One could use arithmetic here, or [this method](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#abs).
 
-- **interest** balance = interestRate(balance) / 100 * balance
+- The formula to calculate the interest is: `(interest rate of balance / 100) * balance`
 
 ## 3. Calculate the annual balance update
 
 - When calculating the annual yield, it might be useful to temporarily convert a negative balance to a positive one. One could use arithmetic, or one of the built-in [math functions][math-functions].
 
-- **annualBalanceUpdate** balance = balance + interest(balance)
+- The formula to calculate the annual balance update is: `balance + interest of balance`
 
 [literals]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/literals
 [math-functions]: https://www.dotnetperls.com/math-fs
