@@ -8,18 +8,18 @@
 
 - When calculating interest, it might be helpful to convert a negative balance to a positive one. One could use arithmetic here, or [this method](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#abs).
 
+- **interest** balance = interestRate(balance) / 100 * balance
+
 ## 3. Calculate the annual balance update
 
 - When calculating the annual yield, it might be useful to temporarily convert a negative balance to a positive one. One could use arithmetic, or one of the built-in [math functions][math-functions].
 
+- **annualBalanceUpdate** balance = balance + interest(balance)
+
 [literals]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/literals
 [math-functions]: https://www.dotnetperls.com/math-fs
 
-## 4. Formulas
+## 4. Calculate the amount to donate
 
-Note: this is pseudocode, not actual fsharp solution code.
-
-- **interest** balance = interestRate(balance) / 100 * balance
-- **annualBalanceUpdate** balance = balance + interest(balance)
 - **amountToDonate** balance _(when balance > 0)_ = balance * (taxFreePercentage / 100 * 2)
 - **amountToDonate** balance _(when balance <= 0)_ = 0
