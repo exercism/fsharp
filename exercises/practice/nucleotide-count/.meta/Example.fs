@@ -1,4 +1,4 @@
-﻿module NucleotideCount
+module NucleotideCount
 
 let private validNucleotides = ['A'; 'T'; 'C'; 'G']
 

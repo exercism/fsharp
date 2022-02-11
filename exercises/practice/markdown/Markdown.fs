@@ -1,4 +1,4 @@
-﻿module Markdown
+module Markdown
 
 let rec parse (markdown: string) =
    let mutable html = ""

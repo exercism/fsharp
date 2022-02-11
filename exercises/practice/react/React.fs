@@ -1,3 +1,3 @@
-﻿module React
+module React
 
 // TODO: implement this module

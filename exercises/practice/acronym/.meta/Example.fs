@@ -1,4 +1,4 @@
-﻿module Acronym
+module Acronym
     
 open System
 open System.Text.RegularExpressions

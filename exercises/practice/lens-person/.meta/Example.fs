@@ -1,4 +1,4 @@
-﻿module LensPerson
+module LensPerson
 
 open Aether
 open Aether.Operators

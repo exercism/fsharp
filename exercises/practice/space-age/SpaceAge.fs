@@ -1,4 +1,4 @@
-﻿module SpaceAge
+module SpaceAge
 
 // TODO: define the Planet type
 

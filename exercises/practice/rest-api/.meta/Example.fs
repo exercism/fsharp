@@ -1,4 +1,4 @@
-﻿module RestApi
+module RestApi
 
 open Newtonsoft.Json
 open System.Collections.Generic

@@ -1,4 +1,4 @@
-﻿module ZebraPuzzle
+module ZebraPuzzle
 
 type Color = Red | Green | Ivory | Yellow | Blue 
 type Nationality = Englishman | Spaniard | Ukranian | Japanese | Norwegian

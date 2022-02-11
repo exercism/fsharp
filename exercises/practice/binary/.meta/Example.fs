@@ -1,4 +1,4 @@
-﻿module Binary
+module Binary
 
 let isValid char = 
     match char with

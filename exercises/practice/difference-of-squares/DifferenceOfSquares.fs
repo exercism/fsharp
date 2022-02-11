@@ -1,4 +1,4 @@
-﻿module DifferenceOfSquares
+module DifferenceOfSquares
 
 let squareOfSum (number: int): int = failwith "You need to implement this function."
 

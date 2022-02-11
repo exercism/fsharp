@@ -1,4 +1,4 @@
-﻿module Proverb
+module Proverb
 
 let line (want, lost) = sprintf "For want of a %s the %s was lost." want lost
 

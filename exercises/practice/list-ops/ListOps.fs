@@ -1,4 +1,4 @@
-﻿module ListOps
+module ListOps
 
 let rec foldl folder state list = failwith "You need to implement this function."
 

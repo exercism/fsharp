@@ -1,4 +1,4 @@
-﻿module Hangman
+module Hangman
 
 open System
 

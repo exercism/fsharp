@@ -1,4 +1,4 @@
-﻿module Hexadecimal
+module Hexadecimal
 
 open System
 

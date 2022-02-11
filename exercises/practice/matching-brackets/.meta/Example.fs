@@ -1,4 +1,4 @@
-﻿module MatchingBrackets
+module MatchingBrackets
 
 open System
 

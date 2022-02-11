@@ -1,4 +1,4 @@
-﻿module WordCount
+module WordCount
 
 open System.Text.RegularExpressions
 

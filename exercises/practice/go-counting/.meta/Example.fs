@@ -1,4 +1,4 @@
-﻿module GoCounting
+module GoCounting
 
 type Owner = None | Black | White
 type Coord = int * int

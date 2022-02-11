@@ -1,4 +1,4 @@
-﻿module CollatzConjecture
+module CollatzConjecture
 
 let steps number =  
     let rec helper count current =

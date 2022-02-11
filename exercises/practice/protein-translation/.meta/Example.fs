@@ -1,4 +1,4 @@
-﻿module ProteinTranslation
+module ProteinTranslation
 
 open System
 

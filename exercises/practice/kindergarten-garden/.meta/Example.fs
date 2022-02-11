@@ -1,4 +1,4 @@
-﻿module KindergartenGarden
+module KindergartenGarden
 
 type Plant = Violets | Radishes | Clover | Grass
 

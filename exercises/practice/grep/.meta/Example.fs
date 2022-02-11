@@ -1,4 +1,4 @@
-﻿module Grep
+module Grep
 
 open System
 open System.IO

@@ -1,3 +1,3 @@
-﻿module VariableLengthQuantity
+module VariableLengthQuantity
 
 // TODO: implement this module

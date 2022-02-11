@@ -1,4 +1,4 @@
-﻿module LargestSeriesProduct
+module LargestSeriesProduct
 
 open System
 

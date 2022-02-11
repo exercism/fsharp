@@ -1,4 +1,4 @@
-﻿module RobotSimulator
+module RobotSimulator
 
 type Direction = North | East | South | West
 type Position = int * int

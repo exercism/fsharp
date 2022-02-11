@@ -1,4 +1,4 @@
-﻿module BinarySearchTree
+module BinarySearchTree
 
 type Node = { left: Node option; value: int; right: Node option }
 

@@ -1,4 +1,4 @@
-﻿module CustomSet
+module CustomSet
 
 // TODO: define the Set type
 

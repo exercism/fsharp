@@ -1,4 +1,4 @@
-﻿module CircularBuffer
+module CircularBuffer
 
 let mkCircularBuffer size = failwith "You need to implement this function."
 

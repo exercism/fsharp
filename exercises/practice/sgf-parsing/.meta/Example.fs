@@ -1,4 +1,4 @@
-﻿module SgfParsing
+module SgfParsing
 
 open FParsec
 

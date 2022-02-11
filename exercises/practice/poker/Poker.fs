@@ -1,3 +1,3 @@
-﻿module Poker
+module Poker
 
 // TODO: implement this module

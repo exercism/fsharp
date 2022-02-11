@@ -1,4 +1,4 @@
-﻿module Bowling
+module Bowling
 
 let newGame() = failwith "You need to implement this function."
 

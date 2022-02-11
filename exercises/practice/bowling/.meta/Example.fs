@@ -1,4 +1,4 @@
-﻿module Bowling
+module Bowling
 
 let map2 f opt1 opt2 = 
     match opt1, opt2 with

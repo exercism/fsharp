@@ -1,4 +1,4 @@
-﻿module BookStore
+module BookStore
 
 let private costPerGroup groupSize =
     let discountPercentage =

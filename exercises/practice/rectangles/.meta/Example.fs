@@ -1,4 +1,4 @@
-﻿module Rectangles
+module Rectangles
 
 open System
 

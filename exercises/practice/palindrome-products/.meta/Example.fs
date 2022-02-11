@@ -1,4 +1,4 @@
-﻿module PalindromeProducts
+module PalindromeProducts
 
 let isPalindrome n = 
     let mutable current = n / 10

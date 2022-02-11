@@ -1,4 +1,4 @@
-﻿module Luhn
+module Luhn
 
 let private digit c = (int)c - (int)'0'
 let private digits number = number.ToString() |> Seq.map digit

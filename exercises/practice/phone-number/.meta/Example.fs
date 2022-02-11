@@ -1,4 +1,4 @@
-﻿module PhoneNumber
+module PhoneNumber
 
 open System
 

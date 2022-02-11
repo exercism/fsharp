@@ -1,4 +1,4 @@
-﻿module BinarySearchTree
+module BinarySearchTree
 
 let left node  = failwith "You need to implement this function."
 

@@ -1,4 +1,4 @@
-﻿module Darts
+module Darts
 
 open System
 

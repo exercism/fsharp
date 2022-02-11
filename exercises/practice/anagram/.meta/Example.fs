@@ -1,4 +1,4 @@
-﻿module Anagram
+module Anagram
 
 open System
 

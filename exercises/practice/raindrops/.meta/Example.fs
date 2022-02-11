@@ -1,4 +1,4 @@
-﻿module Raindrops
+module Raindrops
 
 open System
 open System.Globalization

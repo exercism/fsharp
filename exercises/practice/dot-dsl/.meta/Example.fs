@@ -1,4 +1,4 @@
-﻿module DotDsl
+module DotDsl
 
 type Attribute = string * string
 

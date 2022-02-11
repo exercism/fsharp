@@ -1,4 +1,4 @@
-﻿module PascalsTriangle
+module PascalsTriangle
 
 let rows numberOfRows : int list list =
     match numberOfRows with 

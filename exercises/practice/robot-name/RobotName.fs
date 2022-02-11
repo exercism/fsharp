@@ -1,4 +1,4 @@
-﻿module RobotName
+module RobotName
 
 let mkRobot() = failwith "You need to implement this function."
 

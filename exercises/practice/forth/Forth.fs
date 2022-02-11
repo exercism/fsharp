@@ -1,3 +1,3 @@
-﻿module Forth
+module Forth
 
 // TODO: implement this module

@@ -1,3 +1,3 @@
-﻿module SgfParsing
+module SgfParsing
 
 // TODO: implement this module

@@ -1,4 +1,4 @@
-﻿module Yacht
+module Yacht
 
 type Category = 
     | Ones

@@ -1,4 +1,4 @@
-﻿module RationalNumbers
+module RationalNumbers
 
 let create numerator denominator = failwith "You need to implement this function."
 

@@ -1,3 +1,3 @@
-﻿module Say
+module Say
 
 // TODO: implement this module

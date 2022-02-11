@@ -1,4 +1,4 @@
-﻿module Change
+module Change
 
 let minimalCoins coins map target =
     coins

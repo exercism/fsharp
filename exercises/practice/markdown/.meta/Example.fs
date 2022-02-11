@@ -1,4 +1,4 @@
-﻿module Markdown
+module Markdown
 
 open System.Text.RegularExpressions
 

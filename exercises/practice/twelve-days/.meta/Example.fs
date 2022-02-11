@@ -1,4 +1,4 @@
-﻿module TwelveDays
+module TwelveDays
 
 let numberToStr = 
     function

@@ -1,4 +1,4 @@
-﻿module RunLengthEncoding
+module RunLengthEncoding
 
 let encode input = failwith "You need to implement this function."
 

@@ -1,4 +1,4 @@
-﻿module Isogram
+module Isogram
 
 open System
 

@@ -1,4 +1,4 @@
-﻿module SpaceAge
+module SpaceAge
 
 open System
 

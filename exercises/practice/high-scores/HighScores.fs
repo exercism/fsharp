@@ -1,4 +1,4 @@
-﻿module HighScores
+module HighScores
 
 let scores (values: int list): int list = failwith "You need to implement this function."
 

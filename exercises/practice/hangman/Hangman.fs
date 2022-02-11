@@ -1,3 +1,3 @@
-﻿module Hangman
+module Hangman
 
 // TODO: implement this module

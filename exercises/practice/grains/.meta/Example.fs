@@ -1,4 +1,4 @@
-﻿module Grains
+module Grains
 
 open System.Numerics
 
