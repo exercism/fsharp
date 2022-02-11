@@ -1,4 +1,4 @@
-﻿module Allergies
+module Allergies
 
 open System
 

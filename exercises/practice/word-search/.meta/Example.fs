@@ -1,4 +1,4 @@
-﻿module WordSearch
+module WordSearch
 
 let private directions =
     [( 1,  0);

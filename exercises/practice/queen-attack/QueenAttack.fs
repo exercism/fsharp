@@ -1,4 +1,4 @@
-﻿module QueenAttack
+module QueenAttack
 
 let create (position: int * int) = failwith "You need to implement this function."
 

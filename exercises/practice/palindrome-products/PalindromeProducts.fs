@@ -1,4 +1,4 @@
-﻿module PalindromeProducts
+module PalindromeProducts
 
 let largest minFactor maxFactor = failwith "You need to implement this function."
 

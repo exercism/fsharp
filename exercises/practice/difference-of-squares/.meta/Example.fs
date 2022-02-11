@@ -1,4 +1,4 @@
-﻿module DifferenceOfSquares
+module DifferenceOfSquares
 
 let square x = x * x
 

@@ -1,4 +1,4 @@
-﻿module Dominoes
+module Dominoes
 
 let rotate xs =
     let length = xs |> List.length

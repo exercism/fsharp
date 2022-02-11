@@ -1,4 +1,4 @@
-﻿module ArmstrongNumbers
+module ArmstrongNumbers
 
 let isArmstrongNumber (number: int) =
     let charToNumber c = int c - int '0'

@@ -1,4 +1,4 @@
-﻿module NthPrime
+module NthPrime
 
 open System
 

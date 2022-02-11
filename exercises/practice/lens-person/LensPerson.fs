@@ -1,3 +1,3 @@
-﻿module LensPerson
+module LensPerson
 
 // TODO: implement this module

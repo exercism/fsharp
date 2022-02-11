@@ -1,4 +1,4 @@
-﻿module BankAccount
+module BankAccount
 
 open System
 

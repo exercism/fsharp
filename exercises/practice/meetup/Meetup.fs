@@ -1,4 +1,4 @@
-﻿module Meetup
+module Meetup
 
 open System
 

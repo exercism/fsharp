@@ -1,4 +1,4 @@
-﻿module DotDsl
+module DotDsl
 
 let graph children = failwith "You need to implement this function."
 

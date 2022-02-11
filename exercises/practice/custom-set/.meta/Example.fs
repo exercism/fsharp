@@ -1,4 +1,4 @@
-﻿module CustomSet
+module CustomSet
 
 type Set<'T> = { items: 'T list }
 

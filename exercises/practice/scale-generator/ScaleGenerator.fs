@@ -1,4 +1,4 @@
-﻿module ScaleGenerator
+module ScaleGenerator
 
 let chromatic tonic = failwith "You need to implement this function."
 

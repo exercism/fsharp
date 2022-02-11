@@ -1,4 +1,4 @@
-﻿module Diamond
+module Diamond
 
 let make letter =     
         

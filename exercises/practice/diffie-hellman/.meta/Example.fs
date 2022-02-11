@@ -1,4 +1,4 @@
-﻿module DiffieHellman
+module DiffieHellman
 
 open System
 open System.Numerics

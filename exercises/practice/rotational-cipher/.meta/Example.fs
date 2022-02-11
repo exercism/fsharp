@@ -1,4 +1,4 @@
-﻿module RotationalCipher
+module RotationalCipher
 
 open System
 

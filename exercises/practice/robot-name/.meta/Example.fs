@@ -1,4 +1,4 @@
-﻿module RobotName
+module RobotName
 
 let random = System.Random()
 

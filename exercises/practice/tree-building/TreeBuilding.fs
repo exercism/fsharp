@@ -1,4 +1,4 @@
-﻿// This is the file you need to modify for your own solution.
+// This is the file you need to modify for your own solution.
 // The unit tests will use this code, and it will be used by the benchmark tests
 // for the "Mine" row of the summary table.
 

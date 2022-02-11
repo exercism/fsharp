@@ -1,4 +1,4 @@
-﻿module Poker
+module Poker
 
 type Suit = 
     | Hearts 

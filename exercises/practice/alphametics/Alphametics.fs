@@ -1,3 +1,3 @@
-﻿module Alphametics
+module Alphametics
 
 // TODO: implement this module

@@ -1,4 +1,4 @@
-﻿module KindergartenGarden
+module KindergartenGarden
 
 // TODO: define the Plant type
 

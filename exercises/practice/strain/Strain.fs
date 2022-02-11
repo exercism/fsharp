@@ -1,4 +1,4 @@
-﻿module Seq
+module Seq
 
 let keep pred xs = failwith "You need to implement this function."
 

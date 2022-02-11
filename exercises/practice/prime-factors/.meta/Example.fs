@@ -1,4 +1,4 @@
-﻿module PrimeFactors
+module PrimeFactors
 
 open System
 

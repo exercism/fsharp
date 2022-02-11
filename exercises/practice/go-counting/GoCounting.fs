@@ -1,3 +1,3 @@
-﻿module GoCounting
+module GoCounting
 
 // TODO: implement this module

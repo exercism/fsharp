@@ -1,4 +1,4 @@
-﻿module ComplexNumbers
+module ComplexNumbers
 
 let create real imaginary = failwith "You need to implement this function."
 

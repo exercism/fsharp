@@ -1,4 +1,4 @@
-﻿module RationalNumbers
+module RationalNumbers
 
 open System
 

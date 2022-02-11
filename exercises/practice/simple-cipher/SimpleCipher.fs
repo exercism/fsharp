@@ -1,4 +1,4 @@
-﻿module SimpleCipher
+module SimpleCipher
 
 type SimpleCipher(key: string) =
     

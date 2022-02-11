@@ -1,4 +1,4 @@
-﻿module IsbnVerifier
+module IsbnVerifier
 
 open System.Text.RegularExpressions
 

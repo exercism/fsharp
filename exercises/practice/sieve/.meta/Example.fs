@@ -1,4 +1,4 @@
-﻿module Sieve
+module Sieve
 
 let rec private sieve remainder primes =     
     match remainder with

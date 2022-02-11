@@ -1,4 +1,4 @@
-﻿module Matrix
+module Matrix
 
 let private parseRow (row: string) =
     row.Split(' ')

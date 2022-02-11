@@ -1,4 +1,4 @@
-﻿module ScaleGenerator
+module ScaleGenerator
 
 open System
 

@@ -1,4 +1,4 @@
-﻿module PerfectNumbers
+module PerfectNumbers
 
 type Classification = Perfect | Abundant | Deficient
 

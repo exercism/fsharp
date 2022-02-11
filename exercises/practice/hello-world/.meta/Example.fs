@@ -1,3 +1,3 @@
-﻿module HelloWorld
+module HelloWorld
 
 let hello = "Hello, World!"

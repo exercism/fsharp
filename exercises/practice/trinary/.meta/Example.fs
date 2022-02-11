@@ -1,4 +1,4 @@
-﻿module Trinary
+module Trinary
 
 let isValid char = 
     match char with

@@ -1,4 +1,4 @@
-﻿module Accumulate
+module Accumulate
 
 let rec accumulateLoop func input acc = 
     match input with

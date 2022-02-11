@@ -1,4 +1,4 @@
-﻿module TreeBuilding
+module TreeBuilding
 
 type Record = { RecordId: int; ParentId: int }
 type Tree = 

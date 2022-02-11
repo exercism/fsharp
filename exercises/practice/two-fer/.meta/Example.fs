@@ -1,4 +1,4 @@
-﻿module TwoFer
+module TwoFer
 
 let twoFer input =
     input 

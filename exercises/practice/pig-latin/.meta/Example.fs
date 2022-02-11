@@ -1,4 +1,4 @@
-﻿module PigLatin
+module PigLatin
 
 open System.Text.RegularExpressions
 

@@ -1,4 +1,4 @@
-﻿module React
+module React
 
 open System
 

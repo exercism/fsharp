@@ -1,4 +1,4 @@
-﻿module ComplexNumbers
+module ComplexNumbers
 
 open System
 

@@ -1,4 +1,4 @@
-﻿module RnaTranscription
+module RnaTranscription
 
 let private dnaToRna = 
     function

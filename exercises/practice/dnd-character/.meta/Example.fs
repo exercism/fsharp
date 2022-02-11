@@ -1,4 +1,4 @@
-﻿module DndCharacter
+module DndCharacter
 
 open System
 

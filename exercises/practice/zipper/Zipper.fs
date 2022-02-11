@@ -1,3 +1,3 @@
-﻿module Zipper
+module Zipper
 
 // TODO: implement this module

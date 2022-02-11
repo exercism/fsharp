@@ -1,4 +1,4 @@
-﻿module Etl
+module Etl
 
 open System
 

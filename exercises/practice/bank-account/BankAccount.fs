@@ -1,4 +1,4 @@
-﻿module BankAccount
+module BankAccount
 
 let mkBankAccount() = failwith "You need to implement this function."
 

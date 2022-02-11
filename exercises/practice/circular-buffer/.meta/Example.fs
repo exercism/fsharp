@@ -1,4 +1,4 @@
-﻿module CircularBuffer
+module CircularBuffer
 
 type CircularBuffer<'a> = { items: 'a list; size: int }
 

@@ -1,4 +1,4 @@
-﻿module SecretHandshake
+module SecretHandshake
 
 let commandsMapping = 
     [(1 <<< 0, (fun acc -> acc @ ["wink"]));

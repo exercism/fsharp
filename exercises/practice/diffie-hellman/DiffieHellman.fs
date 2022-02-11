@@ -1,4 +1,4 @@
-﻿module DiffieHellman
+module DiffieHellman
 
 let privateKey primeP = failwith "You need to implement this function."
 

@@ -1,4 +1,4 @@
-﻿module RestApi
+module RestApi
 
 type RestApi(database : string) =
 

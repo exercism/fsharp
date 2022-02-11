@@ -1,4 +1,4 @@
-﻿module QueenAttack
+module QueenAttack
 
 open System
 

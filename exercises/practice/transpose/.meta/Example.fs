@@ -1,4 +1,4 @@
-﻿module Transpose
+module Transpose
 
 let transpose (rows: string list): string list =
     let transposedCoordinates =

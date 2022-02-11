@@ -1,4 +1,4 @@
-﻿module GradeSchool
+module GradeSchool
 
 type School = Map<int, string list>
 let empty = Map.empty<int, string list>

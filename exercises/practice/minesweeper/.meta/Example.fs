@@ -1,4 +1,4 @@
-﻿module Minesweeper
+module Minesweeper
 
 open System
     

@@ -1,4 +1,4 @@
-﻿module TwoBucket
+module TwoBucket
 
 type Bucket = One | Two
 type Result = { Moves: int; GoalBucket: Bucket; OtherBucket: int }

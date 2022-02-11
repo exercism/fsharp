@@ -1,4 +1,4 @@
-﻿module Sublist
+module Sublist
 
 type SublistType = Equal | Sublist | Superlist | Unequal
 

@@ -1,4 +1,4 @@
-﻿module Ledger
+module Ledger
 
 open System
 open System.Globalization

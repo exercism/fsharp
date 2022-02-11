@@ -1,4 +1,4 @@
-﻿module Triangle
+module Triangle
 
 let equilateral triangle = failwith "You need to implement this function."
 

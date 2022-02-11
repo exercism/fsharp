@@ -1,4 +1,4 @@
-﻿module CryptoSquare
+module CryptoSquare
 
 open System
 

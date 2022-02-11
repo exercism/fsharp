@@ -1,4 +1,4 @@
-﻿module ReverseString
+module ReverseString
 
 open System
 

@@ -1,4 +1,4 @@
-﻿module Hamming
+module Hamming
 
 let distance (strand1:string) (strand2:string) = 
     if (strand1.Length <> strand2.Length) then

@@ -1,4 +1,4 @@
-﻿module House
+module House
 
 let subjects = 
     [("house that Jack built", "lay in");

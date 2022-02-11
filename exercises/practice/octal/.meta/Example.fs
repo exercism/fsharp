@@ -1,4 +1,4 @@
-﻿module Octal
+module Octal
 
 let isValid char = char >= '0' && char <= '7'
 
