@@ -12,8 +12,6 @@ jobs:
           dotnet-version: "6.0.100"
 
       - name: Validate Code Snippets
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dotnet build /v:m -c Release tools/CodeFenceChecker/CodeFenceChecker.fsproj
           pwsh -Command ./check-code-snippets.ps1 -Exclude concepts/if-then-else-expressions,exercises/concept/cars-assemble
