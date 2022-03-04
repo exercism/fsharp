@@ -1,13 +1,9 @@
 {
-  "blurb": "Learn about numbers and if statements by analyze the production of an assembly line in a car factory",
-  "contributors": [
-    "Grenkin1988"
-  ],
   "authors": [
     "ErikSchierboom"
   ],
-  "forked_from": [
-    "csharp/cars-assemble"
+  "contributors": [
+    "Grenkin1988"
   ],
   "files": {
     "solution": [
@@ -19,5 +15,9 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "forked_from": [
+    "csharp/cars-assemble"
+  ],
+  "blurb": "Learn about numbers and if statements by analyze the production of an assembly line in a car factory"
 }

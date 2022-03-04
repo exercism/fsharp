@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn about discriminated union types by deciding what activity to surprise your partner with on Valentines Day",
   "authors": [
     "ErikSchierboom"
   ],
@@ -13,5 +12,6 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "blurb": "Learn about discriminated union types by deciding what activity to surprise your partner with on Valentines Day"
 }

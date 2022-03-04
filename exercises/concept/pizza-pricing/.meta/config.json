@@ -1,5 +1,4 @@
 {
-  "blurb": "Learn about recursive functions and types by implementing a pizza-pricing algorithm",
   "authors": [
     "ErikSchierboom"
   ],
@@ -13,5 +12,6 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "blurb": "Learn about recursive functions and types by implementing a pizza-pricing algorithm"
 }

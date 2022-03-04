@@ -1,5 +1,4 @@
 {
-  "blurb": "Use lenses to update nested records (specific to languages with immutable data).",
   "authors": [
     "ErikSchierboom"
   ],
@@ -20,5 +19,6 @@
     "example": [
       ".meta/Example.fs"
     ]
-  }
+  },
+  "blurb": "Use lenses to update nested records (specific to languages with immutable data)."
 }

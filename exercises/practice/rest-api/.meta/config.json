@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement a RESTful API for tracking IOUs.",
   "authors": [
     "davidelettieri"
   ],
@@ -20,5 +19,6 @@
     "example": [
       ".meta/Example.fs"
     ]
-  }
+  },
+  "blurb": "Implement a RESTful API for tracking IOUs."
 }
