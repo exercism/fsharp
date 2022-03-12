@@ -36,7 +36,7 @@ Bindings in F# can only be used _after_ they have been defined. Using a binding 
 
 ```fsharp
 // Compile error as the add binding has not yet been defined
-// let seven = add 3 + 4
+// let seven = add 3 4
 
 let add x y = x + y
 ```
