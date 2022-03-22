@@ -1,10 +1,6 @@
 {
-  "blurb": "Learn abouts lists by keeping track of the programming languages you want to learn",
   "authors": [
     "ErikSchierboom"
-  ],
-  "forked_from": [
-    "clojure/tracks-on-tracks-on-tracks"
   ],
   "files": {
     "solution": [
@@ -16,5 +12,9 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "forked_from": [
+    "clojure/tracks-on-tracks-on-tracks"
+  ],
+  "blurb": "Learn abouts lists by keeping track of the programming languages you want to learn"
 }

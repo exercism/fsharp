@@ -1,5 +1,4 @@
 {
-  "blurb": "Compute the result for a game of Hex / Polygon",
   "authors": [
     "ErikSchierboom"
   ],
@@ -20,5 +19,6 @@
     "example": [
       ".meta/Example.fs"
     ]
-  }
+  },
+  "blurb": "Compute the result for a game of Hex / Polygon"
 }

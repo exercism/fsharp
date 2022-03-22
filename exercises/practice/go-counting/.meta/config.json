@@ -1,5 +1,4 @@
 {
-  "blurb": "Count the scored points on a Go board.",
   "authors": [
     "ErikSchierboom"
   ],
@@ -20,5 +19,6 @@
     "example": [
       ".meta/Example.fs"
     ]
-  }
+  },
+  "blurb": "Count the scored points on a Go board."
 }

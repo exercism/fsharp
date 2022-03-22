@@ -1,10 +1,6 @@
 {
-  "blurb": "Learn about strings by parsing application logs",
   "authors": [
     "ErikSchierboom"
-  ],
-  "forked_from": [
-    "csharp/log-levels"
   ],
   "files": {
     "solution": [
@@ -16,5 +12,9 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "forked_from": [
+    "csharp/log-levels"
+  ],
+  "blurb": "Learn about strings by parsing application logs"
 }

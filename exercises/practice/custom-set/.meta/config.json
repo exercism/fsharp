@@ -1,5 +1,4 @@
 {
-  "blurb": "Create a custom set type.",
   "authors": [
     "ErikSchierboom"
   ],
@@ -20,5 +19,6 @@
     "example": [
       ".meta/Example.fs"
     ]
-  }
+  },
+  "blurb": "Create a custom set type."
 }

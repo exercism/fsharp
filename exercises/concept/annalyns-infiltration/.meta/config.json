@@ -1,10 +1,6 @@
 {
-  "blurb": "Learn about booleans while helping Annalyn rescue her friend",
   "authors": [
     "ErikSchierboom"
-  ],
-  "forked_from": [
-    "javascript/annalyns-infiltration"
   ],
   "files": {
     "solution": [
@@ -16,5 +12,9 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "forked_from": [
+    "javascript/annalyns-infiltration"
+  ],
+  "blurb": "Learn about booleans while helping Annalyn rescue her friend"
 }

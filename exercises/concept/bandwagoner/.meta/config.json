@@ -1,10 +1,9 @@
 {
-  "blurb": "Learn about records by keeping a history of basketball statistics",
-  "contributors": [
-    "valentin-p"
-  ],
   "authors": [
     "ErikSchierboom"
+  ],
+  "contributors": [
+    "valentin-p"
   ],
   "files": {
     "solution": [
@@ -16,5 +15,6 @@
     "exemplar": [
       ".meta/Exemplar.fs"
     ]
-  }
+  },
+  "blurb": "Learn about records by keeping a history of basketball statistics"
 }
