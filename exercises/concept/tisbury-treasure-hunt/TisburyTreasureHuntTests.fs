@@ -101,7 +101,7 @@ let ``Compare records for third unmatched records returns true`` () =
     compareRecords azarasData ruisData |> should equal false
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Create Record for first matched records returns correct tuple`` () =
     let azarasData = ("Scrimshaw Whale's Tooth", "2A")
     let ruisData = ("Deserted Docks", (2, 'A'), "Blue")
@@ -109,7 +109,7 @@ let ``Create Record for first matched records returns correct tuple`` () =
     createRecord azarasData ruisData |> should equal expected
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Compare records for second matched records returns correct tuple`` () =
     let azarasData = ("Glass Starfish", "6D")
     let ruisData = ("Tangled Seaweed Patch", (6, 'D'), "Orange")
@@ -117,7 +117,7 @@ let ``Compare records for second matched records returns correct tuple`` () =
     createRecord azarasData ruisData |> should equal expected
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Compare records for third matched records returns correct tuple`` () =
     let azarasData = ("Vintage Pirate Hat", "7E")
     let ruisData = ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
@@ -125,7 +125,7 @@ let ``Compare records for third matched records returns correct tuple`` () =
     createRecord azarasData ruisData |> should equal expected
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Compare records for forth matched records returns correct tuple`` () =
     let azarasData = ("Glass Starfish", "6D")
     let ruisData = ("Tangled Seaweed Patch", (6, 'D'), "Orange")
@@ -133,7 +133,7 @@ let ``Compare records for forth matched records returns correct tuple`` () =
     createRecord azarasData ruisData |> should equal expected
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Compare records for first unmatched records returns correct empty tuple`` () =
     let azarasData = ("Angry Monkey Figurine", "5B")
     let ruisData = ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
@@ -141,7 +141,7 @@ let ``Compare records for first unmatched records returns correct empty tuple`` 
     createRecord azarasData ruisData |> should equal expected
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Compare records for second unmatched records returns correct empty tuple`` () =
     let azarasData = ("Brass Spyglass", "4B")
     let ruisData = ("Spiky Rocks", (3, 'D'), "Yellow")
@@ -149,7 +149,7 @@ let ``Compare records for second unmatched records returns correct empty tuple``
     createRecord azarasData ruisData |> should equal expected
 
 [<Fact>]
-[<Task(3)>]
+[<Task(4)>]
 let ``Compare records for third unmatched records returns correct empty tuple`` () =
     let azarasData = ("Angry Monkey Figurine", "5B")
     let ruisData = ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
