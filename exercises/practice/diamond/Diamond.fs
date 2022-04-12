@@ -1,3 +1,3 @@
 module Diamond
 
-// TODO: implement this module
+let make letter = failwith "You need to implement this function."
