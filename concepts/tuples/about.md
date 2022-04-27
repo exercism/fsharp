@@ -38,7 +38,7 @@ let person = ("Jordan", 170)
 
 // Option 1: fst/snd
 let name1 = fst person
-let length2 = snd person
+let length1 = snd person
 
 // Option 2: deconstruction
 let (name2, length2) = person
