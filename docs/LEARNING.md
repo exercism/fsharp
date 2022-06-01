@@ -7,10 +7,11 @@
 * The [F# Foundation](http://fsharp.org/) is a non-profit organisation which aim is to promote F#. The website has lots of links to great F# content. Perhaps even more interesting is their [mentorship program](http://fsharp.org/mentorship/index.html), where you can apply to learn F# from an experienced F# mentor.
 
 ## Videos
-* [F# for the Practical Developer](https://www.youtube.com/watch?v=7z_q06HQLes) is a nice introduction to F#.
+* [F# for the Practical Developer](https://docs.microsoft.com/en-us/events/dotnetconf-2016/f-practical-developer) is a nice introduction to F#.
 * [F# - Why you should give an F](https://www.youtube.com/watch?v=kKkFabSzZvU) has Daniel Chambers give a sweet introduction into F#, neatly highlighting most F#'s features.
 * In [A tour of F#](https://www.youtube.com/watch?v=15tK48Xes0k), Phillip Carter gives a great introduction to the F# language.
-* [Dr. Don Syme - Introduction to F#](https://channel9.msdn.com/Series/C9-Lectures-Dr-Don-Syme-Introduction-to-F-/C9-Lectures-Dr-Don-Syme-Introduction-to-F-1-of-3) has Don Syme, the designer of F#, give an introduction to F#.
+* [Don Syme's F# Bonanza](https://docs.microsoft.com/en-us/events/dotnetconf-focus-on-fsharp/don-symes-f-bonanza) has Don Syme, the designer of F#, give an introduction to the F# language, community, and real-world business users.
+* [Beginner's Series to F#](https://docs.microsoft.com/en-us/shows/beginners-series-to-fsharp/) Learn F# in bite-size chunks with Luis Quintanilla in this 12-part series.
 * If you're a C# developer, you might like [F# for C# developers](https://vimeo.com/78908217) by Phil Trelford.
 * [PluralSight](https://www.pluralsight.com/) has several [great](https://www.pluralsight.com/courses/fsintro) [introduction](https://www.pluralsight.com/courses/fsharp-jumpstart) [courses](https://www.pluralsight.com/courses/fsharp-fundamentals). The downside: PluralSight is a paid service, but you can request a [free trial](https://www.pluralsight.com/pricing).
 
