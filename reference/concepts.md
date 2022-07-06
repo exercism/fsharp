@@ -14,49 +14,49 @@ The F# concept exercises are based on concepts. The list below contains the conc
 
 ### Functional
 
-- [Expression-oriented (not statement oriented)][expression_oriented]
-- [Functions][functions]
-  - [Anonymous functions][anonymous_functions]
+- Expression-oriented (not statement oriented)
+- Functions
+  - Anonymous functions
   - Currying
-  - [Function composition][function_composition]
-  - [Higher-order functions][higher_order_functions]
+  - Function composition
+  - Higher-order functions
   - Implicit returns
-  - [Nested functions][nested_functions]
-  - [Partial application][partial_application]
-  - [Pure functions][pure_functions]
-  - [Recursion][recursion]
+  - Nested functions
+  - Partial application
+  - Pure functions
+  - Recursion
     - Tail recursion
   - Type annotations
-- [Immutability][immutability]
-- [Pattern matching][pattern_matching]
+- Immutability
+- Pattern matching
   - Discards
   - Guard clauses
-- [Pipelines][pipelines]
-- [Type inference][type_inference]
+- Pipelines
+- Type inference
   - Automatic generalisation
 
 ### Object-oriented
 
 The core OO features an F# developer should know about are:
 
-- [Classes][classes]
-- [Composition][composition]
-- [Encapsulation][encapsulation]
+- Classes
+- Composition
+- Encapsulation
 - Fields
 - Indexers
-- [Interfaces][interfaces]
+- Interfaces
   - Object expressions
-- [Methods][methods]
+- Methods
   - Constructors
   - Method arguments
     - Named arguments
-    - [Optional arguments][optional_arguments]
+    - Optional arguments
     - Out parameters
-- [Mutation][mutation]
+- Mutation
   - Reference cells
-- [Objects][objects]
+- Objects
 - Properties
-- [State][state]
+- State
 - Structs
 - Type extensions
 
@@ -73,13 +73,13 @@ While F# has OO features, it is a "functional first" language. It is important t
   - Collections: mapping
   - Collections: ordering
   - Collections: reducing
-  - [Generics][generics]
+  - Generics
   - Iterators (yield)
   - Ranges
     - Slicing
   - Sequence/for expressions
 - Comparison
-  - [Equality][equality] (`Equals`, `GetHashCode`)
+  - Equality (`Equals`, `GetHashCode`)
   - Ordering
 - Concurrency
   - Concurrent collections
@@ -87,14 +87,14 @@ While F# has OO features, it is a "functional first" language. It is important t
   - Messaging and agents
 - Conditionals
   - Boolean logic
-  - [Conditionals: if][conditionals]
+  - Conditionals: if
   - Conditionals: while
 - Conversions
   - Explicit
   - Implicit
 - Double backtick-quoted identifiers (many more characters allowed in names)
 - Enumeration
-  - [Enumeration: for loop][enumeration]
+  - Enumeration: for loop
 - Exceptions
 - Nullability
 - Numbers
@@ -125,76 +125,26 @@ While F# has OO features, it is a "functional first" language. It is important t
 
 - Anonymous records
 - Anonymous types
-- [Booleans][bool]
-- [Characters][char]
+- Booleans
+- Characters
 - Collections
-  - [Arrays][array]
-  - [Lists][list]
-  - [Maps][map]
-  - [Queues][queue]
-  - [Ranges][range]
+  - Arrays
+  - Lists
+  - Maps
+  - Queues
+  - Ranges
   - ResizeArray
-  - [Sets][set]
-  - [Stacks][stack]
+  - Sets
+  - Stacks
 - Discriminated unions
 - Enums
 - Numbers
-  - [Floating point numbers][floating-point-number]
+  - Floating point numbers
   - Signed integers
   - Unsigned integers
 - Options
-- [Records][record]
+- Records
 - Results
-- [Strings][string]
-- [Tuples][tuple]
+- Strings
+- Tuples
 - Unit
-
-[encapsulation]: ../../../reference/concepts/encapsulation.md
-[classes]: ../../../reference/concepts/classes.md
-[objects]: ../../../reference/concepts/objects.md
-[state]: ../../../reference/concepts/state.md
-[mutation]: ../../../reference/concepts/mutation.md
-[composition]: ../../../reference/concepts/composition.md
-[inheritance]: ../../../reference/concepts/inheritance.md
-[interfaces]: ../../../reference/concepts/interfaces.md
-[polymorphism]: ../../../reference/concepts/polymorphism.md
-[methods]: ../../../reference/concepts/methods.md
-[immutability]: ../../../reference/concepts/immutability.md
-[pattern_matching]: ../../../reference/concepts/pattern_matching.md
-[higher_order_functions]: ../../../reference/concepts/higher_order_functions.md
-[type_inference]: ../../../reference/concepts/type_inference.md
-[anonymous_functions]: ../../../reference/concepts/anonymous_functions.md
-[recursion]: ../../../reference/concepts/recursion.md
-[nested_functions]: ../../../reference/concepts/nested_functions.md
-[linq]: ../../../reference/concepts/pipelines.md
-[equality]: ../../../reference/concepts/sameness.md
-[conditionals]: ../../../reference/concepts/conditionals.md
-[enumeration]: ../../../reference/concepts/enumeration.md
-[generics]: ../../../reference/concepts/generics.md
-[bool]: ../../../reference/types/boolean.md
-[string]: ../../../reference/types/string.md
-[char]: ../../../reference/types/char.md
-[null]: ../../../reference/types/null.md
-[array]: ../../../reference/types/array.md
-[list]: ../../../reference/types/list.md
-[map]: ../../../reference/types/map.md
-[set]: ../../../reference/types/set.md
-[stack]: ../../../reference/types/stack.md
-[queue]: ../../../reference/types/deque.md
-[class]: ../../../reference/types/class.md
-[struct]: ../../../reference/types/struct.md
-[tuple]: ../../../reference/types/tuple.md
-[range]: ../../../reference/types/range.md
-[nullable]: ../../../reference/types/nullable.md
-[optional_arguments]: ../../../reference/concepts/default_arguments.md
-[functions]: ../../../reference/types/function.md
-[variables]: ../../../reference/concepts/variables.md
-[pure_functions]: ../../../reference/concepts/pure_functions.md
-[function_composition]: ../../../reference/concepts/function_composition.md
-[partial_application]: ../../../reference/concepts/partial_application.md
-[recursion]: ../../../reference/concepts/recursion.md
-[pipelines]: ../../../reference/concepts/pipelines.md
-[expression_oriented]: ../../../reference/concepts/expression_oriented.md
-[repl]: ../../../reference/concepts/repl.md
-[floating-point-number]: ../../../reference/types/floating_point_number.md
-[record]: ../../../reference/types/record.md
