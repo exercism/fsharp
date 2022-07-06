@@ -1,8 +1,4 @@
-# Concepts of book store
-
-[Example implementation](https://github.com/exercism/fsharp/blob/master/exercises/book-store/Example.fs)
-
-## General
+# Concepts of the book-store exercise
 
 - functions: used as the main entry point for the exercise
 - function arguments: input strand is passed as an arguments
@@ -25,3 +21,5 @@
 - ranges: instantiate a range with `[ .. ]` syntax
 - floating point numbers: a `decimal` is used to store the book prices
 - math operations: `-`, `*`, and `/`
+
+Source: https://github.com/exercism/fsharp/blob/main/exercises/practice/book-store/.meta/Example.fs
