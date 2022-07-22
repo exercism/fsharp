@@ -18,7 +18,7 @@ let oneToFour = 1 :: twoToFour
 // => [1; 2; 3; 4]
 ```
 
-F# list is have a _head_ (the first element) and a _tail_ (everything after the first element). The tail of a list is itself a list.
+An F# list has a _head_ (the first element) and a _tail_ (everything after the first element). The tail of a list is itself a list.
 
 Lists are either manipulated by functions and operators defined in the `List` module, or manually using pattern matching using the _list_ and _cons_ patterns:
 
