@@ -42,7 +42,6 @@ let length1 = snd person
 
 // Option 2: deconstruction
 let (name2, length2) = person
-// => "Mary
 
 // Option 3: pattern matching
 match person with
