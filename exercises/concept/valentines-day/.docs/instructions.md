@@ -50,7 +50,7 @@ Finally, you're ready to rate your partner's ideas. This is how you feel about y
 - Chill out: no.
 - Watch a movie: yes if is is a romantic movie; otherwise, no.
 - Go to a restaurant: yes if the cuisine is Korean, maybe if it is Turkish.
-- Take a walk: yes if the walk is less then three kilometers; maybe if it is less than five kilometers; otherwise, no.
+- Take a walk: yes if the walk is less than three kilometers; maybe if it is less than five kilometers; otherwise, no.
 
 Implement a function named `rateActivity` that takes an `Activity` value and returns the `Approval` based on the above sentiments:
 
