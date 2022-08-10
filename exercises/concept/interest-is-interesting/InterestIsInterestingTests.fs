@@ -8,55 +8,55 @@ open InterestIsInteresting
 
 [<Fact>]
 [<Task(1)>]
-let ``Minimal first interest rate``() = interestRate 0m |> should (equalWithin 0.001) 0.5f
+let ``Minimal first interest rate``() = interestRate 0m |> should (equalWithin 0.001) 0.005f
 
 [<Fact>]
 [<Task(1)>]
-let ``Tiny first interest rate``() = interestRate 0.000001m |> should (equalWithin 0.001) 0.5f
+let ``Tiny first interest rate``() = interestRate 0.000001m |> should (equalWithin 0.001) 0.005f
 
 [<Fact>]
 [<Task(1)>]
-let ``Maximum first interest rate``() = interestRate 999.9999m |> should (equalWithin 0.001) 0.5f
+let ``Maximum first interest rate``() = interestRate 999.9999m |> should (equalWithin 0.001) 0.005f
 
 [<Fact>]
 [<Task(1)>]
-let ``Minimal second interest rate``() = interestRate 1_000.0m |> should (equalWithin 0.001) 1.621f
+let ``Minimal second interest rate``() = interestRate 1_000.0m |> should (equalWithin 0.001) 0.01621f
 
 [<Fact>]
 [<Task(1)>]
-let ``Tiny second interest rate``() = interestRate 1_000.0001m |> should (equalWithin 0.001) 1.621f
+let ``Tiny second interest rate``() = interestRate 1_000.0001m |> should (equalWithin 0.001) 0.01621f
 
 [<Fact>]
 [<Task(1)>]
-let ``Maximum second interest rate``() = interestRate 4_999.9990m |> should (equalWithin 0.001) 1.621f
+let ``Maximum second interest rate``() = interestRate 4_999.9990m |> should (equalWithin 0.001) 0.01621f
 
 [<Fact>]
 [<Task(1)>]
-let ``Minimal third interest rate``() = interestRate 5_000.0000m |> should (equalWithin 0.001) 2.475f
+let ``Minimal third interest rate``() = interestRate 5_000.0000m |> should (equalWithin 0.001) 0.02475f
 
 [<Fact>]
 [<Task(1)>]
-let ``Tiny third interest rate``() = interestRate 5_000.0001m |> should (equalWithin 0.001) 2.475f
+let ``Tiny third interest rate``() = interestRate 5_000.0001m |> should (equalWithin 0.001) 0.02475f
 
 [<Fact>]
 [<Task(1)>]
-let ``Large third interest rate``() = interestRate 5_639_998.742909m |> should (equalWithin 0.001) 2.475f
+let ``Large third interest rate``() = interestRate 5_639_998.742909m |> should (equalWithin 0.001) 0.02475f
 
 [<Fact>]
 [<Task(1)>]
-let ``Minimal negative interest rate``() = interestRate -0.000001M |> should (equalWithin 0.001) 3.213f
+let ``Minimal negative interest rate``() = interestRate -0.000001M |> should (equalWithin 0.001) 0.03213f
 
 [<Fact>]
 [<Task(1)>]
-let ``Small negative interest rate``() = interestRate -0.123M |> should (equalWithin 0.001) 3.213f
+let ``Small negative interest rate``() = interestRate -0.123M |> should (equalWithin 0.001) 0.03213f
 
 [<Fact>]
 [<Task(1)>]
-let ``Regular negative interest rate``() = interestRate -300.0M |> should (equalWithin 0.001) 3.213f
+let ``Regular negative interest rate``() = interestRate -300.0M |> should (equalWithin 0.001) 0.03213f
 
 [<Fact>]
 [<Task(1)>]
-let ``Large negative interest rate``() = interestRate -152964.231M |> should (equalWithin 0.001) 3.213f
+let ``Large negative interest rate``() = interestRate -152964.231M |> should (equalWithin 0.001) 0.03213f
 
 [<Fact>]
 [<Task(2)>]
@@ -110,29 +110,29 @@ let ``Annual balance update for large negative start balance``() =
 
 [<Fact>]
 [<Task(4)>]
-let ``Amount to donate for empty start balance``() = amountToDonate 0.0m 2.0 |> should equal 0
+let ``Amount to donate for empty start balance``() = amountToDonate 0.0m 0.02 |> should equal 0
 
 [<Fact>]
 [<Task(4)>]
-let ``Amount to donate for small positive start balance``() = amountToDonate 0.000001m 2.1 |> should equal 0
+let ``Amount to donate for small positive start balance``() = amountToDonate 0.000001m 0.021 |> should equal 0
 
 [<Fact>]
 [<Task(4)>]
-let ``Amount to donate for average positive start balance``() = amountToDonate 1_000.0m 2.0 |> should equal 40
+let ``Amount to donate for average positive start balance``() = amountToDonate 1_000.0m 0.02 |> should equal 40
 
 [<Fact>]
 [<Task(4)>]
-let ``Amount to donate for large positive start balance``() = amountToDonate 1_000.0001m 0.99 |> should equal 19
+let ``Amount to donate for large positive start balance``() = amountToDonate 1_000.0001m 0.0099 |> should equal 19
 
 [<Fact>]
 [<Task(4)>]
 let ``Amount to donate for huge positive start balance``() =
-    amountToDonate 898124017.826243404425m 2.65 |> should equal 47600572
+    amountToDonate 898124017.826243404425m 0.0265 |> should equal 47600572
 
 [<Fact>]
 [<Task(4)>]
-let ``Amount to donate for small negative start balance``() = amountToDonate -0.123M 3.33 |> should equal 0
+let ``Amount to donate for small negative start balance``() = amountToDonate -0.123M 0.0333 |> should equal 0
 
 [<Fact>]
 [<Task(4)>]
-let ``Amount to donate for large negative start balance``() = amountToDonate -152964.231M 5.4 |> should equal 0
+let ``Amount to donate for large negative start balance``() = amountToDonate -152964.231M 0.054 |> should equal 0
