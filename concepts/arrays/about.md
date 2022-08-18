@@ -15,7 +15,7 @@ let threeValues = [| "a"; "b"; "c" |]
 Elements can be assigned to an array or retrieved from it [using an index][array-indexer]. F# arrays are zero-based, meaning that the first element's index is always zero:
 
 ```fsharp
-let numbers = [2; 3; 5]
+let numbers = [|2; 3; 5|]
 
 // Update value in array
 numbers.[2] <- 9
