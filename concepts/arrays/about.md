@@ -15,7 +15,7 @@ let threeValues = [| "a"; "b"; "c" |]
 Elements can be assigned to an array or retrieved from it [using an index][array-indexer]. F# arrays are zero-based, meaning that the first element's index is always zero:
 
 ```fsharp
-let numbers = [2; 3; 5]
+let numbers = [| 2; 3; 5 |]
 
 // Update value in array
 numbers.[2] <- 9
@@ -65,10 +65,10 @@ let describe array =
     | [| _; y |] -> "Array with two items (first item ignored)"
     | _ -> "Array with many items (all items ignored)"
 
-describe []         // => "Empty array"
-describe [1]        // => "Array with one item"
-describe [5; 7]     // => "Array with two items (first item ignored)"
-describe [5; 7; 9]  // => "Array with many items (all items ignored)"
+describe [| |]          // => "Empty array"
+describe [| 1 |]        // => "Array with one item"
+describe [| 5; 7 |]     // => "Array with two items (first item ignored)"
+describe [| 5; 7; 9 |]  // => "Array with many items (all items ignored)"
 ```
 
 The single `'_'` should always come _last_ when pattern matching, every value that _doesn't_ match any of the other cases will be handled by this case.
