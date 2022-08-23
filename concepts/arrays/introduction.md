@@ -49,10 +49,10 @@ let describe array =
     | [| _; y |] -> "Array with two items (first item ignored)"
     | _ -> "Array with many items (all items ignored)"
 
-describe []         // => "Empty array"
-describe [1]        // => "Array with one item"
-describe [5; 7]     // => "Array with two items (first item ignored)"
-describe [5; 7; 9]  // => "Array with many items (all items ignored)"
+describe [| |]          // => "Empty array"
+describe [| 1 |]        // => "Array with one item"
+describe [| 5; 7 |]     // => "Array with two items (first item ignored)"
+describe [| 5; 7; 9 |]  // => "Array with many items (all items ignored)"
 ```
 
 The single `'_'` should always come _last_ when pattern matching, every value that _doesn't_ match any of the other cases will be handled by this case.
