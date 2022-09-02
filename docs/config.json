@@ -27,6 +27,13 @@
       "path": "docs/RESOURCES.md",
       "title": "Useful F# resources",
       "blurb": "A collection of useful resources to help you master F#"
+    },
+    {
+      "uuid": "edfbb0fa-a950-4384-899f-6c6c7a440dca",
+      "slug": "representer-normalizations",
+      "path": "docs/REPRESENTER_NORMALIZATIONS.md",
+      "title": "F# representer normalizations",
+      "blurb": "An overview of the normalizations the F# representer applies to solutions"
     }
   ]
 }
