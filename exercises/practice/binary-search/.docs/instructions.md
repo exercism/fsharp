@@ -33,3 +33,9 @@ found in the array and a special "not found" indication is returned.
 A binary search halves the number of items to check with each iteration,
 so locating an item (or determining its absence) takes logarithmic time.
 A binary search is a dichotomic divide and conquer search algorithm.
+
+## Restrictions
+
+Do not sell yourself short by using the standard library of collection
+tools. You can and should complete this exercise without tools like
+`Array.tryFindIndex`.
