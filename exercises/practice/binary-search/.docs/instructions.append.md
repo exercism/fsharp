@@ -1,5 +1,11 @@
 # Instructions append
 
+## Restrictions
+
+Do not sell yourself short by using the standard library of collection
+tools. You can and should complete this exercise without tools like
+`Array.tryFindIndex`.
+
 ## Hints
 
 For this exercise the following F# features come in handy:
