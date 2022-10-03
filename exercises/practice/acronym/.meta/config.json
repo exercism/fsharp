@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Acronym.fsproj"
     ]
   },
   "blurb": "Convert a long phrase to its acronym",

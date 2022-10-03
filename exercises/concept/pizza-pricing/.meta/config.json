@@ -11,6 +11,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "PizzaPricing.fsproj"
     ]
   },
   "blurb": "Learn about recursive functions and types by implementing a pizza-pricing algorithm"

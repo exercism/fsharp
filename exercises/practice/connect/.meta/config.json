@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Connect.fsproj"
     ]
   },
   "blurb": "Compute the result for a game of Hex / Polygon"

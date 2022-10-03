@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Change.fsproj"
     ]
   },
   "blurb": "Correctly determine change to be given using the least number of coins",

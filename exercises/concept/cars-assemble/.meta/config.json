@@ -14,6 +14,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "CarsAssemble.fsproj"
     ]
   },
   "forked_from": [

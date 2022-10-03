@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "TreeBuilding.fsproj"
     ]
   },
   "blurb": "Refactor a tree building algorithm."

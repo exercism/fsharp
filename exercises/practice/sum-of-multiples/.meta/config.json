@@ -23,6 +23,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SumOfMultiples.fsproj"
     ]
   },
   "blurb": "Given a number, find the sum of all the multiples of particular numbers up to but not including that number.",

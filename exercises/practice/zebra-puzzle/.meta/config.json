@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ZebraPuzzle.fsproj"
     ]
   },
   "blurb": "Solve the zebra puzzle.",

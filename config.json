@@ -22,7 +22,8 @@
     "solution": ["%{pascal_slug}.fs"],
     "test": ["%{pascal_slug}Tests.fs"],
     "example": [".meta/Example.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "exemplar": [".meta/Exemplar.fs"],
+    "invalidator": ["%{pascal_slug}.fsproj"]
   },
   "exercises": {
     "concept": [

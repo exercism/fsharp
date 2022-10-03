@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "LensPerson.fsproj"
     ]
   },
   "blurb": "Use lenses to update nested records (specific to languages with immutable data)."

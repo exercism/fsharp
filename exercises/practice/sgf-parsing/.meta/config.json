@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SgfParsing.fsproj"
     ]
   },
   "blurb": "Parsing a Smart Game Format string."

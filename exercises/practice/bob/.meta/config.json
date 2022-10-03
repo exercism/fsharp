@@ -22,6 +22,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Bob.fsproj"
     ]
   },
   "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",

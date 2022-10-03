@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "NthPrime.fsproj"
     ]
   },
   "blurb": "Given a number n, determine what the nth prime is.",

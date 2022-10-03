@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ReverseString.fsproj"
     ]
   },
   "blurb": "Reverse a string",

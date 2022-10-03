@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Pov.fsproj"
     ]
   },
   "blurb": "Reparent a graph on a selected node",

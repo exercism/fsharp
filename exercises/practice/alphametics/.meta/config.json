@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Alphametics.fsproj"
     ]
   },
   "test_runner": false,

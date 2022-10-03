@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RobotSimulator.fsproj"
     ]
   },
   "blurb": "Write a robot simulator.",

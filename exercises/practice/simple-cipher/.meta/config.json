@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SimpleCipher.fsproj"
     ]
   },
   "blurb": "Implement a simple shift cipher like Caesar and a more secure substitution cipher",

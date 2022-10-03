@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Rectangles.fsproj"
     ]
   },
   "blurb": "Count the rectangles in an ASCII diagram."

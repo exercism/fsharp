@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "TwoFer.fsproj"
     ]
   },
   "blurb": "Create a sentence of the form \"One for X, one for me.\"",

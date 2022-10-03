@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "DotDsl.fsproj"
     ]
   },
   "blurb": "Write a Domain Specific Language similar to the Graphviz dot language",

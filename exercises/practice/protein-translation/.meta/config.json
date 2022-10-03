@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ProteinTranslation.fsproj"
     ]
   },
   "blurb": "Translate RNA sequences into proteins.",

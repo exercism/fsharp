@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RotationalCipher.fsproj"
     ]
   },
   "blurb": "Create an implementation of the rotational cipher, also sometimes called the Caesar cipher.",
