@@ -38,6 +38,10 @@ let ``Invalid long number with an even remainder`` () =
     valid "1 2345 6789 1234 5678 9012" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Invalid long number with a remainder divisible by 5`` () =
+    valid "1 2345 6789 1234 5678 9013" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Valid number with an even number of digits`` () =
     valid "095 245 88" |> should equal true
 
@@ -68,6 +72,14 @@ let ``More than a single zero is valid`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Input digit 9 is correctly converted to output digit 9`` () =
     valid "091" |> should equal true
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Very long input is valid`` () =
+    valid "9999999999 9999999999 9999999999 9999999999" |> should equal true
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Valid luhn with an odd number of digits and non zero first digit`` () =
+    valid "109" |> should equal true
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Using ascii value for non-doubled non-digit isn't allowed`` () =

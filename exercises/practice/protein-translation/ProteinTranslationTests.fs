@@ -6,6 +6,10 @@ open Xunit
 open ProteinTranslation
 
 [<Fact>]
+let ``Empty RNA sequence results in no proteins`` () =
+    proteins "" |> should be Empty
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Methionine RNA sequence`` () =
     proteins "AUG" |> should equal ["Methionine"]
 
@@ -74,6 +78,14 @@ let ``STOP codon RNA sequence 3`` () =
     proteins "UGA" |> should be Empty
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Sequence of two protein codons translates into proteins`` () =
+    proteins "UUUUUU" |> should equal ["Phenylalanine"; "Phenylalanine"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Sequence of two different protein codons translates into proteins`` () =
+    proteins "UUAUUG" |> should equal ["Leucine"; "Leucine"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Translate RNA strand into correct protein list`` () =
     proteins "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
 
@@ -96,4 +108,26 @@ let ``Translation stops if STOP codon in middle of three-codon sequence`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Translation stops if STOP codon in middle of six-codon sequence`` () =
     proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Non-existing codon can't translate`` () =
+    proteins "AAA" |> should equal {
+  "error": "Invalid codon"
+}
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Unknown amino acids, not part of a codon, can't translate`` () =
+    proteins "XYZ" |> should equal {
+  "error": "Invalid codon"
+}
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Incomplete RNA sequence can't translate`` () =
+    proteins "AUGU" |> should equal {
+  "error": "Invalid codon"
+}
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Incomplete RNA sequence can translate if valid until a STOP codon`` () =
+    proteins "UUCUUCUAAUGGU" |> should equal ["Phenylalanine"; "Phenylalanine"]
 

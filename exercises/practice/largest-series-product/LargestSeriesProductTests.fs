@@ -95,3 +95,9 @@ let ``Rejects negative span`` () =
     let span = -1
     largestProduct digits span |> should equal None
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Rejects negative span`` () =
+    let digits = "12345"
+    let span = -1
+    largestProduct digits span |> should equal None
+

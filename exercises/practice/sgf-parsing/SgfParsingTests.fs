@@ -66,6 +66,61 @@ let ``Multiple property values`` () =
     parse "(;A[b][c][d])" |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Within property values, whitespace characters such as tab are converted to spaces`` () =
+    let expected = Some (Node (Map.ofList [("A", ["hello  world"])], []))
+    parse "(;A[hello\t\tworld])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Within property values, newlines remain as newlines`` () =
+    let expected = Some (Node (Map.ofList [("A", ["hello\n\nworld"])], []))
+    parse "(;A[hello\n\nworld])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Escaped closing bracket within property value becomes just a closing bracket`` () =
+    let expected = Some (Node (Map.ofList [("A", ["]"])], []))
+    parse "(;A[\]])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Escaped backslash in property value becomes just a backslash`` () =
+    let expected = Some (Node (Map.ofList [("A", ["\"])], []))
+    parse "(;A[\\])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Opening bracket within property value doesn't need to be escaped`` () =
+    let expected = Some (Node (Map.ofList [("A", ["x[y]z"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    parse "(;A[x[y\]z][foo]B[bar];C[baz])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Semicolon in property value doesn't need to be escaped`` () =
+    let expected = Some (Node (Map.ofList [("A", ["a;b"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    parse "(;A[a;b][foo]B[bar];C[baz])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Parentheses in property value don't need to be escaped`` () =
+    let expected = Some (Node (Map.ofList [("A", ["x(y)z"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    parse "(;A[x(y)z][foo]B[bar];C[baz])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Escaped tab in property value is converted to space`` () =
+    let expected = Some (Node (Map.ofList [("A", ["hello world"])], []))
+    parse "(;A[hello\\tworld])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Escaped newline in property value is converted to nothing at all`` () =
+    let expected = Some (Node (Map.ofList [("A", ["helloworld"])], []))
+    parse "(;A[hello\\nworld])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Escaped t and n in property value are just letters, not whitespace`` () =
+    let expected = Some (Node (Map.ofList [("A", ["t = t and n = n"])], []))
+    parse "(;A[\t = t and \n = n])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Mixing various kinds of whitespace and escaped characters in property value`` () =
+    let expected = Some (Node (Map.ofList [("A", ["]b\ncd  e\ ]"])], []))
+    parse "(;A[\]b\nc\\nd\t\te\\ \\n\]])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Escaped property`` () =
     let expected = Some (Node (Map.ofList [("A", ["]b\nc\nd  e \n]"])], []))
     parse "(;A[\]b\nc\nd\t\te \n\]])" |> should equal expected

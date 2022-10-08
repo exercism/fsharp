@@ -45,3 +45,7 @@ let ``Mixed case and punctuation`` () =
 let ``Case insensitive`` () =
     isPangram "the quick brown fox jumps over with lazy FX" |> should equal false
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``A-m and A-M are 26 different characters but not a pangram`` () =
+    isPangram "abcdefghijklm ABCDEFGHIJKLM" |> should equal false
+

@@ -170,3 +170,57 @@ let ``Exponential of a number with real and imaginary part`` () =
     real sut |> should (equalWithin 0.01) -2.0
     imaginary sut |> should (equalWithin 0.01) 0.0
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Exponential resulting in a number with real and imaginary part`` () =
+    let sut = exp (create ln(2)/2.0 pi/4.0)
+    real sut |> should (equalWithin 0.01) 1.0
+    imaginary sut |> should (equalWithin 0.01) 1.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Add real number to complex number`` () =
+    let sut = add (create 1.0 2.0) 5.0
+    real sut |> should (equalWithin 0.01) 6.0
+    imaginary sut |> should (equalWithin 0.01) 2.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Add complex number to real number`` () =
+    let sut = add 5.0 (create 1.0 2.0)
+    real sut |> should (equalWithin 0.01) 6.0
+    imaginary sut |> should (equalWithin 0.01) 2.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Subtract real number from complex number`` () =
+    let sut = sub (create 5.0 7.0) 4.0
+    real sut |> should (equalWithin 0.01) 1.0
+    imaginary sut |> should (equalWithin 0.01) 7.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Subtract complex number from real number`` () =
+    let sut = sub 4.0 (create 5.0 7.0)
+    real sut |> should (equalWithin 0.01) -1.0
+    imaginary sut |> should (equalWithin 0.01) -7.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Multiply complex number by real number`` () =
+    let sut = mul (create 2.0 5.0) 5.0
+    real sut |> should (equalWithin 0.01) 10.0
+    imaginary sut |> should (equalWithin 0.01) 25.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Multiply real number by complex number`` () =
+    let sut = mul 5.0 (create 2.0 5.0)
+    real sut |> should (equalWithin 0.01) 10.0
+    imaginary sut |> should (equalWithin 0.01) 25.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Divide complex number by real number`` () =
+    let sut = div (create 10.0 100.0) 10.0
+    real sut |> should (equalWithin 0.01) 1.0
+    imaginary sut |> should (equalWithin 0.01) 10.0
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Divide real number by complex number`` () =
+    let sut = div 5.0 (create 1.0 1.0)
+    real sut |> should (equalWithin 0.01) 2.5
+    imaginary sut |> should (equalWithin 0.01) -2.5
+

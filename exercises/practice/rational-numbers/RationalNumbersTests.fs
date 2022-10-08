@@ -98,12 +98,28 @@ let ``Absolute value of zero`` () =
     abs (create 0 1) |> should equal (create 0 1)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Absolute value of a rational number is reduced to lowest terms`` () =
+    abs (create 2 4) |> should equal (create 1 2)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Raise a positive rational number to a positive integer power`` () =
     exprational 3 (create 1 2) |> should equal (create 1 8)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Raise a negative rational number to a positive integer power`` () =
     exprational 3 (create -1 2) |> should equal (create -1 8)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Raise a positive rational number to a negative integer power`` () =
+    exprational -2 (create 3 5) |> should equal (create 25 9)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Raise a negative rational number to an even negative integer power`` () =
+    exprational -2 (create -3 5) |> should equal (create 25 9)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Raise a negative rational number to an odd negative integer power`` () =
+    exprational -3 (create -3 5) |> should equal (create -125 27)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Raise zero to an integer power`` () =
@@ -136,6 +152,10 @@ let ``Raise a real number to a zero rational number`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Reduce a positive rational number to lowest terms`` () =
     reduce (create 2 4) |> should equal (create 1 2)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Reduce places the minus sign on the numerator`` () =
+    reduce (create 3 -4) |> should equal (create -3 4)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Reduce a negative rational number to lowest terms`` () =

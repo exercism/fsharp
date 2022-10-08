@@ -81,3 +81,31 @@ let ``1024 is MXXIV`` () =
 let ``3000 is MMM`` () =
     roman 3000 |> should equal "MMM"
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``16 is XVI`` () =
+    roman 16 |> should equal "XVI"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``66 is LXVI`` () =
+    roman 66 |> should equal "LXVI"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``166 is CLXVI`` () =
+    roman 166 |> should equal "CLXVI"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``666 is DCLXVI`` () =
+    roman 666 |> should equal "DCLXVI"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``1666 is MDCLXVI`` () =
+    roman 1666 |> should equal "MDCLXVI"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``3001 is MMMI`` () =
+    roman 3001 |> should equal "MMMI"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``3999 is MMMCMXCIX`` () =
+    roman 3999 |> should equal "MMMCMXCIX"
+

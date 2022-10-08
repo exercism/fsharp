@@ -11,6 +11,11 @@ let ``Parsing and numbers - numbers just get pushed onto the stack`` () =
     evaluate ["1 2 3 4 5"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Parsing and numbers - pushes negative numbers onto the stack`` () =
+    let expected = Some [-1; -2; -3; -4; -5]
+    evaluate ["-1 -2 -3 -4 -5"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Addition - can add two numbers`` () =
     let expected = Some [3]
     evaluate ["1 2 +"] |> should equal expected
@@ -209,6 +214,11 @@ let ``User-defined words - cannot redefine negative numbers`` () =
 let ``User-defined words - errors if executing a non-existent word`` () =
     let expected = None
     evaluate ["foo"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``User-defined words - only defines locally`` () =
+    let expected = Some [[0]; [2]]
+    evaluateBoth [": + - ;"; "1 1 +"] ["1 1 +"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Case-insensitivity - DUP is case-insensitive`` () =

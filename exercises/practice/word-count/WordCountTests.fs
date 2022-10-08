@@ -88,6 +88,20 @@ let ``With apostrophes`` () =
     countWords "First: don't laugh. Then: don't cry." |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``With apostrophes`` () =
+    let expected = 
+        [ ("first", 1);
+          ("don't", 2);
+          ("laugh", 1);
+          ("then", 1);
+          ("cry", 1);
+          ("you're", 1);
+          ("getting", 1);
+          ("it", 1) ]
+        |> Map.ofList
+    countWords "'First: don't laugh. Then: don't cry. You're getting it.'" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``With quotations`` () =
     let expected = 
         [ ("joe", 1);
@@ -129,4 +143,12 @@ let ``Alternating word separators not detected as a word`` () =
           ("three", 1) ]
         |> Map.ofList
     countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Quotation for word with apostrophe`` () =
+    let expected = 
+        [ ("can", 1);
+          ("can't", 2) ]
+        |> Map.ofList
+    countWords "can, can't, 'can't'" |> should equal expected
 

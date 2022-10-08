@@ -201,3 +201,7 @@ let ``List - everything`` () =
 let ``List - no allergen score parts`` () =
     list 509 |> should equal [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``List - no allergen score parts without highest valid score`` () =
+    list 257 |> should equal [Allergen.Eggs]
+

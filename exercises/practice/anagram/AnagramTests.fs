@@ -71,7 +71,27 @@ let ``Words are not anagrams of themselves (case-insensitive)`` () =
     findAnagrams candidates "BANANA" |> should be Empty
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Words are not anagrams of themselves`` () =
+    let candidates = ["BANANA"]
+    findAnagrams candidates "BANANA" |> should be Empty
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Words are not anagrams of themselves even if letter case is partially different`` () =
+    let candidates = ["Banana"]
+    findAnagrams candidates "BANANA" |> should be Empty
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Words are not anagrams of themselves even if letter case is completely different`` () =
+    let candidates = ["banana"]
+    findAnagrams candidates "BANANA" |> should be Empty
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Words other than themselves can be anagrams`` () =
     let candidates = ["Listen"; "Silent"; "LISTEN"]
+    findAnagrams candidates "LISTEN" |> should equal ["Silent"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Words other than themselves can be anagrams`` () =
+    let candidates = ["LISTEN"; "Silent"]
     findAnagrams candidates "LISTEN" |> should equal ["Silent"]
 

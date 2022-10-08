@@ -37,3 +37,9 @@ let ``Age on Uranus`` () =
 let ``Age on Neptune`` () =
     age Neptune 1821023456L |> should (equalWithin 0.01) 0.35
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Invalid planet causes error`` () =
+    age Sun 680804807L |> should (equalWithin 0.01) {
+  "error": "not a planet"
+}
+

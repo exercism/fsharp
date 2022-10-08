@@ -42,9 +42,39 @@ let ``With h2 header level`` () =
     parse markdown |> should equal expected
 
 [<Fact>]
+let ``With h3 header level`` () =
+    let markdown = "### This will be an h3"
+    let expected = "<h3>This will be an h3</h3>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``With h4 header level`` () =
+    let markdown = "#### This will be an h4"
+    let expected = "<h4>This will be an h4</h4>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``With h5 header level`` () =
+    let markdown = "##### This will be an h5"
+    let expected = "<h5>This will be an h5</h5>"
+    parse markdown |> should equal expected
+
+[<Fact>]
 let ``With h6 header level`` () =
     let markdown = "###### This will be an h6"
     let expected = "<h6>This will be an h6</h6>"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``With h7 header level`` () =
+    let markdown = "####### This will not be an h7"
+    let expected = "####### This will not be an h7"
+    parse markdown |> should equal expected
+
+[<Fact>]
+let ``H7 header level is a paragraph`` () =
+    let markdown = "####### This will not be an h7"
+    let expected = "<p>####### This will not be an h7</p>"
     parse markdown |> should equal expected
 
 [<Fact>]

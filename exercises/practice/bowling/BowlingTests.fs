@@ -80,6 +80,12 @@ let ``Strikes with the two roll bonus do not get bonus rolls`` () =
     score game |> should equal (Some 30)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Last two strikes followed by only last bonus with non strike points`` () =
+    let rolls = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 10; 10; 0; 1]
+    let game = rollMany rolls (newGame())
+    score game |> should equal (Some 31)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A strike with the one roll bonus after a spare in the last frame does not get a bonus`` () =
     let rolls = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 7; 3; 10]
     let game = rollMany rolls (newGame())
