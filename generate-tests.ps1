@@ -18,14 +18,8 @@ param (
     [string]$Exercise
 )
 
-
 # Import shared functionality
 . ./shared.ps1
-
-function Update-Canonical-Data {
-    Write-Output "Updating canonical data"
-    Run-Command "./update-canonical-data.ps1" 
-}
 
 function Update-Tests {
     Write-Output "Updating tests"
@@ -33,5 +27,4 @@ function Update-Tests {
     Run-Command "dotnet run --project ./generators $args"
 }
 
-Update-Canonical-Data
 Update-Tests
