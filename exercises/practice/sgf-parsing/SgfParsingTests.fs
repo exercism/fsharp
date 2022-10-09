@@ -120,8 +120,3 @@ let ``Mixing various kinds of whitespace and escaped characters in property valu
     let expected = Some (Node (Map.ofList [("A", ["]b\ncd  e\ ]"])], []))
     parse "(;A[\]b\nc\\nd\t\te\\ \\n\]])" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Escaped property`` () =
-    let expected = Some (Node (Map.ofList [("A", ["]b\nc\nd  e \n]"])], []))
-    parse "(;A[\]b\nc\nd\t\te \n\]])" |> should equal expected
-

@@ -26,14 +26,6 @@ let ``Zero is an error`` () =
     steps 0 |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Zero is an error`` () =
-    steps 0 |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Negative value is an error`` () =
-    steps -15 |> should equal None
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Negative value is an error`` () =
     steps -15 |> should equal None
 

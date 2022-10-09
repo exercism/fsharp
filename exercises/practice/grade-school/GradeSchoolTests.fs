@@ -38,11 +38,6 @@ let ``Cannot add student to same grade in the roster more than once`` () =
     add [["Blair"; 2]; ["James"; 2]; ["James"; 2]; ["Paul"; 2]] |> should equal [true; true; false; true]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``A student can only be added to the same grade in the roster once`` () =
-    let school = studentsToSchool [("Aimee", 2); ("Aimee", 2)]
-    roster school |> should equal ["Aimee"]
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Student not added to same grade in the roster more than once`` () =
     let school = studentsToSchool [("Blair", 2); ("James", 2); ("James", 2); ("Paul", 2)]
     roster school |> should equal ["Blair"; "James"; "Paul"]
@@ -59,11 +54,6 @@ let ``Students in multiple grades are added to the roster`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cannot add same student to multiple grades in the roster`` () =
     add [["Blair"; 2]; ["James"; 2]; ["James"; 3]; ["Paul"; 3]] |> should equal [true; true; false; true]
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``A student cannot be added to more than one grade in the sorted roster`` () =
-    let school = studentsToSchool [("Aimee", 2); ("Aimee", 1)]
-    roster school |> should equal ["Aimee"]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Student not added to multiple grades in the roster`` () =

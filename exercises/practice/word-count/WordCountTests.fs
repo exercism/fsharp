@@ -83,17 +83,6 @@ let ``With apostrophes`` () =
           ("don't", 2);
           ("laugh", 1);
           ("then", 1);
-          ("cry", 1) ]
-        |> Map.ofList
-    countWords "First: don't laugh. Then: don't cry." |> should equal expected
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``With apostrophes`` () =
-    let expected = 
-        [ ("first", 1);
-          ("don't", 2);
-          ("laugh", 1);
-          ("then", 1);
           ("cry", 1);
           ("you're", 1);
           ("getting", 1);

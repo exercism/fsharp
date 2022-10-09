@@ -66,12 +66,6 @@ let ``With h6 header level`` () =
     parse markdown |> should equal expected
 
 [<Fact>]
-let ``With h7 header level`` () =
-    let markdown = "####### This will not be an h7"
-    let expected = "####### This will not be an h7"
-    parse markdown |> should equal expected
-
-[<Fact>]
 let ``H7 header level is a paragraph`` () =
     let markdown = "####### This will not be an h7"
     let expected = "<p>####### This will not be an h7</p>"
