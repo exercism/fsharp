@@ -38,7 +38,7 @@ let (|Header|_|) (list: bool) (markdown: string) =
         |> Seq.takeWhile ((=) headerMarkdown.[0]) 
         |> Seq.length
 
-    if headerNumber = 0 then
+    if headerNumber = 0 || headerNumber > 6 then
         None
     else
         let headerTag = sprintf "h%i" headerNumber
