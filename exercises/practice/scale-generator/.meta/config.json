@@ -23,5 +23,5 @@
       "ScaleGenerator.fsproj"
     ]
   },
-  "blurb": "Generate musical scales, given a starting note and a set of intervals. "
+  "blurb": "Generate musical scales, given a starting note and a set of intervals."
 }
