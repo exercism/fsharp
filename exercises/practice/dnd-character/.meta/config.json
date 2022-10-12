@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "DndCharacter.fsproj"
     ]
   },
   "blurb": "Randomly generate Dungeons & Dragons characters",

@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RestApi.fsproj"
     ]
   },
   "blurb": "Implement a RESTful API for tracking IOUs."

@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "HighScores.fsproj"
     ]
   },
   "blurb": "Manage a player's High Score list",

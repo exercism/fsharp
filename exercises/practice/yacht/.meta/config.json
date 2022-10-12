@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Yacht.fsproj"
     ]
   },
   "blurb": "Score a single throw of dice in the game Yacht",

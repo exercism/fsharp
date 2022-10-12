@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Zipper.fsproj"
     ]
   },
   "blurb": "Creating a zipper for a binary tree."

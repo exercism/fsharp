@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Pangram.fsproj"
     ]
   },
   "blurb": "Determine if a sentence is a pangram.",

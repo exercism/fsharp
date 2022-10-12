@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "BinarySearchTree.fsproj"
     ]
   },
   "blurb": "Insert and search for numbers in a binary tree.",

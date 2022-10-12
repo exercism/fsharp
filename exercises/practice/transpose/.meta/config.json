@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Transpose.fsproj"
     ]
   },
   "blurb": "Take input text and output it transposed.",

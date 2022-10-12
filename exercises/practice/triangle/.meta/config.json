@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Triangle.fsproj"
     ]
   },
   "blurb": "Determine if a triangle is equilateral, isosceles, or scalene.",

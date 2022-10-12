@@ -14,6 +14,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "Bandwagoner.fsproj"
     ]
   },
   "blurb": "Learn about records by keeping a history of basketball statistics"

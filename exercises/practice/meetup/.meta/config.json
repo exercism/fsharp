@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Meetup.fsproj"
     ]
   },
   "blurb": "Calculate the date of meetups.",

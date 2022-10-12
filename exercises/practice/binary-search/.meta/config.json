@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "BinarySearch.fsproj"
     ]
   },
   "blurb": "Implement a binary search algorithm.",

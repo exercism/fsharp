@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "DiffieHellman.fsproj"
     ]
   },
   "blurb": "Diffie-Hellman key exchange.",

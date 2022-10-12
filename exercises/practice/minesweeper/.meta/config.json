@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Minesweeper.fsproj"
     ]
   },
   "blurb": "Add the numbers to a minesweeper board"

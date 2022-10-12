@@ -21,6 +21,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RobotName.fsproj"
     ]
   },
   "blurb": "Manage robot factory settings.",

@@ -11,6 +11,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "InterestIsInteresting.fsproj"
     ]
   },
   "forked_from": [

@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SimpleLinkedList.fsproj"
     ]
   },
   "blurb": "Write a simple linked list implementation that uses Elements and a List",

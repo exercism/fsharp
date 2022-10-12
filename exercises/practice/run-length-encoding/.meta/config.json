@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RunLengthEncoding.fsproj"
     ]
   },
   "blurb": "Implement run-length encoding and decoding.",

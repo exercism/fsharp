@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "WordCount.fsproj"
     ]
   },
   "blurb": "Given a phrase, count the occurrences of each word in that phrase.",

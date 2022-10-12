@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SpiralMatrix.fsproj"
     ]
   },
   "blurb": " Given the size, return a square matrix of numbers in spiral order.",

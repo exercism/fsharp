@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ComplexNumbers.fsproj"
     ]
   },
   "blurb": "Implement complex numbers.",

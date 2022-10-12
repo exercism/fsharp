@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Isogram.fsproj"
     ]
   },
   "blurb": "Determine if a word or phrase is an isogram.",

@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Dominoes.fsproj"
     ]
   },
   "blurb": "Make a chain of dominoes."

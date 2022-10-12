@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "HelloWorld.fsproj"
     ]
   },
   "blurb": "The classical introductory exercise. Just say \"Hello, World!\"",

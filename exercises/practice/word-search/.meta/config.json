@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "WordSearch.fsproj"
     ]
   },
   "blurb": "Create a program to solve a word search puzzle."
