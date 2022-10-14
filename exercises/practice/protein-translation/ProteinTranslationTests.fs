@@ -109,25 +109,3 @@ let ``Translation stops if STOP codon in middle of three-codon sequence`` () =
 let ``Translation stops if STOP codon in middle of six-codon sequence`` () =
     proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Non-existing codon can't translate`` () =
-    proteins "AAA" |> should equal {
-  "error": "Invalid codon"
-}
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Unknown amino acids, not part of a codon, can't translate`` () =
-    proteins "XYZ" |> should equal {
-  "error": "Invalid codon"
-}
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Incomplete RNA sequence can't translate`` () =
-    proteins "AUGU" |> should equal {
-  "error": "Invalid codon"
-}
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Incomplete RNA sequence can translate if valid until a STOP codon`` () =
-    proteins "UUCUUCUAAUGGU" |> should equal ["Phenylalanine"; "Phenylalanine"]
-
