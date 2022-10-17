@@ -645,6 +645,28 @@ type Forth() =
         | _ -> None
 
     override _.UseFullMethodName _ = true
+    
+    override this.RenderArrange testCase =
+        if testCase.Property = "evaluateBoth" then
+            []
+        else
+            base.RenderArrange testCase
+    
+    override this.RenderAssert testCase =
+        if testCase.Property = "evaluateBoth" then
+            let instructionsFirst = Obj.render testCase.Input["instructionsFirst"]
+            let instructionsSecond = Obj.render testCase.Input["instructionsSecond"]
+            
+            let expected = testCase.Expected :?> JArray
+            let expectedFirst = expected[0] |> Option.ofNonErrorObject |> Option.renderParenthesized
+            let expectedSecond = expected[1] |> Option.ofNonErrorObject |> Option.renderParenthesized
+            
+            [
+                this.RenderAssertEqual $"evaluate {instructionsFirst}" expectedFirst;
+                this.RenderAssertEqual $"evaluate {instructionsSecond}" expectedSecond
+            ]
+        else
+            base.RenderAssert testCase
 
 type Gigasecond() =
     inherit ExerciseGenerator()

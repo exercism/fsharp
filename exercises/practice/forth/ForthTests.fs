@@ -217,8 +217,8 @@ let ``User-defined words - errors if executing a non-existent word`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``User-defined words - only defines locally`` () =
-    let expected = Some [[0]; [2]]
-    evaluateBoth [": + - ;"; "1 1 +"] ["1 1 +"] |> should equal expected
+    evaluate [": + - ;"; "1 1 +"] |> should equal (Some [0])
+    evaluate ["1 1 +"] |> should equal (Some [2])
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Case-insensitivity - DUP is case-insensitive`` () =
