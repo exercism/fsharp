@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RationalNumbers.fsproj"
     ]
   },
   "blurb": "Implement rational numbers.",

@@ -11,6 +11,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "TisburyTreasureHunt.fsproj"
     ]
   },
   "forked_from": [

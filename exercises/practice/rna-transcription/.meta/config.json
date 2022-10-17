@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RnaTranscription.fsproj"
     ]
   },
   "blurb": "Given a DNA strand, return its RNA Complement Transcription.",

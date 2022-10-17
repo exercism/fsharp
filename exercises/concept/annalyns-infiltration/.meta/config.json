@@ -11,6 +11,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "AnnalynsInfiltration.fsproj"
     ]
   },
   "forked_from": [

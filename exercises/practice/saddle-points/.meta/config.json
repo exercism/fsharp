@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SaddlePoints.fsproj"
     ]
   },
   "blurb": "Detect saddle points in a matrix.",

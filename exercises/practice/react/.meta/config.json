@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "React.fsproj"
     ]
   },
   "blurb": "Implement a basic reactive system."

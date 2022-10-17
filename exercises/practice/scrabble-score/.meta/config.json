@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ScrabbleScore.fsproj"
     ]
   },
   "blurb": "Given a word, compute the Scrabble score for that word.",

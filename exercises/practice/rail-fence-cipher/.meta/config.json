@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RailFenceCipher.fsproj"
     ]
   },
   "blurb": "Implement encoding and decoding for the rail fence cipher.",

@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Raindrops.fsproj"
     ]
   },
   "blurb": "Convert a number to a string, the content of which depends on the number's factors.",

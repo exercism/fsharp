@@ -22,7 +22,8 @@
     "solution": ["%{pascal_slug}.fs"],
     "test": ["%{pascal_slug}Tests.fs"],
     "example": [".meta/Example.fs"],
-    "exemplar": [".meta/Exemplar.fs"]
+    "exemplar": [".meta/Exemplar.fs"],
+    "invalidator": ["%{pascal_slug}.fsproj"]
   },
   "exercises": {
     "concept": [
@@ -267,7 +268,7 @@
       },
       {
         "slug": "ocr-numbers",
-        "name": "Ocr Numbers",
+        "name": "OCR Numbers",
         "uuid": "eca7e334-f549-4601-a515-9d1467d3d0ea",
         "practices": [],
         "prerequisites": [
@@ -380,7 +381,7 @@
       },
       {
         "slug": "pov",
-        "name": "Pov",
+        "name": "POV",
         "uuid": "a6082751-98ca-45dc-aeed-cdd19a8da0ca",
         "practices": ["equality", "generic-types", "recursion"],
         "prerequisites": [
@@ -504,7 +505,7 @@
       },
       {
         "slug": "diffie-hellman",
-        "name": "Diffie Hellman",
+        "name": "Diffie-Hellman",
         "uuid": "2a7e3e78-ab94-40f3-8f16-1d5aa84c2f85",
         "practices": ["big-integers", "math-operators", "randomness"],
         "prerequisites": [
@@ -534,7 +535,7 @@
       },
       {
         "slug": "run-length-encoding",
-        "name": "Run Length Encoding",
+        "name": "Run-Length Encoding",
         "uuid": "0a10cd0b-ea37-4c78-a6a4-223203ac1c37",
         "practices": ["strings"],
         "prerequisites": [
@@ -695,7 +696,7 @@
       },
       {
         "slug": "pascals-triangle",
-        "name": "Pascals Triangle",
+        "name": "Pascal's Triangle",
         "uuid": "fef76c19-db3c-442d-b2f5-b0dfae19ee43",
         "practices": ["yield"],
         "prerequisites": ["for-loops", "lists", "numbers"],
@@ -868,7 +869,7 @@
       },
       {
         "slug": "etl",
-        "name": "Etl",
+        "name": "ETL",
         "uuid": "95e592a8-6663-4b07-894a-86a5cc310c67",
         "practices": ["collection-processing"],
         "prerequisites": ["lists", "maps", "numbers", "strings", "tuples"],
@@ -917,7 +918,7 @@
       },
       {
         "slug": "dot-dsl",
-        "name": "Dot Dsl",
+        "name": "DOT DSL",
         "uuid": "dc50364b-b5b6-4e0b-ba58-32fb7d60a93b",
         "practices": ["classes", "equality"],
         "prerequisites": ["classes", "equality", "lists", "tuples"],
@@ -940,7 +941,7 @@
       },
       {
         "slug": "rest-api",
-        "name": "Rest Api",
+        "name": "REST API",
         "uuid": "b0aaf5ac-f94d-4995-af4a-b27068cf540e",
         "practices": ["optional-parameters"],
         "prerequisites": [
@@ -1008,7 +1009,7 @@
       },
       {
         "slug": "isbn-verifier",
-        "name": "Isbn Verifier",
+        "name": "ISBN Verifier",
         "uuid": "c339c32c-3310-4b8c-b4e6-0f9f651064b7",
         "practices": ["regular-expressions"],
         "prerequisites": ["booleans", "chars", "strings"],
@@ -1326,7 +1327,7 @@
       },
       {
         "slug": "sgf-parsing",
-        "name": "Sgf Parsing",
+        "name": "SGF Parsing",
         "uuid": "fe0e98b3-d0d3-4bf6-bfaa-8aa0e61aa625",
         "practices": ["constructors", "members"],
         "prerequisites": [
@@ -1463,7 +1464,7 @@
       },
       {
         "slug": "difference-of-squares",
-        "name": "Difference Of Squares",
+        "name": "Difference of Squares",
         "uuid": "3969fb29-5997-4050-adb0-8c6e95f48013",
         "practices": ["collection-processing", "math-operators", "numbers"],
         "prerequisites": ["math-operators", "numbers"],
@@ -1487,7 +1488,7 @@
       },
       {
         "slug": "rna-transcription",
-        "name": "Rna Transcription",
+        "name": "RNA Transcription",
         "uuid": "3a015501-58bf-427c-8c4c-2197321f4a34",
         "practices": ["collection-processing"],
         "prerequisites": ["chars", "strings"],
@@ -1495,7 +1496,7 @@
       },
       {
         "slug": "sum-of-multiples",
-        "name": "Sum Of Multiples",
+        "name": "Sum of Multiples",
         "uuid": "e702b75e-4c9e-40ef-bcb1-674a87222c23",
         "practices": ["ranges"],
         "prerequisites": [

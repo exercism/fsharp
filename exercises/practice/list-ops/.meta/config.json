@@ -19,7 +19,10 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ListOps.fsproj"
     ]
   },
-  "blurb": "Implement basic list operations"
+  "blurb": "Implement basic list operations."
 }

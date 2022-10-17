@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Etl.fsproj"
     ]
   },
   "blurb": "We are going to do the `Transform` step of an Extract-Transform-Load.",

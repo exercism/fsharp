@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "VariableLengthQuantity.fsproj"
     ]
   },
   "blurb": "Implement variable length quantity encoding and decoding.",

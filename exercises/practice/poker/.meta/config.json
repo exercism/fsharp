@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Poker.fsproj"
     ]
   },
   "blurb": "Pick the best hand(s) from a list of poker hands.",

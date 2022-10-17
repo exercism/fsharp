@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Luhn.fsproj"
     ]
   },
   "blurb": "Given a number determine whether or not it is valid per the Luhn formula.",

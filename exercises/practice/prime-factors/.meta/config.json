@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "PrimeFactors.fsproj"
     ]
   },
   "blurb": "Compute the prime factors of a given natural number.",

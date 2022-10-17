@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "CustomSet.fsproj"
     ]
   },
   "blurb": "Create a custom set type."

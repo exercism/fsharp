@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Clock.fsproj"
     ]
   },
   "blurb": "Implement a clock that handles times without dates.",

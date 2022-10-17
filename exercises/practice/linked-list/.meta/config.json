@@ -20,8 +20,11 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "LinkedList.fsproj"
     ]
   },
-  "blurb": "Implement a doubly linked list",
+  "blurb": "Implement a doubly linked list.",
   "source": "Classic computer science topic"
 }
