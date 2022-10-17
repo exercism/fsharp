@@ -751,39 +751,25 @@ type GoCounting() =
 
 type GradeSchool() =
     inherit ExerciseGenerator()
-
-    member private this.RenderPropertyValue testCase propertyName =
-        this.RenderInput(testCase, propertyName, Map.find propertyName testCase.Input)
-
-    member private _.RenderStudent(student: JToken) =
-        Obj.render (string student.First, int student.Last)
-
-    member private this.RenderStudentList testCase =
-        List.mapRender this.RenderStudent testCase.Input.["students"]
-
-    override _.RenderSetup _ =
-        [ "let studentsToSchool (students: List<string*int>):School ="
-          "    let schoolFolder school (name,grade) ="
-          "        add name grade school"
-          "    List.fold schoolFolder empty students" ]
-        |> String.concat "\n"
-
+        
     override this.RenderArrange testCase =
-        match testCase.Property with
-        | "roster"
-        | "grade" -> [ $"let school = studentsToSchool %s{this.RenderStudentList testCase}" ]
-        | _ -> base.RenderArrange testCase
+        let students =
+            testCase.Input.["students"].ToObject<JArray>()
+            |> Seq.map (fun values -> $"    |> add {Obj.render(values[0])} {Obj.render(values[1])}")
+            |> Seq.toList
+            
+        if students.IsEmpty then
+            ["let school = empty"]
+        else
+            List.append ["let school = "; "    empty"] students
 
     override this.RenderSut testCase =
-        match testCase.Property with
-        | "roster" -> sprintf "roster school"
-        | "grade" ->
-            let grade =
-                this.RenderPropertyValue testCase "desiredGrade"
-
-            $"grade %s{grade} school"
-        | _ -> base.RenderSut testCase
-
+        let property = this.RenderSutProperty testCase
+        let parameters = ["school"] |> List.append (this.RenderSutParameters testCase) |> String.concat " "
+        $"{property} {parameters}"
+        
+    override _.PropertiesUsedAsSutParameter testCase =
+        base.PropertiesUsedAsSutParameter testCase |> List.filter (fun x -> x <> "students")
 type Grains() =
     inherit ExerciseGenerator()
 
