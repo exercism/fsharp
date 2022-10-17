@@ -37,11 +37,3 @@ let ``Personal top when there are less than 3`` () =
 let ``Personal top when there is only one`` () =
     personalTopThree [40] |> should equal [40]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Latest score after personal best`` () =
-    latestAfterBest [20; 70; 15; 25; 30] |> should equal 30
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Scores after personal best`` () =
-    scoresAfterBest [20; 70; 15; 25; 30] |> should equal [20; 70; 15; 25; 30]
-

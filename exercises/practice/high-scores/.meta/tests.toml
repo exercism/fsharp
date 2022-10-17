@@ -45,6 +45,8 @@ comment = "Skip immutability test case"
 
 [ddb0efc0-9a86-4f82-bc30-21ae0bdc6418]
 description = "Top 3 scores -> Latest score after personal best"
+include = false
 
 [6a0fd2d1-4cc4-46b9-a5bb-2fb667ca2364]
 description = "Top 3 scores -> Scores after personal best"
+include = false
