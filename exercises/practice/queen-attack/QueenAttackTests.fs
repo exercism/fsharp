@@ -67,3 +67,9 @@ let ``Can attack on fourth diagonal`` () =
     let blackQueen = (0, 6)
     canAttack blackQueen whiteQueen |> should equal true
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Cannot attack if falling diagonals are only the same when reflected across the longest falling diagonal`` () =
+    let whiteQueen = (4, 1)
+    let blackQueen = (2, 5)
+    canAttack blackQueen whiteQueen |> should equal false
+

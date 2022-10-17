@@ -34,6 +34,10 @@ let ``Slice length is too large`` () =
     slices "12345" 6 |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Slice length is way too large`` () =
+    slices "12345" 42 |> should equal None
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Slice length cannot be zero`` () =
     slices "12345" 0 |> should equal None
 

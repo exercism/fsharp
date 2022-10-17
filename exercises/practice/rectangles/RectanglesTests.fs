@@ -113,3 +113,15 @@ let ``Large input with many rectangles`` () =
           "          +-+" ]
     rectangles strings |> should equal 60
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Rectangles must have four sides`` () =
+    let strings = 
+        [ "+-+ +-+";
+          "| | | |";
+          "+-+-+-+";
+          "  | |  ";
+          "+-+-+-+";
+          "| | | |";
+          "+-+ +-+" ]
+    rectangles strings |> should equal 5
+

@@ -51,6 +51,13 @@ let ``Left, right, and up`` () =
     actual |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Test ability to descend multiple levels and return`` () =
+    let zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
+    let expected = 1
+    let actual = zipper |> left |> Option.get |> right |> Option.get |> up |> Option.get |> up |> Option.get |> value
+    actual |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Set value`` () =
     let zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
     let expected = tree 1 (subTree 5 None (leaf 3)) (leaf 4)

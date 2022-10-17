@@ -48,12 +48,12 @@ let ``Invalid when more than 11 digits`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid with letters`` () =
     let expected: Result<uint64,string> = Error "letters not permitted"
-    clean "123-abc-7890" |> should equal expected
+    clean "523-abc-7890" |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid with punctuations`` () =
     let expected: Result<uint64,string> = Error "punctuations not permitted"
-    clean "123-@:!-7890" |> should equal expected
+    clean "523-@:!-7890" |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid if area code starts with 0`` () =

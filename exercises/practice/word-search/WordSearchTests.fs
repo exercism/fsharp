@@ -325,3 +325,47 @@ let ``Should fail to locate a word that is not in the puzzle`` () =
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Should fail to locate words that are not on horizontal, vertical, or diagonal lines`` () =
+    let grid = 
+        [ "abc";
+          "def" ]
+    let wordsToSearchFor = ["aef"; "ced"; "abf"; "cbd"]
+    let expected = 
+        [ ("aef", Option<((int * int) * (int * int))>.None);
+          ("ced", Option<((int * int) * (int * int))>.None);
+          ("abf", Option<((int * int) * (int * int))>.None);
+          ("cbd", Option<((int * int) * (int * int))>.None) ]
+        |> Map.ofList
+    search grid wordsToSearchFor |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Should not concatenate different lines to find a horizontal word`` () =
+    let grid = 
+        [ "abceli";
+          "xirdfg" ]
+    let wordsToSearchFor = ["elixir"]
+    let expected = [("elixir", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+    search grid wordsToSearchFor |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Should not wrap around horizontally to find a word`` () =
+    let grid = ["silabcdefp"]
+    let wordsToSearchFor = ["lisp"]
+    let expected = [("lisp", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+    search grid wordsToSearchFor |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Should not wrap around vertically to find a word`` () =
+    let grid = 
+        [ "s";
+          "u";
+          "r";
+          "a";
+          "b";
+          "c";
+          "t" ]
+    let wordsToSearchFor = ["rust"]
+    let expected = [("rust", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+    search grid wordsToSearchFor |> should equal expected
+

@@ -42,6 +42,10 @@ let ``Yacht of 3s counted as fives`` () =
     score Category.Fives [Die.Three; Die.Three; Die.Three; Die.Three; Die.Three] |> should equal 0
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Fives`` () =
+    score Category.Fives [Die.One; Die.Five; Die.Three; Die.Five; Die.Three] |> should equal 10
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Sixes`` () =
     score Category.Sixes [Die.Two; Die.Three; Die.Four; Die.Five; Die.Six] |> should equal 6
 

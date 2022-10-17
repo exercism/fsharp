@@ -35,7 +35,7 @@ let mul r1 r2 = create (r1.numerator * r2.numerator) (r1.denominator * r2.denomi
 
 let div r1 r2 = create (r1.numerator * r2.denominator) (r2.numerator * r1.denominator) |> reduce
 
-let abs r = create (Math.Abs(r.numerator)) (Math.Abs(r.denominator))
+let abs r = create (Math.Abs(r.numerator)) (Math.Abs(r.denominator)) |> reduce
 
 let exprational n r = 
   if n >= 0 then

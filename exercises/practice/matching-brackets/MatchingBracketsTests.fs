@@ -58,12 +58,24 @@ let ``Paired and wrong nested brackets`` () =
     isPaired "[({]})" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Paired and wrong nested brackets but innermost are correct`` () =
+    isPaired "[({}])" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Paired and incomplete brackets`` () =
     isPaired "{}[" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Too many closing brackets`` () =
     isPaired "[]]" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Early unexpected brackets`` () =
+    isPaired ")()" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Early mismatched brackets`` () =
+    isPaired "{)()" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Math expression`` () =

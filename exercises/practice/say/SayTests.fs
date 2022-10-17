@@ -26,12 +26,28 @@ let ``Twenty-two`` () =
     say 22L |> should equal (Some "twenty-two")
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Thirty`` () =
+    say 30L |> should equal (Some "thirty")
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Ninety-nine`` () =
+    say 99L |> should equal (Some "ninety-nine")
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One hundred`` () =
     say 100L |> should equal (Some "one hundred")
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One hundred twenty-three`` () =
     say 123L |> should equal (Some "one hundred twenty-three")
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Two hundred`` () =
+    say 200L |> should equal (Some "two hundred")
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Nine hundred ninety-nine`` () =
+    say 999L |> should equal (Some "nine hundred ninety-nine")
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One thousand`` () =

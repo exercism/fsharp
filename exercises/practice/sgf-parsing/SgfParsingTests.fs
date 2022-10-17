@@ -66,7 +66,12 @@ let ``Multiple property values`` () =
     parse "(;A[b][c][d])" |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Escaped property`` () =
-    let expected = Some (Node (Map.ofList [("A", ["]b\nc\nd  e \n]"])], []))
-    parse "(;A[\]b\nc\nd\t\te \n\]])" |> should equal expected
+let ``Semicolon in property value doesn't need to be escaped`` () =
+    let expected = Some (Node (Map.ofList [("A", ["a;b"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    parse "(;A[a;b][foo]B[bar];C[baz])" |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Parentheses in property value don't need to be escaped`` () =
+    let expected = Some (Node (Map.ofList [("A", ["x(y)z"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    parse "(;A[x(y)z][foo]B[bar];C[baz])" |> should equal expected
 

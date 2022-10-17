@@ -64,8 +64,10 @@ let rec parse (markdown: string) =
                html <- html + "<h3>" + lines.[i].[4..] + "</h3>"
            elif lines.[i].[0..2] = "## " then
                html <- html + "<h2>" + lines.[i].[3..] + "</h2>"
-           else
+           elif lines.[i].[0..1] = "# " then
                html <- html + "<h1>" + lines.[i].[2..] + "</h1>"
+           else
+               html <- html + "<p>" + lines.[i] + "</p>"
        else
            if isList then  
                html <- html + "</ul>"

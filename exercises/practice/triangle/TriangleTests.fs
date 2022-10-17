@@ -70,8 +70,16 @@ let ``Scalene returns all sides are equal`` () =
     scalene [4.0; 4.0; 4.0] |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Scalene returns two sides are equal`` () =
+let ``Scalene returns first and second sides are equal`` () =
     scalene [4.0; 4.0; 3.0] |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Scalene returns first and third sides are equal`` () =
+    scalene [3.0; 4.0; 3.0] |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Scalene returns second and third sides are equal`` () =
+    scalene [4.0; 3.0; 3.0] |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Scalene returns may not violate triangle inequality`` () =

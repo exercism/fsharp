@@ -351,12 +351,11 @@ type ComplexNumbers() =
     inherit ExerciseGenerator()
 
     let renderNumber (input: JToken) =
-        match string input with
-        | "e" -> "Math.E"
-        | "pi" -> "Math.PI"
-        | "ln(2)" -> "(Math.Log(2.0))"
-        | i when i.IndexOf('.') = -1 -> $"%s{i}.0"
-        | float -> float
+        match input.Type with
+        | JTokenType.String -> "(" + input.ToString().Replace("e", "Math.E").Replace("pi", "Math.PI").Replace("ln(2)", "Math.Log(2.0)").Replace("/2", "/2.0").Replace("/4", "/4.0") + ")"
+        | JTokenType.Integer -> $"%d{input.ToObject<int>()}.0"
+        | JTokenType.Float -> input.ToObject<float>() |> string
+        | _ -> failwith "Unsupported number format"
 
     let renderComplexNumber (input: JArray) =
         $"(create %s{renderNumber input.[0]} %s{renderNumber input.[1]})"
@@ -646,6 +645,28 @@ type Forth() =
         | _ -> None
 
     override _.UseFullMethodName _ = true
+    
+    override this.RenderArrange testCase =
+        if testCase.Property = "evaluateBoth" then
+            []
+        else
+            base.RenderArrange testCase
+    
+    override this.RenderAssert testCase =
+        if testCase.Property = "evaluateBoth" then
+            let instructionsFirst = Obj.render testCase.Input["instructionsFirst"]
+            let instructionsSecond = Obj.render testCase.Input["instructionsSecond"]
+            
+            let expected = testCase.Expected :?> JArray
+            let expectedFirst = expected[0] |> Option.ofNonErrorObject |> Option.renderParenthesized
+            let expectedSecond = expected[1] |> Option.ofNonErrorObject |> Option.renderParenthesized
+            
+            [
+                this.RenderAssertEqual $"evaluate {instructionsFirst}" expectedFirst;
+                this.RenderAssertEqual $"evaluate {instructionsSecond}" expectedSecond
+            ]
+        else
+            base.RenderAssert testCase
 
 type Gigasecond() =
     inherit ExerciseGenerator()
@@ -752,39 +773,25 @@ type GoCounting() =
 
 type GradeSchool() =
     inherit ExerciseGenerator()
-
-    member private this.RenderPropertyValue testCase propertyName =
-        this.RenderInput(testCase, propertyName, Map.find propertyName testCase.Input)
-
-    member private _.RenderStudent(student: JToken) =
-        Obj.render (string student.First, int student.Last)
-
-    member private this.RenderStudentList testCase =
-        List.mapRender this.RenderStudent testCase.Input.["students"]
-
-    override _.RenderSetup _ =
-        [ "let studentsToSchool (students: List<string*int>):School ="
-          "    let schoolFolder school (name,grade) ="
-          "        add name grade school"
-          "    List.fold schoolFolder empty students" ]
-        |> String.concat "\n"
-
+        
     override this.RenderArrange testCase =
-        match testCase.Property with
-        | "roster"
-        | "grade" -> [ $"let school = studentsToSchool %s{this.RenderStudentList testCase}" ]
-        | _ -> base.RenderArrange testCase
+        let students =
+            testCase.Input.["students"].ToObject<JArray>()
+            |> Seq.map (fun values -> $"    |> add {Obj.render(values[0])} {Obj.render(values[1])}")
+            |> Seq.toList
+            
+        if students.IsEmpty then
+            ["let school = empty"]
+        else
+            List.append ["let school = "; "    empty"] students
 
     override this.RenderSut testCase =
-        match testCase.Property with
-        | "roster" -> sprintf "roster school"
-        | "grade" ->
-            let grade =
-                this.RenderPropertyValue testCase "desiredGrade"
-
-            $"grade %s{grade} school"
-        | _ -> base.RenderSut testCase
-
+        let property = this.RenderSutProperty testCase
+        let parameters = ["school"] |> List.append (this.RenderSutParameters testCase) |> String.concat " "
+        $"{property} {parameters}"
+        
+    override _.PropertiesUsedAsSutParameter testCase =
+        base.PropertiesUsedAsSutParameter testCase |> List.filter (fun x -> x <> "students")
 type Grains() =
     inherit ExerciseGenerator()
 

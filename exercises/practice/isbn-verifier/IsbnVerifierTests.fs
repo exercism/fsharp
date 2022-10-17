@@ -22,7 +22,11 @@ let ``Check digit is a character other than X`` () =
     isValid "3-598-21507-A" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Invalid character in isbn`` () =
+let ``Invalid check digit in isbn is not treated as zero`` () =
+    isValid "4-598-21507-B" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Invalid character in isbn is not treated as zero`` () =
     isValid "3-598-P1581-X" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -66,8 +70,12 @@ let ``Input is 9 characters`` () =
     isValid "134456729" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Invalid characters are not ignored`` () =
+let ``Invalid characters are not ignored after checking length`` () =
     isValid "3132P34035" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Invalid characters are not ignored before checking length`` () =
+    isValid "3598P215088" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Input is too long but contains a valid isbn`` () =

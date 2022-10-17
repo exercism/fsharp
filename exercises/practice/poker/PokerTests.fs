@@ -66,6 +66,18 @@ let ``Both hands have two identically ranked pairs, tie goes to remaining card (
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Both hands have two pairs that add to the same value, win goes to highest pair`` () =
+    let hands = ["6S 6H 3S 3H AS"; "7H 7S 2H 2S AC"]
+    let expected = ["7H 7S 2H 2S AC"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Two pairs first ranked by largest pair`` () =
+    let hands = ["5C 2S 5S 4H 4C"; "6S 2S 6H 7C 2C"]
+    let expected = ["6S 2S 6H 7C 2C"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Three of a kind beats two pair`` () =
     let hands = ["2S 8H 2H 8D JH"; "4S 5H 4C 8S 4H"]
     let expected = ["4S 5H 4C 8S 4H"]

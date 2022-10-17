@@ -96,6 +96,12 @@ let ``Second list missing element from first list`` () =
     sublist listOne listTwo |> should equal SublistType.Unequal
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``First list missing additional digits from second list`` () =
+    let listOne = [1; 2]
+    let listTwo = [1; 22]
+    sublist listOne listTwo |> should equal SublistType.Unequal
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Order matters to a list`` () =
     let listOne = [1; 2; 3]
     let listTwo = [3; 2; 1]
