@@ -352,7 +352,7 @@ type ComplexNumbers() =
 
     let renderNumber (input: JToken) =
         match input.Type with
-        | JTokenType.String -> "(" + input.ToString().Replace("e", "Math.E").Replace("pi", "Math.PI").Replace("ln(2)", "Math.Log(2.0)") + ")"
+        | JTokenType.String -> "(" + input.ToString().Replace("e", "Math.E").Replace("pi", "Math.PI").Replace("ln(2)", "Math.Log(2.0)").Replace("/2", "/2.0").Replace("/4", "/4.0") + ")"
         | JTokenType.Integer -> $"%d{input.ToObject<int>()}.0"
         | JTokenType.Float -> input.ToObject<float>() |> string
         | _ -> failwith "Unsupported number format"
