@@ -15,11 +15,13 @@ let interval intervals tonic =
     let scale = if List.contains tonic flatKeys then flatChromaticScale else chromaticScale
     let index = List.findIndex (fun pitch -> String.Equals(pitch, tonic, StringComparison.InvariantCultureIgnoreCase)) scale
     let shiftedScale = shift index scale
+    let shiftedScaleTonic = List.head shiftedScale
 
     intervals
     |> List.ofSeq
     |> List.fold (fun (acc, remainder) item -> (List.head remainder :: acc, skipInterval item remainder)) ([], shiftedScale)
     |> fst
+    |> List.append [shiftedScaleTonic]
     |> List.rev
 
-let chromatic tonic = interval "mmmmmmmmmmmm" tonic
+let chromatic tonic = interval "mmmmmmmmmmmm" tonic |> List.take 12
