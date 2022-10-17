@@ -351,12 +351,11 @@ type ComplexNumbers() =
     inherit ExerciseGenerator()
 
     let renderNumber (input: JToken) =
-        match string input with
-        | "e" -> "Math.E"
-        | "pi" -> "Math.PI"
-        | "ln(2)" -> "(Math.Log(2.0))"
-        | i when i.IndexOf('.') = -1 -> $"%s{i}.0"
-        | float -> float
+        match input.Type with
+        | JTokenType.String -> "(" + input.ToString().Replace("e", "Math.E").Replace("pi", "Math.PI").Replace("ln(2)", "Math.Log(2.0)") + ")"
+        | JTokenType.Integer -> $"%d{input.ToObject<int>()}.0"
+        | JTokenType.Float -> input.ToObject<float>() |> string
+        | _ -> failwith "Unsupported number format"
 
     let renderComplexNumber (input: JArray) =
         $"(create %s{renderNumber input.[0]} %s{renderNumber input.[1]})"

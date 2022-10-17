@@ -148,7 +148,7 @@ let ``Conjugate a number with real and imaginary part`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Euler's identity/formula`` () =
-    let sut = exp (create 0.0 Math.PI)
+    let sut = exp (create 0.0 (Math.PI))
     real sut |> should (equalWithin 0.01) -1.0
     imaginary sut |> should (equalWithin 0.01) 0.0
 
@@ -161,18 +161,18 @@ let ``Exponential of 0`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Exponential of a purely real number`` () =
     let sut = exp (create 1.0 0.0)
-    real sut |> should (equalWithin 0.01) Math.E
+    real sut |> should (equalWithin 0.01) (Math.E)
     imaginary sut |> should (equalWithin 0.01) 0.0
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Exponential of a number with real and imaginary part`` () =
-    let sut = exp (create (Math.Log(2.0)) Math.PI)
+    let sut = exp (create (Math.Log(2.0)) (Math.PI))
     real sut |> should (equalWithin 0.01) -2.0
     imaginary sut |> should (equalWithin 0.01) 0.0
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Exponential resulting in a number with real and imaginary part`` () =
-    let sut = exp (create ln(2)/2.0 pi/4.0)
+    let sut = exp (create (Math.Log(2.0)/2) (Math.PI/4))
     real sut |> should (equalWithin 0.01) 1.0
     imaginary sut |> should (equalWithin 0.01) 1.0
 
