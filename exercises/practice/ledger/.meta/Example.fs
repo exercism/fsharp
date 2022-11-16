@@ -5,7 +5,7 @@ open System.Globalization
 
 type Entry = { date: DateTime; description: string; change: float }
 
-let parseDate date = DateTime.Parse(date, CultureInfo.InvariantCulture)
+let parseDate (date: string) = DateTime.Parse(date, CultureInfo.InvariantCulture)
 
 let currencySymbol =
     function

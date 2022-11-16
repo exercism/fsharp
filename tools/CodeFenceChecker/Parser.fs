@@ -12,13 +12,14 @@
 //
 namespace CodeFenceChecker
 
+open FSharp.Compiler.Diagnostics
+
 [<AutoOpen>]
 module Parser =
-    open FSharp.Compiler.SourceCodeServices
 
-    let private collectErrors (inErrs: FSharpErrorInfo []) (outErrs: string []) (expr: string) (msg: string) =
+    let private collectErrors (inErrs: FSharpDiagnostic []) (outErrs: string []) (expr: string) (msg: string) =
         inErrs
-        |> Array.filter (fun e -> e.Severity = FSharpErrorSeverity.Error)
+        |> Array.filter (fun e -> e.Severity = FSharpDiagnosticSeverity.Error)
         |> Array.fold
             (fun acc e ->
                 Array.concat [ acc
@@ -36,8 +37,8 @@ module Parser =
                 parsed.Add(doc)
 
                 if (not << isEmptyLine) expr then
-                    let parseResults, _, _ = fsiSession.ParseAndCheckInteraction(expr) |> Async.RunSynchronously
-                    collectErrors parseResults.Errors res expr $"{doc} generated a parsing error"
+                    let parseResults, _, _ = fsiSession.ParseAndCheckInteraction(expr)
+                    collectErrors parseResults.Diagnostics res expr $"{doc} generated a parsing error"
                 else
                     res)
             Array.empty
