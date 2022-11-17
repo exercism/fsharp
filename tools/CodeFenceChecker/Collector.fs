@@ -22,8 +22,8 @@ module Collector =
     let sep = Path.DirectorySeparatorChar
     let isEmptyLine (line: string) = String.IsNullOrEmpty(line.Trim())
 
-    let private matchBlockStart line = Regex.IsMatch(line, @"^.*[`~]{3,}(fsharp)")
-    let private matchBlockEnd line = Regex.IsMatch(line, @"^.*[`~]{3,}$")
+    let private matchBlockStart (line: string) = Regex.IsMatch(line, @"^.*[`~]{3,}(fsharp)")
+    let private matchBlockEnd (line: string) = Regex.IsMatch(line, @"^.*[`~]{3,}$")
 
     let collectLines (dir: string) (ignored: string []) =
         let root = Path.Combine(__SOURCE_DIRECTORY__, $"..{sep}..")

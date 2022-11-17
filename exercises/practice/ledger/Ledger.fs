@@ -5,7 +5,7 @@ open System.Globalization
 
 type Entry = { dat: DateTime; des: string; chg: int }
 
-let mkEntry date description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
+let mkEntry (date: string) description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
         
 let formatLedger currency locale entries =
     

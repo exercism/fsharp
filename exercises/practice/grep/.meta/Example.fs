@@ -27,12 +27,12 @@ let private parseFlag =
 let private parseFlags (flags: string list) =
     List.fold (fun acc flag -> acc ||| parseFlag flag) Flags.None flags 
 
-let private isMatch pattern (flags: Flags) =
+let private isMatch (pattern: string) (flags: Flags) =
     let pattern' = if flags.HasFlag Flags.MatchEntireLines then sprintf "^%s$" pattern else pattern
     let options  = if flags.HasFlag Flags.CaseInsensitive then RegexOptions.IgnoreCase else RegexOptions.None
     let regex = Regex(pattern', options)     
 
-    fun text -> regex.IsMatch text <> flags.HasFlag Flags.Invert
+    fun (text: string) -> regex.IsMatch text <> flags.HasFlag Flags.Invert
 
 let private mkLine file index text = { File = file; Number = index + 1; Text = text }
 
