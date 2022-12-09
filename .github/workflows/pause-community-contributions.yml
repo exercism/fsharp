@@ -8,8 +8,8 @@ on:
     types:
       - opened
     paths-ignore:
-      - "exercises/*/*/.approaches/**"
-      - "exercises/*/*/.articles/**"
+      - 'exercises/*/*/.approaches/**'
+      - 'exercises/*/*/.articles/**'
 
 permissions:
   issues: write
@@ -22,4 +22,4 @@ jobs:
     with:
       forum_category: fsharp
     secrets:
-      github_membership_token: ${{ secrets.COMMUNITY_CONTRIBUTIONS_WORKFLOW  }}
+      github_membership_token: ${{ secrets.COMMUNITY_CONTRIBUTIONS_WORKFLOW_TOKEN }}
