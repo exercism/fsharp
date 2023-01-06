@@ -15,3 +15,5 @@ jobs:
     uses: exercism/github-actions/.github/workflows/configlet.yml@main
     with:
       fmt: true
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
