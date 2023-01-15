@@ -10,7 +10,7 @@ The following ideas are proposed by your partner:
 - Go to a restaurant
 - Take a walk
 
-You have six tasks to help choose your Valentine's day activity.
+You have five tasks to help choose your Valentine's day activity.
 
 ## 1. Define the approval
 
