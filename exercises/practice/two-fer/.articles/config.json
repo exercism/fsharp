@@ -1,0 +1,11 @@
+{
+  "articles": [
+    {
+      "uuid": "79d28d16-cc36-44cc-bfa5-1ff8271eee71",
+      "slug": "string-formatting",
+      "title": "Formatting the return string",
+      "blurb": "Show the different ways in which the return string can be formatted.",
+      "authors": ["erikschierboom"]
+    }
+  ]
+}
