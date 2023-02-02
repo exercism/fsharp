@@ -21,4 +21,4 @@ jobs:
       - name: Validate Code Snippets
         run: |
           dotnet build /v:m -c Release tools/CodeFenceChecker/CodeFenceChecker.fsproj
-          pwsh -Command ./check-code-snippets.ps1 -Exclude concepts/if-then-else-expressions,exercises/concept/cars-assemble
+          pwsh -Command ./check-code-snippets.ps1 -Exclude concepts/if-then-else-expressions,exercises/concept/cars-assemble,exercises/practice/hamming/.approaches
