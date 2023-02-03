@@ -1,0 +1,7 @@
+let rec doDistance (letters1: char list) (letters2: char list) (distance: int): Option<int> =
+    match letters1, letters2 with
+    | [], [] -> Some distance
+    | [], _ -> None
+    | _, [] -> None
+    | head1 :: tail1, head2 :: tail2 when head1 <> head2 -> doDistance tail1 tail2 (distance + 1)
+    | _ :: tail1, _ :: tail2 -> doDistance tail1 tail2 distance
