@@ -1,0 +1,8 @@
+let steps number =
+    let rec doSteps current numberOfSteps =
+        if current < 1 then None
+        elif current = 1 then Some numberOfSteps
+        elif current % 2 = 0 then doSteps (current / 2)  (numberOfSteps + 1)
+        else doSteps (current * 3  + 1) (numberOfSteps + 1)
+
+    doSteps number 0
