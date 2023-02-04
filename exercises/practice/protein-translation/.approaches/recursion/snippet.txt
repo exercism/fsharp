@@ -1,0 +1,8 @@
+match codons[0..2] with
+| "AUG" ->                         doProteins codons[3..] ("Methionine"    :: proteins)
+| "UUC" | "UUU" ->                 doProteins codons[3..] ("Phenylalanine" :: proteins)
+| "UUA" | "UUG" ->                 doProteins codons[3..] ("Leucine"       :: proteins)
+| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins codons[3..] ("Serine"        :: proteins)
+| "UGU" | "UGC" ->                 doProteins codons[3..] ("Cysteine"      :: proteins)
+| "UGG" ->                         doProteins codons[3..] ("Tryptophan"    :: proteins)
+| "UAA" | "UAG" | "UGA" | "" ->    List.rev proteins
