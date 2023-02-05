@@ -1,7 +1,7 @@
 # `Option.defaultValue`
 
 ```fsharp
-let twoFer nameOpt =
+let twoFer (nameOpt: string option): string =
     let name = Option.defaultValue "you" nameOpt
     $"One for {name}, one for me."
 ```

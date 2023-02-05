@@ -10,7 +10,7 @@ The key to this exercise is to work with the optional values as represented by [
 ## Approach: `Option.defaultValue`
 
 ```fsharp
-let twoFer nameOpt =
+let twoFer (nameOpt: string option): string =
     let name = Option.defaultValue "you" nameOpt
     $"One for {name}, one for me."
 ```
@@ -21,7 +21,7 @@ For more information, check the [`Option.defaultValue` approach][approach-option
 ## Approach: pattern matching
 
 ```fsharp
-let twoFer nameOpt =
+let twoFer (nameOpt: string option): string =
     let name =
         match nameOpt with
         | Some name -> name
