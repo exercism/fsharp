@@ -5,18 +5,18 @@ The key to this exercise is to repeatedly apply an algorithm to a number until a
 ## Approach: unfold
 
 ```fsharp
-let private collatzSequence number =
-    Seq.unfold (fun current ->
-        if current = 1 then
-            None
-        elif current % 2 = 0 then
-            Some (current, current / 2)
-        else
-            Some (current, current * 3  + 1)
-        )
-        number
+let steps (number: int): int option =
+    let collatzSequence (number: int): int seq =
+        Seq.unfold (fun current ->
+            if current = 1 then
+                None
+            elif current % 2 = 0 then
+                Some (current, current / 2)
+            else
+                Some (current, current * 3  + 1)
+            )
+            number
 
-let steps number =
     if number < 1 then None
     else collatzSequence number |> Seq.length |> Some
 ```
@@ -27,17 +27,17 @@ For more information, check the [unfold approach][approach-unfold].
 ## Approach: sequence expression
 
 ```fsharp
-let rec private collatzSequence current =
-    seq {
-        if current > 1 then
-            yield current
-            if current % 2 = 0 then
-                yield! collatzSequence (current / 2)
-            else
-                yield! collatzSequence (current * 3 + 1)
-    }
+let steps (number: int): int option =
+    let rec collatzSequence (current: int) =
+        seq {
+            if current > 1 then
+                yield current
+                if current % 2 = 0 then
+                    yield! collatzSequence (current / 2)
+                else
+                    yield! collatzSequence (current * 3 + 1)
+        }
 
-let steps number =
     if number < 1 then None
     else collatzSequence number |> Seq.length |> Some
 ```
@@ -48,8 +48,8 @@ For more information, check the [sequence expression approach][approach-sequence
 ## Approach: recursion
 
 ```fsharp
-let steps number =
-    let rec doSteps current numberOfSteps =
+let steps (number: int): int option =
+    let rec doSteps (current: int) (numberOfSteps: int) =
         if current < 1 then None
         elif current = 1 then Some numberOfSteps
         elif current % 2 = 0 then doSteps (current / 2)  (numberOfSteps + 1)
@@ -64,7 +64,7 @@ For more information, check the [recursion approach][approach-recursion].
 ## Which approach to use?
 
 All three approaches are equally valid.
-There is some overhead to the unfold and sequence expression approaches, as they are creating an intermediate sequence, but this overhead should be negligible.
+There is some overhead to the unfold and sequence expression approaches, as they create an intermediate sequence, but this overhead should be negligible.
 
 [approach-recursion]: https://exercism.org/tracks/fsharp/exercises/collatz-conjecture/approaches/recursion
 [approach-unfold]: https://exercism.org/tracks/fsharp/exercises/collatz-conjecture/approaches/unfold

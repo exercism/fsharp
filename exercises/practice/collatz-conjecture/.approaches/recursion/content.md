@@ -3,8 +3,8 @@
 ```fsharp
 module CollatzConjecture
 
-let steps number =
-    let rec doSteps current numberOfSteps =
+let steps (number: int): int option =
+    let rec doSteps (current: int) (numberOfSteps: int) =
         if current < 1 then None
         elif current = 1 then Some numberOfSteps
         elif current % 2 = 0 then doSteps (current / 2)  (numberOfSteps + 1)
@@ -19,7 +19,7 @@ We've defined this function within the `steps` function (also known as a _nested
 The `doSteps` function takes the number (basically, where we're at in the collatz sequence) and the number of steps taken so far:
 
 ```fsharp
-let rec doSteps number numberOfSteps =
+let rec doSteps (current: int) (numberOfSteps: int)
 ```
 
 ```exercism/note
@@ -35,7 +35,7 @@ This parameter represents the current distance and is updated between the recurs
 Our function definition looks as follows:
 
 ```fsharp
-let rec doSteps current numberOfSteps =
+let rec doSteps (current: int) (numberOfSteps: int) =
     if current < 1 then None
     elif current = 1 then Some numberOfSteps
     elif current % 2 = 0 then doSteps (current / 2)  (numberOfSteps + 1)
