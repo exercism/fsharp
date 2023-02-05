@@ -209,3 +209,4 @@ We now have a working implementation that translates the codons to proteins.
 [seq.map]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#map
 [seq.take-while]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#takeWhile
 [seq-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html
+[seq.tolist]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#toList
