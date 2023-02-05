@@ -3,7 +3,7 @@
 ```fsharp
 module TwoFer
 
-let twoFer nameOpt =
+let twoFer (nameOpt: string option): string =
     let name =
         match nameOpt with
         | Some name -> name
