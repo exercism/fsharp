@@ -2,10 +2,6 @@
 
 The key to this exercise is to repeatedly apply an algorithm to a number until a value (`1`) is reached.
 
-## General guidance
-
-- If you're using a recursive approach, consider on the higher-order functions to handle the recursion for you
-
 ## Approach: unfold
 
 ```fsharp
@@ -25,7 +21,7 @@ let steps number =
     else collatzSequence number |> Seq.length |> Some
 ```
 
-This approach uses [`Seq.unfold`][seq.unfold] to generate the collatz sequence followed by [`Seq.length`] to calculate the number of steps.
+This approach uses [`Seq.unfold`][seq.unfold] to generate the collatz sequence followed by [`Seq.length`][seq.length] to calculate the number of steps.
 For more information, check the [unfold approach][approach-unfold].
 
 ## Approach: sequence expression
@@ -46,7 +42,7 @@ let steps number =
     else collatzSequence number |> Seq.length |> Some
 ```
 
-This approach uses a [sequence expression][sequence-expressions] to generate the collatz sequence followed by [`Seq.length`] to calculate the number of steps.
+This approach uses a [sequence expression][sequence-expressions] to generate the collatz sequence followed by [`Seq.length`][seq.length] to calculate the number of steps.
 For more information, check the [sequence expression approach][approach-sequence-expression].
 
 ## Approach: recursion

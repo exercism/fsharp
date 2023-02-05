@@ -26,15 +26,15 @@ This is a common enough pattern, that F# has a built-in function for this use ca
 
 The `Seq.unfold` function takes two arguments:
 
-1. A lambda that takes a value and returns a value pair wrapped in an [`Option<T>`][options]
+1. A function that takes a value and returns a value pair wrapped in an [`Option<T>`][options]
 2. The initial value
 
-The lambda can return either:
+The function can return either:
 
 1. `Some (returnValue, newValue)`: continue executing, whilst adding the first value (`returnValue`) to the list of values to return, and use `newValue` as the value for the next call to the lambda
 2. `None`: stop execution
 
-Once the lambda returns `None`, the accumulated return values are returned.
+Once the function returns `None`, the accumulated return values are returned.
 
 ## Unfolding the collatz sequence
 
