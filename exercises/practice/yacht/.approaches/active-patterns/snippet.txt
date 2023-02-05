@@ -1,0 +1,8 @@
+match category, dice with
+| Sixes,          SingleThrow Die.Six count   -> count * 6
+| FullHouse,      FullHouseThrow _            -> List.sumBy dieScore dice
+| FourOfAKind,    FourOfAKindThrow die        -> dieScore die * 4
+| LittleStraight, LittleStraightThrow _       -> 30
+| BigStraight,    BigStraightThrow _          -> 30
+| Yacht,          YachtThrow _                -> 50
+| Choice,         ChoiceThrow _               -> List.sumBy dieScore dice

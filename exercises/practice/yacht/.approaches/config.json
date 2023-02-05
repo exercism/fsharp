@@ -1,0 +1,21 @@
+{
+  "introduction": {
+    "authors": ["erikschierboom"]
+  },
+  "approaches": [
+    {
+      "uuid": "b127c4ea-5f88-4ae9-81e1-6605bcab44ac",
+      "slug": "active-patterns",
+      "title": "Active patterns",
+      "blurb": "Use active patterns to score the dice.",
+      "authors": ["erikschierboom"]
+    },
+    {
+      "uuid": "c6120ef0-636b-4be9-9779-60b6202a077b",
+      "slug": "list-module",
+      "title": "List module",
+      "blurb": "Use functions from the List module (combined with pattern matching) to score the dice.",
+      "authors": ["erikschierboom"]
+    }
+  ]
+}
