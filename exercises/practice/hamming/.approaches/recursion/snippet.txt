@@ -1,4 +1,4 @@
-let rec doDistance (letters1: char list) (letters2: char list) (distance: int): Option<int> =
+let rec doDistance (letters1: char list) (letters2: char list) (distance: int): int option =
     match letters1, letters2 with
     | [], [] -> Some distance
     | [], _ -> None

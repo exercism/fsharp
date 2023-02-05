@@ -5,7 +5,7 @@ The key to this exercise is to iterate over two strings sequentially and to retu
 ## Approach: zip
 
 ```fsharp
-let distance (strand1: string) (strand2: string): Option<int> =
+let distance (strand1: string) (strand2: string): int option =
     if strand1.Length <> strand2.Length then
         None
     else
@@ -21,15 +21,15 @@ For more information, check the [zip approach][approach-zip].
 ## Approach: recursion
 
 ```fsharp
-let rec private doDistance (letters1: char list) (letters2: char list) (distance: int): Option<int> =
-    match letters1, letters2 with
-    | [], [] -> Some distance
-    | [], _ -> None
-    | _, [] -> None
-    | hd1 :: tail1, hd2 :: tail2 when hd1 <> hd2 -> doDistance tail1 tail2 (distance + 1)
-    | _ :: tail1, _ :: tail2 -> doDistance tail1 tail2 distance
+let distance (strand1: string) (strand2: string): int option =
+    let rec doDistance (letters1: char list) (letters2: char list) (distance: int): int option =
+        match letters1, letters2 with
+        | [], [] -> Some distance
+        | [], _ -> None
+        | _, [] -> None
+        | hd1 :: tail1, hd2 :: tail2 when hd1 <> hd2 -> doDistance tail1 tail2 (distance + 1)
+        | _ :: tail1, _ :: tail2 -> doDistance tail1 tail2 distance
 
-let distance (strand1: string) (strand2: string): Option<int> =
     doDistance (Seq.toList strand1) (Seq.toList strand2) 0
 ```
 
