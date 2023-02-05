@@ -1,0 +1,28 @@
+{
+  "introduction": {
+    "authors": ["erikschierboom"]
+  },
+  "approaches": [
+    {
+      "uuid": "69d67303-51bb-4873-9d2a-5c6cfe518464",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Use recursion to translate the codons to proteins.",
+      "authors": ["erikschierboom"]
+    },
+    {
+      "uuid": "a992dcdf-4a62-4aa4-a9c8-e06076b1048d",
+      "slug": "unfold",
+      "title": "Unfold",
+      "blurb": "Use `Seq.unfold` to translate the codons to proteins",
+      "authors": ["erikschierboom"]
+    },
+    {
+      "uuid": "feaa8da8-6fb9-4711-8dc9-aca974a1845f",
+      "slug": "seq-module",
+      "title": "Seq module",
+      "blurb": "Use functions from the Seq module to translate the codons to proteins",
+      "authors": ["erikschierboom"]
+    }
+  ]
+}

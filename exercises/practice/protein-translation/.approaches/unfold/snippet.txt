@@ -1,0 +1,8 @@
+match codons[0..2] with
+| "AUG" ->                         Some ("Methionine",    codons[3..])
+| "UUC" | "UUU" ->                 Some ("Phenylalanine", codons[3..])
+| "UUA" | "UUG" ->                 Some ("Leucine",       codons[3..])
+| "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine",        codons[3..])
+| "UAU" | "UAC" ->                 Some ("Tyrosine",      codons[3..])
+| "UGU" | "UGC" ->                 Some ("Cysteine",      codons[3..])
+| "UAA" | "UAG" | "UGA" | "" ->    none
