@@ -3,28 +3,28 @@
 ```fsharp
 module Hamming
 
-let rec private doDistance (letters1: char list) (letters2: char list) (distance: int): Option<int> =
-    match letters1, letters2 with
-    | [], [] -> Some distance
-    | [], _ -> None
-    | _, [] -> None
-    | head1 :: tail1, head2 :: tail2 when head1 <> head2 -> doDistance tail1 tail2 (distance + 1)
-    | _ :: tail1, _ :: tail2 -> doDistance tail1 tail2 distance
+let distance (strand1: string) (strand2: string): int option =
+    let rec doDistance (letters1: char list) (letters2: char list) (distance: int): int option =
+        match letters1, letters2 with
+        | [], [] -> Some distance
+        | [], _ -> None
+        | _, [] -> None
+        | head1 :: tail1, head2 :: tail2 when head1 <> head2 -> doDistance tail1 tail2 (distance + 1)
+        | _ :: tail1, _ :: tail2 -> doDistance tail1 tail2 distance
 
-let distance (strand1: string) (strand2: string): Option<int> =
     doDistance (Seq.toList strand1) (Seq.toList strand2) 0
 ```
 
 To use (tail call) recursion to calculate the distance, we'll introduce a helper function: `doDistance`.
+We define this function within the `distance` function (also known as a _nested_ function), but it could just as well have been defined outside the `distance` function.
+
+```fsharp
+let rec doDistance (letters1: char list) (letters2: char list) (distance: int): int option
+```
+
 This function takes the remaining letters for both strands as a `char list`, which means that we'll be able to pattern match on it.
 Besides these two lists, we'll also take an _accumulator_ parameter: `distance`, of type `int`.
 This parameter represents the current distance and is updated between the recursive function calls until we're done processing, at which point it will represent the total distance.
-
-Our function definition looks as follows:
-
-```fsharp
-let rec private doDistance (letters1: char list) (letters2: char list) (distance: int): Option<int> =
-```
 
 ```exercism/note
 To allow a function to recursively call itself, the `rec` modified must be added.
@@ -73,8 +73,7 @@ The final step is to call our recursive helper function.
 We'll use [`Seq.toList`][seq.tolist] to convert the string to `char list`s, and pass in an initial distance of `0`:
 
 ```fsharp
-let distance (strand1: string) (strand2: string): Option<int> =
-    doDistance (Seq.toList strand1) (Seq.toList strand2) 0
+doDistance (Seq.toList strand1) (Seq.toList strand2) 0
 ```
 
 And with that, we have a working, tail recursive implementation!
