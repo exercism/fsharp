@@ -1,19 +1,17 @@
 # Sequence expression
 
 ```fsharp
-module CollatzConjecture
+let steps (number: int): int option =
+    let rec collatzSequence (current: int): int seq =
+        seq {
+            if current > 1 then
+                yield current
+                if current % 2 = 0 then
+                    yield! collatzSequence (current / 2)
+                else
+                    yield! collatzSequence (current * 3 + 1)
+        }
 
-let rec private collatzSequence current =
-    seq {
-        if current > 1 then
-            yield current
-            if current % 2 = 0 then
-                yield! collatzSequence (current / 2)
-            else
-                yield! collatzSequence (current * 3 + 1)
-    }
-
-let steps number =
     if number < 1 then None
     else collatzSequence number |> Seq.length |> Some
 ```
@@ -29,7 +27,7 @@ You start with the `seq` keyword and its logic is written between curly braces.
 This (admittedly rather silly) sequence expression will return the first primes:
 
 ```fsharp
-let firstPrimes () =
+let firstPrimes (): int seq =
     seq {
         yield 2
         yield 3
@@ -44,7 +42,7 @@ This will return a sequence contains `2`, `3` and `5` (in that order).
 Whilst `yield` only ever returns one value, you can also return a _sequence_ of values via `yield!`
 
 ```fsharp
-let firstPrimes () =
+let firstPrimes (): int seq =
     seq {
         yield 2
         yield! [3; 5]
@@ -58,7 +56,7 @@ This will, once again, return a sequence contains `2`, `3` and `5` (in that orde
 You can also use `if` expressions within sequence expressions:
 
 ```fsharp
-let greaterThanTen n =
+let greaterThanTen (n: int): int seq =
     seq {
         if n > 10
             yield n
@@ -73,7 +71,7 @@ Sequence expressions can also be recursive, meaning they can call themselves.
 Here is an function that generates an (infinite) sequence of all even numbers:
 
 ```fsharp
-let rec evenNumbers current =
+let rec evenNumbers (current: int): int seq =
     seq {
         yield current
         yield! evenNumbers (current + 2)
@@ -85,7 +83,7 @@ let rec evenNumbers current =
 Now that we know how sequence expressions work, let's use them to generate our collatz sequence:
 
 ```fsharp
-let rec private collatzSequence current =
+let rec private collatzSequence (current: int): int seq =
     seq {
         if current > 1 then
             yield current
@@ -143,7 +141,7 @@ else
 Let's make use of our `collatzSequence` function within the `steps` function:
 
 ```fsharp
-let steps number =
+let steps (number: int): int option =
     if number < 1 then None
     else collatzSequence number |> Seq.length |> Some
 ```
@@ -170,8 +168,8 @@ It's also possible to make the `collatzSequence` function a nested function of t
 This is not unreasonable, as there is little going on in the `steps` function.
 
 ```fsharp
-let steps number =
-    let collatzSequence current =
+let steps (number: int): int option =
+    let rec collatzSequence (current: int): int seq =
         seq {
             if current > 1 then
                 yield current

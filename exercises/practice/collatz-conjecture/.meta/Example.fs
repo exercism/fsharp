@@ -1,6 +1,6 @@
 module CollatzConjecture
 
-let steps number =  
+let steps (number: int): int option =  
     let rec helper count current =
         match current with 
         | _ when current < 1 -> 

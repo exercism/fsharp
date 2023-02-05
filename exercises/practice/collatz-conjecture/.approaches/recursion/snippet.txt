@@ -1,5 +1,5 @@
-let steps number =
-    let rec doSteps current numberOfSteps =
+let steps (number: int): int option =
+    let rec doSteps (current: int) (numberOfSteps: int) =
         if current < 1 then None
         elif current = 1 then Some numberOfSteps
         elif current % 2 = 0 then doSteps (current / 2)  (numberOfSteps + 1)

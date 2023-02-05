@@ -1,20 +1,18 @@
 # Unfold
 
 ```fsharp
-module CollatzConjecture
+let steps (number: int): int option =
+    let collatzSequence (number: int): int seq =
+        Seq.unfold (fun current ->
+            if current = 1 then
+                None
+            elif current % 2 = 0 then
+                Some (current, current / 2)
+            else
+                Some (current, current * 3  + 1)
+            )
+            number
 
-let private collatzSequence number =
-    Seq.unfold (fun current ->
-        if current = 1 then
-            None
-        elif current % 2 = 0 then
-            Some (current, current / 2)
-        else
-            Some (current, current * 3  + 1)
-        )
-        number
-
-let steps number =
     if number < 1 then None
     else collatzSequence number |> Seq.length |> Some
 ```
@@ -104,7 +102,7 @@ You can see that we're slowly building up the return values, returning them once
 Let's make use of our `collatzSequence` function within the `steps` function:
 
 ```fsharp
-let steps number =
+let steps (number: int): int option =
     if number < 1 then None
     else collatzSequence number |> Seq.length |> Some
 ```
@@ -131,8 +129,8 @@ It's also possible to make the `collatzSequence` function a nested function of t
 This is not unreasonable, as there is little going on in the `steps` function.
 
 ```fsharp
-let steps number =
-    let collatzSequence number =
+let steps (number: int): int option =
+    let collatzSequence (number: int): int seq =
         Seq.unfold (fun current ->
             if current = 1 then
                 None
@@ -149,10 +147,10 @@ let steps number =
 
 ## Inline collatz sequence
 
-It is not unreasonable to inline the `collatzSequence` function:
+It is also not unreasonable to inline the `collatzSequence` function:
 
 ```fsharp
-let steps number =
+let steps (number: int): int option =
     if number < 1 then
         None
     else
