@@ -1,0 +1,8 @@
+let move (instructions: string) (robot: Robot): Robot =
+    let doMove (robot: Robot) (instruction: char): Robot =
+        match instruction with
+        | 'L' -> turnLeft robot
+        | 'R' -> turnRight robot
+        | 'A' -> advance robot
+
+    Seq.fold doMove robot instructions
