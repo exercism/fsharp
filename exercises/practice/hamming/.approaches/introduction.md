@@ -40,6 +40,7 @@ For more information, check the [recursion approach][approach-recursion].
 
 Both approaches are equally valid, although the recursion one is more verbose, so which one to choose is basically up to personal preference.
 
-[approach-recursion]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/recursion[approach-zip]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/zip
+[approach-recursion]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/recursion
+[approach-zip]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/zip
 [options]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/options
 [seq.zip]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#zip
