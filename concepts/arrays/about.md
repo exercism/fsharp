@@ -18,10 +18,10 @@ Elements can be assigned to an array or retrieved from it [using an index][array
 let numbers = [| 2; 3; 5 |]
 
 // Update value in array
-numbers.[2] <- 9
+numbers[2] <- 9
 
 // Read value from array
-numbers.[2]
+numbers[2]
 // => 9
 ```
 
