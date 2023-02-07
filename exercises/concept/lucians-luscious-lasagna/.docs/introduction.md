@@ -1,5 +1,7 @@
 # Introduction
 
+## Basics
+
 In F#, assigning a value to a name is referred to as a _binding_. Bindings are immutable, which makes them similar to constants in other languages. As F# is a statically-typed language, each binding has a type at compile-time.
 
 Bindings are defined using the `let` keyword. Specifying a binding's type is optional for most bindings, as F#'s _type inference_ can usually infer the type based on their value. A binding looks like this:
@@ -36,7 +38,7 @@ Bindings in F# can only be used _after_ they have been defined. Using a binding 
 
 ```fsharp
 // Compile error as the add binding has not yet been defined
-// let seven = add 3 + 4
+// let seven = add 3 4
 
 let add x y = x + y
 ```
