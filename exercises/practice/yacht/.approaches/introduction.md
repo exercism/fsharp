@@ -4,7 +4,7 @@ The key to this exercise is to see if a list of dice matches a specific pattern.
 
 ## General guidance
 
-- Consider sorting the dice to make pattern matching simpler
+- Consider sorting the dice to simplify pattern matching
 - Consider the trade-off between using a [discriminated union vs an enum type][enum-types]
 
 ## Approach: `List` module
@@ -60,16 +60,16 @@ let score (category: Category) (dice: Die list): int =
     | Fours,          SingleThrow Die.Four count  -> count * 4
     | Fives,          SingleThrow Die.Five count  -> count * 5
     | Sixes,          SingleThrow Die.Six count   -> count * 6
-    | FullHouse,      FullHouseThrow _            -> List.sumBy dieScore dice
+    | FullHouse,      FullHouseThrow              -> List.sumBy dieScore dice
     | FourOfAKind,    FourOfAKindThrow die        -> dieScore die * 4
-    | LittleStraight, LittleStraightThrow _       -> 30
-    | BigStraight,    BigStraightThrow _          -> 30
-    | Yacht,          YachtThrow _                -> 50
-    | Choice,         ChoiceThrow _               -> List.sumBy dieScore dice
+    | LittleStraight, LittleStraightThrow         -> 30
+    | BigStraight,    BigStraightThrow            -> 30
+    | Yacht,          YachtThrow                  -> 50
+    | Choice,         _                           -> List.sumBy dieScore dice
     | _,              _                           -> 0
 ```
 
-This approach uses [active patterns][active-patterns] to match dice to categories and their score.
+This approach uses [active patterns][active-patterns] to match dice to categories and then we can score them.
 For more information, check the [Active Patterns approach][approach-active-patterns].
 
 ## Which approach to use?
