@@ -14,7 +14,7 @@
       "uuid": "c6120ef0-636b-4be9-9779-60b6202a077b",
       "slug": "list-module",
       "title": "List module",
-      "blurb": "Use functions from the List module (combined with pattern matching) to score the dice.",
+      "blurb": "Use functions from the List module to score the dice.",
       "authors": ["erikschierboom"]
     }
   ]

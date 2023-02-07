@@ -141,21 +141,21 @@ type Die =
 We've chosen not to do this, as members are more awkward to use in higher-order functions, which we rely on a lot in this approach.
 ````
 
-##
+## Active patterns
 
-## Scoring categories
-
-In our approach, we'll define active patterns for each hand.
-Active patterns are used in pattern matching and can be used to categorize input and/or extract data from input.
-We'll see what that looks like shortly.
+[Active patterns][active-patterns] are used in pattern matching and can be used to categorize input and/or extract data from input.
 
 There are two types of active patterns:
 
 - Regular active patterns: these patterns will match any input
 - Partial active patterns: these pattern will match some inputs, but not all
 
-In this approach, we define a combination of regular and partial active patterns.
+## Scoring categories
+
+In this approach, we'll define active patterns for the different categories.
 The idea is that if we're try to match category named `A`, then we have a corresponding active pattern named `AThrow` that will check if the dice match the category.
+
+We'll use a combination of regular and partial active patterns.
 
 Note that the active patterns do _not_ calculate scores, they're just there to help match input data.
 This better separates responsiblities and opens up the active patterns for usage elsewhere.
@@ -168,7 +168,9 @@ let score (category: Category) (dice: Die list): int =
     | Yacht, YachtThrow -> 50
 ```
 
-We'll now describe how we score each category individually.
+You can see that we're using regular pattern matching on the `category` parameter, which is a discriminated union.
+However, we're _also_ pattern matching on the `dice` using a custom `YachtThrow` (active) pattern.
+Let's start defining these active patterns!
 
 ### Single score
 
@@ -302,3 +304,4 @@ Our implementation now passes all the tests.
 [list.sumby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sumBy
 [list.sort]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sort
 [list.countby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#countBy
+[active-patterns]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns
