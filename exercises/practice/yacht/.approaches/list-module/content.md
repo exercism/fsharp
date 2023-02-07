@@ -188,7 +188,7 @@ let private fullHouseScore (dice: Die list): int =
     | _ -> 0
 ```
 
-We can simplify things a bit by sorting the results, ordering by the second value (the count) using `List.sortBy`.
+We can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
 This allows us to merge the second and third pattern:
 
 ```fsharp
@@ -216,7 +216,7 @@ let private fourOfAKindScore (dice: Die list): int =
     | _ -> 0
 ```
 
-We can simplify things a bit by sorting the results, ordering by the second value (the count) using `List.sortBy`.
+Once again, we can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
 This allows us to merge the second and third pattern:
 
 ```fsharp
@@ -325,3 +325,4 @@ Our implementation now passes all the tests.
 [list.countby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#countBy
 [list.sortby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sortBy
 [id]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#id
+[snd]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#snd

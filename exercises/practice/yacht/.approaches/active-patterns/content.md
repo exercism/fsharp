@@ -40,8 +40,8 @@ let private (|SingleThrow|) (target: Die) (dice: Die list): int =
     |> List.length
 
 let private (|FullHouseThrow|_|) (dice: Die list): unit option =
-    match List.countBy id dice |> List.sort with
-    | [(_, 2); (_, 3)] | [(_, 3); (_, 2)] -> Some ()
+    match List.countBy id dice |> List.sortBy snd with
+    | [(_, 2); (_, 3)] -> Some ()
     | _ -> None
 
 let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
@@ -246,20 +246,58 @@ match category, dice with
 
 ### Full house score
 
+A four of a kind score contains one dice at least four times.
+We can use [`List.countBy`][list.countby] to return a list of pairs where the first value is the unique value and the second value is the number times it occurred in the list.
+
+Then we pattern match the result of the `List.countBy` call with the two possible full house patterns:
+
+1. The dice contain two numbers, and the first number occurs twice and the second number thrice times: `[(_, 2); (_, 3)]`
+2. The dice contain two numbers, and the first number occurs thrice and the second number twice times: `[(_, 3); (_, 2)]`
+
 ```fsharp
 let private (|FullHouseThrow|_|) (dice: Die list): unit option =
-    match List.countBy id dice |> List.sort with
+    match List.countBy id dice with
     | [(_, 2); (_, 3)] | [(_, 3); (_, 2)] -> Some ()
     | _ -> None
 ```
 
+We can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
+This allows us to merge the second and third pattern:
+
+```fsharp
+let private (|FullHouseThrow|_|) (dice: Die list): unit option =
+    match List.countBy id dice |> List.sortBy snd with
+    | [(_, 2); (_, 3)] -> Some ()
+    | _ -> None
+```
+
 ### Four of a kind score
+
+A four of a kind score contains one dice at least four times.
+We can use [`List.countBy`][list.countby] to return a list of pairs where the first value is the unique value and the second value is the number times it occurred in the list.
+
+Then we pattern match the result of the `List.countBy` call with the three possible four of a kind patterns:
+
+1. The dice contain just one number and it occurs five times: `[(number, 5)]`
+2. The dice contain two numbers, and the first number occurs four times: `[(number, 4); _]`
+3. The dice contain two numbers, and the second number occurs four times: `[_; (number, 4)`
 
 ```fsharp
 let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
     match List.countBy id dice with
     | [(number, 5)] | [(number, 4) | [_; (number, 4)]; _] -> Some number
     | _ -> None
+```
+
+Once again, we can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
+This allows us to merge the second and third pattern:
+
+```fsharp
+let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
+    match List.countBy id dice |> List.sortBy snd with
+    | [(number, 5)] | [(number, 4) | [_; (number, 4)]; _] -> Some number
+    | _ -> None
+
 ```
 
 ### Little straight score
@@ -366,6 +404,8 @@ Quite nice!
 [list.length]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#length
 [list.sumby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sumBy
 [list.sort]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sort
+[list.sortby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sortBy
 [list.countby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#countBy
 [active-patterns]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns
 [id]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#id
+[snd]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#snd
