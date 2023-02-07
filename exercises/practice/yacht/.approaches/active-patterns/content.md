@@ -212,11 +212,16 @@ match category, dice with
 | Ones, OnesThrow count -> count
 ```
 
-This is saying: if the category is `One` and the `OnesThrow` pattern matches (which it will always do), use the count returned by the `OnesThrow` pattern as the score (no multiplication needed as `count * 1` is equal to `count`).
+This is saying: if the category is `Ones` and the dice match the `OnesThrow` pattern (which they will always do), use the count returned by the `OnesThrow` pattern as the score (no multiplication needed as `count * 1` is equal to `count`).
 
 We could continue defining similar patterns for the other five dice, but we can do something much nicer: parameterizing our active pattern.
 
-##### Converting to a parameterize active pattern
+##### Converting to a parameterized active pattern
+
+Active patterns, like regular functions, can have parameters besides the value that is being matched on.
+The only constraint is that the value to match on must be the last parameter.
+
+To make our `OnesThrow` active pattern more generic, let's rename it to `SingleThrow` (as in: single dice throw) and add a parameter which is the target die:
 
 ```fsharp
 let private (|SingleThrow|) (target: Die) (dice: Die list): int =
@@ -225,8 +230,9 @@ let private (|SingleThrow|) (target: Die) (dice: Die list): int =
     |> List.length
 ```
 
-We do this by first using [`List.filter`][list.filter] to filter the dice matching the target die.
-Then, we sum those dice via [`List.sumBy`][list.sumby], passing the `dieScore` function to convert the `Die` values to `int` values (allowing them to be "summed"):
+The only thing we then need to change is to replace `Die.One` with our `target` parameter in the `List.filter` call's lambda.
+
+We can do use this pattern to score the six single dice categories:
 
 ```fsharp
 match category, dice with
