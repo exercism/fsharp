@@ -14,7 +14,7 @@
       "uuid": "a992dcdf-4a62-4aa4-a9c8-e06076b1048d",
       "slug": "unfold",
       "title": "Unfold",
-      "blurb": "Use `Seq.unfold` to translate the codons to proteins",
+      "blurb": "Use Seq.unfold to translate the codons to proteins",
       "authors": ["erikschierboom"]
     },
     {
