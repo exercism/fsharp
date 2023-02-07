@@ -247,19 +247,19 @@ match category, dice with
 ### Full house score
 
 ```fsharp
-let private fullHouseScore (dice: Die list): int =
-    match List.countBy id dice with
-    | [(_, 2); (_, 3)] | [(_, 3); (_, 2)] -> List.sumBy dieScore dice
-    | _ -> 0
+let private (|FullHouseThrow|_|) (dice: Die list): unit option =
+    match List.countBy id dice |> List.sort with
+    | [(_, 2); (_, 3)] | [(_, 3); (_, 2)] -> Some ()
+    | _ -> None
 ```
 
 ### Four of a kind score
 
 ```fsharp
-let private fourOfAKindScore (dice: Die list): int =
+let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
     match List.countBy id dice with
-    | [(number, 5)] | [_; (number, 4)] | [(number, 4); _] -> dieScore number * 4
-    | _ -> 0
+    | [(number, 5)] | [_; (number, 4)] | [(number, 4); _] -> Some number
+    | _ -> None
 ```
 
 ### Little straight score
@@ -268,10 +268,10 @@ A little straight contains the dice with face values 1, 2, 3, 4 and 5.
 This can be directly translated into pattern matching:
 
 ```fsharp
-let private littleStraightScore (dice: Die list): int =
+let private (|LittleStraightThrow|_|) (dice: Die list): unit option =
     match List.sort dice with
-    | [Die.One; Die.Two; Die.Three; Die.Four; Die.Five] -> 30
-    | _ -> 0
+    | [Die.One; Die.Two; Die.Three; Die.Four; Die.Five] -> Some ()
+    | _ -> None
 ```
 
 Note that we do need to call [`List.sort`][list.sort] first, as the dice aren't necessarily in order and pattern matching is sensitive to the ordering.
@@ -282,10 +282,10 @@ A big straight contains the dice with face values 2, 3, 4, 5 and 6.
 This can be directly translated into pattern matching:
 
 ```fsharp
-let private bigStraightScore (dice: Die list): int =
+let private (|BigStraightThrow|_|) (dice: Die list): unit option =
     match List.sort dice with
-    | [Die.Two; Die.Three; Die.Four; Die.Five; Die.Six] -> 30
-    | _ -> 0
+    | [Die.Two; Die.Three; Die.Four; Die.Five; Die.Six] -> Some ()
+    | _ -> None
 ```
 
 Once again, we need [`List.sort`][list.sort] to fix the ordering.
@@ -296,10 +296,10 @@ For the yacht category, we need to determine if all dice have the same face.
 We can check this by using [`List.distinct`][list.distinct] to first remove any duplicates, and then use pattern matching to check if there is only one unique die:
 
 ```fsharp
-let private yachtScore (dice: Die list): int =
+let private (|YachtThrow|_|) (dice: Die list): unit option =
     match List.distinct dice with
-    | [_] -> 50
-    | _ -> 0
+    | [_] -> Some ()
+    | _ -> None
 ```
 
 ````exercism/note
@@ -314,43 +314,50 @@ let private yachtScore (dice: Die list): int =
 ### Choice score
 
 Scoring the choice category is simple: we just need to sum all the dice.
-We can do this by once again using [`List.sumBy`][list.sumby] and the `dieScore` function (but this time we don't apply any filtering):
+We therefore don't need to define an active pattern and can just add the following to the `score` function's pattern matching:
 
 ```fsharp
-let private choiceScore (dice: Die list): int = List.sumBy dieScore dice
+| Choice, _ -> List.sumBy dieScore dice
+```
+
+```exercism/note
+We're matching the dice using the wildcard pattern (`_`), which will match any input.
+```
+
+## Handling non-matching dice
+
+So far, we've secretly ignored something quite important: what to do if the dice _don't_ match a category's active pattern!
+
+The solution for this is simple though.
+As dice that don't match the pattern should be scored as zero, we can just add two wildcards at the end of our `score` function and return zero:
+
+```fsharp
+| _, _ -> 0
 ```
 
 ## Putting it all together
 
-Let's put good use of these category scoring functions in our `score` function.
-This function takes two parameters (the category to score for and a list of dice) and returns the score as an `int`:
+Now that we support all categories and handle non-matching dice, let's see what the `score` function looks like:
 
 ```fsharp
-let score (category: Category) (dice: Die list): int
+let score (category: Category) (dice: Die list): int =
+    match category, dice with
+    | Ones,           SingleThrow Die.One count   -> count * 1
+    | Twos,           SingleThrow Die.Two count   -> count * 2
+    | Threes,         SingleThrow Die.Three count -> count * 3
+    | Fours,          SingleThrow Die.Four count  -> count * 4
+    | Fives,          SingleThrow Die.Five count  -> count * 5
+    | Sixes,          SingleThrow Die.Six count   -> count * 6
+    | FullHouse,      FullHouseThrow              -> List.sumBy dieScore dice
+    | FourOfAKind,    FourOfAKindThrow die        -> dieScore die * 4
+    | LittleStraight, LittleStraightThrow         -> 30
+    | BigStraight,    BigStraightThrow            -> 30
+    | Yacht,          YachtThrow                  -> 50
+    | Choice,         _                           -> List.sumBy dieScore dice
+    | _,              _                           -> 0
 ```
 
-Within this function, we'll pattern match on the `category` parameter and call the appropriate category scoring function:
-
-```fsharp
-match category with
-| Ones           -> singleScore Die.One dice
-| Twos           -> singleScore Die.Two dice
-| Threes         -> singleScore Die.Three dice
-| Fours          -> singleScore Die.Four dice
-| Fives          -> singleScore Die.Five dice
-| Sixes          -> singleScore Die.Six dice
-| FullHouse      -> fullHouseScore dice
-| FourOfAKind    -> fourOfAKindScore dice
-| LittleStraight -> littleStraightScore dice
-| BigStraight    -> bigStraightScore dice
-| Yacht          -> yachtScore dice
-| Choice         -> choiceScore dice
-```
-
-Nothing interesting really, except for the fact that the categories for individual dice (`Ones` .. `Sixes`) take an additional parameter: the dice to score for.
-
-And that's it!
-Our implementation now passes all the tests.
+Quite nice!
 
 [enum-types]: https://fsharpforfunandprofit.com/posts/enum-types/
 [list-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html
