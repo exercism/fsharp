@@ -14,7 +14,7 @@
       "uuid": "4f4378ab-082b-429e-9282-3b9caeb4e784",
       "slug": "zip",
       "title": "Zip",
-      "blurb": "Use `Seq.zip` to incrementally calculate the distance",
+      "blurb": "Use Seq.zip to incrementally calculate the distance",
       "authors": ["erikschierboom"]
     }
   ]

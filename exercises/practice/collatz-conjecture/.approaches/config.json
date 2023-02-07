@@ -14,7 +14,7 @@
       "uuid": "6230132e-b9c6-46ac-8dad-27067e85e9cf",
       "slug": "unfold",
       "title": "Unfold",
-      "blurb": "Use `Seq.unfold` to generate the collatz sequence and count the number of steps",
+      "blurb": "Use Seq.unfold to generate the collatz sequence and count the number of steps",
       "authors": ["erikschierboom"]
     },
     {
