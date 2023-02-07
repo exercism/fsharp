@@ -15,7 +15,7 @@ Converting between number types is done through built-in conversion operators. T
 
 ## Conditionals
 
-In this exercise you must conditionally execute logic. The most common way to do this in F# is by using an `if/elif/else` statement:
+The most common way to conditionally execute code in F# is by using an `if/elif/else` expression:
 
 ```fsharp
 if x = 5 then

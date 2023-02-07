@@ -1,5 +1,7 @@
 # Introduction
 
+## Tuples
+
 A tuple is an _immutable_ grouping of unnamed but ordered values.
 Tuples can hold any (or multiple) data type(s) -- including other tuples.
 
@@ -42,7 +44,8 @@ let length2 = snd person
 
 // Option 2: deconstruction
 let (name2, length2) = person
-// => "Mary
+// => name2 = "Jordan"
+// => length2 = 170
 
 // Option 3: pattern matching
 match person with

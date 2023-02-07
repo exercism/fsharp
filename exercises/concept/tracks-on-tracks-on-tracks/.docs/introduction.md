@@ -1,5 +1,7 @@
 # Introduction
 
+## Lists
+
 A `list` in F# is an immutable collection of zero or more values. The values in a list must all have the same type. As lists are immutable, once a list has been constructed, its value can never change. Any functions/operators that appear to modify a list (such as adding an element), will actually return a new list.
 
 Lists can be defined as follows:
@@ -18,7 +20,7 @@ let oneToFour = 1 :: twoToFour
 // => [1; 2; 3; 4]
 ```
 
-F# list is have a _head_ (the first element) and a _tail_ (everything after the first element). The tail of a list is itself a list.
+An F# list has a _head_ (the first element) and a _tail_ (everything after the first element). The tail of a list is itself a list.
 
 Lists are either manipulated by functions and operators defined in the `List` module, or manually using pattern matching using the _list_ and _cons_ patterns:
 
