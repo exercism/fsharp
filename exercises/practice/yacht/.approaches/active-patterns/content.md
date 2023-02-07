@@ -45,8 +45,8 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
     | _ -> None
 
 let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
-    match List.countBy id dice with
-    | [(number, 5)] | [_; (number, 4)] | [(number, 4); _] -> Some number
+    match List.countBy id dice |> List.sortBy snd with
+    | [(number, 5)] | [_; (number, 4)] -> Some number
     | _ -> None
 
 let private (|LittleStraightThrow|_|) (dice: Die list): unit option =
@@ -184,7 +184,7 @@ Therefore, our active pattern can be a regular, non-partial active pattern as it
 
 #### Score ones
 
-Let's start by scoring the one dice (`Die.One`).
+Let's start by scoring the one die (`Die.One`).
 Our active pattern will take the thing we're matching on (the dice) as its sole parameter and return an `int` representing the number of one dice found:
 
 ```fsharp
@@ -258,7 +258,7 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
 ```fsharp
 let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
     match List.countBy id dice with
-    | [(number, 5)] | [_; (number, 4)] | [(number, 4); _] -> Some number
+    | [(number, 5)] | [(number, 4) | [_; (number, 4)]; _] -> Some number
     | _ -> None
 ```
 
@@ -368,3 +368,4 @@ Quite nice!
 [list.sort]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sort
 [list.countby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#countBy
 [active-patterns]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns
+[id]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#id

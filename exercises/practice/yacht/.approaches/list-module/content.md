@@ -40,13 +40,13 @@ let private singleScore (target: Die) (dice: Die list): int =
     |> List.sumBy dieScore
 
 let private fullHouseScore (dice: Die list): int =
-    match List.countBy id dice with
-    | [(_, 2); (_, 3)] | [(_, 3); (_, 2)] -> List.sumBy dieScore dice
+    match List.countBy id dice |> List.sortBy snd with
+    | [(_, 2); (_, 3)] -> List.sumBy dieScore dice
     | _ -> 0
 
 let private fourOfAKindScore (dice: Die list): int =
-    match List.countBy id dice with
-    | [(number, 5)] | [_; (number, 4)] | [(number, 4); _] -> dieScore number * 4
+    match List.countBy id dice |> List.sortBy snd with
+    | [(number, 5)] | [_; (number, 4)] -> dieScore number * 4
     | _ -> 0
 
 let private littleStraightScore (dice: Die list): int =
@@ -173,12 +173,56 @@ let private fullHouseScore (dice: Die list): int =
     | _ -> 0
 ```
 
+A four of a kind score contains one dice at least four times.
+We can use [`List.countBy`][list.countby] to return a list of pairs where the first value is the unique value and the second value is the number times it occurred in the list.
+
+Then we pattern match the result of the `List.countBy` call with the two possible full house patterns:
+
+1. The dice contain two numbers, and the first number occurs twice and the second number thrice times: `[(_, 2); (_, 3)]`
+2. The dice contain two numbers, and the first number occurs thrice and the second number twice times: `[(_, 3); (_, 2)]`
+
+```fsharp
+let private fullHouseScore (dice: Die list): int =
+    match List.countBy id dice with
+    | [(_, 2); (_, 3)] | [(_, 3); (_, 2)] -> List.sumBy dieScore dice
+    | _ -> 0
+```
+
+We can simplify things a bit by sorting the results, ordering by the second value (the count) using `List.sortBy`.
+This allows us to merge the second and third pattern:
+
+```fsharp
+let private fullHouseScore (dice: Die list): int =
+    match List.countBy id dice |> List.sortBy snd with
+    | [(_, 2); (_, 3)] -> List.sumBy dieScore dice
+    | _ -> 0
+```
+
 ### Four of a kind score
+
+A four of a kind score contains one dice at least four times.
+We can use [`List.countBy`][list.countby] to return a list of pairs where the first value is the unique value and the second value is the number times it occurred in the list.
+
+Then we pattern match the result of the `List.countBy` call with the three possible four of a kind patterns:
+
+1. The dice contain just one number and it occurs five times: `[(number, 5)]`
+2. The dice contain two numbers, and the first number occurs four times: `[(number, 4); _]`
+3. The dice contain two numbers, and the second number occurs four times: `[_; (number, 4)`
 
 ```fsharp
 let private fourOfAKindScore (dice: Die list): int =
     match List.countBy id dice with
-    | [(number, 5)] | [_; (number, 4)] | [(number, 4); _] -> dieScore number * 4
+    | [(number, 5)] | [(number, 4); _] | [_; (number, 4)] -> dieScore number * 4
+    | _ -> 0
+```
+
+We can simplify things a bit by sorting the results, ordering by the second value (the count) using `List.sortBy`.
+This allows us to merge the second and third pattern:
+
+```fsharp
+let private fourOfAKindScore (dice: Die list): int =
+    match List.countBy id dice |> List.sortBy snd with
+    | [(number, 5)] | [_; (number, 4)] -> dieScore number * 4
     | _ -> 0
 ```
 
@@ -279,3 +323,5 @@ Our implementation now passes all the tests.
 [list.sumby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sumBy
 [list.sort]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sort
 [list.countby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#countBy
+[list.sortby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sortBy
+[id]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#id
