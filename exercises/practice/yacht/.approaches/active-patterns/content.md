@@ -174,19 +174,68 @@ Let's start defining these active patterns!
 
 ### Single score
 
-To score a single dice, we need to:
+To score a single die, we need to:
 
-1. Find the dice that match the target die
-2. Sum the matching dice
+1. Find the number of dice that match the target die
+2. Multiply the number of matching dice with the die value
+
+With the above steps, the output is also correct when the target die could not be found (zero times any dice value is zero).
+Therefore, our active pattern can be a regular, non-partial active pattern as it will always match the input.
+
+#### Score ones
+
+Let's start by scoring the one dice (`Die.One`).
+Our active pattern will take the thing we're matching on (the dice) as its sole parameter and return an `int` representing the number of one dice found:
+
+```fsharp
+let private (|OnesThrow|) (dice: Die list): int =
+    dice
+    |> List.filter (fun die -> die = Die.One)
+    |> List.length
+```
+
+```exercism/note
+Regular Active patterns functions have their name specified between `(|` and `|)`.
+It is this name that will be used when using the active pattern in pattern matching, so choose carefully.
+```
+
+The implementation is fairly straightword.
+We first filter the dice matching the one dice by using [`List.filter`][list.filter].
+Then, we count those dice via [`List.length`][list.length], which is subsequently returned.
+
+A different way to read this is: to use the `OnesThrow` active pattern, one has to pass it a list of dice and you'll get back their count.
+
+We can now use this pattern in our `score` function:
+
+```fsharp
+match category, dice with
+| Ones, OnesThrow count -> count
+```
+
+This is saying: if the category is `One` and the `OnesThrow` pattern matches (which it will always do), use the count returned by the `OnesThrow` pattern as the score (no multiplication needed as `count * 1` is equal to `count`).
+
+We could continue defining similar patterns for the other five dice, but we can do something much nicer: parameterizing our active pattern.
+
+##### Converting to a parameterize active pattern
+
+```fsharp
+let private (|SingleThrow|) (target: Die) (dice: Die list): int =
+    dice
+    |> List.filter (fun die -> die = target)
+    |> List.length
+```
 
 We do this by first using [`List.filter`][list.filter] to filter the dice matching the target die.
 Then, we sum those dice via [`List.sumBy`][list.sumby], passing the `dieScore` function to convert the `Die` values to `int` values (allowing them to be "summed"):
 
 ```fsharp
-let private singleScore (target: Die) (dice: Die list): int =
-    dice
-    |> List.filter (fun die -> die = target)
-    |> List.sumBy dieScore
+match category, dice with
+| Ones,    SingleThrow Die.One count   -> count * 1
+| Twos,    SingleThrow Die.Two count   -> count * 2
+| Threes,  SingleThrow Die.Three count -> count * 3
+| Fours,   SingleThrow Die.Four count  -> count * 4
+| Fives,   SingleThrow Die.Five count  -> count * 5
+| Sixes,   SingleThrow Die.Six count   -> count * 6
 ```
 
 ### Full house score
@@ -301,6 +350,7 @@ Our implementation now passes all the tests.
 [list-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html
 [list.distinct]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#distinct
 [list.filter]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#filter
+[list.length]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#length
 [list.sumby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sumBy
 [list.sort]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#sort
 [list.countby]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#countBy
