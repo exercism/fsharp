@@ -1,8 +1,9 @@
 namespace CodeFenceChecker
 
-
 open System.IO
 open MAB.DotIgnore
+open Markdig
+open Markdig.Syntax
 open Microsoft.Extensions.FileSystemGlobbing
 open Microsoft.Extensions.FileSystemGlobbing.Abstractions
 
@@ -17,13 +18,17 @@ module Program =
             |> Option.map (fun fileInfo -> IgnoreList(fileInfo.FullName))
             |> Option.defaultValue (IgnoreList(Seq.empty))
         
-        let matcher = Matcher().AddInclude("**/*.md")
-        let matches =
-            matcher.Execute(DirectoryInfoWrapper(directory)).Files
-            |> Seq.map (fun matchedFile -> FileInfo(matchedFile.Path))
-            |> Seq.filter (fun matchedFile -> ignoreList.IsIgnored(matchedFile) |> not)
+        let markdownFiles =
+            Matcher().AddInclude("**/*.md").Execute(DirectoryInfoWrapper(directory)).Files
+            |> Seq.filter (fun matchedFile -> not (ignoreList.IsIgnored(matchedFile.Path, pathIsDirectory = false)))
             |> Seq.toList
 
-        printfn "%A" matches
+        for markdownFile in markdownFiles do        
+            let markdown = Markdown.Parse(File.ReadAllText(Path.Combine(directory.FullName, markdownFile.Path)))            
+            let fencedCodeBlocks = markdown.Descendants<FencedCodeBlock>()
+            for fencedCodeBlock in fencedCodeBlocks do
+                if fencedCodeBlock.Info = "fsharp" then
+                    // fencedCodeBlock.Lines
+                    printfn "%A" fencedCodeBlock
 
         0

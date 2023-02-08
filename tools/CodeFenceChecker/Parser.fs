@@ -4,7 +4,6 @@ open FSharp.Compiler.Diagnostics
 
 [<AutoOpen>]
 module Parser =
-
     let private collectErrors (inErrs: FSharpDiagnostic []) (outErrs: string []) (expr: string) (msg: string) =
         inErrs
         |> Array.filter (fun e -> e.Severity = FSharpDiagnosticSeverity.Error)
