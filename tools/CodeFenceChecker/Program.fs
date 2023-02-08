@@ -1,38 +1,29 @@
 namespace CodeFenceChecker
 
+
+open System.IO
+open MAB.DotIgnore
+open Microsoft.Extensions.FileSystemGlobbing
+open Microsoft.Extensions.FileSystemGlobbing.Abstractions
+
 module Program =
     [<EntryPoint>]
     let main argv =
-        let mutable exitStatus = 0
-        let mutable errors = Array.empty
+        let directory = argv |> Array.tryHead |> Option.defaultWith Directory.GetCurrentDirectory |> DirectoryInfo
 
-        try
-            let matchArgSwitch (a: string) = a.ToLower().Equals("-not")
+        let ignoreList =
+            directory.EnumerateFiles(".codefenceignore", SearchOption.TopDirectoryOnly)
+            |> Seq.tryHead
+            |> Option.map (fun fileInfo -> IgnoreList(fileInfo.FullName))
+            |> Option.defaultValue (IgnoreList(Seq.empty))
+        
+        let matcher = Matcher().AddInclude("**/*.md")
+        let matches =
+            matcher.Execute(DirectoryInfoWrapper(directory)).Files
+            |> Seq.map (fun matchedFile -> FileInfo(matchedFile.Path))
+            |> Seq.filter (fun matchedFile -> ignoreList.IsIgnored(matchedFile) |> not)
+            |> Seq.toList
 
-            // exclude paths after the "-Not" switch
-            let included = argv |> Array.takeWhile (not << matchArgSwitch)
+        printfn "%A" ignoreList
 
-            // get the list of excluded paths, if any
-            let ignored =
-                argv
-                |> Array.tryFindIndex matchArgSwitch
-                |> function
-                | Some i -> Array.splitAt i argv |> snd
-                | None -> Array.except included argv
-                |> Array.tail // remove the "-Not" switch
-                |> Array.map (fun (path: string) -> path.Replace('/', sep))
-
-            included
-            |> Array.iter (fun dir -> errors <- parse (collectLines dir ignored) |> Array.append errors)
-
-        with exc ->
-            printfn $"{exc.GetType().Name}: {exc.Message}"
-            exitStatus <- 1
-
-        if (not << Array.isEmpty) errors then
-            for e in errors do
-                eprintfn $"{nl}{e}"
-
-            exitStatus <- 1
-
-        exitStatus
+        0
