@@ -144,7 +144,7 @@ We've chosen not to do this, as members are more awkward to use in higher-order 
 
 ## Scoring categories
 
-In our approach, we'll have a separate function for each type of throw.
+In our approach, we'll have a separate function to score each category.
 These functions will then later on be called in the `score` function, but first, let's go through the scoring functions one by one.
 
 ### Single score
@@ -154,7 +154,7 @@ To score a single dice, we need to:
 1. Find the dice that match the target die
 2. Sum the matching dice
 
-We do this by first using [`List.filter`][list.filter] to filter the dice matching the target die.
+We do this by first using [`List.filter`][list.filter] to filter the dice matching the target die (which is supplied as a parameter).
 Then, we sum those dice via [`List.sumBy`][list.sumby], passing the `dieScore` function to convert the `Die` values to `int` values (allowing them to be "summed"):
 
 ```fsharp
@@ -188,6 +188,8 @@ let private fullHouseScore (dice: Die list): int =
     | _ -> 0
 ```
 
+#### Simplifying
+
 We can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
 This allows us to merge the second and third pattern:
 
@@ -201,9 +203,7 @@ let private fullHouseScore (dice: Die list): int =
 ### Four of a kind score
 
 A four of a kind score contains one dice at least four times.
-We can use [`List.countBy`][list.countby] to return a list of pairs where the first value is the unique value and the second value is the number times it occurred in the list.
-
-Then we pattern match the result of the `List.countBy` call with the three possible four of a kind patterns:
+We'll use the same strategy we just used for a full house, but this time looking for the following count patterns:
 
 1. The dice contain just one number and it occurs five times: `[(number, 5)]`
 2. The dice contain two numbers, and the first number occurs four times: `[(number, 4); _]`
@@ -215,6 +215,8 @@ let private fourOfAKindScore (dice: Die list): int =
     | [(number, 5)] | [(number, 4); _] | [_; (number, 4)] -> dieScore number * 4
     | _ -> 0
 ```
+
+#### Simplifying
 
 Once again, we can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
 This allows us to merge the second and third pattern:
@@ -287,7 +289,7 @@ let private choiceScore (dice: Die list): int = List.sumBy dieScore dice
 ## Putting it all together
 
 Let's put good use of these category scoring functions in our `score` function.
-This function takes two parameters (the category to score for and a list of dice) and returns the score as an `int`:
+This function takes two parameters (the score category and a list of dice) and returns the score as an `int`:
 
 ```fsharp
 let score (category: Category) (dice: Die list): int
@@ -311,7 +313,7 @@ match category with
 | Choice         -> choiceScore dice
 ```
 
-Nothing interesting really, except for the fact that the categories for individual dice (`Ones` .. `Sixes`) take an additional parameter: the dice to score for.
+Nothing interesting really, except for the fact that the categories for individual dice (`Ones` .. `Sixes`) get passed the the dice to score for as an additional argument.
 
 And that's it!
 Our implementation now passes all the tests.

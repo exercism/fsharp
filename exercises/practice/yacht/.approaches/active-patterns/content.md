@@ -184,35 +184,36 @@ Therefore, our active pattern can be a regular, non-partial active pattern as it
 
 #### Score ones
 
-Let's start by scoring the one die (`Die.One`).
-Our active pattern will take the thing we're matching on (the dice) as its sole parameter and return an `int` representing the number of one dice found:
+Let's start by scoring the six die (`Die.Six`).
+Our active pattern will take the thing we're matching on (the dice) as its sole parameter.
+It wil return an `int` representing the number of six dice found, as the `score` function will require that information to calculate the score:
 
 ```fsharp
-let private (|OnesThrow|) (dice: Die list): int =
+let private (|SixesThrow|) (dice: Die list): int =
     dice
-    |> List.filter (fun die -> die = Die.One)
+    |> List.filter (fun die -> die = Die.Six)
     |> List.length
 ```
 
 ```exercism/note
-Regular Active patterns functions have their name specified between `(|` and `|)`.
-It is this name that will be used when using the active pattern in pattern matching, so choose carefully.
+Active patterns functions have their name specified between `(|` and `|)`.
+This name will be used it in pattern matching, so choose the name accordingly.
 ```
 
-The implementation is fairly straightword.
-We first filter the dice matching the one dice by using [`List.filter`][list.filter].
+The implementation is fairly straightforward.
+We first filter the dice matching the six dice by using [`List.filter`][list.filter].
 Then, we count those dice via [`List.length`][list.length], which is subsequently returned.
 
-A different way to read this is: to use the `OnesThrow` active pattern, one has to pass it a list of dice and you'll get back their count.
+A different way to read this is: to use the `SixesThrow` active pattern, one has to pass it a list of dice and you'll get back their count.
 
 We can now use this pattern in our `score` function:
 
 ```fsharp
 match category, dice with
-| Ones, OnesThrow count -> count
+| Sixes, SixesThrow count -> count * 6
 ```
 
-This is saying: if the category is `Ones` and the dice match the `OnesThrow` pattern (which they will always do), use the count returned by the `OnesThrow` pattern as the score (no multiplication needed as `count * 1` is equal to `count`).
+This is saying: if the category is `Sixes` _and_ the dice match the `SixesThrow` pattern (which they will always do), multiply the count (as returned by the `SixesThrow` pattern) by six to determine score.
 
 We could continue defining similar patterns for the other five dice, but we can do something much nicer: parameterizing our active pattern.
 
@@ -221,7 +222,7 @@ We could continue defining similar patterns for the other five dice, but we can 
 Active patterns, like regular functions, can have parameters besides the value that is being matched on.
 The only constraint is that the value to match on must be the last parameter.
 
-To make our `OnesThrow` active pattern more generic, let's rename it to `SingleThrow` (as in: single dice throw) and add a parameter which is the target die:
+To make our `SixesThrow` active pattern more generic, let's rename it to `SingleThrow` (as in: single dice throw) and add a parameter which is the target die:
 
 ```fsharp
 let private (|SingleThrow|) (target: Die) (dice: Die list): int =
@@ -230,7 +231,7 @@ let private (|SingleThrow|) (target: Die) (dice: Die list): int =
     |> List.length
 ```
 
-The only thing we then need to change is to replace `Die.One` with our `target` parameter in the `List.filter` call's lambda.
+The only thing we then need to change is to replace `Die.Six` with our `target` parameter in the `List.filter` call's lambda.
 
 We can do use this pattern to score the six single dice categories:
 
@@ -261,6 +262,21 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
     | _ -> None
 ```
 
+```exercism/note
+We have to define the `FullHouseThrow` active pattern as a _partial_ active pattern (indicated by the `|_|` suffix), as not all dice are a full house.
+```
+
+As a full house is the sum of its dice, we don't have to return any value from our active pattern so we'll just return [`unit`][unit] (which is F#'s way of representing the absence of a value).
+
+Let's use this pattern in our `score` function:
+
+```fsharp
+match category, dice with
+| FullHouse, FullHouseThrow -> List.sumBy dieScore dice
+```
+
+#### Simplifying
+
 We can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
 This allows us to merge the second and third pattern:
 
@@ -274,9 +290,7 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
 ### Four of a kind score
 
 A four of a kind score contains one dice at least four times.
-We can use [`List.countBy`][list.countby] to return a list of pairs where the first value is the unique value and the second value is the number times it occurred in the list.
-
-Then we pattern match the result of the `List.countBy` call with the three possible four of a kind patterns:
+We'll use the same strategy we just used for a full house, but this time looking for the following count patterns:
 
 1. The dice contain just one number and it occurs five times: `[(number, 5)]`
 2. The dice contain two numbers, and the first number occurs four times: `[(number, 4); _]`
@@ -288,6 +302,15 @@ let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
     | [(number, 5)] | [(number, 4) | [_; (number, 4)]; _] -> Some number
     | _ -> None
 ```
+
+TODO
+
+```fsharp
+match category, dice with
+| FourOfAKind, FourOfAKindThrow die -> dieScore die * 4
+```
+
+#### Simplifying
 
 Once again, we can simplify things a bit by sorting the results, ordering by the second value (the count) using [`List.sortBy`][list.sortby] and [`snd`][snd] (which selects the second value).
 This allows us to merge the second and third pattern:
@@ -314,6 +337,17 @@ let private (|LittleStraightThrow|_|) (dice: Die list): unit option =
 
 Note that we do need to call [`List.sort`][list.sort] first, as the dice aren't necessarily in order and pattern matching is sensitive to the ordering.
 
+The pattern is defined as a partial active pattern (not all throws are little straights) and returns `unit`, as a little straight's score is always the same.
+
+#### Scoring
+
+We can score little straights as follows:
+
+```fsharp
+match category, dice with
+| LittleStraight, LittleStraightThrow -> 30
+```
+
 ### Big straight score
 
 A big straight contains the dice with face values 2, 3, 4, 5 and 6.
@@ -327,6 +361,17 @@ let private (|BigStraightThrow|_|) (dice: Die list): unit option =
 ```
 
 Once again, we need [`List.sort`][list.sort] to fix the ordering.
+
+Like the little straight pattern, we're using a partial active pattern (not all throws are big straights) and return `unit`, as a big straight's score is always the same.
+
+#### Scoring
+
+We can score big straights as follows:
+
+```fsharp
+match category, dice with
+| BigStraight, BigStraightThrow -> 30
+```
 
 ### Yacht score
 
@@ -409,3 +454,4 @@ Quite nice!
 [active-patterns]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns
 [id]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#id
 [snd]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#snd
+[unit]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/unit-type
