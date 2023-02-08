@@ -255,6 +255,8 @@ Then we pattern match the result of the `List.countBy` call with the two possibl
 1. The dice contain two numbers, and the first number occurs twice and the second number thrice times: `[(_, 2); (_, 3)]`
 2. The dice contain two numbers, and the first number occurs thrice and the second number twice times: `[(_, 3); (_, 2)]`
 
+As a full house is the sum of its dice, we don't have to return any value from our active pattern so we'll just return [`unit`][unit] (which is F#'s way of representing the absence of a value).
+
 ```fsharp
 let private (|FullHouseThrow|_|) (dice: Die list): unit option =
     match List.countBy id dice with
@@ -264,15 +266,6 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
 
 ```exercism/note
 We have to define the `FullHouseThrow` active pattern as a _partial_ active pattern (indicated by the `|_|` suffix), as not all dice are a full house.
-```
-
-As a full house is the sum of its dice, we don't have to return any value from our active pattern so we'll just return [`unit`][unit] (which is F#'s way of representing the absence of a value).
-
-Let's use this pattern in our `score` function:
-
-```fsharp
-match category, dice with
-| FullHouse, FullHouseThrow -> List.sumBy dieScore dice
 ```
 
 #### Simplifying
@@ -287,6 +280,15 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
     | _ -> None
 ```
 
+#### Scoring
+
+Let's use this pattern in our `score` function, where the score is just summing the dice scores via [`List.sumBy`][list.sumby] and our `dieScore` function:
+
+```fsharp
+match category, dice with
+| FullHouse, FullHouseThrow -> List.sumBy dieScore dice
+```
+
 ### Four of a kind score
 
 A four of a kind score contains one dice at least four times.
@@ -296,19 +298,16 @@ We'll use the same strategy we just used for a full house, but this time looking
 2. The dice contain two numbers, and the first number occurs four times: `[(number, 4); _]`
 3. The dice contain two numbers, and the second number occurs four times: `[_; (number, 4)`
 
+We can use the same [`List.countBy`][list.countby] and pattern matching strategy
+
 ```fsharp
 let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
     match List.countBy id dice with
-    | [(number, 5)] | [(number, 4) | [_; (number, 4)]; _] -> Some number
+    | [(number, 5)] | [(number, 4); _] | [_; (number, 4)] -> Some number
     | _ -> None
 ```
 
-TODO
-
-```fsharp
-match category, dice with
-| FourOfAKind, FourOfAKindThrow die -> dieScore die * 4
-```
+As scoring a four of a kind throw requires multipying the die occuring four times, we'll return that die from our function.
 
 #### Simplifying
 
@@ -318,9 +317,17 @@ This allows us to merge the second and third pattern:
 ```fsharp
 let private (|FourOfAKindThrow|_|) (dice: Die list): Die option =
     match List.countBy id dice |> List.sortBy snd with
-    | [(number, 5)] | [(number, 4) | [_; (number, 4)]; _] -> Some number
+    | [(number, 5)] | [_; (number, 4)] -> Some number
     | _ -> None
+```
 
+#### Scoring
+
+For the scoring of a four of kind throw, we'll capture the die in our active pattern, converting it to an `int` via `dieScore` and then multiply by four:
+
+```fsharp
+match category, dice with
+| FourOfAKind, FourOfAKindThrow die -> dieScore die * 4
 ```
 
 ### Little straight score
@@ -341,7 +348,7 @@ The pattern is defined as a partial active pattern (not all throws are little st
 
 #### Scoring
 
-We can score little straights as follows:
+Scoring little straights is very straightforward (pun intended):
 
 ```fsharp
 match category, dice with
@@ -389,10 +396,19 @@ let private (|YachtThrow|_|) (dice: Die list): unit option =
 Alternatively, we could have counted the number of unique dice and checked if that was equal to one in an `if` expression:
 
 ```fsharp
-let private yachtScore (dice: Die list): int =
-    if List.distinct dice |> List.length = 1 then 50 else 0
+let private (|YachtThrow|_|) (dice: Die list): unit option =
+    if List.distinct dice |> List.length = 1 then Some () else None
 ```
 ````
+
+#### Scoring
+
+We can score yachts as follows:
+
+```fsharp
+match category, dice with
+| Yacht, YachtThrow -> 50
+```
 
 ### Choice score
 
