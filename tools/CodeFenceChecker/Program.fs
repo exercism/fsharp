@@ -24,6 +24,6 @@ module Program =
             |> Seq.filter (fun matchedFile -> ignoreList.IsIgnored(matchedFile) |> not)
             |> Seq.toList
 
-        printfn "%A" ignoreList
+        printfn "%A" matches
 
         0
