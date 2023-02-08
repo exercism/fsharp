@@ -1,0 +1,7 @@
+.appends/
+.config/
+.dependabot/
+.github/
+.problem-specifications/
+bin/
+CODE_OF_CONDUCT.md
