@@ -1,0 +1,10 @@
+.appends/
+.config/
+.dependabot/
+.github/
+.problem-specifications/
+.approaches/
+.articles/
+bin/
+docs/GENERATORS.md
+CODE_OF_CONDUCT.md

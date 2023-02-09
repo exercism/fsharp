@@ -35,18 +35,12 @@ param (
     [string[]]$Exclude=@()
 )
 
-$toolDir = Resolve-Path "tools/CodeFenceChecker"
-
 # Import shared functionality
 . ./shared.ps1
 
-function Check-DocumentationCodeExamples {
-    $searchDirs = [string]::Join(' ', $SourceDirectories)
-    $ignored = [string]::Join(' ', $Exclude)
-    Write-Output "Searching documentation for code snippets"
-    Run-Command "dotnet run -c Release --project $toolDir -- $searchDirs -Not $ignored"
-}
+$toolDir = Resolve-Path "tools/CodeFenceChecker"
 
-Check-DocumentationCodeExamples -SourceDirectories $SourceDirectories
+Write-Output "Searching documentation for code snippets"
+Run-Command "dotnet run -c Release --project $toolDir"
 
 exit $LastExitCode

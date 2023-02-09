@@ -1,50 +1,68 @@
-//
-// Permission to use, copy, modify, and/or distribute this software for any purpose
-// with or without fee is hereby granted.
-//
-// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-// REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-// AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-// LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE
-// OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-// PERFORMANCE OF THIS SOFTWARE.
-//
 namespace CodeFenceChecker
+
+open System.IO
+open FSharp.Compiler.Diagnostics
+open MAB.DotIgnore
+open Markdig
+open Markdig.Syntax
+open Microsoft.Extensions.FileSystemGlobbing
+open Microsoft.Extensions.FileSystemGlobbing.Abstractions
+
+type CodeBlock = CodeBlock of code: string 
+type ParsedMarkdownFile = ParsedMarkdownFile of path: string * codeBlocks: CodeBlock list
+type InvalidMarkdownFile = InvalidMarkdownFile of path: string * errors: string list
 
 module Program =
     [<EntryPoint>]
     let main argv =
-        let mutable exitStatus = 0
-        let mutable errors = Array.empty
+        let directory = argv |> Array.tryHead |> Option.defaultWith Directory.GetCurrentDirectory |> DirectoryInfo
 
-        try
-            let matchArgSwitch (a: string) = a.ToLower().Equals("-not")
+        let ignoreList =
+            directory.EnumerateFiles(".codefenceignore", SearchOption.TopDirectoryOnly)
+            |> Seq.tryHead
+            |> Option.map (fun fileInfo -> IgnoreList(fileInfo.FullName))
+            |> Option.defaultValue (IgnoreList(Seq.empty))
+        
+        let markdownFiles =
+            Matcher().AddInclude("**/*.md").Execute(DirectoryInfoWrapper(directory)).Files
+            |> Seq.filter (fun matchedFile -> not (ignoreList.IsIgnored(matchedFile.Path, pathIsDirectory = false)))
+            |> Seq.map (fun matchedFile -> matchedFile.Path)
+            |> Seq.toList
+            
+        let parsedMarkdownFiles = [
+            for markdownFile in markdownFiles do
+                let markdown = Markdown.Parse(File.ReadAllText(Path.Combine(directory.FullName, markdownFile)))            
+                let codeBlocks = [ 
+                    for fencedCodeBlock in markdown.Descendants<FencedCodeBlock>() do
+                        if fencedCodeBlock.Info = "fsharp" then
+                            let code = fencedCodeBlock.Lines.Lines |> Seq.map string |> String.concat "\n"
+                            if not (code.Contains("compiler error")) then                                
+                                yield CodeBlock(code)                            
+                    ]
+                yield ParsedMarkdownFile(markdownFile, codeBlocks)
+        ]
 
-            // exclude paths after the "-Not" switch
-            let included = argv |> Array.takeWhile (not << matchArgSwitch)
+        use fsiSession = FSIWrapper().Session
+        
+        let invalidMarkdownFiles = [
+            for ParsedMarkdownFile(path, codeBlocks) in parsedMarkdownFiles do
+                let errors = [
+                    for CodeBlock(code) in codeBlocks do                
+                        let parseFileResults, _, _ = fsiSession.ParseAndCheckInteraction(code)
+                        if parseFileResults.ParseHadErrors then
+                            yield! parseFileResults.Diagnostics
+                            |> Seq.filter (fun diagnostic -> diagnostic.Severity = FSharpDiagnosticSeverity.Error)
+                            |> Seq.map (fun diagnostic -> diagnostic.Message)
+                ]
 
-            // get the list of excluded paths, if any
-            let ignored =
-                argv
-                |> Array.tryFindIndex matchArgSwitch
-                |> function
-                | Some i -> Array.splitAt i argv |> snd
-                | None -> Array.except included argv
-                |> Array.tail // remove the "-Not" switch
-                |> Array.map (fun (path: string) -> path.Replace('/', sep))
-
-            included
-            |> Array.iter (fun dir -> errors <- parse (collectLines dir ignored) |> Array.append errors)
-
-        with exc ->
-            printfn $"{exc.GetType().Name}: {exc.Message}"
-            exitStatus <- 1
-
-        if (not << Array.isEmpty) errors then
-            for e in errors do
-                eprintfn $"{nl}{e}"
-
-            exitStatus <- 1
-
-        exitStatus
+                if not (List.isEmpty errors) then
+                    yield InvalidMarkdownFile(path, errors)
+        ]
+        
+        for InvalidMarkdownFile(path, errors) in invalidMarkdownFiles do
+            printfn $"Errors in file: %s{path}"
+            printfn "%s" (String.concat "\n" errors)
+            printfn ""
+        
+        if List.isEmpty invalidMarkdownFiles then 0 else 1
+        

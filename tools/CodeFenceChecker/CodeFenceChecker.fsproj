@@ -5,11 +5,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Wrapper.fs" />
-    <Compile Include="Collector.fs" />
-    <Compile Include="Parser.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Compiler.Service" Version="42.7.101" />
+    <PackageReference Include="CommandLineParser.FSharp" Version="2.9.1" />
+    <PackageReference Include="MAB.DotIgnore" Version="3.0.2" />
+    <PackageReference Include="Markdig" Version="0.30.4" />
+    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="5.0.0" />
   </ItemGroup>
 </Project>
