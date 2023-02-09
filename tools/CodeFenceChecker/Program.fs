@@ -1,11 +1,16 @@
 namespace CodeFenceChecker
 
 open System.IO
+open FSharp.Compiler.Diagnostics
 open MAB.DotIgnore
 open Markdig
 open Markdig.Syntax
 open Microsoft.Extensions.FileSystemGlobbing
 open Microsoft.Extensions.FileSystemGlobbing.Abstractions
+
+type CodeBlock = CodeBlock of code: string 
+type ParsedMarkdownFile = ParsedMarkdownFile of path: string * codeBlocks: CodeBlock list
+type InvalidMarkdownFile = InvalidMarkdownFile of path: string * errors: string list
 
 module Program =
     [<EntryPoint>]
@@ -24,18 +29,40 @@ module Program =
             |> Seq.map (fun matchedFile -> matchedFile.Path)
             |> Seq.toList
             
-        let codeBlocks = seq {
+        let parsedMarkdownFiles = [
             for markdownFile in markdownFiles do
                 let markdown = Markdown.Parse(File.ReadAllText(Path.Combine(directory.FullName, markdownFile)))            
-                let fencedCodeBlocks = markdown.Descendants<FencedCodeBlock>()
-                for fencedCodeBlock in fencedCodeBlocks do
-                    if fencedCodeBlock.Info = "fsharp" then
-                        let codeBlock = fencedCodeBlock.Lines.Lines |> Seq.map string |> String.concat "\n"
-                        yield (markdownFile, codeBlock)
-        }
+                let codeBlocks = [ 
+                    for fencedCodeBlock in markdown.Descendants<FencedCodeBlock>() do
+                        if fencedCodeBlock.Info = "fsharp" then
+                            let code = fencedCodeBlock.Lines.Lines |> Seq.map string |> String.concat "\n"
+                            if not (code.Contains("compiler error")) then                                
+                                yield CodeBlock(code)                            
+                    ]
+                yield ParsedMarkdownFile(markdownFile, codeBlocks)
+        ]
 
+        use fsiSession = FSIWrapper().Session
         
-        let parseResults = parse (Seq.toArray codeBlocks)
-        printfn "%A" parseResults
+        let invalidMarkdownFiles = [
+            for ParsedMarkdownFile(path, codeBlocks) in parsedMarkdownFiles do
+                let errors = [
+                    for CodeBlock(code) in codeBlocks do                
+                        let parseFileResults, _, _ = fsiSession.ParseAndCheckInteraction(code)
+                        if parseFileResults.ParseHadErrors then
+                            yield! parseFileResults.Diagnostics
+                            |> Seq.filter (fun diagnostic -> diagnostic.Severity = FSharpDiagnosticSeverity.Error)
+                            |> Seq.map (fun diagnostic -> diagnostic.Message)
+                ]
 
-        0
+                if not (List.isEmpty errors) then
+                    yield InvalidMarkdownFile(path, errors)
+        ]
+        
+        for InvalidMarkdownFile(path, errors) in invalidMarkdownFiles do
+            printfn $"Errors in file: %s{path}"
+            printfn "%s" (String.concat "\n" errors)
+            printfn ""
+        
+        if List.isEmpty invalidMarkdownFiles then 0 else 1
+        

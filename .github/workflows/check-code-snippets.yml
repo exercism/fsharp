@@ -10,15 +10,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  verify:
-    runs-on: ubuntu-20.04
+  check:
+    runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
-      - uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a
+      - name: Checkout code
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@607fce577a46308457984d59e4954e075820f10a
         with:
           dotnet-version: "7.0.100"
 
       - name: Validate Code Snippets
-        run: |
-          dotnet build /v:m -c Release tools/CodeFenceChecker/CodeFenceChecker.fsproj
-          pwsh -Command ./check-code-snippets.ps1 -Exclude concepts/if-then-else-expressions,exercises/concept/cars-assemble,exercises/practice/hamming/.approaches,exercises/practice/collatz-conjecture/.approaches
+        run: pwsh ./check-code-snippets.ps1

@@ -31,7 +31,7 @@ if x = 5 then
 elif x > 7 then
     5.6
 
-// Results in compiler erropr
+// Results in compiler error
 ```
 
 The `else` and `elif` branches are optional, but only if the type of the returned expression is [`unit`][unit-type].
