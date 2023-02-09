@@ -15,14 +15,10 @@ module Parser =
 
     let parse (codeBlocks: (string * string) []) =
         use fsiSession = FSIWrapper().Session
-        let parsed = ResizeArray<string>()
 
         codeBlocks
         |> Array.fold
             (fun res (expr, doc) ->
-                if not <| parsed.Contains(doc) then printfn $"Checking {doc}"
-                parsed.Add(doc)
-
                 if (not << isEmptyLine) expr then
                     let parseResults, _, _ = fsiSession.ParseAndCheckInteraction(expr)
                     collectErrors parseResults.Diagnostics res expr $"{doc} generated a parsing error"

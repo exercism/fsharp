@@ -3,5 +3,7 @@
 .dependabot/
 .github/
 .problem-specifications/
+.approaches/
+.articles/
 bin/
 CODE_OF_CONDUCT.md

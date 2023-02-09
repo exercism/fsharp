@@ -34,6 +34,8 @@ module Program =
                         yield (markdownFile, codeBlock)
         }
 
-        printfn "%A" codeBlocks
+        
+        let parseResults = parse (Seq.toArray codeBlocks)
+        printfn "%A" parseResults
 
         0
