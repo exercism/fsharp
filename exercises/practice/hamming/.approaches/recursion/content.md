@@ -79,7 +79,7 @@ doDistance (Seq.toList strand1) (Seq.toList strand2) 0
 And with that, we have a working, tail recursive implementation!
 
 ```exercism/note
- prevents stack overflows when a recursive function is called many times.
+Tail call recursion prevents stack overflows when a recursive function is called many times.
 While the exercise does not have large test cases that would cause a stack overflow, it is good practice to always use using tail recursion when implementing a recursive functions.
 If you'd like to read more about tail recursion, [this MSDN article](https://blogs.msdn.microsoft.com/fsharpteam/2011/07/08/tail-calls-in-f/) goes into more detail.
 Another good resource on tail recursion is [this blog post](http://blog.ploeh.dk/2015/12/22/tail-recurse/).
