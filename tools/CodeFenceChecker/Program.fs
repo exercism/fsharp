@@ -21,14 +21,19 @@ module Program =
         let markdownFiles =
             Matcher().AddInclude("**/*.md").Execute(DirectoryInfoWrapper(directory)).Files
             |> Seq.filter (fun matchedFile -> not (ignoreList.IsIgnored(matchedFile.Path, pathIsDirectory = false)))
+            |> Seq.map (fun matchedFile -> matchedFile.Path)
             |> Seq.toList
+            
+        let codeBlocks = seq {
+            for markdownFile in markdownFiles do
+                let markdown = Markdown.Parse(File.ReadAllText(Path.Combine(directory.FullName, markdownFile)))            
+                let fencedCodeBlocks = markdown.Descendants<FencedCodeBlock>()
+                for fencedCodeBlock in fencedCodeBlocks do
+                    if fencedCodeBlock.Info = "fsharp" then
+                        let codeBlock = fencedCodeBlock.Lines.Lines |> Seq.map string |> String.concat "\n"
+                        yield (markdownFile, codeBlock)
+        }
 
-        for markdownFile in markdownFiles do        
-            let markdown = Markdown.Parse(File.ReadAllText(Path.Combine(directory.FullName, markdownFile.Path)))            
-            let fencedCodeBlocks = markdown.Descendants<FencedCodeBlock>()
-            for fencedCodeBlock in fencedCodeBlocks do
-                if fencedCodeBlock.Info = "fsharp" then
-                    // fencedCodeBlock.Lines
-                    printfn "%A" fencedCodeBlock
+        printfn "%A" codeBlocks
 
         0
