@@ -79,6 +79,41 @@ let proteins (codons: string): string list =
 This approach uses recursion to translate the codons.
 For more information, check the [recursion approach][approach-recursion].
 
+## Other approaches
+
+Besides the aforementioned, idiomatic approaches, you could also approach the exercise as follows:
+
+### Other approach: `Span<T>`
+
+```fsharp
+let rec private doProteins (codons: ReadOnlySpan<char>) (proteins: string list): string list =
+    if   codons.StartsWith("AUG") then doProteins (codons.Slice(3)) ("Methionine"    :: proteins)
+    elif codons.StartsWith("UUC") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
+    elif codons.StartsWith("UUU") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
+    elif codons.StartsWith("UUA") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
+    elif codons.StartsWith("UUG") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
+    elif codons.StartsWith("UCU") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+    elif codons.StartsWith("UCC") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+    elif codons.StartsWith("UCA") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+    elif codons.StartsWith("UCG") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+    elif codons.StartsWith("UAU") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
+    elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
+    elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
+    elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
+    elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
+    elif codons.StartsWith("UAA") then List.rev proteins
+    elif codons.StartsWith("UAG") then List.rev proteins
+    elif codons.StartsWith("UGA") then List.rev proteins
+    elif codons.StartsWith("") then List.rev proteins
+    else failwith "Unknown coding"
+
+let proteins (codons: string): string list =
+    doProteins (codons.AsSpan()) []
+```
+
+This approaches uses the [`Span<T>` type][span] to minimize string allocations.
+For more information, check the [`Span<T>` approach][approach-span].
+
 ## Which approach to use?
 
 All three approaches are equally valid; it thus comes down to personal preference.
@@ -89,3 +124,4 @@ All three approaches are equally valid; it thus comes down to personal preferenc
 [seq.unfold]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#unfold
 [seq.map]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#map
 [seq-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html
+[span]: https://learn.microsoft.com/en-us/dotnet/api/system.span-1

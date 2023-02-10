@@ -23,6 +23,13 @@
       "title": "Seq module",
       "blurb": "Use functions from the Seq module to translate the codons to proteins",
       "authors": ["erikschierboom"]
+    },
+    {
+      "uuid": "b3cec06d-6307-4af5-bd13-2101b97d56b2",
+      "slug": "span",
+      "title": "Span<T>",
+      "blurb": "Use Span<T> to efficiently translate the codons to proteins",
+      "authors": ["erikschierboom"]
     }
   ]
 }
