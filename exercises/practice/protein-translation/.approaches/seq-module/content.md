@@ -15,8 +15,8 @@ let private codonToProtein (codon: string): string =
     | "UAA" | "UAG" | "UGA"         -> "STOP"
     | _ -> failwith "Invalid codon"
 
-let proteins (codons: string): string list =
-    codons
+let proteins (rna: string): string list =
+    rna
     |> Seq.chunkBySize 3
     |> Seq.map System.String
     |> Seq.map codonToProtein
@@ -24,7 +24,7 @@ let proteins (codons: string): string list =
     |> Seq.toList
 ```
 
-This approach combines a number of functions from the [`Seq` module][seq-module] to build up a pipeline to translate the codons to proteins.
+This approach combines a number of functions from the [`Seq` module][seq-module] to build up a pipeline to translate the RNA to proteins.
 
 ## Translating
 
@@ -137,20 +137,20 @@ Whilst they are all valid, the first option (function with parameter and explici
 
 ## Putting it all together
 
-Now that we can translated codons to proteins, let's build up a working solution.
+Now that we can translated RNA to proteins, let's build up a working solution.
 
-### Split into codons
+### Split RNA sequence into codons
 
-First, let's split our `codons` parameter into chunks of three letters:
+First, let's split our `rna` parameter into chunks of three letters:
 
 ```fsharp
-codons
+rna
 |> Seq.chunkBySize 3
 |> Seq.map System.String
 ```
 
-The [`Seq.chunkBySize`][seq.chunk-by-size] function will split the string into sequence or three letters.
-We then use [`Seq.map`][seq.map] to convert those letter sequences into strings (basically: concatenating the letters), which represent the codons.
+The [`Seq.chunkBySize`][seq.chunk-by-size] function will split the `string` into a sequence of three letters.
+We then use [`Seq.map`][seq.map] to convert those three letter sequences into strings (basically: concatenating the letters), which represent the codons.
 
 ### Converting to proteins
 
@@ -193,8 +193,8 @@ Finally, we convert the sequence to a list via [Seq.toList][seq.tolist]:
 This gives us the following pipeline:
 
 ```fsharp
-let proteins (codons: string): string list =
-    codons
+let proteins (rna: string): string list =
+    rna
     |> Seq.chunkBySize 3
     |> Seq.map System.String
     |> Seq.map codonToProtein
@@ -202,7 +202,7 @@ let proteins (codons: string): string list =
     |> Seq.toList
 ```
 
-We now have a working implementation that translates the codons to proteins.
+We now have a working implementation that translates the RNA to proteins.
 
 [function-keyword]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/match-expressions#remarks
 [seq.chunk-by-size]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#chunkBySize

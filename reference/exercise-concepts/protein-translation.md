@@ -19,7 +19,7 @@
 - anonymous functions: a lambda is use to filter until the stopping point
 - partial application: partially applying arguments to functions to return a new function
 - pipeline: using the `|>` operator to construct a pipeline
-- collection mapping: using `Seq.map` to map codons to proteins
+- collection mapping: using `Seq.map` to map RNA to proteins
 - collection iteration: using `Seq` module functions to iterate over collection
 - collection chunking: using `Seq.chunkBySize` to break collections into chunks
 - equality operators: `<>` used to find the stopping point for the translations

@@ -5,29 +5,29 @@ module ProteinTranslation
 
 open System
 
-let rec private doProteins (codons: ReadOnlySpan<char>) (proteins: string list): string list =
-    if   codons.StartsWith("AUG") then doProteins (codons.Slice(3)) ("Methionine"    :: proteins)
-    elif codons.StartsWith("UUC") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
-    elif codons.StartsWith("UUU") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
-    elif codons.StartsWith("UUA") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
-    elif codons.StartsWith("UUG") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
-    elif codons.StartsWith("UCU") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-    elif codons.StartsWith("UCC") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-    elif codons.StartsWith("UCA") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-    elif codons.StartsWith("UCG") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-    elif codons.StartsWith("UAU") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
-    elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
-    elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-    elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-    elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
-    elif codons.StartsWith("UAA") then List.rev proteins
-    elif codons.StartsWith("UAG") then List.rev proteins
-    elif codons.StartsWith("UGA") then List.rev proteins
-    elif codons.IsEmpty           then List.rev proteins
+let rec private doProteins (rna: ReadOnlySpan<char>) (proteins: string list): string list =
+    if   rna.StartsWith("AUG") then doProteins (rna.Slice(3)) ("Methionine"    :: proteins)
+    elif rna.StartsWith("UUC") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+    elif rna.StartsWith("UUU") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+    elif rna.StartsWith("UUA") then doProteins (rna.Slice(3)) ("Leucine"       :: proteins)
+    elif rna.StartsWith("UUG") then doProteins (rna.Slice(3)) ("Leucine"       :: proteins)
+    elif rna.StartsWith("UCU") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+    elif rna.StartsWith("UCC") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+    elif rna.StartsWith("UCA") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+    elif rna.StartsWith("UCG") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+    elif rna.StartsWith("UAU") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+    elif rna.StartsWith("UAC") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+    elif rna.StartsWith("UGU") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+    elif rna.StartsWith("UGC") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+    elif rna.StartsWith("UGG") then doProteins (rna.Slice(3)) ("Tryptophan"    :: proteins)
+    elif rna.StartsWith("UAA") then List.rev proteins
+    elif rna.StartsWith("UAG") then List.rev proteins
+    elif rna.StartsWith("UGA") then List.rev proteins
+    elif rna.IsEmpty           then List.rev proteins
     else failwith "Unknown coding"
 
-let proteins (codons: string): string list =
-    doProteins (codons.AsSpan()) []
+let proteins (rna: string): string list =
+    doProteins (rna.AsSpan()) []
 ```
 
 In this approach, we'll define a recursive function that will recursively process the codons and keep track of the translated proteins.
@@ -35,11 +35,11 @@ The codons will be passed as [`ReadOnlySpan<char>`][span] instances instead of `
 
 ## Recursive translation
 
-To use (tail call) recursion to translate the codons to proteins, we'll introduce a helper function: `doProteins`.
-This function takes the remaining, unprocessed codons as a `ReadOnlySpan<char>` and a list of translated proteins strings (the _accumulator_ value):
+To use (tail call) recursion to translate the RNA to proteins, we'll introduce a helper function: `doProteins`.
+This function takes the remaining, unprocessed RNA as a `ReadOnlySpan<char>` and a list of translated proteins strings (the _accumulator_ value):
 
 ```fsharp
-let rec doProteins (codons: ReadOnlySpan<char>) (proteins: string list): string list
+let rec doProteins (rna: ReadOnlySpan<char>) (proteins: string list): string list
 ```
 
 We'll define this function inside the `proteins` function (also known as a _nested_ function), but it could just as well have been defined outside the `proteins` function.
@@ -61,20 +61,20 @@ The underlying `string` remains the same, but the _view_ of that string is offse
 ```
 
 ```fsharp
-if   codons.StartsWith("AUG") then doProteins (codons.Slice(3)) ("Methionine"    :: proteins)
-elif codons.StartsWith("UUC") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
-elif codons.StartsWith("UUU") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
-elif codons.StartsWith("UUA") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
-elif codons.StartsWith("UUG") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
-elif codons.StartsWith("UCU") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UCC") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UCA") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UCG") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UAU") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
-elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
-elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
+if   rna.StartsWith("AUG") then doProteins (rna.Slice(3)) ("Methionine"    :: proteins)
+elif rna.StartsWith("UUC") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+elif rna.StartsWith("UUU") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+elif rna.StartsWith("UUA") then doProteins (rna.Slice(3)) ("Leucine"       :: proteins)
+elif rna.StartsWith("UUG") then doProteins (rna.Slice(3)) ("Leucine"       :: proteins)
+elif rna.StartsWith("UCU") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UCC") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UCA") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UCG") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UAU") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+elif rna.StartsWith("UAC") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+elif rna.StartsWith("UGU") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+elif rna.StartsWith("UGC") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+elif rna.StartsWith("UGG") then doProteins (rna.Slice(3)) ("Tryptophan"    :: proteins)
 ```
 
 ### Stopping
@@ -83,15 +83,15 @@ Next up is to handle the "STOP" proteins.
 We'll add conditions for each of the three "STOP" proteins, which stop the recursion and instead return the (reversed) accumulator value:
 
 ```fsharp
-elif codons.StartsWith("UAA") then List.rev proteins
-elif codons.StartsWith("UAG") then List.rev proteins
-elif codons.StartsWith("UGA") then List.rev proteins
+elif rna.StartsWith("UAA") then List.rev proteins
+elif rna.StartsWith("UAG") then List.rev proteins
+elif rna.StartsWith("UGA") then List.rev proteins
 ```
 
 There is one additional case we need to process, and that is when there are no codons left to process (for which we use its [`IsEmpty` property][span.isempty]):
 
 ```fsharp
-elif codons.IsEmpty then List.rev protein
+elif rna.IsEmpty then List.rev protein
 ```
 
 ```exercism/note
@@ -114,24 +114,24 @@ else failwith "Unknown coding"
 While definitely not needed, aligning the code vertically makes it more clear that the codon patterns all end up doing basically the same thing, but with a different protein:
 
 ```fsharp
-if   codons.StartsWith("AUG") then doProteins (codons.Slice(3)) ("Methionine"    :: proteins)
-elif codons.StartsWith("UUC") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
-elif codons.StartsWith("UUU") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
-elif codons.StartsWith("UUA") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
-elif codons.StartsWith("UUG") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
-elif codons.StartsWith("UCU") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UCC") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UCA") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UCG") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
-elif codons.StartsWith("UAU") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
-elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
-elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
-elif codons.StartsWith("UAA") then List.rev proteins
-elif codons.StartsWith("UAG") then List.rev proteins
-elif codons.StartsWith("UGA") then List.rev proteins
-elif codons.IsEmpty           then List.rev proteins
+if   rna.StartsWith("AUG") then doProteins (rna.Slice(3)) ("Methionine"    :: proteins)
+elif rna.StartsWith("UUC") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+elif rna.StartsWith("UUU") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+elif rna.StartsWith("UUA") then doProteins (rna.Slice(3)) ("Leucine"       :: proteins)
+elif rna.StartsWith("UUG") then doProteins (rna.Slice(3)) ("Leucine"       :: proteins)
+elif rna.StartsWith("UCU") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UCC") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UCA") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UCG") then doProteins (rna.Slice(3)) ("Serine"        :: proteins)
+elif rna.StartsWith("UAU") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+elif rna.StartsWith("UAC") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+elif rna.StartsWith("UGU") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+elif rna.StartsWith("UGC") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+elif rna.StartsWith("UGG") then doProteins (rna.Slice(3)) ("Tryptophan"    :: proteins)
+elif rna.StartsWith("UAA") then List.rev proteins
+elif rna.StartsWith("UAG") then List.rev proteins
+elif rna.StartsWith("UGA") then List.rev proteins
+elif rna.IsEmpty           then List.rev proteins
 else failwith "Unknown coding"
 ```
 
@@ -142,13 +142,13 @@ For this particular case, it isn't really an issue, as the codons are fixed and 
 
 ## Putting it all together
 
-The final step is to call our recursive helper function, converting our input `string` to a `ReadOnlySpan<char>` using its [`AsSpan()` method][string.asspan]:
+The final step is to call our recursive helper function, converting our RNA `string` to a `ReadOnlySpan<char>` using its [`AsSpan()` method][string.asspan]:
 
 ```fsharp
-doProteins (codons.AsSpan()) []
+doProteins (rna.AsSpan()) []
 ```
 
-And with that, we have a working, tail recursive implementation that translates the codons to proteins whilst minimizing string allocations.
+And with that, we have a working, tail recursive implementation that translates the RNA to proteins whilst minimizing string allocations.
 
 ```exercism/note
 Tail recursion prevents stack overflows when a recursive function is called many times.

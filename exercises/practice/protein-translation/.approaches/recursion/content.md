@@ -3,31 +3,31 @@
 ```fsharp
 module ProteinTranslation
 
-let proteins (codons: string): string list =
-    let rec doProteins (codons: string) (proteins: string list): string list =
-        match codons[0..2] with
-        | "AUG" ->                         doProteins codons[3..] ("Methionine"    :: proteins)
-        | "UUC" | "UUU" ->                 doProteins codons[3..] ("Phenylalanine" :: proteins)
-        | "UUA" | "UUG" ->                 doProteins codons[3..] ("Leucine"       :: proteins)
-        | "UCU" | "UCC" | "UCA" | "UCG" -> doProteins codons[3..] ("Serine"        :: proteins)
-        | "UAU" | "UAC" ->                 doProteins codons[3..] ("Tyrosine"      :: proteins)
-        | "UGU" | "UGC" ->                 doProteins codons[3..] ("Cysteine"      :: proteins)
-        | "UGG" ->                         doProteins codons[3..] ("Tryptophan"    :: proteins)
+let proteins (rna: string): string list =
+    let rec doProteins (rna: string) (proteins: string list): string list =
+        match rna[0..2] with
+        | "AUG" ->                         doProteins rna[3..] ("Methionine"    :: proteins)
+        | "UUC" | "UUU" ->                 doProteins rna[3..] ("Phenylalanine" :: proteins)
+        | "UUA" | "UUG" ->                 doProteins rna[3..] ("Leucine"       :: proteins)
+        | "UCU" | "UCC" | "UCA" | "UCG" -> doProteins rna[3..] ("Serine"        :: proteins)
+        | "UAU" | "UAC" ->                 doProteins rna[3..] ("Tyrosine"      :: proteins)
+        | "UGU" | "UGC" ->                 doProteins rna[3..] ("Cysteine"      :: proteins)
+        | "UGG" ->                         doProteins rna[3..] ("Tryptophan"    :: proteins)
         | "UAA" | "UAG" | "UGA" | "" ->    List.rev proteins
         | _ -> failwith "Unknown coding"
 
-    doProteins codons []
+    doProteins rna []
 ```
 
-In this approach, we'll define a recursive function that will recursively process the codons and keep track of the translated proteins.
+In this approach, we'll define a recursive function that will recursively process the RNA sequence and keep track of the translated proteins.
 
 ## Recursive translation
 
-To use (tail call) recursion to translate the codons to proteins, we'll introduce a helper function: `doProteins`.
-This function takes the remaining, unprocessed codons and a list of translated proteins (the _accumulator_ value):
+To use (tail call) recursion to translate the RNA to proteins, we'll introduce a helper function: `doProteins`.
+This function takes the remaining, unprocessed RNA and a list of translated proteins (the _accumulator_ value):
 
 ```fsharp
-let rec doProteins (codons: string) (proteins: string list): string list
+let rec doProteins (rna: string) (proteins: string list): string list
 ```
 
 We'll define this function inside the `proteins` function (also known as a _nested_ function), but it could just as well have been defined outside the `proteins` function.
@@ -44,21 +44,21 @@ As each codon is three letters long, the `doProteins` function looks at the firs
 For each translateable codon, we recursively call the `doProteins` function, with the remainder of the codons (skipping the first three letters) and the codon's protein added to the proteins accumulator value as arguments.
 
 ```fsharp
-match codons[0..2] with
-| "AUG" -> doProteins codons[3..] ("Methionine" :: proteins)
-| "UUC" -> doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUU" -> doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUA" -> doProteins codons[3..] ("Leucine" :: proteins)
-| "UUG" -> doProteins codons[3..] ("Leucine" :: proteins)
-| "UCU" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UCC" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UCA" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UCG" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UAU" -> doProteins codons[3..] ("Tyrosine" :: proteins)
-| "UAC" -> doProteins codons[3..] ("Tyrosine" :: proteins)
-| "UGU" -> doProteins codons[3..] ("Cysteine" :: proteins)
-| "UGC" -> doProteins codons[3..] ("Cysteine" :: proteins)
-| "UGG" -> doProteins codons[3..] ("Tryptophan" :: proteins)
+match rna[0..2] with
+| "AUG" -> doProteins rna[3..] ("Methionine" :: proteins)
+| "UUC" -> doProteins rna[3..] ("Phenylalanine" :: proteins)
+| "UUU" -> doProteins rna[3..] ("Phenylalanine" :: proteins)
+| "UUA" -> doProteins rna[3..] ("Leucine" :: proteins)
+| "UUG" -> doProteins rna[3..] ("Leucine" :: proteins)
+| "UCU" -> doProteins rna[3..] ("Serine" :: proteins)
+| "UCC" -> doProteins rna[3..] ("Serine" :: proteins)
+| "UCA" -> doProteins rna[3..] ("Serine" :: proteins)
+| "UCG" -> doProteins rna[3..] ("Serine" :: proteins)
+| "UAU" -> doProteins rna[3..] ("Tyrosine" :: proteins)
+| "UAC" -> doProteins rna[3..] ("Tyrosine" :: proteins)
+| "UGU" -> doProteins rna[3..] ("Cysteine" :: proteins)
+| "UGC" -> doProteins rna[3..] ("Cysteine" :: proteins)
+| "UGG" -> doProteins rna[3..] ("Tryptophan" :: proteins)
 ```
 
 ### Stopping
@@ -99,14 +99,14 @@ You might have noticed that many of the branches end up doing the exact same thi
 F# allows one to "chain" multiple patterns to reduce the duplication:
 
 ```fsharp
-match codons[0..2] with
-| "AUG" -> doProteins codons[3..] ("Methionine" :: proteins)
-| "UUC" | "UUU" -> doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUA" | "UUG" -> doProteins codons[3..] ("Leucine" :: proteins)
-| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UAU" | "UAC" -> doProteins codons[3..] ("Tyrosine" :: proteins)
-| "UGU" | "UGC" -> doProteins codons[3..] ("Cysteine" :: proteins)
-| "UGG" -> doProteins codons[3..] ("Tryptophan" :: proteins)
+match rna[0..2] with
+| "AUG" -> doProteins rna[3..] ("Methionine" :: proteins)
+| "UUC" | "UUU" -> doProteins rna[3..] ("Phenylalanine" :: proteins)
+| "UUA" | "UUG" -> doProteins rna[3..] ("Leucine" :: proteins)
+| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins rna[3..] ("Serine" :: proteins)
+| "UAU" | "UAC" -> doProteins rna[3..] ("Tyrosine" :: proteins)
+| "UGU" | "UGC" -> doProteins rna[3..] ("Cysteine" :: proteins)
+| "UGG" -> doProteins rna[3..] ("Tryptophan" :: proteins)
 | "UAA" | "UAG" | "UGA" | "" -> List.rev proteins
 | _ -> failwith "Unknown coding"
 ```
@@ -116,14 +116,14 @@ match codons[0..2] with
 While definitely not needed, aligning the code vertically makes it more clear that the codon patterns all end up doing basically the same thing, but with a different protein:
 
 ```fsharp
-match codons[0..2] with
-| "AUG" ->                         doProteins codons[3..] ("Methionine"    :: proteins)
-| "UUC" | "UUU" ->                 doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUA" | "UUG" ->                 doProteins codons[3..] ("Leucine"       :: proteins)
-| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins codons[3..] ("Serine"        :: proteins)
-| "UAU" | "UAC" ->                 doProteins codons[3..] ("Tyrosine"      :: proteins)
-| "UGU" | "UGC" ->                 doProteins codons[3..] ("Cysteine"      :: proteins)
-| "UGG" ->                         doProteins codons[3..] ("Tryptophan"    :: proteins)
+match rna[0..2] with
+| "AUG" ->                         doProteins rna[3..] ("Methionine"    :: proteins)
+| "UUC" | "UUU" ->                 doProteins rna[3..] ("Phenylalanine" :: proteins)
+| "UUA" | "UUG" ->                 doProteins rna[3..] ("Leucine"       :: proteins)
+| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins rna[3..] ("Serine"        :: proteins)
+| "UAU" | "UAC" ->                 doProteins rna[3..] ("Tyrosine"      :: proteins)
+| "UGU" | "UGC" ->                 doProteins rna[3..] ("Cysteine"      :: proteins)
+| "UGG" ->                         doProteins rna[3..] ("Tryptophan"    :: proteins)
 | "UAA" | "UAG" | "UGA" | "" ->    List.rev proteins
 | _ -> failwith "Unknown coding"
 ```
@@ -138,10 +138,10 @@ For this particular case, it isn't really an issue, as the codons are fixed and 
 The final step is to call our recursive helper function:
 
 ```fsharp
-doProteins codons []
+doProteins rna []
 ```
 
-And with that, we have a working, tail recursive implementation that translates the codons to proteins.
+And with that, we have a working, tail recursive implementation that translates the RNA to proteins.
 
 ```exercism/note
 Tail recursion prevents stack overflows when a recursive function is called many times.

@@ -16,3 +16,4 @@ paket-files
 *.fsproj.user
 *.DotSettings.user
 BenchmarkDotNet.Artifacts/
+BenchmarkDotNet.Bin/
