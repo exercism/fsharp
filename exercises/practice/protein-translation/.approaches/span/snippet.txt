@@ -1,0 +1,8 @@
+let rec doProteins (rna: ReadOnlySpan<char>) (proteins: string list): string list =
+    if   rna.StartsWith("AUG") then doProteins (rna.Slice(3)) ("Methionine"    :: proteins)
+    elif rna.StartsWith("UUC") then doProteins (rna.Slice(3)) ("Phenylalanine" :: proteins)
+    elif rna.StartsWith("UAC") then doProteins (rna.Slice(3)) ("Tyrosine"      :: proteins)
+    elif rna.StartsWith("UGU") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+    elif rna.StartsWith("UGC") then doProteins (rna.Slice(3)) ("Cysteine"      :: proteins)
+    elif rna.StartsWith("UGA") then List.rev proteins
+    elif rna.IsEmpty           then List.rev proteins

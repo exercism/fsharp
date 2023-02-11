@@ -1,0 +1,11 @@
+{
+  "articles": [
+    {
+      "uuid": "da952025-2344-47fd-8008-f23e1dc2bec5",
+      "slug": "performance",
+      "title": "Performance deep dive",
+      "blurb": "Deep dive to find out the most performant approach to translate the RNA to proteins.",
+      "authors": ["erikschierboom"]
+    }
+  ]
+}

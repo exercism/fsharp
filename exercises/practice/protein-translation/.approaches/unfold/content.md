@@ -3,20 +3,20 @@
 ```fsharp
 module ProteinTranslation
 
-let proteins (codons: string): string list =
-    let doProteins (codons: string): (string * string) option =
-        match codons[0..2] with
-        | "AUG" ->                         Some ("Methionine",    codons[3..])
-        | "UUC" | "UUU" ->                 Some ("Phenylalanine", codons[3..])
-        | "UUA" | "UUG" ->                 Some ("Leucine",       codons[3..])
-        | "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine",        codons[3..])
-        | "UAU" | "UAC" ->                 Some ("Tyrosine",      codons[3..])
-        | "UGU" | "UGC" ->                 Some ("Cysteine",      codons[3..])
-        | "UGG" ->                         Some ("Tryptophan",    codons[3..])
+let proteins (rna: string): string list =
+    let doProteins (rna: string): (string * string) option =
+        match rna[0..2] with
+        | "AUG" ->                         Some ("Methionine",    rna[3..])
+        | "UUC" | "UUU" ->                 Some ("Phenylalanine", rna[3..])
+        | "UUA" | "UUG" ->                 Some ("Leucine",       rna[3..])
+        | "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine",        rna[3..])
+        | "UAU" | "UAC" ->                 Some ("Tyrosine",      rna[3..])
+        | "UGU" | "UGC" ->                 Some ("Cysteine",      rna[3..])
+        | "UGG" ->                         Some ("Tryptophan",    rna[3..])
         | "UAA" | "UAG" | "UGA" | "" ->    None
         | _ -> failwith "Unknown coding"
 
-    codons
+    rna
     |> Seq.unfold doProteins
     |> Seq.toList
 ```
@@ -43,10 +43,10 @@ Once the function returns `None`, the accumulated return values are returned.
 Now that we know how `Seq.unfold` works, let's use it to translate our codons.
 
 Let's define a `doProteins` function that takes a `string` parameter representing the codons left to translate, and returns a `(string * string) option`.
-The string pair consists of the translated protein and the remaining, unprocessed codons:
+The string pair consists of the translated protein and the remaining, unprocessed RNA:
 
 ```fsharp
-let doProteins (codons: string): (string * string) option
+let doProteins (rna: string): (string * string) option
 ```
 
 We'll define this function inside the `proteins` function (also known as a _nested_ function), but it could just as well have been defined outside the `proteins` function.
@@ -59,21 +59,21 @@ For each translateable codon, we return a pair of strings, the first being its p
 We'll wrap the pair in `Some` to signal `Seq.unfold` to continue processing:
 
 ```fsharp
-match codons[0..2] with
-| "AUG" -> Some ("Methionine", codons[3..])
-| "UUC" -> Some ("Phenylalanine", codons[3..])
-| "UUU" -> Some ("Phenylalanine", codons[3..])
-| "UUA" -> Some ("Leucine", codons[3..])
-| "UUG" -> Some ("Leucine", codons[3..])
-| "UCU" -> Some ("Serine", codons[3..])
-| "UCC" -> Some ("Serine", codons[3..])
-| "UCA" -> Some ("Serine", codons[3..])
-| "UCG" -> Some ("Serine", codons[3..])
-| "UAU" -> Some ("Tyrosine", codons[3..])
-| "UAC" -> Some ("Tyrosine", codons[3..])
-| "UGU" -> Some ("Cysteine", codons[3..])
-| "UGC" -> Some ("Cysteine", codons[3..])
-| "UGG" -> Some ("Tryptophan", codons[3..])
+match rna[0..2] with
+| "AUG" -> Some ("Methionine", rna[3..])
+| "UUC" -> Some ("Phenylalanine", rna[3..])
+| "UUU" -> Some ("Phenylalanine", rna[3..])
+| "UUA" -> Some ("Leucine", rna[3..])
+| "UUG" -> Some ("Leucine", rna[3..])
+| "UCU" -> Some ("Serine", rna[3..])
+| "UCC" -> Some ("Serine", rna[3..])
+| "UCA" -> Some ("Serine", rna[3..])
+| "UCG" -> Some ("Serine", rna[3..])
+| "UAU" -> Some ("Tyrosine", rna[3..])
+| "UAC" -> Some ("Tyrosine", rna[3..])
+| "UGU" -> Some ("Cysteine", rna[3..])
+| "UGC" -> Some ("Cysteine", rna[3..])
+| "UGG" -> Some ("Tryptophan", rna[3..])
 ```
 
 ### Stopping
@@ -108,14 +108,14 @@ You might have noticed that many of the branches end up doing the exact same thi
 F# allows one to "chain" multiple patterns to reduce the duplication:
 
 ```fsharp
-match codons[0..2] with
-| "AUG" -> Some ("Methionine", codons[3..])
-| "UUC" | "UUU" -> Some ("Phenylalanine", codons[3..])
-| "UUA" | "UUG" -> Some ("Leucine", codons[3..])
-| "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine", codons[3..])
-| "UAU" | "UAC" -> Some ("Tyrosine", codons[3..])
-| "UGU" | "UGC" -> Some ("Cysteine", codons[3..])
-| "UGG" -> Some ("Tryptophan", codons[3..])
+match rna[0..2] with
+| "AUG" -> Some ("Methionine", rna[3..])
+| "UUC" | "UUU" -> Some ("Phenylalanine", rna[3..])
+| "UUA" | "UUG" -> Some ("Leucine", rna[3..])
+| "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine", rna[3..])
+| "UAU" | "UAC" -> Some ("Tyrosine", rna[3..])
+| "UGU" | "UGC" -> Some ("Cysteine", rna[3..])
+| "UGG" -> Some ("Tryptophan", rna[3..])
 | "UAA" | "UAG" | "UGA" | "" -> None
 | _ -> failwith "Unknown coding"
 ```
@@ -125,14 +125,14 @@ match codons[0..2] with
 While definitely not needed, aligning the code vertically makes it more clear that the codon patterns all end up doing basically the same thing, but with a different protein:
 
 ```fsharp
-match codons[0..2] with
-| "AUG" ->                         Some ("Methionine"   , codons[3..])
-| "UUC" | "UUU" ->                 Some ("Phenylalanine", codons[3..])
-| "UUA" | "UUG" ->                 Some ("Leucine"      , codons[3..])
-| "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine"       , codons[3..])
-| "UAU" | "UAC" ->                 Some ("Tyrosine"     , codons[3..])
-| "UGU" | "UGC" ->                 Some ("Cysteine"     , codons[3..])
-| "UGG" ->                         Some ("Tryptophan"   , codons[3..])
+match rna[0..2] with
+| "AUG" ->                         Some ("Methionine"   , rna[3..])
+| "UUC" | "UUU" ->                 Some ("Phenylalanine", rna[3..])
+| "UUA" | "UUG" ->                 Some ("Leucine"      , rna[3..])
+| "UCU" | "UCC" | "UCA" | "UCG" -> Some ("Serine"       , rna[3..])
+| "UAU" | "UAC" ->                 Some ("Tyrosine"     , rna[3..])
+| "UGU" | "UGC" ->                 Some ("Cysteine"     , rna[3..])
+| "UGG" ->                         Some ("Tryptophan"   , rna[3..])
 | "UAA" | "UAG" | "UGA" | "" ->    None
 | _ -> failwith "Unknown coding"
 ```
@@ -146,26 +146,26 @@ For this particular case, it isn't really an issue, as the codons are fixed and 
 
 Let's run through the `Seq.unfold` calls to get a better feel for it working as intended:
 
-| Remaining codons | Lambda return                   | Return values                                   |
-| ---------------- | ------------------------------- | ----------------------------------------------- |
-| `"AUGUUUUGG"`    | `Some ("Methionine", "UUUUGG")` | `["Methionine"]`                                |
-| `"UUUUGG"`       | `Some ("Phenylalanine", "UGG")` | `["Methionine"; "Phenylalanine"]`               |
-| `"UGG"`          | `Some ("Tryptophan", "")`       | `["Methionine"; "Phenylalanine"; "Tryptophan"]` |
-| `""`             | `None`                          | `["Methionine"; "Phenylalanine"; "Tryptophan"]` |
+| Remaining RNA | Lambda return                   | Return values                                   |
+| ------------- | ------------------------------- | ----------------------------------------------- |
+| `"AUGUUUUGG"` | `Some ("Methionine", "UUUUGG")` | `["Methionine"]`                                |
+| `"UUUUGG"`    | `Some ("Phenylalanine", "UGG")` | `["Methionine"; "Phenylalanine"]`               |
+| `"UGG"`       | `Some ("Tryptophan", "")`       | `["Methionine"; "Phenylalanine"; "Tryptophan"]` |
+| `""`          | `None`                          | `["Methionine"; "Phenylalanine"; "Tryptophan"]` |
 
 You can see that we process the codons step by step, slowly building up the return values and returning them once we've processed them all.
 
 ## Putting it all together
 
-Finally, we can put it all to together by piping the codons into `Seq.unfold` with our `doProteins` function as its first argument, and then converting the sequence to a list via [Seq.toList][seq.tolist]:
+Finally, we can put it all to together by piping the RNA into `Seq.unfold` with our `doProteins` function as its first argument, and then converting the sequence to a list via [Seq.toList][seq.tolist]:
 
 ```fsharp
-codons
+rna
 |> Seq.unfold doProteins
 |> Seq.toList
 ```
 
-We now have a working implementation that translates the codons to proteins.
+We now have a working implementation that translates the RNA to proteins.
 
 [seq.unfold]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#unfold
 [seq.length]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#length
