@@ -23,23 +23,23 @@ let rec private doProteins (codons: ReadOnlySpan<char>) (proteins: string list):
     elif codons.StartsWith("UAA") then List.rev proteins
     elif codons.StartsWith("UAG") then List.rev proteins
     elif codons.StartsWith("UGA") then List.rev proteins
-    elif codons.StartsWith("") then List.rev proteins
+    elif codons.IsEmpty           then List.rev proteins
     else failwith "Unknown coding"
 
 let proteins (codons: string): string list =
     doProteins (codons.AsSpan()) []
-
 ```
 
 In this approach, we'll define a recursive function that will recursively process the codons and keep track of the translated proteins.
+The codons will be passed as [`ReadOnlySpan<char>`][span] instances instead of `string` instances, to prevent re-allocating a new string for each recursive call.
 
 ## Recursive translation
 
 To use (tail call) recursion to translate the codons to proteins, we'll introduce a helper function: `doProteins`.
-This function takes the remaining, unprocessed codons and a list of translated proteins (the _accumulator_ value):
+This function takes the remaining, unprocessed codons as a `ReadOnlySpan<char>` and a list of translated proteins strings (the _accumulator_ value):
 
 ```fsharp
-let rec doProteins (codons: string) (proteins: string list): string list
+let rec doProteins (codons: ReadOnlySpan<char>) (proteins: string list): string list
 ```
 
 We'll define this function inside the `proteins` function (also known as a _nested_ function), but it could just as well have been defined outside the `proteins` function.
@@ -52,42 +52,46 @@ In other words: by default, functions cannot call themselves.
 
 ### Translating
 
-As each codon is three letters long, the `doProteins` function looks at the first three letters of its `codons` parameter.
+As each codon is three letters long, the `doProteins` function looks at the first three letters of its `codons` parameter via its [`StartsWith()`][span.startswith] method.
 For each translateable codon, we recursively call the `doProteins` function, with the remainder of the codons (skipping the first three letters) and the codon's protein added to the proteins accumulator value as arguments.
 
+```exercism/note
+We skip over the first three letters via the [`Slice()` method](https://learn.microsoft.com/en-us/dotnet/api/system.span-1.slice#system-span-1-slice(system-int32)), which does _not_ allocate a new `string` but only a new `ReadOnlySpan`.
+The underlying `string` remains the same, but the _view_ of that string is offset by 3.
+```
+
 ```fsharp
-match codons[0..2] with
-| "AUG" -> doProteins codons[3..] ("Methionine" :: proteins)
-| "UUC" -> doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUU" -> doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUA" -> doProteins codons[3..] ("Leucine" :: proteins)
-| "UUG" -> doProteins codons[3..] ("Leucine" :: proteins)
-| "UCU" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UCC" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UCA" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UCG" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UAU" -> doProteins codons[3..] ("Tyrosine" :: proteins)
-| "UAC" -> doProteins codons[3..] ("Tyrosine" :: proteins)
-| "UGU" -> doProteins codons[3..] ("Cysteine" :: proteins)
-| "UGC" -> doProteins codons[3..] ("Cysteine" :: proteins)
-| "UGG" -> doProteins codons[3..] ("Tryptophan" :: proteins)
+if   codons.StartsWith("AUG") then doProteins (codons.Slice(3)) ("Methionine"    :: proteins)
+elif codons.StartsWith("UUC") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
+elif codons.StartsWith("UUU") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
+elif codons.StartsWith("UUA") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
+elif codons.StartsWith("UUG") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
+elif codons.StartsWith("UCU") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UCC") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UCA") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UCG") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UAU") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
+elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
+elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
+elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
+elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
 ```
 
 ### Stopping
 
 Next up is to handle the "STOP" proteins.
-We'll add branches for each of the three "STOP" proteins, which stop the recursion and instead return the (reversed) accumulator value:
+We'll add conditions for each of the three "STOP" proteins, which stop the recursion and instead return the (reversed) accumulator value:
 
 ```fsharp
-| "UAA" -> List.rev proteins
-| "UAG" -> List.rev proteins
-| "UGA" -> List.rev proteins
+elif codons.StartsWith("UAA") then List.rev proteins
+elif codons.StartsWith("UAG") then List.rev proteins
+elif codons.StartsWith("UGA") then List.rev proteins
 ```
 
-There is one additional case we need to process, and that is when there are no codons left to process:
+There is one additional case we need to process, and that is when there are no codons left to process (for which we use its [`IsEmpty` property][span.isempty]):
 
 ```fsharp
-| "" -> List.rev proteins
+elif codons.IsEmpty then List.rev protein
 ```
 
 ```exercism/note
@@ -102,25 +106,7 @@ At this point, the F# compiler lets us know that we haven't handled all possible
 The easiest thing to do is to throw an error if none of the previous branches matched:
 
 ```fsharp
-| _ -> failwith "Unknown coding"
-```
-
-## Combining patterns
-
-You might have noticed that many of the branches end up doing the exact same thing.
-F# allows one to "chain" multiple patterns to reduce the duplication:
-
-```fsharp
-match codons[0..2] with
-| "AUG" -> doProteins codons[3..] ("Methionine" :: proteins)
-| "UUC" | "UUU" -> doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUA" | "UUG" -> doProteins codons[3..] ("Leucine" :: proteins)
-| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins codons[3..] ("Serine" :: proteins)
-| "UAU" | "UAC" -> doProteins codons[3..] ("Tyrosine" :: proteins)
-| "UGU" | "UGC" -> doProteins codons[3..] ("Cysteine" :: proteins)
-| "UGG" -> doProteins codons[3..] ("Tryptophan" :: proteins)
-| "UAA" | "UAG" | "UGA" | "" -> List.rev proteins
-| _ -> failwith "Unknown coding"
+else failwith "Unknown coding"
 ```
 
 ### Alignment
@@ -128,16 +114,25 @@ match codons[0..2] with
 While definitely not needed, aligning the code vertically makes it more clear that the codon patterns all end up doing basically the same thing, but with a different protein:
 
 ```fsharp
-match codons[0..2] with
-| "AUG" ->                         doProteins codons[3..] ("Methionine"    :: proteins)
-| "UUC" | "UUU" ->                 doProteins codons[3..] ("Phenylalanine" :: proteins)
-| "UUA" | "UUG" ->                 doProteins codons[3..] ("Leucine"       :: proteins)
-| "UCU" | "UCC" | "UCA" | "UCG" -> doProteins codons[3..] ("Serine"        :: proteins)
-| "UAU" | "UAC" ->                 doProteins codons[3..] ("Tyrosine"      :: proteins)
-| "UGU" | "UGC" ->                 doProteins codons[3..] ("Cysteine"      :: proteins)
-| "UGG" ->                         doProteins codons[3..] ("Tryptophan"    :: proteins)
-| "UAA" | "UAG" | "UGA" | "" ->    List.rev proteins
-| _ -> failwith "Unknown coding"
+if   codons.StartsWith("AUG") then doProteins (codons.Slice(3)) ("Methionine"    :: proteins)
+elif codons.StartsWith("UUC") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
+elif codons.StartsWith("UUU") then doProteins (codons.Slice(3)) ("Phenylalanine" :: proteins)
+elif codons.StartsWith("UUA") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
+elif codons.StartsWith("UUG") then doProteins (codons.Slice(3)) ("Leucine"       :: proteins)
+elif codons.StartsWith("UCU") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UCC") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UCA") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UCG") then doProteins (codons.Slice(3)) ("Serine"        :: proteins)
+elif codons.StartsWith("UAU") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
+elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
+elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
+elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
+elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
+elif codons.StartsWith("UAA") then List.rev proteins
+elif codons.StartsWith("UAG") then List.rev proteins
+elif codons.StartsWith("UGA") then List.rev proteins
+elif codons.IsEmpty           then List.rev proteins
+else failwith "Unknown coding"
 ```
 
 ```exercism/note
@@ -147,13 +142,13 @@ For this particular case, it isn't really an issue, as the codons are fixed and 
 
 ## Putting it all together
 
-The final step is to call our recursive helper function:
+The final step is to call our recursive helper function, converting our input `string` to a `ReadOnlySpan<char>` using its [`AsSpan()` method][string.asspan]:
 
 ```fsharp
-doProteins codons []
+doProteins (codons.AsSpan()) []
 ```
 
-And with that, we have a working, tail recursive implementation that translates the codons to proteins.
+And with that, we have a working, tail recursive implementation that translates the codons to proteins whilst minimizing string allocations.
 
 ```exercism/note
 Tail recursion prevents stack overflows when a recursive function is called many times.
@@ -161,3 +156,9 @@ While the exercise does not have large test cases that would cause a stack overf
 If you'd like to read more about tail recursion, [this MSDN article](https://blogs.msdn.microsoft.com/fsharpteam/2011/07/08/tail-calls-in-f/) goes into more detail.
 Another good resource on tail recursion is [this blog post](http://blog.ploeh.dk/2015/12/22/tail-recurse/).
 ```
+
+[span]: https://learn.microsoft.com/en-us/dotnet/api/system.span-1
+[span.startswith]: https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.startswith#system-memoryextensions-startswith-1(system-span((-0))-system-readonlyspan((-0)))
+[span.slice]: https://learn.microsoft.com/en-us/dotnet/api/system.span-1.slice#system-span-1-slice(system-int32)
+[span.isempty]: https://learn.microsoft.com/en-us/dotnet/api/system.span-1.isempty
+[string.asspan]: https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.asspan#system-memoryextensions-asspan(system-string)

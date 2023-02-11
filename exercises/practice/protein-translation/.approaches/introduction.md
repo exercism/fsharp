@@ -104,7 +104,7 @@ let rec private doProteins (codons: ReadOnlySpan<char>) (proteins: string list):
     elif codons.StartsWith("UAA") then List.rev proteins
     elif codons.StartsWith("UAG") then List.rev proteins
     elif codons.StartsWith("UGA") then List.rev proteins
-    elif codons.StartsWith("") then List.rev proteins
+    elif codons.IsEmpty           then List.rev proteins
     else failwith "Unknown coding"
 
 let proteins (codons: string): string list =

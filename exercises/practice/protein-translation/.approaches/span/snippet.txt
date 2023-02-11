@@ -4,5 +4,5 @@ let rec doProteins (codons: ReadOnlySpan<char>) (proteins: string list): string 
     elif codons.StartsWith("UAC") then doProteins (codons.Slice(3)) ("Tyrosine"      :: proteins)
     elif codons.StartsWith("UGU") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
     elif codons.StartsWith("UGC") then doProteins (codons.Slice(3)) ("Cysteine"      :: proteins)
-    elif codons.StartsWith("UGG") then doProteins (codons.Slice(3)) ("Tryptophan"    :: proteins)
-    elif codons.StartsWith("") then List.rev proteins
+    elif codons.StartsWith("UGA") then List.rev proteins
+    elif codons.IsEmpty           then List.rev proteins
