@@ -18,7 +18,23 @@ Regardless of the approach used, here are some things to consider:
 
 ## Approach: `if` expressions
 
-TODO
+```fsharp
+let response (phrase: string): string =
+    let isEmpty = System.String.IsNullOrWhiteSpace phrase
+    let isYell = phrase <> phrase.ToLower() && phrase = phrase.ToUpper()
+    let isQuestion = phrase.Trim().EndsWith "?"
+
+    if isEmpty then
+        "Fine. Be that way!"
+    elif isYell && isQuestion then
+        "Calm down, I know what I'm doing!"
+    elif isYell then
+        "Whoa, chill out!"
+    elif isQuestion then
+        "Sure."
+    else
+        "Whatever."
+```
 
 For more information, check the [`if` expressions approach][approach-if].
 
