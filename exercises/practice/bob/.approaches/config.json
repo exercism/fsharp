@@ -9,6 +9,13 @@
       "title": "If",
       "blurb": "Use if expressions to return the answer.",
       "authors": ["erikschierboom"]
+    },
+    {
+      "uuid": "2c249464-271d-42bd-99e3-ee127a5ad12f",
+      "slug": "active-patterns",
+      "title": "Active Patterns",
+      "blurb": "Use Active Pattern to return the answer.",
+      "authors": ["erikschierboom"]
     }
   ]
 }
