@@ -1,0 +1,14 @@
+{
+  "introduction": {
+    "authors": ["erikschierboom"]
+  },
+  "approaches": [
+    {
+      "uuid": "a6704c40-7f9c-426c-8565-a34ee953f765",
+      "slug": "if",
+      "title": "If",
+      "blurb": "Use if expressions to return the answer.",
+      "authors": ["erikschierboom"]
+    }
+  ]
+}

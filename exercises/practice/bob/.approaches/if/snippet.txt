@@ -1,0 +1,8 @@
+if isEmpty then
+    "Fine. Be that way!"
+elif isYell then
+    "Whoa, chill out!"
+elif isQuestion then
+    "Sure."
+else
+    "Whatever."
