@@ -22,12 +22,10 @@ let proteins (rna: string): string list =
         | "UAA" | "UAG" | "UGA" | "" ->    None
         | _ -> failwith "Unknown coding"
 
-    rna
-    |> Seq.unfold doProteins
-    |> Seq.toList
+    List.unfold doProteins rna
 ```
 
-This approach uses [`Seq.unfold`][seq.unfold] to handle the RNA translation.
+This approach uses [`List.unfold`][list.unfold] to handle the RNA translation.
 For more information, check the [unfold approach][approach-unfold].
 
 ## Approach: `Seq` module
@@ -126,7 +124,7 @@ You can read more about performance in the [performance article][article-perform
 [approach-seq-module]: https://exercism.org/tracks/fsharp/exercises/protein-translation/approaches/seq-module
 [approach-span]: https://exercism.org/tracks/fsharp/exercises/protein-translation/approaches/span
 [article-performance]: https://exercism.org/tracks/fsharp/exercises/protein-translation/articles/performance
-[seq.unfold]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#unfold
+[list.unfold]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#unfold
 [seq.map]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#map
 [seq-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html
 [span]: https://learn.microsoft.com/en-us/dotnet/api/system.span-1
