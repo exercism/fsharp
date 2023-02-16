@@ -16,17 +16,15 @@ let proteins (rna: string): string list =
         | "UAA" | "UAG" | "UGA" | "" ->    None
         | _ -> failwith "Unknown coding"
 
-    rna
-    |> Seq.unfold doProteins
-    |> Seq.toList
+    List.unfold doProteins rna
 ```
 
 The protein translation algorithm is basically a while loop that accumulates values and terminates when the "STOP" protein is reached or when there are no more codons left to translate.
-This is a common enough pattern, that F# has a built-in function for this use case: [`Seq.unfold`][seq.unfold], which we'll use in this approach.
+This is a common enough pattern, that F# has a built-in function for this use case: [`List.unfold`][list.unfold], which we'll use in this approach.
 
-## `Seq.unfold`
+## `List.unfold`
 
-The `Seq.unfold` function takes two arguments:
+The `List.unfold` function takes two arguments:
 
 1. A function that takes a value and returns a value pair wrapped in an [`Option<T>`][options]
 2. The initial value
@@ -40,7 +38,7 @@ Once the function returns `None`, the accumulated return values are returned.
 
 ## Unfolding the proteins
 
-Now that we know how `Seq.unfold` works, let's use it to translate our codons.
+Now that we know how `List.unfold` works, let's use it to translate our codons.
 
 Let's define a `doProteins` function that takes a `string` parameter representing the codons left to translate, and returns a `(string * string) option`.
 The string pair consists of the translated protein and the remaining, unprocessed RNA:
@@ -50,13 +48,13 @@ let doProteins (rna: string): (string * string) option
 ```
 
 We'll define this function inside the `proteins` function (also known as a _nested_ function), but it could just as well have been defined outside the `proteins` function.
-That said, its implementation _is_ tied to the `Seq.unfold` call, so have it be close to that often makes sense (it signals to the reader that the function should only be used _within_ its parent function).
+That said, its implementation _is_ tied to the `List.unfold` call, so have it be close to that often makes sense (it signals to the reader that the function should only be used _within_ its parent function).
 
 ### Translating
 
 As each codon is three letters long, the `doProteins` function looks at the first three letters of its `codons` parameter.
 For each translateable codon, we return a pair of strings, the first being its protein translation and the second being the remainder of the codons (skipping the first three letters).
-We'll wrap the pair in `Some` to signal `Seq.unfold` to continue processing:
+We'll wrap the pair in `Some` to signal `List.unfold` to continue processing:
 
 ```fsharp
 match rna[0..2] with
@@ -144,7 +142,7 @@ For this particular case, it isn't really an issue, as the codons are fixed and 
 
 ### Step-by-step execution
 
-Let's run through the `Seq.unfold` calls to get a better feel for it working as intended:
+Let's run through the `List.unfold` calls to get a better feel for it working as intended:
 
 | Remaining RNA | Lambda return                   | Return values                                   |
 | ------------- | ------------------------------- | ----------------------------------------------- |
@@ -157,17 +155,13 @@ You can see that we process the codons step by step, slowly building up the retu
 
 ## Putting it all together
 
-Finally, we can put it all to together by piping the RNA into `Seq.unfold` with our `doProteins` function as its first argument, and then converting the sequence to a list via [Seq.toList][seq.tolist]:
+Finally, we can put it all to together by piping the RNA into `List.unfold` with our `doProteins` function as its first argument:
 
 ```fsharp
-rna
-|> Seq.unfold doProteins
-|> Seq.toList
+List.unfold doProteins rna
 ```
 
 We now have a working implementation that translates the RNA to proteins.
 
-[seq.unfold]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#unfold
-[seq.length]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#length
-[seq.tolist]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#toList
+[list.unfold]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#unfold
 [options]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/options
