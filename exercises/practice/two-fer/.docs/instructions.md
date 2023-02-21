@@ -1,16 +1,14 @@
 # Instructions
 
-`Two-fer` or `2-fer` is short for two for one. One for you and one for me.
+Your task is to determine what you will say to your friend as you hand them their cookie.
 
-Given a name, return a string with the message:
+If your friend is named Do-yun, then you will say:
 
 ```text
-One for name, one for me.
+One for Do-yun, one for me.
 ```
 
-Where "name" is the given name.
-
-However, if the name is missing, return the string:
+On the other hand, if for some reason you can't remember your friend's name just then, you'll say _you_ instead of their name:
 
 ```text
 One for you, one for me.
@@ -18,9 +16,9 @@ One for you, one for me.
 
 Here are some examples:
 
-|Name    |String to return
+|Name    |Dialogue
 |:-------|:------------------
 |Alice   |One for Alice, one for me.
-|Bob     |One for Bob, one for me.
+|Bohdan  |One for Bohdan, one for me.
 |        |One for you, one for me.
 |Zaphod  |One for Zaphod, one for me.
