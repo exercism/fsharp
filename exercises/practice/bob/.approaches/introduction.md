@@ -52,7 +52,7 @@ let response (phrase: string): string =
 ```
 
 This approach uses [Active Patterns][active-patterns] to handle the different types of responses.
-For more information, check the [Active Patterns approach][approach-active-pattern].
+For more information, check the [Active Patterns approach][approach-active-patterns].
 
 ## Which approach to use?
 
@@ -62,4 +62,5 @@ Both approaches are equally valid, so which approach to choose is mostly persona
 [endswith]: https://learn.microsoft.com/en-us/dotnet/api/system.string.endswith
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [approach-if]: https://exercism.org/tracks/fsharp/exercises/bob/approaches/if
+[approach-active-patterns]: https://exercism.org/tracks/fsharp/exercises/bob/approaches/active-patterns
 [active-patterns]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/active-patterns
