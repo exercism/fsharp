@@ -5,7 +5,7 @@ open System
 let response (input: string) = 
     let isEmpty = String.IsNullOrWhiteSpace input
     let isYell = Seq.exists Char.IsLetter input && input = input.ToUpperInvariant()
-    let isQuestion = input.Trim().EndsWith "?"
+    let isQuestion = input.Trim().EndsWith("?")
 
     match input with 
         | _ when isEmpty -> 
