@@ -12,7 +12,7 @@ let incrementTodaysCount (counts: int []): int [] =
     counts.[6] <- counts.[6] + 1
     counts
 
-let oddWeek (counts: int []) =
+let unusualWeek (counts: int []) =
     match counts with
     | [| _; 0; _; 0; _; 0; _ |]
     | [| _; 10; _; 10; _; 10; _ |]

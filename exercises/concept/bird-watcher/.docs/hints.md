@@ -28,7 +28,7 @@
   - The `Array` module has a [function to update a value in an array][set-function].
 - The above function to update a value in an array does not return a value. You should thus manually return the updated array after setting its value.
 
-## 6. Check for odd week
+## 6. Check for unusual week
 
 - Instead of checking all individual values, use [pattern matching][pattern-matching-array].
 
