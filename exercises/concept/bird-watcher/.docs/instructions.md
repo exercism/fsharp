@@ -50,20 +50,22 @@ incrementTodaysCount birdCount
 // => [| 3; 5; 0; 7; 4; 2 |]
 ```
 
-## 6. Check for odd week
+## 6. Check for unusual week
 
-Over the last year, you've found that some weeks have the same, odd patterns:
+Over the last year, you've found that some weeks have the same, unusual patterns:
 - On each even day of the week, there were no birds
 - On each even day of the week, exactly 10 birds were spotted
 - On each odd day of the week, exactly 5 birds were spotted
 
-Implement the `oddWeek` function that returns `true` if the bird count pattern of this week matches one of the odd patterns:
+Implement the `unusualWeek` function that returns `true` if the bird count pattern of this week matches one of the unusual patterns:
 
 ```fsharp
-oddWeek [| 1; 0; 5; 0; 12; 0; 2 |]
+unusualWeek [| 1; 0; 5; 0; 12; 0; 2 |]
 // => true
 
-oddWeek [| 5; 0; 5; 12; 5; 3; 5|]
+unusualWeek [| 5; 0; 5; 12; 5; 3; 5|]
 // => true
 ```
- 
+
+(Note that day-parity is 1-indexed, not 0-indexed - the first element in the array corresponds with an odd day)
+

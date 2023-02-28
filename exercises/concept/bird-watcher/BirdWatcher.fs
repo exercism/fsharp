@@ -15,5 +15,5 @@ let dayWithoutBirds(counts: int[]): bool =
 let incrementTodaysCount(counts: int[]): int[] =
  failwith "Please implement the 'incrementTodaysCount' function"
 
-let oddWeek(counts: int[]): bool =
-  failwith "Please implement the 'oddWeek' function"
+let unusualWeek(counts: int[]): bool =
+  failwith "Please implement the 'unusualWeek' function"
