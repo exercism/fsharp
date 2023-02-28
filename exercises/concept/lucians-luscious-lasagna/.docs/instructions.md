@@ -39,3 +39,13 @@ Define the `elapsedTimeInMinutes` function that takes two parameters: the first 
 elapsedTimeInMinutes 3 20
 // => 26
 ```
+
+## Bonus
+
+Try to define all functions without an explicit argument, like
+
+```fsharp
+let addedTime = (+) 5
+// addedTime 3
+// => 8
+```
