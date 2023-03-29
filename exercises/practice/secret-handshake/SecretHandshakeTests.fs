@@ -1,7 +1,7 @@
 module SecretHandshakeTests
 
 open FsUnit.Xunit
-open Xunit
+open Xunit 
 
 open SecretHandshake
 
