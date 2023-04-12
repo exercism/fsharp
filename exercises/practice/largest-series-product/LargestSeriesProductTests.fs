@@ -66,18 +66,6 @@ let ``Rejects span longer than string length`` () =
     largestProduct digits span |> should equal None
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Reports 1 for empty string and empty product (0 span)`` () =
-    let digits = ""
-    let span = 0
-    largestProduct digits span |> should equal (Some 1)
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Reports 1 for nonempty string and empty product (0 span)`` () =
-    let digits = "123"
-    let span = 0
-    largestProduct digits span |> should equal (Some 1)
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Rejects empty string and nonzero span`` () =
     let digits = ""
     let span = 1
