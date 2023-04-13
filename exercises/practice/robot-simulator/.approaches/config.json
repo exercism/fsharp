@@ -1,6 +1,8 @@
 {
   "introduction": {
-    "authors": ["erikschierboom"]
+    "authors": [
+      "erikschierboom"
+    ]
   },
   "approaches": [
     {
@@ -8,14 +10,18 @@
       "slug": "recursion",
       "title": "Recursion",
       "blurb": "Use recursion to simulate the robot's movements.",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     },
     {
       "uuid": "a54154dd-bb0d-41a5-9a6e-7e74c2075d7b",
       "slug": "fold",
       "title": "Fold",
       "blurb": "Use Seq.fold to simulate the robot's movements.",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     }
   ]
 }

@@ -1,6 +1,8 @@
 {
   "introduction": {
-    "authors": ["erikschierboom"]
+    "authors": [
+      "erikschierboom"
+    ]
   },
   "approaches": [
     {
@@ -8,14 +10,18 @@
       "slug": "if-expressions",
       "title": "if expressions",
       "blurb": "Use if expressions.",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     },
     {
       "uuid": "a8b66aa3-cd31-4674-bc9d-fe68695ea39f",
       "slug": "pattern-matching",
       "title": "Pattern matching",
       "blurb": "Use pattern matching.",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     }
   ]
 }

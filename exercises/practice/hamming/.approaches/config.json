@@ -1,6 +1,8 @@
 {
   "introduction": {
-    "authors": ["erikschierboom"]
+    "authors": [
+      "erikschierboom"
+    ]
   },
   "approaches": [
     {
@@ -8,14 +10,18 @@
       "slug": "recursion",
       "title": "Recursion",
       "blurb": "Use recursion to incrementally calculate the distance.",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     },
     {
       "uuid": "4f4378ab-082b-429e-9282-3b9caeb4e784",
       "slug": "zip",
       "title": "Zip",
       "blurb": "Use Seq.zip to incrementally calculate the distance",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     }
   ]
 }
