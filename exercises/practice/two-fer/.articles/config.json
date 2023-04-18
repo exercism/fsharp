@@ -5,7 +5,9 @@
       "slug": "string-formatting",
       "title": "Formatting the return string",
       "blurb": "Show the different ways in which the return string can be formatted.",
-      "authors": ["erikschierboom"]
+      "authors": [
+        "erikschierboom"
+      ]
     }
   ]
 }
