@@ -15,7 +15,7 @@ expectedMinutesInOven
 
 ## 2. Calculate the remaining oven time in minutes
 
-Define the `remainingMinutesInOven` function that takes the actual minutes the lasagna has been in the oven as a parameter and returns how many minutes the lasagna still has to remain in the oven, based on the expected time oven time in minutes from the previous task.
+Define the `remainingMinutesInOven` function that takes the actual minutes the lasagna has been in the oven as a parameter and returns how many minutes the lasagna still has to remain in the oven, based on the expected oven time in minutes from the previous task.
 
 ```fsharp
 remainingMinutesInOven 30
