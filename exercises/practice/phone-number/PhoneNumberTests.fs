@@ -45,12 +45,12 @@ let ``Invalid when more than 11 digits`` () =
     let expected: Result<uint64,string> = Error "more than 11 digits"
     clean "321234567890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid with letters`` () =
     let expected: Result<uint64,string> = Error "letters not permitted"
     clean "523-abc-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid with punctuations`` () =
     let expected: Result<uint64,string> = Error "punctuations not permitted"
     clean "523-@:!-7890" |> should equal expected
