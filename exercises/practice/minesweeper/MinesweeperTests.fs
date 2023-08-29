@@ -11,13 +11,13 @@ let ``No rows`` () =
     let expected: string list = []
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``No columns`` () =
     let minefield = [""]
     let expected = [""]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``No mines`` () =
     let minefield = 
         [ "   ";
@@ -29,7 +29,7 @@ let ``No mines`` () =
           "   " ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Minefield with only mines`` () =
     let minefield = 
         [ "***";
