@@ -10,37 +10,37 @@ let ``Cleans the number`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "(223) 456-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Cleans numbers with dots`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "223.456.7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Cleans numbers with multiple spaces`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "223 456   7890   " |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid when 9 digits`` () =
     let expected: Result<uint64,string> = Error "incorrect number of digits"
     clean "123456789" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid when 11 digits does not start with a 1`` () =
     let expected: Result<uint64,string> = Error "11 digits must start with 1"
     clean "22234567890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Valid when 11 digits and starting with 1`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "12234567890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Valid when 11 digits and starting with 1 even with punctuation`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "+1 (223) 456-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid when more than 11 digits`` () =
     let expected: Result<uint64,string> = Error "more than 11 digits"
     clean "321234567890" |> should equal expected
