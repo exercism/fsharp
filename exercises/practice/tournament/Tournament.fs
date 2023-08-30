@@ -24,8 +24,6 @@ type Team =
     { Name: string
       Results: Results }
 
-    static member Create name = { Name = name; Results = Results.Init }
-
 let addOutcome outcome results =
     match outcome with
     | Win -> { results with Wins = results.Wins + 1 }
@@ -49,21 +47,21 @@ let getTournamentResults(teams: Team list) =
     let header = "Team                           | MP |  W |  D |  L |  P"
     header :: lines
 
-let processMatch (teams: Team list) homeTeam awayTeam outcome =
+let processMatch teams homeTeam awayTeam outcome =
     let addResult teamName outcome teams =
         match (teams |> Map.tryFind teamName) with
         | Some results -> teams.Add(teamName, addOutcome outcome results)
         | None -> teams.Add(teamName, addOutcome outcome Results.Init)
         
     teams
-    |> List.map (fun t -> t.Name, t.Results)
+    |> List.map (fun team -> team.Name, team.Results)
     |> Map.ofList
     |> addResult homeTeam outcome
     |> addResult awayTeam (outcome |> Outcome.Invert)
     |> Map.toList
     |> List.map (fun (name, results) -> { Name = name; Results = results })
 
-let folder (teams: Team list) (row: string) =
+let folder teams (row: string) =
     match row.Split(';') with
     | [| home; away; outcome |] ->
         let outcome =
