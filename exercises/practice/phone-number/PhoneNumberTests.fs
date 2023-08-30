@@ -55,42 +55,42 @@ let ``Invalid with punctuations`` () =
     let expected: Result<uint64,string> = Error "punctuations not permitted"
     clean "523-@:!-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if area code starts with 0`` () =
     let expected: Result<uint64,string> = Error "area code cannot start with zero"
     clean "(023) 456-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if area code starts with 1`` () =
     let expected: Result<uint64,string> = Error "area code cannot start with one"
     clean "(123) 456-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if exchange code starts with 0`` () =
     let expected: Result<uint64,string> = Error "exchange code cannot start with zero"
     clean "(223) 056-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if exchange code starts with 1`` () =
     let expected: Result<uint64,string> = Error "exchange code cannot start with one"
     clean "(223) 156-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if area code starts with 0 on valid 11-digit number`` () =
     let expected: Result<uint64,string> = Error "area code cannot start with zero"
     clean "1 (023) 456-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if area code starts with 1 on valid 11-digit number`` () =
     let expected: Result<uint64,string> = Error "area code cannot start with one"
     clean "1 (123) 456-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if exchange code starts with 0 on valid 11-digit number`` () =
     let expected: Result<uint64,string> = Error "exchange code cannot start with zero"
     clean "1 (223) 056-7890" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Invalid if exchange code starts with 1 on valid 11-digit number`` () =
     let expected: Result<uint64,string> = Error "exchange code cannot start with one"
     clean "1 (223) 156-7890" |> should equal expected
