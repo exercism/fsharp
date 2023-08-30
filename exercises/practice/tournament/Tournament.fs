@@ -39,7 +39,7 @@ let display team =
     let pad input = $"{input, 3}"
     $"{team.Name, -31}|{team.Results.MatchPlayed |> pad} |{team.Results.Wins |> pad} |{team.Results.Draws |> pad} |{team.Results.Losses |> pad} |{team.Results.Points |> pad}"
 
-let getTournamentResults (teams: Team list) =
+let getTournamentResults(teams: Team list) =
     let lines =
         teams
         |> List.sortBy (fun team -> -team.Results.Points, team.Name)
@@ -60,10 +60,7 @@ let processMatch (teams: Team list) homeTeam awayTeam outcome =
         |> List.tryFind (fun t -> t.Name = homeTeam)
         |> function
             | None -> (Team.Create homeTeam |> teamScore outcome) :: teams
-            | Some team ->
-                let newList = teams |> List.filter (fun t -> t <> team)
-                let newTeam = team |> teamScore outcome
-                newTeam :: newList
+            | Some team -> teams |> List.map (fun t -> if t = team then team |> teamScore outcome else t)
 
     let teams =
         teams
@@ -71,10 +68,12 @@ let processMatch (teams: Team list) homeTeam awayTeam outcome =
         |> function
             | None -> (Team.Create awayTeam |> teamScore (outcome |> invertOutcome)) :: teams
             | Some team ->
-                let newList = teams |> List.filter (fun t -> t <> team)
-                let newTeam = team |> teamScore (outcome |> invertOutcome)
-                newTeam :: newList
-
+                teams
+                |> List.map (fun t ->
+                    if t = team then
+                        team |> teamScore (outcome |> invertOutcome)
+                    else
+                        t)
     teams
 
 let folder (teams: Team list) (row: string) =
@@ -90,5 +89,5 @@ let folder (teams: Team list) (row: string) =
         processMatch teams home away outcome
     | _ -> teams
 
-let tally (input: string list) =
+let tally(input: string list) =
     input |> List.fold folder list.Empty |> getTournamentResults
