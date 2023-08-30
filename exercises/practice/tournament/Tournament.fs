@@ -5,6 +5,12 @@ type Outcome =
     | Loss
     | Draw
 
+    static member Invert =
+        function
+        | Win -> Loss
+        | Loss -> Win
+        | Draw -> Draw
+
 type Results =
     { Wins: int
       Losses: int
@@ -20,20 +26,15 @@ type Team =
 
     static member Create name = { Name = name; Results = Results.Init }
 
-let teamScore outcome team =
-    let results =
-        match outcome with
-        | Win ->
-            { team.Results with
-                Wins = team.Results.Wins + 1 }
-        | Draw ->
-            { team.Results with
-                Draws = team.Results.Draws + 1 }
-        | Loss ->
-            { team.Results with
-                Losses = team.Results.Losses + 1 }
-
-    { team with Results = results }
+let addOutcome outcome results =
+    match outcome with
+    | Win -> { results with Wins = results.Wins + 1 }
+    | Draw ->
+        { results with
+            Draws = results.Draws + 1 }
+    | Loss ->
+        { results with
+            Losses = results.Losses + 1 }
 
 let display team =
     let pad input = $"{input, 3}"
@@ -49,32 +50,18 @@ let getTournamentResults(teams: Team list) =
     header :: lines
 
 let processMatch (teams: Team list) homeTeam awayTeam outcome =
-    let invertOutcome =
-        function
-        | Win -> Loss
-        | Loss -> Win
-        | Draw -> Draw
-
-    let teams =
-        teams
-        |> List.tryFind (fun t -> t.Name = homeTeam)
-        |> function
-            | None -> (Team.Create homeTeam |> teamScore outcome) :: teams
-            | Some team -> teams |> List.map (fun t -> if t = team then team |> teamScore outcome else t)
-
-    let teams =
-        teams
-        |> List.tryFind (fun t -> t.Name = awayTeam)
-        |> function
-            | None -> (Team.Create awayTeam |> teamScore (outcome |> invertOutcome)) :: teams
-            | Some team ->
-                teams
-                |> List.map (fun t ->
-                    if t = team then
-                        team |> teamScore (outcome |> invertOutcome)
-                    else
-                        t)
+    let addResult teamName outcome teams =
+        match (teams |> Map.tryFind teamName) with
+        | Some results -> teams.Add(teamName, addOutcome outcome results)
+        | None -> teams.Add(teamName, addOutcome outcome Results.Init)
+        
     teams
+    |> List.map (fun t -> t.Name, t.Results)
+    |> Map.ofList
+    |> addResult homeTeam outcome
+    |> addResult awayTeam (outcome |> Outcome.Invert)
+    |> Map.toList
+    |> List.map (fun (name, results) -> { Name = name; Results = results })
 
 let folder (teams: Team list) (row: string) =
     match row.Split(';') with
