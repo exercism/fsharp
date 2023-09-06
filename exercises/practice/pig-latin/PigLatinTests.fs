@@ -9,27 +9,27 @@ open PigLatin
 let ``Word beginning with a`` () =
     translate "apple" |> should equal "appleay"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Word beginning with e`` () =
     translate "ear" |> should equal "earay"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Word beginning with i`` () =
     translate "igloo" |> should equal "iglooay"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Word beginning with o`` () =
     translate "object" |> should equal "objectay"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Word beginning with u`` () =
     translate "under" |> should equal "underay"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Word beginning with a vowel and followed by a qu`` () =
     translate "equal" |> should equal "equalay"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Word beginning with p`` () =
     translate "pig" |> should equal "igpay"
 
