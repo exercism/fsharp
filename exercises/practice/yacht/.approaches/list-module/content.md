@@ -117,7 +117,7 @@ let private dieScore (die: Die): int =
     | Six   -> 6
 ```
 
-````exercism/note
+~~~~exercism/note
 Another option would have been to add a member to the discriminated union:
 
 ```fsharp
@@ -140,7 +140,7 @@ type Die =
 ```
 
 We've chosen not to do this, as members are more awkward to use in higher-order functions, which we rely on a lot in this approach.
-````
+~~~~
 
 ## Scoring categories
 
@@ -268,14 +268,14 @@ let private yachtScore (dice: Die list): int =
     | _ -> 0
 ```
 
-````exercism/note
+~~~~exercism/note
 Alternatively, we could have counted the number of unique dice and checked if that was equal to one in an `if` expression:
 
 ```fsharp
 let private yachtScore (dice: Die list): int =
     if List.distinct dice |> List.length = 1 then 50 else 0
 ```
-````
+~~~~
 
 ### Choice score
 

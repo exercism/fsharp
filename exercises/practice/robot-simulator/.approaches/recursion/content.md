@@ -65,10 +65,10 @@ Here is what our type looks like:
 type Robot = Robot of direction: Direction * position: Position
 ```
 
-```exercism/note
+~~~~exercism/note
 Whilst not required, we name the fields of the discriminated union.
 It is a good practice to do, as it can really help with readability.
-```
+~~~~
 
 ## Creating a robot
 
@@ -136,10 +136,10 @@ let rec doMove (robot: Robot) (instructions: char list): Robot =
 
 We'll define this function within the `move` function (also known as a _nested_ function), but it could just as well have been defined outside the `move` function.
 
-```exercism/note
+~~~~exercism/note
 To allow a function to recursively call itself, the `rec` modified must be added.
 In other words: by default, functions cannot call themselves.
-```
+~~~~
 
 The first parameter of the `doMove` function is its _accumulator_ parameter: `robot`.
 This parameter represents the current robot's state and is updated between the recursive function calls until we're done processing.

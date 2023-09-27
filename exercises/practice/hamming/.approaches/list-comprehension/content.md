@@ -23,12 +23,12 @@ if strand1.Length <> strand2.Length
 then None
 ```
 
-```exercism/note
+~~~~exercism/note
 Note that we're using `string` class' `Length` property, not a function like `Seq.length`.
 Even though F# is a functional-first language, you'll use types (like the `string` class) defined in the .NET framework, which is an object-oriented framework.
 Inevitably, you'll thus use objects that have methods and properties defined on them.
 Don't worry about using methods and objects though, F# is a multi-paradigm language and embraces the interaction with object-oriented code (like the `string` class).
-```
+~~~~
 
 ## Happy path
 

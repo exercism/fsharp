@@ -19,9 +19,9 @@ The first step is to calculate the distance from the center of the board, which 
 Math.Sqrt(x * x + y * y)
 ```
 
-```exercism/note
+~~~~exercism/note
 We open the `System` namespace to allows us to use `Math.Sqrt` instead of `System.Math.Sqrt`.
-```
+~~~~
 
 Before we'll look at the score calculation, let's re-iterate the games rules:
 

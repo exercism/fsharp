@@ -48,9 +48,9 @@ match person with
 | name3, length3 -> printf "%s: %d" name3 length3
 ```
 
-```exercism/note
+~~~~exercism/note
 Technically, you can access a tuples value using its `.Item1`, `.Item2`, ... properties, but this is discouraged and results in a compiler warning.
-```
+~~~~
 
 ## Key points about tuples
 
