@@ -45,20 +45,20 @@ let rec doProteins (rna: ReadOnlySpan<char>) (proteins: string list): string lis
 We'll define this function inside the `proteins` function (also known as a _nested_ function), but it could just as well have been defined outside the `proteins` function.
 That said, its implementation _is_ merely a helper to the `proteins` function and is thus tied to that function, so to have it be close to where it is called often makes sense (it signals to the reader that the function should only be used _within_ its parent function).
 
-```exercism/note
+~~~~exercism/note
 To allow a function to recursively call itself, the `rec` modified must be added.
 In other words: by default, functions cannot call themselves.
-```
+~~~~
 
 ### Translating
 
 As each codon is three letters long, the `doProteins` function looks at the first three letters of its `codons` parameter via its [`StartsWith()`][span.startswith] method.
 For each translateable codon, we recursively call the `doProteins` function, with the remainder of the codons (skipping the first three letters) and the codon's protein added to the proteins accumulator value as arguments.
 
-```exercism/note
+~~~~exercism/note
 We skip over the first three letters via the [`Slice()` method](https://learn.microsoft.com/en-us/dotnet/api/system.span-1.slice#system-span-1-slice(system-int32)), which does _not_ allocate a new `string` but only a new `ReadOnlySpan`.
 The underlying `string` remains the same, but the _view_ of that string is offset by 3.
-```
+~~~~
 
 ```fsharp
 if   rna.StartsWith("AUG") then doProteins (rna.Slice(3)) ("Methionine"    :: proteins)
@@ -94,11 +94,11 @@ There is one additional case we need to process, and that is when there are no c
 elif rna.IsEmpty then List.rev protein
 ```
 
-```exercism/note
+~~~~exercism/note
 We need to use [`List.rev`](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-listmodule.html#rev) to reverse the proteins, as translated proteins are added at the head of the list (in the front).
 Prepending an element to a list is _much_ faster than appending an element.
 In fact, it is so much faster that the penalty of having to reverse the list ends up being well worth it.
-```
+~~~~
 
 ### Unknown input
 
@@ -135,10 +135,10 @@ elif rna.IsEmpty           then List.rev proteins
 else failwith "Unknown coding"
 ```
 
-```exercism/note
+~~~~exercism/note
 A downside of vertical alignment is that changes to the code require more work, as you'll need to ensure everything is still aligned.
 For this particular case, it isn't really an issue, as the codons are fixed and the code is thus unlikely to change.
-```
+~~~~
 
 ## Putting it all together
 
@@ -150,12 +150,12 @@ doProteins (rna.AsSpan()) []
 
 And with that, we have a working, tail recursive implementation that translates the RNA to proteins whilst minimizing string allocations.
 
-```exercism/note
+~~~~exercism/note
 Tail recursion prevents stack overflows when a recursive function is called many times.
 While the exercise does not have large test cases that would cause a stack overflow, it is good practice to always use using tail recursion when implementing a recursive functions.
 If you'd like to read more about tail recursion, [this MSDN article](https://blogs.msdn.microsoft.com/fsharpteam/2011/07/08/tail-calls-in-f/) goes into more detail.
 Another good resource on tail recursion is [this blog post](http://blog.ploeh.dk/2015/12/22/tail-recurse/).
-```
+~~~~
 
 [span]: https://learn.microsoft.com/en-us/dotnet/api/system.span-1
 [span.startswith]: https://learn.microsoft.com/en-us/dotnet/api/system.memoryextensions.startswith#system-memoryextensions-startswith-1(system-span((-0))-system-readonlyspan((-0)))

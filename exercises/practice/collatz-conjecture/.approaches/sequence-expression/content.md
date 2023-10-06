@@ -96,10 +96,10 @@ let rec private collatzSequence (current: int): int seq =
 
 This function takes the current number as its sole parameter and is marked with `rec` to allow it to call itself.
 
-```exercism/note
+~~~~exercism/note
 To allow a function to recursively call itself, the `rec` modified must be added.
 In other words: by default, functions cannot call themselves.
-```
+~~~~
 
 The body of the function has code wrapped in `seq {}`, which indicates to the compiler that we're generate a sequence.
 

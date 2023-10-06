@@ -67,7 +67,7 @@ We can check for an empty string via the built-in [`String.IsNullOrWhiteSpace()`
 if System.String.IsNullOrWhiteSpace(phrase) then Some () else None
 ```
 
-````exercism/note
+~~~~exercism/note
 We opted for using `System.String`, but another option would be to open the `System` namespace and then we could omit the `System.` prefix for the `String.IsNullOrWhiteSpace` call:
 
 ```fsharp
@@ -77,7 +77,7 @@ let isEmpty = String.IsNullOrWhiteSpace(phrase)
 ```
 
 If you were to use multiple types from the `System` namespace, we'd recommend using the above approach where the namespace is explicitly opened.
-````
+~~~~
 
 Now that we can determine whether a phrase is empty, we can use this pattern in the `response` function:
 
@@ -179,10 +179,10 @@ match phrase with
 | _               -> "Whatever."
 ```
 
-```exercism/note
+~~~~exercism/note
 A downside of vertical alignment is that changes to the code require more work, as you'll need to ensure everything is still aligned.
 For this particular case, it isn't really an issue, as the spec is fixed and the code is thus unlikely to change.
-```
+~~~~
 
 ### Final code
 

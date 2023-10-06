@@ -32,7 +32,7 @@ To check this, we can use the built-in [`String.IsNullOrWhiteSpace()`][string.is
 let isEmpty = System.String.IsNullOrWhiteSpace(phrase)
 ```
 
-````exercism/note
+~~~~exercism/note
 We opted for using `System.String`, but another option would be to open the `System` namespace and then we could omit the `System.` prefix for the `String.IsNullOrWhiteSpace` call:
 
 ```fsharp
@@ -42,7 +42,7 @@ let isEmpty = String.IsNullOrWhiteSpace(phrase)
 ```
 
 If you were to use multiple types from the `System` namespace, we'd recommend using the above approach where the namespace is explicitly opened.
-````
+~~~~
 
 Now that we can determine whether a phrase is empty, we can return the proper response using an [`if` expression][if-expressions]:
 
@@ -158,9 +158,9 @@ let response (phrase: string): string =
     else "Whatever."
 ```
 
-```exercism/note
+~~~~exercism/note
 We've defined the `isEmpty`, `isYell` and `isQuestion` bindings within the `response` function, as they're only used within that function.
-```
+~~~~
 
 [if-expressions]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/conditional-expressions-if-then-else
 [string.isnullorwhitespace]: https://learn.microsoft.com/en-us/dotnet/api/system.string.isnullorwhitespace
