@@ -135,10 +135,10 @@ match rna[0..2] with
 | _ -> failwith "Unknown coding"
 ```
 
-```exercism/note
+~~~~exercism/note
 A downside of vertical alignment is that changes to the code require more work, as you'll need to ensure everything is still aligned.
 For this particular case, it isn't really an issue, as the codons are fixed and the code is thus unlikely to change.
-```
+~~~~
 
 ### Step-by-step execution
 

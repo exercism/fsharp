@@ -22,10 +22,10 @@ The `doSteps` function takes the number (basically, where we're at in the collat
 let rec doSteps (current: int) (numberOfSteps: int)
 ```
 
-```exercism/note
+~~~~exercism/note
 To allow a function to recursively call itself, the `rec` modified must be added.
 In other words: by default, functions cannot call themselves.
-```
+~~~~
 
 With the `doSteps` function,
 
@@ -80,12 +80,12 @@ doSteps number 0
 
 And with that, we have a working, tail recursive implementation that correctly calculates the number of steps in a number's collatz sequence.
 
-```exercism/note
+~~~~exercism/note
 Tail recursion prevents stack overflows when a recursive function is called many times.
 While the exercise does not have large test cases that would cause a stack overflow, it is good practice to always use using tail recursion when implementing a recursive functions.
 If you'd like to read more about tail recursion, [this MSDN article](https://blogs.msdn.microsoft.com/fsharpteam/2011/07/08/tail-calls-in-f/) goes into more detail.
 Another good resource on tail recursion is [this blog post](http://blog.ploeh.dk/2015/12/22/tail-recurse/).
-```
+~~~~
 
 ## Pattern matching
 

@@ -1,7 +1,8 @@
 {
   "introduction": {
     "authors": [
-      "erikschierboom"
+      "erikschierboom",
+      "aage"
     ]
   },
   "approaches": [
@@ -21,6 +22,15 @@
       "blurb": "Use Seq.zip to incrementally calculate the distance",
       "authors": [
         "erikschierboom"
+      ]
+    },
+    {
+      "uuid": "916c9769-a5aa-4188-b856-d6176921906f",
+      "slug": "list-comprehension",
+      "title": "List comprehension",
+      "blurb": "Use a list comprehension to incrementally calculate the distance",
+      "authors": [
+        "aage"
       ]
     }
   ]

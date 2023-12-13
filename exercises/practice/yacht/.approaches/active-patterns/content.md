@@ -116,7 +116,7 @@ let private dieScore (die: Die): int =
     | Six   -> 6
 ```
 
-````exercism/note
+~~~~exercism/note
 Another option would have been to add a member to the discriminated union:
 
 ```fsharp
@@ -139,7 +139,7 @@ type Die =
 ```
 
 We've chosen not to do this, as members are more awkward to use in higher-order functions, which we rely on a lot in this approach.
-````
+~~~~
 
 ## Active patterns
 
@@ -195,10 +195,10 @@ let private (|SixesThrow|) (dice: Die list): int =
     |> List.length
 ```
 
-```exercism/note
+~~~~exercism/note
 Active patterns functions have their name specified between `(|` and `|)`.
 This name will be used it in pattern matching, so choose the name accordingly.
-```
+~~~~
 
 The implementation is fairly straightforward.
 We first filter the dice matching the six dice by using [`List.filter`][list.filter].
@@ -264,9 +264,9 @@ let private (|FullHouseThrow|_|) (dice: Die list): unit option =
     | _ -> None
 ```
 
-```exercism/note
+~~~~exercism/note
 We have to define the `FullHouseThrow` active pattern as a _partial_ active pattern (indicated by the `|_|` suffix), as not all dice are a full house.
-```
+~~~~
 
 #### Simplifying
 
@@ -392,14 +392,14 @@ let private (|YachtThrow|_|) (dice: Die list): unit option =
     | _ -> None
 ```
 
-````exercism/note
+~~~~exercism/note
 Alternatively, we could have counted the number of unique dice and checked if that was equal to one in an `if` expression:
 
 ```fsharp
 let private (|YachtThrow|_|) (dice: Die list): unit option =
     if List.distinct dice |> List.length = 1 then Some () else None
 ```
-````
+~~~~
 
 #### Scoring
 
@@ -419,9 +419,9 @@ We therefore don't need to define an active pattern and can just add the followi
 | Choice, _ -> List.sumBy dieScore dice
 ```
 
-```exercism/note
+~~~~exercism/note
 We're matching the dice using the wildcard pattern (`_`), which will match any input.
-```
+~~~~
 
 ## Handling non-matching dice
 

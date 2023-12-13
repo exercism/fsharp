@@ -16,7 +16,7 @@
     "highlightjs_language": "fsharp"
   },
   "test_runner": {
-    "average_run_time": 8.0
+    "average_run_time": 8
   },
   "files": {
     "solution": ["%{pascal_slug}.fs"],

@@ -34,9 +34,9 @@ Let's define a `codonToProtein` function that takes a `string` parameter represe
 let private codonToProtein (codon: string): string
 ```
 
-```exercism/note
+~~~~exercism/note
 We could have defined this function as a nested function within the `proteins` function, but as it could reasonably be used _outside_ the `proteins` function, we chose not to.
-```
+~~~~
 
 Within the function, we simply pattern match on the codon to translate it to its corresponding protein:
 
@@ -170,7 +170,7 @@ It is isn't the element is preserved, and the next element is checked, until eit
 |> Seq.takeWhile (fun protein -> protein <> "STOP")
 ```
 
-````exercism/note
+~~~~exercism/note
 One could also write the above as:
 
 ```fsharp
@@ -178,7 +178,7 @@ One could also write the above as:
 ```
 
 However, this is arguably less readable.
-````
+~~~~
 
 ### Converting to a list
 

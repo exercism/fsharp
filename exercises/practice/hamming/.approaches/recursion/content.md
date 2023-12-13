@@ -26,10 +26,10 @@ This function takes the remaining letters for both strands as a `char list`, whi
 Besides these two lists, we'll also take an _accumulator_ parameter: `distance`, of type `int`.
 This parameter represents the current distance and is updated between the recursive function calls until we're done processing, at which point it will represent the total distance.
 
-```exercism/note
+~~~~exercism/note
 To allow a function to recursively call itself, the `rec` modified must be added.
 In other words: by default, functions cannot call themselves.
-```
+~~~~
 
 Within this function, we pattern match on both letter lists at the same time, using:
 
@@ -78,11 +78,11 @@ doDistance (Seq.toList strand1) (Seq.toList strand2) 0
 
 And with that, we have a working, tail recursive implementation!
 
-```exercism/note
+~~~~exercism/note
 Tail call recursion prevents stack overflows when a recursive function is called many times.
 While the exercise does not have large test cases that would cause a stack overflow, it is good practice to always use using tail recursion when implementing a recursive functions.
 If you'd like to read more about tail recursion, [this MSDN article](https://blogs.msdn.microsoft.com/fsharpteam/2011/07/08/tail-calls-in-f/) goes into more detail.
 Another good resource on tail recursion is [this blog post](http://blog.ploeh.dk/2015/12/22/tail-recurse/).
-```
+~~~~
 
 [seq.tolist]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#toList

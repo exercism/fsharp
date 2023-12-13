@@ -36,11 +36,29 @@ let distance (strand1: string) (strand2: string): int option =
 This approach uses recursion to process the two strings' characters and calculate the hamming distance.
 For more information, check the [recursion approach][approach-recursion].
 
+## Approach: list comprehension
+
+```fsharp
+let distance (strand1: string) (strand2: string) : int option =
+
+    if strand1.Length <> strand2.Length
+    then None
+    else
+        [ for idx in 0 .. strand1.Length - 1 do
+            if strand1[idx] <> strand2[idx] then yield 1 else yield 0 ]
+        |> List.sum
+        |> Some
+```
+
+This approach uses a list comprehension to process the two strings' characters and calculate the hamming distance.
+For more information, check the [list comprehension approach][approach-list-comprehension].
+
 ## Which approach to use?
 
-Both approaches are equally valid, although the recursion one is more verbose, so which one to choose is basically up to personal preference.
+All approaches are equally valid, although the recursion one is more verbose, so which one to choose is basically up to personal preference.
 
 [approach-recursion]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/recursion
 [approach-zip]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/zip
+[approach-list-comprehension]: https://exercism.org/tracks/fsharp/exercises/hamming/approaches/list-comprehension
 [options]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/options
 [seq.zip]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#zip

@@ -64,10 +64,10 @@ Here is what our type looks like:
 type Robot = Robot of direction: Direction * position: Position
 ```
 
-```exercism/note
+~~~~exercism/note
 Whilst not required, we name the fields of the discriminated union.
 It is a good practice to do, as it can really help with readability.
-```
+~~~~
 
 ## Creating a robot
 
