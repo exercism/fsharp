@@ -41,7 +41,7 @@ let ``Minefield with only mines`` () =
           "***" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Mine surrounded by spaces`` () =
     let minefield = 
         [ "   ";
@@ -53,7 +53,7 @@ let ``Mine surrounded by spaces`` () =
           "111" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Space surrounded by mines`` () =
     let minefield = 
         [ "***";
@@ -65,19 +65,19 @@ let ``Space surrounded by mines`` () =
           "***" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Horizontal line`` () =
     let minefield = [" * * "]
     let expected = ["1*2*1"]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Horizontal line, mines at edges`` () =
     let minefield = ["*   *"]
     let expected = ["*1 1*"]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Vertical line`` () =
     let minefield = 
         [ " ";
@@ -93,7 +93,7 @@ let ``Vertical line`` () =
           "1" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Vertical line, mines at edges`` () =
     let minefield = 
         [ "*";
@@ -109,7 +109,7 @@ let ``Vertical line, mines at edges`` () =
           "*" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Cross`` () =
     let minefield = 
         [ "  *  ";
@@ -125,7 +125,7 @@ let ``Cross`` () =
           " 2*2 " ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Large minefield`` () =
     let minefield = 
         [ " *  * ";
