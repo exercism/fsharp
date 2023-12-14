@@ -9,7 +9,7 @@ open RunLengthEncoding
 let ``Encode empty string`` () =
     encode "" |> should equal ""
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode single characters only are encoded without count`` () =
     encode "XYZ" |> should equal "XYZ"
 
@@ -17,15 +17,15 @@ let ``Encode single characters only are encoded without count`` () =
 let ``Encode string with no single characters`` () =
     encode "AABBBCCCC" |> should equal "2A3B4C"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode single characters mixed with repeated characters`` () =
     encode "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB" |> should equal "12WB12W3B24WB"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode multiple whitespace mixed in string`` () =
     encode "  hsqq qww  " |> should equal "2 hs2q q2w2 "
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode lowercase characters`` () =
     encode "aabbbcccc" |> should equal "2a3b4c"
 
