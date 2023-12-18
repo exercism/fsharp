@@ -18,18 +18,17 @@ let encode (input:string) =
 let rec rled input =
     match input with
     | [] -> ""
-    | h :: t when Char.IsDigit h ->
-        let count = h |> string |> int
-        let char = t |> Seq.head
-        new string(char, count) + (rled t[1..])
-        // let count = input |> Seq.takeWhile Char.IsDigit 
-        // let number = String.Join("", count) |> int
-        // let char = t |> Seq.skip (count |> Seq.length) |> Seq.head
-        // new string(char, number) + (rled t[1..])
+    | h :: _ when Char.IsDigit h ->
+        let ar = input |> Seq.takeWhile Char.IsDigit |> Seq.toArray
+        let count = new string(ar) |> int
+        let len = ar |> Array.length
+        let char = input[len..len] |> List.head
+        
+        let rest = input |> List.skip (ar.Length + 1)
+
+        new string(char, count) + (rled rest)
     | h :: t ->
         (h |> string) + (rled t)
         
 let decode (input:string) =
     input.ToCharArray() |> Array.toList |> rled
-    
-decode "12WB12W3B24WB" 
