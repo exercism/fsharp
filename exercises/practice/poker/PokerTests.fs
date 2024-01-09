@@ -11,7 +11,7 @@ let ``Single hand always wins`` () =
     let expected = ["4S 5S 7H 8D JC"]
     bestHands hands |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Highest card out of all hands wins`` () =
     let hands = ["4D 5S 6S 8D 3C"; "2S 4C 7S 9H 10H"; "3S 4S 5D 6H JH"]
     let expected = ["3S 4S 5D 6H JH"]
