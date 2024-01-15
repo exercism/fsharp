@@ -1,17 +1,22 @@
 module NucleotideCount
 
+let nucleotides = [ 'A'; 'C'; 'G'; 'T' ]
+
+let isValid c = nucleotides |> List.contains c
+
 let folder map (c: char) =
-    match c with
-    | 'A'
-    | 'C'
-    | 'G'
-    | 'T' ->
+    if (c |> isValid) then
         map
         |> Map.change c (function
             | Some v -> Some(v + 1)
             | None -> Some 1)
-    | _ -> map
+    else
+        map
+
 
 let nucleotideCounts(strand: string) : Option<Map<char, int>> =
-    let map = Map [ 'A', 0; 'C', 0; 'G', 0; 'T', 0 ]
-    strand |> Seq.fold folder map |> Some
+    if strand |> Seq.exists (isValid >> not) then
+        None
+    else
+        let map = nucleotides |> List.map (fun c -> (c, 0)) |> Map.ofList
+        strand |> Seq.fold folder map |> Some
