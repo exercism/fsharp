@@ -12,12 +12,12 @@ type Currency =
     | USD
 
 type Entry =
-    { dat: DateTime; des: string; chg: int }
+    { Date: DateTime; Description: string; Change: int }
 
 let mkEntry (date: string) description change =
-    { dat = DateTime.Parse(date, CultureInfo.InvariantCulture)
-      des = description
-      chg = change }
+    { Date = DateTime.Parse(date, CultureInfo.InvariantCulture)
+      Description = description
+      Change = change }
 
 let parseLocale =
     function
@@ -31,29 +31,29 @@ let parseCurrency =
     | "USD" -> USD
     | _ -> failwith "Damn it"
 
-let title =
+let getTitle =
     function
     | En -> "Date       | Description               | Change       "
     | Nl -> "Datum      | Omschrijving              | Verandering  "
 
-let processLine locale (currency: Currency) line =
+let processLine locale currency state line =
     let mutable res = "\n"
 
     match locale with
-    | Nl -> res <- res + line.dat.ToString("dd-MM-yyyy")
-    | En -> res <- res + line.dat.ToString("MM\/dd\/yyyy")
+    | Nl -> res <- res + line.Date.ToString("dd-MM-yyyy")
+    | En -> res <- res + line.Date.ToString("MM\/dd\/yyyy")
 
     res <- res + " | "
 
-    if line.des.Length <= 25 then
-        res <- res + line.des.PadRight(25)
-    elif line.des.Length = 25 then
-        res <- res + line.des
+    if line.Description.Length <= 25 then
+        res <- res + line.Description.PadRight(25)
+    elif line.Description.Length = 25 then
+        res <- res + line.Description
     else
-        res <- res + line.des[0..21] + "..."
+        res <- res + line.Description[0..21] + "..."
 
     res <- res + " | "
-    let c = float line.chg / 100.0
+    let c = float line.Change / 100.0
 
     if c < 0.0 then
         match locale with
@@ -90,14 +90,13 @@ let processLine locale (currency: Currency) line =
 
             | EUR -> res <- res + ("€" + c.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
 
-    res
+    state + res
 
 let formatLedger currency locale entries =
     let locale = locale |> parseLocale
     let currency = currency |> parseCurrency
-    let mutable res = title locale
+    let folder = processLine locale currency
 
-    for x in List.sortBy (fun x -> x.dat, x.des, x.chg) entries do
-        res <- res + (x |> processLine locale currency)
-
-    res
+    entries
+    |> List.sortBy (fun entry -> entry.Date, entry.Description, entry.Change)
+    |> List.fold folder (getTitle locale)
