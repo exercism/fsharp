@@ -12,7 +12,9 @@ type Currency =
     | USD
 
 type Entry =
-    { Date: DateTime; Description: string; Change: int }
+    { Date: DateTime
+      Description: string
+      Change: int }
 
 let mkEntry (date: string) description change =
     { Date = DateTime.Parse(date, CultureInfo.InvariantCulture)
@@ -36,67 +38,66 @@ let getTitle =
     | En -> "Date       | Description               | Change       "
     | Nl -> "Datum      | Omschrijving              | Verandering  "
 
-let processLine locale currency state line =
-    let mutable res = "\n"
-
+let getDate locale entry =
     match locale with
-    | Nl -> res <- res + line.Date.ToString("dd-MM-yyyy")
-    | En -> res <- res + line.Date.ToString("MM\/dd\/yyyy")
+    | Nl -> entry.Date.ToString("dd-MM-yyyy")
+    | En -> entry.Date.ToString("MM\/dd\/yyyy")
 
-    res <- res + " | "
+let getCurrencySign =
+    function
+    | EUR -> "€"
+    | USD -> "$ "
 
-    if line.Description.Length <= 25 then
-        res <- res + line.Description.PadRight(25)
-    elif line.Description.Length = 25 then
-        res <- res + line.Description
+let getCulture =
+    function
+    | Nl -> "nl-NL"
+    | En -> "en-US"
+
+let getDescription entry =
+    if entry.Description.Length <= 25 then
+        entry.Description.PadRight(25)
     else
-        res <- res + line.Description[0..21] + "..."
+        entry.Description[0..21] + "..."
 
-    res <- res + " | "
-    let c = float line.Change / 100.0
+let getAmount locale currency entry =
+    let amount = float entry.Change / 100.0
 
-    if c < 0.0 then
+    if amount < 0.0 then
         match locale with
         | Nl ->
             match currency with
-            | USD -> res <- res + ("$ " + c.ToString("#,#0.00", CultureInfo("nl-NL"))).PadLeft(13)
-
-            | EUR -> res <- res + ("€ " + c.ToString("#,#0.00", CultureInfo("nl-NL"))).PadLeft(13)
+            | USD -> ("$ " + amount.ToString("#,#0.00", CultureInfo("nl-NL"))).PadLeft(13)
+            | EUR -> ("€ " + amount.ToString("#,#0.00", CultureInfo("nl-NL"))).PadLeft(13)
 
         | En ->
             match currency with
             | USD ->
-                res <-
-                    res
-                    + ("($" + c.ToString("#,#0.00", CultureInfo("en-US")).Substring(1) + ")")
-                        .PadLeft(13)
+                ("($" + amount.ToString("#,#0.00", CultureInfo("en-US")).Substring(1) + ")")
+                    .PadLeft(13)
 
             | EUR ->
-                res <-
-                    res
-                    + ("(€" + c.ToString("#,#0.00", CultureInfo("en-US")).Substring(1) + ")")
-                        .PadLeft(13)
+                ("(€" + amount.ToString("#,#0.00", CultureInfo("en-US")).Substring(1) + ")")
+                    .PadLeft(13)
     else
         match locale with
         | Nl ->
             match currency with
-            | USD -> res <- res + ("$ " + c.ToString("#,#0.00", CultureInfo("nl-NL")) + " ").PadLeft(13)
-
-            | EUR -> res <- res + ("€ " + c.ToString("#,#0.00", CultureInfo("nl-NL")) + " ").PadLeft(13)
+            | USD -> ("$ " + amount.ToString("#,#0.00", CultureInfo("nl-NL")) + " ").PadLeft(13)
+            | EUR -> ("€ " + amount.ToString("#,#0.00", CultureInfo("nl-NL")) + " ").PadLeft(13)
 
         | En ->
             match currency with
-            | USD -> res <- res + ("$" + c.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
+            | USD -> ("$" + amount.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
+            | EUR -> ("€" + amount.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
 
-            | EUR -> res <- res + ("€" + c.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
-
-    state + res
+let generateLine locale currency entry =
+    $"\n{(entry |> getDate locale)} | {(entry |> getDescription)} | {(entry |> getAmount locale currency)}"
 
 let formatLedger currency locale entries =
     let locale = locale |> parseLocale
     let currency = currency |> parseCurrency
-    let folder = processLine locale currency
+    let generate = generateLine locale currency
 
     entries
     |> List.sortBy (fun entry -> entry.Date, entry.Description, entry.Change)
-    |> List.fold folder (getTitle locale)
+    |> List.fold (fun state entry -> state + (generate entry)) (getTitle locale)
