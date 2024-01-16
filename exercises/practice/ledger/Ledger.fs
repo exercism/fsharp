@@ -39,19 +39,22 @@ let getTitle =
     | Nl -> "Datum      | Omschrijving              | Verandering  "
 
 let getDate locale entry =
-    match locale with
-    | Nl -> entry.Date.ToString("dd-MM-yyyy")
-    | En -> entry.Date.ToString("MM\/dd\/yyyy")
+    let format =
+        match locale with
+        | Nl -> "dd-MM-yyyy"
+        | En -> "MM\/dd\/yyyy"
+
+    entry.Date.ToString(format)
 
 let getCurrencySign =
     function
     | EUR -> "€"
-    | USD -> "$ "
+    | USD -> "$"
 
-let getCulture =
+let getCultureInfo =
     function
-    | Nl -> "nl-NL"
-    | En -> "en-US"
+    | Nl -> CultureInfo("nl-NL")
+    | En -> CultureInfo("en-US")
 
 let getDescription entry =
     if entry.Description.Length <= 25 then
@@ -62,33 +65,20 @@ let getDescription entry =
 let getAmount locale currency entry =
     let amount = float entry.Change / 100.0
 
-    if amount < 0.0 then
-        match locale with
-        | Nl ->
-            match currency with
-            | USD -> ("$ " + amount.ToString("#,#0.00", CultureInfo("nl-NL"))).PadLeft(13)
-            | EUR -> ("€ " + amount.ToString("#,#0.00", CultureInfo("nl-NL"))).PadLeft(13)
+    let sign = currency |> getCurrencySign
+    let amountTxt = amount.ToString("#,#0.00", locale |> getCultureInfo)
 
-        | En ->
-            match currency with
-            | USD ->
-                ("($" + amount.ToString("#,#0.00", CultureInfo("en-US")).Substring(1) + ")")
-                    .PadLeft(13)
+    let line =
+        if amount < 0.0 then
+            match locale with
+            | Nl -> $"{sign} {amountTxt}"
+            | En -> $"({sign}{amountTxt.Substring(1)})"
+        else
+            match locale with
+            | Nl -> $"{sign} {amountTxt} "
+            | En -> $"{sign}{amountTxt} "
 
-            | EUR ->
-                ("(€" + amount.ToString("#,#0.00", CultureInfo("en-US")).Substring(1) + ")")
-                    .PadLeft(13)
-    else
-        match locale with
-        | Nl ->
-            match currency with
-            | USD -> ("$ " + amount.ToString("#,#0.00", CultureInfo("nl-NL")) + " ").PadLeft(13)
-            | EUR -> ("€ " + amount.ToString("#,#0.00", CultureInfo("nl-NL")) + " ").PadLeft(13)
-
-        | En ->
-            match currency with
-            | USD -> ("$" + amount.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
-            | EUR -> ("€" + amount.ToString("#,#0.00", CultureInfo("en-US")) + " ").PadLeft(13)
+    line.PadLeft(13)
 
 let generateLine locale currency entry =
     $"\n{(entry |> getDate locale)} | {(entry |> getDescription)} | {(entry |> getAmount locale currency)}"
