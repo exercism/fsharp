@@ -1,0 +1,45 @@
+{
+  "introduction": {
+    "authors": [
+      "erikschierboom"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "44a0fe16-9c7d-4481-9eae-b223ecd3f88e",
+      "slug": "seq-module",
+      "title": "Seq module",
+      "blurb": "Use functions from the Seq module to concisely reverse a string.",
+      "authors": [
+        "erikschierboom"
+      ]
+    },
+    {
+      "uuid": "8a2ddcd5-ffe7-4448-842e-25b302708b8c",
+      "slug": "array-reverse",
+      "title": "Array.Reverse",
+      "blurb": "Use Array.Reverse to reverse a string.",
+      "authors": [
+        "erikschierboom"
+      ]
+    },
+    {
+      "uuid": "f42fa12e-e9b8-4aaa-9fc2-188c67d05809",
+      "slug": "span",
+      "title": "Span<T>",
+      "blurb": "Use Span<T> and stack allocation for hyper-optimized string reversal.",
+      "authors": [
+        "erikschierboom"
+      ]
+    },
+    {
+      "uuid": "f4f662d0-4917-4a89-a62a-12809a8c2b11",
+      "slug": "string-builder",
+      "title": "StringBuilder",
+      "blurb": "Reverse a string using the StringBuilder class.",
+      "authors": [
+        "erikschierboom"
+      ]
+    }
+  ]
+}

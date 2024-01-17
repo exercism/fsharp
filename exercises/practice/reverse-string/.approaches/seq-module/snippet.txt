@@ -1,0 +1,5 @@
+let reverse input = 
+    input
+    |> Seq.rev
+    |> Seq.toArray
+    |> System.String

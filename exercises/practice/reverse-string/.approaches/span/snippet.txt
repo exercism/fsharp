@@ -1,0 +1,8 @@
+let reverse (input: string) =
+    let memory = NativePtr.stackalloc<byte>(input.Length) |> NativePtr.toVoidPtr
+    let span = Span<char>(memory, input.Length)
+
+    for i in 0..input.Length - 1 do
+        span[input.Length - 1 - i] <- input[i]
+
+    span.ToString()
