@@ -21,7 +21,6 @@ let reverse input =
     |> Seq.rev
     |> Seq.toArray
     |> System.String
-
 ```
 
 This approach uses two functions from the [`Seq` module][seq-module] to first reverse the `string` and then convert the reversed characters back to a `string`.
@@ -40,19 +39,28 @@ let reverse (input: string) =
 This approach iterates over the string's characters backwards, building up the reverse string using a `StringBuilder`.
 For more information, check the [`StringBuilder` approach][approach-string-builder].
 
+## Alternative approach: `Span<T>`
+
+```fsharp
+let reverse (input: string) =
+    let memory = NativePtr.stackalloc<byte>(input.Length) |> NativePtr.toVoidPtr
+    let span = Span<char>(memory, input.Length)
+
+    for i in 0..input.Length - 1 do
+        span[input.Length - 1 - i] <- input[i]
+
+    span.ToString()
+```
+
+This approach uses the `Span<T>` type, which is a highly optimized type designed to have great performance.
+For more information, check the [`Span<T>` approach][approach-span].
+
 ## Which approach to use?
 
 If readability is your primary concern (and it usually should be), the `Seq` module approach is hard to beat.
 
-The `Array.Reverse()` approach is the best performing apporach.
-For a more detailed breakdown, check the [performance article][article-performance].
-
-The `StringBuilder` approach has the worst performance of the listed approach, and is more error-prone to write as it has to deal with lower and upper bounds checking.
-
 [constructor-array-chars]: https://learn.microsoft.com/en-us/dotnet/api/system.string.-ctor
-[article-performance]: https://exercism.org/tracks/fsharp/exercises/reverse-string/articles/performance
 [approach-seq-module]: https://exercism.org/tracks/fsharp/exercises/reverse-string/approaches/seq-module
-[approach-array-reverse]: https://exercism.org/tracks/fsharp/exercises/reverse-string/approaches/array-reverse
 [approach-span]: https://exercism.org/tracks/fsharp/exercises/reverse-string/approaches/span
 [approach-string-builder]: https://exercism.org/tracks/fsharp/exercises/reverse-string/approaches/string-builder
 [seq-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html

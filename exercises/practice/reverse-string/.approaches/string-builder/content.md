@@ -20,14 +20,10 @@ A `StringBuilder` is often overkill when used to create short strings, but can b
 ```
 
 The first step is to create a `StringBuilder`.
-We then use a `for`-loop to walk through the string's characters in reverse order, appending them to the `StringBuilder` via its [`Append()`][string-builder-append] method.
+We then use a `for`-loop to walk through the string's characters in reverse order via the [`Seq.rev` function][seq.rev], appending them to the `StringBuilder` via its [`Append()`][string-builder-append] method.
 
 Finally, we return the reversed `string` by calling the `ToString()` method on the `StringBuilder` instance.
 
-## Performance
-
-If you're interested in how this approach's performance compares to other approaches, check the [performance approach][approach-performance].
-
 [string-builder]: https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder
 [string-builder-append]: https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder.append
-[approach-performance]: https://exercism.org/tracks/csharp/exercises/reverse-string/articles/performance
+[seq.rev]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-seqmodule.html#rev

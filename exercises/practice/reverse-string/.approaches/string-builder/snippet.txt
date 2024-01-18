@@ -1,6 +1,5 @@
-var chars = new StringBuilder();
-for (var i = input.Length - 1; i >= 0; i--)
-{
-    chars.Append(input[i]);
-}
-return chars.ToString();
+let reverse (input: string) =
+    let chars = StringBuilder()
+    for char in Seq.rev input do
+        chars.Append(char) |> ignore
+    chars.ToString()
