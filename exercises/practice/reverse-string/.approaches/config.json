@@ -1,0 +1,36 @@
+{
+  "introduction": {
+    "authors": [
+      "erikschierboom"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "85f2dd83-247d-4549-a6b3-ff6c4356288d",
+      "slug": "seq-module",
+      "title": "Seq module",
+      "blurb": "Use functions from the Seq module to concisely reverse a string.",
+      "authors": [
+        "erikschierboom"
+      ]
+    },
+    {
+      "uuid": "c4c26760-3398-46ba-8d9c-445c7b17860a",
+      "slug": "span",
+      "title": "Span<T>",
+      "blurb": "Use Span<T> and stack allocation for hyper-optimized string reversal.",
+      "authors": [
+        "erikschierboom"
+      ]
+    },
+    {
+      "uuid": "fd88f91d-57e4-4e16-95b3-e8cf5046a82c",
+      "slug": "string-builder",
+      "title": "StringBuilder",
+      "blurb": "Reverse a string using the StringBuilder class.",
+      "authors": [
+        "erikschierboom"
+      ]
+    }
+  ]
+}

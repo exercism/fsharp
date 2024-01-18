@@ -1,0 +1,5 @@
+let reverse (input: string) =
+    let chars = StringBuilder()
+    for char in Seq.rev input do
+        chars.Append(char) |> ignore
+    chars.ToString()
