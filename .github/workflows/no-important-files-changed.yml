@@ -25,7 +25,7 @@ jobs:
           git remote set-branches origin main
           git fetch --depth 1 origin main
 
-          for changed_file in $(git diff --name-only origin/main); do
+          for changed_file in $(git diff --diff-filter=M --name-only origin/main); do
             if ! echo "$changed_file" | grep --quiet --extended-regexp 'exercises/(practice|concept)' ; then
               continue
             fi
