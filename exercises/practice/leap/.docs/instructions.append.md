@@ -1,4 +1,7 @@
 # Notes
 
-The DateTime class in F# provides a built-in [IsLeapYear](https://msdn.microsoft.com/en-us/library/system.datetime.isleapyear(v=vs.110).aspx?cs-save-lang=1&cs-lang=fsharp) method
+The [DateTime class][datetime] provides a built-in [IsLeapYear][datetime.isleapyear] method
 which you should pretend doesn't exist for the purposes of implementing this exercise.
+
+[datetime]: https://learn.microsoft.com/en-us/dotnet/api/system.datetime
+[datetime.isleapyear]: https://learn.microsoft.com/en-us/dotnet/api/system.datetime.isleapyear
