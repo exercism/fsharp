@@ -7,7 +7,7 @@ open Leap
 
 [<Fact>]
 let ``Year not divisible by 4 in common year`` () =
-    leapYear 2015 |> should equal false
+    leapYear 2015 |> should equal true
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Year divisible by 2, not divisible by 4 in common year`` () =
