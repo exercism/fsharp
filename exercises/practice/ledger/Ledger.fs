@@ -80,14 +80,13 @@ let getAmount locale currency entry =
 
     line.PadLeft(13)
 
-let generateLine locale currency entry =
-    $"\n{(entry |> getDate locale)} | {(entry |> getDescription)} | {(entry |> getAmount locale currency)}"
-
 let formatLedger currency locale entries =
     let locale = locale |> parseLocale
     let currency = currency |> parseCurrency
-    let generate = generateLine locale currency
+
+    let generate entry =
+        $"\n{(entry |> getDate locale)} | {(entry |> getDescription)} | {(entry |> getAmount locale currency)}"
 
     entries
     |> List.sortBy (fun entry -> entry.Date, entry.Description, entry.Change)
-    |> List.fold (fun state entry -> state + (generate entry)) (getTitle locale)
+    |> List.fold (fun state entry -> state + (entry |> generate)) (getTitle locale)
