@@ -1,3 +1,3 @@
 module Isogram
 
-let isIsogram str = failwith "You need to implement this function."
+let isIsogram (str: string): bool = failwith "You need to implement this function."
