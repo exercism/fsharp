@@ -1,18 +1,24 @@
 module Clock
-type Clock = {
-    Hours: int
-    Minutes: int
-}
 
-let create hours minutes = 
+type Clock = { Hours: int; Minutes: int }
+
+let createFromMinutes totalMinutes =
+    let minutes = totalMinutes % 1440
+    let minutes = if (minutes < 0) then 1440 + minutes else minutes
+
     let m = minutes % 60
     let h = minutes / 60
-    let hours = if (hours < 0) then 24 + (hours % 24) else (hours % 24) + h
 
-    { Hours = hours; Minutes = m }
+    { Hours = h; Minutes = m }
 
-let add minutes clock = create clock.Hours (clock.Minutes + minutes)
+let create hours minutes =
+    createFromMinutes (hours * 60 + minutes)
 
-let subtract minutes clock = create clock.Hours (clock.Minutes - minutes)
+let add minutes clock =
+    createFromMinutes (clock.Hours * 60 + clock.Minutes + minutes)
 
-let display clock = sprintf "%s:%s" (clock.Hours.ToString("00")) (clock.Minutes.ToString("00"))
+let subtract minutes clock =
+    createFromMinutes (clock.Hours * 60 + clock.Minutes - minutes)
+
+let display clock =
+    sprintf "%s:%s" (clock.Hours.ToString("00")) (clock.Minutes.ToString("00"))
