@@ -12,35 +12,19 @@ type Week =
 
 let isTeenth(date: DateTime) =
     match date.Day with
-    | 13
-    | 14
-    | 15
-    | 16
-    | 17
-    | 18
-    | 19 -> true
+    | d when d >= 13 && d <= 19 -> true
     | _ -> false
-
-let generateDates(startDate: DateTime) =
-    let endDate = startDate.AddMonths(1).AddDays(-1)
-
-    startDate
-    |> Array.unfold (fun date ->
-        if date <= endDate then
-            Some(date, date.AddDays(1))
-        else
-            None)
 
 let meetup year month week dayOfWeek : DateTime =
     let dates =
-        DateTime(year, month, 1)
-        |> generateDates
-        |> Array.filter (fun d -> d.DayOfWeek = dayOfWeek)
+        [ 1 .. DateTime.DaysInMonth(year, month) ]
+        |> List.map (fun day -> DateTime(year, month, day))
+        |> List.filter (fun d -> d.DayOfWeek = dayOfWeek)
 
     match week with
-    | First -> dates |> Array.head
+    | First -> dates |> List.head
     | Second -> dates[1]
     | Third -> dates[2]
     | Fourth -> dates[3]
-    | Last -> dates |> Array.last
-    | Teenth -> dates |> Array.find isTeenth
+    | Last -> dates |> List.last
+    | Teenth -> dates |> List.find isTeenth
