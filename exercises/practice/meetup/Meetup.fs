@@ -10,8 +10,8 @@ type Week =
     | Last
     | Teenth
 
-let isTeenth =
-    function
+let isTeenth(date: DateTime) =
+    match date.Day with
     | 13
     | 14
     | 15
@@ -21,45 +21,26 @@ let isTeenth =
     | 19 -> true
     | _ -> false
 
-let countOk week count =
-    match week with
-    | First -> count = 1
-    | Second -> count = 2
-    | Third -> count = 3
-    | Fourth -> count = 4
-    | _ -> false
+let generateDates(startDate: DateTime) =
+    let endDate = startDate.AddMonths(1).AddDays(-1)
 
-let rec findDate (date: DateTime) week dayOfWeek count =
-    if date.DayOfWeek = dayOfWeek then
-        match week with
-        | Teenth ->
-            if (date.Day |> isTeenth) then
-                date
-            else
-                (findDate (date.AddDays(1)) week dayOfWeek count)
-        | First
-        | Second
-        | Third
-        | Fourth ->
-            if countOk week count then
-                date
-            else
-                (findDate (date.AddDays(1)) week dayOfWeek (count + 1))
-
-        | Last -> date
-    else
-        findDate (date.AddDays(1)) week dayOfWeek count
-
-let rec findDateRev (date: DateTime) dayOfWeek =
-    if (date.DayOfWeek = dayOfWeek) then
-        date
-    else
-        findDateRev (date.AddDays(-1)) dayOfWeek
+    startDate
+    |> Array.unfold (fun date ->
+        if date <= endDate then
+            Some(date, date.AddDays(1))
+        else
+            None)
 
 let meetup year month week dayOfWeek : DateTime =
-    let date = DateTime(year, month, 1)
+    let dates =
+        DateTime(year, month, 1)
+        |> generateDates
+        |> Array.filter (fun d -> d.DayOfWeek = dayOfWeek)
 
-    if (week = Last) then
-        findDateRev (date.AddMonths(1).AddDays(-1)) dayOfWeek
-    else
-        findDate date week dayOfWeek 1
+    match week with
+    | First -> dates |> Array.head
+    | Second -> dates[1]
+    | Third -> dates[2]
+    | Fourth -> dates[3]
+    | Last -> dates |> Array.last
+    | Teenth -> dates |> Array.find isTeenth
