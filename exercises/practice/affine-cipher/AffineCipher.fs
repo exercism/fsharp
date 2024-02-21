@@ -4,8 +4,20 @@ open System
 
 let alphabet = [ 'a' .. 'z' ]
 
+let rec gcd p q =
+    if (p = 0 || q = 0) then 0
+    elif (p = q) then p
+    elif (p > q) then gcd (p - q) q
+    else gcd p (q - p)
+
 let decode a b cipheredText =
-    failwith "You need to implement this function."
+    // D(y) = (a^-1)(y - b) mod m
+    // // cipheredText |> Seq.map (fun c ->
+    // //     let y = alphabet |> List.findIndex ((=) c)
+    // //     let result = (y - b) % 26
+    //
+    // )
+    ""
 
 let encodeChar a b c =
     if (c |> Char.IsDigit) then
@@ -16,6 +28,9 @@ let encodeChar a b c =
         alphabet[result]
 
 let encode a b (plainText: string) =
+    if (gcd a b = 1) then
+        raise (ArgumentException "Not coprime")
+
     plainText.ToLower().Replace(" ", "")
     |> Seq.choose (fun c ->
         if (c |> Char.IsLetterOrDigit) then
