@@ -9,35 +9,35 @@ open AffineCipher
 let ``Encode yes`` () =
     encode 5 7 "yes" |> should equal "xbt"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode no`` () =
     encode 15 18 "no" |> should equal "fu"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode OMG`` () =
     encode 21 3 "OMG" |> should equal "lvz"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode O M G`` () =
     encode 25 47 "O M G" |> should equal "hjp"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode mindblowingly`` () =
     encode 11 15 "mindblowingly" |> should equal "rzcwa gnxzc dgt"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode numbers`` () =
     encode 3 4 "Testing,1 2 3, testing." |> should equal "jqgjc rw123 jqgjc rw"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode deep thought`` () =
     encode 5 17 "Truth is fiction." |> should equal "iynia fdqfb ifje"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode all the letters`` () =
     encode 17 33 "The quick brown fox jumps over the lazy dog." |> should equal "swxtj npvyk lruol iejdc blaxk swxmh qzglf"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Encode with a not coprime to m`` () =
     (fun () -> encode 6 17 "This is a test." |> ignore) |> should throw typeof<System.ArgumentException>
 
@@ -68,4 +68,3 @@ let ``Decode with too many spaces`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Decode with a not coprime to m`` () =
     (fun () -> decode 13 5 "Test" |> ignore) |> should throw typeof<System.ArgumentException>
-
