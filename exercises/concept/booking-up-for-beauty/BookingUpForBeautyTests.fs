@@ -157,21 +157,21 @@ let ``Is afternoon appointment for late evening appointment`` () =
 [<UseCulture("en-US")>]
 [<Task(4)>]
 let ``Description on Friday afternoon`` () =
-    description (DateTime(2019, 3, 29, 15, 0, 0))
+    (description (DateTime(2019, 3, 29, 15, 0, 0))).Replace('\u202F', ' ')
     |> should equal "You have an appointment on 3/29/2019 3:00:00 PM."
 
 [<Fact>]
 [<UseCulture("en-US")>]
 [<Task(4)>]
 let ``Description on Thursday afternoon`` () =
-    description (DateTime(2019, 7, 25, 13, 45, 0))
+    (description (DateTime(2019, 7, 25, 13, 45, 0))).Replace('\u202F', ' ')
     |> should equal "You have an appointment on 7/25/2019 1:45:00 PM."
 
 [<Fact>]
 [<UseCulture("en-US")>]
 [<Task(4)>]
 let ``Description on Wednesday morning`` () =
-    description (DateTime(2020, 9, 9, 9, 9, 9))
+    (description (DateTime(2020, 9, 9, 9, 9, 9))).Replace('\u202F', ' ')
     |> should equal "You have an appointment on 9/9/2020 9:09:09 AM."
 
 [<Fact>]
