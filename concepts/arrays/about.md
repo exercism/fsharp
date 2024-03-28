@@ -54,6 +54,7 @@ describe [| 5; 7; 9 |] // => "Other"
 [array-pattern]: https://docs.microsoft.com/en-us/dotnet/fsharp/language-reference/pattern-matching#array-pattern
 [array-module]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-collections-arraymodule.html
 [array-members]: https://docs.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1
+[array-properties]: https://learn.microsoft.com/en-us/dotnet/api/system.array?view=netcore-3.1#methods
 
 You can also _discard_ a value when pattern matching; when you do _not_ care about a value in a specific case (i.e. you aren't going to _use_ a value) you can use an underscore (`'_'`) to signify this:
 

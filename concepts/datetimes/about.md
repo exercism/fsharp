@@ -15,3 +15,4 @@ When using a `DateTime` in a `sprintf` call, instead of manually converting the 
 [properties]: https://docs.microsoft.com/en-us/dotnet/api/system.datetime?view=netcore-3.1#properties
 [to-string]: https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tostring?view=netcore-3.1
 [object-placeholder]: https://fsharpforfunandprofit.com/posts/printf/#formatting-for-dummies
+[methods]: https://learn.microsoft.com/en-us/dotnet/api/system.datetime?view=netcore-3.1#methods
