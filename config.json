@@ -2090,6 +2090,17 @@
           "numbers"
         ],
         "difficulty": 5
+      },
+      {
+        "slug": "game-of-life",
+        "name": "Conway's Game of Life",
+        "uuid": "c6ad9a2d-4ca2-4013-93df-5f6934203870",
+        "practices": [],
+        "prerequisites": [
+          "if-then-else-expressions",
+          "lists"
+        ],
+        "difficulty": 7
       }
     ],
     "foregone": [

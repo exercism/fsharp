@@ -2013,3 +2013,18 @@ type AffineCipher() =
             "System.ArgumentException"
         else
             base.RenderExpected(testCase, key, value)
+
+
+type GameOfLife() =
+    inherit ExerciseGenerator()
+
+    override _.RenderInput(_, _, value) = List.renderMultiLine value
+
+    override _.RenderExpected(_, _, value) = List.renderMultiLine value
+
+    override this.PropertiesWithIdentifier testCase = this.Properties testCase
+
+    override _.IdentifierTypeAnnotation(_, _, value) =
+        match Seq.isEmpty value with
+        | true -> Some "int list list"
+        | false -> None
