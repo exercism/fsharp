@@ -2097,7 +2097,8 @@
         "uuid": "c6ad9a2d-4ca2-4013-93df-5f6934203870",
         "practices": [],
         "prerequisites": [
-          "if-then-else-expressions",
+          "booleans",
+          "numbers",
           "lists"
         ],
         "difficulty": 5
