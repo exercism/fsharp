@@ -2096,8 +2096,8 @@
         "name": "Conway's Game of Life",
         "uuid": "c6ad9a2d-4ca2-4013-93df-5f6934203870",
         "practices": [
-            "higher-order-functions",
-            "multi-dimensional-arrays"
+          "higher-order-functions",
+          "multi-dimensional-arrays"
         ],
         "prerequisites": [
           "booleans",
