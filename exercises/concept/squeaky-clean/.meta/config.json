@@ -1,0 +1,15 @@
+{
+  "authors": ["colinleach"],
+  "files": {
+    "solution": [
+      "SqueakyClean.fs"
+    ],
+    "test": [
+      "SqueakyCleanTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
+  },
+  "blurb": "Learn about characters and StringBuilder by cleaning strings."
+}

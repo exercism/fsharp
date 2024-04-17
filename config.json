@@ -189,6 +189,17 @@
           "pattern-matching",
           "strings"
         ]
+      },
+      {
+        "slug": "squeaky-clean",
+        "name": "squeaky-clean",
+        "uuid": "8196f0ad-cfd9-409e-827f-57b16b296a4b",
+        "concepts": [
+          "chars"
+        ],
+        "prerequisites": [
+          "strings"
+        ]
       }
     ],
     "practice": [
@@ -2195,6 +2206,11 @@
       "uuid": "5bd49bb7-3487-4925-9c0e-866d56a880ee",
       "slug": "tuples",
       "name": "Tuples"
+    },
+    {
+      "uuid": "7a9e2985-56be-4170-b41d-7da98361b7c9",
+      "slug": "chars",
+      "name": "Chars"
     }
   ],
   "key_features": [
