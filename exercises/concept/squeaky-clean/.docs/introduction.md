@@ -47,7 +47,7 @@ char 77
 // => val it: char = 'M'
 ```
 
-The `System.Char` library contains the full set of [methods][Char-methods] expected for a .NET language, such as upper/lower conversions (but see the caveats in the next section):
+The `System.Char` library contains the full set of methods expected for a .NET language, such as upper/lower conversions:
 
 ```fsharp
 'a' |> System.Char.ToUpper

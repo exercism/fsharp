@@ -11,8 +11,8 @@
       ".meta/Exemplar.fs"
     ]
   },
-  "blurb": "Learn about characters and StringBuilder by cleaning strings.",
   "forked_from": [
     "csharp/squeaky-clean"
-  ]
+  ],
+  "blurb": "Learn about characters and StringBuilder by cleaning strings."
 }
