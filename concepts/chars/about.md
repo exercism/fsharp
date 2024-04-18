@@ -23,24 +23,24 @@ They can be defined as literals with single quotes:
 
 ```fsharp
 let ch = 'A'
-=> val ch: char = 'A'
+// => val ch: char = 'A'
 ```
 
 An individual `char` can be retrieved from a string with (zero-based) indexing:
 
 ```fsharp
 let str = "Exercism" 
-=> val str: string = "Exercism"
+// => val str: string = "Exercism"
 
 str[4]
-=> val it: char = 'c'
+// => val it: char = 'c'
 ```
 
 Iterating over a string returns a `char` at each step:
 
 ```fsharp
 [| for c in "F#" -> c, int c |]
-=> val it: (char * int) array = [|('F', 70); ('#', 35)|]
+// => val it: (char * int) array = [|('F', 70); ('#', 35)|]
 ```
 
 As shown above, a `char` can be cast to its `int` value.
@@ -48,67 +48,67 @@ This also works (*at least some of the time*) for other scripts:
 
 ```fsharp
 [| for c in "東京" -> c, int c |] // Tokyo, if Wikipedia is to be believed
-=> val it: (char * int) array = [|('東', 26481); ('京', 20140)|]
+// => val it: (char * int) array = [|('東', 26481); ('京', 20140)|]
 ```
 
 The underlying Int16 is used when comparing characters:
 
 ```fsharp
 'A' < 'D'
-=> val it: bool = true
+// => val it: bool = true
 ```
 
 Also, an `int` can be cast to `char`:
 
 ```fsharp
 char 77
-=> val it: char = 'M'
+// => val it: char = 'M'
 ```
 
 The `System.Char` library contains the full set of [methods][Char-methods] expected for a .NET language, such as upper/lower conversions (but see the caveats in the next section):
 
 ```fsharp
 'a' |> System.Char.ToUpper
-=> val it: char = 'A'
+// => val it: char = 'A'
 
 'Q' |> System.Char.ToLower
-=> val it: char = 'q'
+// => val it: char = 'q'
 ```
 
 The .NET libraries help with extracting `char`s from strings, in this case `Seq` methods:
 
 ```fsharp
 "Exercism" |> Seq.toList
-=> val it: char list = ['E'; 'x'; 'e'; 'r'; 'c'; 'i'; 's'; 'm']
+// => val it: char list = ['E'; 'x'; 'e'; 'r'; 'c'; 'i'; 's'; 'm']
 
 "Zürich" |> Seq.toArray
-=> val it: char array = [|'Z'; 'ü'; 'r'; 'i'; 'c'; 'h'|]
+// => val it: char array = [|'Z'; 'ü'; 'r'; 'i'; 'c'; 'h'|]
 ```
 
 There are various ways to convert a character list (or array) to a string, including these:
 
 ```fsharp
 let s = ['E'; 'x'; 'e'; 'r'; 'c'; 'i'; 's'; 'm']
-=> val s: char list = ['E'; 'x'; 'e'; 'r'; 'c'; 'i'; 's'; 'm']
+// => val s: char list = ['E'; 'x'; 'e'; 'r'; 'c'; 'i'; 's'; 'm']
 
 // with a .NET method
 System.String.Concat s
-=> val it: string = "Exercism"
+// => val it: string = "Exercism"
 
 // with String.concat
 String.concat "" <| List.map string s
-=> val it: string = "Exercism"
+// => val it: string = "Exercism"
 
 // with a string constructor
 new string [|for c in s -> c|]
-=> val it: string = "Exercism"
+// => val it: string = "Exercism"
 
 // with StringBuilder
 open System.Text
 string (List.fold (fun (sb:StringBuilder) (c:char) -> sb.Append(c)) 
                       (new StringBuilder())
                        s)
-=> val it: string = "Exercism"
+// => val it: string = "Exercism"
 ```
 
 General information on `char`s can be found here:

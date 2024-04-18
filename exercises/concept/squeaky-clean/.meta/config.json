@@ -12,5 +12,7 @@
     ]
   },
   "blurb": "Learn about characters and StringBuilder by cleaning strings.",
-  "forked_from": ["csharp/squeaky-clean"]
+  "forked_from": [
+    "csharp/squeaky-clean"
+  ]
 }
