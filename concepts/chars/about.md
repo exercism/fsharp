@@ -13,20 +13,27 @@ to be explicitly cast to a `char`.
 
 For what it's worth, `char`s can be subject to arithmetic operations. The result of these operations is an integer.
 
-Obviously there is no equi=> valence between a `byte` at 8 bits and the 16 bit `char`.
+Obviously there is no equivalence between a `byte` at 8 bits and the 16 bit `char`.
 
 ## Usage
 
 `char`s are generally easy to use. 
 
-They can be defined as literals with single quotes, and compared:
+They can be defined as literals with single quotes:
 
 ```fsharp
 let ch = 'A'
 => val ch: char = 'A'
+```
 
-'A' < 'D'
-=> val it: bool = true
+An individual `char` can be retrieved from a string with (zero-based) indexing:
+
+```fsharp
+let str = "Exercism" 
+=> val str: string = "Exercism"
+
+str[4]
+=> val it: char = 'c'
 ```
 
 Iterating over a string returns a `char` at each step:
@@ -36,15 +43,22 @@ Iterating over a string returns a `char` at each step:
 => val it: (char * int) array = [|('F', 70); ('#', 35)|]
 ```
 
-As shown above, a `char` can be cast to its `int` => value.
-This also works (at least some of the time) for other scripts:
+As shown above, a `char` can be cast to its `int` value.
+This also works (*at least some of the time*) for other scripts:
 
 ```fsharp
 [| for c in "東京" -> c, int c |] // Tokyo, if Wikipedia is to be believed
 => val it: (char * int) array = [|('東', 26481); ('京', 20140)|]
 ```
 
-Similarly, an `int` can be cast to `char`:
+The underlying Int16 is used when comparing characters:
+
+```fsharp
+'A' < 'D'
+=> val it: bool = true
+```
+
+Also, an `int` can be cast to `char`:
 
 ```fsharp
 char 77
