@@ -14,7 +14,7 @@ let ch = 'A'
 An individual `char` can be retrieved from a string with (zero-based) indexing:
 
 ```fsharp
-Exercism"[4]
+"Exercism"[4]
 // => val it: char = 'c'
 ```
 
