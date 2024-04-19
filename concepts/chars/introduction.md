@@ -2,7 +2,7 @@
 
 The F# `char` type is a 16 bit quantity to represent the smallest addressable components of text.
 
-Multiple `char`s can comprise a string such as `"word"` or `char`s can be processed independently.
+Strings are a sequence of chars.
 
 They can be defined as literals with single quotes:
 
