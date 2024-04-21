@@ -22,3 +22,4 @@
 ## Prerequisites
 
 - `strings`: Strings are immutable objects representing text as a sequence of Unicode characters.
+- `if-then-else-expressions`: The most common way to conditionally execute code in F# is via if/then/else expressions.

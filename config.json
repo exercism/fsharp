@@ -198,7 +198,8 @@
           "chars"
         ],
         "prerequisites": [
-          "strings"
+          "strings",
+          "if-then-else-expressions"
         ]
       }
     ],
