@@ -2,6 +2,8 @@
 
 The F# `char` type is a 16 bit value to represent the smallest addressable components of text.
 
+A `char` is immutable by default.
+
 Multiple `char`s can comprise a string such as `"word"` or `char`s can be processed independently.
 
 They can be defined as literals with single quotes:
