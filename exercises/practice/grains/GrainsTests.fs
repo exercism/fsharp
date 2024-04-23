@@ -41,17 +41,17 @@ let ``Grains on square 64`` () =
     square 64 |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Square 0 raises an exception`` () =
+let ``Square 0 is invalid`` () =
     let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square 0 |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Negative square raises an exception`` () =
+let ``Negative square is invalid`` () =
     let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square -1 |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Square greater than 64 raises an exception`` () =
+let ``Square greater than 64 is invalid`` () =
     let expected: Result<uint64,string> = Error "square must be between 1 and 64"
     square 65 |> should equal expected
 
