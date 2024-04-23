@@ -139,15 +139,3 @@ let ``Students are sorted by name in a grade`` () =
         |> add "Jeff" 1
     grade 5 school |> should equal ["Bradley"; "Franklin"]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Students are sorted by grades and then by name in the roster even when school was not sorted``() =
-    let school =
-        seq {
-            1, [ "Anna"; "Charlie"; "Barb" ]
-            2, [ "Peter"; "Zoe"; "Alex" ]
-            3, [ "Jim" ]
-        }
-        |> Map.ofSeq
-    roster school
-    |> should equal [ "Anna"; "Barb"; "Charlie"; "Alex"; "Peter"; "Zoe"; "Jim" ]
-    

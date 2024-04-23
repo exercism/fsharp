@@ -792,6 +792,7 @@ type GradeSchool() =
         
     override _.PropertiesUsedAsSutParameter testCase =
         base.PropertiesUsedAsSutParameter testCase |> List.filter (fun x -> x <> "students")
+
 type Grains() =
     inherit ExerciseGenerator()
 
