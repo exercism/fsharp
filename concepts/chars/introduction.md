@@ -32,7 +32,8 @@ This also works (*at least some of the time*) for other scripts:
 [| for c in "東京" -> c, int c |] //  =>  [|('東', 26481); ('京', 20140)|]
 ```
 
-The underlying Int16 is used when comparing characters:
+The underlying `Int16` type is used when comparing characters:
+
 
 ```fsharp
 'A' < 'D'  // =>  true
