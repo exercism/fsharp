@@ -14,7 +14,7 @@ let ``Private key is greater than 1 and less than p`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Private key is random`` () =
-    let p = 136739I
+    let p = 7919I
     let privateKeys = [for _ in 0 .. 10 -> privateKey p]
     List.distinct privateKeys |> List.length |> should equal (List.length privateKeys)
 
