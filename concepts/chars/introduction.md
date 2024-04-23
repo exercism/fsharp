@@ -45,7 +45,8 @@ Also, an `int` can be cast to `char`:
 char 77  // => 'M'
 ```
 
-The `System.Char` library contains the full set of methods expected for a .NET language, such as upper/lower conversions:
+The `System.Char` class has many useful methods, such as upper/lower conversions:
+
 
 ```fsharp
 'a' |> System.Char.ToUpper  // =>  'A'
