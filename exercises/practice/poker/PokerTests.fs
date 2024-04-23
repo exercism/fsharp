@@ -180,7 +180,7 @@ let ``Straight flush beats four of a kind`` () =
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Both hands have straight flush, tie goes to highest-ranked card`` () =
+let ``Both hands have a straight flush, tie goes to highest-ranked card`` () =
     let hands = ["4H 6H 7H 8H 5H"; "5S 7S 8S 9S 6S"]
     let expected = ["5S 7S 8S 9S 6S"]
     bestHands hands |> should equal expected

@@ -22,11 +22,11 @@ let ``On the inner circle`` () =
     score 0.0 -1.0 |> should equal 10
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Exactly on centre`` () =
+let ``Exactly on center`` () =
     score 0.0 0.0 |> should equal 10
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Near the centre`` () =
+let ``Near the center`` () =
     score -0.1 -0.1 |> should equal 10
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
