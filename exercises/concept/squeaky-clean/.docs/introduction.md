@@ -1,17 +1,15 @@
 # Introduction
 
-The F# `char` type is a 16 bit value to represent the smallest addressable components of text.
+The F# `char` type is a 16 bit value to represent the smallest addressable components of text, immutable by default.
 
-A `char` is immutable by default.
-
-Multiple `char`s can comprise a string such as `"word"` or `char`s can be processed independently.
-
-They can be defined as literals with single quotes:
+`char`s can be defined as literals with single quotes:
 
 ```fsharp
 let ch = 'A'
 // => val ch: char = 'A'
 ```
+
+Strings are a sequence of chars.
 
 An individual `char` can be retrieved from a string with (zero-based) indexing:
 
@@ -19,17 +17,20 @@ An individual `char` can be retrieved from a string with (zero-based) indexing:
 "Exercism"[4] //  =>  'c'
 ```
 
-Iterating over a string returns a `char` at each step:
+Iterating over a string returns a `char` at each step.
+
+The next example uses a higher order function and an anonymous function, for convenience.
+These will be covered properly later in the syllabus, but for now they are essentially a concise way to write a loop over the characters in a string.
 
 ```fsharp
-[| for c in "F#" -> c, int c |]  //  => [|('F', 70); ('#', 35)|]
+Seq.map (fun c -> c, int c) "F#"  //  =>  [('F', 70); ('#', 35)]
 ```
 
 As shown above, a `char` can be cast to its `int` value.
 This also works (*at least some of the time*) for other scripts:
 
 ```fsharp
-[| for c in "東京" -> c, int c |] //  =>  [|('東', 26481); ('京', 20140)|]
+Seq.map (fun c -> c, int c) "東京"  //  =>  [('東', 26481); ('京', 20140)]
 ```
 
 The underlying Int16 is used when comparing characters:

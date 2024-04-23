@@ -5,7 +5,7 @@ open System
 let transform (c: char) : string =    
     if c = '-' then
         "_"
-    elif c > 'α' && c < 'ω'  then
+    elif c >= 'α' && c <= 'ω'  then
         "?"
     elif Char.IsWhiteSpace(c) || Char.IsNumber(c) then
         ""

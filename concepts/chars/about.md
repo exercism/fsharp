@@ -6,7 +6,7 @@ Like other simple types (`int`s, `bool`s, etc.) the `char` has a companion or al
 
 This is in fact a `struct` with a 16 bit field, and is immutable by default.
 
-`char` in fact has some instance methods such as `Equals`, `ToString` and [`CompareTo`][compare-to].
+`char` has some instance methods such as `Equals`, `ToString` and [`CompareTo`][compare-to].
 
 `char` has the same width as a [`ushort`][uint16] but they are generally not used interchangeably as they are in some languages. `ushort` has
 to be explicitly cast to a `char`. 
