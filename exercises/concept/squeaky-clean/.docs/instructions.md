@@ -2,7 +2,7 @@
 
 In this exercise you will implement a partial set of utility routines to help a developer clean up identifier names.
 
-In the 6 tasks you will gradually build up the routines `transform` to convert single characters and `clean` to convert strings.
+In the 6 tasks you will gradually build up the functions `transform` to convert single characters and `clean` to convert strings.
 
 A valid identifier comprises zero or more letters, underscores, hyphens, question marks and emojis.
 
