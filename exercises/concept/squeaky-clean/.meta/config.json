@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "colinleach",
+    "ErikSchierboom"
+  ],
+  "files": {
+    "solution": [
+      "SqueakyClean.fs"
+    ],
+    "test": [
+      "SqueakyCleanTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
+  },
+  "forked_from": [
+    "csharp/squeaky-clean"
+  ],
+  "blurb": "Learn about characters by cleaning strings."
+}
