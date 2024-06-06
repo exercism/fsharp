@@ -41,11 +41,11 @@ let ``filter empty list`` () =
 let ``filter non-empty list`` () =
     filter (fun acc -> acc % 2 = 1) [1; 2; 3; 5] |> should equal [1; 3; 5]
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``length empty list`` () =
     length [] |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``length non-empty list`` () =
     length [1; 2; 3; 4] |> should equal 4
 
@@ -84,4 +84,3 @@ let ``reverse non-empty list`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``reverse list of lists is not flattened`` () =
     reverse [[1; 2]; [3]; []; [4; 5; 6]] |> should equal [[4; 5; 6]; []; [3]; [1; 2]]
-
