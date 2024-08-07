@@ -29,6 +29,13 @@
       "blurb": "A collection of useful resources to help you master F#"
     },
     {
+      "uuid": "f2379f3c-36d6-4442-8ad8-f62a5ad6932b",
+      "slug": "packages",
+      "path": "docs/PACKAGES.md",
+      "title": "Supported packages",
+      "blurb": "The list of packages that are supported on the F# track"
+    },
+    {
       "uuid": "edfbb0fa-a950-4384-899f-6c6c7a440dca",
       "slug": "representer-normalizations",
       "path": "docs/REPRESENTER_NORMALIZATIONS.md",
