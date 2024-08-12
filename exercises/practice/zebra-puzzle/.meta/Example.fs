@@ -1,7 +1,7 @@
 module ZebraPuzzle
 
 type Color = Red | Green | Ivory | Yellow | Blue 
-type Nationality = Englishman | Spaniard | Ukranian | Japanese | Norwegian
+type Nationality = Englishman | Spaniard | Ukrainian | Japanese | Norwegian
 type Pet = Dog | Snails | Fox | Horse | Zebra
 type Drink = Coffee | Tea | Milk | OrangeJuice | Water
 type Smoke = OldGold | Kools | Chesterfields | LuckyStrike | Parliaments
@@ -26,7 +26,7 @@ let (<==>) (values1, value1) (values2, value2) =
     List.tryItem (index' + 1) values2 = Some value2
 
 let colors = [Red; Green; Ivory; Yellow; Blue]
-let nationalities = [Englishman; Spaniard; Ukranian; Japanese; Norwegian]
+let nationalities = [Englishman; Spaniard; Ukrainian; Japanese; Norwegian]
 let pets = [Dog; Snails; Fox; Horse; Zebra]
 let drinks = [Coffee; Tea; Milk; OrangeJuice; Water]
 let smokes = [OldGold; Kools; Chesterfields; LuckyStrike; Parliaments]
@@ -48,10 +48,10 @@ let matchesPetRules nationalities pets  =
 
 let matchesDrinkRules colors nationalities drinks  = 
     let coffeeDrunkInGreenHouse = (colors, Green) ==> (drinks, Coffee) // #4
-    let ukranianDrinksTee = (nationalities, Ukranian) ==>  (drinks, Tea) // #5
+    let ukrainianDrinksTee = (nationalities, Ukrainian) ==>  (drinks, Tea) // #5
     let milkDrunkInMiddleHouse = List.item 2 drinks = Milk // #9
 
-    coffeeDrunkInGreenHouse && ukranianDrinksTee && milkDrunkInMiddleHouse
+    coffeeDrunkInGreenHouse && ukrainianDrinksTee && milkDrunkInMiddleHouse
 
 let matchesSmokeRules colors nationalities drinks pets smokes = 
     let oldGoldSmokesOwnsSnails = (smokes, OldGold) ==> (pets, Snails) // #7
