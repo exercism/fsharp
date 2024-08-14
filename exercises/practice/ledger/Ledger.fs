@@ -16,7 +16,7 @@ let formatLedger currency locale entries =
         
     for x in List.sortBy (fun x -> x.dat, x.des, x.chg) entries do
 
-        res <- res + "\n"
+        res <- res + System.Environment.NewLine
 
         if locale = "nl-NL" then 
             res <- res + x.dat.ToString("dd-MM-yyyy")

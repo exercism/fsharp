@@ -70,4 +70,4 @@ let formatLedger currency locale entries =
     let culture = getCulture currency locale
     let header = printHeader culture
     let lines = List.map (printEntry culture) (orderEntries entries)
-    header :: lines |> String.concat "\n"
+    header :: lines |> String.concat System.Environment.NewLine
