@@ -13,9 +13,15 @@ let currencySymbol =
     | "EUR" -> "€"
     | _ -> failwith "Invalid currency"
 
+let currencyNegativePattern =
+    function
+    | "en-US" -> 0
+    | "nl-NL" -> 12
+    | _ -> failwith "Invalid locale"
+
 let cultureInfo (locale: string) =
     match locale with
-    | "en-US" | "nl-NL" -> new CultureInfo(locale) 
+    | "en-US" | "nl-NL" -> new CultureInfo(locale, false) 
     | _ -> failwith "Invalid locale"
 
 let dateFormat =
@@ -27,6 +33,7 @@ let dateFormat =
 let getCulture (currency: string) (locale: string) =
     let mutable culture = cultureInfo locale
     culture.NumberFormat.CurrencySymbol <- currencySymbol currency
+    culture.NumberFormat.CurrencyNegativePattern <- currencyNegativePattern locale
     culture.DateTimeFormat.ShortDatePattern <- dateFormat locale
     culture
 
@@ -63,4 +70,4 @@ let formatLedger currency locale entries =
     let culture = getCulture currency locale
     let header = printHeader culture
     let lines = List.map (printEntry culture) (orderEntries entries)
-    header :: lines |> String.concat "\n"
+    header :: lines |> String.concat System.Environment.NewLine
