@@ -39,23 +39,23 @@ let formatLedger currency locale entries =
         if c < 0.0 then 
             if locale = "nl-NL" then
                 if currency = "USD" then
-                    res <- res + ("$ " + c.ToString("#,#0.00", new CultureInfo("nl-NL"))).PadLeft(13) 
+                    res <- res + ("$ " + c.ToString("#,#0.00", new CultureInfo("nl-NL", false))).PadLeft(13) 
                 if currency = "EUR" then
-                    res <- res + ("€ " + c.ToString("#,#0.00", new CultureInfo("nl-NL"))).PadLeft(13) 
+                    res <- res + ("€ " + c.ToString("#,#0.00", new CultureInfo("nl-NL", false))).PadLeft(13) 
             if locale = "en-US" then
                 if currency = "USD" then
-                    res <- res + ("($" + c.ToString("#,#0.00", new CultureInfo("en-US")).Substring(1) + ")").PadLeft(13) 
+                    res <- res + ("($" + c.ToString("#,#0.00", new CultureInfo("en-US", false)).Substring(1) + ")").PadLeft(13) 
                 if currency = "EUR" then
-                    res <- res + ("(€" + c.ToString("#,#0.00", new CultureInfo("en-US")).Substring(1) + ")").PadLeft(13) 
+                    res <- res + ("(€" + c.ToString("#,#0.00", new CultureInfo("en-US", false)).Substring(1) + ")").PadLeft(13) 
         else 
             if locale = "nl-NL" then
                 if currency = "USD" then
-                    res <- res + ("$ " + c.ToString("#,#0.00", new CultureInfo("nl-NL")) + " ").PadLeft(13) 
+                    res <- res + ("$ " + c.ToString("#,#0.00", new CultureInfo("nl-NL", false)) + " ").PadLeft(13) 
                 if currency = "EUR" then
-                    res <- res + ("€ " + c.ToString("#,#0.00", new CultureInfo("nl-NL")) + " ").PadLeft(13) 
+                    res <- res + ("€ " + c.ToString("#,#0.00", new CultureInfo("nl-NL", false)) + " ").PadLeft(13) 
             if locale = "en-US" then
                 if currency = "USD" then
-                    res <- res + ("$" + c.ToString("#,#0.00", new CultureInfo("en-US")) + " ").PadLeft(13) 
+                    res <- res + ("$" + c.ToString("#,#0.00", new CultureInfo("en-US", false)) + " ").PadLeft(13) 
                 if currency = "EUR" then
-                    res <- res + ("€" + c.ToString("#,#0.00", new CultureInfo("en-US")) + " ").PadLeft(13) 
+                    res <- res + ("€" + c.ToString("#,#0.00", new CultureInfo("en-US", false)) + " ").PadLeft(13) 
     res
