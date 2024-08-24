@@ -4,6 +4,11 @@ In this exercise you're going to write some code to help you cook a brilliant la
 
 You have four tasks, all related to the time spent cooking the lasagna.
 
+~~~~exercism/note
+You can either use type inference, where you don't specify any types, or use explicit typing, where you do specify the types.
+If you choose the latter, use `int` as the type.
+~~~~
+
 ## 1. Define the expected oven time in minutes
 
 Define the `expectedMinutesInOven` binding to check how many minutes the lasagna should be in the oven. According to the cooking book, the expected oven time in minutes is 40:
