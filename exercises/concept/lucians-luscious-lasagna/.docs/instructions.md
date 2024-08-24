@@ -2,7 +2,12 @@
 
 In this exercise you're going to write some code to help you cook a brilliant lasagna from your favorite cooking book.
 
-You have four tasks, all related to the time spent cooking the lasagna. Use `int` as type for inputs and output.
+You have four tasks, all related to the time spent cooking the lasagna.
+
+~~~~exercism/note
+You can either use type inference, where you don't specify any types, or use explicit typing, where you do specify the types.
+If you choose the latter, use `int` as the type.
+~~~~
 
 ## 1. Define the expected oven time in minutes
 
