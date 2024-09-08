@@ -12,8 +12,8 @@ Four different types of seeds are planted:
 | ------ | ---------------- |
 | Grass  | G                |
 | Clover | C                |
-| Radish | R                |
-| Violet | V                |
+| Radishes | R                |
+| Violets | V                |
 
 Each child gets four cups, two on each row:
 
@@ -49,8 +49,8 @@ VRCCCGCRRGVCGCRVVCVGCGCV
 
 Then if asked for Alice's plants, it should provide:
 
-- Violets, radishes, violets, radishes
+- Violets, Radishes, Violets, Radishes
 
 While asking for Bob's plants would yield:
 
-- Clover, grass, clover, clover
+- Clover, Grass, Clover, Clover
