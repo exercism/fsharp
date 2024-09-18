@@ -39,7 +39,7 @@ Here is a tail-recursive version of the list length function:
 ```fsharp
 let rec lengthRecursive acc list =
     match list with
-    | [] -> 0
+    | [] -> acc
     | x::xs -> lengthRecursive (acc + 1) xs
 
 let length list = lengthRecursive 0 list
@@ -51,7 +51,7 @@ It is quite common to define the recursive helper as a nested function, which hi
 let length list =
     let rec lengthRecursive acc remainder =
         match remainder with
-        | [] -> 0
+        | [] -> acc
         | x::xs -> lengthRecursive (acc + 1) xs
 
     lengthRecursive 0 list
