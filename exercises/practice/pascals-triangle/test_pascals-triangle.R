@@ -2,7 +2,7 @@ source("./pascals-triangle.R")
 library(testthat)
 
 test_that("Zero rows", {
-    let expected: int list list = c()
+  expected: int list list <- c()
   expect_equal(rows(0), expected)
 })
 

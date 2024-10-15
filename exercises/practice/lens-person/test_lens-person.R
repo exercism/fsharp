@@ -2,7 +2,7 @@ source("./lens-person.R")
 library(testthat)
 
 
-let testPerson =
+testPerson <-
     { name = 
         { name = "Jane Joanna"
           surName = "Doe" }

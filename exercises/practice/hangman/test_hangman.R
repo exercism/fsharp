@@ -2,10 +2,10 @@ source("./hangman.R")
 library(testthat)
 
 test_that("Initially 9 failures are allowed", {
-    let game = createGame "foo"
-    let states = statesObservable game
+  game <- createGame "foo"
+  states <- statesObservable game
 
-    let mutable lastProgress = Busy 9
+  mutable lastProgress <- Busy 9
     states.Add(fun state -> lastProgress <- state.progress) |> ignore
 
     startGame game |> ignore
@@ -14,10 +14,10 @@ test_that("Initially 9 failures are allowed", {
 })
 
 test_that("Initially no letters are guessed", {
-    let game = createGame "foo"
-    let states = statesObservable game
+  game <- createGame "foo"
+  states <- statesObservable game
 
-    let mutable lastMaskedWord = ""
+  mutable lastMaskedWord <- ""
     states.Add(fun state -> lastMaskedWord <- state.maskedWord) |> ignore
 
     startGame game |> ignore
@@ -26,10 +26,10 @@ test_that("Initially no letters are guessed", {
 })
 
 test_that("After 10 failures the game is over", {
-    let game = createGame "foo"
-    let states = statesObservable game
+  game <- createGame "foo"
+  states <- statesObservable game
 
-    let mutable lastProgress = Busy 9
+  mutable lastProgress <- Busy 9
     states.Add(fun state -> lastProgress <- state.progress) |> ignore
 
     startGame game |> ignore
@@ -40,10 +40,10 @@ test_that("After 10 failures the game is over", {
     
 
 test_that("Feeding a correct letter removes underscores", {
-    let game = createGame "foobar"
-    let states = statesObservable game
+  game <- createGame "foobar"
+  states <- statesObservable game
 
-    let mutable lastState = None
+  mutable lastState <- None
     states.Add(fun state -> lastState <- Some state) |> ignore
 
     startGame game |> ignore
@@ -60,10 +60,10 @@ test_that("Feeding a correct letter removes underscores", {
     
 
 test_that("Feeding a correct letter twice counts as a failure", {
-    let game = createGame "foobar"
-    let states = statesObservable game
+  game <- createGame "foobar"
+  states <- statesObservable game
 
-    let mutable lastState = None
+  mutable lastState <- None
     states.Add(fun state -> lastState <- Some state) |> ignore
 
     startGame game |> ignore
@@ -80,10 +80,10 @@ test_that("Feeding a correct letter twice counts as a failure", {
      
 
 test_that("Getting all the letters right makes for a win", {
-    let game = createGame "hello"
-    let states = statesObservable game
+  game <- createGame "hello"
+  states <- statesObservable game
 
-    let mutable lastState = None
+  mutable lastState <- None
     states.Add(fun state -> lastState <- Some state) |> ignore
 
     startGame game |> ignore

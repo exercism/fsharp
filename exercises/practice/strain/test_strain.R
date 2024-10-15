@@ -17,12 +17,12 @@ test_that("Keep neither first nor last", {
 })
 
 test_that("Keep strings", {
-    let words = "apple zebra banana zombies cherimoya zelot".Split(' ');
+  words <- "apple zebra banana zombies cherimoya zelot".Split(' ');
   expect_equal(words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> Seq.toList, <| List.ofArray("zebra zombies zelot".Split(' ')))
 })
 
 test_that("Keep arrays", {
-    let actual = c(|
+  actual <- c(|
                     c(|1, 2, 3|);
                     c(|5, 5, 5|);
                     c(|5, 1, 2|);
@@ -52,12 +52,12 @@ test_that("Discard neither first nor last", {
 })
 
 test_that("Discard strings", {
-    let words = "apple zebra banana zombies cherimoya zelot".Split(' ')
+  words <- "apple zebra banana zombies cherimoya zelot".Split(' ')
   expect_equal(words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> Seq.toList, <| List.ofArray("apple banana cherimoya".Split(' ')))
 })
 
 test_that("Discard arrays", {
-    let actual = c(|
+  actual <- c(|
                     c(|1, 2, 3|);
                     c(|5, 5, 5|);
                     c(|5, 1, 2|);

@@ -2,13 +2,13 @@ source("./game-of-life.R")
 library(testthat)
 
 test_that("Empty matrix", {
-    let matrix: intc(,) = array2D c()
-    let expected: intc(,) = array2D c()
+  matrix: intc(,) <- array2D c()
+  expected: intc(,) <- array2D c()
   expect_equal(tick matrix, expected)
 })
 
 test_that("Live cells with zero live neighbors die", {
-    let matrix = 
+  matrix <- 
         array2D c( c(0, 0, 0);
                   c(0, 1, 0);
                   c(0, 0, 0) )
@@ -20,7 +20,7 @@ test_that("Live cells with zero live neighbors die", {
 })
 
 test_that("Live cells with only one live neighbor die", {
-    let matrix = 
+  matrix <- 
         array2D c( c(0, 0, 0);
                   c(0, 1, 0);
                   c(0, 1, 0) )
@@ -32,7 +32,7 @@ test_that("Live cells with only one live neighbor die", {
 })
 
 test_that("Live cells with two live neighbors stay alive", {
-    let matrix = 
+  matrix <- 
         array2D c( c(1, 0, 1);
                   c(1, 0, 1);
                   c(1, 0, 1) )
@@ -44,7 +44,7 @@ test_that("Live cells with two live neighbors stay alive", {
 })
 
 test_that("Live cells with three live neighbors stay alive", {
-    let matrix = 
+  matrix <- 
         array2D c( c(0, 1, 0);
                   c(1, 0, 0);
                   c(1, 1, 0) )
@@ -56,7 +56,7 @@ test_that("Live cells with three live neighbors stay alive", {
 })
 
 test_that("Dead cells with three live neighbors become alive", {
-    let matrix = 
+  matrix <- 
         array2D c( c(1, 1, 0);
                   c(0, 0, 0);
                   c(1, 0, 0) )
@@ -68,7 +68,7 @@ test_that("Dead cells with three live neighbors become alive", {
 })
 
 test_that("Live cells with four or more neighbors die", {
-    let matrix = 
+  matrix <- 
         array2D c( c(1, 1, 1);
                   c(1, 1, 1);
                   c(1, 1, 1) )
@@ -80,7 +80,7 @@ test_that("Live cells with four or more neighbors die", {
 })
 
 test_that("Bigger matrix", {
-    let matrix = 
+  matrix <- 
         array2D c( c(1, 1, 0, 1, 1, 0, 0, 0);
                   c(1, 0, 1, 1, 0, 0, 0, 0);
                   c(1, 1, 1, 0, 0, 1, 1, 1);

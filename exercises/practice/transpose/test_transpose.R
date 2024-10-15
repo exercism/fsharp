@@ -2,13 +2,13 @@ source("./transpose.R")
 library(testthat)
 
 test_that("Empty string", {
-    let lines: string list = c()
-    let expected: string list = c()
+  lines <- c()
+  expected <- c()
   expect_equal(transpose lines, expected)
 })
 
 test_that("Two characters in a row", {
-    let lines = c("A1")
+  lines <- c("A1")
   expected <- 
         c( "A",
           "1" )
@@ -16,7 +16,7 @@ test_that("Two characters in a row", {
 })
 
 test_that("Two characters in a column", {
-    let lines = 
+  lines <- 
         c( "A",
           "1" )
   expected <- c("A1")
@@ -24,7 +24,7 @@ test_that("Two characters in a column", {
 })
 
 test_that("Simple", {
-    let lines = 
+  lines <- 
         c( "ABC",
           "123" )
   expected <- 
@@ -35,7 +35,7 @@ test_that("Simple", {
 })
 
 test_that("Single line", {
-    let lines = c("Single line.")
+  lines <- c("Single line.")
   expected <- 
         c( "S",
           "i",
@@ -53,7 +53,7 @@ test_that("Single line", {
 })
 
 test_that("First line longer than second line", {
-    let lines = 
+  lines <- 
         c( "The fourth line.",
           "The fifth line." )
   expected <- 
@@ -77,7 +77,7 @@ test_that("First line longer than second line", {
 })
 
 test_that("Second line longer than first line", {
-    let lines = 
+  lines <- 
         c( "The first line.",
           "The second line." )
   expected <- 
@@ -101,7 +101,7 @@ test_that("Second line longer than first line", {
 })
 
 test_that("Mixed line length", {
-    let lines = 
+  lines <- 
         c( "The longest line.",
           "A long line.",
           "A longer line.",
@@ -128,7 +128,7 @@ test_that("Mixed line length", {
 })
 
 test_that("Square", {
-    let lines = 
+  lines <- 
         c( "HEART",
           "EMBER",
           "ABUSE",
@@ -144,7 +144,7 @@ test_that("Square", {
 })
 
 test_that("Rectangle", {
-    let lines = 
+  lines <- 
         c( "FRACTURE",
           "OUTLINED",
           "BLOOMING",
@@ -162,7 +162,7 @@ test_that("Rectangle", {
 })
 
 test_that("Triangle", {
-    let lines = 
+  lines <- 
         c( "T",
           "EE",
           "AAA",
@@ -180,7 +180,7 @@ test_that("Triangle", {
 })
 
 test_that("Jagged triangle", {
-    let lines = 
+  lines <- 
         c( "11",
           "2",
           "3333",

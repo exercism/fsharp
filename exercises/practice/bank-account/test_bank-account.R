@@ -1,16 +1,16 @@
 source("./bank-account.R")
 library(testthat)
 test_that("Returns empty balance after opening", {
-    let account = mkBankAccount() |> openAccount
+  account <- mkBankAccount() |> openAccount
 
   expect_equal(getBalance account, (Some 0.0m))
 })
 
 test_that("Check basic balance", {
-    let account = mkBankAccount() |> openAccount
-    let openingBalance = account |> getBalance 
+  account <- mkBankAccount() |> openAccount
+  openingBalance <- account |> getBalance 
 
-    let updatedBalance = 
+  updatedBalance <- 
         account
         |> updateBalance 10.0m
         |> getBalance
@@ -20,15 +20,15 @@ test_that("Check basic balance", {
 })
 
 test_that("Balance can increment or decrement", {    
-    let account = mkBankAccount() |> openAccount
-    let openingBalance = account |> getBalance 
+  account <- mkBankAccount() |> openAccount
+  openingBalance <- account |> getBalance 
 
-    let addedBalance = 
+  addedBalance <- 
         account 
         |> updateBalance 10.0m
         |> getBalance
 
-    let subtractedBalance = 
+  subtractedBalance <- 
         account 
         |> updateBalance -15.0m
         |> getBalance
@@ -39,7 +39,7 @@ test_that("Balance can increment or decrement", {
 })
 
 test_that("Account can be closed", {
-    let account = 
+  account <- 
         mkBankAccount()
         |> openAccount
         |> closeAccount
@@ -49,11 +49,11 @@ test_that("Account can be closed", {
     
 
 test_that("Account can be updated from multiple threads", {
-    let account = 
+  account <- 
         mkBankAccount()
         |> openAccount
 
-    let updateAccountAsync =        
+  updateAccountAsync <-        
         async {                             
             account 
             |> updateBalance 1.0m

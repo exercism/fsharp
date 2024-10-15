@@ -2,22 +2,22 @@ source("./rectangles.R")
 library(testthat)
 
 test_that("No rows", {
-    let strings = c()
+  strings <- c()
   expect_equal(rectangles strings, 0)
 })
 
 test_that("No columns", {
-    let strings = c("")
+  strings <- c("")
   expect_equal(rectangles strings, 0)
 })
 
 test_that("No rectangles", {
-    let strings = c(" ")
+  strings <- c(" ")
   expect_equal(rectangles strings, 0)
 })
 
 test_that("One rectangle", {
-    let strings = 
+  strings <- 
         c( "+-+",
           "| |",
           "+-+" )
@@ -25,7 +25,7 @@ test_that("One rectangle", {
 })
 
 test_that("Two rectangles without shared parts", {
-    let strings = 
+  strings <- 
         c( "  +-+",
           "  | |",
           "+-+-+",
@@ -35,7 +35,7 @@ test_that("Two rectangles without shared parts", {
 })
 
 test_that("Five rectangles with shared parts", {
-    let strings = 
+  strings <- 
         c( "  +-+",
           "  | |",
           "+-+-+",
@@ -45,14 +45,14 @@ test_that("Five rectangles with shared parts", {
 })
 
 test_that("Rectangle of height 1 is counted", {
-    let strings = 
+  strings <- 
         c( "+--+",
           "+--+" )
   expect_equal(rectangles strings, 1)
 })
 
 test_that("Rectangle of width 1 is counted", {
-    let strings = 
+  strings <- 
         c( "++",
           "||",
           "++" )
@@ -60,14 +60,14 @@ test_that("Rectangle of width 1 is counted", {
 })
 
 test_that("1x1 square is counted", {
-    let strings = 
+  strings <- 
         c( "++",
           "++" )
   expect_equal(rectangles strings, 1)
 })
 
 test_that("Only complete rectangles are counted", {
-    let strings = 
+  strings <- 
         c( "  +-+",
           "    |",
           "+-+-+",
@@ -77,7 +77,7 @@ test_that("Only complete rectangles are counted", {
 })
 
 test_that("Rectangles can be of different sizes", {
-    let strings = 
+  strings <- 
         c( "+------+----+",
           "|      |    |",
           "+---+--+    |",
@@ -87,7 +87,7 @@ test_that("Rectangles can be of different sizes", {
 })
 
 test_that("Corner is required for a rectangle to be complete", {
-    let strings = 
+  strings <- 
         c( "+------+----+",
           "|      |    |",
           "+------+    |",
@@ -97,7 +97,7 @@ test_that("Corner is required for a rectangle to be complete", {
 })
 
 test_that("Large input with many rectangles", {
-    let strings = 
+  strings <- 
         c( "+---+--+----+",
           "|   +--+----+",
           "+---+--+    |",
@@ -110,7 +110,7 @@ test_that("Large input with many rectangles", {
 })
 
 test_that("Rectangles must have four sides", {
-    let strings = 
+  strings <- 
         c( "+-+ +-+",
           "| | | |",
           "+-+-+-+",

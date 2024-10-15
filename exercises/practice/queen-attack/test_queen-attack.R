@@ -22,49 +22,49 @@ test_that("Queen must have column on board", {
 })
 
 test_that("Cannot attack", {
-    let whiteQueen = (2, 4)
-    let blackQueen = (6, 6)
+  whiteQueen <- (2, 4)
+  blackQueen <- (6, 6)
   expect_equal(canAttack blackQueen whiteQueen, FALSE)
 })
 
 test_that("Can attack on same row", {
-    let whiteQueen = (2, 4)
-    let blackQueen = (2, 6)
+  whiteQueen <- (2, 4)
+  blackQueen <- (2, 6)
   expect_equal(canAttack blackQueen whiteQueen, TRUE)
 })
 
 test_that("Can attack on same column", {
-    let whiteQueen = (4, 5)
-    let blackQueen = (2, 5)
+  whiteQueen <- (4, 5)
+  blackQueen <- (2, 5)
   expect_equal(canAttack blackQueen whiteQueen, TRUE)
 })
 
 test_that("Can attack on first diagonal", {
-    let whiteQueen = (2, 2)
-    let blackQueen = (0, 4)
+  whiteQueen <- (2, 2)
+  blackQueen <- (0, 4)
   expect_equal(canAttack blackQueen whiteQueen, TRUE)
 })
 
 test_that("Can attack on second diagonal", {
-    let whiteQueen = (2, 2)
-    let blackQueen = (3, 1)
+  whiteQueen <- (2, 2)
+  blackQueen <- (3, 1)
   expect_equal(canAttack blackQueen whiteQueen, TRUE)
 })
 
 test_that("Can attack on third diagonal", {
-    let whiteQueen = (2, 2)
-    let blackQueen = (1, 1)
+  whiteQueen <- (2, 2)
+  blackQueen <- (1, 1)
   expect_equal(canAttack blackQueen whiteQueen, TRUE)
 })
 
 test_that("Can attack on fourth diagonal", {
-    let whiteQueen = (1, 7)
-    let blackQueen = (0, 6)
+  whiteQueen <- (1, 7)
+  blackQueen <- (0, 6)
   expect_equal(canAttack blackQueen whiteQueen, TRUE)
 })
 
 test_that("Cannot attack if falling diagonals are only the same when reflected across the longest falling diagonal", {
-    let whiteQueen = (4, 1)
-    let blackQueen = (2, 5)
+  whiteQueen <- (4, 1)
+  blackQueen <- (2, 5)
   expect_equal(canAttack blackQueen whiteQueen, FALSE)
 

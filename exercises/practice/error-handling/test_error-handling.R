@@ -5,7 +5,7 @@ library(testthat)
 
 // Custom class that implements IDisposable
 type Resource() = 
-    let mutable disposed = false
+  mutable disposed <- false
 
     member this.Disposed() = disposed
 
@@ -26,10 +26,10 @@ test_that("Throwing exception", {
 // consider both possible outputs: success and failure.
 
 test_that("Returning Option<'T>", {
-    let successResult = handleErrorByReturningOption "1"
+  successResult <- handleErrorByReturningOption "1"
   expect_equal(successResult, <| Some 1)
     
-    let failureResult = handleErrorByReturningOption "a"
+  failureResult <- handleErrorByReturningOption "a"
   expect_equal(failureResult, None)
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
@@ -39,10 +39,10 @@ test_that("Returning Option<'T>", {
 // you are free to return an integer upon success and a string upon failure.
 
 test_that("Returning Result<'TSuccess, 'TError>", {
-    let successResult = handleErrorByReturningResult "1"
+  successResult <- handleErrorByReturningResult "1"
   expect_equal((successResult = Ok 1), TRUE)
     
-    let failureResult = handleErrorByReturningResult "a"
+  failureResult <- handleErrorByReturningResult "a"
   expect_equal((failureResult = Error "Could not convert input to integer"), TRUE)
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
@@ -62,34 +62,34 @@ test_that("Returning Result<'TSuccess, 'TError>", {
 // two functions that take a 'TSuccess instance and return a Result<'TSuccess, 'TError> instance.
 
 test_that("Using railway-oriented programming", {
-    let validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
-    let validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
-    let validate3 x = if x % 2 <> 0 then Ok x else Error "Input is not odd"
+  validate1 x <- if x > 5 then Ok x else Error "Input less than or equal to five"
+  validate2 x <- if x < 10 then Ok x else Error "Input greater than or equal to ten"
+  validate3 x <- if x % 2 <> 0 then Ok x else Error "Input is not odd"
     
     // Combine the validations. The result should be a function that takes an int parameter
     // and returns a Result<int, string> value
-    let combinedValidation =
+    combinedValidation <-
         validate1
         >> bind validate2
         >> bind validate3
 
-    let firstValidationFailureResult = combinedValidation 1            
+  firstValidationFailureResult <- combinedValidation 1            
   expect_equal((firstValidationFailureResult = Error "Input less than or equal to five"), TRUE)
 
-    let secondValidationFailureResult = combinedValidation 23          
+  secondValidationFailureResult <- combinedValidation 23          
   expect_equal((secondValidationFailureResult = Error "Input greater than or equal to ten"), TRUE)
 
-    let thirdValidationFailureResult = combinedValidation 8        
+  thirdValidationFailureResult <- combinedValidation 8        
   expect_equal((thirdValidationFailureResult = Error "Input is not odd"), TRUE)
 
-    let successResult = combinedValidation 7        
+  successResult <- combinedValidation 7        
   expect_equal((successResult = Ok 7), TRUE)
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
 
 test_that("Cleaning up disposables when throwing exception", {    
-    let resource = new Resource()
+  resource <- new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
   expect_equal(resource.Disposed(), TRUE)

@@ -2,13 +2,13 @@ source("./tournament.R")
 library(testthat)
 
 test_that("Just the header if no input", {
-    let rows = c()
+  rows <- c()
   expected <- c("Team                           | MP |  W |  D |  L |  P")
   expect_equal(tally rows, expected)
 })
 
 test_that("A win is three points, a loss is zero points", {
-    let rows = c("Allegoric Alaskans;Blithering Badgers;win")
+  rows <- c("Allegoric Alaskans;Blithering Badgers;win")
   expected <- 
         c( "Team                           | MP |  W |  D |  L |  P",
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3",
@@ -17,7 +17,7 @@ test_that("A win is three points, a loss is zero points", {
 })
 
 test_that("A win can also be expressed as a loss", {
-    let rows = c("Blithering Badgers;Allegoric Alaskans;loss")
+  rows <- c("Blithering Badgers;Allegoric Alaskans;loss")
   expected <- 
         c( "Team                           | MP |  W |  D |  L |  P",
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3",
@@ -26,7 +26,7 @@ test_that("A win can also be expressed as a loss", {
 })
 
 test_that("A different team can win", {
-    let rows = c("Blithering Badgers;Allegoric Alaskans;win")
+  rows <- c("Blithering Badgers;Allegoric Alaskans;win")
   expected <- 
         c( "Team                           | MP |  W |  D |  L |  P",
           "Blithering Badgers             |  1 |  1 |  0 |  0 |  3",
@@ -35,7 +35,7 @@ test_that("A different team can win", {
 })
 
 test_that("A draw is one point each", {
-    let rows = c("Allegoric Alaskans;Blithering Badgers;draw")
+  rows <- c("Allegoric Alaskans;Blithering Badgers;draw")
   expected <- 
         c( "Team                           | MP |  W |  D |  L |  P",
           "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1",
@@ -44,7 +44,7 @@ test_that("A draw is one point each", {
 })
 
 test_that("There can be more than one match", {
-    let rows = 
+  rows <- 
         c( "Allegoric Alaskans;Blithering Badgers;win",
           "Allegoric Alaskans;Blithering Badgers;win" )
   expected <- 
@@ -55,7 +55,7 @@ test_that("There can be more than one match", {
 })
 
 test_that("There can be more than one winner", {
-    let rows = 
+  rows <- 
         c( "Allegoric Alaskans;Blithering Badgers;loss",
           "Allegoric Alaskans;Blithering Badgers;win" )
   expected <- 
@@ -66,7 +66,7 @@ test_that("There can be more than one winner", {
 })
 
 test_that("There can be more than two teams", {
-    let rows = 
+  rows <- 
         c( "Allegoric Alaskans;Blithering Badgers;win",
           "Blithering Badgers;Courageous Californians;win",
           "Courageous Californians;Allegoric Alaskans;loss" )
@@ -79,7 +79,7 @@ test_that("There can be more than two teams", {
 })
 
 test_that("Typical input", {
-    let rows = 
+  rows <- 
         c( "Allegoric Alaskans;Blithering Badgers;win",
           "Devastating Donkeys;Courageous Californians;draw",
           "Devastating Donkeys;Allegoric Alaskans;win",
@@ -96,7 +96,7 @@ test_that("Typical input", {
 })
 
 test_that("Incomplete competition (not all pairs have played)", {
-    let rows = 
+  rows <- 
         c( "Allegoric Alaskans;Blithering Badgers;loss",
           "Devastating Donkeys;Allegoric Alaskans;loss",
           "Courageous Californians;Blithering Badgers;draw",
@@ -111,7 +111,7 @@ test_that("Incomplete competition (not all pairs have played)", {
 })
 
 test_that("Ties broken alphabetically", {
-    let rows = 
+  rows <- 
         c( "Courageous Californians;Devastating Donkeys;win",
           "Allegoric Alaskans;Blithering Badgers;win",
           "Devastating Donkeys;Allegoric Alaskans;loss",
@@ -128,7 +128,7 @@ test_that("Ties broken alphabetically", {
 })
 
 test_that("Ensure points sorted numerically", {
-    let rows = 
+  rows <- 
         c( "Devastating Donkeys;Blithering Badgers;win",
           "Devastating Donkeys;Blithering Badgers;win",
           "Devastating Donkeys;Blithering Badgers;win",

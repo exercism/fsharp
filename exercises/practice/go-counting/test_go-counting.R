@@ -2,102 +2,102 @@ source("./go-counting.R")
 library(testthat)
 
 test_that("Black corner territory on 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (0, 1)
+  position <- (0, 1)
   expected <- Option.Some (Owner.Black, c((0, 0), (0, 1), (1, 0)))
   expect_equal(territory board position, expected)
 })
 
 test_that("White center territory on 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (2, 3)
+  position <- (2, 3)
   expected <- Option.Some (Owner.White, c((2, 3)))
   expect_equal(territory board position, expected)
 })
 
-test_that("    let board = 
+test_that("  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (1, 4)
+  position <- (1, 4)
   expected <- Option.Some (Owner.None, c((0, 3), (0, 4), (1, 4)))
   expect_equal(territory board position, expected)
 })
 
 test_that("A stone and not a territory on 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (1, 1)
-    let expected: (Owner * (int * int) list) option = Option.Some (Owner.None, c())
+  position <- (1, 1)
+  expected: (Owner * (int * int) list) option <- Option.Some (Owner.None, c())
   expect_equal(territory board position, expected)
 })
 
 test_that("Invalid because X is too low for 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (-1, 1)
+  position <- (-1, 1)
   expected <- Option.None
   expect_equal(territory board position, expected)
 })
 
 test_that("Invalid because X is too high for 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (5, 1)
+  position <- (5, 1)
   expected <- Option.None
   expect_equal(territory board position, expected)
 })
 
 test_that("Invalid because Y is too low for 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (1, -1)
+  position <- (1, -1)
   expected <- Option.None
   expect_equal(territory board position, expected)
 })
 
 test_that("Invalid because Y is too high for 5x5 board", {
-    let board = 
+  board <- 
         c( "  B  ",
           " B B ",
           "B W B",
           " W W ",
           "  W  " )
-    let position = (1, 5)
+  position <- (1, 5)
   expected <- Option.None
   expect_equal(territory board position, expected)
 })
 
 test_that("One territory is the whole board", {
-    let board = c(" ")
+  board <- c(" ")
   expected <- 
         c( (Owner.Black, c());
           (Owner.White, c());
@@ -107,7 +107,7 @@ test_that("One territory is the whole board", {
 })
 
 test_that("Two territory rectangular board", {
-    let board = 
+  board <- 
         c( " BW ",
           " BW " )
   expected <- 
@@ -119,7 +119,7 @@ test_that("Two territory rectangular board", {
 })
 
 test_that("Two region rectangular board", {
-    let board = c(" B ")
+  board <- c(" B ")
   expected <- 
         c( (Owner.Black, c((0, 0), (2, 0)));
           (Owner.White, c());

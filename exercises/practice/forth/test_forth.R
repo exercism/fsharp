@@ -107,7 +107,7 @@ test_that("Dup - errors if there is nothing on the stack", {
 })
 
 test_that("Drop - removes the top value on the stack if it is the only one", {
-    let expected: int list option = Some c()
+  expected: int list option <- Some c()
   expect_equal(evaluate c("1 drop"), expected)
 })
 

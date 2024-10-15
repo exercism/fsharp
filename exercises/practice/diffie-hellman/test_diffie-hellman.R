@@ -2,47 +2,47 @@ source("./diffie-hellman.R")
 library(testthat)
 
 test_that("Private key is greater than 1 and less than p", {
-    let p = 7919I
-    let privateKeys = c(for _ in 0 .. 10 -> privateKey p)
+  p <- 7919I
+  privateKeys <- c(for _ in 0 .. 10 -> privateKey p)
     privateKeys |> List.iter (fun x -> x |> should be (greaterThan 1I))
     privateKeys |> List.iter (fun x -> x |> should be (lessThan p))
 })
 
 test_that("Private key is random", {
-    let p = 7919I
-    let privateKeys = c(for _ in 0 .. 10 -> privateKey p)
+  p <- 7919I
+  privateKeys <- c(for _ in 0 .. 10 -> privateKey p)
   expect_equal(List.distinct privateKeys |> List.length, (List.length privateKeys))
 })
 
 test_that("Can calculate public key using private key", {
-    let p = 23I
-    let g = 5I
-    let privateKey = 6I
+  p <- 23I
+  g <- 5I
+  privateKey <- 6I
   expect_equal(publicKey p g privateKey, 8I)
 })
 
 test_that("Can calculate public key when given a different private key", {
-    let p = 23I
-    let g = 5I
-    let privateKey = 15I
+  p <- 23I
+  g <- 5I
+  privateKey <- 15I
   expect_equal(publicKey p g privateKey, 19I)
 })
 
 test_that("Can calculate secret using other party's public key", {
-    let p = 23I
-    let theirPublicKey = 19I
-    let myPrivateKey = 6I
+  p <- 23I
+  theirPublicKey <- 19I
+  myPrivateKey <- 6I
   expect_equal(secret p theirPublicKey myPrivateKey, 2I)
 })
 
 test_that("Key exchange", {
-    let p = 23I
-    let g = 5I
-    let alicePrivateKey = privateKey p
-    let alicePublicKey = publicKey p g alicePrivateKey
-    let bobPrivateKey = privateKey p
-    let bobPublicKey = publicKey p g bobPrivateKey
-    let secretA = secret p bobPublicKey alicePrivateKey
-    let secretB = secret p alicePublicKey bobPrivateKey
+  p <- 23I
+  g <- 5I
+  alicePrivateKey <- privateKey p
+  alicePublicKey <- publicKey p g alicePrivateKey
+  bobPrivateKey <- privateKey p
+  bobPublicKey <- publicKey p g bobPrivateKey
+  secretA <- secret p bobPublicKey alicePrivateKey
+  secretB <- secret p alicePublicKey bobPrivateKey
   expect_equal(secretA, secretB)
 

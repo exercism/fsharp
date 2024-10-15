@@ -3,12 +3,12 @@ library(testthat)
 
 
 test_that("One node", {
-    let input =
+    input <-
         c(
             { RecordId = 0, ParentId = 0 }
         )
 
-    let tree = buildTree input
+  tree <- buildTree input
 
   expect_equal(isBranch tree, FALSE)
   expect_equal(recordId tree, 0)
@@ -16,14 +16,14 @@ test_that("One node", {
 })
 
 test_that("Three nodes in order", {
-    let input =
+    input <-
         c(
             { RecordId = 0, ParentId = 0 };
             { RecordId = 1, ParentId = 0 };
             { RecordId = 2, ParentId = 0 };
         )
 
-    let tree = buildTree input
+  tree <- buildTree input
 
   expect_equal(isBranch tree, TRUE)
   expect_equal(recordId tree, 0)
@@ -37,14 +37,14 @@ test_that("Three nodes in order", {
 })
 
 test_that("Three nodes in reverse order", {
-    let input =
+    input <-
         c(
             { RecordId = 2, ParentId = 0 };
             { RecordId = 1, ParentId = 0 };
             { RecordId = 0, ParentId = 0 };
         )
 
-    let tree = buildTree input
+  tree <- buildTree input
 
   expect_equal(isBranch tree, TRUE)
   expect_equal(recordId tree, 0)
@@ -58,7 +58,7 @@ test_that("Three nodes in reverse order", {
 })
 
 test_that("More than two children", {
-    let input =
+    input <-
         c(
             { RecordId = 3, ParentId = 0 };
             { RecordId = 2, ParentId = 0 };
@@ -66,7 +66,7 @@ test_that("More than two children", {
             { RecordId = 0, ParentId = 0 };
         )
 
-    let tree = buildTree input
+  tree <- buildTree input
 
   expect_equal(isBranch tree, TRUE)
   expect_equal(recordId tree, 0)
@@ -83,7 +83,7 @@ test_that("More than two children", {
 })
 
 test_that("Binary tree", {
-    let input =
+    input <-
         c(
             { RecordId = 5, ParentId = 1 };
             { RecordId = 3, ParentId = 2 };
@@ -94,7 +94,7 @@ test_that("Binary tree", {
             { RecordId = 6, ParentId = 2 }
         )
 
-    let tree = buildTree input
+  tree <- buildTree input
 
   expect_equal(isBranch tree, TRUE)
   expect_equal(recordId tree, 0)
@@ -122,7 +122,7 @@ test_that("Binary tree", {
 })
 
 test_that("Unbalanced tree", {
-    let input =
+    input <-
         c(
             { RecordId = 5, ParentId = 2 };
             { RecordId = 3, ParentId = 2 };
@@ -133,7 +133,7 @@ test_that("Unbalanced tree", {
             { RecordId = 6, ParentId = 2 }
         )
 
-    let tree = buildTree input
+  tree <- buildTree input
 
   expect_equal(isBranch tree, TRUE)
   expect_equal(recordId tree, 0)
@@ -161,24 +161,24 @@ test_that("Unbalanced tree", {
 })
 
 test_that("Empty input", {
-    let input = c()
+  input <- c()
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 })
 
 test_that("Root node has parent", {
-    let input =
+    input <-
         c( { RecordId = 0, ParentId = 1 };
           { RecordId = 1, ParentId = 0 } )
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 })
 
 test_that("No root node", {
-    let input = c( { RecordId = 1, ParentId = 0 } )
+  input <- c( { RecordId = 1, ParentId = 0 } )
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 })
 
 test_that("Out of bounds record id", {
-    let input =
+    input <-
         c(
             { RecordId = 2, ParentId = 0 };
             { RecordId = 4, ParentId = 2 };
@@ -189,7 +189,7 @@ test_that("Out of bounds record id", {
 })
 
 test_that("Cycle directly", {
-    let input =
+    input <-
         c(
             { RecordId = 5, ParentId = 2 };
             { RecordId = 3, ParentId = 2 };
@@ -203,7 +203,7 @@ test_that("Cycle directly", {
 })
 
 test_that("Cycle indirectly", {
-    let input =
+    input <-
         c(
             { RecordId = 5, ParentId = 2 };
             { RecordId = 3, ParentId = 2 };
@@ -217,7 +217,7 @@ test_that("Cycle indirectly", {
 })
 
 test_that("Higher id parent of lower id", {
-    let input =
+    input <-
         c(
             { RecordId = 0, ParentId = 0 };
             { RecordId = 2, ParentId = 0 };

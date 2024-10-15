@@ -2,7 +2,7 @@ source("./connect.R")
 library(testthat)
 
 test_that("An empty board has no winner", {
-    let board = 
+  board <- 
         c( ". . . . .    ",
           " . . . . .   ",
           "  . . . . .  ",
@@ -12,17 +12,17 @@ test_that("An empty board has no winner", {
 })
 
 test_that("X can win on a 1x1 board", {
-    let board = c("X")
+  board <- c("X")
   expect_equal(winner board, (Some Black))
 })
 
 test_that("O can win on a 1x1 board", {
-    let board = c("O")
+  board <- c("O")
   expect_equal(winner board, (Some White))
 })
 
 test_that("Only edges does not make a winner", {
-    let board = 
+  board <- 
         c( "O O O X   ",
           " X . . X  ",
           "  X . . X ",
@@ -31,7 +31,7 @@ test_that("Only edges does not make a winner", {
 })
 
 test_that("Illegal diagonal does not make a winner", {
-    let board = 
+  board <- 
         c( "X O . .    ",
           " O X X X   ",
           "  O X O .  ",
@@ -41,7 +41,7 @@ test_that("Illegal diagonal does not make a winner", {
 })
 
 test_that("Nobody wins crossing adjacent angles", {
-    let board = 
+  board <- 
         c( "X . . .    ",
           " . X O .   ",
           "  O . X O  ",
@@ -51,7 +51,7 @@ test_that("Nobody wins crossing adjacent angles", {
 })
 
 test_that("X wins crossing from left to right", {
-    let board = 
+  board <- 
         c( ". O . .    ",
           " O X X X   ",
           "  O X O .  ",
@@ -61,7 +61,7 @@ test_that("X wins crossing from left to right", {
 })
 
 test_that("O wins crossing from top to bottom", {
-    let board = 
+  board <- 
         c( ". O . .    ",
           " O X X X   ",
           "  O O O .  ",
@@ -71,7 +71,7 @@ test_that("O wins crossing from top to bottom", {
 })
 
 test_that("X wins using a convoluted path", {
-    let board = 
+  board <- 
         c( ". X X . .    ",
           " X . X . X   ",
           "  . X . X .  ",
@@ -81,7 +81,7 @@ test_that("X wins using a convoluted path", {
 })
 
 test_that("X wins using a spiral path", {
-    let board = 
+  board <- 
         c( "O X X X X X X X X        ",
           " O X O O O O O O O       ",
           "  O X O X X X X X O      ",

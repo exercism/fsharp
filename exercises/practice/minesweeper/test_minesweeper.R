@@ -2,19 +2,19 @@ source("./minesweeper.R")
 library(testthat)
 
 test_that("No rows", {
-    let minefield: string list = c()
-    let expected: string list = c()
+  minefield <- c()
+  expected <- c()
   expect_equal(annotate minefield, expected)
 })
 
 test_that("No columns", {
-    let minefield = c("")
+  minefield <- c("")
   expected <- c("")
   expect_equal(annotate minefield, expected)
 })
 
 test_that("No mines", {
-    let minefield = 
+  minefield <- 
         c( "   ",
           "   ",
           "   " )
@@ -26,7 +26,7 @@ test_that("No mines", {
 })
 
 test_that("Minefield with only mines", {
-    let minefield = 
+  minefield <- 
         c( "***",
           "***",
           "***" )
@@ -38,7 +38,7 @@ test_that("Minefield with only mines", {
 })
 
 test_that("Mine surrounded by spaces", {
-    let minefield = 
+  minefield <- 
         c( "   ",
           " * ",
           "   " )
@@ -50,7 +50,7 @@ test_that("Mine surrounded by spaces", {
 })
 
 test_that("Space surrounded by mines", {
-    let minefield = 
+  minefield <- 
         c( "***",
           "* *",
           "***" )
@@ -62,19 +62,19 @@ test_that("Space surrounded by mines", {
 })
 
 test_that("Horizontal line", {
-    let minefield = c(" * * ")
+  minefield <- c(" * * ")
   expected <- c("1*2*1")
   expect_equal(annotate minefield, expected)
 })
 
 test_that("Horizontal line, mines at edges", {
-    let minefield = c("*   *")
+  minefield <- c("*   *")
   expected <- c("*1 1*")
   expect_equal(annotate minefield, expected)
 })
 
 test_that("Vertical line", {
-    let minefield = 
+  minefield <- 
         c( " ",
           "*",
           " ",
@@ -90,7 +90,7 @@ test_that("Vertical line", {
 })
 
 test_that("Vertical line, mines at edges", {
-    let minefield = 
+  minefield <- 
         c( "*",
           " ",
           " ",
@@ -106,7 +106,7 @@ test_that("Vertical line, mines at edges", {
 })
 
 test_that("Cross", {
-    let minefield = 
+  minefield <- 
         c( "  *  ",
           "  *  ",
           "*****",
@@ -122,7 +122,7 @@ test_that("Cross", {
 })
 
 test_that("Large minefield", {
-    let minefield = 
+  minefield <- 
         c( " *  * ",
           "  *   ",
           "    * ",

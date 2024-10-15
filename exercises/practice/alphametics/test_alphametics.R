@@ -2,7 +2,7 @@ source("./alphametics.R")
 library(testthat)
 
 test_that("Puzzle with three letters", {
-    let puzzle = "I + BB == ILL"
+  puzzle <- "I + BB == ILL"
   expected <- 
         c( ('I', 1);
           ('B', 9);
@@ -13,19 +13,19 @@ test_that("Puzzle with three letters", {
 })
 
 test_that("Solution must have unique value for each letter", {
-    let puzzle = "A == B"
+  puzzle <- "A == B"
   expected <- None
   expect_equal(solve puzzle, expected)
 })
 
 test_that("Leading zero solution is invalid", {
-    let puzzle = "ACA + DD == BD"
+  puzzle <- "ACA + DD == BD"
   expected <- None
   expect_equal(solve puzzle, expected)
 })
 
 test_that("Puzzle with two digits final carry", {
-    let puzzle = "A + A + A + A + A + A + A + A + A + A + A + B == BCC"
+  puzzle <- "A + A + A + A + A + A + A + A + A + A + A + B == BCC"
   expected <- 
         c( ('A', 9);
           ('B', 1);
@@ -36,7 +36,7 @@ test_that("Puzzle with two digits final carry", {
 })
 
 test_that("Puzzle with four letters", {
-    let puzzle = "AS + A == MOM"
+  puzzle <- "AS + A == MOM"
   expected <- 
         c( ('A', 9);
           ('S', 2);
@@ -48,7 +48,7 @@ test_that("Puzzle with four letters", {
 })
 
 test_that("Puzzle with six letters", {
-    let puzzle = "NO + NO + TOO == LATE"
+  puzzle <- "NO + NO + TOO == LATE"
   expected <- 
         c( ('N', 7);
           ('O', 4);
@@ -62,7 +62,7 @@ test_that("Puzzle with six letters", {
 })
 
 test_that("Puzzle with seven letters", {
-    let puzzle = "HE + SEES + THE == LIGHT"
+  puzzle <- "HE + SEES + THE == LIGHT"
   expected <- 
         c( ('E', 4);
           ('G', 2);
@@ -77,7 +77,7 @@ test_that("Puzzle with seven letters", {
 })
 
 test_that("Puzzle with eight letters", {
-    let puzzle = "SEND + MORE == MONEY"
+  puzzle <- "SEND + MORE == MONEY"
   expected <- 
         c( ('S', 9);
           ('E', 5);
@@ -93,7 +93,7 @@ test_that("Puzzle with eight letters", {
 })
 
 test_that("Puzzle with ten letters", {
-    let puzzle = "AND + A + STRONG + OFFENSE + AS + A + GOOD == DEFENSE"
+  puzzle <- "AND + A + STRONG + OFFENSE + AS + A + GOOD == DEFENSE"
   expected <- 
         c( ('A', 5);
           ('D', 3);
@@ -111,7 +111,7 @@ test_that("Puzzle with ten letters", {
 })
 
 test_that("Puzzle with ten letters and 199 addends", {
-    let puzzle = "THIS + A + FIRE + THEREFORE + FOR + ALL + HISTORIES + I + TELL + A + TALE + THAT + FALSIFIES + ITS + TITLE + TIS + A + LIE + THE + TALE + OF + THE + LAST + FIRE + HORSES + LATE + AFTER + THE + FIRST + FATHERS + FORESEE + THE + HORRORS + THE + LAST + FREE + TROLL + TERRIFIES + THE + HORSES + OF + FIRE + THE + TROLL + RESTS + AT + THE + HOLE + OF + LOSSES + IT + IS + THERE + THAT + SHE + STORES + ROLES + OF + LEATHERS + AFTER + SHE + SATISFIES + HER + HATE + OFF + THOSE + FEARS + A + TASTE + RISES + AS + SHE + HEARS + THE + LEAST + FAR + HORSE + THOSE + FAST + HORSES + THAT + FIRST + HEAR + THE + TROLL + FLEE + OFF + TO + THE + FOREST + THE + HORSES + THAT + ALERTS + RAISE + THE + STARES + OF + THE + OTHERS + AS + THE + TROLL + ASSAILS + AT + THE + TOTAL + SHIFT + HER + TEETH + TEAR + HOOF + OFF + TORSO + AS + THE + LAST + HORSE + FORFEITS + ITS + LIFE + THE + FIRST + FATHERS + HEAR + OF + THE + HORRORS + THEIR + FEARS + THAT + THE + FIRES + FOR + THEIR + FEASTS + ARREST + AS + THE + FIRST + FATHERS + RESETTLE + THE + LAST + OF + THE + FIRE + HORSES + THE + LAST + TROLL + HARASSES + THE + FOREST + HEART + FREE + AT + LAST + OF + THE + LAST + TROLL + ALL + OFFER + THEIR + FIRE + HEAT + TO + THE + ASSISTERS + FAR + OFF + THE + TROLL + FASTS + ITS + LIFE + SHORTER + AS + STARS + RISE + THE + HORSES + REST + SAFE + AFTER + ALL + SHARE + HOT + FISH + AS + THEIR + AFFILIATES + TAILOR + A + ROOFS + FOR + THEIR + SAFE == FORTRESSES"
+  puzzle <- "THIS + A + FIRE + THEREFORE + FOR + ALL + HISTORIES + I + TELL + A + TALE + THAT + FALSIFIES + ITS + TITLE + TIS + A + LIE + THE + TALE + OF + THE + LAST + FIRE + HORSES + LATE + AFTER + THE + FIRST + FATHERS + FORESEE + THE + HORRORS + THE + LAST + FREE + TROLL + TERRIFIES + THE + HORSES + OF + FIRE + THE + TROLL + RESTS + AT + THE + HOLE + OF + LOSSES + IT + IS + THERE + THAT + SHE + STORES + ROLES + OF + LEATHERS + AFTER + SHE + SATISFIES + HER + HATE + OFF + THOSE + FEARS + A + TASTE + RISES + AS + SHE + HEARS + THE + LEAST + FAR + HORSE + THOSE + FAST + HORSES + THAT + FIRST + HEAR + THE + TROLL + FLEE + OFF + TO + THE + FOREST + THE + HORSES + THAT + ALERTS + RAISE + THE + STARES + OF + THE + OTHERS + AS + THE + TROLL + ASSAILS + AT + THE + TOTAL + SHIFT + HER + TEETH + TEAR + HOOF + OFF + TORSO + AS + THE + LAST + HORSE + FORFEITS + ITS + LIFE + THE + FIRST + FATHERS + HEAR + OF + THE + HORRORS + THEIR + FEARS + THAT + THE + FIRES + FOR + THEIR + FEASTS + ARREST + AS + THE + FIRST + FATHERS + RESETTLE + THE + LAST + OF + THE + FIRE + HORSES + THE + LAST + TROLL + HARASSES + THE + FOREST + HEART + FREE + AT + LAST + OF + THE + LAST + TROLL + ALL + OFFER + THEIR + FIRE + HEAT + TO + THE + ASSISTERS + FAR + OFF + THE + TROLL + FASTS + ITS + LIFE + SHORTER + AS + STARS + RISE + THE + HORSES + REST + SAFE + AFTER + ALL + SHARE + HOT + FISH + AS + THEIR + AFFILIATES + TAILOR + A + ROOFS + FOR + THEIR + SAFE == FORTRESSES"
   expected <- 
         c( ('A', 1);
           ('E', 0);
