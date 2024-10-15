@@ -1,4 +1,5 @@
-module CryptoSquareTests
+source("./crypto-square.R")
+library(testthat)
 
 
 

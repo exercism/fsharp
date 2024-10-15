@@ -1,4 +1,5 @@
-module TriangleTests
+source("./triangle.R")
+library(testthat)
 
 
 

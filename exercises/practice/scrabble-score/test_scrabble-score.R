@@ -1,4 +1,5 @@
-module ScrabbleScoreTests
+source("./scrabble-score.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module ForthTests
+source("./forth.R")
+library(testthat)
 
 
 

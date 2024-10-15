@@ -1,4 +1,5 @@
-module AllYourBaseTests
+source("./all-your-base.R")
+library(testthat)
 
 
 

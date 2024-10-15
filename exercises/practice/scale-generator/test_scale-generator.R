@@ -1,4 +1,5 @@
-module ScaleGeneratorTests
+source("./scale-generator.R")
+library(testthat)
 
 
 

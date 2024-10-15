@@ -1,4 +1,5 @@
-module DndCharacterTests
+source("./dnd-character.R")
+library(testthat)
 
 
 

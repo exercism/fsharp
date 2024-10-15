@@ -1,4 +1,5 @@
-module LuhnTests
+source("./luhn.R")
+library(testthat)
 
 
 

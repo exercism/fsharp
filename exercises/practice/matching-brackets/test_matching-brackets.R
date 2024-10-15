@@ -1,4 +1,5 @@
-module MatchingBracketsTests
+source("./matching-brackets.R")
+library(testthat)
 
 
 

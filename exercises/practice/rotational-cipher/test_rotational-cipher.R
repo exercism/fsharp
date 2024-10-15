@@ -1,4 +1,5 @@
-module RotationalCipherTests
+source("./rotational-cipher.R")
+library(testthat)
 
 
 

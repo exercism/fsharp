@@ -1,4 +1,5 @@
-module BinarySearchTreeTests
+source("./binary-search-tree.R")
+library(testthat)
 
 
 

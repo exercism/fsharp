@@ -1,4 +1,5 @@
-module AllergiesTests
+source("./allergies.R")
+library(testthat)
 
 
 

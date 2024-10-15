@@ -1,4 +1,5 @@
-module PrimeFactorsTests
+source("./prime-factors.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module SayTests
+source("./say.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module ReverseStringTests
+source("./reverse-string.R")
+library(testthat)
 
 
 

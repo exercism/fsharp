@@ -1,4 +1,5 @@
-module SgfParsingTests
+source("./sgf-parsing.R")
+library(testthat)
 
 
 

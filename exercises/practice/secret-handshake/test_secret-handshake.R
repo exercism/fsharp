@@ -1,4 +1,5 @@
-module SecretHandshakeTests
+source("./secret-handshake.R")
+library(testthat)
 
 
 

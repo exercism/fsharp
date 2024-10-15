@@ -1,4 +1,5 @@
-module MeetupTests
+source("./meetup.R")
+library(testthat)
 
 
 

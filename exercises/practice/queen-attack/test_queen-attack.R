@@ -1,4 +1,5 @@
-module QueenAttackTests
+source("./queen-attack.R")
+library(testthat)
 
 
 

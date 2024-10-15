@@ -1,4 +1,5 @@
-module SublistTests
+source("./sublist.R")
+library(testthat)
 
 
 

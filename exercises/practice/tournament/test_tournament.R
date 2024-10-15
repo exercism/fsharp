@@ -1,4 +1,5 @@
-module TournamentTests
+source("./tournament.R")
+library(testthat)
 
 
 

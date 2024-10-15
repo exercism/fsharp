@@ -1,4 +1,5 @@
-module PerfectNumbersTests
+source("./perfect-numbers.R")
+library(testthat)
 
 
 

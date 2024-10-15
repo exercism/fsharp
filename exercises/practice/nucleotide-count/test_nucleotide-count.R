@@ -1,4 +1,5 @@
-module NucleotideCountTests
+source("./nucleotide-count.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module RunLengthEncodingTests
+source("./run-length-encoding.R")
+library(testthat)
 
 
 

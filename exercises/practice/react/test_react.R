@@ -1,4 +1,5 @@
-module ReactTests
+source("./react.R")
+library(testthat)
 
 
 

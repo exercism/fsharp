@@ -1,4 +1,5 @@
-module ZipperTests
+source("./zipper.R")
+library(testthat)
 
 
 

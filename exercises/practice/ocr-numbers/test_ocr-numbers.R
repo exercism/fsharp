@@ -1,4 +1,5 @@
-module OcrNumbersTests
+source("./ocr-numbers.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module LeapTests
+source("./leap.R")
+library(testthat)
 
 
 

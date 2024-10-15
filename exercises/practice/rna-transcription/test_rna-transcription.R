@@ -1,4 +1,5 @@
-module RnaTranscriptionTests
+source("./rna-transcription.R")
+library(testthat)
 
 
 

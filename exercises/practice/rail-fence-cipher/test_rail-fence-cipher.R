@@ -1,4 +1,5 @@
-module RailFenceCipherTests
+source("./rail-fence-cipher.R")
+library(testthat)
 
 
 

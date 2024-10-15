@@ -1,4 +1,5 @@
-module SeriesTests
+source("./series.R")
+library(testthat)
 
 
 

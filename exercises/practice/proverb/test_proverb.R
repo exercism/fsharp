@@ -1,4 +1,5 @@
-module ProverbTests
+source("./proverb.R")
+library(testthat)
 
 
 

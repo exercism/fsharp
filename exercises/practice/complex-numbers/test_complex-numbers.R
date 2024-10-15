@@ -1,4 +1,5 @@
-module ComplexNumbersTests
+source("./complex-numbers.R")
+library(testthat)
 
 
 

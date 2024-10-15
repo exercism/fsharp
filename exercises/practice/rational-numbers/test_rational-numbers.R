@@ -1,4 +1,5 @@
-module RationalNumbersTests
+source("./rational-numbers.R")
+library(testthat)
 
 
 

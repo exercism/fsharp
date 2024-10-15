@@ -1,4 +1,5 @@
-module DiamondTest
+source("./diamond.R")
+library(testthat)
 
 
 let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)

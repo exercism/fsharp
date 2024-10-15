@@ -1,4 +1,5 @@
-module ChangeTests
+source("./change.R")
+library(testthat)
 
 
 

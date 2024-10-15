@@ -1,4 +1,5 @@
-module ConnectTests
+source("./connect.R")
+library(testthat)
 
 
 

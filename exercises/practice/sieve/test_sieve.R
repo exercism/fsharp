@@ -1,4 +1,5 @@
-module SieveTests
+source("./sieve.R")
+library(testthat)
 
 
 

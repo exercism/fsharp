@@ -1,4 +1,5 @@
-module RobotSimulatorTests
+source("./robot-simulator.R")
+library(testthat)
 
 
 

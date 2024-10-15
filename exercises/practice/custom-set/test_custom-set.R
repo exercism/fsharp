@@ -1,4 +1,5 @@
-module CustomSetTests
+source("./custom-set.R")
+library(testthat)
 
 
 

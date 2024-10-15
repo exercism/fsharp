@@ -1,4 +1,5 @@
-module PangramTests
+source("./pangram.R")
+library(testthat)
 
 
 

@@ -1,6 +1,7 @@
 // This file was created manually and its version is 1.0.0.
 
-module RobotNameTest
+source("./robot-name.R")
+library(testthat)
 
 
 [<Fact>]

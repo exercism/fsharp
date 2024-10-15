@@ -1,4 +1,5 @@
-module GoCountingTests
+source("./go-counting.R")
+library(testthat)
 
 
 

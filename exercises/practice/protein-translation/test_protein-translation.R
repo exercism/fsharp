@@ -1,4 +1,5 @@
-module ProteinTranslationTests
+source("./protein-translation.R")
+library(testthat)
 
 
 

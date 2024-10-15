@@ -1,4 +1,5 @@
-module WordSearchTests
+source("./word-search.R")
+library(testthat)
 
 
 

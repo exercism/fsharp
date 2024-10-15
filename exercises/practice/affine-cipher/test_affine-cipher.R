@@ -1,4 +1,5 @@
-module AffineCipherTests
+source("./affine-cipher.R")
+library(testthat)
 
 
 

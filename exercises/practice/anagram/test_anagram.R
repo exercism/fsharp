@@ -1,4 +1,5 @@
-module AnagramTests
+source("./anagram.R")
+library(testthat)
 
 
 

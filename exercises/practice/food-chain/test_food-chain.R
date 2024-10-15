@@ -1,4 +1,5 @@
-module FoodChainTests
+source("./food-chain.R")
+library(testthat)
 
 
 

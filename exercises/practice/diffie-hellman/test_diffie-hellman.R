@@ -1,4 +1,5 @@
-module DiffieHellmanTests
+source("./diffie-hellman.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module PascalsTriangleTests
+source("./pascals-triangle.R")
+library(testthat)
 
 
 

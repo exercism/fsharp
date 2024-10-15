@@ -1,6 +1,7 @@
 // This file was created manually and its version is 1.0.0.
 
-module StrainTest
+source("./strain.R")
+library(testthat)
 
 
 [<Fact>]

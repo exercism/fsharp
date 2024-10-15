@@ -1,4 +1,5 @@
-module CircularBufferTests
+source("./circular-buffer.R")
+library(testthat)
 
 
 

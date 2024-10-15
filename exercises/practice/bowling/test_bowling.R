@@ -1,4 +1,5 @@
-module BowlingTests
+source("./bowling.R")
+library(testthat)
 
 
 

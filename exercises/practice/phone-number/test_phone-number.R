@@ -1,4 +1,5 @@
-module PhoneNumberTests
+source("./phone-number.R")
+library(testthat)
 
 
 

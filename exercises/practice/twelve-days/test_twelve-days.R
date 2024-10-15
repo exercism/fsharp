@@ -1,4 +1,5 @@
-module TwelveDaysTests
+source("./twelve-days.R")
+library(testthat)
 
 
 

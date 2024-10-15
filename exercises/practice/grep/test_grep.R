@@ -1,4 +1,5 @@
-module GrepTests
+source("./grep.R")
+library(testthat)
 
 
 

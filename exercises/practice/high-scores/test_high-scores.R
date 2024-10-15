@@ -1,4 +1,5 @@
-module HighScoresTests
+source("./high-scores.R")
+library(testthat)
 
 
 

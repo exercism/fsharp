@@ -1,4 +1,5 @@
-module EtlTests
+source("./etl.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module DominoesTests
+source("./dominoes.R")
+library(testthat)
 
 
 

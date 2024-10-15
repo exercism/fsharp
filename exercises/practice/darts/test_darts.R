@@ -1,4 +1,5 @@
-module DartsTests
+source("./darts.R")
+library(testthat)
 
 
 

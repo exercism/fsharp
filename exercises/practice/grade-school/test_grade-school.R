@@ -1,4 +1,5 @@
-module GradeSchoolTests
+source("./grade-school.R")
+library(testthat)
 
 
 

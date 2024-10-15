@@ -1,4 +1,5 @@
-module WordCountTests
+source("./word-count.R")
+library(testthat)
 
 
 

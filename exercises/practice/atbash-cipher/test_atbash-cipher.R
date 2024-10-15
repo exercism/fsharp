@@ -1,4 +1,5 @@
-module AtbashCipherTests
+source("./atbash-cipher.R")
+library(testthat)
 
 
 

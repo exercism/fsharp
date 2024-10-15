@@ -1,4 +1,5 @@
-module HelloWorldTests
+source("./hello-world.R")
+library(testthat)
 
 
 

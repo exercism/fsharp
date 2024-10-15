@@ -1,4 +1,5 @@
-module LargestSeriesProductTests
+source("./largest-series-product.R")
+library(testthat)
 
 
 

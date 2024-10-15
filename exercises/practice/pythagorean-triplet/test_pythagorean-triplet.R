@@ -1,4 +1,5 @@
-module PythagoreanTripletTests
+source("./pythagorean-triplet.R")
+library(testthat)
 
 
 

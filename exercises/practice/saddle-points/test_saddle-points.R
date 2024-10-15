@@ -1,4 +1,5 @@
-module SaddlePointsTests
+source("./saddle-points.R")
+library(testthat)
 
 
 

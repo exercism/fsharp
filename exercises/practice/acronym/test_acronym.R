@@ -1,4 +1,5 @@
-module AcronymTests
+source("./acronym.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module YachtTests
+source("./yacht.R")
+library(testthat)
 
 
 

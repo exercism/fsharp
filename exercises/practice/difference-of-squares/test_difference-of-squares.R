@@ -1,4 +1,5 @@
-module DifferenceOfSquaresTests
+source("./difference-of-squares.R")
+library(testthat)
 
 
 

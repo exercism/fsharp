@@ -1,4 +1,5 @@
-module MinesweeperTests
+source("./minesweeper.R")
+library(testthat)
 
 
 

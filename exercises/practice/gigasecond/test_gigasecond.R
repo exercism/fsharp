@@ -1,4 +1,5 @@
-module GigasecondTests
+source("./gigasecond.R")
+library(testthat)
 
 
 

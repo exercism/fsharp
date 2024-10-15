@@ -1,4 +1,5 @@
-module SimpleCipherTests
+source("./simple-cipher.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module PigLatinTests
+source("./pig-latin.R")
+library(testthat)
 
 
 

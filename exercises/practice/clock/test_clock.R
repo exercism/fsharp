@@ -1,4 +1,5 @@
-module ClockTests
+source("./clock.R")
+library(testthat)
 
 
 

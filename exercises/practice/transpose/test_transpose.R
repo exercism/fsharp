@@ -1,4 +1,5 @@
-module TransposeTests
+source("./transpose.R")
+library(testthat)
 
 
 

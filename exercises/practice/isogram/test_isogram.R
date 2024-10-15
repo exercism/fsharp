@@ -1,4 +1,5 @@
-module IsogramTests
+source("./isogram.R")
+library(testthat)
 
 
 

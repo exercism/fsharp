@@ -1,4 +1,5 @@
-module PovTests
+source("./pov.R")
+library(testthat)
 
 
 

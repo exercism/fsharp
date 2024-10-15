@@ -1,4 +1,5 @@
-module RestApiTests
+source("./rest-api.R")
+library(testthat)
 
 
 

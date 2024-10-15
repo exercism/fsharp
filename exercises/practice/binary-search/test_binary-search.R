@@ -1,4 +1,5 @@
-module BinarySearchTests
+source("./binary-search.R")
+library(testthat)
 
 
 

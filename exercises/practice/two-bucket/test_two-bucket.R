@@ -1,4 +1,5 @@
-module TwoBucketTests
+source("./two-bucket.R")
+library(testthat)
 
 
 

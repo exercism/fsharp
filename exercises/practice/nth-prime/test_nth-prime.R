@@ -1,4 +1,5 @@
-module NthPrimeTests
+source("./nth-prime.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module IsbnVerifierTests
+source("./isbn-verifier.R")
+library(testthat)
 
 
 

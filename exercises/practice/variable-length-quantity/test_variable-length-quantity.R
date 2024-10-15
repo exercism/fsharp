@@ -1,4 +1,5 @@
-module VariableLengthQuantityTests
+source("./variable-length-quantity.R")
+library(testthat)
 
 
 

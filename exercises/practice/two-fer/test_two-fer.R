@@ -1,4 +1,5 @@
-module TwoFerTests
+source("./two-fer.R")
+library(testthat)
 
 
 

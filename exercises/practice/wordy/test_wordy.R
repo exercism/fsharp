@@ -1,4 +1,5 @@
-module WordyTests
+source("./wordy.R")
+library(testthat)
 
 
 

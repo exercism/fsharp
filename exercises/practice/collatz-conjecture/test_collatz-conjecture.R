@@ -1,4 +1,5 @@
-module CollatzConjectureTests
+source("./collatz-conjecture.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module MarkdownTests
+source("./markdown.R")
+library(testthat)
 
 
 

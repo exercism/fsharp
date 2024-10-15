@@ -1,4 +1,5 @@
-module PokerTests
+source("./poker.R")
+library(testthat)
 
 
 

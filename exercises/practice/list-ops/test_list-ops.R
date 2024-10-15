@@ -1,4 +1,5 @@
-module ListOpsTests
+source("./list-ops.R")
+library(testthat)
 
 
 

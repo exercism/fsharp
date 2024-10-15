@@ -1,4 +1,5 @@
-module RaindropsTests
+source("./raindrops.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module KindergartenGardenTests
+source("./kindergarten-garden.R")
+library(testthat)
 
 
 

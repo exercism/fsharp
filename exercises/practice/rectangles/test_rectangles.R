@@ -1,4 +1,5 @@
-module RectanglesTests
+source("./rectangles.R")
+library(testthat)
 
 
 

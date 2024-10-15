@@ -1,4 +1,5 @@
-module BookStoreTests
+source("./book-store.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module PalindromeProductsTests
+source("./palindrome-products.R")
+library(testthat)
 
 
 

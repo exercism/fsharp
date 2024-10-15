@@ -1,4 +1,5 @@
-module RomanNumeralsTests
+source("./roman-numerals.R")
+library(testthat)
 
 
 

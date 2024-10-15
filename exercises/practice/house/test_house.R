@@ -1,4 +1,5 @@
-module HouseTests
+source("./house.R")
+library(testthat)
 
 
 

@@ -1,4 +1,5 @@
-module HammingTests
+source("./hamming.R")
+library(testthat)
 
 
 

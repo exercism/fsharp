@@ -1,4 +1,5 @@
-module GameOfLifeTests
+source("./game-of-life.R")
+library(testthat)
 
 
 

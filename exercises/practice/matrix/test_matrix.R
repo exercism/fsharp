@@ -1,4 +1,5 @@
-module MatrixTests
+source("./matrix.R")
+library(testthat)
 
 
 

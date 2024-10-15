@@ -1,4 +1,5 @@
-module AlphameticsTests
+source("./alphametics.R")
+library(testthat)
 
 
 

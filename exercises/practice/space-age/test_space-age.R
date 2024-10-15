@@ -1,4 +1,5 @@
-module SpaceAgeTests
+source("./space-age.R")
+library(testthat)
 
 
 

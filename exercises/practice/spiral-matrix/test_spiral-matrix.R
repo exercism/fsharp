@@ -1,4 +1,5 @@
-module SpiralMatrixTests
+source("./spiral-matrix.R")
+library(testthat)
 
 
 

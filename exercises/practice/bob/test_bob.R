@@ -1,4 +1,5 @@
-module BobTests
+source("./bob.R")
+library(testthat)
 
 
 

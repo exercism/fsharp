@@ -1,4 +1,5 @@
-module ZebraPuzzleTests
+source("./zebra-puzzle.R")
+library(testthat)
 
 
 

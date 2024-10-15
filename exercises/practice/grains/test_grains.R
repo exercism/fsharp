@@ -1,4 +1,5 @@
-module GrainsTests
+source("./grains.R")
+library(testthat)
 
 
 

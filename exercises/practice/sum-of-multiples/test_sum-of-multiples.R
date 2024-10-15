@@ -1,4 +1,5 @@
-module SumOfMultiplesTests
+source("./sum-of-multiples.R")
+library(testthat)
 
 
 

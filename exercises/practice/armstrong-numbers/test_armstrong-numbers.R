@@ -1,4 +1,5 @@
-module ArmstrongNumbersTests
+source("./armstrong-numbers.R")
+library(testthat)
 
 
 
