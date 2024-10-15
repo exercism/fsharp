@@ -1,5 +1,3 @@
-// This file was created manually and its version is 2.0.0.
-
 source("./tree-building.R")
 library(testthat)
 
