@@ -14,37 +14,37 @@ let mapToList graph = match graph with | Some x -> graphToList x | None -> c()
 
 test_that("Results in the same tree if the input tree is a singleton", {
     let tree = mkGraph "x" c()
-    expected <-mkGraph "x" c()
+  expected <- mkGraph "x" c()
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
 
 test_that("Can reroot a tree with a parent and one sibling", {
     let tree = mkGraph "parent" c(mkGraph "x" c(), mkGraph "sibling" c())
-    expected <-mkGraph "x" c(mkGraph "parent" c(mkGraph "sibling" c()))
+  expected <- mkGraph "x" c(mkGraph "parent" c(mkGraph "sibling" c()))
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
 
 test_that("Can reroot a tree with a parent and many siblings", {
     let tree = mkGraph "parent" c(mkGraph "a" c(), mkGraph "x" c(), mkGraph "b" c(), mkGraph "c" c())
-    expected <-mkGraph "x" c(mkGraph "parent" c(mkGraph "a" c(), mkGraph "b" c(), mkGraph "c" c()))
+  expected <- mkGraph "x" c(mkGraph "parent" c(mkGraph "a" c(), mkGraph "b" c(), mkGraph "c" c()))
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
 
 test_that("Can reroot a tree with new root deeply nested in tree", {
     let tree = mkGraph "level-0" c(mkGraph "level-1" c(mkGraph "level-2" c(mkGraph "level-3" c(mkGraph "x" c()))))
-    expected <-mkGraph "x" c(mkGraph "level-3" c(mkGraph "level-2" c(mkGraph "level-1" c(mkGraph "level-0" c()))))
+  expected <- mkGraph "x" c(mkGraph "level-3" c(mkGraph "level-2" c(mkGraph "level-1" c(mkGraph "level-0" c()))))
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
 
 test_that("Moves children of the new root to same level as former parent", {
     let tree = mkGraph "parent" c(mkGraph "x" c(mkGraph "kid-0" c(), mkGraph "kid-1" c()))
-    expected <-mkGraph "x" c(mkGraph "kid-0" c(), mkGraph "kid-1" c(), mkGraph "parent" c())
+  expected <- mkGraph "x" c(mkGraph "kid-0" c(), mkGraph "kid-1" c(), mkGraph "parent" c())
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
 
 test_that("Can reroot a complex tree with cousins", {
     let tree = mkGraph "grandparent" c(mkGraph "parent" c(mkGraph "x" c(mkGraph "kid-0" c(), mkGraph "kid-1" c()), mkGraph "sibling-0" c(), mkGraph "sibling-1" c()), mkGraph "uncle" c(mkGraph "cousin-0" c(), mkGraph "cousin-1" c()))
-    expected <-mkGraph "x" c(mkGraph "kid-1" c(), mkGraph "kid-0" c(), mkGraph "parent" c(mkGraph "sibling-0" c(), mkGraph "sibling-1" c(), mkGraph "grandparent" c(mkGraph "uncle" c(mkGraph "cousin-0" c(), mkGraph "cousin-1" c()))))
+  expected <- mkGraph "x" c(mkGraph "kid-1" c(), mkGraph "kid-0" c(), mkGraph "parent" c(mkGraph "sibling-0" c(), mkGraph "sibling-1" c(), mkGraph "grandparent" c(mkGraph "uncle" c(mkGraph "cousin-0" c(), mkGraph "cousin-1" c()))))
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
 

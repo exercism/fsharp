@@ -54,4 +54,4 @@ test_that("Square greater than 64 is invalid", {
 test_that("Returns the total number of grains on the board", {
     let expected: Result<uint64,string> = Ok 18446744073709551615UL
   expect_equal(total, expected)
-
+})

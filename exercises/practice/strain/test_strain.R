@@ -31,7 +31,7 @@ test_that("Keep arrays", {
                     c(|2, 2, 1|);
                     c(|1, 2, 5|)
                     |)
-    expected <-c( c(|5, 5, 5|), c(|5, 1, 2|), c(|1, 5, 2|), c(|1, 2, 5|) )
+  expected <- c( c(|5, 5, 5|), c(|5, 1, 2|), c(|1, 5, 2|), c(|1, 2, 5|) )
   expect_equal(actual |> Seq.keep (Array.exists ((=) 5)) |> Seq.toList, expected)
 })
 
@@ -66,5 +66,5 @@ test_that("Discard arrays", {
                     c(|2, 2, 1|);
                     c(|1, 2, 5|)
                     |)
-    expected <-c( c(|1, 2, 3|), c(|2, 1, 2|), c(|2, 2, 1|) )
+  expected <- c( c(|1, 2, 3|), c(|2, 1, 2|), c(|2, 2, 1|) )
   expect_equal(actual |> Seq.discard (Array.exists ((=) 5)) |> Seq.toList, expected)

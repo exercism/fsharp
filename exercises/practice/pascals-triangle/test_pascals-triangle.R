@@ -7,19 +7,19 @@ test_that("Zero rows", {
 })
 
 test_that("Single row", {
-    expected <-c(c(1))
+  expected <- c(c(1))
   expect_equal(rows(1), expected)
 })
 
 test_that("Two rows", {
-    expected <-
+  expected <- 
         c( c(1);
           c(1, 1) )
   expect_equal(rows(2), expected)
 })
 
 test_that("Three rows", {
-    expected <-
+  expected <- 
         c( c(1);
           c(1, 1);
           c(1, 2, 1) )
@@ -27,7 +27,7 @@ test_that("Three rows", {
 })
 
 test_that("Four rows", {
-    expected <-
+  expected <- 
         c( c(1);
           c(1, 1);
           c(1, 2, 1);
@@ -36,7 +36,7 @@ test_that("Four rows", {
 })
 
 test_that("Five rows", {
-    expected <-
+  expected <- 
         c( c(1);
           c(1, 1);
           c(1, 2, 1);
@@ -46,7 +46,7 @@ test_that("Five rows", {
 })
 
 test_that("Six rows", {
-    expected <-
+  expected <- 
         c( c(1);
           c(1, 1);
           c(1, 2, 1);
@@ -57,7 +57,7 @@ test_that("Six rows", {
 })
 
 test_that("Ten rows", {
-    expected <-
+  expected <- 
         c( c(1);
           c(1, 1);
           c(1, 2, 1);
@@ -69,4 +69,4 @@ test_that("Ten rows", {
           c(1, 8, 28, 56, 70, 56, 28, 8, 1);
           c(1, 9, 36, 84, 126, 126, 84, 36, 9, 1) )
   expect_equal(rows(10), expected)
-
+})

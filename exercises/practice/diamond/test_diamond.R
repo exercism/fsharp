@@ -38,7 +38,7 @@ c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Top of figure has letters in correct order`` (letter:char) =
     let actual = make letter
 
-    expected <-c('A'..letter)
+  expected <- c('A'..letter)
     let rows = actual |> split
     let firstNonSpaceLetters =
         rows 
@@ -71,7 +71,7 @@ test_that("Diamond has square shape`` (letter:char) =
     let actual = make letter
 
     let rows = actual |> split
-    expected <-rows.Length
+  expected <- rows.Length
     let correctWidth (x:string) = x.Length = expected
 
   expect_equal(rows |> Array.iter (fun x -> correctWidth x, TRUE))
@@ -109,7 +109,7 @@ test_that("Bottom left corner spaces are triangle`` (letter:char) =
         cornerSpaces 
         |> List.map (fun x -> x.Length)
 
-    expected <-
+  expected <- 
         Seq.initInfinite id
         |> Seq.take spaceCounts.Length
         |> Seq.toList

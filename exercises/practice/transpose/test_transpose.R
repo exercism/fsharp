@@ -9,190 +9,190 @@ test_that("Empty string", {
 
 test_that("Two characters in a row", {
     let lines = c("A1")
-    expected <-
-        c( "A";
+  expected <- 
+        c( "A",
           "1" )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Two characters in a column", {
     let lines = 
-        c( "A";
+        c( "A",
           "1" )
-    expected <-c("A1")
+  expected <- c("A1")
   expect_equal(transpose lines, expected)
 })
 
 test_that("Simple", {
     let lines = 
-        c( "ABC";
+        c( "ABC",
           "123" )
-    expected <-
-        c( "A1";
-          "B2";
+  expected <- 
+        c( "A1",
+          "B2",
           "C3" )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Single line", {
     let lines = c("Single line.")
-    expected <-
-        c( "S";
-          "i";
-          "n";
-          "g";
-          "l";
-          "e";
-          " ";
-          "l";
-          "i";
-          "n";
-          "e";
+  expected <- 
+        c( "S",
+          "i",
+          "n",
+          "g",
+          "l",
+          "e",
+          " ",
+          "l",
+          "i",
+          "n",
+          "e",
           "." )
   expect_equal(transpose lines, expected)
 })
 
 test_that("First line longer than second line", {
     let lines = 
-        c( "The fourth line.";
+        c( "The fourth line.",
           "The fifth line." )
-    expected <-
-        c( "TT";
-          "hh";
-          "ee";
-          "  ";
-          "ff";
-          "oi";
-          "uf";
-          "rt";
-          "th";
-          "h ";
-          " l";
-          "li";
-          "in";
-          "ne";
-          "e.";
+  expected <- 
+        c( "TT",
+          "hh",
+          "ee",
+          "  ",
+          "ff",
+          "oi",
+          "uf",
+          "rt",
+          "th",
+          "h ",
+          " l",
+          "li",
+          "in",
+          "ne",
+          "e.",
           "." )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Second line longer than first line", {
     let lines = 
-        c( "The first line.";
+        c( "The first line.",
           "The second line." )
-    expected <-
-        c( "TT";
-          "hh";
-          "ee";
-          "  ";
-          "fs";
-          "ie";
-          "rc";
-          "so";
-          "tn";
-          " d";
-          "l ";
-          "il";
-          "ni";
-          "en";
-          ".e";
+  expected <- 
+        c( "TT",
+          "hh",
+          "ee",
+          "  ",
+          "fs",
+          "ie",
+          "rc",
+          "so",
+          "tn",
+          " d",
+          "l ",
+          "il",
+          "ni",
+          "en",
+          ".e",
           " ." )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Mixed line length", {
     let lines = 
-        c( "The longest line.";
-          "A long line.";
-          "A longer line.";
+        c( "The longest line.",
+          "A long line.",
+          "A longer line.",
           "A line." )
-    expected <-
-        c( "TAAA";
-          "h   ";
-          "elll";
-          " ooi";
-          "lnnn";
-          "ogge";
-          "n e.";
-          "glr";
-          "ei ";
-          "snl";
-          "tei";
-          " .n";
-          "l e";
-          "i .";
-          "n";
-          "e";
+  expected <- 
+        c( "TAAA",
+          "h   ",
+          "elll",
+          " ooi",
+          "lnnn",
+          "ogge",
+          "n e.",
+          "glr",
+          "ei ",
+          "snl",
+          "tei",
+          " .n",
+          "l e",
+          "i .",
+          "n",
+          "e",
           "." )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Square", {
     let lines = 
-        c( "HEART";
-          "EMBER";
-          "ABUSE";
-          "RESIN";
+        c( "HEART",
+          "EMBER",
+          "ABUSE",
+          "RESIN",
           "TREND" )
-    expected <-
-        c( "HEART";
-          "EMBER";
-          "ABUSE";
-          "RESIN";
+  expected <- 
+        c( "HEART",
+          "EMBER",
+          "ABUSE",
+          "RESIN",
           "TREND" )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Rectangle", {
     let lines = 
-        c( "FRACTURE";
-          "OUTLINED";
-          "BLOOMING";
+        c( "FRACTURE",
+          "OUTLINED",
+          "BLOOMING",
           "SEPTETTE" )
-    expected <-
-        c( "FOBS";
-          "RULE";
-          "ATOP";
-          "CLOT";
-          "TIME";
-          "UNIT";
-          "RENT";
+  expected <- 
+        c( "FOBS",
+          "RULE",
+          "ATOP",
+          "CLOT",
+          "TIME",
+          "UNIT",
+          "RENT",
           "EDGE" )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Triangle", {
     let lines = 
-        c( "T";
-          "EE";
-          "AAA";
-          "SSSS";
-          "EEEEE";
+        c( "T",
+          "EE",
+          "AAA",
+          "SSSS",
+          "EEEEE",
           "RRRRRR" )
-    expected <-
-        c( "TEASER";
-          " EASER";
-          "  ASER";
-          "   SER";
-          "    ER";
+  expected <- 
+        c( "TEASER",
+          " EASER",
+          "  ASER",
+          "   SER",
+          "    ER",
           "     R" )
   expect_equal(transpose lines, expected)
 })
 
 test_that("Jagged triangle", {
     let lines = 
-        c( "11";
-          "2";
-          "3333";
-          "444";
-          "555555";
+        c( "11",
+          "2",
+          "3333",
+          "444",
+          "555555",
           "66666" )
-    expected <-
-        c( "123456";
-          "1 3456";
-          "  3456";
-          "  3 56";
-          "    56";
+  expected <- 
+        c( "123456",
+          "1 3456",
+          "  3456",
+          "  3 56",
+          "    56",
           "    5" )
   expect_equal(transpose lines, expected)
-
+})

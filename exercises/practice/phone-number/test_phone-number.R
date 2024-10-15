@@ -89,4 +89,4 @@ test_that("Invalid if exchange code starts with 0 on valid 11-digit number", {
 test_that("Invalid if exchange code starts with 1 on valid 11-digit number", {
     let expected: Result<uint64,string> = Error "exchange code cannot start with one"
   expect_equal(clean "1 (223) 156-7890", expected)
-
+})

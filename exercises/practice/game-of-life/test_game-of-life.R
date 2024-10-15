@@ -12,7 +12,7 @@ test_that("Live cells with zero live neighbors die", {
         array2D c( c(0, 0, 0);
                   c(0, 1, 0);
                   c(0, 0, 0) )
-    expected <-
+  expected <- 
         array2D c( c(0, 0, 0);
                   c(0, 0, 0);
                   c(0, 0, 0) )
@@ -24,7 +24,7 @@ test_that("Live cells with only one live neighbor die", {
         array2D c( c(0, 0, 0);
                   c(0, 1, 0);
                   c(0, 1, 0) )
-    expected <-
+  expected <- 
         array2D c( c(0, 0, 0);
                   c(0, 0, 0);
                   c(0, 0, 0) )
@@ -36,7 +36,7 @@ test_that("Live cells with two live neighbors stay alive", {
         array2D c( c(1, 0, 1);
                   c(1, 0, 1);
                   c(1, 0, 1) )
-    expected <-
+  expected <- 
         array2D c( c(0, 0, 0);
                   c(1, 0, 1);
                   c(0, 0, 0) )
@@ -48,7 +48,7 @@ test_that("Live cells with three live neighbors stay alive", {
         array2D c( c(0, 1, 0);
                   c(1, 0, 0);
                   c(1, 1, 0) )
-    expected <-
+  expected <- 
         array2D c( c(0, 0, 0);
                   c(1, 0, 0);
                   c(1, 1, 0) )
@@ -60,7 +60,7 @@ test_that("Dead cells with three live neighbors become alive", {
         array2D c( c(1, 1, 0);
                   c(0, 0, 0);
                   c(1, 0, 0) )
-    expected <-
+  expected <- 
         array2D c( c(0, 0, 0);
                   c(1, 1, 0);
                   c(0, 0, 0) )
@@ -72,7 +72,7 @@ test_that("Live cells with four or more neighbors die", {
         array2D c( c(1, 1, 1);
                   c(1, 1, 1);
                   c(1, 1, 1) )
-    expected <-
+  expected <- 
         array2D c( c(1, 0, 1);
                   c(0, 0, 0);
                   c(1, 0, 1) )
@@ -89,7 +89,7 @@ test_that("Bigger matrix", {
                   c(1, 1, 0, 0, 0, 1, 1, 1);
                   c(0, 0, 1, 0, 1, 0, 0, 1);
                   c(1, 0, 0, 0, 0, 0, 1, 1) )
-    expected <-
+  expected <- 
         array2D c( c(1, 1, 0, 1, 1, 0, 0, 0);
                   c(0, 0, 0, 0, 0, 1, 1, 0);
                   c(1, 0, 1, 1, 1, 1, 0, 1);
@@ -99,4 +99,4 @@ test_that("Bigger matrix", {
                   c(1, 0, 0, 0, 0, 0, 0, 0);
                   c(0, 0, 0, 0, 0, 0, 1, 1) )
   expect_equal(tick matrix, expected)
-
+})

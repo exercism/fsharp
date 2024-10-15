@@ -3,13 +3,13 @@ library(testthat)
 
 test_that("Single letter", {
     let lettersByScore = c((1, c('A'))) |> Map.ofList
-    expected <-c(('a', 1)) |> Map.ofList
+  expected <- c(('a', 1)) |> Map.ofList
   expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Single score with multiple letters", {
     let lettersByScore = c((1, c('A', 'E', 'I', 'O', 'U'))) |> Map.ofList
-    expected <-
+  expected <- 
         c( ('a', 1);
           ('e', 1);
           ('i', 1);
@@ -24,7 +24,7 @@ test_that("Multiple scores with multiple letters", {
         c( (1, c('A', 'E'));
           (2, c('D', 'G')) )
         |> Map.ofList
-    expected <-
+  expected <- 
         c( ('a', 1);
           ('d', 2);
           ('e', 1);
@@ -43,7 +43,7 @@ test_that("Multiple scores with differing numbers of letters", {
           (8, c('J', 'X'));
           (10, c('Q', 'Z')) )
         |> Map.ofList
-    expected <-
+  expected <- 
         c( ('a', 1);
           ('b', 3);
           ('c', 3);
@@ -72,4 +72,4 @@ test_that("Multiple scores with differing numbers of letters", {
           ('z', 10) )
         |> Map.ofList
   expect_equal(transform lettersByScore, expected)
-
+})
