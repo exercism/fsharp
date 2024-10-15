@@ -32,7 +32,7 @@ test_that("All rows must have symmetric contour`` (letter:char) =
     let rows = actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
 
-  expect_equal(rows |> Array.iter (fun x -> symmetric x, true))
+  expect_equal(rows |> Array.iter (fun x -> symmetric x, TRUE))
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 test_that("Top of figure has letters in correct order`` (letter:char) =
@@ -74,7 +74,7 @@ test_that("Diamond has square shape`` (letter:char) =
     let expected = rows.Length
     let correctWidth (x:string) = x.Length = expected
 
-  expect_equal(rows |> Array.iter (fun x -> correctWidth x, true))
+  expect_equal(rows |> Array.iter (fun x -> correctWidth x, TRUE))
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 test_that("All rows except top and bottom have two identical letters`` (letter:char) =
@@ -90,7 +90,7 @@ test_that("All rows except top and bottom have two identical letters`` (letter:c
         let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
-  expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, true))
+  expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, TRUE))
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 test_that("Bottom left corner spaces are triangle`` (letter:char) =

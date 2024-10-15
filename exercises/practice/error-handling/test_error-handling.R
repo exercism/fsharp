@@ -40,10 +40,10 @@ test_that("Returning Option<'T>", {
 
 test_that("Returning Result<'TSuccess, 'TError>", {
     let successResult = handleErrorByReturningResult "1"
-  expect_equal((successResult = Ok 1), true)
+  expect_equal((successResult = Ok 1), TRUE)
     
     let failureResult = handleErrorByReturningResult "a"
-  expect_equal((failureResult = Error "Could not convert input to integer"), true)
+  expect_equal((failureResult = Error "Could not convert input to integer"), TRUE)
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -74,16 +74,16 @@ test_that("Using railway-oriented programming", {
         >> bind validate3
 
     let firstValidationFailureResult = combinedValidation 1            
-  expect_equal((firstValidationFailureResult = Error "Input less than or equal to five"), true)
+  expect_equal((firstValidationFailureResult = Error "Input less than or equal to five"), TRUE)
 
     let secondValidationFailureResult = combinedValidation 23          
-  expect_equal((secondValidationFailureResult = Error "Input greater than or equal to ten"), true)
+  expect_equal((secondValidationFailureResult = Error "Input greater than or equal to ten"), TRUE)
 
     let thirdValidationFailureResult = combinedValidation 8        
-  expect_equal((thirdValidationFailureResult = Error "Input is not odd"), true)
+  expect_equal((thirdValidationFailureResult = Error "Input is not odd"), TRUE)
 
     let successResult = combinedValidation 7        
-  expect_equal((successResult = Ok 7), true)
+  expect_equal((successResult = Ok 7), TRUE)
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -92,4 +92,4 @@ test_that("Cleaning up disposables when throwing exception", {
     let resource = new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-  expect_equal(resource.Disposed(), true)
+  expect_equal(resource.Disposed(), TRUE)

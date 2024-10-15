@@ -184,95 +184,95 @@ test_that("Subtract more than two days", {
 test_that("Clocks with same time", {
     let clock1 = create 15 37
     let clock2 = create 15 37
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks a minute apart", {
     let clock1 = create 15 36
     let clock2 = create 15 37
-  expect_equal(clock1 = clock2, false)
+  expect_equal(clock1 = clock2, FALSE)
 })
 
 test_that("Clocks an hour apart", {
     let clock1 = create 14 37
     let clock2 = create 15 37
-  expect_equal(clock1 = clock2, false)
+  expect_equal(clock1 = clock2, FALSE)
 })
 
 test_that("Clocks with hour overflow", {
     let clock1 = create 10 37
     let clock2 = create 34 37
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with hour overflow by several days", {
     let clock1 = create 3 11
     let clock2 = create 99 11
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative hour", {
     let clock1 = create 22 40
     let clock2 = create -2 40
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative hour that wraps", {
     let clock1 = create 17 3
     let clock2 = create -31 3
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative hour that wraps multiple times", {
     let clock1 = create 13 49
     let clock2 = create -83 49
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with minute overflow", {
     let clock1 = create 0 1
     let clock2 = create 0 1441
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with minute overflow by several days", {
     let clock1 = create 2 2
     let clock2 = create 2 4322
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative minute", {
     let clock1 = create 2 40
     let clock2 = create 3 -20
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative minute that wraps", {
     let clock1 = create 4 10
     let clock2 = create 5 -1490
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative minute that wraps multiple times", {
     let clock1 = create 6 15
     let clock2 = create 6 -4305
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative hours and minutes", {
     let clock1 = create 7 32
     let clock2 = create -12 -268
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Clocks with negative hours and minutes that wrap", {
     let clock1 = create 18 7
     let clock2 = create -54 -11513
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 })
 
 test_that("Full clock and zeroed clock", {
     let clock1 = create 24 0
     let clock2 = create 0 0
-  expect_equal(clock1 = clock2, true)
+  expect_equal(clock1 = clock2, TRUE)
 

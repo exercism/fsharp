@@ -18,7 +18,7 @@ test_that("Random key cipher - Is reversible. I.e., if you apply decode in a enc
 
 test_that("Random key cipher - Key is made only of lowercase letters", {
     let sut = SimpleCipher()
-  expect_equal(Regex.IsMatch(sut.Key, "^[a-z]+$"), true)
+  expect_equal(Regex.IsMatch(sut.Key, "^[a-z]+$"), TRUE)
 })
 
 test_that("Substitution cipher - Can encode", {
