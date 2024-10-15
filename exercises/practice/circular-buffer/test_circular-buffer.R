@@ -4,19 +4,19 @@ library(testthat)
 
 
 
-let ``Reading empty buffer should fail`` () =
+test_that("Reading empty buffer should fail", {
     let buffer1 = mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>
 
 
-let ``Can read an item just written`` () =
+test_that("Can read an item just written", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let (val3, _) = read buffer2
     val3 |> should equal 1
 
 
-let ``Each item may only be read once`` () =
+test_that("Each item may only be read once", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let (val3, buffer3) = read buffer2
@@ -24,7 +24,7 @@ let ``Each item may only be read once`` () =
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
 
-let ``Items are read in the order they are written`` () =
+test_that("Items are read in the order they are written", {
     let buffer1 = mkCircularBuffer 2
     let buffer2 = write 1 buffer1
     let buffer3 = write 2 buffer2
@@ -34,13 +34,13 @@ let ``Items are read in the order they are written`` () =
     val5 |> should equal 2
 
 
-let ``Full buffer can't be written to`` () =
+test_that("Full buffer can't be written to", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     (fun () -> write 2 buffer2 |> ignore) |> should throw typeof<Exception>
 
 
-let ``A read frees up capacity for another write`` () =
+test_that("A read frees up capacity for another write", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let (val3, buffer3) = read buffer2
@@ -50,7 +50,7 @@ let ``A read frees up capacity for another write`` () =
     val5 |> should equal 2
 
 
-let ``Read position is maintained even across multiple writes`` () =
+test_that("Read position is maintained even across multiple writes", {
     let buffer1 = mkCircularBuffer 3
     let buffer2 = write 1 buffer1
     let buffer3 = write 2 buffer2
@@ -63,14 +63,14 @@ let ``Read position is maintained even across multiple writes`` () =
     val7 |> should equal 3
 
 
-let ``Items cleared out of buffer can't be read`` () =
+test_that("Items cleared out of buffer can't be read", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let buffer3 = clear buffer2
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
 
-let ``Clear frees up capacity for another write`` () =
+test_that("Clear frees up capacity for another write", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let buffer3 = clear buffer2
@@ -79,7 +79,7 @@ let ``Clear frees up capacity for another write`` () =
     val5 |> should equal 2
 
 
-let ``Clear does nothing on empty buffer`` () =
+test_that("Clear does nothing on empty buffer", {
     let buffer1 = mkCircularBuffer 1
     let buffer2 = clear buffer1
     let buffer3 = write 1 buffer2
@@ -87,7 +87,7 @@ let ``Clear does nothing on empty buffer`` () =
     val4 |> should equal 1
 
 
-let ``Overwrite acts like write on non-full buffer`` () =
+test_that("Overwrite acts like write on non-full buffer", {
     let buffer1 = mkCircularBuffer 2
     let buffer2 = write 1 buffer1
     let buffer3 = forceWrite 2 buffer2
@@ -97,7 +97,7 @@ let ``Overwrite acts like write on non-full buffer`` () =
     val5 |> should equal 2
 
 
-let ``Overwrite replaces the oldest item on full buffer`` () =
+test_that("Overwrite replaces the oldest item on full buffer", {
     let buffer1 = mkCircularBuffer 2
     let buffer2 = write 1 buffer1
     let buffer3 = write 2 buffer2
@@ -108,7 +108,7 @@ let ``Overwrite replaces the oldest item on full buffer`` () =
     val6 |> should equal 3
 
 
-let ``Overwrite replaces the oldest item remaining in buffer following a read`` () =
+test_that("Overwrite replaces the oldest item remaining in buffer following a read", {
     let buffer1 = mkCircularBuffer 3
     let buffer2 = write 1 buffer1
     let buffer3 = write 2 buffer2
@@ -125,7 +125,7 @@ let ``Overwrite replaces the oldest item remaining in buffer following a read`` 
     val10 |> should equal 5
 
 
-let ``Initial clear does not affect wrapping around`` () =
+test_that("Initial clear does not affect wrapping around", {
     let buffer1 = mkCircularBuffer 2
     let buffer2 = clear buffer1
     let buffer3 = write 1 buffer2

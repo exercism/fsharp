@@ -4,7 +4,7 @@ library(testthat)
 
 
 
-let ``Empty graph`` () =
+test_that("Empty graph", {
     let g = graph []
 
     nodes g |> should be Empty
@@ -12,7 +12,7 @@ let ``Empty graph`` () =
     attrs g |> should be Empty
     
 
-let ``Graph with one node`` () =
+test_that("Graph with one node", {
     let g = graph [
                 node "a" []
             ]            
@@ -22,7 +22,7 @@ let ``Graph with one node`` () =
     attrs g |> should be Empty
     
 
-let ``Graph with one node with keywords`` () =    
+test_that("Graph with one node with keywords", {    
     let g = graph [
                 node "a" [("color", "green")]
             ]            
@@ -32,7 +32,7 @@ let ``Graph with one node with keywords`` () =
     attrs g |> should be Empty
 
 
-let ``Graph with one edge`` () =    
+test_that("Graph with one edge", {    
     let g = graph [
                 edge "a" "b" []
             ]             
@@ -42,7 +42,7 @@ let ``Graph with one edge`` () =
     attrs g |> should be Empty
 
 
-let ``Graph with one attribute`` () = 
+test_that("Graph with one attribute", { 
     let g = graph [
                 attr "foo" "1"
             ]             
@@ -52,7 +52,7 @@ let ``Graph with one attribute`` () =
     attrs g |> should equal [attr "foo" "1"]
 
 
-let ``Graph with attributes`` () =    
+test_that("Graph with attributes", {    
     let g = graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"

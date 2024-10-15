@@ -4,7 +4,7 @@ library(testthat)
 
 
 
-let ``Empty strand`` () =
+test_that("Empty strand", {
     let strand = ""
     let expected = 
         [ ('A', 0);
@@ -16,7 +16,7 @@ let ``Empty strand`` () =
     nucleotideCounts strand |> should equal expected
 
 
-let ``Can count one nucleotide in single-character input`` () =
+test_that("Can count one nucleotide in single-character input", {
     let strand = "G"
     let expected = 
         [ ('A', 0);
@@ -28,7 +28,7 @@ let ``Can count one nucleotide in single-character input`` () =
     nucleotideCounts strand |> should equal expected
 
 
-let ``Strand with repeated nucleotide`` () =
+test_that("Strand with repeated nucleotide", {
     let strand = "GGGGGGG"
     let expected = 
         [ ('A', 0);
@@ -40,7 +40,7 @@ let ``Strand with repeated nucleotide`` () =
     nucleotideCounts strand |> should equal expected
 
 
-let ``Strand with multiple nucleotides`` () =
+test_that("Strand with multiple nucleotides", {
     let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
     let expected = 
         [ ('A', 20);
@@ -52,7 +52,7 @@ let ``Strand with multiple nucleotides`` () =
     nucleotideCounts strand |> should equal expected
 
 
-let ``Strand with invalid nucleotides`` () =
+test_that("Strand with invalid nucleotides", {
     let strand = "AGXXACT"
     let expected = None
     nucleotideCounts strand |> should equal expected

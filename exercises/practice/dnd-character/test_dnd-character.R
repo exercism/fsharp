@@ -4,78 +4,78 @@ library(testthat)
 
 
 
-let ``Ability modifier for score 3 is -4`` () =
+test_that("Ability modifier for score 3 is -4", {
     modifier 3 |> should equal -4
 
 
-let ``Ability modifier for score 4 is -3`` () =
+test_that("Ability modifier for score 4 is -3", {
     modifier 4 |> should equal -3
 
 
-let ``Ability modifier for score 5 is -3`` () =
+test_that("Ability modifier for score 5 is -3", {
     modifier 5 |> should equal -3
 
 
-let ``Ability modifier for score 6 is -2`` () =
+test_that("Ability modifier for score 6 is -2", {
     modifier 6 |> should equal -2
 
 
-let ``Ability modifier for score 7 is -2`` () =
+test_that("Ability modifier for score 7 is -2", {
     modifier 7 |> should equal -2
 
 
-let ``Ability modifier for score 8 is -1`` () =
+test_that("Ability modifier for score 8 is -1", {
     modifier 8 |> should equal -1
 
 
-let ``Ability modifier for score 9 is -1`` () =
+test_that("Ability modifier for score 9 is -1", {
     modifier 9 |> should equal -1
 
 
-let ``Ability modifier for score 10 is 0`` () =
+test_that("Ability modifier for score 10 is 0", {
     modifier 10 |> should equal 0
 
 
-let ``Ability modifier for score 11 is 0`` () =
+test_that("Ability modifier for score 11 is 0", {
     modifier 11 |> should equal 0
 
 
-let ``Ability modifier for score 12 is +1`` () =
+test_that("Ability modifier for score 12 is +1", {
     modifier 12 |> should equal 1
 
 
-let ``Ability modifier for score 13 is +1`` () =
+test_that("Ability modifier for score 13 is +1", {
     modifier 13 |> should equal 1
 
 
-let ``Ability modifier for score 14 is +2`` () =
+test_that("Ability modifier for score 14 is +2", {
     modifier 14 |> should equal 2
 
 
-let ``Ability modifier for score 15 is +2`` () =
+test_that("Ability modifier for score 15 is +2", {
     modifier 15 |> should equal 2
 
 
-let ``Ability modifier for score 16 is +3`` () =
+test_that("Ability modifier for score 16 is +3", {
     modifier 16 |> should equal 3
 
 
-let ``Ability modifier for score 17 is +3`` () =
+test_that("Ability modifier for score 17 is +3", {
     modifier 17 |> should equal 3
 
 
-let ``Ability modifier for score 18 is +4`` () =
+test_that("Ability modifier for score 18 is +4", {
     modifier 18 |> should equal 4
 
 
-let ``Random ability is within range`` () =
+test_that("Random ability is within range", {
     for i in 1 .. 10 do
         let ability = ability()
         ability |> should be (greaterThanOrEqualTo 3)
         ability |> should be (lessThanOrEqualTo  18)
 
 
-let ``Random character is valid`` () =
+test_that("Random character is valid", {
     for i in 1 .. 10 do
         let character = createCharacter()
         character.Strength |> should be (greaterThanOrEqualTo 3)
@@ -93,7 +93,7 @@ let ``Random character is valid`` () =
         character.Hitpoints |> should equal (10 + modifier(character.Constitution))
 
 
-let ``Each ability is only calculated once`` () =
+test_that("Each ability is only calculated once", {
     for i in 1 .. 10 do
         let character = createCharacter()
         character.Strength |> should equal character.Strength

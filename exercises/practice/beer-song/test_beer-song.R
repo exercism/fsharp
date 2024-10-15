@@ -4,42 +4,42 @@ library(testthat)
 
 
 
-let ``First generic verse`` () =
+test_that("First generic verse", {
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall." ]
     recite 99 1 |> should equal expected
 
 
-let ``Last generic verse`` () =
+test_that("Last generic verse", {
     let expected = 
         [ "3 bottles of beer on the wall, 3 bottles of beer.";
           "Take one down and pass it around, 2 bottles of beer on the wall." ]
     recite 3 1 |> should equal expected
 
 
-let ``Verse with 2 bottles`` () =
+test_that("Verse with 2 bottles", {
     let expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall." ]
     recite 2 1 |> should equal expected
 
 
-let ``Verse with 1 bottle`` () =
+test_that("Verse with 1 bottle", {
     let expected = 
         [ "1 bottle of beer on the wall, 1 bottle of beer.";
           "Take it down and pass it around, no more bottles of beer on the wall." ]
     recite 1 1 |> should equal expected
 
 
-let ``Verse with 0 bottles`` () =
+test_that("Verse with 0 bottles", {
     let expected = 
         [ "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
     recite 0 1 |> should equal expected
 
 
-let ``First two verses`` () =
+test_that("First two verses", {
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall.";
@@ -49,7 +49,7 @@ let ``First two verses`` () =
     recite 99 2 |> should equal expected
 
 
-let ``Last three verses`` () =
+test_that("Last three verses", {
     let expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall.";
@@ -62,7 +62,7 @@ let ``Last three verses`` () =
     recite 2 3 |> should equal expected
 
 
-let ``All verses`` () =
+test_that("All verses", {
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall.";

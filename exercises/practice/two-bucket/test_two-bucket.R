@@ -4,7 +4,7 @@ library(testthat)
 
 
 
-let ``Measure using bucket one of size 3 and bucket two of size 5 - start with bucket one`` () =
+test_that("Measure using bucket one of size 3 and bucket two of size 5 - start with bucket one", {
     let bucketOne = 3
     let bucketTwo = 5
     let goal = 1
@@ -13,7 +13,7 @@ let ``Measure using bucket one of size 3 and bucket two of size 5 - start with b
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 
-let ``Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two`` () =
+test_that("Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two", {
     let bucketOne = 3
     let bucketTwo = 5
     let goal = 1
@@ -22,7 +22,7 @@ let ``Measure using bucket one of size 3 and bucket two of size 5 - start with b
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 
-let ``Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one`` () =
+test_that("Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one", {
     let bucketOne = 7
     let bucketTwo = 11
     let goal = 2
@@ -31,7 +31,7 @@ let ``Measure using bucket one of size 7 and bucket two of size 11 - start with 
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 
-let ``Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two`` () =
+test_that("Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two", {
     let bucketOne = 7
     let bucketTwo = 11
     let goal = 2
@@ -40,7 +40,7 @@ let ``Measure using bucket one of size 7 and bucket two of size 11 - start with 
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 
-let ``Measure one step using bucket one of size 1 and bucket two of size 3 - start with bucket two`` () =
+test_that("Measure one step using bucket one of size 1 and bucket two of size 3 - start with bucket two", {
     let bucketOne = 1
     let bucketTwo = 3
     let goal = 3
@@ -49,7 +49,7 @@ let ``Measure one step using bucket one of size 1 and bucket two of size 3 - sta
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 
-let ``Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two`` () =
+test_that("Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two", {
     let bucketOne = 2
     let bucketTwo = 3
     let goal = 3
@@ -58,7 +58,7 @@ let ``Measure using bucket one of size 2 and bucket two of size 3 - start with b
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 
-let ``With the same buckets but a different goal, then it is possible`` () =
+test_that("With the same buckets but a different goal, then it is possible", {
     let bucketOne = 6
     let bucketTwo = 15
     let goal = 9

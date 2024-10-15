@@ -19,7 +19,7 @@ type DiamondPropertyAttribute () =
     inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
 
 [<DiamondProperty>]
-let ``First row contains 'A'`` (letter:char) =
+test_that("First row contains 'A'`` (letter:char) =
     let actual = make letter
     let rows = actual |> split
     let firstRowCharacters = rows |> Seq.head |> trim
@@ -27,7 +27,7 @@ let ``First row contains 'A'`` (letter:char) =
     firstRowCharacters |> should equal "A"
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``All rows must have symmetric contour`` (letter:char) =
+test_that("All rows must have symmetric contour`` (letter:char) =
     let actual = make letter
     let rows = actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
@@ -35,7 +35,7 @@ let ``All rows must have symmetric contour`` (letter:char) =
     rows |> Array.iter (fun x -> symmetric x |> should equal true)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Top of figure has letters in correct order`` (letter:char) =
+test_that("Top of figure has letters in correct order`` (letter:char) =
     let actual = make letter
 
     let expected = ['A'..letter]
@@ -49,7 +49,7 @@ let ``Top of figure has letters in correct order`` (letter:char) =
     expected |> should equal firstNonSpaceLetters
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Figure is symmetric around the horizontal axis`` (letter:char) =
+test_that("Figure is symmetric around the horizontal axis`` (letter:char) =
     let actual = make letter
 
     let rows = actual |> split
@@ -67,7 +67,7 @@ let ``Figure is symmetric around the horizontal axis`` (letter:char) =
     top |> should equal bottom
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Diamond has square shape`` (letter:char) =
+test_that("Diamond has square shape`` (letter:char) =
     let actual = make letter
 
     let rows = actual |> split
@@ -77,7 +77,7 @@ let ``Diamond has square shape`` (letter:char) =
     rows |> Array.iter (fun x -> correctWidth x |> should equal true)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``All rows except top and bottom have two identical letters`` (letter:char) =
+test_that("All rows except top and bottom have two identical letters`` (letter:char) =
     let actual = make letter
 
     let rows = 
@@ -93,7 +93,7 @@ let ``All rows except top and bottom have two identical letters`` (letter:char) 
     rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Bottom left corner spaces are triangle`` (letter:char) =
+test_that("Bottom left corner spaces are triangle`` (letter:char) =
     let actual = make letter
 
     let rows = actual |> split

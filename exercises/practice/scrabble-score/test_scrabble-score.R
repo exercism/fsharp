@@ -4,46 +4,46 @@ library(testthat)
 
 
 
-let ``Lowercase letter`` () =
+test_that("Lowercase letter", {
     score "a" |> should equal 1
 
 
-let ``Uppercase letter`` () =
+test_that("Uppercase letter", {
     score "A" |> should equal 1
 
 
-let ``Valuable letter`` () =
+test_that("Valuable letter", {
     score "f" |> should equal 4
 
 
-let ``Short word`` () =
+test_that("Short word", {
     score "at" |> should equal 2
 
 
-let ``Short, valuable word`` () =
+test_that("Short, valuable word", {
     score "zoo" |> should equal 12
 
 
-let ``Medium word`` () =
+test_that("Medium word", {
     score "street" |> should equal 6
 
 
-let ``Medium, valuable word`` () =
+test_that("Medium, valuable word", {
     score "quirky" |> should equal 22
 
 
-let ``Long, mixed-case word`` () =
+test_that("Long, mixed-case word", {
     score "OxyphenButazone" |> should equal 41
 
 
-let ``English-like word`` () =
+test_that("English-like word", {
     score "pinata" |> should equal 8
 
 
-let ``Empty input`` () =
+test_that("Empty input", {
     score "" |> should equal 0
 
 
-let ``Entire alphabet available`` () =
+test_that("Entire alphabet available", {
     score "abcdefghijklmnopqrstuvwxyz" |> should equal 87
 

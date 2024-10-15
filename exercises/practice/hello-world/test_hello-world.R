@@ -4,6 +4,6 @@ library(testthat)
 
 
 
-let ``Say Hi!`` () =
+test_that("Say Hi!", {
     hello |> should equal "Hello, World!"
 

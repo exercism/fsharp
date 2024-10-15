@@ -4,69 +4,69 @@ library(testthat)
 
 
 
-let ``Queen with a valid position`` () =
+test_that("Queen with a valid position", {
     create (2, 2) |> should equal true
 
 
-let ``Queen must have positive row`` () =
+test_that("Queen must have positive row", {
     create (-2, 2) |> should equal false
 
 
-let ``Queen must have row on board`` () =
+test_that("Queen must have row on board", {
     create (8, 4) |> should equal false
 
 
-let ``Queen must have positive column`` () =
+test_that("Queen must have positive column", {
     create (2, -2) |> should equal false
 
 
-let ``Queen must have column on board`` () =
+test_that("Queen must have column on board", {
     create (4, 8) |> should equal false
 
 
-let ``Cannot attack`` () =
+test_that("Cannot attack", {
     let whiteQueen = (2, 4)
     let blackQueen = (6, 6)
     canAttack blackQueen whiteQueen |> should equal false
 
 
-let ``Can attack on same row`` () =
+test_that("Can attack on same row", {
     let whiteQueen = (2, 4)
     let blackQueen = (2, 6)
     canAttack blackQueen whiteQueen |> should equal true
 
 
-let ``Can attack on same column`` () =
+test_that("Can attack on same column", {
     let whiteQueen = (4, 5)
     let blackQueen = (2, 5)
     canAttack blackQueen whiteQueen |> should equal true
 
 
-let ``Can attack on first diagonal`` () =
+test_that("Can attack on first diagonal", {
     let whiteQueen = (2, 2)
     let blackQueen = (0, 4)
     canAttack blackQueen whiteQueen |> should equal true
 
 
-let ``Can attack on second diagonal`` () =
+test_that("Can attack on second diagonal", {
     let whiteQueen = (2, 2)
     let blackQueen = (3, 1)
     canAttack blackQueen whiteQueen |> should equal true
 
 
-let ``Can attack on third diagonal`` () =
+test_that("Can attack on third diagonal", {
     let whiteQueen = (2, 2)
     let blackQueen = (1, 1)
     canAttack blackQueen whiteQueen |> should equal true
 
 
-let ``Can attack on fourth diagonal`` () =
+test_that("Can attack on fourth diagonal", {
     let whiteQueen = (1, 7)
     let blackQueen = (0, 6)
     canAttack blackQueen whiteQueen |> should equal true
 
 
-let ``Cannot attack if falling diagonals are only the same when reflected across the longest falling diagonal`` () =
+test_that("Cannot attack if falling diagonals are only the same when reflected across the longest falling diagonal", {
     let whiteQueen = (4, 1)
     let blackQueen = (2, 5)
     canAttack blackQueen whiteQueen |> should equal false

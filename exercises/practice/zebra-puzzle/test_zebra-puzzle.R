@@ -4,10 +4,10 @@ library(testthat)
 
 
 
-let ``Resident who drinks water`` () =
+test_that("Resident who drinks water", {
     drinksWater |> should equal Norwegian
 
 
-let ``Resident who owns zebra`` () =
+test_that("Resident who owns zebra", {
     ownsZebra |> should equal Japanese
 

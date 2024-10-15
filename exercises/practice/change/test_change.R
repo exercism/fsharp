@@ -4,84 +4,84 @@ library(testthat)
 
 
 
-let ``Change for 1 cent`` () =
+test_that("Change for 1 cent", {
     let coins = [1; 5; 10; 25]
     let target = 1
     let expected = Some [1]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Single coin change`` () =
+test_that("Single coin change", {
     let coins = [1; 5; 10; 25; 100]
     let target = 25
     let expected = Some [25]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Multiple coin change`` () =
+test_that("Multiple coin change", {
     let coins = [1; 5; 10; 25; 100]
     let target = 15
     let expected = Some [5; 10]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Change with Lilliputian Coins`` () =
+test_that("Change with Lilliputian Coins", {
     let coins = [1; 4; 15; 20; 50]
     let target = 23
     let expected = Some [4; 4; 15]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Change with Lower Elbonia Coins`` () =
+test_that("Change with Lower Elbonia Coins", {
     let coins = [1; 5; 10; 21; 25]
     let target = 63
     let expected = Some [21; 21; 21]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Large target values`` () =
+test_that("Large target values", {
     let coins = [1; 2; 5; 10; 20; 50; 100]
     let target = 999
     let expected = Some [2; 2; 5; 20; 20; 50; 100; 100; 100; 100; 100; 100; 100; 100; 100]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Possible change without unit coins available`` () =
+test_that("Possible change without unit coins available", {
     let coins = [2; 5; 10; 20; 50]
     let target = 21
     let expected = Some [2; 2; 2; 5; 10]
     findFewestCoins coins target |> should equal expected
 
 
-let ``Another possible change without unit coins available`` () =
+test_that("Another possible change without unit coins available", {
     let coins = [4; 5]
     let target = 27
     let expected = Some [4; 4; 4; 5; 5; 5]
     findFewestCoins coins target |> should equal expected
 
 
-let ``No coins make 0 change`` () =
+test_that("No coins make 0 change", {
     let coins = [1; 5; 10; 21; 25]
     let target = 0
     let expected: int list option = Some []
     findFewestCoins coins target |> should equal expected
 
 
-let ``Error testing for change smaller than the smallest of coins`` () =
+test_that("Error testing for change smaller than the smallest of coins", {
     let coins = [5; 10]
     let target = 3
     let expected = None
     findFewestCoins coins target |> should equal expected
 
 
-let ``Error if no combination can add up to target`` () =
+test_that("Error if no combination can add up to target", {
     let coins = [5; 10]
     let target = 94
     let expected = None
     findFewestCoins coins target |> should equal expected
 
 
-let ``Cannot find negative change values`` () =
+test_that("Cannot find negative change values", {
     let coins = [1; 2; 5]
     let target = -5
     let expected = None

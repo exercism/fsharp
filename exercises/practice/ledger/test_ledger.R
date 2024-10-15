@@ -4,7 +4,7 @@ library(testthat)
 
 
 
-let ``Empty ledger`` () =
+test_that("Empty ledger", {
     let currency = "USD"
     let locale = "en-US"
     let entries = []
@@ -14,7 +14,7 @@ let ``Empty ledger`` () =
     formatLedger currency locale entries |> should equal expected
 
 
-let ``One entry`` () =
+test_that("One entry", {
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -28,7 +28,7 @@ let ``One entry`` () =
     formatLedger currency locale entries |> should equal expected
 
 
-let ``Credit and debit`` () =
+test_that("Credit and debit", {
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -44,7 +44,7 @@ let ``Credit and debit`` () =
     formatLedger currency locale entries |> should equal expected
  
 
-let ``Multiple entries on same date ordered by description`` () =
+test_that("Multiple entries on same date ordered by description", {
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -60,7 +60,7 @@ let ``Multiple entries on same date ordered by description`` () =
     formatLedger currency locale entries |> should equal expected
    
 
-let ``Final order tie breaker is change`` () =
+test_that("Final order tie breaker is change", {
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -78,7 +78,7 @@ let ``Final order tie breaker is change`` () =
     formatLedger currency locale entries |> should equal expected
   
 
-let ``Overlong descriptions`` () =
+test_that("Overlong descriptions", {
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -92,7 +92,7 @@ let ``Overlong descriptions`` () =
     formatLedger currency locale entries |> should equal expected
   
 
-let ``Euros`` () =
+test_that("Euros", {
     let currency = "EUR"
     let locale = "en-US"
     let entries =
@@ -106,7 +106,7 @@ let ``Euros`` () =
     formatLedger currency locale entries |> should equal expected
    
 
-let ``Dutch locale`` () =
+test_that("Dutch locale", {
     let currency = "USD"
     let locale = "nl-NL"
     let entries =
@@ -120,7 +120,7 @@ let ``Dutch locale`` () =
     formatLedger currency locale entries |> should equal expected
  
 
-let ``Dutch negative number with 3 digits before decimal point`` () =
+test_that("Dutch negative number with 3 digits before decimal point", {
     let currency = "USD"
     let locale = "nl-NL"
     let entries =
@@ -134,7 +134,7 @@ let ``Dutch negative number with 3 digits before decimal point`` () =
     formatLedger currency locale entries |> should equal expected
    
 
-let ``American negative number with 3 digits before decimal point`` () =
+test_that("American negative number with 3 digits before decimal point", {
     let currency = "USD"
     let locale = "en-US"
     let entries =

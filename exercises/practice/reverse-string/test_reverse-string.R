@@ -4,26 +4,26 @@ library(testthat)
 
 
 
-let ``An empty string`` () =
+test_that("An empty string", {
     reverse "" |> should equal ""
 
 
-let ``A word`` () =
+test_that("A word", {
     reverse "robot" |> should equal "tobor"
 
 
-let ``A capitalized word`` () =
+test_that("A capitalized word", {
     reverse "Ramen" |> should equal "nemaR"
 
 
-let ``A sentence with punctuation`` () =
+test_that("A sentence with punctuation", {
     reverse "I'm hungry!" |> should equal "!yrgnuh m'I"
 
 
-let ``A palindrome`` () =
+test_that("A palindrome", {
     reverse "racecar" |> should equal "racecar"
 
 
-let ``An even-sized word`` () =
+test_that("An even-sized word", {
     reverse "drawer" |> should equal "reward"
 

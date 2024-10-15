@@ -4,19 +4,19 @@ library(testthat)
 
 
 
-let ``No rows`` () =
+test_that("No rows", {
     let minefield: string list = []
     let expected: string list = []
     annotate minefield |> should equal expected
 
 
-let ``No columns`` () =
+test_that("No columns", {
     let minefield = [""]
     let expected = [""]
     annotate minefield |> should equal expected
 
 
-let ``No mines`` () =
+test_that("No mines", {
     let minefield = 
         [ "   ";
           "   ";
@@ -28,7 +28,7 @@ let ``No mines`` () =
     annotate minefield |> should equal expected
 
 
-let ``Minefield with only mines`` () =
+test_that("Minefield with only mines", {
     let minefield = 
         [ "***";
           "***";
@@ -40,7 +40,7 @@ let ``Minefield with only mines`` () =
     annotate minefield |> should equal expected
 
 
-let ``Mine surrounded by spaces`` () =
+test_that("Mine surrounded by spaces", {
     let minefield = 
         [ "   ";
           " * ";
@@ -52,7 +52,7 @@ let ``Mine surrounded by spaces`` () =
     annotate minefield |> should equal expected
 
 
-let ``Space surrounded by mines`` () =
+test_that("Space surrounded by mines", {
     let minefield = 
         [ "***";
           "* *";
@@ -64,19 +64,19 @@ let ``Space surrounded by mines`` () =
     annotate minefield |> should equal expected
 
 
-let ``Horizontal line`` () =
+test_that("Horizontal line", {
     let minefield = [" * * "]
     let expected = ["1*2*1"]
     annotate minefield |> should equal expected
 
 
-let ``Horizontal line, mines at edges`` () =
+test_that("Horizontal line, mines at edges", {
     let minefield = ["*   *"]
     let expected = ["*1 1*"]
     annotate minefield |> should equal expected
 
 
-let ``Vertical line`` () =
+test_that("Vertical line", {
     let minefield = 
         [ " ";
           "*";
@@ -92,7 +92,7 @@ let ``Vertical line`` () =
     annotate minefield |> should equal expected
 
 
-let ``Vertical line, mines at edges`` () =
+test_that("Vertical line, mines at edges", {
     let minefield = 
         [ "*";
           " ";
@@ -108,7 +108,7 @@ let ``Vertical line, mines at edges`` () =
     annotate minefield |> should equal expected
 
 
-let ``Cross`` () =
+test_that("Cross", {
     let minefield = 
         [ "  *  ";
           "  *  ";
@@ -124,7 +124,7 @@ let ``Cross`` () =
     annotate minefield |> should equal expected
 
 
-let ``Large minefield`` () =
+test_that("Large minefield", {
     let minefield = 
         [ " *  * ";
           "  *   ";

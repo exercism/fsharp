@@ -4,7 +4,7 @@ library(testthat)
 
 
 
-let ``No users`` () =
+test_that("No users", {
     let database = """{"users":[]}"""
     let url = "/users"
     let expected = """{"users":[]}"""
@@ -12,7 +12,7 @@ let ``No users`` () =
     api.Get url |> should equal expected
 
 
-let ``Add user`` () =
+test_that("Add user", {
     let database = """{"users":[]}"""
     let payload = """{"user":"Adam"}"""
     let url = "/add"
@@ -21,7 +21,7 @@ let ``Add user`` () =
     api.Post (url, payload) |> should equal expected
 
 
-let ``Get single user`` () =
+test_that("Get single user", {
     let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
     let payload = """{"users":["Bob"]}"""
     let url = "/users"
@@ -30,7 +30,7 @@ let ``Get single user`` () =
     api.Get (url, payload) |> should equal expected
 
 
-let ``Both users have 0 balance`` () =
+test_that("Both users have 0 balance", {
     let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
     let payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
     let url = "/iou"
@@ -39,7 +39,7 @@ let ``Both users have 0 balance`` () =
     api.Post (url, payload) |> should equal expected
 
 
-let ``Borrower has negative balance`` () =
+test_that("Borrower has negative balance", {
     let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
     let payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
     let url = "/iou"
@@ -48,7 +48,7 @@ let ``Borrower has negative balance`` () =
     api.Post (url, payload) |> should equal expected
 
 
-let ``Lender has negative balance`` () =
+test_that("Lender has negative balance", {
     let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
     let payload = """{"lender":"Bob","borrower":"Adam","amount":3.0}"""
     let url = "/iou"
@@ -57,7 +57,7 @@ let ``Lender has negative balance`` () =
     api.Post (url, payload) |> should equal expected
 
 
-let ``Lender owes borrower`` () =
+test_that("Lender owes borrower", {
     let database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
     let payload = """{"lender":"Adam","borrower":"Bob","amount":2.0}"""
     let url = "/iou"
@@ -66,7 +66,7 @@ let ``Lender owes borrower`` () =
     api.Post (url, payload) |> should equal expected
 
 
-let ``Lender owes borrower less than new loan`` () =
+test_that("Lender owes borrower less than new loan", {
     let database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
     let payload = """{"lender":"Adam","borrower":"Bob","amount":4.0}"""
     let url = "/iou"
@@ -75,7 +75,7 @@ let ``Lender owes borrower less than new loan`` () =
     api.Post (url, payload) |> should equal expected
 
 
-let ``Lender owes borrower same as new loan`` () =
+test_that("Lender owes borrower same as new loan", {
     let database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
     let payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
     let url = "/iou"

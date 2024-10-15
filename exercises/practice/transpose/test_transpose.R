@@ -4,13 +4,13 @@ library(testthat)
 
 
 
-let ``Empty string`` () =
+test_that("Empty string", {
     let lines: string list = []
     let expected: string list = []
     transpose lines |> should equal expected
 
 
-let ``Two characters in a row`` () =
+test_that("Two characters in a row", {
     let lines = ["A1"]
     let expected = 
         [ "A";
@@ -18,7 +18,7 @@ let ``Two characters in a row`` () =
     transpose lines |> should equal expected
 
 
-let ``Two characters in a column`` () =
+test_that("Two characters in a column", {
     let lines = 
         [ "A";
           "1" ]
@@ -26,7 +26,7 @@ let ``Two characters in a column`` () =
     transpose lines |> should equal expected
 
 
-let ``Simple`` () =
+test_that("Simple", {
     let lines = 
         [ "ABC";
           "123" ]
@@ -37,7 +37,7 @@ let ``Simple`` () =
     transpose lines |> should equal expected
 
 
-let ``Single line`` () =
+test_that("Single line", {
     let lines = ["Single line."]
     let expected = 
         [ "S";
@@ -55,7 +55,7 @@ let ``Single line`` () =
     transpose lines |> should equal expected
 
 
-let ``First line longer than second line`` () =
+test_that("First line longer than second line", {
     let lines = 
         [ "The fourth line.";
           "The fifth line." ]
@@ -79,7 +79,7 @@ let ``First line longer than second line`` () =
     transpose lines |> should equal expected
 
 
-let ``Second line longer than first line`` () =
+test_that("Second line longer than first line", {
     let lines = 
         [ "The first line.";
           "The second line." ]
@@ -103,7 +103,7 @@ let ``Second line longer than first line`` () =
     transpose lines |> should equal expected
 
 
-let ``Mixed line length`` () =
+test_that("Mixed line length", {
     let lines = 
         [ "The longest line.";
           "A long line.";
@@ -130,7 +130,7 @@ let ``Mixed line length`` () =
     transpose lines |> should equal expected
 
 
-let ``Square`` () =
+test_that("Square", {
     let lines = 
         [ "HEART";
           "EMBER";
@@ -146,7 +146,7 @@ let ``Square`` () =
     transpose lines |> should equal expected
 
 
-let ``Rectangle`` () =
+test_that("Rectangle", {
     let lines = 
         [ "FRACTURE";
           "OUTLINED";
@@ -164,7 +164,7 @@ let ``Rectangle`` () =
     transpose lines |> should equal expected
 
 
-let ``Triangle`` () =
+test_that("Triangle", {
     let lines = 
         [ "T";
           "EE";
@@ -182,7 +182,7 @@ let ``Triangle`` () =
     transpose lines |> should equal expected
 
 
-let ``Jagged triangle`` () =
+test_that("Jagged triangle", {
     let lines = 
         [ "11";
           "2";

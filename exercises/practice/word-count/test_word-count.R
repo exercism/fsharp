@@ -4,12 +4,12 @@ library(testthat)
 
 
 
-let ``Count one word`` () =
+test_that("Count one word", {
     let expected = [("word", 1)] |> Map.ofList
     countWords "word" |> should equal expected
 
 
-let ``Count one of each word`` () =
+test_that("Count one of each word", {
     let expected = 
         [ ("one", 1);
           ("of", 1);
@@ -18,7 +18,7 @@ let ``Count one of each word`` () =
     countWords "one of each" |> should equal expected
 
 
-let ``Multiple occurrences of a word`` () =
+test_that("Multiple occurrences of a word", {
     let expected = 
         [ ("one", 1);
           ("fish", 4);
@@ -29,7 +29,7 @@ let ``Multiple occurrences of a word`` () =
     countWords "one fish two fish red fish blue fish" |> should equal expected
 
 
-let ``Handles cramped lists`` () =
+test_that("Handles cramped lists", {
     let expected = 
         [ ("one", 1);
           ("two", 1);
@@ -38,7 +38,7 @@ let ``Handles cramped lists`` () =
     countWords "one,two,three" |> should equal expected
 
 
-let ``Handles expanded lists`` () =
+test_that("Handles expanded lists", {
     let expected = 
         [ ("one", 1);
           ("two", 1);
@@ -47,7 +47,7 @@ let ``Handles expanded lists`` () =
     countWords "one,\ntwo,\nthree" |> should equal expected
 
 
-let ``Ignore punctuation`` () =
+test_that("Ignore punctuation", {
     let expected = 
         [ ("car", 1);
           ("carpet", 1);
@@ -58,7 +58,7 @@ let ``Ignore punctuation`` () =
     countWords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
 
 
-let ``Include numbers`` () =
+test_that("Include numbers", {
     let expected = 
         [ ("testing", 2);
           ("1", 1);
@@ -67,7 +67,7 @@ let ``Include numbers`` () =
     countWords "testing, 1, 2 testing" |> should equal expected
 
 
-let ``Normalize case`` () =
+test_that("Normalize case", {
     let expected = 
         [ ("go", 3);
           ("stop", 2) ]
@@ -75,7 +75,7 @@ let ``Normalize case`` () =
     countWords "go Go GO Stop stop" |> should equal expected
 
 
-let ``With apostrophes`` () =
+test_that("With apostrophes", {
     let expected = 
         [ ("first", 1);
           ("don't", 2);
@@ -89,7 +89,7 @@ let ``With apostrophes`` () =
     countWords "'First: don't laugh. Then: don't cry. You're getting it.'" |> should equal expected
 
 
-let ``With quotations`` () =
+test_that("With quotations", {
     let expected = 
         [ ("joe", 1);
           ("can't", 1);
@@ -101,7 +101,7 @@ let ``With quotations`` () =
     countWords "Joe can't tell between 'large' and large." |> should equal expected
 
 
-let ``Substrings from the beginning`` () =
+test_that("Substrings from the beginning", {
     let expected = 
         [ ("joe", 1);
           ("can't", 1);
@@ -115,7 +115,7 @@ let ``Substrings from the beginning`` () =
     countWords "Joe can't tell between app, apple and a." |> should equal expected
 
 
-let ``Multiple spaces not detected as a word`` () =
+test_that("Multiple spaces not detected as a word", {
     let expected = 
         [ ("multiple", 1);
           ("whitespaces", 1) ]
@@ -123,7 +123,7 @@ let ``Multiple spaces not detected as a word`` () =
     countWords " multiple   whitespaces" |> should equal expected
 
 
-let ``Alternating word separators not detected as a word`` () =
+test_that("Alternating word separators not detected as a word", {
     let expected = 
         [ ("one", 1);
           ("two", 1);
@@ -132,7 +132,7 @@ let ``Alternating word separators not detected as a word`` () =
     countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
 
 
-let ``Quotation for word with apostrophe`` () =
+test_that("Quotation for word with apostrophe", {
     let expected = 
         [ ("can", 1);
           ("can't", 2) ]

@@ -4,14 +4,14 @@ library(testthat)
 
 
 
-let ``Fly`` () =
+test_that("Fly", {
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 1 1 |> should equal expected
 
 
-let ``Spider`` () =
+test_that("Spider", {
     let expected = 
         [ "I know an old lady who swallowed a spider.";
           "It wriggled and jiggled and tickled inside her.";
@@ -20,7 +20,7 @@ let ``Spider`` () =
     recite 2 2 |> should equal expected
 
 
-let ``Bird`` () =
+test_that("Bird", {
     let expected = 
         [ "I know an old lady who swallowed a bird.";
           "How absurd to swallow a bird!";
@@ -30,7 +30,7 @@ let ``Bird`` () =
     recite 3 3 |> should equal expected
 
 
-let ``Cat`` () =
+test_that("Cat", {
     let expected = 
         [ "I know an old lady who swallowed a cat.";
           "Imagine that, to swallow a cat!";
@@ -41,7 +41,7 @@ let ``Cat`` () =
     recite 4 4 |> should equal expected
 
 
-let ``Dog`` () =
+test_that("Dog", {
     let expected = 
         [ "I know an old lady who swallowed a dog.";
           "What a hog, to swallow a dog!";
@@ -53,7 +53,7 @@ let ``Dog`` () =
     recite 5 5 |> should equal expected
 
 
-let ``Goat`` () =
+test_that("Goat", {
     let expected = 
         [ "I know an old lady who swallowed a goat.";
           "Just opened her throat and swallowed a goat!";
@@ -66,7 +66,7 @@ let ``Goat`` () =
     recite 6 6 |> should equal expected
 
 
-let ``Cow`` () =
+test_that("Cow", {
     let expected = 
         [ "I know an old lady who swallowed a cow.";
           "I don't know how she swallowed a cow!";
@@ -80,14 +80,14 @@ let ``Cow`` () =
     recite 7 7 |> should equal expected
 
 
-let ``Horse`` () =
+test_that("Horse", {
     let expected = 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
     recite 8 8 |> should equal expected
 
 
-let ``Multiple verses`` () =
+test_that("Multiple verses", {
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";
@@ -105,7 +105,7 @@ let ``Multiple verses`` () =
     recite 1 3 |> should equal expected
 
 
-let ``Full song`` () =
+test_that("Full song", {
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";

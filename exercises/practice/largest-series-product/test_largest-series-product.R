@@ -4,79 +4,79 @@ library(testthat)
 
 
 
-let ``Finds the largest product if span equals length`` () =
+test_that("Finds the largest product if span equals length", {
     let digits = "29"
     let span = 2
     largestProduct digits span |> should equal (Some 18)
 
 
-let ``Can find the largest product of 2 with numbers in order`` () =
+test_that("Can find the largest product of 2 with numbers in order", {
     let digits = "0123456789"
     let span = 2
     largestProduct digits span |> should equal (Some 72)
 
 
-let ``Can find the largest product of 2`` () =
+test_that("Can find the largest product of 2", {
     let digits = "576802143"
     let span = 2
     largestProduct digits span |> should equal (Some 48)
 
 
-let ``Can find the largest product of 3 with numbers in order`` () =
+test_that("Can find the largest product of 3 with numbers in order", {
     let digits = "0123456789"
     let span = 3
     largestProduct digits span |> should equal (Some 504)
 
 
-let ``Can find the largest product of 3`` () =
+test_that("Can find the largest product of 3", {
     let digits = "1027839564"
     let span = 3
     largestProduct digits span |> should equal (Some 270)
 
 
-let ``Can find the largest product of 5 with numbers in order`` () =
+test_that("Can find the largest product of 5 with numbers in order", {
     let digits = "0123456789"
     let span = 5
     largestProduct digits span |> should equal (Some 15120)
 
 
-let ``Can get the largest product of a big number`` () =
+test_that("Can get the largest product of a big number", {
     let digits = "73167176531330624919225119674426574742355349194934"
     let span = 6
     largestProduct digits span |> should equal (Some 23520)
 
 
-let ``Reports zero if the only digits are zero`` () =
+test_that("Reports zero if the only digits are zero", {
     let digits = "0000"
     let span = 2
     largestProduct digits span |> should equal (Some 0)
 
 
-let ``Reports zero if all spans include zero`` () =
+test_that("Reports zero if all spans include zero", {
     let digits = "99099"
     let span = 3
     largestProduct digits span |> should equal (Some 0)
 
 
-let ``Rejects span longer than string length`` () =
+test_that("Rejects span longer than string length", {
     let digits = "123"
     let span = 4
     largestProduct digits span |> should equal None
 
 
-let ``Rejects empty string and nonzero span`` () =
+test_that("Rejects empty string and nonzero span", {
     let digits = ""
     let span = 1
     largestProduct digits span |> should equal None
 
 
-let ``Rejects invalid character in digits`` () =
+test_that("Rejects invalid character in digits", {
     let digits = "1234a5"
     let span = 2
     largestProduct digits span |> should equal None
 
 
-let ``Rejects negative span`` () =
+test_that("Rejects negative span", {
     let digits = "12345"
     let span = -1
     largestProduct digits span |> should equal None

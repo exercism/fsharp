@@ -4,24 +4,24 @@ library(testthat)
 
 
 
-let ``Zero rows`` () =
+test_that("Zero rows", {
     let expected: int list list = []
     rows 0 |> should equal expected
 
 
-let ``Single row`` () =
+test_that("Single row", {
     let expected = [[1]]
     rows 1 |> should equal expected
 
 
-let ``Two rows`` () =
+test_that("Two rows", {
     let expected = 
         [ [1];
           [1; 1] ]
     rows 2 |> should equal expected
 
 
-let ``Three rows`` () =
+test_that("Three rows", {
     let expected = 
         [ [1];
           [1; 1];
@@ -29,7 +29,7 @@ let ``Three rows`` () =
     rows 3 |> should equal expected
 
 
-let ``Four rows`` () =
+test_that("Four rows", {
     let expected = 
         [ [1];
           [1; 1];
@@ -38,7 +38,7 @@ let ``Four rows`` () =
     rows 4 |> should equal expected
 
 
-let ``Five rows`` () =
+test_that("Five rows", {
     let expected = 
         [ [1];
           [1; 1];
@@ -48,7 +48,7 @@ let ``Five rows`` () =
     rows 5 |> should equal expected
 
 
-let ``Six rows`` () =
+test_that("Six rows", {
     let expected = 
         [ [1];
           [1; 1];
@@ -59,7 +59,7 @@ let ``Six rows`` () =
     rows 6 |> should equal expected
 
 
-let ``Ten rows`` () =
+test_that("Ten rows", {
     let expected = 
         [ [1];
           [1; 1];

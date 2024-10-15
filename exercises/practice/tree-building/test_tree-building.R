@@ -5,7 +5,7 @@ library(testthat)
 
 
 
-let ``One node`` () =
+test_that("One node", {
     let input =
         [
             { RecordId = 0; ParentId = 0 }
@@ -18,7 +18,7 @@ let ``One node`` () =
     children tree |> should be Empty
 
 
-let ``Three nodes in order`` () =
+test_that("Three nodes in order", {
     let input =
         [
             { RecordId = 0; ParentId = 0 };
@@ -39,7 +39,7 @@ let ``Three nodes in order`` () =
     children tree |> List.item 1 |> recordId |> should equal 2
 
 
-let ``Three nodes in reverse order`` () =
+test_that("Three nodes in reverse order", {
     let input =
         [
             { RecordId = 2; ParentId = 0 };
@@ -60,7 +60,7 @@ let ``Three nodes in reverse order`` () =
     children tree |> List.item 1 |> recordId |> should equal 2
 
 
-let ``More than two children`` () =
+test_that("More than two children", {
     let input =
         [
             { RecordId = 3; ParentId = 0 };
@@ -85,7 +85,7 @@ let ``More than two children`` () =
     children tree |> List.item 2 |> recordId |> should equal 3
 
 
-let ``Binary tree`` () =
+test_that("Binary tree", {
     let input =
         [
             { RecordId = 5; ParentId = 1 };
@@ -124,7 +124,7 @@ let ``Binary tree`` () =
     children tree |> List.item 1 |> children |> List.item 1 |> recordId |> should equal 6
 
 
-let ``Unbalanced tree`` () =
+test_that("Unbalanced tree", {
     let input =
         [
             { RecordId = 5; ParentId = 2 };
@@ -163,24 +163,24 @@ let ``Unbalanced tree`` () =
     children tree |> List.item 1 |> children |> List.item 2 |> recordId |> should equal 6
 
 
-let ``Empty input`` () =
+test_that("Empty input", {
     let input = []
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 
-let ``Root node has parent`` () =
+test_that("Root node has parent", {
     let input =
         [ { RecordId = 0; ParentId = 1 };
           { RecordId = 1; ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 
-let ``No root node`` () =
+test_that("No root node", {
     let input = [ { RecordId = 1; ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 
-let ``Out of bounds record id`` () =
+test_that("Out of bounds record id", {
     let input =
         [
             { RecordId = 2; ParentId = 0 };
@@ -191,7 +191,7 @@ let ``Out of bounds record id`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 
-let ``Cycle directly`` () =
+test_that("Cycle directly", {
     let input =
         [
             { RecordId = 5; ParentId = 2 };
@@ -205,7 +205,7 @@ let ``Cycle directly`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 
-let ``Cycle indirectly`` () =
+test_that("Cycle indirectly", {
     let input =
         [
             { RecordId = 5; ParentId = 2 };
@@ -219,7 +219,7 @@ let ``Cycle indirectly`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 
-let ``Higher id parent of lower id`` () =
+test_that("Higher id parent of lower id", {
     let input =
         [
             { RecordId = 0; ParentId = 0 };

@@ -20,17 +20,17 @@ let testPerson =
           country = "Canada" } }
 
 
-let ``Set born at street`` () =
+test_that("Set born at street", {
     Optic.get bornAtStreet testPerson |> should equal "Longway"
 
 
-let ``Set current street`` () =
+test_that("Set current street", {
     Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet |> should equal "Middleroad"
 
 
-let ``Upper case born at street`` () =
+test_that("Upper case born at street", {
     Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet |> should equal "LONGWAY"
 
 
-let ``Set birth month`` () =
+test_that("Set birth month", {
     Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)

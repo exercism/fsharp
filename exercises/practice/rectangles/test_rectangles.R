@@ -4,22 +4,22 @@ library(testthat)
 
 
 
-let ``No rows`` () =
+test_that("No rows", {
     let strings = []
     rectangles strings |> should equal 0
 
 
-let ``No columns`` () =
+test_that("No columns", {
     let strings = [""]
     rectangles strings |> should equal 0
 
 
-let ``No rectangles`` () =
+test_that("No rectangles", {
     let strings = [" "]
     rectangles strings |> should equal 0
 
 
-let ``One rectangle`` () =
+test_that("One rectangle", {
     let strings = 
         [ "+-+";
           "| |";
@@ -27,7 +27,7 @@ let ``One rectangle`` () =
     rectangles strings |> should equal 1
 
 
-let ``Two rectangles without shared parts`` () =
+test_that("Two rectangles without shared parts", {
     let strings = 
         [ "  +-+";
           "  | |";
@@ -37,7 +37,7 @@ let ``Two rectangles without shared parts`` () =
     rectangles strings |> should equal 2
 
 
-let ``Five rectangles with shared parts`` () =
+test_that("Five rectangles with shared parts", {
     let strings = 
         [ "  +-+";
           "  | |";
@@ -47,14 +47,14 @@ let ``Five rectangles with shared parts`` () =
     rectangles strings |> should equal 5
 
 
-let ``Rectangle of height 1 is counted`` () =
+test_that("Rectangle of height 1 is counted", {
     let strings = 
         [ "+--+";
           "+--+" ]
     rectangles strings |> should equal 1
 
 
-let ``Rectangle of width 1 is counted`` () =
+test_that("Rectangle of width 1 is counted", {
     let strings = 
         [ "++";
           "||";
@@ -62,14 +62,14 @@ let ``Rectangle of width 1 is counted`` () =
     rectangles strings |> should equal 1
 
 
-let ``1x1 square is counted`` () =
+test_that("1x1 square is counted", {
     let strings = 
         [ "++";
           "++" ]
     rectangles strings |> should equal 1
 
 
-let ``Only complete rectangles are counted`` () =
+test_that("Only complete rectangles are counted", {
     let strings = 
         [ "  +-+";
           "    |";
@@ -79,7 +79,7 @@ let ``Only complete rectangles are counted`` () =
     rectangles strings |> should equal 1
 
 
-let ``Rectangles can be of different sizes`` () =
+test_that("Rectangles can be of different sizes", {
     let strings = 
         [ "+------+----+";
           "|      |    |";
@@ -89,7 +89,7 @@ let ``Rectangles can be of different sizes`` () =
     rectangles strings |> should equal 3
 
 
-let ``Corner is required for a rectangle to be complete`` () =
+test_that("Corner is required for a rectangle to be complete", {
     let strings = 
         [ "+------+----+";
           "|      |    |";
@@ -99,7 +99,7 @@ let ``Corner is required for a rectangle to be complete`` () =
     rectangles strings |> should equal 2
 
 
-let ``Large input with many rectangles`` () =
+test_that("Large input with many rectangles", {
     let strings = 
         [ "+---+--+----+";
           "|   +--+----+";
@@ -112,7 +112,7 @@ let ``Large input with many rectangles`` () =
     rectangles strings |> should equal 60
 
 
-let ``Rectangles must have four sides`` () =
+test_that("Rectangles must have four sides", {
     let strings = 
         [ "+-+ +-+";
           "| | | |";

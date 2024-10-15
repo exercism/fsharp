@@ -4,22 +4,22 @@ library(testthat)
 
 
 
-let ``First prime`` () =
+test_that("First prime", {
     prime 1 |> should equal (Some 2)
 
 
-let ``Second prime`` () =
+test_that("Second prime", {
     prime 2 |> should equal (Some 3)
 
 
-let ``Sixth prime`` () =
+test_that("Sixth prime", {
     prime 6 |> should equal (Some 13)
 
 
-let ``Big prime`` () =
+test_that("Big prime", {
     prime 10001 |> should equal (Some 104743)
 
 
-let ``There is no zeroth prime`` () =
+test_that("There is no zeroth prime", {
     prime 0 |> should equal None
 

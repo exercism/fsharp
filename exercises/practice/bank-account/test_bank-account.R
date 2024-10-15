@@ -3,13 +3,13 @@ library(testthat)
 
 
 
-let ``Returns empty balance after opening`` () =
+test_that("Returns empty balance after opening", {
     let account = mkBankAccount() |> openAccount
 
     getBalance account |> should equal (Some 0.0m)
 
 
-let ``Check basic balance`` () =
+test_that("Check basic balance", {
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
 
@@ -22,7 +22,7 @@ let ``Check basic balance`` () =
     updatedBalance |> should equal (Some 10.0m)
 
 
-let ``Balance can increment or decrement`` () =    
+test_that("Balance can increment or decrement", {    
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
 
@@ -41,7 +41,7 @@ let ``Balance can increment or decrement`` () =
     subtractedBalance |> should equal (Some -5.0m)
 
 
-let ``Account can be closed`` () =
+test_that("Account can be closed", {
     let account = 
         mkBankAccount()
         |> openAccount
@@ -51,7 +51,7 @@ let ``Account can be closed`` () =
     account |> should not' (equal None)
     
 
-let ``Account can be updated from multiple threads`` () =
+test_that("Account can be updated from multiple threads", {
     let account = 
         mkBankAccount()
         |> openAccount

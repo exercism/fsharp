@@ -4,38 +4,38 @@ library(testthat)
 
 
 
-let ``Basic`` () =
+test_that("Basic", {
     abbreviate "Portable Network Graphics" |> should equal "PNG"
 
 
-let ``Lowercase words`` () =
+test_that("Lowercase words", {
     abbreviate "Ruby on Rails" |> should equal "ROR"
 
 
-let ``Punctuation`` () =
+test_that("Punctuation", {
     abbreviate "First In, First Out" |> should equal "FIFO"
 
 
-let ``All caps word`` () =
+test_that("All caps word", {
     abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
 
 
-let ``Punctuation without whitespace`` () =
+test_that("Punctuation without whitespace", {
     abbreviate "Complementary metal-oxide semiconductor" |> should equal "CMOS"
 
 
-let ``Very long abbreviation`` () =
+test_that("Very long abbreviation", {
     abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" |> should equal "ROTFLSHTMDCOALM"
 
 
-let ``Consecutive delimiters`` () =
+test_that("Consecutive delimiters", {
     abbreviate "Something - I made up from thin air" |> should equal "SIMUFTA"
 
 
-let ``Apostrophes`` () =
+test_that("Apostrophes", {
     abbreviate "Halley's Comet" |> should equal "HC"
 
 
-let ``Underscore emphasis`` () =
+test_that("Underscore emphasis", {
     abbreviate "The Road _Not_ Taken" |> should equal "TRNT"
 

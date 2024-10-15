@@ -4,202 +4,202 @@ library(testthat)
 
 
 
-let ``Testing for eggs allergy - not allergic to anything`` () =
+test_that("Testing for eggs allergy - not allergic to anything", {
     allergicTo 0 Allergen.Eggs |> should equal false
 
 
-let ``Testing for eggs allergy - allergic only to eggs`` () =
+test_that("Testing for eggs allergy - allergic only to eggs", {
     allergicTo 1 Allergen.Eggs |> should equal true
 
 
-let ``Testing for eggs allergy - allergic to eggs and something else`` () =
+test_that("Testing for eggs allergy - allergic to eggs and something else", {
     allergicTo 3 Allergen.Eggs |> should equal true
 
 
-let ``Testing for eggs allergy - allergic to something, but not eggs`` () =
+test_that("Testing for eggs allergy - allergic to something, but not eggs", {
     allergicTo 2 Allergen.Eggs |> should equal false
 
 
-let ``Testing for eggs allergy - allergic to everything`` () =
+test_that("Testing for eggs allergy - allergic to everything", {
     allergicTo 255 Allergen.Eggs |> should equal true
 
 
-let ``Testing for peanuts allergy - not allergic to anything`` () =
+test_that("Testing for peanuts allergy - not allergic to anything", {
     allergicTo 0 Allergen.Peanuts |> should equal false
 
 
-let ``Testing for peanuts allergy - allergic only to peanuts`` () =
+test_that("Testing for peanuts allergy - allergic only to peanuts", {
     allergicTo 2 Allergen.Peanuts |> should equal true
 
 
-let ``Testing for peanuts allergy - allergic to peanuts and something else`` () =
+test_that("Testing for peanuts allergy - allergic to peanuts and something else", {
     allergicTo 7 Allergen.Peanuts |> should equal true
 
 
-let ``Testing for peanuts allergy - allergic to something, but not peanuts`` () =
+test_that("Testing for peanuts allergy - allergic to something, but not peanuts", {
     allergicTo 5 Allergen.Peanuts |> should equal false
 
 
-let ``Testing for peanuts allergy - allergic to everything`` () =
+test_that("Testing for peanuts allergy - allergic to everything", {
     allergicTo 255 Allergen.Peanuts |> should equal true
 
 
-let ``Testing for shellfish allergy - not allergic to anything`` () =
+test_that("Testing for shellfish allergy - not allergic to anything", {
     allergicTo 0 Allergen.Shellfish |> should equal false
 
 
-let ``Testing for shellfish allergy - allergic only to shellfish`` () =
+test_that("Testing for shellfish allergy - allergic only to shellfish", {
     allergicTo 4 Allergen.Shellfish |> should equal true
 
 
-let ``Testing for shellfish allergy - allergic to shellfish and something else`` () =
+test_that("Testing for shellfish allergy - allergic to shellfish and something else", {
     allergicTo 14 Allergen.Shellfish |> should equal true
 
 
-let ``Testing for shellfish allergy - allergic to something, but not shellfish`` () =
+test_that("Testing for shellfish allergy - allergic to something, but not shellfish", {
     allergicTo 10 Allergen.Shellfish |> should equal false
 
 
-let ``Testing for shellfish allergy - allergic to everything`` () =
+test_that("Testing for shellfish allergy - allergic to everything", {
     allergicTo 255 Allergen.Shellfish |> should equal true
 
 
-let ``Testing for strawberries allergy - not allergic to anything`` () =
+test_that("Testing for strawberries allergy - not allergic to anything", {
     allergicTo 0 Allergen.Strawberries |> should equal false
 
 
-let ``Testing for strawberries allergy - allergic only to strawberries`` () =
+test_that("Testing for strawberries allergy - allergic only to strawberries", {
     allergicTo 8 Allergen.Strawberries |> should equal true
 
 
-let ``Testing for strawberries allergy - allergic to strawberries and something else`` () =
+test_that("Testing for strawberries allergy - allergic to strawberries and something else", {
     allergicTo 28 Allergen.Strawberries |> should equal true
 
 
-let ``Testing for strawberries allergy - allergic to something, but not strawberries`` () =
+test_that("Testing for strawberries allergy - allergic to something, but not strawberries", {
     allergicTo 20 Allergen.Strawberries |> should equal false
 
 
-let ``Testing for strawberries allergy - allergic to everything`` () =
+test_that("Testing for strawberries allergy - allergic to everything", {
     allergicTo 255 Allergen.Strawberries |> should equal true
 
 
-let ``Testing for tomatoes allergy - not allergic to anything`` () =
+test_that("Testing for tomatoes allergy - not allergic to anything", {
     allergicTo 0 Allergen.Tomatoes |> should equal false
 
 
-let ``Testing for tomatoes allergy - allergic only to tomatoes`` () =
+test_that("Testing for tomatoes allergy - allergic only to tomatoes", {
     allergicTo 16 Allergen.Tomatoes |> should equal true
 
 
-let ``Testing for tomatoes allergy - allergic to tomatoes and something else`` () =
+test_that("Testing for tomatoes allergy - allergic to tomatoes and something else", {
     allergicTo 56 Allergen.Tomatoes |> should equal true
 
 
-let ``Testing for tomatoes allergy - allergic to something, but not tomatoes`` () =
+test_that("Testing for tomatoes allergy - allergic to something, but not tomatoes", {
     allergicTo 40 Allergen.Tomatoes |> should equal false
 
 
-let ``Testing for tomatoes allergy - allergic to everything`` () =
+test_that("Testing for tomatoes allergy - allergic to everything", {
     allergicTo 255 Allergen.Tomatoes |> should equal true
 
 
-let ``Testing for chocolate allergy - not allergic to anything`` () =
+test_that("Testing for chocolate allergy - not allergic to anything", {
     allergicTo 0 Allergen.Chocolate |> should equal false
 
 
-let ``Testing for chocolate allergy - allergic only to chocolate`` () =
+test_that("Testing for chocolate allergy - allergic only to chocolate", {
     allergicTo 32 Allergen.Chocolate |> should equal true
 
 
-let ``Testing for chocolate allergy - allergic to chocolate and something else`` () =
+test_that("Testing for chocolate allergy - allergic to chocolate and something else", {
     allergicTo 112 Allergen.Chocolate |> should equal true
 
 
-let ``Testing for chocolate allergy - allergic to something, but not chocolate`` () =
+test_that("Testing for chocolate allergy - allergic to something, but not chocolate", {
     allergicTo 80 Allergen.Chocolate |> should equal false
 
 
-let ``Testing for chocolate allergy - allergic to everything`` () =
+test_that("Testing for chocolate allergy - allergic to everything", {
     allergicTo 255 Allergen.Chocolate |> should equal true
 
 
-let ``Testing for pollen allergy - not allergic to anything`` () =
+test_that("Testing for pollen allergy - not allergic to anything", {
     allergicTo 0 Allergen.Pollen |> should equal false
 
 
-let ``Testing for pollen allergy - allergic only to pollen`` () =
+test_that("Testing for pollen allergy - allergic only to pollen", {
     allergicTo 64 Allergen.Pollen |> should equal true
 
 
-let ``Testing for pollen allergy - allergic to pollen and something else`` () =
+test_that("Testing for pollen allergy - allergic to pollen and something else", {
     allergicTo 224 Allergen.Pollen |> should equal true
 
 
-let ``Testing for pollen allergy - allergic to something, but not pollen`` () =
+test_that("Testing for pollen allergy - allergic to something, but not pollen", {
     allergicTo 160 Allergen.Pollen |> should equal false
 
 
-let ``Testing for pollen allergy - allergic to everything`` () =
+test_that("Testing for pollen allergy - allergic to everything", {
     allergicTo 255 Allergen.Pollen |> should equal true
 
 
-let ``Testing for cats allergy - not allergic to anything`` () =
+test_that("Testing for cats allergy - not allergic to anything", {
     allergicTo 0 Allergen.Cats |> should equal false
 
 
-let ``Testing for cats allergy - allergic only to cats`` () =
+test_that("Testing for cats allergy - allergic only to cats", {
     allergicTo 128 Allergen.Cats |> should equal true
 
 
-let ``Testing for cats allergy - allergic to cats and something else`` () =
+test_that("Testing for cats allergy - allergic to cats and something else", {
     allergicTo 192 Allergen.Cats |> should equal true
 
 
-let ``Testing for cats allergy - allergic to something, but not cats`` () =
+test_that("Testing for cats allergy - allergic to something, but not cats", {
     allergicTo 64 Allergen.Cats |> should equal false
 
 
-let ``Testing for cats allergy - allergic to everything`` () =
+test_that("Testing for cats allergy - allergic to everything", {
     allergicTo 255 Allergen.Cats |> should equal true
 
 
-let ``List - no allergies`` () =
+test_that("List - no allergies", {
     list 0 |> should be Empty
 
 
-let ``List - just eggs`` () =
+test_that("List - just eggs", {
     list 1 |> should equal [Allergen.Eggs]
 
 
-let ``List - just peanuts`` () =
+test_that("List - just peanuts", {
     list 2 |> should equal [Allergen.Peanuts]
 
 
-let ``List - just strawberries`` () =
+test_that("List - just strawberries", {
     list 8 |> should equal [Allergen.Strawberries]
 
 
-let ``List - eggs and peanuts`` () =
+test_that("List - eggs and peanuts", {
     list 3 |> should equal [Allergen.Eggs; Allergen.Peanuts]
 
 
-let ``List - more than eggs but not peanuts`` () =
+test_that("List - more than eggs but not peanuts", {
     list 5 |> should equal [Allergen.Eggs; Allergen.Shellfish]
 
 
-let ``List - lots of stuff`` () =
+test_that("List - lots of stuff", {
     list 248 |> should equal [Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
 
-let ``List - everything`` () =
+test_that("List - everything", {
     list 255 |> should equal [Allergen.Eggs; Allergen.Peanuts; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
 
-let ``List - no allergen score parts`` () =
+test_that("List - no allergen score parts", {
     list 509 |> should equal [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
 
 
-let ``List - no allergen score parts without highest valid score`` () =
+test_that("List - no allergen score parts without highest valid score", {
     list 257 |> should equal [Allergen.Eggs]
 

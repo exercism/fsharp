@@ -4,19 +4,19 @@ library(testthat)
 
 
 
-let ``Zero pieces`` () =
+test_that("Zero pieces", {
     let strings: string list = []
     let expected: string list = []
     recite strings |> should equal expected
 
 
-let ``One piece`` () =
+test_that("One piece", {
     let strings = ["nail"]
     let expected = ["And all for the want of a nail."]
     recite strings |> should equal expected
 
 
-let ``Two pieces`` () =
+test_that("Two pieces", {
     let strings = ["nail"; "shoe"]
     let expected = 
         [ "For want of a nail the shoe was lost.";
@@ -24,7 +24,7 @@ let ``Two pieces`` () =
     recite strings |> should equal expected
 
 
-let ``Three pieces`` () =
+test_that("Three pieces", {
     let strings = ["nail"; "shoe"; "horse"]
     let expected = 
         [ "For want of a nail the shoe was lost.";
@@ -33,7 +33,7 @@ let ``Three pieces`` () =
     recite strings |> should equal expected
 
 
-let ``Full proverb`` () =
+test_that("Full proverb", {
     let strings = ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
     let expected = 
         [ "For want of a nail the shoe was lost.";
@@ -46,7 +46,7 @@ let ``Full proverb`` () =
     recite strings |> should equal expected
 
 
-let ``Four pieces modernized`` () =
+test_that("Four pieces modernized", {
     let strings = ["pin"; "gun"; "soldier"; "battle"]
     let expected = 
         [ "For want of a pin the gun was lost.";

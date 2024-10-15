@@ -4,7 +4,7 @@ library(testthat)
 
 
 
-let ``Single bit one to decimal`` () =
+test_that("Single bit one to decimal", {
     let digits = [1]
     let inputBase = 2
     let outputBase = 10
@@ -12,7 +12,7 @@ let ``Single bit one to decimal`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Binary to single decimal`` () =
+test_that("Binary to single decimal", {
     let digits = [1; 0; 1]
     let inputBase = 2
     let outputBase = 10
@@ -20,7 +20,7 @@ let ``Binary to single decimal`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Single decimal to binary`` () =
+test_that("Single decimal to binary", {
     let digits = [5]
     let inputBase = 10
     let outputBase = 2
@@ -28,7 +28,7 @@ let ``Single decimal to binary`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Binary to multiple decimal`` () =
+test_that("Binary to multiple decimal", {
     let digits = [1; 0; 1; 0; 1; 0]
     let inputBase = 2
     let outputBase = 10
@@ -36,7 +36,7 @@ let ``Binary to multiple decimal`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Decimal to binary`` () =
+test_that("Decimal to binary", {
     let digits = [4; 2]
     let inputBase = 10
     let outputBase = 2
@@ -44,7 +44,7 @@ let ``Decimal to binary`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Trinary to hexadecimal`` () =
+test_that("Trinary to hexadecimal", {
     let digits = [1; 1; 2; 0]
     let inputBase = 3
     let outputBase = 16
@@ -52,7 +52,7 @@ let ``Trinary to hexadecimal`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Hexadecimal to trinary`` () =
+test_that("Hexadecimal to trinary", {
     let digits = [2; 10]
     let inputBase = 16
     let outputBase = 3
@@ -60,7 +60,7 @@ let ``Hexadecimal to trinary`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``15-bit integer`` () =
+test_that("15-bit integer", {
     let digits = [3; 46; 60]
     let inputBase = 97
     let outputBase = 73
@@ -68,7 +68,7 @@ let ``15-bit integer`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Empty list`` () =
+test_that("Empty list", {
     let digits = []
     let inputBase = 2
     let outputBase = 10
@@ -76,7 +76,7 @@ let ``Empty list`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Single zero`` () =
+test_that("Single zero", {
     let digits = [0]
     let inputBase = 10
     let outputBase = 2
@@ -84,7 +84,7 @@ let ``Single zero`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Multiple zeros`` () =
+test_that("Multiple zeros", {
     let digits = [0; 0; 0]
     let inputBase = 10
     let outputBase = 2
@@ -92,7 +92,7 @@ let ``Multiple zeros`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Leading zeros`` () =
+test_that("Leading zeros", {
     let digits = [0; 6; 0]
     let inputBase = 7
     let outputBase = 10
@@ -100,7 +100,7 @@ let ``Leading zeros`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Input base is one`` () =
+test_that("Input base is one", {
     let digits = [0]
     let inputBase = 1
     let outputBase = 10
@@ -108,7 +108,7 @@ let ``Input base is one`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Input base is zero`` () =
+test_that("Input base is zero", {
     let digits = []
     let inputBase = 0
     let outputBase = 10
@@ -116,7 +116,7 @@ let ``Input base is zero`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Input base is negative`` () =
+test_that("Input base is negative", {
     let digits = [1]
     let inputBase = -2
     let outputBase = 10
@@ -124,7 +124,7 @@ let ``Input base is negative`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Negative digit`` () =
+test_that("Negative digit", {
     let digits = [1; -1; 1; 0; 1; 0]
     let inputBase = 2
     let outputBase = 10
@@ -132,7 +132,7 @@ let ``Negative digit`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Invalid positive digit`` () =
+test_that("Invalid positive digit", {
     let digits = [1; 2; 1; 0; 1; 0]
     let inputBase = 2
     let outputBase = 10
@@ -140,7 +140,7 @@ let ``Invalid positive digit`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Output base is one`` () =
+test_that("Output base is one", {
     let digits = [1; 0; 1; 0; 1; 0]
     let inputBase = 2
     let outputBase = 1
@@ -148,7 +148,7 @@ let ``Output base is one`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Output base is zero`` () =
+test_that("Output base is zero", {
     let digits = [7]
     let inputBase = 10
     let outputBase = 0
@@ -156,7 +156,7 @@ let ``Output base is zero`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Output base is negative`` () =
+test_that("Output base is negative", {
     let digits = [1]
     let inputBase = 2
     let outputBase = -7
@@ -164,7 +164,7 @@ let ``Output base is negative`` () =
     rebase digits inputBase outputBase |> should equal expected
 
 
-let ``Both bases are negative`` () =
+test_that("Both bases are negative", {
     let digits = [1]
     let inputBase = -2
     let outputBase = -7
