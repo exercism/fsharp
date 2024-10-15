@@ -33,11 +33,11 @@ test_that("Two item list second item has no next", {
 
 test_that("To list", {
     let values = create 2 (create 1 nil) |> toList
-  expect_equal(values, [2; 1])
+  expect_equal(values, c(2, 1))
         
 
 test_that("From list", {
-    let list = fromList [11; 7; 5; 3; 2]
+    let list = fromList c(11, 7, 5, 3, 2)
   expect_equal(list |> datum, 11)
   expect_equal(list |> next |> datum, 7)
   expect_equal(list |> next |> next |> datum, 5)
@@ -46,52 +46,52 @@ test_that("From list", {
 })
 
 test_that("Reverse length 1", {
-    let values = [1..1]
+    let values = c(1..1)
     let list = fromList values
     let reversed = reverse list
   expect_equal(reversed |> toList, <| List.rev values)
 })
 
 test_that("Reverse length 2", {
-    let values = [1..2]
+    let values = c(1..2)
     let list = fromList values
     let reversed = reverse list
   expect_equal(reversed |> toList, <| List.rev values )
 })
 
 test_that("Reverse length 10", {
-    let values = [1..10]
+    let values = c(1..10)
     let list = fromList values
     let reversed = reverse list
   expect_equal(reversed |> toList, <| List.rev values )
 })
 
 test_that("Reverse length 100", {
-    let values = [1..100]
+    let values = c(1..100)
     let list = fromList values
     let reversed = reverse list
   expect_equal(reversed |> toList, <| List.rev values )
 })
 
 test_that("Roundtrip length 1", {
-    let values = [1..1]
+    let values = c(1..1)
     let listValues = fromList values
   expect_equal(listValues |> toList, values)
 })
 
 test_that("Roundtrip length 2", {
-    let values = [1..2]
+    let values = c(1..2)
     let listValues = fromList values
   expect_equal(listValues |> toList, values)
 })
 
 test_that("Roundtrip length 10", {
-    let values = [1..10]
+    let values = c(1..10)
     let listValues = fromList values
   expect_equal(listValues |> toList, values)
 })
 
 test_that("Roundtrip length 100", {
-    let values = [1..100]
+    let values = c(1..100)
     let listValues = fromList values
   expect_equal(listValues |> toList, values)

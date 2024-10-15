@@ -2,49 +2,49 @@ source("./etl.R")
 library(testthat)
 
 test_that("Single letter", {
-    let lettersByScore = [(1, ['A'])] |> Map.ofList
-    let expected = [('a', 1)] |> Map.ofList
+    let lettersByScore = c((1, c('A'))) |> Map.ofList
+    expected <-c(('a', 1)) |> Map.ofList
   expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Single score with multiple letters", {
-    let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
-    let expected = 
-        [ ('a', 1);
+    let lettersByScore = c((1, c('A', 'E', 'I', 'O', 'U'))) |> Map.ofList
+    expected <-
+        c( ('a', 1);
           ('e', 1);
           ('i', 1);
           ('o', 1);
-          ('u', 1) ]
+          ('u', 1) )
         |> Map.ofList
   expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Multiple scores with multiple letters", {
     let lettersByScore = 
-        [ (1, ['A'; 'E']);
-          (2, ['D'; 'G']) ]
+        c( (1, c('A', 'E'));
+          (2, c('D', 'G')) )
         |> Map.ofList
-    let expected = 
-        [ ('a', 1);
+    expected <-
+        c( ('a', 1);
           ('d', 2);
           ('e', 1);
-          ('g', 2) ]
+          ('g', 2) )
         |> Map.ofList
   expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Multiple scores with differing numbers of letters", {
     let lettersByScore = 
-        [ (1, ['A'; 'E'; 'I'; 'O'; 'U'; 'L'; 'N'; 'R'; 'S'; 'T']);
-          (2, ['D'; 'G']);
-          (3, ['B'; 'C'; 'M'; 'P']);
-          (4, ['F'; 'H'; 'V'; 'W'; 'Y']);
-          (5, ['K']);
-          (8, ['J'; 'X']);
-          (10, ['Q'; 'Z']) ]
+        c( (1, c('A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'));
+          (2, c('D', 'G'));
+          (3, c('B', 'C', 'M', 'P'));
+          (4, c('F', 'H', 'V', 'W', 'Y'));
+          (5, c('K'));
+          (8, c('J', 'X'));
+          (10, c('Q', 'Z')) )
         |> Map.ofList
-    let expected = 
-        [ ('a', 1);
+    expected <-
+        c( ('a', 1);
           ('b', 3);
           ('c', 3);
           ('d', 2);
@@ -69,7 +69,7 @@ test_that("Multiple scores with differing numbers of letters", {
           ('w', 4);
           ('x', 8);
           ('y', 4);
-          ('z', 10) ]
+          ('z', 10) )
         |> Map.ofList
   expect_equal(transform lettersByScore, expected)
 

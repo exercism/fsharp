@@ -34,7 +34,7 @@ test_that("After 10 failures the game is over", {
 
     startGame game |> ignore
 
-    [for x in 1..10 do makeGuess 'x' game] |> ignore
+    c(for x in 1..10 do makeGuess 'x' game) |> ignore
 
   expect_equal(lastProgress, Lose)
     

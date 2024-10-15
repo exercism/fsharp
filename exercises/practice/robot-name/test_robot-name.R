@@ -2,7 +2,7 @@ source("./robot-name.R")
 library(testthat)
 test_that("Robot has a name", {     
     let robot = mkRobot()
-  expect_equal(Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$"), TRUE)
+  expect_equal(Regex.IsMatch(name robot, @"^c(A-Z){2}\d{3}$"), TRUE)
     
 
 test_that("Name is the same each time", {     

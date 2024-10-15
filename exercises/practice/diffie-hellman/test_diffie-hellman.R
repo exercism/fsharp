@@ -3,14 +3,14 @@ library(testthat)
 
 test_that("Private key is greater than 1 and less than p", {
     let p = 7919I
-    let privateKeys = [for _ in 0 .. 10 -> privateKey p]
+    let privateKeys = c(for _ in 0 .. 10 -> privateKey p)
     privateKeys |> List.iter (fun x -> x |> should be (greaterThan 1I))
     privateKeys |> List.iter (fun x -> x |> should be (lessThan p))
 })
 
 test_that("Private key is random", {
     let p = 7919I
-    let privateKeys = [for _ in 0 .. 10 -> privateKey p]
+    let privateKeys = c(for _ in 0 .. 10 -> privateKey p)
   expect_equal(List.distinct privateKeys |> List.length, (List.length privateKeys))
 })
 
