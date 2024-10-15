@@ -3,22 +3,22 @@ library(testthat)
 
 
 
-[<Fact>]
+
 let ``No rows`` () =
     let strings = []
     rectangles strings |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``No columns`` () =
     let strings = [""]
     rectangles strings |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``No rectangles`` () =
     let strings = [" "]
     rectangles strings |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``One rectangle`` () =
     let strings = 
         [ "+-+";
@@ -26,7 +26,7 @@ let ``One rectangle`` () =
           "+-+" ]
     rectangles strings |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Two rectangles without shared parts`` () =
     let strings = 
         [ "  +-+";
@@ -36,7 +36,7 @@ let ``Two rectangles without shared parts`` () =
           "+-+  " ]
     rectangles strings |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Five rectangles with shared parts`` () =
     let strings = 
         [ "  +-+";
@@ -46,14 +46,14 @@ let ``Five rectangles with shared parts`` () =
           "+-+-+" ]
     rectangles strings |> should equal 5
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Rectangle of height 1 is counted`` () =
     let strings = 
         [ "+--+";
           "+--+" ]
     rectangles strings |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Rectangle of width 1 is counted`` () =
     let strings = 
         [ "++";
@@ -61,14 +61,14 @@ let ``Rectangle of width 1 is counted`` () =
           "++" ]
     rectangles strings |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``1x1 square is counted`` () =
     let strings = 
         [ "++";
           "++" ]
     rectangles strings |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Only complete rectangles are counted`` () =
     let strings = 
         [ "  +-+";
@@ -78,7 +78,7 @@ let ``Only complete rectangles are counted`` () =
           "+-+-+" ]
     rectangles strings |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Rectangles can be of different sizes`` () =
     let strings = 
         [ "+------+----+";
@@ -88,7 +88,7 @@ let ``Rectangles can be of different sizes`` () =
           "+---+-------+" ]
     rectangles strings |> should equal 3
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Corner is required for a rectangle to be complete`` () =
     let strings = 
         [ "+------+----+";
@@ -98,7 +98,7 @@ let ``Corner is required for a rectangle to be complete`` () =
           "+---+-------+" ]
     rectangles strings |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Large input with many rectangles`` () =
     let strings = 
         [ "+---+--+----+";
@@ -111,7 +111,7 @@ let ``Large input with many rectangles`` () =
           "          +-+" ]
     rectangles strings |> should equal 60
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Rectangles must have four sides`` () =
     let strings = 
         [ "+-+ +-+";

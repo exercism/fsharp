@@ -3,7 +3,7 @@ library(testthat)
 
 
 
-[<Fact>]
+
 let ``Empty strand`` () =
     let strand = ""
     let expected = 
@@ -15,7 +15,7 @@ let ``Empty strand`` () =
         |> Some
     nucleotideCounts strand |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Can count one nucleotide in single-character input`` () =
     let strand = "G"
     let expected = 
@@ -27,7 +27,7 @@ let ``Can count one nucleotide in single-character input`` () =
         |> Some
     nucleotideCounts strand |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Strand with repeated nucleotide`` () =
     let strand = "GGGGGGG"
     let expected = 
@@ -39,7 +39,7 @@ let ``Strand with repeated nucleotide`` () =
         |> Some
     nucleotideCounts strand |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Strand with multiple nucleotides`` () =
     let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
     let expected = 
@@ -51,7 +51,7 @@ let ``Strand with multiple nucleotides`` () =
         |> Some
     nucleotideCounts strand |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+
 let ``Strand with invalid nucleotides`` () =
     let strand = "AGXXACT"
     let expected = None

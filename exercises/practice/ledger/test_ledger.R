@@ -3,7 +3,7 @@ library(testthat)
 
 
 
-[<Fact>]
+
 let ``Empty ledger`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -13,7 +13,7 @@ let ``Empty ledger`` () =
 
     formatLedger currency locale entries |> should equal expected
 
-[<Fact>]
+
 let ``One entry`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -27,7 +27,7 @@ let ``One entry`` () =
 
     formatLedger currency locale entries |> should equal expected
 
-[<Fact>]
+
 let ``Credit and debit`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -43,7 +43,7 @@ let ``Credit and debit`` () =
 
     formatLedger currency locale entries |> should equal expected
  
-[<Fact>]
+
 let ``Multiple entries on same date ordered by description`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -59,7 +59,7 @@ let ``Multiple entries on same date ordered by description`` () =
 
     formatLedger currency locale entries |> should equal expected
    
-[<Fact>]
+
 let ``Final order tie breaker is change`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -77,7 +77,7 @@ let ``Final order tie breaker is change`` () =
 
     formatLedger currency locale entries |> should equal expected
   
-[<Fact>]
+
 let ``Overlong descriptions`` () =
     let currency = "USD"
     let locale = "en-US"
@@ -91,7 +91,7 @@ let ``Overlong descriptions`` () =
 
     formatLedger currency locale entries |> should equal expected
   
-[<Fact>]
+
 let ``Euros`` () =
     let currency = "EUR"
     let locale = "en-US"
@@ -105,7 +105,7 @@ let ``Euros`` () =
 
     formatLedger currency locale entries |> should equal expected
    
-[<Fact>]
+
 let ``Dutch locale`` () =
     let currency = "USD"
     let locale = "nl-NL"
@@ -119,7 +119,7 @@ let ``Dutch locale`` () =
 
     formatLedger currency locale entries |> should equal expected
  
-[<Fact>]
+
 let ``Dutch negative number with 3 digits before decimal point`` () =
     let currency = "USD"
     let locale = "nl-NL"
@@ -133,7 +133,7 @@ let ``Dutch negative number with 3 digits before decimal point`` () =
 
     formatLedger currency locale entries |> should equal expected
    
-[<Fact>]
+
 let ``American negative number with 3 digits before decimal point`` () =
     let currency = "USD"
     let locale = "en-US"
