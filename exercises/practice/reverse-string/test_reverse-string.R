@@ -6,21 +6,21 @@ test_that("An empty string", {
 })
 
 test_that("A word", {
-  expect_equal(reverse "robot", "tobor")
+  expect_equal(reverse("robot"), "tobor")
 })
 
 test_that("A capitalized word", {
-  expect_equal(reverse "Ramen", "nemaR")
+  expect_equal(reverse("Ramen"), "nemaR")
 })
 
 test_that("A sentence with punctuation", {
-  expect_equal(reverse "I'm hungry!", "!yrgnuh m'I")
+  expect_equal(reverse("I'm hungry!"), "!yrgnuh m'I")
 })
 
 test_that("A palindrome", {
-  expect_equal(reverse "racecar", "racecar")
+  expect_equal(reverse("racecar"), "racecar")
 })
 
 test_that("An even-sized word", {
-  expect_equal(reverse "drawer", "reward")
+  expect_equal(reverse("drawer"), "reward")
 
