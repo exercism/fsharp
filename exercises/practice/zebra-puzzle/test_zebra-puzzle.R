@@ -1,9 +1,6 @@
 module ZebraPuzzleTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ZebraPuzzle
 
 [<Fact>]
 let ``Resident who drinks water`` () =

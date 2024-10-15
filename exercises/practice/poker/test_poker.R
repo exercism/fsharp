@@ -1,9 +1,6 @@
 module PokerTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Poker
 
 [<Fact>]
 let ``Single hand always wins`` () =

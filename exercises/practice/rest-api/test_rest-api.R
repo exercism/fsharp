@@ -1,9 +1,6 @@
 module RestApiTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RestApi
 
 [<Fact>]
 let ``No users`` () =

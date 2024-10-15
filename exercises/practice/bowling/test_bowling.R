@@ -1,9 +1,6 @@
 module BowlingTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Bowling
 
 let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls
 

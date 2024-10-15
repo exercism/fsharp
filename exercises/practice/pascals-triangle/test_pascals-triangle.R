@@ -1,9 +1,6 @@
 module PascalsTriangleTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PascalsTriangle
 
 [<Fact>]
 let ``Zero rows`` () =

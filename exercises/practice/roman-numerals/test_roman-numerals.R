@@ -1,9 +1,6 @@
 module RomanNumeralsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RomanNumerals
 
 [<Fact>]
 let ``1 is I`` () =

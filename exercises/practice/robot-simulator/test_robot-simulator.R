@@ -1,9 +1,6 @@
 module RobotSimulatorTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RobotSimulator
 
 [<Fact>]
 let ``At origin facing north`` () =

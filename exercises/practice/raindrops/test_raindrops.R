@@ -1,9 +1,6 @@
 module RaindropsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Raindrops
 
 [<Fact>]
 let ``The sound for 1 is 1`` () =

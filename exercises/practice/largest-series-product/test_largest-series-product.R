@@ -1,9 +1,6 @@
 module LargestSeriesProductTests
 
-open FsUnit.Xunit
-open Xunit
 
-open LargestSeriesProduct
 
 [<Fact>]
 let ``Finds the largest product if span equals length`` () =

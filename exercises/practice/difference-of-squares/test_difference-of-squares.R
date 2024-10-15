@@ -1,9 +1,6 @@
 module DifferenceOfSquaresTests
 
-open FsUnit.Xunit
-open Xunit
 
-open DifferenceOfSquares
 
 [<Fact>]
 let ``Square of sum 1`` () =

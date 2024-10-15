@@ -1,10 +1,6 @@
 module ComplexNumbersTests
 
-open FsUnit.Xunit
-open Xunit
-open System
 
-open ComplexNumbers
 
 [<Fact>]
 let ``Real part of a purely real number`` () =

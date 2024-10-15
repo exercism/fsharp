@@ -1,9 +1,6 @@
 module ProteinTranslationTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ProteinTranslation
 
 [<Fact>]
 let ``Empty RNA sequence results in no proteins`` () =

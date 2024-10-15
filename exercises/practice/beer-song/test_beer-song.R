@@ -1,9 +1,6 @@
 module BeerSongTests
 
-open FsUnit.Xunit
-open Xunit
 
-open BeerSong
 
 [<Fact>]
 let ``First generic verse`` () =

@@ -1,9 +1,6 @@
 module SpaceAgeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SpaceAge
 
 [<Fact>]
 let ``Age on Earth`` () =

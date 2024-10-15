@@ -2,10 +2,7 @@
 
 module BinaryTest
 
-open FsUnit.Xunit
-open Xunit
 
-open Binary
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Binary_0_is_decimal_0`` () =

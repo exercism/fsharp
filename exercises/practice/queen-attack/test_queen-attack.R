@@ -1,9 +1,6 @@
 module QueenAttackTests
 
-open FsUnit.Xunit
-open Xunit
 
-open QueenAttack
 
 [<Fact>]
 let ``Queen with a valid position`` () =

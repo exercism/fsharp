@@ -1,9 +1,6 @@
 module GrainsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Grains
 
 [<Fact>]
 let ``Grains on square 1`` () =

@@ -1,9 +1,6 @@
 module CollatzConjectureTests
 
-open FsUnit.Xunit
-open Xunit
 
-open CollatzConjecture
 
 [<Fact>]
 let ``Zero steps for one`` () =

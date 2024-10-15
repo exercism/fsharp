@@ -1,9 +1,6 @@
 module IsogramTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Isogram
 
 [<Fact>]
 let ``Empty string`` () =

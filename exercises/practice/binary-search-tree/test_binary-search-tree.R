@@ -1,9 +1,6 @@
 module BinarySearchTreeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open BinarySearchTree
 
 [<Fact>]
 let ``Data is retained`` () =

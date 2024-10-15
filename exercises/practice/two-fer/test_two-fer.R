@@ -1,9 +1,6 @@
 module TwoFerTests
 
-open FsUnit.Xunit
-open Xunit
 
-open TwoFer
 
 [<Fact>]
 let ``No name given`` () =

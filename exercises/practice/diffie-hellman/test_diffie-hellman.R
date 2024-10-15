@@ -1,9 +1,6 @@
 module DiffieHellmanTests
 
-open FsUnit.Xunit
-open Xunit
 
-open DiffieHellman
 
 [<Fact>]
 let ``Private key is greater than 1 and less than p`` () =

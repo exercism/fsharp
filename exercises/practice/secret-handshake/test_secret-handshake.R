@@ -1,9 +1,6 @@
 module SecretHandshakeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SecretHandshake
 
 [<Fact>]
 let ``Wink for 1`` () =

@@ -1,11 +1,6 @@
 module SimpleCipherTests
 
-open FsUnit.Xunit
-open Xunit
-open System.Text.RegularExpressions
-open System
 
-open SimpleCipher
 
 [<Fact>]
 let ``Random key cipher - Can encode`` () =

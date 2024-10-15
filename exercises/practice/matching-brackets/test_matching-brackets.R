@@ -1,9 +1,6 @@
 module MatchingBracketsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open MatchingBrackets
 
 [<Fact>]
 let ``Paired square brackets`` () =

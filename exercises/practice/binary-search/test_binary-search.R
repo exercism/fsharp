@@ -1,9 +1,6 @@
 module BinarySearchTests
 
-open FsUnit.Xunit
-open Xunit
 
-open BinarySearch
 
 [<Fact>]
 let ``Finds a value in an array with one element`` () =

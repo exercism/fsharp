@@ -2,9 +2,6 @@
 
 module LinkedListTest
 
-open Xunit
-open FsUnit.Xunit
-open LinkedList
 
 [<Fact>]
 let ``Push and pop are first in last out order`` () =

@@ -1,9 +1,6 @@
 module SieveTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Sieve
 
 [<Fact>]
 let ``No primes under two`` () =

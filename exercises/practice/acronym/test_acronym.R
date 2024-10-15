@@ -1,9 +1,6 @@
 module AcronymTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Acronym
 
 [<Fact>]
 let ``Basic`` () =

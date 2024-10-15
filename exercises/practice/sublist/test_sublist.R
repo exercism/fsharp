@@ -1,9 +1,6 @@
 module SublistTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Sublist
 
 [<Fact>]
 let ``Empty lists`` () =

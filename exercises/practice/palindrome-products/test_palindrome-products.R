@@ -1,9 +1,6 @@
 module PalindromeProductsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PalindromeProducts
 
 [<Fact>]
 let ``Find the smallest palindrome from single digit factors`` () =

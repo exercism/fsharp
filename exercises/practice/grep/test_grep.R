@@ -1,10 +1,6 @@
 module GrepTests
 
-open FsUnit.Xunit
-open Xunit
-open System.IO
 
-open Grep
 
 let iliadFileName = "iliad.txt"
 let iliadContents = 

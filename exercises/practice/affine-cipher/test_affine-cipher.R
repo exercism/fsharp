@@ -1,9 +1,6 @@
 module AffineCipherTests
 
-open FsUnit.Xunit
-open Xunit
 
-open AffineCipher
 
 [<Fact>]
 let ``Encode yes`` () =

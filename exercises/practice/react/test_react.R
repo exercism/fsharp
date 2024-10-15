@@ -1,10 +1,6 @@
 module ReactTests
 
-open FsUnit.Xunit
-open Xunit
-open FakeItEasy
 
-open React
 
 [<Fact>]
 let ``Input cells have a value`` () =

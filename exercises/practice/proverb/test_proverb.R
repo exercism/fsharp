@@ -1,9 +1,6 @@
 module ProverbTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Proverb
 
 [<Fact>]
 let ``Zero pieces`` () =

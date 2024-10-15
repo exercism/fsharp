@@ -1,9 +1,6 @@
 module FoodChainTests
 
-open FsUnit.Xunit
-open Xunit
 
-open FoodChain
 
 [<Fact>]
 let ``Fly`` () =

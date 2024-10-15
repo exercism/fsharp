@@ -1,9 +1,6 @@
 module WordSearchTests
 
-open FsUnit.Xunit
-open Xunit
 
-open WordSearch
 
 [<Fact>]
 let ``Should accept an initial game grid and a target search word`` () =

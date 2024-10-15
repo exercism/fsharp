@@ -1,9 +1,6 @@
 module TwelveDaysTests
 
-open FsUnit.Xunit
-open Xunit
 
-open TwelveDays
 
 [<Fact>]
 let ``First day a partridge in a pear tree`` () =

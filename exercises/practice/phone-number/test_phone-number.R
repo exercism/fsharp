@@ -1,9 +1,6 @@
 module PhoneNumberTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PhoneNumber
 
 [<Fact>]
 let ``Cleans the number`` () =

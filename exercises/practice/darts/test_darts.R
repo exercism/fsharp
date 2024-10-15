@@ -1,9 +1,6 @@
 module DartsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Darts
 
 [<Fact>]
 let ``Missed target`` () =

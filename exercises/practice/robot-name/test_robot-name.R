@@ -2,10 +2,6 @@
 
 module RobotNameTest
 
-open Xunit
-open FsUnit.Xunit
-open System.Text.RegularExpressions
-open RobotName
 
 [<Fact>]
 let ``Robot has a name`` () =     

@@ -2,10 +2,7 @@
 
 module TrinaryTest
 
-open FsUnit.Xunit
-open Xunit
 
-open Trinary
 
 [<Fact>]
 let ``Trinary_1_is_decimal_1`` () =

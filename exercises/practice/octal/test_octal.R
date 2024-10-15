@@ -2,10 +2,7 @@
 
 module OctalTest
 
-open FsUnit.Xunit
-open Xunit
 
-open Octal
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Octal 1 is decimal 1`` () =

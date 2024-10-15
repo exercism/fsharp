@@ -1,9 +1,6 @@
 module RnaTranscriptionTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RnaTranscription
 
 [<Fact>]
 let ``Empty RNA sequence`` () =

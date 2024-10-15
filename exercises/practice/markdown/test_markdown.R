@@ -1,9 +1,6 @@
 module MarkdownTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Markdown
 
 [<Fact>]
 let ``Parses normal text as a paragraph`` () =

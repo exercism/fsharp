@@ -1,9 +1,6 @@
 module PovTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Pov
 
 let rec graphToList (graph: Graph<'a>) = 
     let right =

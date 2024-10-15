@@ -1,9 +1,6 @@
 module ArmstrongNumbersTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ArmstrongNumbers
 
 [<Fact>]
 let ``Zero is an Armstrong number`` () =

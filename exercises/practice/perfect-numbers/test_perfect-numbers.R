@@ -1,9 +1,6 @@
 module PerfectNumbersTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PerfectNumbers
 
 [<Fact>]
 let ``Smallest perfect number is classified correctly`` () =

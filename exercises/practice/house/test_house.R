@@ -1,9 +1,6 @@
 module HouseTests
 
-open FsUnit.Xunit
-open Xunit
 
-open House
 
 [<Fact>]
 let ``Verse one - the house that jack built`` () =

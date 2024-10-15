@@ -1,9 +1,6 @@
 module PangramTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Pangram
 
 [<Fact>]
 let ``Empty sentence`` () =

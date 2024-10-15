@@ -1,9 +1,6 @@
 module SeriesTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Series
 
 [<Fact>]
 let ``Slices of one from one`` () =

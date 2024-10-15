@@ -1,9 +1,6 @@
 module VariableLengthQuantityTests
 
-open FsUnit.Xunit
-open Xunit
 
-open VariableLengthQuantity
 
 [<Fact>]
 let ``Zero`` () =

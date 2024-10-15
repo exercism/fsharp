@@ -1,10 +1,6 @@
 module MeetupTests
 
-open FsUnit.Xunit
-open Xunit
-open System
 
-open Meetup
 
 [<Fact>]
 let ``When teenth Monday is the 13th, the first day of the teenth week`` () =

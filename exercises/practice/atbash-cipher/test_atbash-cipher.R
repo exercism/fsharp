@@ -1,9 +1,6 @@
 module AtbashCipherTests
 
-open FsUnit.Xunit
-open Xunit
 
-open AtbashCipher
 
 [<Fact>]
 let ``Encode yes`` () =

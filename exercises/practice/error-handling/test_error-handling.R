@@ -2,11 +2,7 @@
 
 module ErrorHandlingTest
 
-open Xunit
-open FsUnit.Xunit
-open System
 
-open ErrorHandling
 
 // Custom class that implements IDisposable
 type Resource() = 

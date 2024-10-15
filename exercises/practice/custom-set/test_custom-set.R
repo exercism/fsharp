@@ -1,9 +1,6 @@
 module CustomSetTests
 
-open FsUnit.Xunit
-open Xunit
 
-open CustomSet
 
 [<Fact>]
 let ``Sets with no elements are empty`` () =

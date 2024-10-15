@@ -1,9 +1,6 @@
 module BobTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Bob
 
 [<Fact>]
 let ``Stating something`` () =

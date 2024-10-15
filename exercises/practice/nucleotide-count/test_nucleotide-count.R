@@ -1,9 +1,6 @@
 module NucleotideCountTests
 
-open FsUnit.Xunit
-open Xunit
 
-open NucleotideCount
 
 [<Fact>]
 let ``Empty strand`` () =

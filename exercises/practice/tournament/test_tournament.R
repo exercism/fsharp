@@ -1,9 +1,6 @@
 module TournamentTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Tournament
 
 [<Fact>]
 let ``Just the header if no input`` () =

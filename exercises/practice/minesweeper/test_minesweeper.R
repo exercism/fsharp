@@ -1,9 +1,6 @@
 module MinesweeperTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Minesweeper
 
 [<Fact>]
 let ``No rows`` () =

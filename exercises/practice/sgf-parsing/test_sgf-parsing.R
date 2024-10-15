@@ -1,9 +1,6 @@
 module SgfParsingTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SgfParsing
 
 [<Fact>]
 let ``Empty input`` () =

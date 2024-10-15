@@ -1,9 +1,6 @@
 module DominoesTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Dominoes
 
 [<Fact>]
 let ``Empty input = empty output`` () =

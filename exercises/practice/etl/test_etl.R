@@ -1,9 +1,6 @@
 module EtlTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Etl
 
 [<Fact>]
 let ``Single letter`` () =

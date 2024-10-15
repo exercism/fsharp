@@ -2,10 +2,7 @@
 
 module LedgerTest
 
-open Xunit
-open FsUnit.Xunit
 
-open Ledger
 
 [<Fact>]
 let ``Empty ledger`` () =

@@ -2,10 +2,7 @@
 
 module SimpleLinkedListTest
 
-open Xunit
-open FsUnit.Xunit
 
-open SimpleLinkedList
 
 [<Fact>]
 let ``Empty list`` () =

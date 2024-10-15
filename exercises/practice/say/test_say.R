@@ -1,9 +1,6 @@
 module SayTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Say
 
 [<Fact>]
 let ``Zero`` () =

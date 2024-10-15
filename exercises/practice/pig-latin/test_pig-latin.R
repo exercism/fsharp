@@ -1,9 +1,6 @@
 module PigLatinTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PigLatin
 
 [<Fact>]
 let ``Word beginning with a`` () =

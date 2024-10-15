@@ -1,10 +1,6 @@
 module GigasecondTests
 
-open FsUnit.Xunit
-open Xunit
-open System
 
-open Gigasecond
 
 [<Fact>]
 let ``Date only specification of time`` () =

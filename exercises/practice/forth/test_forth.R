@@ -1,9 +1,6 @@
 module ForthTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Forth
 
 [<Fact>]
 let ``Parsing and numbers - numbers just get pushed onto the stack`` () =
