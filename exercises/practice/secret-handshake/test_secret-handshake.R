@@ -2,31 +2,31 @@ source("./secret-handshake.R")
 library(testthat)
 
 test_that("Wink for 1", {
-    commands 1 |> should equal ["wink"]
+  expect_equal(commands 1, ["wink"])
 })
 
 test_that("Double blink for 10", {
-    commands 2 |> should equal ["double blink"]
+  expect_equal(commands 2, ["double blink"])
 })
 
 test_that("Close your eyes for 100", {
-    commands 4 |> should equal ["close your eyes"]
+  expect_equal(commands 4, ["close your eyes"])
 })
 
 test_that("Jump for 1000", {
-    commands 8 |> should equal ["jump"]
+  expect_equal(commands 8, ["jump"])
 })
 
 test_that("Combine two actions", {
-    commands 3 |> should equal ["wink"; "double blink"]
+  expect_equal(commands 3, ["wink"; "double blink"])
 })
 
 test_that("Reverse two actions", {
-    commands 19 |> should equal ["double blink"; "wink"]
+  expect_equal(commands 19, ["double blink"; "wink"])
 })
 
 test_that("Reversing one action gives the same action", {
-    commands 24 |> should equal ["jump"]
+  expect_equal(commands 24, ["jump"])
 })
 
 test_that("Reversing no actions still gives no actions", {
@@ -34,11 +34,11 @@ test_that("Reversing no actions still gives no actions", {
 })
 
 test_that("All possible actions", {
-    commands 15 |> should equal ["wink"; "double blink"; "close your eyes"; "jump"]
+  expect_equal(commands 15, ["wink"; "double blink"; "close your eyes"; "jump"])
 })
 
 test_that("Reverse all possible actions", {
-    commands 31 |> should equal ["jump"; "close your eyes"; "double blink"; "wink"]
+  expect_equal(commands 31, ["jump"; "close your eyes"; "double blink"; "wink"])
 })
 
 test_that("Do nothing for zero", {

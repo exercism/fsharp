@@ -4,21 +4,21 @@ library(testthat)
 test_that("Input cells have a value", {
     let reactor = new Reactor()
     let input = reactor.createInputCell 10
-    input.Value |> should equal 10
+  expect_equal(input.Value, 10)
 })
 
 test_that("An input cell's value can be set", {
     let reactor = new Reactor()
     let input = reactor.createInputCell 4
     input.Value <- 20
-    input.Value |> should equal 20
+  expect_equal(input.Value, 20)
 })
 
 test_that("Compute cells calculate initial value", {
     let reactor = new Reactor()
     let input = reactor.createInputCell 1
     let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
-    output.Value |> should equal 2
+  expect_equal(output.Value, 2)
 })
 
 test_that("Compute cells take inputs in the right order", {
@@ -26,7 +26,7 @@ test_that("Compute cells take inputs in the right order", {
     let one = reactor.createInputCell 1
     let two = reactor.createInputCell 2
     let output = reactor.createComputeCell [one; two] (fun values -> values.[0] + values.[1] * 10)
-    output.Value |> should equal 21
+  expect_equal(output.Value, 21)
 })
 
 test_that("Compute cells update value when dependencies are changed", {
@@ -34,7 +34,7 @@ test_that("Compute cells update value when dependencies are changed", {
     let input = reactor.createInputCell 1
     let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     input.Value <- 3
-    output.Value |> should equal 4
+  expect_equal(output.Value, 4)
 })
 
 test_that("Compute cells can depend on other compute cells", {
@@ -43,9 +43,9 @@ test_that("Compute cells can depend on other compute cells", {
     let times_two = reactor.createComputeCell [input] (fun values -> values.[0] * 2)
     let times_thirty = reactor.createComputeCell [input] (fun values -> values.[0] * 30)
     let output = reactor.createComputeCell [times_two; times_thirty] (fun values -> values.[0] + values.[1])
-    output.Value |> should equal 32
+  expect_equal(output.Value, 32)
     input.Value <- 3
-    output.Value |> should equal 96
+  expect_equal(output.Value, 96)
 })
 
 test_that("Compute cells fire callbacks", {

@@ -27,10 +27,10 @@ test_that("Throwing exception", {
 
 test_that("Returning Option<'T>", {
     let successResult = handleErrorByReturningOption "1"
-    successResult |> should equal <| Some 1
+  expect_equal(successResult, <| Some 1)
     
     let failureResult = handleErrorByReturningOption "a"
-    failureResult |> should equal None
+  expect_equal(failureResult, None)
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
 // In that case, one can use a different discriminated union: Result<'TSuccess, 'TError>.
@@ -40,10 +40,10 @@ test_that("Returning Option<'T>", {
 
 test_that("Returning Result<'TSuccess, 'TError>", {
     let successResult = handleErrorByReturningResult "1"
-    (successResult = Ok 1) |> should equal true
+  expect_equal((successResult = Ok 1), true)
     
     let failureResult = handleErrorByReturningResult "a"
-    (failureResult = Error "Could not convert input to integer") |> should equal true
+  expect_equal((failureResult = Error "Could not convert input to integer"), true)
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -74,16 +74,16 @@ test_that("Using railway-oriented programming", {
         >> bind validate3
 
     let firstValidationFailureResult = combinedValidation 1            
-    (firstValidationFailureResult = Error "Input less than or equal to five") |> should equal true
+  expect_equal((firstValidationFailureResult = Error "Input less than or equal to five"), true)
 
     let secondValidationFailureResult = combinedValidation 23          
-    (secondValidationFailureResult = Error "Input greater than or equal to ten") |> should equal true
+  expect_equal((secondValidationFailureResult = Error "Input greater than or equal to ten"), true)
 
     let thirdValidationFailureResult = combinedValidation 8        
-    (thirdValidationFailureResult = Error "Input is not odd") |> should equal true
+  expect_equal((thirdValidationFailureResult = Error "Input is not odd"), true)
 
     let successResult = combinedValidation 7        
-    (successResult = Ok 7) |> should equal true
+  expect_equal((successResult = Ok 7), true)
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -92,4 +92,4 @@ test_that("Cleaning up disposables when throwing exception", {
     let resource = new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-    resource.Disposed() |> should equal true
+  expect_equal(resource.Disposed(), true)

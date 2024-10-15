@@ -2,57 +2,57 @@ source("./atbash-cipher.R")
 library(testthat)
 
 test_that("Encode yes", {
-    encode "yes" |> should equal "bvh"
+  expect_equal(encode "yes", "bvh")
 })
 
 test_that("Encode no", {
-    encode "no" |> should equal "ml"
+  expect_equal(encode "no", "ml")
 })
 
 test_that("Encode OMG", {
-    encode "OMG" |> should equal "lnt"
+  expect_equal(encode "OMG", "lnt")
 })
 
 test_that("Encode spaces", {
-    encode "O M G" |> should equal "lnt"
+  expect_equal(encode "O M G", "lnt")
 })
 
 test_that("Encode mindblowingly", {
-    encode "mindblowingly" |> should equal "nrmwy oldrm tob"
+  expect_equal(encode "mindblowingly", "nrmwy oldrm tob")
 })
 
 test_that("Encode numbers", {
-    encode "Testing,1 2 3, testing." |> should equal "gvhgr mt123 gvhgr mt"
+  expect_equal(encode "Testing,1 2 3, testing.", "gvhgr mt123 gvhgr mt")
 })
 
 test_that("Encode deep thought", {
-    encode "Truth is fiction." |> should equal "gifgs rhurx grlm"
+  expect_equal(encode "Truth is fiction.", "gifgs rhurx grlm")
 })
 
 test_that("Encode all the letters", {
-    encode "The quick brown fox jumps over the lazy dog." |> should equal "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+  expect_equal(encode "The quick brown fox jumps over the lazy dog.", "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt")
 })
 
 test_that("Decode exercism", {
-    decode "vcvix rhn" |> should equal "exercism"
+  expect_equal(decode "vcvix rhn", "exercism")
 })
 
 test_that("Decode a sentence", {
-    decode "zmlyh gzxov rhlug vmzhg vkkrm thglm v" |> should equal "anobstacleisoftenasteppingstone"
+  expect_equal(decode "zmlyh gzxov rhlug vmzhg vkkrm thglm v", "anobstacleisoftenasteppingstone")
 })
 
 test_that("Decode numbers", {
-    decode "gvhgr mt123 gvhgr mt" |> should equal "testing123testing"
+  expect_equal(decode "gvhgr mt123 gvhgr mt", "testing123testing")
 })
 
 test_that("Decode all the letters", {
-    decode "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" |> should equal "thequickbrownfoxjumpsoverthelazydog"
+  expect_equal(decode "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt", "thequickbrownfoxjumpsoverthelazydog")
 })
 
 test_that("Decode with too many spaces", {
-    decode "vc vix    r hn" |> should equal "exercism"
+  expect_equal(decode "vc vix    r hn", "exercism")
 })
 
 test_that("Decode with no spaces", {
-    decode "zmlyhgzxovrhlugvmzhgvkkrmthglmv" |> should equal "anobstacleisoftenasteppingstone"
+  expect_equal(decode "zmlyhgzxovrhlugvmzhgvkkrmthglmv", "anobstacleisoftenasteppingstone")
 

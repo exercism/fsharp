@@ -3,19 +3,19 @@ library(testthat)
 
 test_that("Zero rows", {
     let expected: int list list = []
-    rows 0 |> should equal expected
+  expect_equal(rows 0, expected)
 })
 
 test_that("Single row", {
     let expected = [[1]]
-    rows 1 |> should equal expected
+  expect_equal(rows 1, expected)
 })
 
 test_that("Two rows", {
     let expected = 
         [ [1];
           [1; 1] ]
-    rows 2 |> should equal expected
+  expect_equal(rows 2, expected)
 })
 
 test_that("Three rows", {
@@ -23,7 +23,7 @@ test_that("Three rows", {
         [ [1];
           [1; 1];
           [1; 2; 1] ]
-    rows 3 |> should equal expected
+  expect_equal(rows 3, expected)
 })
 
 test_that("Four rows", {
@@ -32,7 +32,7 @@ test_that("Four rows", {
           [1; 1];
           [1; 2; 1];
           [1; 3; 3; 1] ]
-    rows 4 |> should equal expected
+  expect_equal(rows 4, expected)
 })
 
 test_that("Five rows", {
@@ -42,7 +42,7 @@ test_that("Five rows", {
           [1; 2; 1];
           [1; 3; 3; 1];
           [1; 4; 6; 4; 1] ]
-    rows 5 |> should equal expected
+  expect_equal(rows 5, expected)
 })
 
 test_that("Six rows", {
@@ -53,7 +53,7 @@ test_that("Six rows", {
           [1; 3; 3; 1];
           [1; 4; 6; 4; 1];
           [1; 5; 10; 10; 5; 1] ]
-    rows 6 |> should equal expected
+  expect_equal(rows 6, expected)
 })
 
 test_that("Ten rows", {
@@ -68,5 +68,5 @@ test_that("Ten rows", {
           [1; 7; 21; 35; 35; 21; 7; 1];
           [1; 8; 28; 56; 70; 56; 28; 8; 1];
           [1; 9; 36; 84; 126; 126; 84; 36; 9; 1] ]
-    rows 10 |> should equal expected
+  expect_equal(rows 10, expected)
 

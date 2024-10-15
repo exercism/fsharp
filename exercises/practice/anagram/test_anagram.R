@@ -8,7 +8,7 @@ test_that("No matches", {
 
 test_that("Detects two anagrams", {
     let candidates = ["lemons"; "cherry"; "melons"]
-    findAnagrams candidates "solemn" |> should equal ["lemons"; "melons"]
+  expect_equal(findAnagrams candidates "solemn", ["lemons"; "melons"])
 })
 
 test_that("Does not detect anagram subsets", {
@@ -18,17 +18,17 @@ test_that("Does not detect anagram subsets", {
 
 test_that("Detects anagram", {
     let candidates = ["enlists"; "google"; "inlets"; "banana"]
-    findAnagrams candidates "listen" |> should equal ["inlets"]
+  expect_equal(findAnagrams candidates "listen", ["inlets"])
 })
 
 test_that("Detects three anagrams", {
     let candidates = ["gallery"; "ballerina"; "regally"; "clergy"; "largely"; "leading"]
-    findAnagrams candidates "allergy" |> should equal ["gallery"; "regally"; "largely"]
+  expect_equal(findAnagrams candidates "allergy", ["gallery"; "regally"; "largely"])
 })
 
 test_that("Detects multiple anagrams with different case", {
     let candidates = ["Eons"; "ONES"]
-    findAnagrams candidates "nose" |> should equal ["Eons"; "ONES"]
+  expect_equal(findAnagrams candidates "nose", ["Eons"; "ONES"])
 })
 
 test_that("Does not detect non-anagrams with identical checksum", {
@@ -38,17 +38,17 @@ test_that("Does not detect non-anagrams with identical checksum", {
 
 test_that("Detects anagrams case-insensitively", {
     let candidates = ["cashregister"; "Carthorse"; "radishes"]
-    findAnagrams candidates "Orchestra" |> should equal ["Carthorse"]
+  expect_equal(findAnagrams candidates "Orchestra", ["Carthorse"])
 })
 
 test_that("Detects anagrams using case-insensitive subject", {
     let candidates = ["cashregister"; "carthorse"; "radishes"]
-    findAnagrams candidates "Orchestra" |> should equal ["carthorse"]
+  expect_equal(findAnagrams candidates "Orchestra", ["carthorse"])
 })
 
 test_that("Detects anagrams using case-insensitive possible matches", {
     let candidates = ["cashregister"; "Carthorse"; "radishes"]
-    findAnagrams candidates "orchestra" |> should equal ["Carthorse"]
+  expect_equal(findAnagrams candidates "orchestra", ["Carthorse"])
 })
 
 test_that("Does not detect an anagram if the original word is repeated", {
@@ -78,5 +78,5 @@ test_that("Words are not anagrams of themselves even if letter case is completel
 
 test_that("Words other than themselves can be anagrams", {
     let candidates = ["LISTEN"; "Silent"]
-    findAnagrams candidates "LISTEN" |> should equal ["Silent"]
+  expect_equal(findAnagrams candidates "LISTEN", ["Silent"])
 

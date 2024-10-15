@@ -2,37 +2,37 @@ source("./acronym.R")
 library(testthat)
 
 test_that("Basic", {
-    abbreviate "Portable Network Graphics" |> should equal "PNG"
+  expect_equal(abbreviate "Portable Network Graphics", "PNG")
 })
 
 test_that("Lowercase words", {
-    abbreviate "Ruby on Rails" |> should equal "ROR"
+  expect_equal(abbreviate "Ruby on Rails", "ROR")
 })
 
 test_that("Punctuation", {
-    abbreviate "First In, First Out" |> should equal "FIFO"
+  expect_equal(abbreviate "First In, First Out", "FIFO")
 })
 
 test_that("All caps word", {
-    abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
+  expect_equal(abbreviate "GNU Image Manipulation Program", "GIMP")
 })
 
 test_that("Punctuation without whitespace", {
-    abbreviate "Complementary metal-oxide semiconductor" |> should equal "CMOS"
+  expect_equal(abbreviate "Complementary metal-oxide semiconductor", "CMOS")
 })
 
 test_that("Very long abbreviation", {
-    abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" |> should equal "ROTFLSHTMDCOALM"
+  expect_equal(abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me", "ROTFLSHTMDCOALM")
 })
 
 test_that("Consecutive delimiters", {
-    abbreviate "Something - I made up from thin air" |> should equal "SIMUFTA"
+  expect_equal(abbreviate "Something - I made up from thin air", "SIMUFTA")
 })
 
 test_that("Apostrophes", {
-    abbreviate "Halley's Comet" |> should equal "HC"
+  expect_equal(abbreviate "Halley's Comet", "HC")
 })
 
 test_that("Underscore emphasis", {
-    abbreviate "The Road _Not_ Taken" |> should equal "TRNT"
+  expect_equal(abbreviate "The Road _Not_ Taken", "TRNT")
 

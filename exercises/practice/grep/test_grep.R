@@ -51,7 +51,7 @@ type GrepTests() =
         let expected = ["Of Atreus, Agamemnon, King of men."]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, one match, print line numbers flag", {
@@ -61,7 +61,7 @@ type GrepTests() =
         let expected = ["2:Of that Forbidden Tree, whose mortal tast"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, one match, case-insensitive flag", {
@@ -71,7 +71,7 @@ type GrepTests() =
         let expected = ["Of that Forbidden Tree, whose mortal tast"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, one match, print file names flag", {
@@ -81,7 +81,7 @@ type GrepTests() =
         let expected = ["paradise-lost.txt"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, one match, match entire lines flag", {
@@ -91,7 +91,7 @@ type GrepTests() =
         let expected = ["With loss of Eden, till one greater Man"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, one match, multiple flags", {
@@ -101,7 +101,7 @@ type GrepTests() =
         let expected = ["9:Of Atreus, Agamemnon, King of men."]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, several matches, no flags", {
@@ -114,7 +114,7 @@ type GrepTests() =
               "The worst that may befall me in this case," ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, several matches, print line numbers flag", {
@@ -127,7 +127,7 @@ type GrepTests() =
               "6:The worst that may befall me in this case," ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, several matches, match entire lines flag", {
@@ -137,7 +137,7 @@ type GrepTests() =
         let expected: string list = []
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, several matches, case-insensitive flag", {
@@ -149,7 +149,7 @@ type GrepTests() =
               "The noble Chief Achilles from the son" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, several matches, inverted flag", {
@@ -164,7 +164,7 @@ type GrepTests() =
               "That Shepherd, who first taught the chosen Seed" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, no matches, various flags", {
@@ -174,7 +174,7 @@ type GrepTests() =
         let expected: string list = []
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, one match, file flag takes precedence over line flag", {
@@ -184,7 +184,7 @@ type GrepTests() =
         let expected = ["iliad.txt"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``One file, several matches, inverted and match entire lines flags", {
@@ -202,7 +202,7 @@ type GrepTests() =
               "Of Atreus, Agamemnon, King of men." ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, one match, no flags", {
@@ -212,7 +212,7 @@ type GrepTests() =
         let expected = ["iliad.txt:Of Atreus, Agamemnon, King of men."]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, several matches, no flags", {
@@ -225,7 +225,7 @@ type GrepTests() =
               "midsummer-night.txt:The worst that may befall me in this case," ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, several matches, print line numbers flag", {
@@ -239,7 +239,7 @@ type GrepTests() =
               "paradise-lost.txt:6:Sing Heav'nly Muse, that on the secret top" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, one match, print file names flag", {
@@ -251,7 +251,7 @@ type GrepTests() =
               "paradise-lost.txt" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, several matches, case-insensitive flag", {
@@ -271,7 +271,7 @@ type GrepTests() =
               "paradise-lost.txt:Sing Heav'nly Muse, that on the secret top" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, several matches, inverted flag", {
@@ -284,7 +284,7 @@ type GrepTests() =
               "midsummer-night.txt:If I refuse to wed Demetrius." ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, one match, match entire lines flag", {
@@ -294,7 +294,7 @@ type GrepTests() =
         let expected = ["midsummer-night.txt:But I beseech your grace that I may know"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, one match, multiple flags", {
@@ -304,7 +304,7 @@ type GrepTests() =
         let expected = ["paradise-lost.txt:4:With loss of Eden, till one greater Man"]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, no matches, various flags", {
@@ -314,7 +314,7 @@ type GrepTests() =
         let expected: string list = []
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, several matches, file flag takes precedence over line number flag", {
@@ -326,7 +326,7 @@ type GrepTests() =
               "paradise-lost.txt" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 
     
     member this.``Multiple files, several matches, inverted and match entire lines flags", {
@@ -359,5 +359,5 @@ type GrepTests() =
               "paradise-lost.txt:That Shepherd, who first taught the chosen Seed" ]
         
         createFiles() |> ignore
-        grep files flags pattern |> should equal expected
+  expect_equal(    grep files flags pattern, expected)
 

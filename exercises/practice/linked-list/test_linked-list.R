@@ -8,8 +8,8 @@ test_that("Push and pop are first in last out order", {
     let val1 = pop linkedList
     let val2 = pop linkedList
 
-    val1 |> should equal 20
-    val2 |> should equal 10
+  expect_equal(val1, 20)
+  expect_equal(val2, 10)
 })
 
 test_that("Push and shift are first in first out order", {
@@ -20,8 +20,8 @@ test_that("Push and shift are first in first out order", {
     let val1 = shift linkedList
     let val2 = shift linkedList
 
-    val1 |> should equal 10
-    val2 |> should equal 20
+  expect_equal(val1, 10)
+  expect_equal(val2, 20)
 })
 
 test_that("Unshift and shift are last in first out order", {
@@ -32,8 +32,8 @@ test_that("Unshift and shift are last in first out order", {
     let val1 = shift linkedList
     let val2 = shift linkedList
 
-    val1 |> should equal 20
-    val2 |> should equal 10
+  expect_equal(val1, 20)
+  expect_equal(val2, 10)
 })
 
 test_that("Unshift and pop are last in last out order", {
@@ -44,8 +44,8 @@ test_that("Unshift and pop are last in last out order", {
     let val1 = pop linkedList
     let val2 = pop linkedList
 
-    val1 |> should equal 10
-    val2 |> should equal 20
+  expect_equal(val1, 10)
+  expect_equal(val2, 20)
 })
 
 test_that("Push and pop can handle multiple values", {
@@ -58,9 +58,9 @@ test_that("Push and pop can handle multiple values", {
     let val2 = pop linkedList
     let val3 = pop linkedList
 
-    val1 |> should equal 30
-    val2 |> should equal 20
-    val3 |> should equal 10
+  expect_equal(val1, 30)
+  expect_equal(val2, 20)
+  expect_equal(val3, 10)
 })
 
 test_that("Unshift and shift can handle multiple values", {
@@ -73,9 +73,9 @@ test_that("Unshift and shift can handle multiple values", {
     let val2 = shift linkedList
     let val3 = shift linkedList
 
-    val1 |> should equal 30
-    val2 |> should equal 20
-    val3 |> should equal 10
+  expect_equal(val1, 30)
+  expect_equal(val2, 20)
+  expect_equal(val3, 10)
 })
 
 test_that("All methods of manipulating the linkedList can be used together", {
@@ -85,12 +85,12 @@ test_that("All methods of manipulating the linkedList can be used together", {
 
     let val1 = pop linkedList
 
-    val1 |> should equal 20
+  expect_equal(val1, 20)
 
     linkedList |> push 30
     let val2 = shift linkedList
 
-    val2 |> should equal 10
+  expect_equal(val2, 10)
 
     linkedList |> unshift 40
     linkedList |> push 50
@@ -99,6 +99,6 @@ test_that("All methods of manipulating the linkedList can be used together", {
     let val4 = pop linkedList
     let val5 = shift linkedList
 
-    val3 |> should equal 40
-    val4 |> should equal 50
-    val5 |> should equal 30
+  expect_equal(val3, 40)
+  expect_equal(val4, 50)
+  expect_equal(val5, 30)

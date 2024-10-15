@@ -5,20 +5,20 @@ test_that("Empty keep", {
 
   
 test_that("Keep everything", {
-    set [1; 2; 3] |> Seq.keep (fun x -> x < 10) |> Seq.toList |> should equal <| [1; 2; 3]
+  expect_equal(set [1; 2; 3] |> Seq.keep (fun x -> x < 10) |> Seq.toList, <| [1; 2; 3])
 
  
 test_that("Keep first and last", {
-    [|1; 2; 3|] |> Seq.keep (fun x -> x % 2 <> 0) |> Seq.toList |> should equal [1; 3]
+  expect_equal([|1; 2; 3|] |> Seq.keep (fun x -> x % 2 <> 0) |> Seq.toList, [1; 3])
 })
 
 test_that("Keep neither first nor last", {
-    [1; 2; 3; 4; 5] |> Seq.keep (fun x -> x % 2 = 0) |> Seq.toList |> should equal [2; 4]
+  expect_equal([1; 2; 3; 4; 5] |> Seq.keep (fun x -> x % 2 = 0) |> Seq.toList, [2; 4])
 })
 
 test_that("Keep strings", {
     let words = "apple zebra banana zombies cherimoya zelot".Split(' ');
-    words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> Seq.toList |> should equal <| List.ofArray("zebra zombies zelot".Split(' '))
+  expect_equal(words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> Seq.toList, <| List.ofArray("zebra zombies zelot".Split(' ')))
 })
 
 test_that("Keep arrays", {
@@ -32,7 +32,7 @@ test_that("Keep arrays", {
                     [|1; 2; 5|]
                     |]
     let expected = [ [|5; 5; 5|]; [|5; 1; 2|]; [|1; 5; 2|]; [|1; 2; 5|] ]
-    actual |> Seq.keep (Array.exists ((=) 5)) |> Seq.toList |> should equal expected
+  expect_equal(actual |> Seq.keep (Array.exists ((=) 5)) |> Seq.toList, expected)
 })
 
 test_that("Empty discard", {
@@ -40,20 +40,20 @@ test_that("Empty discard", {
 })
 
 test_that("Discard nothing", {
-    set [1; 2; 3] |> Seq.discard (fun x -> x > 10) |> Seq.toList |> should equal <| [1; 2; 3]
+  expect_equal(set [1; 2; 3] |> Seq.discard (fun x -> x > 10) |> Seq.toList, <| [1; 2; 3])
 })
 
 test_that("Discard first and last", {
-    [|1; 2; 3|] |> Seq.discard (fun x -> x % 2 <> 0) |> Seq.toList |> should equal [2]
+  expect_equal([|1; 2; 3|] |> Seq.discard (fun x -> x % 2 <> 0) |> Seq.toList, [2])
 })
 
 test_that("Discard neither first nor last", {
-    [1; 2; 3; 4; 5] |> Seq.discard (fun x -> x % 2 = 0) |> Seq.toList |> should equal [1; 3; 5]
+  expect_equal([1; 2; 3; 4; 5] |> Seq.discard (fun x -> x % 2 = 0) |> Seq.toList, [1; 3; 5])
 })
 
 test_that("Discard strings", {
     let words = "apple zebra banana zombies cherimoya zelot".Split(' ')
-    words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> Seq.toList |> should equal <| List.ofArray("apple banana cherimoya".Split(' '))
+  expect_equal(words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> Seq.toList, <| List.ofArray("apple banana cherimoya".Split(' ')))
 })
 
 test_that("Discard arrays", {
@@ -67,4 +67,4 @@ test_that("Discard arrays", {
                     [|1; 2; 5|]
                     |]
     let expected = [ [|1; 2; 3|]; [|2; 1; 2|]; [|2; 2; 1|] ]
-    actual |> Seq.discard (Array.exists ((=) 5)) |> Seq.toList |> should equal expected
+  expect_equal(actual |> Seq.discard (Array.exists ((=) 5)) |> Seq.toList, expected)

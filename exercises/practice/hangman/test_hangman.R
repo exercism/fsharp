@@ -10,7 +10,7 @@ test_that("Initially 9 failures are allowed", {
 
     startGame game |> ignore
 
-    lastProgress |> should equal <| Busy 9
+  expect_equal(lastProgress, <| Busy 9)
 })
 
 test_that("Initially no letters are guessed", {
@@ -22,7 +22,7 @@ test_that("Initially no letters are guessed", {
 
     startGame game |> ignore
 
-    lastMaskedWord |> should equal "___"
+  expect_equal(lastMaskedWord, "___")
 })
 
 test_that("After 10 failures the game is over", {
@@ -36,7 +36,7 @@ test_that("After 10 failures the game is over", {
 
     [for x in 1..10 do makeGuess 'x' game] |> ignore
 
-    lastProgress |> should equal Lose
+  expect_equal(lastProgress, Lose)
     
 
 test_that("Feeding a correct letter removes underscores", {
@@ -50,13 +50,13 @@ test_that("Feeding a correct letter removes underscores", {
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 9
-    lastState.Value.maskedWord |> should equal "___b__"
+  expect_equal(lastState.Value.progress, <| Busy 9)
+  expect_equal(lastState.Value.maskedWord, "___b__")
 
     makeGuess 'o' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 9
-    lastState.Value.maskedWord |> should equal "_oob__"
+  expect_equal(lastState.Value.progress, <| Busy 9)
+  expect_equal(lastState.Value.maskedWord, "_oob__")
     
 
 test_that("Feeding a correct letter twice counts as a failure", {
@@ -70,13 +70,13 @@ test_that("Feeding a correct letter twice counts as a failure", {
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 9
-    lastState.Value.maskedWord |> should equal "___b__"
+  expect_equal(lastState.Value.progress, <| Busy 9)
+  expect_equal(lastState.Value.maskedWord, "___b__")
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "___b__"
+  expect_equal(lastState.Value.progress, <| Busy 8)
+  expect_equal(lastState.Value.maskedWord, "___b__")
      
 
 test_that("Getting all the letters right makes for a win", {
@@ -90,25 +90,25 @@ test_that("Getting all the letters right makes for a win", {
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_____"
+  expect_equal(lastState.Value.progress, <| Busy 8)
+  expect_equal(lastState.Value.maskedWord, "_____")
 
     makeGuess 'e' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_e___"
+  expect_equal(lastState.Value.progress, <| Busy 8)
+  expect_equal(lastState.Value.maskedWord, "_e___")
 
     makeGuess 'l' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_ell_"
+  expect_equal(lastState.Value.progress, <| Busy 8)
+  expect_equal(lastState.Value.maskedWord, "_ell_")
 
     makeGuess 'o' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_ello"
+  expect_equal(lastState.Value.progress, <| Busy 8)
+  expect_equal(lastState.Value.maskedWord, "_ello")
 
     makeGuess 'h' game |> ignore
 
-    lastState.Value.progress |> should equal Win
-    lastState.Value.maskedWord |> should equal "hello"
+  expect_equal(lastState.Value.progress, Win)
+  expect_equal(lastState.Value.maskedWord, "hello")

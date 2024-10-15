@@ -4,7 +4,7 @@ library(testthat)
 test_that("Single letter", {
     let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList
-    transform lettersByScore |> should equal expected
+  expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Single score with multiple letters", {
@@ -16,7 +16,7 @@ test_that("Single score with multiple letters", {
           ('o', 1);
           ('u', 1) ]
         |> Map.ofList
-    transform lettersByScore |> should equal expected
+  expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Multiple scores with multiple letters", {
@@ -30,7 +30,7 @@ test_that("Multiple scores with multiple letters", {
           ('e', 1);
           ('g', 2) ]
         |> Map.ofList
-    transform lettersByScore |> should equal expected
+  expect_equal(transform lettersByScore, expected)
 })
 
 test_that("Multiple scores with differing numbers of letters", {
@@ -71,5 +71,5 @@ test_that("Multiple scores with differing numbers of letters", {
           ('y', 4);
           ('z', 10) ]
         |> Map.ofList
-    transform lettersByScore |> should equal expected
+  expect_equal(transform lettersByScore, expected)
 

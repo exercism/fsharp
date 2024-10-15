@@ -14,7 +14,7 @@ test_that("Graph with one node", {
                 node "a" []
             ]            
 
-    nodes g |> should equal [node "a" []]
+  expect_equal(nodes g, [node "a" []])
     edges g |> should be Empty
     attrs g |> should be Empty
     
@@ -24,7 +24,7 @@ test_that("Graph with one node with keywords", {
                 node "a" [("color", "green")]
             ]            
 
-    nodes g |> should equal [node "a" [("color", "green")]]
+  expect_equal(nodes g, [node "a" [("color", "green")]])
     edges g |> should be Empty
     attrs g |> should be Empty
 })
@@ -35,7 +35,7 @@ test_that("Graph with one edge", {
             ]             
 
     nodes g |> should be Empty
-    edges g |> should equal [edge "a" "b" []]
+  expect_equal(edges g, [edge "a" "b" []])
     attrs g |> should be Empty
 })
 
@@ -46,7 +46,7 @@ test_that("Graph with one attribute", {
 
     nodes g |> should be Empty
     edges g |> should be Empty
-    attrs g |> should equal [attr "foo" "1"]
+  expect_equal(attrs g, [attr "foo" "1"])
 })
 
 test_that("Graph with attributes", {    
@@ -61,6 +61,6 @@ test_that("Graph with attributes", {
                 attr "bar" "true"
             ]             
 
-    nodes g |> should equal [node "a" [("color", "green")]; node "b" [("label", "Beta!")]; node "c" []]
-    edges g |> should equal [edge "a" "b" [("color", "blue")]; edge "b" "c" []]
-    attrs g |> should equal [attr "bar" "true"; attr "foo" "1"; attr "title" "Testing Attrs"]
+  expect_equal(nodes g, [node "a" [("color", "green")]; node "b" [("label", "Beta!")]; node "c" []])
+  expect_equal(edges g, [edge "a" "b" [("color", "blue")]; edge "b" "c" []])
+  expect_equal(attrs g, [attr "bar" "true"; attr "foo" "1"; attr "title" "Testing Attrs"])

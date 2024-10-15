@@ -10,11 +10,11 @@ test_that("Empty accumulation produces empty accumulation", {
 })
 
 test_that("Identity accumulation returns unmodified list", {
-    accumulate id [1; 2; 3] |> should equal [1; 2; 3]
+  expect_equal(accumulate id [1; 2; 3], [1; 2; 3])
 })
 
 test_that("Accumulate squares", {
-    accumulate (fun x -> x * x) [1; 2; 3] |> should equal [1; 4; 9]
+  expect_equal(accumulate (fun x -> x * x) [1; 2; 3], [1; 4; 9])
 })
 
 test_that("Accumulate upcases", {

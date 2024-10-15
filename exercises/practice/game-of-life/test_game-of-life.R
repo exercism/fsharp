@@ -4,7 +4,7 @@ library(testthat)
 test_that("Empty matrix", {
     let matrix: int[,] = array2D []
     let expected: int[,] = array2D []
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Live cells with zero live neighbors die", {
@@ -16,7 +16,7 @@ test_that("Live cells with zero live neighbors die", {
         array2D [ [0; 0; 0];
                   [0; 0; 0];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Live cells with only one live neighbor die", {
@@ -28,7 +28,7 @@ test_that("Live cells with only one live neighbor die", {
         array2D [ [0; 0; 0];
                   [0; 0; 0];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Live cells with two live neighbors stay alive", {
@@ -40,7 +40,7 @@ test_that("Live cells with two live neighbors stay alive", {
         array2D [ [0; 0; 0];
                   [1; 0; 1];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Live cells with three live neighbors stay alive", {
@@ -52,7 +52,7 @@ test_that("Live cells with three live neighbors stay alive", {
         array2D [ [0; 0; 0];
                   [1; 0; 0];
                   [1; 1; 0] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Dead cells with three live neighbors become alive", {
@@ -64,7 +64,7 @@ test_that("Dead cells with three live neighbors become alive", {
         array2D [ [0; 0; 0];
                   [1; 1; 0];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Live cells with four or more neighbors die", {
@@ -76,7 +76,7 @@ test_that("Live cells with four or more neighbors die", {
         array2D [ [1; 0; 1];
                   [0; 0; 0];
                   [1; 0; 1] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 })
 
 test_that("Bigger matrix", {
@@ -98,5 +98,5 @@ test_that("Bigger matrix", {
                   [1; 1; 0; 1; 0; 0; 0; 1];
                   [1; 0; 0; 0; 0; 0; 0; 0];
                   [0; 0; 0; 0; 0; 0; 1; 1] ]
-    tick matrix |> should equal expected
+  expect_equal(tick matrix, expected)
 

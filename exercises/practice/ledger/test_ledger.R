@@ -8,7 +8,7 @@ test_that("Empty ledger", {
     let expected =
         "Date       | Description               | Change       "
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
 })
 
 test_that("One entry", {
@@ -22,7 +22,7 @@ test_that("One entry", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)"
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
 })
 
 test_that("Credit and debit", {
@@ -38,7 +38,7 @@ test_that("Credit and debit", {
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/02/2015 | Get present               |       $10.00 "
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
  
 
 test_that("Multiple entries on same date ordered by description", {
@@ -54,7 +54,7 @@ test_that("Multiple entries on same date ordered by description", {
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/01/2015 | Get present               |       $10.00 "
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
    
 
 test_that("Final order tie breaker is change", {
@@ -72,7 +72,7 @@ test_that("Final order tie breaker is change", {
         "01/01/2015 | Something                 |        $0.00 " + System.Environment.NewLine +
         "01/01/2015 | Something                 |        $0.01 "
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
   
 
 test_that("Overlong descriptions", {
@@ -86,7 +86,7 @@ test_that("Overlong descriptions", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
   
 
 test_that("Euros", {
@@ -100,7 +100,7 @@ test_that("Euros", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      (€10.00)"
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
    
 
 test_that("Dutch locale", {
@@ -114,7 +114,7 @@ test_that("Dutch locale", {
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
  
 
 test_that("Dutch negative number with 3 digits before decimal point", {
@@ -128,7 +128,7 @@ test_that("Dutch negative number with 3 digits before decimal point", {
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |     $ -123,45"
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)
    
 
 test_that("American negative number with 3 digits before decimal point", {
@@ -142,4 +142,4 @@ test_that("American negative number with 3 digits before decimal point", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "03/12/2015 | Buy present               |     ($123.45)"
 
-    formatLedger currency locale entries |> should equal expected
+  expect_equal(formatLedger currency locale entries, expected)

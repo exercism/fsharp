@@ -6,7 +6,7 @@ test_that("Single bit one to decimal", {
     let inputBase = 2
     let outputBase = 10
     let expected = Some [1]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Binary to single decimal", {
@@ -14,7 +14,7 @@ test_that("Binary to single decimal", {
     let inputBase = 2
     let outputBase = 10
     let expected = Some [5]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Single decimal to binary", {
@@ -22,7 +22,7 @@ test_that("Single decimal to binary", {
     let inputBase = 10
     let outputBase = 2
     let expected = Some [1; 0; 1]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Binary to multiple decimal", {
@@ -30,7 +30,7 @@ test_that("Binary to multiple decimal", {
     let inputBase = 2
     let outputBase = 10
     let expected = Some [4; 2]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Decimal to binary", {
@@ -38,7 +38,7 @@ test_that("Decimal to binary", {
     let inputBase = 10
     let outputBase = 2
     let expected = Some [1; 0; 1; 0; 1; 0]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Trinary to hexadecimal", {
@@ -46,7 +46,7 @@ test_that("Trinary to hexadecimal", {
     let inputBase = 3
     let outputBase = 16
     let expected = Some [2; 10]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Hexadecimal to trinary", {
@@ -54,7 +54,7 @@ test_that("Hexadecimal to trinary", {
     let inputBase = 16
     let outputBase = 3
     let expected = Some [1; 1; 2; 0]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("15-bit integer", {
@@ -62,7 +62,7 @@ test_that("15-bit integer", {
     let inputBase = 97
     let outputBase = 73
     let expected = Some [6; 10; 45]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Empty list", {
@@ -70,7 +70,7 @@ test_that("Empty list", {
     let inputBase = 2
     let outputBase = 10
     let expected = Some [0]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Single zero", {
@@ -78,7 +78,7 @@ test_that("Single zero", {
     let inputBase = 10
     let outputBase = 2
     let expected = Some [0]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Multiple zeros", {
@@ -86,7 +86,7 @@ test_that("Multiple zeros", {
     let inputBase = 10
     let outputBase = 2
     let expected = Some [0]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Leading zeros", {
@@ -94,7 +94,7 @@ test_that("Leading zeros", {
     let inputBase = 7
     let outputBase = 10
     let expected = Some [4; 2]
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Input base is one", {
@@ -102,7 +102,7 @@ test_that("Input base is one", {
     let inputBase = 1
     let outputBase = 10
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Input base is zero", {
@@ -110,7 +110,7 @@ test_that("Input base is zero", {
     let inputBase = 0
     let outputBase = 10
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Input base is negative", {
@@ -118,7 +118,7 @@ test_that("Input base is negative", {
     let inputBase = -2
     let outputBase = 10
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Negative digit", {
@@ -126,7 +126,7 @@ test_that("Negative digit", {
     let inputBase = 2
     let outputBase = 10
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Invalid positive digit", {
@@ -134,7 +134,7 @@ test_that("Invalid positive digit", {
     let inputBase = 2
     let outputBase = 10
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Output base is one", {
@@ -142,7 +142,7 @@ test_that("Output base is one", {
     let inputBase = 2
     let outputBase = 1
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Output base is zero", {
@@ -150,7 +150,7 @@ test_that("Output base is zero", {
     let inputBase = 10
     let outputBase = 0
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Output base is negative", {
@@ -158,7 +158,7 @@ test_that("Output base is negative", {
     let inputBase = 2
     let outputBase = -7
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 })
 
 test_that("Both bases are negative", {
@@ -166,5 +166,5 @@ test_that("Both bases are negative", {
     let inputBase = -2
     let outputBase = -7
     let expected = None
-    rebase digits inputBase outputBase |> should equal expected
+  expect_equal(rebase digits inputBase outputBase, expected)
 

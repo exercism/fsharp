@@ -2,105 +2,105 @@ source("./roman-numerals.R")
 library(testthat)
 
 test_that("1 is I", {
-    roman 1 |> should equal "I"
+  expect_equal(roman 1, "I")
 })
 
 test_that("2 is II", {
-    roman 2 |> should equal "II"
+  expect_equal(roman 2, "II")
 })
 
 test_that("3 is III", {
-    roman 3 |> should equal "III"
+  expect_equal(roman 3, "III")
 })
 
 test_that("4 is IV", {
-    roman 4 |> should equal "IV"
+  expect_equal(roman 4, "IV")
 })
 
 test_that("5 is V", {
-    roman 5 |> should equal "V"
+  expect_equal(roman 5, "V")
 })
 
 test_that("6 is VI", {
-    roman 6 |> should equal "VI"
+  expect_equal(roman 6, "VI")
 })
 
 test_that("9 is IX", {
-    roman 9 |> should equal "IX"
+  expect_equal(roman 9, "IX")
 })
 
 test_that("16 is XVI", {
-    roman 16 |> should equal "XVI"
+  expect_equal(roman 16, "XVI")
 })
 
 test_that("27 is XXVII", {
-    roman 27 |> should equal "XXVII"
+  expect_equal(roman 27, "XXVII")
 })
 
 test_that("48 is XLVIII", {
-    roman 48 |> should equal "XLVIII"
+  expect_equal(roman 48, "XLVIII")
 })
 
 test_that("49 is XLIX", {
-    roman 49 |> should equal "XLIX"
+  expect_equal(roman 49, "XLIX")
 })
 
 test_that("59 is LIX", {
-    roman 59 |> should equal "LIX"
+  expect_equal(roman 59, "LIX")
 })
 
 test_that("66 is LXVI", {
-    roman 66 |> should equal "LXVI"
+  expect_equal(roman 66, "LXVI")
 })
 
 test_that("93 is XCIII", {
-    roman 93 |> should equal "XCIII"
+  expect_equal(roman 93, "XCIII")
 })
 
 test_that("141 is CXLI", {
-    roman 141 |> should equal "CXLI"
+  expect_equal(roman 141, "CXLI")
 })
 
 test_that("163 is CLXIII", {
-    roman 163 |> should equal "CLXIII"
+  expect_equal(roman 163, "CLXIII")
 })
 
 test_that("166 is CLXVI", {
-    roman 166 |> should equal "CLXVI"
+  expect_equal(roman 166, "CLXVI")
 })
 
 test_that("402 is CDII", {
-    roman 402 |> should equal "CDII"
+  expect_equal(roman 402, "CDII")
 })
 
 test_that("575 is DLXXV", {
-    roman 575 |> should equal "DLXXV"
+  expect_equal(roman 575, "DLXXV")
 })
 
 test_that("666 is DCLXVI", {
-    roman 666 |> should equal "DCLXVI"
+  expect_equal(roman 666, "DCLXVI")
 })
 
 test_that("911 is CMXI", {
-    roman 911 |> should equal "CMXI"
+  expect_equal(roman 911, "CMXI")
 })
 
 test_that("1024 is MXXIV", {
-    roman 1024 |> should equal "MXXIV"
+  expect_equal(roman 1024, "MXXIV")
 })
 
 test_that("1666 is MDCLXVI", {
-    roman 1666 |> should equal "MDCLXVI"
+  expect_equal(roman 1666, "MDCLXVI")
 })
 
 test_that("3000 is MMM", {
-    roman 3000 |> should equal "MMM"
+  expect_equal(roman 3000, "MMM")
 })
 
 test_that("3001 is MMMI", {
-    roman 3001 |> should equal "MMMI"
+  expect_equal(roman 3001, "MMMI")
 })
 
 test_that("3999 is MMMCMXCIX", {
-    roman 3999 |> should equal "MMMCMXCIX"
+  expect_equal(roman 3999, "MMMCMXCIX")
 

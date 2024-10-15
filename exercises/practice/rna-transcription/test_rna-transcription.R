@@ -2,25 +2,25 @@ source("./rna-transcription.R")
 library(testthat)
 
 test_that("Empty RNA sequence", {
-    toRna "" |> should equal ""
+  expect_equal(toRna "", "")
 })
 
 test_that("RNA complement of cytosine is guanine", {
-    toRna "C" |> should equal "G"
+  expect_equal(toRna "C", "G")
 })
 
 test_that("RNA complement of guanine is cytosine", {
-    toRna "G" |> should equal "C"
+  expect_equal(toRna "G", "C")
 })
 
 test_that("RNA complement of thymine is adenine", {
-    toRna "T" |> should equal "A"
+  expect_equal(toRna "T", "A")
 })
 
 test_that("RNA complement of adenine is uracil", {
-    toRna "A" |> should equal "U"
+  expect_equal(toRna "A", "U")
 })
 
 test_that("RNA complement", {
-    toRna "ACGTGGTCTTAA" |> should equal "UGCACCAGAAUU"
+  expect_equal(toRna "ACGTGGTCTTAA", "UGCACCAGAAUU")
 

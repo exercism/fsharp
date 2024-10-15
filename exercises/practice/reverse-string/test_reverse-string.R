@@ -2,25 +2,25 @@ source("./reverse-string.R")
 library(testthat)
 
 test_that("An empty string", {
-    reverse "" |> should equal ""
+  expect_equal(reverse "", "")
 })
 
 test_that("A word", {
-    reverse "robot" |> should equal "tobor"
+  expect_equal(reverse "robot", "tobor")
 })
 
 test_that("A capitalized word", {
-    reverse "Ramen" |> should equal "nemaR"
+  expect_equal(reverse "Ramen", "nemaR")
 })
 
 test_that("A sentence with punctuation", {
-    reverse "I'm hungry!" |> should equal "!yrgnuh m'I"
+  expect_equal(reverse "I'm hungry!", "!yrgnuh m'I")
 })
 
 test_that("A palindrome", {
-    reverse "racecar" |> should equal "racecar"
+  expect_equal(reverse "racecar", "racecar")
 })
 
 test_that("An even-sized word", {
-    reverse "drawer" |> should equal "reward"
+  expect_equal(reverse "drawer", "reward")
 

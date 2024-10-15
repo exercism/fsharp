@@ -3,7 +3,7 @@ library(testthat)
 test_that("Returns empty balance after opening", {
     let account = mkBankAccount() |> openAccount
 
-    getBalance account |> should equal (Some 0.0m)
+  expect_equal(getBalance account, (Some 0.0m))
 })
 
 test_that("Check basic balance", {
@@ -15,8 +15,8 @@ test_that("Check basic balance", {
         |> updateBalance 10.0m
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0m)
-    updatedBalance |> should equal (Some 10.0m)
+  expect_equal(openingBalance, (Some 0.0m))
+  expect_equal(updatedBalance, (Some 10.0m))
 })
 
 test_that("Balance can increment or decrement", {    
@@ -33,9 +33,9 @@ test_that("Balance can increment or decrement", {
         |> updateBalance -15.0m
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0m)
-    addedBalance |> should equal (Some 10.0m)
-    subtractedBalance |> should equal (Some -5.0m)
+  expect_equal(openingBalance, (Some 0.0m))
+  expect_equal(addedBalance, (Some 10.0m))
+  expect_equal(subtractedBalance, (Some -5.0m))
 })
 
 test_that("Account can be closed", {
@@ -44,7 +44,7 @@ test_that("Account can be closed", {
         |> openAccount
         |> closeAccount
 
-    getBalance account |> should equal None
+  expect_equal(getBalance account, None)
     account |> should not' (equal None)
     
 
@@ -66,4 +66,4 @@ test_that("Account can be updated from multiple threads", {
     |> Async.RunSynchronously
     |> ignore
 
-    getBalance account |> should equal (Some 1000.0m)
+  expect_equal(getBalance account, (Some 1000.0m))

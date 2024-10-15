@@ -2,77 +2,77 @@ source("./say.R")
 library(testthat)
 
 test_that("Zero", {
-    say 0L |> should equal (Some "zero")
+  expect_equal(say 0L, (Some "zero"))
 })
 
 test_that("One", {
-    say 1L |> should equal (Some "one")
+  expect_equal(say 1L, (Some "one"))
 })
 
 test_that("Fourteen", {
-    say 14L |> should equal (Some "fourteen")
+  expect_equal(say 14L, (Some "fourteen"))
 })
 
 test_that("Twenty", {
-    say 20L |> should equal (Some "twenty")
+  expect_equal(say 20L, (Some "twenty"))
 })
 
 test_that("Twenty-two", {
-    say 22L |> should equal (Some "twenty-two")
+  expect_equal(say 22L, (Some "twenty-two"))
 })
 
 test_that("Thirty", {
-    say 30L |> should equal (Some "thirty")
+  expect_equal(say 30L, (Some "thirty"))
 })
 
 test_that("Ninety-nine", {
-    say 99L |> should equal (Some "ninety-nine")
+  expect_equal(say 99L, (Some "ninety-nine"))
 })
 
 test_that("One hundred", {
-    say 100L |> should equal (Some "one hundred")
+  expect_equal(say 100L, (Some "one hundred"))
 })
 
 test_that("One hundred twenty-three", {
-    say 123L |> should equal (Some "one hundred twenty-three")
+  expect_equal(say 123L, (Some "one hundred twenty-three"))
 })
 
 test_that("Two hundred", {
-    say 200L |> should equal (Some "two hundred")
+  expect_equal(say 200L, (Some "two hundred"))
 })
 
 test_that("Nine hundred ninety-nine", {
-    say 999L |> should equal (Some "nine hundred ninety-nine")
+  expect_equal(say 999L, (Some "nine hundred ninety-nine"))
 })
 
 test_that("One thousand", {
-    say 1000L |> should equal (Some "one thousand")
+  expect_equal(say 1000L, (Some "one thousand"))
 })
 
 test_that("One thousand two hundred thirty-four", {
-    say 1234L |> should equal (Some "one thousand two hundred thirty-four")
+  expect_equal(say 1234L, (Some "one thousand two hundred thirty-four"))
 })
 
 test_that("One million", {
-    say 1000000L |> should equal (Some "one million")
+  expect_equal(say 1000000L, (Some "one million"))
 })
 
 test_that("One million two thousand three hundred forty-five", {
-    say 1002345L |> should equal (Some "one million two thousand three hundred forty-five")
+  expect_equal(say 1002345L, (Some "one million two thousand three hundred forty-five"))
 })
 
 test_that("One billion", {
-    say 1000000000L |> should equal (Some "one billion")
+  expect_equal(say 1000000000L, (Some "one billion"))
 })
 
 test_that("A big number", {
-    say 987654321123L |> should equal (Some "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three")
+  expect_equal(say 987654321123L, (Some "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three"))
 })
 
 test_that("Numbers below zero are out of range", {
-    say -1L |> should equal None
+  expect_equal(say -1L, None)
 })
 
 test_that("Numbers above 999,999,999,999 are out of range", {
-    say 1000000000000L |> should equal None
+  expect_equal(say 1000000000000L, None)
 
