@@ -1,15 +1,12 @@
 source("./binary-search-tree.R")
 library(testthat)
 
-
-
-
 test_that("Data is retained", {
     let treeData = create [4]
     treeData |> data |> should equal 4
     treeData |> left |> should equal None
     treeData |> right |> should equal None
-
+})
 
 test_that("Smaller number at left node", {
     let treeData = create [4; 2]
@@ -18,7 +15,7 @@ test_that("Smaller number at left node", {
     treeData |> left |> Option.bind left |> should equal None
     treeData |> left |> Option.bind right |> should equal None
     treeData |> right |> should equal None
-
+})
 
 test_that("Same number at left node", {
     let treeData = create [4; 4]
@@ -27,7 +24,7 @@ test_that("Same number at left node", {
     treeData |> left |> Option.bind left |> should equal None
     treeData |> left |> Option.bind right |> should equal None
     treeData |> right |> should equal None
-
+})
 
 test_that("Greater number at right node", {
     let treeData = create [4; 5]
@@ -36,7 +33,7 @@ test_that("Greater number at right node", {
     treeData |> right |> Option.map data |> should equal (Some 5)
     treeData |> right |> Option.bind left |> should equal None
     treeData |> right |> Option.bind right |> should equal None
-
+})
 
 test_that("Can create complex tree", {
     let treeData = create [4; 2; 6; 1; 3; 5; 7]
@@ -55,27 +52,27 @@ test_that("Can create complex tree", {
     treeData |> right |> Option.bind right |> Option.map data |> should equal (Some 7)
     treeData |> right |> Option.bind right |> Option.bind left |> should equal None
     treeData |> right |> Option.bind right |> Option.bind right |> should equal None
-
+})
 
 test_that("Can sort single number", {
     let treeData = create [2]
     sortedData treeData |> should equal [2]
-
+})
 
 test_that("Can sort if second number is smaller than first", {
     let treeData = create [2; 1]
     sortedData treeData |> should equal [1; 2]
-
+})
 
 test_that("Can sort if second number is same as first", {
     let treeData = create [2; 2]
     sortedData treeData |> should equal [2; 2]
-
+})
 
 test_that("Can sort if second number is greater than first", {
     let treeData = create [2; 3]
     sortedData treeData |> should equal [2; 3]
-
+})
 
 test_that("Can sort complex tree", {
     let treeData = create [2; 1; 3; 6; 7; 5]

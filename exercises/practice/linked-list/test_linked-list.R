@@ -1,8 +1,5 @@
 source("./linked-list.R")
 library(testthat)
-
-
-
 test_that("Push and pop are first in last out order", {
     let linkedList = mkLinkedList ()
     linkedList |> push 10
@@ -13,7 +10,7 @@ test_that("Push and pop are first in last out order", {
 
     val1 |> should equal 20
     val2 |> should equal 10
-
+})
 
 test_that("Push and shift are first in first out order", {
     let linkedList = mkLinkedList ()
@@ -25,7 +22,7 @@ test_that("Push and shift are first in first out order", {
 
     val1 |> should equal 10
     val2 |> should equal 20
-
+})
 
 test_that("Unshift and shift are last in first out order", {
     let linkedList = mkLinkedList ()
@@ -37,7 +34,7 @@ test_that("Unshift and shift are last in first out order", {
 
     val1 |> should equal 20
     val2 |> should equal 10
-
+})
 
 test_that("Unshift and pop are last in last out order", {
     let linkedList = mkLinkedList ()
@@ -49,7 +46,7 @@ test_that("Unshift and pop are last in last out order", {
 
     val1 |> should equal 10
     val2 |> should equal 20
-
+})
 
 test_that("Push and pop can handle multiple values", {
     let linkedList = mkLinkedList ()
@@ -64,7 +61,7 @@ test_that("Push and pop can handle multiple values", {
     val1 |> should equal 30
     val2 |> should equal 20
     val3 |> should equal 10
-
+})
 
 test_that("Unshift and shift can handle multiple values", {
     let linkedList = mkLinkedList ()
@@ -79,7 +76,7 @@ test_that("Unshift and shift can handle multiple values", {
     val1 |> should equal 30
     val2 |> should equal 20
     val3 |> should equal 10
-
+})
 
 test_that("All methods of manipulating the linkedList can be used together", {
     let linkedList = mkLinkedList ()

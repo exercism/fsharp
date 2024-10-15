@@ -1,20 +1,17 @@
 source("./minesweeper.R")
 library(testthat)
 
-
-
-
 test_that("No rows", {
     let minefield: string list = []
     let expected: string list = []
     annotate minefield |> should equal expected
-
+})
 
 test_that("No columns", {
     let minefield = [""]
     let expected = [""]
     annotate minefield |> should equal expected
-
+})
 
 test_that("No mines", {
     let minefield = 
@@ -26,7 +23,7 @@ test_that("No mines", {
           "   ";
           "   " ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Minefield with only mines", {
     let minefield = 
@@ -38,7 +35,7 @@ test_that("Minefield with only mines", {
           "***";
           "***" ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Mine surrounded by spaces", {
     let minefield = 
@@ -50,7 +47,7 @@ test_that("Mine surrounded by spaces", {
           "1*1";
           "111" ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Space surrounded by mines", {
     let minefield = 
@@ -62,19 +59,19 @@ test_that("Space surrounded by mines", {
           "*8*";
           "***" ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Horizontal line", {
     let minefield = [" * * "]
     let expected = ["1*2*1"]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Horizontal line, mines at edges", {
     let minefield = ["*   *"]
     let expected = ["*1 1*"]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Vertical line", {
     let minefield = 
@@ -90,7 +87,7 @@ test_that("Vertical line", {
           "*";
           "1" ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Vertical line, mines at edges", {
     let minefield = 
@@ -106,7 +103,7 @@ test_that("Vertical line, mines at edges", {
           "1";
           "*" ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Cross", {
     let minefield = 
@@ -122,7 +119,7 @@ test_that("Cross", {
           "25*52";
           " 2*2 " ]
     annotate minefield |> should equal expected
-
+})
 
 test_that("Large minefield", {
     let minefield = 

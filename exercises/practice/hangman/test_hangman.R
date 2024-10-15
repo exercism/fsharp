@@ -1,9 +1,6 @@
 source("./hangman.R")
 library(testthat)
 
-
-
-
 test_that("Initially 9 failures are allowed", {
     let game = createGame "foo"
     let states = statesObservable game
@@ -14,7 +11,7 @@ test_that("Initially 9 failures are allowed", {
     startGame game |> ignore
 
     lastProgress |> should equal <| Busy 9
-
+})
 
 test_that("Initially no letters are guessed", {
     let game = createGame "foo"
@@ -26,7 +23,7 @@ test_that("Initially no letters are guessed", {
     startGame game |> ignore
 
     lastMaskedWord |> should equal "___"
-
+})
 
 test_that("After 10 failures the game is over", {
     let game = createGame "foo"

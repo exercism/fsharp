@@ -1,14 +1,11 @@
 source("./etl.R")
 library(testthat)
 
-
-
-
 test_that("Single letter", {
     let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList
     transform lettersByScore |> should equal expected
-
+})
 
 test_that("Single score with multiple letters", {
     let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
@@ -20,7 +17,7 @@ test_that("Single score with multiple letters", {
           ('u', 1) ]
         |> Map.ofList
     transform lettersByScore |> should equal expected
-
+})
 
 test_that("Multiple scores with multiple letters", {
     let lettersByScore = 
@@ -34,7 +31,7 @@ test_that("Multiple scores with multiple letters", {
           ('g', 2) ]
         |> Map.ofList
     transform lettersByScore |> should equal expected
-
+})
 
 test_that("Multiple scores with differing numbers of letters", {
     let lettersByScore = 

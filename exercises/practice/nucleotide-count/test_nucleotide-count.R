@@ -1,9 +1,6 @@
 source("./nucleotide-count.R")
 library(testthat)
 
-
-
-
 test_that("Empty strand", {
     let strand = ""
     let expected = 
@@ -14,7 +11,7 @@ test_that("Empty strand", {
         |> Map.ofList
         |> Some
     nucleotideCounts strand |> should equal expected
-
+})
 
 test_that("Can count one nucleotide in single-character input", {
     let strand = "G"
@@ -26,7 +23,7 @@ test_that("Can count one nucleotide in single-character input", {
         |> Map.ofList
         |> Some
     nucleotideCounts strand |> should equal expected
-
+})
 
 test_that("Strand with repeated nucleotide", {
     let strand = "GGGGGGG"
@@ -38,7 +35,7 @@ test_that("Strand with repeated nucleotide", {
         |> Map.ofList
         |> Some
     nucleotideCounts strand |> should equal expected
-
+})
 
 test_that("Strand with multiple nucleotides", {
     let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
@@ -50,7 +47,7 @@ test_that("Strand with multiple nucleotides", {
         |> Map.ofList
         |> Some
     nucleotideCounts strand |> should equal expected
-
+})
 
 test_that("Strand with invalid nucleotides", {
     let strand = "AGXXACT"

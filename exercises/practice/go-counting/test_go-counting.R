@@ -1,9 +1,6 @@
 source("./go-counting.R")
 library(testthat)
 
-
-
-
 test_that("Black corner territory on 5x5 board", {
     let board = 
         [ "  B  ";
@@ -14,7 +11,7 @@ test_that("Black corner territory on 5x5 board", {
     let position = (0, 1)
     let expected = Option.Some (Owner.Black, [(0, 0); (0, 1); (1, 0)])
     territory board position |> should equal expected
-
+})
 
 test_that("White center territory on 5x5 board", {
     let board = 
@@ -26,7 +23,7 @@ test_that("White center territory on 5x5 board", {
     let position = (2, 3)
     let expected = Option.Some (Owner.White, [(2, 3)])
     territory board position |> should equal expected
-
+})
 
 test_that("    let board = 
         [ "  B  ";
@@ -37,7 +34,7 @@ test_that("    let board =
     let position = (1, 4)
     let expected = Option.Some (Owner.None, [(0, 3); (0, 4); (1, 4)])
     territory board position |> should equal expected
-
+})
 
 test_that("A stone and not a territory on 5x5 board", {
     let board = 
@@ -49,7 +46,7 @@ test_that("A stone and not a territory on 5x5 board", {
     let position = (1, 1)
     let expected: (Owner * (int * int) list) option = Option.Some (Owner.None, [])
     territory board position |> should equal expected
-
+})
 
 test_that("Invalid because X is too low for 5x5 board", {
     let board = 
@@ -61,7 +58,7 @@ test_that("Invalid because X is too low for 5x5 board", {
     let position = (-1, 1)
     let expected = Option.None
     territory board position |> should equal expected
-
+})
 
 test_that("Invalid because X is too high for 5x5 board", {
     let board = 
@@ -73,7 +70,7 @@ test_that("Invalid because X is too high for 5x5 board", {
     let position = (5, 1)
     let expected = Option.None
     territory board position |> should equal expected
-
+})
 
 test_that("Invalid because Y is too low for 5x5 board", {
     let board = 
@@ -85,7 +82,7 @@ test_that("Invalid because Y is too low for 5x5 board", {
     let position = (1, -1)
     let expected = Option.None
     territory board position |> should equal expected
-
+})
 
 test_that("Invalid because Y is too high for 5x5 board", {
     let board = 
@@ -97,7 +94,7 @@ test_that("Invalid because Y is too high for 5x5 board", {
     let position = (1, 5)
     let expected = Option.None
     territory board position |> should equal expected
-
+})
 
 test_that("One territory is the whole board", {
     let board = [" "]
@@ -107,7 +104,7 @@ test_that("One territory is the whole board", {
           (Owner.None, [(0, 0)]) ]
         |> Map.ofList
     territories board |> should equal expected
-
+})
 
 test_that("Two territory rectangular board", {
     let board = 
@@ -119,7 +116,7 @@ test_that("Two territory rectangular board", {
           (Owner.None, []) ]
         |> Map.ofList
     territories board |> should equal expected
-
+})
 
 test_that("Two region rectangular board", {
     let board = [" B "]

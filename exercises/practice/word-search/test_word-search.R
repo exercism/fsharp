@@ -1,43 +1,40 @@
 source("./word-search.R")
 library(testthat)
 
-
-
-
 test_that("Should accept an initial game grid and a target search word", {
     let grid = ["jefblpepre"]
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate one word written left to right", {
     let grid = ["clojurermt"]
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((1, 1), (7, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate the same word written left to right in a different position", {
     let grid = ["mtclojurer"]
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((3, 1), (9, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate a different left to right word", {
     let grid = ["coffeelplx"]
     let wordsToSearchFor = ["coffee"]
     let expected = [("coffee", Some ((1, 1), (6, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate that different left to right word in a different position", {
     let grid = ["xcoffeezlp"]
     let wordsToSearchFor = ["coffee"]
     let expected = [("coffee", Some ((2, 1), (7, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate a left to right word in two line grid", {
     let grid = 
@@ -46,7 +43,7 @@ test_that("Should locate a left to right word in two line grid", {
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((2, 2), (8, 2)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate a left to right word in three line grid", {
     let grid = 
@@ -56,7 +53,7 @@ test_that("Should locate a left to right word in three line grid", {
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((1, 3), (7, 3)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate a left to right word in ten line grid", {
     let grid = 
@@ -73,7 +70,7 @@ test_that("Should locate a left to right word in ten line grid", {
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((1, 10), (7, 10)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate that left to right word in a different position in a ten line grid", {
     let grid = 
@@ -90,7 +87,7 @@ test_that("Should locate that left to right word in a different position in a te
     let wordsToSearchFor = ["clojure"]
     let expected = [("clojure", Some ((1, 9), (7, 9)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate a different left to right word in a ten line grid", {
     let grid = 
@@ -107,7 +104,7 @@ test_that("Should locate a different left to right word in a ten line grid", {
     let wordsToSearchFor = ["fortran"]
     let expected = [("fortran", Some ((1, 7), (7, 7)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate multiple words", {
     let grid = 
@@ -127,14 +124,14 @@ test_that("Should locate multiple words", {
           ("fortran", Some ((1, 7), (7, 7))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate a single word written right to left", {
     let grid = ["rixilelhrs"]
     let wordsToSearchFor = ["elixir"]
     let expected = [("elixir", Some ((6, 1), (1, 1)))] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate multiple words written in different horizontal directions", {
     let grid = 
@@ -154,7 +151,7 @@ test_that("Should locate multiple words written in different horizontal directio
           ("elixir", Some ((6, 5), (1, 5))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate words written top to bottom", {
     let grid = 
@@ -175,7 +172,7 @@ test_that("Should locate words written top to bottom", {
           ("ecmascript", Some ((10, 1), (10, 10))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate words written bottom to top", {
     let grid = 
@@ -197,7 +194,7 @@ test_that("Should locate words written bottom to top", {
           ("rust", Some ((9, 5), (9, 2))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate words written top left to bottom right", {
     let grid = 
@@ -220,7 +217,7 @@ test_that("Should locate words written top left to bottom right", {
           ("java", Some ((1, 1), (4, 4))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate words written bottom right to top left", {
     let grid = 
@@ -244,7 +241,7 @@ test_that("Should locate words written bottom right to top left", {
           ("lua", Some ((8, 9), (6, 7))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate words written bottom left to top right", {
     let grid = 
@@ -269,7 +266,7 @@ test_that("Should locate words written bottom left to top right", {
           ("lisp", Some ((3, 6), (6, 3))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should locate words written top right to bottom left", {
     let grid = 
@@ -295,7 +292,7 @@ test_that("Should locate words written top right to bottom left", {
           ("ruby", Some ((8, 6), (5, 9))) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should fail to locate a word that is not in the puzzle", {
     let grid = 
@@ -322,7 +319,7 @@ test_that("Should fail to locate a word that is not in the puzzle", {
           ("haskell", Option<((int * int) * (int * int))>.None) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should fail to locate words that are not on horizontal, vertical, or diagonal lines", {
     let grid = 
@@ -336,7 +333,7 @@ test_that("Should fail to locate words that are not on horizontal, vertical, or 
           ("cbd", Option<((int * int) * (int * int))>.None) ]
         |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should not concatenate different lines to find a horizontal word", {
     let grid = 
@@ -345,14 +342,14 @@ test_that("Should not concatenate different lines to find a horizontal word", {
     let wordsToSearchFor = ["elixir"]
     let expected = [("elixir", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should not wrap around horizontally to find a word", {
     let grid = ["silabcdefp"]
     let wordsToSearchFor = ["lisp"]
     let expected = [("lisp", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     search grid wordsToSearchFor |> should equal expected
-
+})
 
 test_that("Should not wrap around vertically to find a word", {
     let grid = 

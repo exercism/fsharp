@@ -1,9 +1,6 @@
 source("./dot-dsl.R")
 library(testthat)
 
-
-
-
 test_that("Empty graph", {
     let g = graph []
 
@@ -30,7 +27,7 @@ test_that("Graph with one node with keywords", {
     nodes g |> should equal [node "a" [("color", "green")]]
     edges g |> should be Empty
     attrs g |> should be Empty
-
+})
 
 test_that("Graph with one edge", {    
     let g = graph [
@@ -40,7 +37,7 @@ test_that("Graph with one edge", {
     nodes g |> should be Empty
     edges g |> should equal [edge "a" "b" []]
     attrs g |> should be Empty
-
+})
 
 test_that("Graph with one attribute", { 
     let g = graph [
@@ -50,7 +47,7 @@ test_that("Graph with one attribute", {
     nodes g |> should be Empty
     edges g |> should be Empty
     attrs g |> should equal [attr "foo" "1"]
-
+})
 
 test_that("Graph with attributes", {    
     let g = graph [

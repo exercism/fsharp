@@ -1,14 +1,11 @@
 source("./transpose.R")
 library(testthat)
 
-
-
-
 test_that("Empty string", {
     let lines: string list = []
     let expected: string list = []
     transpose lines |> should equal expected
-
+})
 
 test_that("Two characters in a row", {
     let lines = ["A1"]
@@ -16,7 +13,7 @@ test_that("Two characters in a row", {
         [ "A";
           "1" ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Two characters in a column", {
     let lines = 
@@ -24,7 +21,7 @@ test_that("Two characters in a column", {
           "1" ]
     let expected = ["A1"]
     transpose lines |> should equal expected
-
+})
 
 test_that("Simple", {
     let lines = 
@@ -35,7 +32,7 @@ test_that("Simple", {
           "B2";
           "C3" ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Single line", {
     let lines = ["Single line."]
@@ -53,7 +50,7 @@ test_that("Single line", {
           "e";
           "." ]
     transpose lines |> should equal expected
-
+})
 
 test_that("First line longer than second line", {
     let lines = 
@@ -77,7 +74,7 @@ test_that("First line longer than second line", {
           "e.";
           "." ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Second line longer than first line", {
     let lines = 
@@ -101,7 +98,7 @@ test_that("Second line longer than first line", {
           ".e";
           " ." ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Mixed line length", {
     let lines = 
@@ -128,7 +125,7 @@ test_that("Mixed line length", {
           "e";
           "." ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Square", {
     let lines = 
@@ -144,7 +141,7 @@ test_that("Square", {
           "RESIN";
           "TREND" ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Rectangle", {
     let lines = 
@@ -162,7 +159,7 @@ test_that("Rectangle", {
           "RENT";
           "EDGE" ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Triangle", {
     let lines = 
@@ -180,7 +177,7 @@ test_that("Triangle", {
           "    ER";
           "     R" ]
     transpose lines |> should equal expected
-
+})
 
 test_that("Jagged triangle", {
     let lines = 

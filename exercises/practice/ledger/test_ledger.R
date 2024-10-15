@@ -1,9 +1,6 @@
 source("./ledger.R")
 library(testthat)
 
-
-
-
 test_that("Empty ledger", {
     let currency = "USD"
     let locale = "en-US"
@@ -12,7 +9,7 @@ test_that("Empty ledger", {
         "Date       | Description               | Change       "
 
     formatLedger currency locale entries |> should equal expected
-
+})
 
 test_that("One entry", {
     let currency = "USD"
@@ -26,7 +23,7 @@ test_that("One entry", {
         "01/01/2015 | Buy present               |      ($10.00)"
 
     formatLedger currency locale entries |> should equal expected
-
+})
 
 test_that("Credit and debit", {
     let currency = "USD"

@@ -1,42 +1,39 @@
 source("./diffie-hellman.R")
 library(testthat)
 
-
-
-
 test_that("Private key is greater than 1 and less than p", {
     let p = 7919I
     let privateKeys = [for _ in 0 .. 10 -> privateKey p]
     privateKeys |> List.iter (fun x -> x |> should be (greaterThan 1I))
     privateKeys |> List.iter (fun x -> x |> should be (lessThan p))
-
+})
 
 test_that("Private key is random", {
     let p = 7919I
     let privateKeys = [for _ in 0 .. 10 -> privateKey p]
     List.distinct privateKeys |> List.length |> should equal (List.length privateKeys)
-
+})
 
 test_that("Can calculate public key using private key", {
     let p = 23I
     let g = 5I
     let privateKey = 6I
     publicKey p g privateKey |> should equal 8I
-
+})
 
 test_that("Can calculate public key when given a different private key", {
     let p = 23I
     let g = 5I
     let privateKey = 15I
     publicKey p g privateKey |> should equal 19I
-
+})
 
 test_that("Can calculate secret using other party's public key", {
     let p = 23I
     let theirPublicKey = 19I
     let myPrivateKey = 6I
     secret p theirPublicKey myPrivateKey |> should equal 2I
-
+})
 
 test_that("Key exchange", {
     let p = 23I

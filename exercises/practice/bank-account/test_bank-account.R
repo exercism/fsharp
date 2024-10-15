@@ -1,13 +1,10 @@
 source("./bank-account.R")
 library(testthat)
-
-
-
 test_that("Returns empty balance after opening", {
     let account = mkBankAccount() |> openAccount
 
     getBalance account |> should equal (Some 0.0m)
-
+})
 
 test_that("Check basic balance", {
     let account = mkBankAccount() |> openAccount
@@ -20,7 +17,7 @@ test_that("Check basic balance", {
 
     openingBalance |> should equal (Some 0.0m)
     updatedBalance |> should equal (Some 10.0m)
-
+})
 
 test_that("Balance can increment or decrement", {    
     let account = mkBankAccount() |> openAccount
@@ -39,7 +36,7 @@ test_that("Balance can increment or decrement", {
     openingBalance |> should equal (Some 0.0m)
     addedBalance |> should equal (Some 10.0m)
     subtractedBalance |> should equal (Some -5.0m)
-
+})
 
 test_that("Account can be closed", {
     let account = 

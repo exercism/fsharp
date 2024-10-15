@@ -1,25 +1,22 @@
 source("./pascals-triangle.R")
 library(testthat)
 
-
-
-
 test_that("Zero rows", {
     let expected: int list list = []
     rows 0 |> should equal expected
-
+})
 
 test_that("Single row", {
     let expected = [[1]]
     rows 1 |> should equal expected
-
+})
 
 test_that("Two rows", {
     let expected = 
         [ [1];
           [1; 1] ]
     rows 2 |> should equal expected
-
+})
 
 test_that("Three rows", {
     let expected = 
@@ -27,7 +24,7 @@ test_that("Three rows", {
           [1; 1];
           [1; 2; 1] ]
     rows 3 |> should equal expected
-
+})
 
 test_that("Four rows", {
     let expected = 
@@ -36,7 +33,7 @@ test_that("Four rows", {
           [1; 2; 1];
           [1; 3; 3; 1] ]
     rows 4 |> should equal expected
-
+})
 
 test_that("Five rows", {
     let expected = 
@@ -46,7 +43,7 @@ test_that("Five rows", {
           [1; 3; 3; 1];
           [1; 4; 6; 4; 1] ]
     rows 5 |> should equal expected
-
+})
 
 test_that("Six rows", {
     let expected = 
@@ -57,7 +54,7 @@ test_that("Six rows", {
           [1; 4; 6; 4; 1];
           [1; 5; 10; 10; 5; 1] ]
     rows 6 |> should equal expected
-
+})
 
 test_that("Ten rows", {
     let expected = 

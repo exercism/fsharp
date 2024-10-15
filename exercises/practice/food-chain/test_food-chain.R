@@ -1,15 +1,12 @@
 source("./food-chain.R")
 library(testthat)
 
-
-
-
 test_that("Fly", {
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 1 1 |> should equal expected
-
+})
 
 test_that("Spider", {
     let expected = 
@@ -18,7 +15,7 @@ test_that("Spider", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 2 2 |> should equal expected
-
+})
 
 test_that("Bird", {
     let expected = 
@@ -28,7 +25,7 @@ test_that("Bird", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 3 3 |> should equal expected
-
+})
 
 test_that("Cat", {
     let expected = 
@@ -39,7 +36,7 @@ test_that("Cat", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 4 4 |> should equal expected
-
+})
 
 test_that("Dog", {
     let expected = 
@@ -51,7 +48,7 @@ test_that("Dog", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 5 5 |> should equal expected
-
+})
 
 test_that("Goat", {
     let expected = 
@@ -64,7 +61,7 @@ test_that("Goat", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 6 6 |> should equal expected
-
+})
 
 test_that("Cow", {
     let expected = 
@@ -78,14 +75,14 @@ test_that("Cow", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 7 7 |> should equal expected
-
+})
 
 test_that("Horse", {
     let expected = 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
     recite 8 8 |> should equal expected
-
+})
 
 test_that("Multiple verses", {
     let expected = 
@@ -103,7 +100,7 @@ test_that("Multiple verses", {
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 1 3 |> should equal expected
-
+})
 
 test_that("Full song", {
     let expected = 

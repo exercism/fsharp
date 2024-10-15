@@ -1,20 +1,17 @@
 source("./proverb.R")
 library(testthat)
 
-
-
-
 test_that("Zero pieces", {
     let strings: string list = []
     let expected: string list = []
     recite strings |> should equal expected
-
+})
 
 test_that("One piece", {
     let strings = ["nail"]
     let expected = ["And all for the want of a nail."]
     recite strings |> should equal expected
-
+})
 
 test_that("Two pieces", {
     let strings = ["nail"; "shoe"]
@@ -22,7 +19,7 @@ test_that("Two pieces", {
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
     recite strings |> should equal expected
-
+})
 
 test_that("Three pieces", {
     let strings = ["nail"; "shoe"; "horse"]
@@ -31,7 +28,7 @@ test_that("Three pieces", {
           "For want of a shoe the horse was lost.";
           "And all for the want of a nail." ]
     recite strings |> should equal expected
-
+})
 
 test_that("Full proverb", {
     let strings = ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
@@ -44,7 +41,7 @@ test_that("Full proverb", {
           "For want of a battle the kingdom was lost.";
           "And all for the want of a nail." ]
     recite strings |> should equal expected
-
+})
 
 test_that("Four pieces modernized", {
     let strings = ["pin"; "gun"; "soldier"; "battle"]

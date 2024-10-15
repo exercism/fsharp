@@ -1,9 +1,6 @@
 source("./ocr-numbers.R")
 library(testthat)
 
-
-
-
 test_that("Recognizes 0", {
     let rows = 
         [ " _ ";
@@ -11,7 +8,7 @@ test_that("Recognizes 0", {
           "|_|";
           "   " ]
     convert rows |> should equal (Some "0")
-
+})
 
 test_that("Recognizes 1", {
     let rows = 
@@ -20,7 +17,7 @@ test_that("Recognizes 1", {
           "  |";
           "   " ]
     convert rows |> should equal (Some "1")
-
+})
 
 test_that("Unreadable but correctly sized inputs return ?", {
     let rows = 
@@ -29,7 +26,7 @@ test_that("Unreadable but correctly sized inputs return ?", {
           "  |";
           "   " ]
     convert rows |> should equal (Some "?")
-
+})
 
 test_that("Input with a number of lines that is not a multiple of four raises an error", {
     let rows = 
@@ -37,7 +34,7 @@ test_that("Input with a number of lines that is not a multiple of four raises an
           "| |";
           "   " ]
     convert rows |> should equal None
-
+})
 
 test_that("Input with a number of columns that is not a multiple of three raises an error", {
     let rows = 
@@ -46,7 +43,7 @@ test_that("Input with a number of columns that is not a multiple of three raises
           "   |";
           "    " ]
     convert rows |> should equal None
-
+})
 
 test_that("Recognizes 110101100", {
     let rows = 
@@ -55,7 +52,7 @@ test_that("Recognizes 110101100", {
           "  |  ||_|  ||_|  |  ||_||_|";
           "                           " ]
     convert rows |> should equal (Some "110101100")
-
+})
 
 test_that("Garbled numbers in a string are replaced with ?", {
     let rows = 
@@ -64,7 +61,7 @@ test_that("Garbled numbers in a string are replaced with ?", {
           "  |  | _|  ||_|  |  ||_||_|";
           "                           " ]
     convert rows |> should equal (Some "11?10?1?0")
-
+})
 
 test_that("Recognizes 2", {
     let rows = 
@@ -73,7 +70,7 @@ test_that("Recognizes 2", {
           "|_ ";
           "   " ]
     convert rows |> should equal (Some "2")
-
+})
 
 test_that("Recognizes 3", {
     let rows = 
@@ -82,7 +79,7 @@ test_that("Recognizes 3", {
           " _|";
           "   " ]
     convert rows |> should equal (Some "3")
-
+})
 
 test_that("Recognizes 4", {
     let rows = 
@@ -91,7 +88,7 @@ test_that("Recognizes 4", {
           "  |";
           "   " ]
     convert rows |> should equal (Some "4")
-
+})
 
 test_that("Recognizes 5", {
     let rows = 
@@ -100,7 +97,7 @@ test_that("Recognizes 5", {
           " _|";
           "   " ]
     convert rows |> should equal (Some "5")
-
+})
 
 test_that("Recognizes 6", {
     let rows = 
@@ -109,7 +106,7 @@ test_that("Recognizes 6", {
           "|_|";
           "   " ]
     convert rows |> should equal (Some "6")
-
+})
 
 test_that("Recognizes 7", {
     let rows = 
@@ -118,7 +115,7 @@ test_that("Recognizes 7", {
           "  |";
           "   " ]
     convert rows |> should equal (Some "7")
-
+})
 
 test_that("Recognizes 8", {
     let rows = 
@@ -127,7 +124,7 @@ test_that("Recognizes 8", {
           "|_|";
           "   " ]
     convert rows |> should equal (Some "8")
-
+})
 
 test_that("Recognizes 9", {
     let rows = 
@@ -136,7 +133,7 @@ test_that("Recognizes 9", {
           " _|";
           "   " ]
     convert rows |> should equal (Some "9")
-
+})
 
 test_that("Recognizes string of decimal numbers", {
     let rows = 
@@ -145,7 +142,7 @@ test_that("Recognizes string of decimal numbers", {
           "  ||_  _|  | _||_|  ||_| _||_|";
           "                              " ]
     convert rows |> should equal (Some "1234567890")
-
+})
 
 test_that("Numbers separated by empty lines are recognized. Lines are joined by commas.", {
     let rows = 

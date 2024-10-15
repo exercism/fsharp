@@ -1,9 +1,6 @@
 source("./connect.R")
 library(testthat)
 
-
-
-
 test_that("An empty board has no winner", {
     let board = 
         [ ". . . . .    ";
@@ -12,17 +9,17 @@ test_that("An empty board has no winner", {
           "   . . . . . ";
           "    . . . . ." ]
     winner board |> should equal None
-
+})
 
 test_that("X can win on a 1x1 board", {
     let board = ["X"]
     winner board |> should equal (Some Black)
-
+})
 
 test_that("O can win on a 1x1 board", {
     let board = ["O"]
     winner board |> should equal (Some White)
-
+})
 
 test_that("Only edges does not make a winner", {
     let board = 
@@ -31,7 +28,7 @@ test_that("Only edges does not make a winner", {
           "  X . . X ";
           "   X O O O" ]
     winner board |> should equal None
-
+})
 
 test_that("Illegal diagonal does not make a winner", {
     let board = 
@@ -41,7 +38,7 @@ test_that("Illegal diagonal does not make a winner", {
           "   . O X . ";
           "    X X O O" ]
     winner board |> should equal None
-
+})
 
 test_that("Nobody wins crossing adjacent angles", {
     let board = 
@@ -51,7 +48,7 @@ test_that("Nobody wins crossing adjacent angles", {
           "   . O . X ";
           "    . . O ." ]
     winner board |> should equal None
-
+})
 
 test_that("X wins crossing from left to right", {
     let board = 
@@ -61,7 +58,7 @@ test_that("X wins crossing from left to right", {
           "   X X O X ";
           "    . O X ." ]
     winner board |> should equal (Some Black)
-
+})
 
 test_that("O wins crossing from top to bottom", {
     let board = 
@@ -71,7 +68,7 @@ test_that("O wins crossing from top to bottom", {
           "   X X O X ";
           "    . O X ." ]
     winner board |> should equal (Some White)
-
+})
 
 test_that("X wins using a convoluted path", {
     let board = 
@@ -81,7 +78,7 @@ test_that("X wins using a convoluted path", {
           "   . X X . . ";
           "    O O O O O" ]
     winner board |> should equal (Some Black)
-
+})
 
 test_that("X wins using a spiral path", {
     let board = 

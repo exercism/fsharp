@@ -1,43 +1,40 @@
 source("./rail-fence-cipher.R")
 library(testthat)
 
-
-
-
 test_that("Encode with two rails", {
     let rails = 2
     let msg = "XOXOXOXOXOXOXOXOXO"
     let expected = "XXXXXXXXXOOOOOOOOO"
     encode rails msg |> should equal expected
-
+})
 
 test_that("Encode with three rails", {
     let rails = 3
     let msg = "WEAREDISCOVEREDFLEEATONCE"
     let expected = "WECRLTEERDSOEEFEAOCAIVDEN"
     encode rails msg |> should equal expected
-
+})
 
 test_that("Encode with ending in the middle", {
     let rails = 4
     let msg = "EXERCISES"
     let expected = "ESXIEECSR"
     encode rails msg |> should equal expected
-
+})
 
 test_that("Decode with three rails", {
     let rails = 3
     let msg = "TEITELHDVLSNHDTISEIIEA"
     let expected = "THEDEVILISINTHEDETAILS"
     decode rails msg |> should equal expected
-
+})
 
 test_that("Decode with five rails", {
     let rails = 5
     let msg = "EIEXMSMESAORIWSCE"
     let expected = "EXERCISMISAWESOME"
     decode rails msg |> should equal expected
-
+})
 
 test_that("Decode with six rails", {
     let rails = 6

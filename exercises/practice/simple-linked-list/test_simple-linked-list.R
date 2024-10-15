@@ -1,13 +1,10 @@
 source("./simple-linked-list.R")
 library(testthat)
 
-
-
-
 test_that("Empty list", {
     let list = nil
     isNil list |> should equal true
-
+})
 
 test_that("Single item list value", {
     let list = create 1 nil
@@ -46,53 +43,53 @@ test_that("From list", {
     list |> next |> next |> datum |> should equal 5
     list |> next |> next |> next |> datum |> should equal 3
     list |> next |> next |> next |> next |> datum |> should equal 2
-
+})
 
 test_that("Reverse length 1", {
     let values = [1..1]
     let list = fromList values
     let reversed = reverse list
     reversed |> toList |> should equal <| List.rev values
-
+})
 
 test_that("Reverse length 2", {
     let values = [1..2]
     let list = fromList values
     let reversed = reverse list
     reversed |> toList |> should equal <| List.rev values 
-
+})
 
 test_that("Reverse length 10", {
     let values = [1..10]
     let list = fromList values
     let reversed = reverse list
     reversed |> toList |> should equal <| List.rev values 
-
+})
 
 test_that("Reverse length 100", {
     let values = [1..100]
     let list = fromList values
     let reversed = reverse list
     reversed |> toList |> should equal <| List.rev values 
-
+})
 
 test_that("Roundtrip length 1", {
     let values = [1..1]
     let listValues = fromList values
     listValues |> toList |> should equal values
-
+})
 
 test_that("Roundtrip length 2", {
     let values = [1..2]
     let listValues = fromList values
     listValues |> toList |> should equal values
-
+})
 
 test_that("Roundtrip length 10", {
     let values = [1..10]
     let listValues = fromList values
     listValues |> toList |> should equal values
-
+})
 
 test_that("Roundtrip length 100", {
     let values = [1..100]

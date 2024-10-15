@@ -1,14 +1,11 @@
 source("./tournament.R")
 library(testthat)
 
-
-
-
 test_that("Just the header if no input", {
     let rows = []
     let expected = ["Team                           | MP |  W |  D |  L |  P"]
     tally rows |> should equal expected
-
+})
 
 test_that("A win is three points, a loss is zero points", {
     let rows = ["Allegoric Alaskans;Blithering Badgers;win"]
@@ -17,7 +14,7 @@ test_that("A win is three points, a loss is zero points", {
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
-
+})
 
 test_that("A win can also be expressed as a loss", {
     let rows = ["Blithering Badgers;Allegoric Alaskans;loss"]
@@ -26,7 +23,7 @@ test_that("A win can also be expressed as a loss", {
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
-
+})
 
 test_that("A different team can win", {
     let rows = ["Blithering Badgers;Allegoric Alaskans;win"]
@@ -35,7 +32,7 @@ test_that("A different team can win", {
           "Blithering Badgers             |  1 |  1 |  0 |  0 |  3";
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
-
+})
 
 test_that("A draw is one point each", {
     let rows = ["Allegoric Alaskans;Blithering Badgers;draw"]
@@ -44,7 +41,7 @@ test_that("A draw is one point each", {
           "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1";
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
     tally rows |> should equal expected
-
+})
 
 test_that("There can be more than one match", {
     let rows = 
@@ -55,7 +52,7 @@ test_that("There can be more than one match", {
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
     tally rows |> should equal expected
-
+})
 
 test_that("There can be more than one winner", {
     let rows = 
@@ -66,7 +63,7 @@ test_that("There can be more than one winner", {
           "Allegoric Alaskans             |  2 |  1 |  0 |  1 |  3";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
     tally rows |> should equal expected
-
+})
 
 test_that("There can be more than two teams", {
     let rows = 
@@ -79,7 +76,7 @@ test_that("There can be more than two teams", {
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3";
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
     tally rows |> should equal expected
-
+})
 
 test_that("Typical input", {
     let rows = 
@@ -96,7 +93,7 @@ test_that("Typical input", {
           "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
     tally rows |> should equal expected
-
+})
 
 test_that("Incomplete competition (not all pairs have played)", {
     let rows = 
@@ -111,7 +108,7 @@ test_that("Incomplete competition (not all pairs have played)", {
           "Courageous Californians        |  2 |  0 |  1 |  1 |  1";
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
-
+})
 
 test_that("Ties broken alphabetically", {
     let rows = 
@@ -128,7 +125,7 @@ test_that("Ties broken alphabetically", {
           "Blithering Badgers             |  3 |  0 |  1 |  2 |  1";
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
     tally rows |> should equal expected
-
+})
 
 test_that("Ensure points sorted numerically", {
     let rows = 
