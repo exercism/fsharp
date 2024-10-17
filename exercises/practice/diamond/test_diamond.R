@@ -2,13 +2,13 @@ source("./diamond.R")
 library(testthat)
 
 
-let split (x: string) = x.Split(c(| '\n' |), StringSplitOptions.None)
+let split (x: string) = x.Split(c( '\n' ), StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()
 
-let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny c(|'A'..'Z'|))
+let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny c('A'..'Z'))
 
-let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny c(|'A'..'Z'|) + 1)
+let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny c('A'..'Z') + 1)
 
 type Letters =
     static member Chars () =
@@ -16,7 +16,7 @@ type Letters =
         |> Arb.filter (fun c -> 'A' <= c && c <= 'Z')
 
 type DiamondPropertyAttribute () =
-    inherit PropertyAttribute(Arbitrary = c(| typeof<Letters> |))
+    inherit PropertyAttribute(Arbitrary = c( typeof<Letters> ))
 
 c(<DiamondProperty>)
 test_that("First row contains 'A'`` (letter:char) =

@@ -9,7 +9,7 @@ test_that("Keep everything", {
 
  
 test_that("Keep first and last", {
-  expect_equal(c(|1, 2, 3|) |> Seq.keep (fun x -> x % 2 <> 0) |> Seq.toList, c(1, 3))
+  expect_equal(c(1, 2, 3) |> Seq.keep (fun x -> x % 2 <> 0) |> Seq.toList, c(1, 3))
 })
 
 test_that("Keep neither first nor last", {
@@ -23,15 +23,15 @@ test_that("Keep strings", {
 
 test_that("Keep arrays", {
   actual <- c(|
-                    c(|1, 2, 3|);
-                    c(|5, 5, 5|);
-                    c(|5, 1, 2|);
-                    c(|2, 1, 2|);
-                    c(|1, 5, 2|);
-                    c(|2, 2, 1|);
-                    c(|1, 2, 5|)
+                    c(1, 2, 3);
+                    c(5, 5, 5);
+                    c(5, 1, 2);
+                    c(2, 1, 2);
+                    c(1, 5, 2);
+                    c(2, 2, 1);
+                    c(1, 2, 5)
                     |)
-  expected <- c( c(|5, 5, 5|), c(|5, 1, 2|), c(|1, 5, 2|), c(|1, 2, 5|) )
+  expected <- c( c(5, 5, 5|), c(|5, 1, 2|), c(|1, 5, 2|), c(|1, 2, 5) )
   expect_equal(actual |> Seq.keep (Array.exists ((=) 5)) |> Seq.toList, expected)
 })
 
@@ -44,7 +44,7 @@ test_that("Discard nothing", {
 })
 
 test_that("Discard first and last", {
-  expect_equal(c(|1, 2, 3|) |> Seq.discard (fun x -> x % 2 <> 0) |> Seq.toList, c(2))
+  expect_equal(c(1, 2, 3) |> Seq.discard (fun x -> x % 2 <> 0) |> Seq.toList, c(2))
 })
 
 test_that("Discard neither first nor last", {
@@ -58,13 +58,13 @@ test_that("Discard strings", {
 
 test_that("Discard arrays", {
   actual <- c(|
-                    c(|1, 2, 3|);
-                    c(|5, 5, 5|);
-                    c(|5, 1, 2|);
-                    c(|2, 1, 2|);
-                    c(|1, 5, 2|);
-                    c(|2, 2, 1|);
-                    c(|1, 2, 5|)
+                    c(1, 2, 3);
+                    c(5, 5, 5);
+                    c(5, 1, 2);
+                    c(2, 1, 2);
+                    c(1, 5, 2);
+                    c(2, 2, 1);
+                    c(1, 2, 5)
                     |)
-  expected <- c( c(|1, 2, 3|), c(|2, 1, 2|), c(|2, 2, 1|) )
+  expected <- c( c(1, 2, 3|), c(|2, 1, 2|), c(|2, 2, 1) )
   expect_equal(actual |> Seq.discard (Array.exists ((=) 5)) |> Seq.toList, expected)
