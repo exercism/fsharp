@@ -184,95 +184,95 @@ test_that("Subtract more than two days", {
 test_that("Clocks with same time", {
   clock1 <- create 15 37
   clock2 <- create 15 37
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks a minute apart", {
   clock1 <- create 15 36
   clock2 <- create 15 37
-  expect_equal(clock1 = clock2, FALSE)
+  expect_false(clock1 = clock2)
 })
 
 test_that("Clocks an hour apart", {
   clock1 <- create 14 37
   clock2 <- create 15 37
-  expect_equal(clock1 = clock2, FALSE)
+  expect_false(clock1 = clock2)
 })
 
 test_that("Clocks with hour overflow", {
   clock1 <- create 10 37
   clock2 <- create 34 37
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with hour overflow by several days", {
   clock1 <- create 3 11
   clock2 <- create 99 11
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative hour", {
   clock1 <- create 22 40
   clock2 <- create -2 40
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative hour that wraps", {
   clock1 <- create 17 3
   clock2 <- create -31 3
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative hour that wraps multiple times", {
   clock1 <- create 13 49
   clock2 <- create -83 49
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with minute overflow", {
   clock1 <- create 0 1
   clock2 <- create 0 1441
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with minute overflow by several days", {
   clock1 <- create 2 2
   clock2 <- create 2 4322
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative minute", {
   clock1 <- create 2 40
   clock2 <- create 3 -20
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative minute that wraps", {
   clock1 <- create 4 10
   clock2 <- create 5 -1490
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative minute that wraps multiple times", {
   clock1 <- create 6 15
   clock2 <- create 6 -4305
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative hours and minutes", {
   clock1 <- create 7 32
   clock2 <- create -12 -268
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Clocks with negative hours and minutes that wrap", {
   clock1 <- create 18 7
   clock2 <- create -54 -11513
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 })
 
 test_that("Full clock and zeroed clock", {
   clock1 <- create 24 0
   clock2 <- create 0 0
-  expect_equal(clock1 = clock2, TRUE)
+  expect_true(clock1 = clock2)
 

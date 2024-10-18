@@ -3,7 +3,7 @@ library(testthat)
 
 test_that("Empty list", {
   list <- nil
-  expect_equal(isNil list, TRUE)
+  expect_true(isNil list)
 })
 
 test_that("Single item list value", {
@@ -13,7 +13,7 @@ test_that("Single item list value", {
 
 test_that("Single item list has no next item", {
   list <- create 1 nil
-  expect_equal(next list |> isNil, TRUE)
+  expect_true(next list |> isNil)
         
 
 test_that("Two item list first value", {
@@ -28,7 +28,7 @@ test_that("Two item list second value", {
 
 test_that("Two item list second item has no next", {
   list <- create 2 (create 1 nil)
-  expect_equal(next list |> next |> isNil, TRUE)
+  expect_true(next list |> next |> isNil)
         
 
 test_that("To list", {

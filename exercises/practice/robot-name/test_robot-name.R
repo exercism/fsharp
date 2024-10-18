@@ -2,7 +2,7 @@ source("./robot-name.R")
 library(testthat)
 test_that("Robot has a name", {     
   robot <- mkRobot()
-  expect_equal(Regex.IsMatch(name robot, @"^c(A-Z){2}\d{3}$"), TRUE)
+  expect_true(Regex.IsMatch(name robot, @"^c(A-Z){2}\d{3}$"))
     
 
 test_that("Name is the same each time", {     

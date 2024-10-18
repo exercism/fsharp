@@ -40,10 +40,10 @@ test_that("Returning Option<'T>", {
 
 test_that("Returning Result<'TSuccess, 'TError>", {
   successResult <- handleErrorByReturningResult "1"
-  expect_equal((successResult = Ok 1), TRUE)
+  expect_true((successResult = Ok 1))
     
   failureResult <- handleErrorByReturningResult "a"
-  expect_equal((failureResult = Error "Could not convert input to integer"), TRUE)
+  expect_true((failureResult = Error "Could not convert input to integer"))
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -74,16 +74,16 @@ test_that("Using railway-oriented programming", {
         >> bind validate3
 
   firstValidationFailureResult <- combinedValidation 1            
-  expect_equal((firstValidationFailureResult = Error "Input less than or equal to five"), TRUE)
+  expect_true((firstValidationFailureResult = Error "Input less than or equal to five"))
 
   secondValidationFailureResult <- combinedValidation 23          
-  expect_equal((secondValidationFailureResult = Error "Input greater than or equal to ten"), TRUE)
+  expect_true((secondValidationFailureResult = Error "Input greater than or equal to ten"))
 
   thirdValidationFailureResult <- combinedValidation 8        
-  expect_equal((thirdValidationFailureResult = Error "Input is not odd"), TRUE)
+  expect_true((thirdValidationFailureResult = Error "Input is not odd"))
 
   successResult <- combinedValidation 7        
-  expect_equal((successResult = Ok 7), TRUE)
+  expect_true((successResult = Ok 7))
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -92,4 +92,4 @@ test_that("Cleaning up disposables when throwing exception", {
   resource <- new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-  expect_equal(resource.Disposed(), TRUE)
+  expect_true(resource.Disposed())

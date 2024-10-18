@@ -32,7 +32,7 @@ test_that("All rows must have symmetric contour`` (letter:char) =
   rows <- actual |> split
   symmetric (row:string) <- leadingSpaces row = trailingSpaces row
 
-  expect_equal(rows |> Array.iter (fun x -> symmetric x, TRUE))
+  expect_true(rows |> Array.iter (fun x -> symmetric x))
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Top of figure has letters in correct order`` (letter:char) =
@@ -74,7 +74,7 @@ test_that("Diamond has square shape`` (letter:char) =
   expected <- rows.Length
   correctWidth (x:string) <- x.Length = expected
 
-  expect_equal(rows |> Array.iter (fun x -> correctWidth x, TRUE))
+  expect_true(rows |> Array.iter (fun x -> correctWidth x))
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("All rows except top and bottom have two identical letters`` (letter:char) =
@@ -90,7 +90,7 @@ test_that("All rows except top and bottom have two identical letters`` (letter:c
       identicalCharacters <- row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
-  expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, TRUE))
+  expect_true(rows |> Array.iter (fun x -> twoIdenticalLetters x))
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Bottom left corner spaces are triangle`` (letter:char) =
