@@ -22,4 +22,4 @@ jobs:
           dotnet-version: "8.0.200"
 
       - name: Validate Code Snippets
-        run: pwsh ./check-code-snippets.ps1
+        run: pwsh ./bin/check-code-snippets.ps1

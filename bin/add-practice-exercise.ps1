@@ -11,7 +11,7 @@
     The difficulty of the exercise on a scale from 1 to 10 (optional, default: 1).
 .EXAMPLE
     The example below will add the "acronym" exercise
-    PS C:\> ./add-practice-exercise.ps1 acronym
+    PS C:\> bin/add-practice-exercise.ps1 acronym
 #>
 
 [CmdletBinding(SupportsShouldProcess)]

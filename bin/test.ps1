@@ -11,10 +11,10 @@
     The slug of the exercise to verify (optional).
 .EXAMPLE
     The example below will verify the full solution
-    PS C:\> ./test.ps1
+    PS C:\> bin/test.ps1
 .EXAMPLE
     The example below will verify the "acronym" exercise
-    PS C:\> ./test.ps1 acronym
+    PS C:\> bin/test.ps1 acronym
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
