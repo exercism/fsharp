@@ -59,9 +59,25 @@ $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Tests.fs"
 $proj.Save($project)
 
 # Add and run generator (this will update the tests file)
-Add-Content -Path generators/Generators.fs -Value @"
+$generator = "generators/Generators.fs"
+Add-Content -Path $generator -Value @"
 
 type ${exerciseName}() =
     inherit ExerciseGenerator()
 "@
 & dotnet run --project generators --exercise $Exercise
+
+# Output the next steps
+$files = Get-Content "exercises/practice/${Exercise}/.meta/config.json" | ConvertFrom-Json | Select-Object -ExpandProperty files
+Write-Output @"
+Your next steps are:
+- Check the test suite in $($files.test | Join-String -Separator ",")
+  - If the tests need changes, update the '${exerciseName}' class in the '${generator}' file
+    and then run: 'dotnet run --project generators --exercise ${Exercise}'
+- Any test cases you don't implement, mark them in 'exercises/practice/${slug}/.meta/tests.toml' with "include = false"
+- Create the example solution in $($files.example | Join-String -Separator ",")
+- Verify the example solution passes the tests by running 'bin/verify-exercises ${slug}'
+- Create the stub solution in $($files.solution | Join-String -Separator ",")
+- Update the 'difficulty' value for the exercise's entry in the 'config.json' file in the repo's root
+- Validate CI using 'bin/configlet lint' and 'bin/configlet fmt'
+"@
