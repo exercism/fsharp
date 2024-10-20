@@ -23,12 +23,12 @@ param (
     [string]$Exercise
 )
 
-# Import shared functionality
-. ./shared.ps1
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 function Invoke-Build-Generators {
     Write-Output "Building generators"
-    Run-Command "dotnet build ./generators"
+    & dotnet build ./generators 
 }
 
 function Clean($BuildDir) {
@@ -48,14 +48,18 @@ function Enable-All-UnitTests($BuildDir) {
     }
 }
 
+function Add-Packages-ExerciseImplementation($PracticeExercisesDir) {
+    & dotnet add "${PracticeExercisesDir}/sgf-parsing" package FParsec
+}
+
 function Test-Refactoring-Projects($PracticeExercisesDir) {
     Write-Output "Testing refactoring projects"
     @("tree-building", "ledger", "markdown") | ForEach-Object {
-        Run-Command "dotnet test $practiceExercisesDir/$_"
+        Invoke-Tests -Path "$PracticeExercisesDir/$_"
     }
 }
 
-function Set-ExerciseImplementation {
+function Set-ExampleImplementation {
     [CmdletBinding(SupportsShouldProcess)]
     param($ExercisesDir, $ReplaceFileName)
 
@@ -69,45 +73,54 @@ function Set-ExerciseImplementation {
     }
 }
 
-function Use-ExerciseImplementation {
+function Use-ExampleImplementation {
     [CmdletBinding(SupportsShouldProcess)]
     param($ConceptExercisesDir, $PracticeExercisesDir)
 
     if ($PSCmdlet.ShouldProcess("Exercises directory", "replace all solutions with corresponding examples")) {
         Write-Output "Replacing concept exercise stubs with exemplar"
-        Set-ExerciseImplementation $ConceptExercisesDir "Exemplar.fs"
+        Set-ExampleImplementation $ConceptExercisesDir "Exemplar.fs"
 
         Write-Output "Replacing practice exercise stubs with example"
-        Set-ExerciseImplementation $PracticeExercisesDir "Example.fs"
+        Set-ExampleImplementation $PracticeExercisesDir "Example.fs"
     }
 }
 
-function Add-Packages-ExerciseImplementation($PracticeExercisesDir) {
-    Run-Command "dotnet add $PracticeExercisesDir/sgf-parsing package FParsec"
-}
-
-function Test-ExerciseImplementation($Exercise, $BuildDir, $ConceptExercisesDir, $PracticeExercisesDir) {
+function Test-ExerciseImplementation($Exercise, $BuildDir, $ConceptExercisesDir, $PracticeExercisesDir, $IsCI) {
     Write-Output "Running tests"
 
     if (-Not $Exercise) {
-        Run-Command "dotnet test $buildDir/Exercises.sln"
+        Invoke-Tests -Path $BuildDir -IsCI $IsCI
     }
     elseif (Test-Path "$ConceptExercisesDir/$Exercise") {
-        Run-Command "dotnet test $conceptExercisesDir/$exercise"
+        Invoke-Tests -Path "$ConceptExercisesDir/$Exercise" -IsCI $IsCI
     }
     elseif (Test-Path "$PracticeExercisesDir/$Exercise") {
-        Run-Command "dotnet test $practiceExercisesDir/$exercise"
+        Invoke-Tests -Path "$PracticeExercisesDir/$Exercise" -IsCI $IsCI
     }
     else {
         throw "Could not find exercise '$Exercise'"
     }
 }
 
+function Invoke-Tests($Path, $IsCI) {
+    if ($IsCI) {
+        Get-ChildItem -Path $Path -Include "*.fsproj" -Recurse | ForEach-Object {
+            & dotnet add $_.FullName package JunitXml.TestLogger -n -v 3.0.134 
+        }
+        & dotnet test $Path --logger "junit;LogFilePath=results/test.xml" 
+    }
+    else {
+        & dotnet test "$Path" 
+    }
+}
+
 
 $buildDir = Join-Path $PSScriptRoot "build"
-$conceptExercisesDir = Join-Path $buildDir "concept"
 $practiceExercisesDir = Join-Path $buildDir "practice"
+$conceptExercisesDir = Join-Path $buildDir "concept"
 $sourceDir = Resolve-Path "exercises"
+$isCi = [System.Convert]::ToBoolean($env:CI)
 
 Clean $buildDir
 Copy-Exercise $sourceDir $buildDir
@@ -115,11 +128,9 @@ Enable-All-UnitTests $buildDir
 
 if (!$Exercise) {
     Invoke-Build-Generators
-    Test-Refactoring-Projects -PracticeExercisesDir $practiceExercisesDir
+    Test-Refactoring-Projects $practiceExercisesDir
 }
 
-Use-ExerciseImplementation -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir
+Use-ExampleImplementation $conceptExercisesDir $practiceExercisesDir
 Add-Packages-ExerciseImplementation -PracticeExercisesDir $practiceExercisesDir
-Test-ExerciseImplementation -Exercise $Exercise -BuildDir $buildDir -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir
-
-exit $LastExitCode
+Test-ExerciseImplementation -Exercise $Exercise -BuildDir $buildDir -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir -IsCI $isCi
