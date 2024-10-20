@@ -11,10 +11,10 @@
     The slug of the exercise to verify (optional).
 .EXAMPLE
     The example below will verify the full solution
-    PS C:\> ./test.ps1
+    PS C:\> bin/test.ps1
 .EXAMPLE
     The example below will verify the "acronym" exercise
-    PS C:\> ./test.ps1 acronym
+    PS C:\> bin/test.ps1 acronym
 #>
 
 [CmdletBinding(SupportsShouldProcess)]
@@ -23,12 +23,12 @@ param (
     [string]$Exercise
 )
 
-# Import shared functionality
-. ./shared.ps1
+$ErrorActionPreference = "Stop"
+$PSNativeCommandUseErrorActionPreference = $true
 
 function Invoke-Build-Generators {
     Write-Output "Building generators"
-    Run-Command "dotnet build ./generators"
+    & dotnet build ./generators 
 }
 
 function Clean($BuildDir) {
@@ -48,18 +48,22 @@ function Enable-All-UnitTests($BuildDir) {
     }
 }
 
+function Add-Packages-ExerciseImplementation($PracticeExercisesDir) {
+    & dotnet add "${PracticeExercisesDir}/sgf-parsing" package FParsec
+}
+
 function Test-Refactoring-Projects($PracticeExercisesDir) {
     Write-Output "Testing refactoring projects"
     @("tree-building", "ledger", "markdown") | ForEach-Object {
-        Run-Command "dotnet test $practiceExercisesDir/$_"
+        dotnet test "${PracticeExercisesDir}/${_}"
     }
 }
 
-function Set-ExerciseImplementation {
+function Set-ExampleImplementation {
     [CmdletBinding(SupportsShouldProcess)]
     param($ExercisesDir, $ReplaceFileName)
 
-    if ($PSCmdlet.ShouldProcess("Exercise $ReplaceFileName", "replace solution with example")) {
+    if ($PSCmdlet.ShouldProcess("Exercise ${ReplaceFileName}", "replace solution with example")) {
         Get-ChildItem -Path $ExercisesDir -Include "*.fsproj" -Recurse | ForEach-Object {
             $stub = Join-Path -Path $_.Directory ($_.BaseName + ".fs")
             $example = Join-Path -Path $_.Directory ".meta" $ReplaceFileName
@@ -69,44 +73,39 @@ function Set-ExerciseImplementation {
     }
 }
 
-function Use-ExerciseImplementation {
+function Use-ExampleImplementation {
     [CmdletBinding(SupportsShouldProcess)]
     param($ConceptExercisesDir, $PracticeExercisesDir)
 
     if ($PSCmdlet.ShouldProcess("Exercises directory", "replace all solutions with corresponding examples")) {
         Write-Output "Replacing concept exercise stubs with exemplar"
-        Set-ExerciseImplementation $ConceptExercisesDir "Exemplar.fs"
+        Set-ExampleImplementation $ConceptExercisesDir "Exemplar.fs"
 
         Write-Output "Replacing practice exercise stubs with example"
-        Set-ExerciseImplementation $PracticeExercisesDir "Example.fs"
+        Set-ExampleImplementation $PracticeExercisesDir "Example.fs"
     }
-}
-
-function Add-Packages-ExerciseImplementation($PracticeExercisesDir) {
-    Run-Command "dotnet add $PracticeExercisesDir/sgf-parsing package FParsec"
 }
 
 function Test-ExerciseImplementation($Exercise, $BuildDir, $ConceptExercisesDir, $PracticeExercisesDir) {
     Write-Output "Running tests"
 
     if (-Not $Exercise) {
-        Run-Command "dotnet test $buildDir/Exercises.sln"
+        dotnet test $BuildDir
     }
-    elseif (Test-Path "$ConceptExercisesDir/$Exercise") {
-        Run-Command "dotnet test $conceptExercisesDir/$exercise"
+    elseif (Test-Path "${ConceptExercisesDir}/${Exercise}") {
+        dotnet test "${ConceptExercisesDir}/${Exercise}"
     }
-    elseif (Test-Path "$PracticeExercisesDir/$Exercise") {
-        Run-Command "dotnet test $practiceExercisesDir/$exercise"
+    elseif (Test-Path "${PracticeExercisesDir}/${Exercise}") {
+        dotnet test "${PracticeExercisesDir}/${Exercise}"
     }
     else {
-        throw "Could not find exercise '$Exercise'"
+        throw "Could not find exercise '${Exercise}'"
     }
 }
 
-
-$buildDir = Join-Path $PSScriptRoot "build"
-$conceptExercisesDir = Join-Path $buildDir "concept"
-$practiceExercisesDir = Join-Path $buildDir "practice"
+$buildDir = "${PSScriptRoot}/build"
+$practiceExercisesDir = "${buildDir}/practice"
+$conceptExercisesDir = "${buildDir}/concept"
 $sourceDir = Resolve-Path "exercises"
 
 Clean $buildDir
@@ -115,11 +114,9 @@ Enable-All-UnitTests $buildDir
 
 if (!$Exercise) {
     Invoke-Build-Generators
-    Test-Refactoring-Projects -PracticeExercisesDir $practiceExercisesDir
+    Test-Refactoring-Projects $practiceExercisesDir
 }
 
-Use-ExerciseImplementation -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir
+Use-ExampleImplementation $conceptExercisesDir $practiceExercisesDir
 Add-Packages-ExerciseImplementation -PracticeExercisesDir $practiceExercisesDir
 Test-ExerciseImplementation -Exercise $Exercise -BuildDir $buildDir -ConceptExercisesDir $conceptExercisesDir -PracticeExercisesDir $practiceExercisesDir
-
-exit $LastExitCode
