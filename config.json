@@ -342,18 +342,10 @@
         "slug": "beer-song",
         "name": "Beer Song",
         "uuid": "0ea0d92f-5510-4ba9-b419-3f5ad029b74f",
-        "practices": [
-          "ranges",
-          "string-formatting"
-        ],
-        "prerequisites": [
-          "lists",
-          "numbers",
-          "ranges",
-          "string-formatting",
-          "strings"
-        ],
-        "difficulty": 3
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 3,
+        "status": "deprecated"
       },
       {
         "slug": "kindergarten-garden",
@@ -2157,6 +2149,23 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 5
+      },
+      {
+        "slug": "bottle-song",
+        "name": "Bottle Song",
+        "uuid": "05f6895a-b770-4a07-8db8-3787adf5fdf9",
+        "practices": [
+          "ranges",
+          "string-formatting"
+        ],
+        "prerequisites": [
+          "lists",
+          "numbers",
+          "ranges",
+          "string-formatting",
+          "strings"
+        ],
+        "difficulty": 3
       }
     ],
     "foregone": [

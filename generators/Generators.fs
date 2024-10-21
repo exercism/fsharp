@@ -2044,3 +2044,6 @@ type EliudsEggs() =
 
 type Knapsack() =
     inherit ExerciseGenerator()
+
+type BottleSong() =
+    inherit ExerciseGenerator()
