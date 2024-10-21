@@ -2218,6 +2218,21 @@
           "recursion"
         ],
         "difficulty": 5
+      },
+      {
+        "slug": "state-of-tic-tac-toe",
+        "name": "State of Tic-Tac-Toe",
+        "uuid": "4cb569ac-609b-49fd-a8cb-3da0be698c4c",
+        "practices": [
+          "multi-dimensional-arrays",
+          "result"
+        ],
+        "prerequisites": [
+          "multi-dimensional-arrays",
+          "chars",
+          "result"
+        ],
+        "difficulty": 5
       }
     ],
     "foregone": [
