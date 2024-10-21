@@ -41,6 +41,7 @@ $project = "${exerciseDir}/${ExerciseName}.fsproj"
 & dotnet add $project package xunit.runner.visualstudio --version 2.4.3
 & dotnet add $project package xunit --version 2.4.1
 & dotnet add $project package Microsoft.NET.Test.Sdk --version 16.8.3
+& dotnet add $project package FsUnit.xUnit --version 4.0.4
 
 # Add tools
 & dotnet new tool-manifest -o $exerciseDir
