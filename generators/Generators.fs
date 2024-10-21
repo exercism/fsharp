@@ -2041,3 +2041,6 @@ type SquareRoot() =
 
 type EliudsEggs() =
     inherit ExerciseGenerator()
+
+type Knapsack() =
+    inherit ExerciseGenerator()
