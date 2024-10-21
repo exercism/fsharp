@@ -2122,40 +2122,65 @@
         "slug": "resistor-color",
         "name": "Resistor Color",
         "uuid": "bd2bd26c-6eab-411d-8472-7643cb86c6c9",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "lists"
+        ],
+        "prerequisites": [
+          "numbers",
+          "lists"
+        ],
         "difficulty": 1
       },
       {
         "slug": "resistor-color-duo",
         "name": "Resistor Color Duo",
         "uuid": "4ecde4e3-308c-42e9-bb41-0e746d74b526",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "numbers"
+        ],
+        "prerequisites": [
+          "numbers",
+          "lists"
+        ],
         "difficulty": 1
       },
       {
         "slug": "square-root",
         "name": "Square Root",
         "uuid": "2c85587e-9b6c-4edf-9f05-e600489a9074",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "while-loops"
+        ],
+        "prerequisites": [
+          "numbers"
+        ],
         "difficulty": 1
       },
       {
         "slug": "eliuds-eggs",
         "name": "Eliud's Eggs",
         "uuid": "d5761ed1-a342-45eb-a2b3-95c7bc175046",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "bit-manipulation"
+        ],
+        "prerequisites": [
+          "bit-manipulation",
+          "numbers"
+        ],
         "difficulty": 2
       },
       {
         "slug": "knapsack",
         "name": "Knapsack",
         "uuid": "5bfffdf2-95d9-4794-b703-340c253400b2",
-        "practices": [],
-        "prerequisites": [],
+        "practices": [
+          "recursion"
+        ],
+        "prerequisites": [
+          "recursion",
+          "records",
+          "numbers"
+        ],
         "difficulty": 5
       }
     ],
