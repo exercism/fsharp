@@ -2029,3 +2029,6 @@ type GameOfLife() =
         match Seq.isEmpty value with
         | true -> Some "int[,]"
         | false -> None
+
+type ResistorColor() =
+    inherit ExerciseGenerator()
