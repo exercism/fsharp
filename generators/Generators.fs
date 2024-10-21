@@ -2053,3 +2053,6 @@ type ResistorColorTrio() =
 
 type KillerSudokuHelper() =
     inherit ExerciseGenerator()
+
+type StateOfTicTacToe() =
+    inherit ExerciseGenerator()
