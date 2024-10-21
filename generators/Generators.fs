@@ -2032,3 +2032,6 @@ type GameOfLife() =
 
 type ResistorColor() =
     inherit ExerciseGenerator()
+
+type ResistorColorDuo() =
+    inherit ExerciseGenerator()
