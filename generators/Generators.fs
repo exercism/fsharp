@@ -2038,3 +2038,6 @@ type ResistorColorDuo() =
 
 type SquareRoot() =
     inherit ExerciseGenerator()
+
+type EliudsEggs() =
+    inherit ExerciseGenerator()
