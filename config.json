@@ -2191,6 +2191,20 @@
           "strings"
         ],
         "difficulty": 3
+      },
+      {
+        "slug": "resistor-color-trio",
+        "name": "Resistor Color Trio",
+        "uuid": "6f58712b-8b74-4b4b-b6b7-1237dd717c04",
+        "practices": [
+          "string-formatting"
+        ],
+        "prerequisites": [
+          "numbers",
+          "lists",
+          "strings"
+        ],
+        "difficulty": 3
       }
     ],
     "foregone": [
