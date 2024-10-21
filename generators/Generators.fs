@@ -2047,3 +2047,6 @@ type Knapsack() =
 
 type BottleSong() =
     inherit ExerciseGenerator()
+
+type ResistorColorTrio() =
+    inherit ExerciseGenerator()
