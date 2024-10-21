@@ -2205,6 +2205,19 @@
           "strings"
         ],
         "difficulty": 3
+      },
+      {
+        "slug": "killer-sudoku-helper",
+        "name": "Killer Sudoku Helper",
+        "uuid": "beb3f222-54b2-459c-9704-f2e6516542bb",
+        "practices": [
+          "lists"
+        ],
+        "prerequisites": [
+          "lists",
+          "recursion"
+        ],
+        "difficulty": 5
       }
     ],
     "foregone": [

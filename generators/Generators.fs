@@ -2050,3 +2050,6 @@ type BottleSong() =
 
 type ResistorColorTrio() =
     inherit ExerciseGenerator()
+
+type KillerSudokuHelper() =
+    inherit ExerciseGenerator()
