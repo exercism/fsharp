@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SquareRoot.fsproj"
     ]
   },
   "blurb": "Given a natural radicand, return its square root.",

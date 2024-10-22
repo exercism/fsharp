@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ResistorColorDuo.fsproj"
     ]
   },
   "blurb": "Convert color codes, as used on resistors, to a numeric value.",

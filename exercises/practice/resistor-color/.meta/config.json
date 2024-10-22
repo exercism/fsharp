@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "ResistorColor.fsproj"
     ]
   },
   "blurb": "Convert a resistor band's color to its numeric representation.",

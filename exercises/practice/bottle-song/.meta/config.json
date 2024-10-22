@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "BottleSong.fsproj"
     ]
   },
   "blurb": "Produce the lyrics to the popular children's repetitive song: Ten Green Bottles.",

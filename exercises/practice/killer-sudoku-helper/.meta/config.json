@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "KillerSudokuHelper.fsproj"
     ]
   },
   "blurb": "Write a tool that makes it easier to solve Killer Sudokus",

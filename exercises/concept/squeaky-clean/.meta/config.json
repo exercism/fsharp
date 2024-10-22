@@ -12,6 +12,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "SqueakyClean.fsproj"
     ]
   },
   "forked_from": [

@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "Satellite.fsproj"
     ]
   },
   "blurb": "Rebuild binary trees from pre-order and in-order traversals."
