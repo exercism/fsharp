@@ -2044,18 +2044,62 @@ type EliudsEggs() =
 
 type Knapsack() =
     inherit ExerciseGenerator()
+    
+    let renderItem (item: JToken) =
+        let weight = item["weight"].ToObject<int>()
+        let value = item["value"].ToObject<int>()
+        $"{{ weight = {weight}; value = {value} }}"
+    
+    override _.PropertiesWithIdentifier _ = [ "items" ]
+    
+    override _.RenderInput(testCase, key, value) =
+        match key with
+        | "items" -> List.mapRenderMultiLine renderItem value
+        | _ -> base.RenderInput(testCase, key, value)
 
 type BottleSong() =
     inherit ExerciseGenerator()
+    
+    override _.PropertiesWithIdentifier _ = [ "expected" ]
+
+    override _.RenderExpected(_, _, value) = List.renderMultiLine value
 
 type ResistorColorTrio() =
     inherit ExerciseGenerator()
+    
+    override _.RenderExpected(_, _, value) =
+        let ohms = value["value"].ToString()
+        let unit = value["unit"].ToString() 
+        $"\"{ohms} {unit}\""
 
 type KillerSudokuHelper() =
     inherit ExerciseGenerator()
+    
+    override _.MapTestCase testCase = { testCase with Input = testCase.Input.["cage"].ToObject<Map<string, JToken>>() }
 
 type StateOfTicTacToe() =
     inherit ExerciseGenerator()
+
+    override _.PropertiesWithIdentifier _ = [ "board"; "expected" ]
+
+    override _.IdentifierTypeAnnotation(_, key, _) =
+        if key = "expected" then Some "Result<EndGameState, GameError>" else None
+    
+    override _.RenderInput(_, _, value) =
+        let rows = value |> Seq.map (fun row -> row.ToString().ToCharArray() |> List.ofArray |> List.map (fun c -> $"'{c}'") |> Obj.render)
+        Collection.renderMultiLine "array2D [" "]" rows
+    
+    override _.RenderExpected(_, _, value) =
+        match value.SelectToken "error" with
+        | null -> $"Ok EndGameState.{String.upperCaseFirst (value.ToString())}"
+        | error ->
+            let errorString =
+                match string error with
+                | "Impossible board: game should have ended after the game was won" -> "MoveMadeAfterGameWasDone"
+                | "Wrong turn order: O started" -> "WrongPlayerStarted"
+                | "Wrong turn order: X went twice" -> "ConsecutiveMovesBySamePlayer"
+                | _ -> failwith "Unknown error"
+            $"Error %s{errorString}"
 
 type Satellite() =
     inherit ExerciseGenerator()

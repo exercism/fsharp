@@ -1,4 +1,4 @@
 module KillerSudokuHelper
 
-let combinations sum size exclude =
+let combinations exclude size sum =
     failwith "Please implement the 'combinations' function"
