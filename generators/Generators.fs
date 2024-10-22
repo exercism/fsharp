@@ -2054,6 +2054,11 @@ type BottleSong() =
 
 type ResistorColorTrio() =
     inherit ExerciseGenerator()
+    
+    override _.RenderExpected(_, _, value) =
+        let ohms = value["value"].ToString()
+        let unit = value["unit"].ToString() 
+        $"\"{ohms} {unit}\""
 
 type KillerSudokuHelper() =
     inherit ExerciseGenerator()
