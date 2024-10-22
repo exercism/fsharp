@@ -2074,6 +2074,8 @@ type ResistorColorTrio() =
 
 type KillerSudokuHelper() =
     inherit ExerciseGenerator()
+    
+    override _.MapTestCase testCase = { testCase with Input = testCase.Input.["cage"].ToObject<Map<string, JToken>>() }
 
 type StateOfTicTacToe() =
     inherit ExerciseGenerator()

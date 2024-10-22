@@ -9,7 +9,7 @@ module List =
             List.map ((@) [ x ]) (combinations (k - 1) xs)
             @ combinations k xs
 
-let combinations sum size exclude =
+let combinations exclude size sum =
     [ 1..9 ]
     |> List.except exclude
     |> List.combinations size
