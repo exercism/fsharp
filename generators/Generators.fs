@@ -2080,6 +2080,27 @@ type KillerSudokuHelper() =
 type StateOfTicTacToe() =
     inherit ExerciseGenerator()
 
+    override _.PropertiesWithIdentifier _ = [ "board"; "expected" ]
+
+    override _.IdentifierTypeAnnotation(_, key, _) =
+        if key = "expected" then Some "Result<EndGameState, GameError>" else None
+    
+    override _.RenderInput(_, _, value) =
+        let rows = value |> Seq.map (fun row -> row.ToString().ToCharArray() |> List.ofArray |> List.map (fun c -> $"'{c}'") |> Obj.render)
+        Collection.renderMultiLine "array2D [" "]" rows
+    
+    override _.RenderExpected(_, _, value) =
+        match value.SelectToken "error" with
+        | null -> $"Ok EndGameState.{String.upperCaseFirst (value.ToString())}"
+        | error ->
+            let errorString =
+                match string error with
+                | "Impossible board: game should have ended after the game was won" -> "MoveMadeAfterGameWasDone"
+                | "Wrong turn order: O started" -> "WrongPlayerStarted"
+                | "Wrong turn order: X went twice" -> "ConsecutiveMovesBySamePlayer"
+                | _ -> failwith "Unknown error"
+            $"Error %s{errorString}"
+
 type Satellite() =
     inherit ExerciseGenerator()
     

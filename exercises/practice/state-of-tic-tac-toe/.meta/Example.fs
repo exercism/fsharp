@@ -16,12 +16,14 @@ type Board = Cell [,]
 let won (player: Cell) (board: Board) =
     let winning = [| player; player; player |]
 
-    Array.init 3 (fun i -> board[i, i]) = winning ||
-    Array.init 3 (fun i -> board[i, 2 - i]) = winning
-    || Array.init 3 (fun i -> board[i, *]) |> Array.contains winning
-    || Array.init 3 (fun i -> board[*, i]) |> Array.contains winning
+    Array.init 3 (fun i -> board[i, i]) = winning
+    || Array.init 3 (fun i -> board[i, 2 - i]) = winning
+    || Array.init 3 (fun i -> board[i, *])
+       |> Array.contains winning
+    || Array.init 3 (fun i -> board[*, i])
+       |> Array.contains winning
 
-let gameState (board: Board) =
+let gamestate (board: Board) =
     let numCells cell =
         board
         |> Seq.cast
