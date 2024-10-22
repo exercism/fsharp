@@ -2044,6 +2044,18 @@ type EliudsEggs() =
 
 type Knapsack() =
     inherit ExerciseGenerator()
+    
+    let renderItem (item: JToken) =
+        let weight = item["weight"].ToObject<int>()
+        let value = item["value"].ToObject<int>()
+        $"{{ weight = {weight}; value = {value} }}"
+    
+    override _.PropertiesWithIdentifier _ = [ "items" ]
+    
+    override _.RenderInput(testCase, key, value) =
+        match key with
+        | "items" -> List.mapRenderMultiLine renderItem value
+        | _ -> base.RenderInput(testCase, key, value)
 
 type BottleSong() =
     inherit ExerciseGenerator()
