@@ -2233,6 +2233,20 @@
           "result"
         ],
         "difficulty": 5
+      },
+      {
+        "slug": "satellite",
+        "name": "Satellite",
+        "uuid": "bcfeb5b7-08d3-4039-95b2-ebda6b7288aa",
+        "practices": [
+          "recursion"
+        ],
+        "prerequisites": [
+          "recursion",
+          "discriminated-unions",
+          "numbers"
+        ],
+        "difficulty": 7
       }
     ],
     "foregone": [

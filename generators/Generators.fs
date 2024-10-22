@@ -2056,3 +2056,37 @@ type KillerSudokuHelper() =
 
 type StateOfTicTacToe() =
     inherit ExerciseGenerator()
+
+type Satellite() =
+    inherit ExerciseGenerator()
+    
+    let renderTree (root: JToken) =
+        let rec render indent (node: JToken)  =
+            let indentation = String(' ', indent * 4)
+            
+            if node.HasValues then
+                let value = node["v"]
+                let left = node["l"] |> render (indent + 1)
+                let right = node["r"] |> render (indent + 1)
+                
+                if node["l"].HasValues || node["r"].HasValues then
+                    $"{indentation}Node(\n" +
+                    $"{indentation}    \"{value}\",\n" +
+                    $"{left},\n" +
+                    $"{right}\n" +
+                    $"{indentation})"
+                else
+                    $"{indentation}Node(\"{value}\", Empty, Empty)"
+            else
+                $"{indentation}Empty"
+            
+        render 2 root
+    
+    override _.PropertiesWithIdentifier _ = [ "expected" ]
+
+    override _.IdentifierTypeAnnotation(_, _, _) = Some "Result<Tree,string>"
+    
+    override _.RenderExpected(_, _, value) =
+        match value.SelectToken "error" with
+        | null -> $"Ok (\n%s{renderTree value}\n    )"
+        | error -> $"Error \"%s{string error}\""
