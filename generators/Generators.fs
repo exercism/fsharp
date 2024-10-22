@@ -2047,6 +2047,10 @@ type Knapsack() =
 
 type BottleSong() =
     inherit ExerciseGenerator()
+    
+    override _.PropertiesWithIdentifier _ = [ "expected" ]
+
+    override _.RenderExpected(_, _, value) = List.renderMultiLine value
 
 type ResistorColorTrio() =
     inherit ExerciseGenerator()
