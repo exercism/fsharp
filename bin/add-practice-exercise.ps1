@@ -53,10 +53,11 @@ Remove-Item -Path "${exerciseDir}/Tests.fs"
 Set-Content -Path "${exerciseDir}/${exerciseName}.fs" -Value "module ${exerciseName}"
 Set-Content -Path "${exerciseDir}/.meta/Example.fs" -Value "module ${exerciseName}"
 
-# Fix the includes
+# Fix the project
 [xml]$proj = Get-Content $project
 $proj.Project.ItemGroup[0].Compile[0].Include = "${exerciseName}.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Tests.fs"
+$proj.Project.PropertyGroup.RemoveChild($proj.Project.PropertyGroup.SelectSingleNode("//GenerateProgramFile"))
 $proj.Save($project)
 
 # Add and run generator (this will update the tests file)
