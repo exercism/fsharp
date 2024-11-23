@@ -1,3 +1,5 @@
+module TwelveDaysTests
+
 
 
 let ``First day a partridge in a pear tree`` () =

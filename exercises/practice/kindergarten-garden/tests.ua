@@ -1,3 +1,5 @@
+module KindergartenGardenTests
+
 
 
 let ``Partial garden - garden with single student`` () =

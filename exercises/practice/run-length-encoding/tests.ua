@@ -1,3 +1,5 @@
+module RunLengthEncodingTests
+
 
 
 let ``Encode empty string`` () =

@@ -1,3 +1,5 @@
+module SquareRootTests
+
 
 
 let ``Root of 1`` () =

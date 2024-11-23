@@ -1,3 +1,5 @@
+module QueenAttackTests
+
 
 
 let ``Queen with a valid position`` () =

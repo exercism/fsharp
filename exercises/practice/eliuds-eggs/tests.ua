@@ -1,3 +1,5 @@
+module EliudsEggsTests
+
 
 
 let ``0 eggs`` () =

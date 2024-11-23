@@ -1,3 +1,5 @@
+module ReverseStringTests
+
 
 
 let ``An empty string`` () =

@@ -1,3 +1,5 @@
+module AlphameticsTests
+
 
 
 let ``Puzzle with three letters`` () =

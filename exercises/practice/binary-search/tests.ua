@@ -1,3 +1,5 @@
+module BinarySearchTests
+
 
 
 let ``Finds a value in an array with one element`` () =

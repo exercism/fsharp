@@ -1,3 +1,5 @@
+module BandwagonerTests
+
 
 
 let ``Create coach that was a former player`` () =

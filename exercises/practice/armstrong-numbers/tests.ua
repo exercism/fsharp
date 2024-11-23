@@ -1,3 +1,5 @@
+module ArmstrongNumbersTests
+
 
 
 let ``Zero is an Armstrong number`` () =

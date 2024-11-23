@@ -1,3 +1,5 @@
+module BeerSongTests
+
 
 
 let ``First generic verse`` () =

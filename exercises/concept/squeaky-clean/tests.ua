@@ -1,3 +1,5 @@
+module SqueakyCleanTests
+
 
 
 let ``Clean_single_letter``() = transform 'a' |> should equal "a"

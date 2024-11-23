@@ -1,3 +1,5 @@
+module HouseTests
+
 
 
 let ``Verse one - the house that jack built`` () =

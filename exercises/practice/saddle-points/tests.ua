@@ -1,3 +1,5 @@
+module SaddlePointsTests
+
 
 
 let ``Can identify single saddle point`` () =

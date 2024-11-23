@@ -1,3 +1,5 @@
+module YachtTests
+
 
 
 let ``Yacht`` () =

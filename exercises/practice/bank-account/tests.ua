@@ -1,5 +1,7 @@
 // This file was created manually and its version is 2.0.0.
 
+module BankAccountTest
+
 
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount

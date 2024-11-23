@@ -1,3 +1,5 @@
+module SgfParsingTests
+
 
 
 let ``Empty input`` () =

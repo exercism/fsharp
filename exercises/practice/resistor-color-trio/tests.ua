@@ -1,3 +1,5 @@
+module ResistorColorTrioTests
+
 
 
 let ``Orange and orange and black`` () =

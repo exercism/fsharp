@@ -1,3 +1,5 @@
+module RobotSimulatorTests
+
 
 
 let ``At origin facing north`` () =

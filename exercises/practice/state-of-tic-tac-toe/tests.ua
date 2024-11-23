@@ -1,3 +1,5 @@
+module StateOfTicTacToeTests
+
 
 
 let ``Finished game where X won via left column victory`` () =

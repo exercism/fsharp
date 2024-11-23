@@ -1,3 +1,5 @@
+module WordyTests
+
 
 
 let ``Just a number`` () =

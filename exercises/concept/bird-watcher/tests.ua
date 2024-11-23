@@ -1,3 +1,5 @@
+module BirdWatcherTests
+
 
 
 let ``Last week`` () =

@@ -1,3 +1,5 @@
+module AtbashCipherTests
+
 
 
 let ``Encode yes`` () =

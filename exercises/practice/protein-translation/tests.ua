@@ -1,3 +1,5 @@
+module ProteinTranslationTests
+
 
 
 let ``Empty RNA sequence results in no proteins`` () =

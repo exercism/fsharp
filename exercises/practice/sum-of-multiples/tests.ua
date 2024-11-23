@@ -1,3 +1,5 @@
+module SumOfMultiplesTests
+
 
 
 let ``No multiples within limit`` () =

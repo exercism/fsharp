@@ -1,3 +1,5 @@
+module DominoesTests
+
 
 
 let ``Empty input = empty output`` () =

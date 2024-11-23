@@ -1,3 +1,5 @@
+module LargestSeriesProductTests
+
 
 
 let ``Finds the largest product if span equals length`` () =

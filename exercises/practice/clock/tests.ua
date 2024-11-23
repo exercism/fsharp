@@ -1,3 +1,5 @@
+module ClockTests
+
 
 
 let ``On the hour`` () =

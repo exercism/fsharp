@@ -1,3 +1,5 @@
+module ZebraPuzzleTests
+
 
 
 let ``Resident who drinks water`` () =

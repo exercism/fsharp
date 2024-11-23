@@ -1,3 +1,5 @@
+module BinarySearchTreeTests
+
 
 
 let ``Data is retained`` () =

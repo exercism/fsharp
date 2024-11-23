@@ -1,3 +1,5 @@
+module GoCountingTests
+
 
 
 let ``Black corner territory on 5x5 board`` () =

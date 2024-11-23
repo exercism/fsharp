@@ -1,3 +1,5 @@
+module LuhnTests
+
 
 
 let ``Single digit strings can not be valid`` () =

@@ -1,3 +1,5 @@
+module IsbnVerifierTests
+
 
 
 let ``Valid isbn`` () =

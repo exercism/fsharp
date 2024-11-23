@@ -1,3 +1,5 @@
+module DartsTests
+
 
 
 let ``Missed target`` () =

@@ -1,3 +1,5 @@
+module RnaTranscriptionTests
+
 
 
 let ``Empty RNA sequence`` () =

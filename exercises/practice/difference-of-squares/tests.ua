@@ -1,3 +1,5 @@
+module DifferenceOfSquaresTests
+
 
 
 let ``Square of sum 1`` () =

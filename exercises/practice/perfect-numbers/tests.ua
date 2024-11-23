@@ -1,3 +1,5 @@
+module PerfectNumbersTests
+
 
 
 let ``Smallest perfect number is classified correctly`` () =

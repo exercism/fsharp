@@ -1,3 +1,5 @@
+module GameOfLifeTests
+
 
 
 let ``Empty matrix`` () =

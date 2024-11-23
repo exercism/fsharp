@@ -1,3 +1,5 @@
+module RailFenceCipherTests
+
 
 
 let ``Encode with two rails`` () =

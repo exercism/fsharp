@@ -1,3 +1,5 @@
+module SpiralMatrixTests
+
 
 
 let ``Empty spiral`` () =

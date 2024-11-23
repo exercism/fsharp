@@ -1,3 +1,5 @@
+module ConnectTests
+
 
 
 let ``An empty board has no winner`` () =

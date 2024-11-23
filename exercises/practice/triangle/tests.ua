@@ -1,3 +1,5 @@
+module TriangleTests
+
 
 
 let ``Equilateral returns all sides are equal`` () =

@@ -1,3 +1,5 @@
+module SecretHandshakeTests
+
 
 
 let ``Wink for 1`` () =

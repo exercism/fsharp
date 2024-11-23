@@ -1,3 +1,5 @@
+module ChangeTests
+
 
 
 let ``Change for 1 cent`` () =

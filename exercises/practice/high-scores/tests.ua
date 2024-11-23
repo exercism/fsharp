@@ -1,3 +1,5 @@
+module HighScoresTests
+
 
 
 let ``List of scores`` () =

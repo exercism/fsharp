@@ -1,3 +1,5 @@
+module GrainsTests
+
 
 
 let ``Grains on square 1`` () =

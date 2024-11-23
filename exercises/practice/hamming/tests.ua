@@ -1,3 +1,5 @@
+module HammingTests
+
 
 
 let ``Empty strands`` () =

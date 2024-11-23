@@ -1,3 +1,5 @@
+module CollatzConjectureTests
+
 
 
 let ``Zero steps for one`` () =

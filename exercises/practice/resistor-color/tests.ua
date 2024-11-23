@@ -1,3 +1,5 @@
+module ResistorColorTests
+
 
 
 let ``Black`` () =

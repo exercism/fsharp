@@ -1,3 +1,5 @@
+module RotationalCipherTests
+
 
 
 let ``Rotate a by 0, same output as input`` () =

@@ -1,3 +1,5 @@
+module SatelliteTests
+
 
 
 let ``Empty tree`` () =

@@ -1,3 +1,5 @@
+module CryptoSquareTests
+
 
 
 let ``Empty plaintext results in an empty ciphertext`` () =

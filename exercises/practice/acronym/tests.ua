@@ -1,3 +1,5 @@
+module AcronymTests
+
 
 
 let ``Basic`` () =

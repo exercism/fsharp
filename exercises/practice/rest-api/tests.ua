@@ -1,3 +1,5 @@
+module RestApiTests
+
 
 
 let ``No users`` () =

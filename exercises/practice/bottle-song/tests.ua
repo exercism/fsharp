@@ -1,3 +1,5 @@
+module BottleSongTests
+
 
 
 let ``First generic verse`` () =

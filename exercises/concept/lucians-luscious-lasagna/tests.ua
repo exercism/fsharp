@@ -1,3 +1,5 @@
+module LuciansLusciousLasagnaTests
+
 
 
 let ``Expected minutes in oven`` () = expectedMinutesInOven |> should equal 40

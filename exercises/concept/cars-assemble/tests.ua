@@ -1,3 +1,5 @@
+module CarsAssembleTests
+
 
 
 let ``Success rate for speed 10``() = successRate 10 |> should (equalWithin 0.01) 0.77

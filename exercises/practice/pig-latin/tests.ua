@@ -1,3 +1,5 @@
+module PigLatinTests
+
 
 
 let ``Word beginning with a`` () =

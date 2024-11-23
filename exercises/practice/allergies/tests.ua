@@ -1,3 +1,5 @@
+module AllergiesTests
+
 
 
 let ``Testing for eggs allergy - not allergic to anything`` () =

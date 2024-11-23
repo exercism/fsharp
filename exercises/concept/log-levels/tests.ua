@@ -1,3 +1,5 @@
+module LogLevelsTests
+
 
 
 let ``Error message``() = message "[ERROR]: Stack overflow" |> should equal "Stack overflow"

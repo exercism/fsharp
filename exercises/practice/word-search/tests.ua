@@ -1,3 +1,5 @@
+module WordSearchTests
+
 
 
 let ``Should accept an initial game grid and a target search word`` () =

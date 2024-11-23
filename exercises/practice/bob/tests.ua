@@ -1,3 +1,5 @@
+module BobTests
+
 
 
 let ``Stating something`` () =

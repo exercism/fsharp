@@ -1,3 +1,5 @@
+module RectanglesTests
+
 
 
 let ``No rows`` () =

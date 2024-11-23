@@ -1,3 +1,5 @@
+module WordCountTests
+
 
 
 let ``Count one word`` () =

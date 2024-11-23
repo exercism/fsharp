@@ -1,3 +1,5 @@
+module AnnalynsInfiltrationTests
+
 
 
 let ``Cannot execute fast attack if knight is awake``() =

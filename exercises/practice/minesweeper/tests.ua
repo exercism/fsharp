@@ -1,3 +1,5 @@
+module MinesweeperTests
+
 
 
 let ``No rows`` () =

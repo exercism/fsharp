@@ -1,3 +1,5 @@
+module PascalsTriangleTests
+
 
 
 let ``Zero rows`` () =

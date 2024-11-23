@@ -1,3 +1,5 @@
+module TournamentTests
+
 
 
 let ``Just the header if no input`` () =

@@ -1,3 +1,5 @@
+module ScaleGeneratorTests
+
 
 
 let ``Chromatic scale with sharps`` () =

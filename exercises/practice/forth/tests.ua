@@ -1,3 +1,5 @@
+module ForthTests
+
 
 
 let ``Parsing and numbers - numbers just get pushed onto the stack`` () =

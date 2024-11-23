@@ -1,3 +1,5 @@
+module AllYourBaseTests
+
 
 
 let ``Single bit one to decimal`` () =

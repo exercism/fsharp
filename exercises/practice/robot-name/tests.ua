@@ -1,5 +1,7 @@
 // This file was created manually and its version is 1.0.0.
 
+module RobotNameTest
+
 
 let ``Robot has a name`` () =     
     let robot = mkRobot()

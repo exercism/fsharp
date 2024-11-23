@@ -1,3 +1,5 @@
+module SimpleCipherTests
+
 
 
 let ``Random key cipher - Can encode`` () =

@@ -1,3 +1,5 @@
+module PokerTests
+
 
 
 let ``Single hand always wins`` () =

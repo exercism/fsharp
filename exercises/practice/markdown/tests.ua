@@ -1,3 +1,5 @@
+module MarkdownTests
+
 
 
 let ``Parses normal text as a paragraph`` () =

@@ -1,3 +1,5 @@
+module PhoneNumberTests
+
 
 
 let ``Cleans the number`` () =

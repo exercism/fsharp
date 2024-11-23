@@ -1,3 +1,5 @@
+module BookingUpForBeautyTests
+
 
 [<UseCulture("en-US")>]
 let ``Schedule date using only numbers`` () =

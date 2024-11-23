@@ -1,3 +1,5 @@
+module ResistorColorDuoTests
+
 
 
 let ``Brown and black`` () =

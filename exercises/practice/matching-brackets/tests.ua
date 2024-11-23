@@ -1,3 +1,5 @@
+module MatchingBracketsTests
+
 
 
 let ``Paired square brackets`` () =

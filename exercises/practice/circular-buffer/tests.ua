@@ -1,3 +1,5 @@
+module CircularBufferTests
+
 
 
 let ``Reading empty buffer should fail`` () =

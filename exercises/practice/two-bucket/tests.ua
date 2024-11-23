@@ -1,3 +1,5 @@
+module TwoBucketTests
+
 
 
 let ``Measure using bucket one of size 3 and bucket two of size 5 - start with bucket one`` () =

@@ -1,3 +1,5 @@
+module CustomSetTests
+
 
 
 let ``Sets with no elements are empty`` () =

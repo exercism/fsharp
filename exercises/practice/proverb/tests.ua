@@ -1,3 +1,5 @@
+module ProverbTests
+
 
 
 let ``Zero pieces`` () =

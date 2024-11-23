@@ -1,3 +1,5 @@
+module KnapsackTests
+
 
 
 let ``No items`` () =

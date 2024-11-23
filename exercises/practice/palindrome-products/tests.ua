@@ -1,3 +1,5 @@
+module PalindromeProductsTests
+
 
 
 let ``Find the smallest palindrome from single digit factors`` () =

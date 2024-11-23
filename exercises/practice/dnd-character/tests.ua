@@ -1,3 +1,5 @@
+module DndCharacterTests
+
 
 
 let ``Ability modifier for score 3 is -4`` () =

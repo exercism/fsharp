@@ -1,3 +1,5 @@
+module NthPrimeTests
+
 
 
 let ``First prime`` () =

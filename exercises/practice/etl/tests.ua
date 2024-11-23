@@ -1,3 +1,5 @@
+module EtlTests
+
 
 
 let ``Single letter`` () =

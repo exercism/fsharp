@@ -1,3 +1,5 @@
+module TisburyTreasureHuntTests
+
 
 
 let ``Get coordinate for Scrimshaw Whale's Tooth`` () =

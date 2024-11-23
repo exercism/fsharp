@@ -1,3 +1,5 @@
+module GradeSchoolTests
+
 
 
 let ``Roster is empty when no student is added`` () =

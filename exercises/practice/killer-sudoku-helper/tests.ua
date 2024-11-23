@@ -1,3 +1,5 @@
+module KillerSudokuHelperTests
+
 
 
 let ``1`` () =

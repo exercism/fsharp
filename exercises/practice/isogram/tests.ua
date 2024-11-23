@@ -1,3 +1,5 @@
+module IsogramTests
+
 
 
 let ``Empty string`` () =

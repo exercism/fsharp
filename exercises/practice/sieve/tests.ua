@@ -1,3 +1,5 @@
+module SieveTests
+
 
 
 let ``No primes under two`` () =

@@ -1,3 +1,5 @@
+module HelloWorldTests
+
 
 
 let ``Say Hi!`` () =

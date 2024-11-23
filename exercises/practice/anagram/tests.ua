@@ -1,3 +1,5 @@
+module AnagramTests
+
 
 
 let ``No matches`` () =

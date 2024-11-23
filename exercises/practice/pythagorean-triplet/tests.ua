@@ -1,3 +1,5 @@
+module PythagoreanTripletTests
+
 
 
 let ``Triplets whose sum is 12`` () =

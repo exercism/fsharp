@@ -1,3 +1,5 @@
+module SeriesTests
+
 
 
 let ``Slices of one from one`` () =

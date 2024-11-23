@@ -1,3 +1,5 @@
+module PizzaPricingTests
+
 
 
 let ``Price for pizza margherita``() = pizzaPrice Margherita |> should equal 7

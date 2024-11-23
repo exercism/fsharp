@@ -1,3 +1,5 @@
+module ReactTests
+
 
 
 let ``Input cells have a value`` () =

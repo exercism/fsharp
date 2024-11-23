@@ -1,3 +1,5 @@
+module AffineCipherTests
+
 
 
 let ``Encode yes`` () =

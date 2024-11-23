@@ -1,3 +1,5 @@
+module ValentinesDayTests
+
 
 
 let ``Rate board game``() = rateActivity BoardGame |> should equal No

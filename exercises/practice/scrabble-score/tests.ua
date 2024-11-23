@@ -1,3 +1,5 @@
+module ScrabbleScoreTests
+
 
 
 let ``Lowercase letter`` () =

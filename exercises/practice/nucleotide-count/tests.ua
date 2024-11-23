@@ -1,3 +1,5 @@
+module NucleotideCountTests
+
 
 
 let ``Empty strand`` () =

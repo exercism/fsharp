@@ -1,3 +1,5 @@
+module GuessingGameTests
+
 
 
 let ``Give hint for 42``() = reply 42 |> should equal "Correct"

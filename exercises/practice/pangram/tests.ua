@@ -1,3 +1,5 @@
+module PangramTests
+
 
 
 let ``Empty sentence`` () =

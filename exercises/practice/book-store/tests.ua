@@ -1,3 +1,5 @@
+module BookStoreTests
+
 
 
 let ``Only a single book`` () =
