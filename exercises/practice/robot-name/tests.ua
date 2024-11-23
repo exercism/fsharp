@@ -16,8 +16,7 @@ robot = mkRobot()
 robot2 = mkRobot()
     name robot |> should not' (equal (name robot2))
 
-[<Fact(Skip = "Remove this Skip property to run this test")>] 
-# 2500 Different robots have different names``() =
+# 2500 Different robots have different names
 robotCount = 2500
     seq { 1 .. robotCount }
     |> Seq.map (fun _ -> mkRobot())

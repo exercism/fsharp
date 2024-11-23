@@ -6,11 +6,9 @@ module StrainTest
 # Empty keep
 ⍤⤙≍ [] [] |> Seq.keep (fun x -> x < 10)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]  
 # Keep everything
 ⍤⤙≍ <| [1 2 3] set [1 2 3] |> Seq.keep (fun x -> x < 10) |> Seq.toList
 
-[<Fact(Skip = "Remove this Skip property to run this test")>] 
 # Keep first and last
 ⍤⤙≍ [1 3] [1 2 3 ] |> Seq.keep (fun x -> x % 2 <> 0) |> Seq.toList
 
