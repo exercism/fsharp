@@ -1,35 +1,29 @@
 
 
-[<Task(2)>]
 let ``Create coach that was a former player`` () =
     createCoach "Steve Kerr" true
     |> should equal
            { Name = "Steve Kerr"
              FormerPlayer = true }
 
-[<Task(2)>]
 let ``Create coach that wasn't a former player`` () =
     createCoach "Erik Spoelstra" false
     |> should equal
            { Name = "Erik Spoelstra"
              FormerPlayer = false }
 
-[<Task(3)>]
 let ``Create stats for winning team`` () =
     createStats 55 27
     |> should equal { Wins = 55; Losses = 27 }
 
-[<Task(3)>]
 let ``Create stats for losing team`` () =
     createStats 39 43
     |> should equal { Wins = 39; Losses = 43 }
 
-[<Task(3)>]
 let ``Create stats for all-time season record`` () =
     createStats 73 9
     |> should equal { Wins = 73; Losses = 9 }
 
-[<Task(4)>]
 let ``Create 60's team`` () =
     let coach = createCoach "Red Auerbach" false
     let stats = createStats 58 22
@@ -43,7 +37,6 @@ let ``Create 60's team`` () =
                    FormerPlayer = false }
              Stats = { Wins = 58; Losses = 22 } }
 
-[<Task(4)>]
 let ``Create 2010's team`` () =
     let coach = createCoach "Rick Carlisle" false
     let stats = createStats 57 25
@@ -59,7 +52,6 @@ let ``Create 2010's team`` () =
                    FormerPlayer = false }
              Stats = { Wins = 57; Losses = 25 } }
 
-[<Task(5)>]
 let ``Replace coach mid-season`` () =
     let oldCoach = createCoach "Willis Reed" true
     let newCoach = createCoach "Red Holzman" true
@@ -76,7 +68,6 @@ let ``Replace coach mid-season`` () =
                    FormerPlayer = true }
              Stats = { Wins = 6; Losses = 8 } }
 
-[<Task(5)>]
 let ``Replace coach after season`` () =
     let oldCoach = createCoach "Rudy Tomjanovich" true
     let newCoach = createCoach "Jeff van Gundy" true
@@ -93,7 +84,6 @@ let ``Replace coach after season`` () =
                    FormerPlayer = true }
              Stats = { Wins = 43; Losses = 39 } }
 
-[<Task(6)>]
 let ``Same team is duplicate`` () =
     let coach = createCoach "Pat Riley" true
     let stats = createStats 57 25
@@ -102,7 +92,6 @@ let ``Same team is duplicate`` () =
     isSameTeam team team
     |> should equal true
 
-[<Task(6)>]
 let ``Same team with different stats is not a duplicate`` () =
     let coach = createCoach "Pat Riley" true
     let stats = createStats 57 25
@@ -114,7 +103,6 @@ let ``Same team with different stats is not a duplicate`` () =
     isSameTeam team teamWithDifferentStats
     |> should equal false
 
-[<Task(6)>]
 let ``Same team with different coach is not a duplicate`` () =
     let coach = createCoach "Pat Riley" true    
     let stats = createStats 33 39    
@@ -126,7 +114,6 @@ let ``Same team with different coach is not a duplicate`` () =
     isSameTeam team teamWithDifferentCoach
     |> should equal false
 
-[<Task(6)>]
 let ``Different team with same coach and stats`` () =
     let stats = createStats 0 0
     let coach = createCoach "Mike d'Antoni" true
@@ -137,7 +124,6 @@ let ``Different team with same coach and stats`` () =
     isSameTeam team otherTeam
     |> should equal false
 
-[<Task(6)>]
 let ``Different team with different coach and stats`` () =
     let stats = createStats 42 40
     let coach = createCoach "Dave Joerger" true    
@@ -150,7 +136,6 @@ let ``Different team with different coach and stats`` () =
     isSameTeam team otherTeam
     |> should equal false
 
-[<Task(7)>]
 let ``Root for team with favorite coach and winning stats`` () =
     let stats = createStats 60 22
     let coach = createCoach "Gregg Popovich" false    
@@ -159,7 +144,6 @@ let ``Root for team with favorite coach and winning stats`` () =
     rootForTeam team
     |> should equal true    
 
-[<Task(7)>]
 let ``Root for team with favorite coach and losing stats`` () =
     let stats = createStats 17 47
     let coach = createCoach "Gregg Popovich" false    
@@ -168,7 +152,6 @@ let ``Root for team with favorite coach and losing stats`` () =
     rootForTeam team
     |> should equal true    
 
-[<Task(7)>]
 let ``Root for team with coach is former player and winning stats`` () =
     let stats = createStats 49 33
     let coach = createCoach "Jack Ramsay" true    
@@ -177,7 +160,6 @@ let ``Root for team with coach is former player and winning stats`` () =
     rootForTeam team
     |> should equal true    
 
-[<Task(7)>]
 let ``Root for team with coach is former player and losing stats`` () =
     let stats = createStats 0 7
     let coach = createCoach "Jack Ramsay" true    
@@ -186,7 +168,6 @@ let ``Root for team with coach is former player and losing stats`` () =
     rootForTeam team
     |> should equal true  
 
-[<Task(7)>]
 let ``Root for favorite team and winning stats`` () =
     let stats = createStats 61 21
     let coach = createCoach "Phil Jackson" true    
@@ -195,7 +176,6 @@ let ``Root for favorite team and winning stats`` () =
     rootForTeam team
     |> should equal true
 
-[<Task(7)>]
 let ``Root for favorite team and losing stats`` () =
     let stats = createStats 24 58
     let coach = createCoach "Dick Motta" false    
@@ -204,7 +184,6 @@ let ``Root for favorite team and losing stats`` () =
     rootForTeam team
     |> should equal true
 
-[<Task(7)>]
 let ``Root for team with sixty or more wins and former player coach`` () =
     let stats = createStats 65 17
     let coach = createCoach "Billy Cunningham" true    
@@ -213,7 +192,6 @@ let ``Root for team with sixty or more wins and former player coach`` () =
     rootForTeam team
     |> should equal true
 
-[<Task(7)>]
 let ``Root for team with sixty or more wins and non former player coach`` () =
     let stats = createStats 60 22
     let coach = createCoach "Mike Budenholzer" false    
@@ -222,7 +200,6 @@ let ``Root for team with sixty or more wins and non former player coach`` () =
     rootForTeam team
     |> should equal true
 
-[<Task(7)>]
 let ``Root for team with more losses than wins and former player coach`` () =
     let stats = createStats 40 42
     let coach = createCoach "Wes Unseld" true    
@@ -231,7 +208,6 @@ let ``Root for team with more losses than wins and former player coach`` () =
     rootForTeam team
     |> should equal true
 
-[<Task(7)>]
 let ``Root for team with more losses than wins and non former player coach`` () =
     let stats = createStats 29 43
     let coach = createCoach "Kenny Atkinson" false    
@@ -240,7 +216,6 @@ let ``Root for team with more losses than wins and non former player coach`` () 
     rootForTeam team
     |> should equal true
 
-[<Task(7)>]
 let ``Don't root for team not matching criteria`` () =
     let stats = createStats 51 31
     let coach = createCoach "Frank Layden" false    
