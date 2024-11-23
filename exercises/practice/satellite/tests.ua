@@ -1,9 +1,6 @@
 module SatelliteTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Satellite
 
 [<Fact>]
 let ``Empty tree`` () =

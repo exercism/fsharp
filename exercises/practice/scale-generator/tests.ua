@@ -1,9 +1,6 @@
 module ScaleGeneratorTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ScaleGenerator
 
 [<Fact>]
 let ``Chromatic scale with sharps`` () =

@@ -1,10 +1,6 @@
 module PizzaPricingTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open PizzaPricing
 
 [<Fact>]
 [<Task(2)>]

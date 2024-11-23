@@ -1,10 +1,6 @@
 module GuessingGameTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open GuessingGame
 
 [<Fact>]
 [<Task(1)>]

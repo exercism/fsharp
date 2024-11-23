@@ -1,9 +1,6 @@
 module GameOfLifeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open GameOfLife
 
 [<Fact>]
 let ``Empty matrix`` () =

@@ -1,9 +1,6 @@
 module KnapsackTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Knapsack
 
 [<Fact>]
 let ``No items`` () =

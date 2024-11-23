@@ -1,9 +1,6 @@
 module AllergiesTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Allergies
 
 [<Fact>]
 let ``Testing for eggs allergy - not allergic to anything`` () =

@@ -1,9 +1,6 @@
 module MatrixTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Matrix
 
 [<Fact>]
 let ``Extract row from one number matrix`` () =

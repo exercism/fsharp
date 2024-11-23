@@ -1,9 +1,6 @@
 module AnagramTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Anagram
 
 [<Fact>]
 let ``No matches`` () =

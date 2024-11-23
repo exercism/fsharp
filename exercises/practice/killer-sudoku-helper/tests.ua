@@ -1,9 +1,6 @@
 module KillerSudokuHelperTests
 
-open FsUnit.Xunit
-open Xunit
 
-open KillerSudokuHelper
 
 [<Fact>]
 let ``1`` () =

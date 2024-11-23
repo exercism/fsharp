@@ -2,9 +2,6 @@
 
 module BankAccountTest
 
-open Xunit
-open FsUnit.Xunit
-open BankAccount
 
 [<Fact>]
 let ``Returns empty balance after opening`` () =

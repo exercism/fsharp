@@ -1,9 +1,6 @@
 module GoCountingTests
 
-open FsUnit.Xunit
-open Xunit
 
-open GoCounting
 
 [<Fact>]
 let ``Black corner territory on 5x5 board`` () =
@@ -30,8 +27,7 @@ let ``White center territory on 5x5 board`` () =
     territory board position |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Open corner territory on 5x5 board`` () =
-    let board = 
+let ``    let board = 
         [ "  B  ";
           " B B ";
           "B W B";

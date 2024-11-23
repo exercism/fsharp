@@ -1,9 +1,6 @@
 module TriangleTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Triangle
 
 [<Fact>]
 let ``Equilateral returns all sides are equal`` () =

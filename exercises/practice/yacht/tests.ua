@@ -1,9 +1,6 @@
 module YachtTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Yacht
 
 [<Fact>]
 let ``Yacht`` () =

@@ -1,9 +1,6 @@
 module HammingTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Hamming
 
 [<Fact>]
 let ``Empty strands`` () =

@@ -1,9 +1,6 @@
 module RailFenceCipherTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RailFenceCipher
 
 [<Fact>]
 let ``Encode with two rails`` () =

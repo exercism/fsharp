@@ -2,10 +2,7 @@
 
 module HangmanTest
 
-open Xunit
-open FsUnit.Xunit
 
-open Hangman
 
 [<Fact>]
 let ``Initially 9 failures are allowed`` () =

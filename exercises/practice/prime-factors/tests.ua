@@ -1,9 +1,6 @@
 module PrimeFactorsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PrimeFactors
 
 [<Fact>]
 let ``No factors`` () =

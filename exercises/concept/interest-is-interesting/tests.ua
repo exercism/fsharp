@@ -1,10 +1,6 @@
 module InterestIsInterestingTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open InterestIsInteresting
 
 [<Fact>]
 [<Task(1)>]

@@ -1,9 +1,6 @@
 module SquareRootTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SquareRoot
 
 [<Fact>]
 let ``Root of 1`` () =

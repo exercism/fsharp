@@ -1,10 +1,6 @@
 module AnnalynsInfiltrationTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open AnnalynsInfiltration
 
 [<Fact>]
 [<Task(1)>]

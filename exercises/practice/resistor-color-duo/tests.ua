@@ -1,9 +1,6 @@
 module ResistorColorDuoTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ResistorColorDuo
 
 [<Fact>]
 let ``Brown and black`` () =

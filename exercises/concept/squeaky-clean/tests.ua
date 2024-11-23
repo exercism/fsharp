@@ -1,10 +1,6 @@
 module SqueakyCleanTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open SqueakyClean
 
 [<Fact>]
 [<Task(1)>]

@@ -1,9 +1,6 @@
 module AlphameticsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Alphametics
 
 [<Fact>]
 let ``Puzzle with three letters`` () =

@@ -1,9 +1,6 @@
 module ZipperTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Zipper
 
 let subTree value left right = Some (tree value left right)
 let leaf value = subTree value None None

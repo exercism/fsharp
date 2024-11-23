@@ -1,9 +1,6 @@
 module ScrabbleScoreTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ScrabbleScore
 
 [<Fact>]
 let ``Lowercase letter`` () =

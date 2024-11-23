@@ -1,10 +1,6 @@
 module LogLevelsTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open LogLevels
 
 [<Fact>]
 [<Task(1)>]

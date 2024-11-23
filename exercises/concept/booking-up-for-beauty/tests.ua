@@ -1,10 +1,5 @@
 module BookingUpForBeautyTests
 
-open System
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-open BookingUpForBeauty
 
 [<Fact>]
 [<UseCulture("en-US")>]

@@ -1,9 +1,6 @@
 module TransposeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Transpose
 
 [<Fact>]
 let ``Empty string`` () =

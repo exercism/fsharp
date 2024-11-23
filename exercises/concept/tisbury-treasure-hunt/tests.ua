@@ -1,10 +1,6 @@
 module TisburyTreasureHuntTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open TisburyTreasureHunt
 
 [<Fact>]
 [<Task(1)>]

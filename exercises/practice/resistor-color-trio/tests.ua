@@ -1,9 +1,6 @@
 module ResistorColorTrioTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ResistorColorTrio
 
 [<Fact>]
 let ``Orange and orange and black`` () =

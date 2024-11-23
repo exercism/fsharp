@@ -1,9 +1,6 @@
 module SaddlePointsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SaddlePoints
 
 [<Fact>]
 let ``Can identify single saddle point`` () =

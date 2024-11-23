@@ -1,10 +1,6 @@
 module LuciansLusciousLasagnaTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open LuciansLusciousLasagna
 
 [<Fact>]
 [<Task(1)>]

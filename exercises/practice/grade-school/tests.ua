@@ -1,9 +1,6 @@
 module GradeSchoolTests
 
-open FsUnit.Xunit
-open Xunit
 
-open GradeSchool
 
 [<Fact>]
 let ``Roster is empty when no student is added`` () =

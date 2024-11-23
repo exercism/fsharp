@@ -1,9 +1,6 @@
 module ConnectTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Connect
 
 [<Fact>]
 let ``An empty board has no winner`` () =

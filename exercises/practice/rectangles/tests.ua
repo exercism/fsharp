@@ -1,9 +1,6 @@
 module RectanglesTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Rectangles
 
 [<Fact>]
 let ``No rows`` () =

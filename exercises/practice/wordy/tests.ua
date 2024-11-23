@@ -1,9 +1,6 @@
 module WordyTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Wordy
 
 [<Fact>]
 let ``Just a number`` () =

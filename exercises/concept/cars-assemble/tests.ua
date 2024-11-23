@@ -1,10 +1,6 @@
 module CarsAssembleTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open CarsAssemble
 
 [<Fact>]
 [<Task(1)>]

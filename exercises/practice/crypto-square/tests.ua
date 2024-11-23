@@ -1,9 +1,6 @@
 module CryptoSquareTests
 
-open FsUnit.Xunit
-open Xunit
 
-open CryptoSquare
 
 [<Fact>]
 let ``Empty plaintext results in an empty ciphertext`` () =

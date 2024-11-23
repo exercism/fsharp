@@ -1,9 +1,6 @@
 module RationalNumbersTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RationalNumbers
 
 [<Fact>]
 let ``Add two positive rational numbers`` () =

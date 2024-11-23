@@ -1,9 +1,6 @@
 module WordCountTests
 
-open FsUnit.Xunit
-open Xunit
 
-open WordCount
 
 [<Fact>]
 let ``Count one word`` () =

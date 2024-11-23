@@ -1,9 +1,6 @@
 module StateOfTicTacToeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open StateOfTicTacToe
 
 [<Fact>]
 let ``Finished game where X won via left column victory`` () =

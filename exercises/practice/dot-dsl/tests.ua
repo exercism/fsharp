@@ -2,10 +2,7 @@
 
 module DotDslTest
 
-open Xunit
-open FsUnit.Xunit
 
-open DotDsl
 
 [<Fact>]
 let ``Empty graph`` () =

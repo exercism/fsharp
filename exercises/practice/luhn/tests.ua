@@ -1,9 +1,6 @@
 module LuhnTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Luhn
 
 [<Fact>]
 let ``Single digit strings can not be valid`` () =

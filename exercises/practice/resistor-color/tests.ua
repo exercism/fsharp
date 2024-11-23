@@ -1,9 +1,6 @@
 module ResistorColorTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ResistorColor
 
 [<Fact>]
 let ``Black`` () =

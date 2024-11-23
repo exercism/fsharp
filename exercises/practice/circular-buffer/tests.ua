@@ -1,10 +1,6 @@
 module CircularBufferTests
 
-open FsUnit.Xunit
-open Xunit
-open System
 
-open CircularBuffer
 
 [<Fact>]
 let ``Reading empty buffer should fail`` () =

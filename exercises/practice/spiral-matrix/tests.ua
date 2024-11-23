@@ -1,9 +1,6 @@
 module SpiralMatrixTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SpiralMatrix
 
 [<Fact>]
 let ``Empty spiral`` () =

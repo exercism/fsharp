@@ -1,9 +1,6 @@
 module BookStoreTests
 
-open FsUnit.Xunit
-open Xunit
 
-open BookStore
 
 [<Fact>]
 let ``Only a single book`` () =

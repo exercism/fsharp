@@ -1,9 +1,6 @@
 module OcrNumbersTests
 
-open FsUnit.Xunit
-open Xunit
 
-open OcrNumbers
 
 [<Fact>]
 let ``Recognizes 0`` () =

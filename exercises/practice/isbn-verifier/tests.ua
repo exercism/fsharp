@@ -1,9 +1,6 @@
 module IsbnVerifierTests
 
-open FsUnit.Xunit
-open Xunit
 
-open IsbnVerifier
 
 [<Fact>]
 let ``Valid isbn`` () =

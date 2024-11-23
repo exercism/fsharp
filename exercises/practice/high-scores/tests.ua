@@ -1,9 +1,6 @@
 module HighScoresTests
 
-open FsUnit.Xunit
-open Xunit
 
-open HighScores
 
 [<Fact>]
 let ``List of scores`` () =

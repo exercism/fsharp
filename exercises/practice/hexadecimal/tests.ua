@@ -2,10 +2,7 @@
 
 module HexadecimalTest
 
-open FsUnit.Xunit
-open Xunit
 
-open Hexadecimal
 
 [<Fact>]
 let ``Hexadecimal 1 is decimal 1`` () =

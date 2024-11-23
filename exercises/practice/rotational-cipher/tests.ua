@@ -1,9 +1,6 @@
 module RotationalCipherTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RotationalCipher
 
 [<Fact>]
 let ``Rotate a by 0, same output as input`` () =

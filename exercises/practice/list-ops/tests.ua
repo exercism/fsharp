@@ -1,9 +1,6 @@
 module ListOpsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ListOps
 
 [<Fact>]
 let ``append empty lists`` () =

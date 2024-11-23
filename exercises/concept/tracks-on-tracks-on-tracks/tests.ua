@@ -1,10 +1,6 @@
 module TracksOnTracksOnTracksTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open TracksOnTracksOnTracks
 
 [<Fact>]
 [<Task(1)>]

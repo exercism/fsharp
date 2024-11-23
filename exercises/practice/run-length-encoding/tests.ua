@@ -1,9 +1,6 @@
 module RunLengthEncodingTests
 
-open FsUnit.Xunit
-open Xunit
 
-open RunLengthEncoding
 
 [<Fact>]
 let ``Encode empty string`` () =

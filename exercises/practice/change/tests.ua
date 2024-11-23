@@ -1,9 +1,6 @@
 module ChangeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Change
 
 [<Fact>]
 let ``Change for 1 cent`` () =

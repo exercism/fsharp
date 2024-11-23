@@ -1,9 +1,6 @@
 module PythagoreanTripletTests
 
-open FsUnit.Xunit
-open Xunit
 
-open PythagoreanTriplet
 
 [<Fact>]
 let ``Triplets whose sum is 12`` () =

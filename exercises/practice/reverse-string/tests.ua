@@ -1,9 +1,6 @@
 module ReverseStringTests
 
-open FsUnit.Xunit
-open Xunit
 
-open ReverseString
 
 [<Fact>]
 let ``An empty string`` () =

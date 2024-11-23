@@ -1,10 +1,6 @@
 module BirdWatcherTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open BirdWatcher
 
 [<Fact>]
 [<Task(1)>]

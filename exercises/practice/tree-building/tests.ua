@@ -2,13 +2,8 @@
 
 module TreeBuildingTest
 
-open System
 
-open FsUnit.Xunit
-open Xunit
 
-open TreeBuildingTypes
-open TreeBuilding
 
 [<Fact>]
 let ``One node`` () =

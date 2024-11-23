@@ -1,9 +1,6 @@
 module DndCharacterTests
 
-open FsUnit.Xunit
-open Xunit
 
-open DndCharacter
 
 [<Fact>]
 let ``Ability modifier for score 3 is -4`` () =

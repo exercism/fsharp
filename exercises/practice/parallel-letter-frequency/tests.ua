@@ -2,10 +2,7 @@
 
 module ParallelLetterFrequencyTest
 
-open Xunit
-open FsUnit.Xunit
 
-open ParallelLetterFrequency
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
 let odeAnDieFreude = 

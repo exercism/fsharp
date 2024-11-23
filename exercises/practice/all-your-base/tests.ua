@@ -1,9 +1,6 @@
 module AllYourBaseTests
 
-open FsUnit.Xunit
-open Xunit
 
-open AllYourBase
 
 [<Fact>]
 let ``Single bit one to decimal`` () =

@@ -1,9 +1,6 @@
 module SumOfMultiplesTests
 
-open FsUnit.Xunit
-open Xunit
 
-open SumOfMultiples
 
 [<Fact>]
 let ``No multiples within limit`` () =

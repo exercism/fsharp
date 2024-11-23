@@ -1,10 +1,6 @@
 module BandwagonerTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
 
-open Bandwagoner
 
 [<Fact>]
 [<Task(2)>]

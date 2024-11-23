@@ -1,9 +1,6 @@
 module NthPrimeTests
 
-open FsUnit.Xunit
-open Xunit
 
-open NthPrime
 
 [<Fact>]
 let ``First prime`` () =

@@ -1,9 +1,6 @@
 module LeapTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Leap
 
 [<Fact>]
 let ``Year not divisible by 4 in common year`` () =

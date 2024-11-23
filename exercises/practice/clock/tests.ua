@@ -1,9 +1,6 @@
 module ClockTests
 
-open FsUnit.Xunit
-open Xunit
 
-open Clock
 
 [<Fact>]
 let ``On the hour`` () =

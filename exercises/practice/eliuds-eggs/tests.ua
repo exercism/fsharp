@@ -1,9 +1,6 @@
 module EliudsEggsTests
 
-open FsUnit.Xunit
-open Xunit
 
-open EliudsEggs
 
 [<Fact>]
 let ``0 eggs`` () =

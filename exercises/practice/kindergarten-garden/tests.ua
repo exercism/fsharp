@@ -1,9 +1,6 @@
 module KindergartenGardenTests
 
-open FsUnit.Xunit
-open Xunit
 
-open KindergartenGarden
 
 [<Fact>]
 let ``Partial garden - garden with single student`` () =
