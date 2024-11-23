@@ -1,15 +1,15 @@
 ~ "phone-number.ua" ~ PhoneNumber
 
 # Cleans the number
-    let expected: Result<uint64,string> = Ok 2234567890UL
+    let expected: Result<uint64,string> = Ok 2234567890
     clean "(223) 456-7890" |> should equal expected
 
 # Cleans numbers with dots
-    let expected: Result<uint64,string> = Ok 2234567890UL
+    let expected: Result<uint64,string> = Ok 2234567890
     clean "223.456.7890" |> should equal expected
 
 # Cleans numbers with multiple spaces
-    let expected: Result<uint64,string> = Ok 2234567890UL
+    let expected: Result<uint64,string> = Ok 2234567890
     clean "223 456   7890   " |> should equal expected
 
 # Invalid when 9 digits
@@ -21,11 +21,11 @@
     clean "22234567890" |> should equal expected
 
 # Valid when 11 digits and starting with 1
-    let expected: Result<uint64,string> = Ok 2234567890UL
+    let expected: Result<uint64,string> = Ok 2234567890
     clean "12234567890" |> should equal expected
 
 # Valid when 11 digits and starting with 1 even with punctuation
-    let expected: Result<uint64,string> = Ok 2234567890UL
+    let expected: Result<uint64,string> = Ok 2234567890
     clean "+1 (223) 456-7890" |> should equal expected
 
 # Invalid when more than 11 digits

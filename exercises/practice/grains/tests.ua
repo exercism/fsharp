@@ -1,31 +1,31 @@
 ~ "grains.ua" ~ Grains
 
 # Grains on square 1
-    let expected: Result<uint64,string> = Ok 1UL
+    let expected: Result<uint64,string> = Ok 1
     square 1 |> should equal expected
 
 # Grains on square 2
-    let expected: Result<uint64,string> = Ok 2UL
+    let expected: Result<uint64,string> = Ok 2
     square 2 |> should equal expected
 
 # Grains on square 3
-    let expected: Result<uint64,string> = Ok 4UL
+    let expected: Result<uint64,string> = Ok 4
     square 3 |> should equal expected
 
 # Grains on square 4
-    let expected: Result<uint64,string> = Ok 8UL
+    let expected: Result<uint64,string> = Ok 8
     square 4 |> should equal expected
 
 # Grains on square 16
-    let expected: Result<uint64,string> = Ok 32768UL
+    let expected: Result<uint64,string> = Ok 32768
     square 16 |> should equal expected
 
 # Grains on square 32
-    let expected: Result<uint64,string> = Ok 2147483648UL
+    let expected: Result<uint64,string> = Ok 2147483648
     square 32 |> should equal expected
 
 # Grains on square 64
-    let expected: Result<uint64,string> = Ok 9223372036854775808UL
+    let expected: Result<uint64,string> = Ok 9223372036854775808
     square 64 |> should equal expected
 
 # Square 0 is invalid
@@ -41,6 +41,6 @@
     square 65 |> should equal expected
 
 # Returns the total number of grains on the board
-    let expected: Result<uint64,string> = Ok 18446744073709551615UL
+    let expected: Result<uint64,string> = Ok 18446744073709551615
     total |> should equal expected
 
