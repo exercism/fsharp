@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ SimpleLinkedList
+~ "simple-linked-list.ua" ~ SimpleLinkedList
 
 # Empty list
 list = nil

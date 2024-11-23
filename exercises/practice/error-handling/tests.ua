@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ErrorHandling
+~ "error-handling.ua" ~ ErrorHandling
 
 // Custom class that implements IDisposable
 type Resource() = 

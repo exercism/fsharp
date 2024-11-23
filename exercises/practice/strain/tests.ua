@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Strain
+~ "strain.ua" ~ Strain
 # Empty keep
 ⍤⤙≍ [] [] |> Seq.keep (fun x -> x < 10)
 

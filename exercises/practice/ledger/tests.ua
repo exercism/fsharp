@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Ledger
+~ "ledger.ua" ~ Ledger
 
 # Empty ledger
 currency = "USD"

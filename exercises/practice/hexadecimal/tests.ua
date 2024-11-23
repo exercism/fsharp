@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Hexadecimal
+~ "hexadecimal.ua" ~ Hexadecimal
 
 # Hexadecimal 1 is decimal 1
 ⍤⤙≍ 1 toDecimal "1"

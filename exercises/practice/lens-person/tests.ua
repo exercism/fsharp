@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ LensPerson
+~ "lens-person.ua" ~ LensPerson
 testPerson =
     { name = 
         { name = "Jane Joanna"

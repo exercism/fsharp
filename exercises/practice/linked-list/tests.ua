@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ LinkedList
+~ "linked-list.ua" ~ LinkedList
 # Push and pop are first in last out order
 linkedList = mkLinkedList ()
     linkedList |> push 10

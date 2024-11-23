@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ BankAccount
+~ "bank-account.ua" ~ BankAccount
 # Returns empty balance after opening
 account = mkBankAccount() |> openAccount
 

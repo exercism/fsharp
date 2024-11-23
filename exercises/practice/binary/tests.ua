@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Binary
+~ "binary.ua" ~ Binary
 
 # Binary_0_is_decimal_0
 ⍤⤙≍ 0 toDecimal "0"

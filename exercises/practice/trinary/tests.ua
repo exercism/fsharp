@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Trinary
+~ "trinary.ua" ~ Trinary
 
 # Trinary_1_is_decimal_1
 ⍤⤙≍ 1 toDecimal "1"

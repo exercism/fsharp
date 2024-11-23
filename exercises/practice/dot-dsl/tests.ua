@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ DotDsl
+~ "dot-dsl.ua" ~ DotDsl
 
 # Empty graph
 g = graph []
