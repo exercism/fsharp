@@ -1,70 +1,70 @@
 ~ "change.ua" ~ Change
 
 # Change for 1 cent
-coins    ← [1 5 10 25]
-target   ← 1
-expected ← [1]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [1 5 10 25]
+Target   ← 1
+Expected ← [1]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Single coin change
-coins    ← [1 5 10 25 100]
-target   ← 25
-expected ← [25]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [1 5 10 25 100]
+Target   ← 25
+Expected ← [25]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Multiple coin change
-coins    ← [1 5 10 25 100]
-target   ← 15
-expected ← [5 10]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [1 5 10 25 100]
+Target   ← 15
+Expected ← [5 10]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Change with Lilliputian Coins
-coins    ← [1 4 15 20 50]
-target   ← 23
-expected ← [4 4 15]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [1 4 15 20 50]
+Target   ← 23
+Expected ← [4 4 15]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Change with Lower Elbonia Coins
-coins    ← [1 5 10 21 25]
-target   ← 63
-expected ← [21 21 21]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [1 5 10 21 25]
+Target   ← 63
+Expected ← [21 21 21]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Large target values
-coins    ← [1 2 5 10 20 50 100]
-target   ← 999
-expected ← [2 2 5 20 20 50 100 100 100 100 100 100 100 100 100]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [1 2 5 10 20 50 100]
+Target   ← 999
+Expected ← [2 2 5 20 20 50 100 100 100 100 100 100 100 100 100]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Possible change without unit coins available
-coins    ← [2 5 10 20 50]
-target   ← 21
-expected ← [2 2 2 5 10]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [2 5 10 20 50]
+Target   ← 21
+Expected ← [2 2 2 5 10]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # Another possible change without unit coins available
-coins    ← [4 5]
-target   ← 27
-expected ← [4 4 4 5 5 5]
-⍤⤙≍ expected ⌕FewestCoins coins target
+Coins    ← [4 5]
+Target   ← 27
+Expected ← [4 4 4 5 5 5]
+⍤⤙≍ Expected Change FewestCoins Coins Target
 
 # No coins make 0 change
-coins  ← [1 5 10 21 25]
-target ← 0
+Coins  ← [1 5 10 21 25]
+Target ← 0
 expected: int list option = []
-⍤⤙≍ expected ⌕FewestCoins coins target
+⍤⤙≍ expected Change FewestCoins Coins Target
 
 # Error testing for change smaller than the smallest of coins
-coins  ← [5 10]
-target ← 3
-⍤⤙≍ "TODO: insert error message" ⍣(⌕FewestCoins coins target)
+Coins  ← [5 10]
+Target ← 3
+⍤⤙≍ "TODO: insert error message" ⍣(Change FewestCoins Coins Target)
 
 # Error if no combination can add up to target
-coins  ← [5 10]
-target ← 94
-⍤⤙≍ "TODO: insert error message" ⍣(⌕FewestCoins coins target)
+Coins  ← [5 10]
+Target ← 94
+⍤⤙≍ "TODO: insert error message" ⍣(Change FewestCoins Coins Target)
 
 # Cannot find negative change values
-coins  ← [1 2 5]
-target ← -5
-⍤⤙≍ "TODO: insert error message" ⍣(⌕FewestCoins coins target)
+Coins  ← [1 2 5]
+Target ← -5
+⍤⤙≍ "TODO: insert error message" ⍣(Change FewestCoins Coins Target)

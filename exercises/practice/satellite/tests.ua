@@ -27,13 +27,13 @@ expected ← (
 ⍤⤙≍ expected treeFromTraversals ["i" "a" "f" "x" "r"] ["a" "i" "x" "f" "r"]
 
 # Reject traversals of different length
-expected ← Error "traversals must have the same length"
-⍤⤙≍ expected treeFromTraversals ["b" "a" "r"] ["a" "b"]
+Expected ← Error "traversals must have the same length"
+⍤⤙≍ Expected treeFromTraversals ["b" "a" "r"] ["a" "b"]
 
 # Reject inconsistent traversals of same length
-expected ← Error "traversals must have the same elements"
-⍤⤙≍ expected treeFromTraversals ["a" "b" "c"] ["x" "y" "z"]
+Expected ← Error "traversals must have the same elements"
+⍤⤙≍ Expected treeFromTraversals ["a" "b" "c"] ["x" "y" "z"]
 
 # Reject traversals with repeated items
-expected ← Error "traversals must contain unique items"
-⍤⤙≍ expected treeFromTraversals ["b" "a" "a"] ["a" "b" "a"]
+Expected ← Error "traversals must contain unique items"
+⍤⤙≍ Expected treeFromTraversals ["b" "a" "a"] ["a" "b" "a"]

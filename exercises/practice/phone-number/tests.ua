@@ -1,16 +1,16 @@
 ~ "phone-number.ua" ~ PhoneNumber
 
 # Cleans the number
-expected ← 2234567890
-⍤⤙≍ expected clean "(223) 456-7890"
+Expected ← 2234567890
+⍤⤙≍ Expected clean "(223) 456-7890"
 
 # Cleans numbers with dots
-expected ← 2234567890
-⍤⤙≍ expected clean "223.456.7890"
+Expected ← 2234567890
+⍤⤙≍ Expected clean "223.456.7890"
 
 # Cleans numbers with multiple spaces
-expected ← 2234567890
-⍤⤙≍ expected clean "223 456   7890   "
+Expected ← 2234567890
+⍤⤙≍ Expected clean "223 456   7890   "
 
 # Invalid when 9 digits
 ⍤⤙≍ "incorrect number of digits" ⍣(clean "123456789")
@@ -19,12 +19,12 @@ expected ← 2234567890
 ⍤⤙≍ "11 digits must start with 1" ⍣(clean "22234567890")
 
 # Valid when 11 digits and starting with 1
-expected ← 2234567890
-⍤⤙≍ expected clean "12234567890"
+Expected ← 2234567890
+⍤⤙≍ Expected clean "12234567890"
 
 # Valid when 11 digits and starting with 1 even with punctuation
-expected ← 2234567890
-⍤⤙≍ expected clean "+1 (223) 456-7890"
+Expected ← 2234567890
+⍤⤙≍ Expected clean "+1 (223) 456-7890"
 
 # Invalid when more than 11 digits
 ⍤⤙≍ "more than 11 digits" ⍣(clean "321234567890")
