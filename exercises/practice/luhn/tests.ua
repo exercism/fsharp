@@ -1,68 +1,68 @@
 ~ "luhn.ua" ~ Luhn
 
 # Single digit strings can not be valid
-    valid "1" |> should equal false
+⍤⤙≍ false valid "1"
 
 # A single zero is invalid
-    valid "0" |> should equal false
+⍤⤙≍ false valid "0"
 
 # A simple valid SIN that remains valid if reversed
-    valid "059" |> should equal true
+⍤⤙≍ true valid "059"
 
 # A simple valid SIN that becomes invalid if reversed
-    valid "59" |> should equal true
+⍤⤙≍ true valid "59"
 
 # A valid Canadian SIN
-    valid "055 444 285" |> should equal true
+⍤⤙≍ true valid "055 444 285"
 
 # Invalid Canadian SIN
-    valid "055 444 286" |> should equal false
+⍤⤙≍ false valid "055 444 286"
 
 # Invalid credit card
-    valid "8273 1232 7352 0569" |> should equal false
+⍤⤙≍ false valid "8273 1232 7352 0569"
 
 # Invalid long number with an even remainder
-    valid "1 2345 6789 1234 5678 9012" |> should equal false
+⍤⤙≍ false valid "1 2345 6789 1234 5678 9012"
 
 # Invalid long number with a remainder divisible by 5
-    valid "1 2345 6789 1234 5678 9013" |> should equal false
+⍤⤙≍ false valid "1 2345 6789 1234 5678 9013"
 
 # Valid number with an even number of digits
-    valid "095 245 88" |> should equal true
+⍤⤙≍ true valid "095 245 88"
 
 # Valid number with an odd number of spaces
-    valid "234 567 891 234" |> should equal true
+⍤⤙≍ true valid "234 567 891 234"
 
 # Valid strings with a non-digit added at the end become invalid
-    valid "059a" |> should equal false
+⍤⤙≍ false valid "059a"
 
 # Valid strings with punctuation included become invalid
-    valid "055-444-285" |> should equal false
+⍤⤙≍ false valid "055-444-285"
 
 # Valid strings with symbols included become invalid
-    valid "055# 444$ 285" |> should equal false
+⍤⤙≍ false valid "055# 444$ 285"
 
 # Single zero with space is invalid
-    valid " 0" |> should equal false
+⍤⤙≍ false valid " 0"
 
 # More than a single zero is valid
-    valid "0000 0" |> should equal true
+⍤⤙≍ true valid "0000 0"
 
 # Input digit 9 is correctly converted to output digit 9
-    valid "091" |> should equal true
+⍤⤙≍ true valid "091"
 
 # Very long input is valid
-    valid "9999999999 9999999999 9999999999 9999999999" |> should equal true
+⍤⤙≍ true valid "9999999999 9999999999 9999999999 9999999999"
 
 # Valid luhn with an odd number of digits and non zero first digit
-    valid "109" |> should equal true
+⍤⤙≍ true valid "109"
 
 # Using ascii value for non-doubled non-digit isn't allowed
-    valid "055b 444 285" |> should equal false
+⍤⤙≍ false valid "055b 444 285"
 
 # Using ascii value for doubled non-digit isn't allowed
-    valid ":9" |> should equal false
+⍤⤙≍ false valid ":9"
 
 # Non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed
-    valid "59%59" |> should equal false
+⍤⤙≍ false valid "59%59"
 

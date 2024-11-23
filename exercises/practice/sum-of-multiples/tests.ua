@@ -1,50 +1,50 @@
 ~ "sum-of-multiples.ua" ~ SumOfMultiples
 
 # No multiples within limit
-    sum [3 5] 1 |> should equal 0
+⍤⤙≍ 0 sum [3 5] 1
 
 # One factor has multiples within limit
-    sum [3 5] 4 |> should equal 3
+⍤⤙≍ 3 sum [3 5] 4
 
 # More than one multiple within limit
-    sum [3] 7 |> should equal 9
+⍤⤙≍ 9 sum [3] 7
 
 # More than one factor with multiples within limit
-    sum [3 5] 10 |> should equal 23
+⍤⤙≍ 23 sum [3 5] 10
 
 # Each multiple is only counted once
-    sum [3 5] 100 |> should equal 2318
+⍤⤙≍ 2318 sum [3 5] 100
 
 # A much larger limit
-    sum [3 5] 1000 |> should equal 233168
+⍤⤙≍ 233168 sum [3 5] 1000
 
 # Three factors
-    sum [7 13 17] 20 |> should equal 51
+⍤⤙≍ 51 sum [7 13 17] 20
 
 # Factors not relatively prime
-    sum [4 6] 15 |> should equal 30
+⍤⤙≍ 30 sum [4 6] 15
 
 # Some pairs of factors relatively prime and some not
-    sum [5 6 8] 150 |> should equal 4419
+⍤⤙≍ 4419 sum [5 6 8] 150
 
 # One factor is a multiple of another
-    sum [5 25] 51 |> should equal 275
+⍤⤙≍ 275 sum [5 25] 51
 
 # Much larger factors
-    sum [43 47] 10000 |> should equal 2203160
+⍤⤙≍ 2203160 sum [43 47] 10000
 
 # All numbers are multiples of 1
-    sum [1] 100 |> should equal 4950
+⍤⤙≍ 4950 sum [1] 100
 
 # No factors means an empty sum
-    sum [] 10000 |> should equal 0
+⍤⤙≍ 0 sum [] 10000
 
 # The only multiple of 0 is 0
-    sum [0] 1 |> should equal 0
+⍤⤙≍ 0 sum [0] 1
 
 # The factor 0 does not affect the sum of multiples of other factors
-    sum [3 0] 4 |> should equal 3
+⍤⤙≍ 3 sum [3 0] 4
 
 # Solutions using include-exclude must extend to cardinality greater than 3
-    sum [2 3 5 7 11] 10000 |> should equal 39614537
+⍤⤙≍ 39614537 sum [2 3 5 7 11] 10000
 

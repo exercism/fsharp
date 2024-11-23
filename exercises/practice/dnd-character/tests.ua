@@ -1,52 +1,52 @@
 ~ "dnd-character.ua" ~ DndCharacter
 
 # Ability modifier for score 3 is -4
-    modifier 3 |> should equal -4
+⍤⤙≍ -4 modifier 3
 
 # Ability modifier for score 4 is -3
-    modifier 4 |> should equal -3
+⍤⤙≍ -3 modifier 4
 
 # Ability modifier for score 5 is -3
-    modifier 5 |> should equal -3
+⍤⤙≍ -3 modifier 5
 
 # Ability modifier for score 6 is -2
-    modifier 6 |> should equal -2
+⍤⤙≍ -2 modifier 6
 
 # Ability modifier for score 7 is -2
-    modifier 7 |> should equal -2
+⍤⤙≍ -2 modifier 7
 
 # Ability modifier for score 8 is -1
-    modifier 8 |> should equal -1
+⍤⤙≍ -1 modifier 8
 
 # Ability modifier for score 9 is -1
-    modifier 9 |> should equal -1
+⍤⤙≍ -1 modifier 9
 
 # Ability modifier for score 10 is 0
-    modifier 10 |> should equal 0
+⍤⤙≍ 0 modifier 10
 
 # Ability modifier for score 11 is 0
-    modifier 11 |> should equal 0
+⍤⤙≍ 0 modifier 11
 
 # Ability modifier for score 12 is +1
-    modifier 12 |> should equal 1
+⍤⤙≍ 1 modifier 12
 
 # Ability modifier for score 13 is +1
-    modifier 13 |> should equal 1
+⍤⤙≍ 1 modifier 13
 
 # Ability modifier for score 14 is +2
-    modifier 14 |> should equal 2
+⍤⤙≍ 2 modifier 14
 
 # Ability modifier for score 15 is +2
-    modifier 15 |> should equal 2
+⍤⤙≍ 2 modifier 15
 
 # Ability modifier for score 16 is +3
-    modifier 16 |> should equal 3
+⍤⤙≍ 3 modifier 16
 
 # Ability modifier for score 17 is +3
-    modifier 17 |> should equal 3
+⍤⤙≍ 3 modifier 17
 
 # Ability modifier for score 18 is +4
-    modifier 18 |> should equal 4
+⍤⤙≍ 4 modifier 18
 
 # Random ability is within range
     for i in 1 .. 10 do
@@ -69,16 +69,16 @@
         character.Wisdom |> should be (lessThanOrEqualTo  18)
         character.Charisma |> should be (greaterThanOrEqualTo 3)
         character.Charisma |> should be (lessThanOrEqualTo  18)
-        character.Hitpoints |> should equal (10 + modifier(character.Constitution))
+⍤⤙≍ (10 + modifier(character.Constitution)) character.Hitpoints
 
 # Each ability is only calculated once
     for i in 1 .. 10 do
         let character = createCharacter()
-        character.Strength |> should equal character.Strength
-        character.Dexterity |> should equal character.Dexterity
-        character.Constitution |> should equal character.Constitution
-        character.Intelligence |> should equal character.Intelligence
-        character.Wisdom |> should equal character.Wisdom
-        character.Charisma |> should equal character.Charisma
-        character.Hitpoints |> should equal character.Hitpoints
+⍤⤙≍ character.Strength character.Strength
+⍤⤙≍ character.Dexterity character.Dexterity
+⍤⤙≍ character.Constitution character.Constitution
+⍤⤙≍ character.Intelligence character.Intelligence
+⍤⤙≍ character.Wisdom character.Wisdom
+⍤⤙≍ character.Charisma character.Charisma
+⍤⤙≍ character.Hitpoints character.Hitpoints
 

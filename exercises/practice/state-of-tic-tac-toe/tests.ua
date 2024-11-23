@@ -6,7 +6,7 @@
                   ['X' ' ' ' '];
                   ['X' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via middle column victory
     let board = 
@@ -14,7 +14,7 @@
                   [' ' 'X' ' '];
                   [' ' 'X' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via right column victory
     let board = 
@@ -22,7 +22,7 @@
                   [' ' ' ' 'X'];
                   [' ' ' ' 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via left column victory
     let board = 
@@ -30,7 +30,7 @@
                   ['O' 'X' ' '];
                   ['O' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via middle column victory
     let board = 
@@ -38,7 +38,7 @@
                   [' ' 'O' 'X'];
                   [' ' 'O' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via right column victory
     let board = 
@@ -46,7 +46,7 @@
                   [' ' 'X' 'O'];
                   [' ' ' ' 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via top row victory
     let board = 
@@ -54,7 +54,7 @@
                   ['X' 'O' 'O'];
                   ['O' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via middle row victory
     let board = 
@@ -62,7 +62,7 @@
                   ['X' 'X' 'X'];
                   [' ' 'O' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via bottom row victory
     let board = 
@@ -70,7 +70,7 @@
                   ['O' ' ' 'X'];
                   ['X' 'X' 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via top row victory
     let board = 
@@ -78,7 +78,7 @@
                   ['X' 'X' 'O'];
                   ['X' 'X' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via middle row victory
     let board = 
@@ -86,7 +86,7 @@
                   ['O' 'O' 'O'];
                   ['X' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via bottom row victory
     let board = 
@@ -94,7 +94,7 @@
                   [' ' 'X' 'X'];
                   ['O' 'O' 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via falling diagonal victory
     let board = 
@@ -102,7 +102,7 @@
                   [' ' 'X' ' '];
                   [' ' ' ' 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via rising diagonal victory
     let board = 
@@ -110,7 +110,7 @@
                   ['O' 'X' ' '];
                   ['X' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via falling diagonal victory
     let board = 
@@ -118,7 +118,7 @@
                   ['O' 'O' 'X'];
                   ['X' ' ' 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where O won via rising diagonal victory
     let board = 
@@ -126,7 +126,7 @@
                   [' ' 'O' 'X'];
                   ['O' 'X' 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via a row and a column victory
     let board = 
@@ -134,7 +134,7 @@
                   ['X' 'O' 'O'];
                   ['X' 'O' 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Finished game where X won via two diagonal victories
     let board = 
@@ -142,7 +142,7 @@
                   ['O' 'X' 'O'];
                   ['X' 'O' 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Draw
     let board = 
@@ -150,7 +150,7 @@
                   ['X' 'X' 'O'];
                   ['O' 'X' 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Another draw
     let board = 
@@ -158,7 +158,7 @@
                   ['O' 'X' 'X'];
                   ['X' 'O' 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Ongoing game: one move in
     let board = 
@@ -166,7 +166,7 @@
                   ['X' ' ' ' '];
                   [' ' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Ongoing game: two moves in
     let board = 
@@ -174,7 +174,7 @@
                   [' ' 'X' ' '];
                   [' ' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Ongoing game: five moves in
     let board = 
@@ -182,7 +182,7 @@
                   [' ' 'X' 'O'];
                   ['O' 'X' ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Invalid board: X went twice
     let board = 
@@ -190,7 +190,7 @@
                   [' ' ' ' ' '];
                   [' ' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Error ConsecutiveMovesBySamePlayer
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Invalid board: O started
     let board = 
@@ -198,7 +198,7 @@
                   [' ' ' ' ' '];
                   [' ' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Error WrongPlayerStarted
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Invalid board: X won and O kept playing
     let board = 
@@ -206,7 +206,7 @@
                   ['O' 'O' 'O'];
                   [' ' ' ' ' '] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 
 # Invalid board: players kept playing after a win
     let board = 
@@ -214,5 +214,5 @@
                   ['O' 'O' 'O'];
                   ['X' 'O' 'X'] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    gamestate board |> should equal expected
+⍤⤙≍ expected gamestate board
 

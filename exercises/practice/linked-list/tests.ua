@@ -11,8 +11,8 @@ module LinkedListTest
     let val1 = pop linkedList
     let val2 = pop linkedList
 
-    val1 |> should equal 20
-    val2 |> should equal 10
+⍤⤙≍ 20 val1
+⍤⤙≍ 10 val2
 
 # Push and shift are first in first out order
     let linkedList = mkLinkedList ()
@@ -22,8 +22,8 @@ module LinkedListTest
     let val1 = shift linkedList
     let val2 = shift linkedList
 
-    val1 |> should equal 10
-    val2 |> should equal 20
+⍤⤙≍ 10 val1
+⍤⤙≍ 20 val2
 
 # Unshift and shift are last in first out order
     let linkedList = mkLinkedList ()
@@ -33,8 +33,8 @@ module LinkedListTest
     let val1 = shift linkedList
     let val2 = shift linkedList
 
-    val1 |> should equal 20
-    val2 |> should equal 10
+⍤⤙≍ 20 val1
+⍤⤙≍ 10 val2
 
 # Unshift and pop are last in last out order
     let linkedList = mkLinkedList ()
@@ -44,8 +44,8 @@ module LinkedListTest
     let val1 = pop linkedList
     let val2 = pop linkedList
 
-    val1 |> should equal 10
-    val2 |> should equal 20
+⍤⤙≍ 10 val1
+⍤⤙≍ 20 val2
 
 # Push and pop can handle multiple values
     let linkedList = mkLinkedList ()
@@ -57,9 +57,9 @@ module LinkedListTest
     let val2 = pop linkedList
     let val3 = pop linkedList
 
-    val1 |> should equal 30
-    val2 |> should equal 20
-    val3 |> should equal 10
+⍤⤙≍ 30 val1
+⍤⤙≍ 20 val2
+⍤⤙≍ 10 val3
 
 # Unshift and shift can handle multiple values
     let linkedList = mkLinkedList ()
@@ -71,9 +71,9 @@ module LinkedListTest
     let val2 = shift linkedList
     let val3 = shift linkedList
 
-    val1 |> should equal 30
-    val2 |> should equal 20
-    val3 |> should equal 10
+⍤⤙≍ 30 val1
+⍤⤙≍ 20 val2
+⍤⤙≍ 10 val3
 
 # All methods of manipulating the linkedList can be used together
     let linkedList = mkLinkedList ()
@@ -82,12 +82,12 @@ module LinkedListTest
 
     let val1 = pop linkedList
 
-    val1 |> should equal 20
+⍤⤙≍ 20 val1
 
     linkedList |> push 30
     let val2 = shift linkedList
 
-    val2 |> should equal 10
+⍤⤙≍ 10 val2
 
     linkedList |> unshift 40
     linkedList |> push 50
@@ -96,6 +96,6 @@ module LinkedListTest
     let val4 = pop linkedList
     let val5 = shift linkedList
 
-    val3 |> should equal 40
-    val4 |> should equal 50
-    val5 |> should equal 30
+⍤⤙≍ 40 val3
+⍤⤙≍ 50 val4
+⍤⤙≍ 30 val5

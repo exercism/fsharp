@@ -1,20 +1,20 @@
 ~ "rna-transcription.ua" ~ RnaTranscription
 
 # Empty RNA sequence
-    toRna "" |> should equal ""
+⍤⤙≍ "" toRna ""
 
 # RNA complement of cytosine is guanine
-    toRna "C" |> should equal "G"
+⍤⤙≍ "G" toRna "C"
 
 # RNA complement of guanine is cytosine
-    toRna "G" |> should equal "C"
+⍤⤙≍ "C" toRna "G"
 
 # RNA complement of thymine is adenine
-    toRna "T" |> should equal "A"
+⍤⤙≍ "A" toRna "T"
 
 # RNA complement of adenine is uracil
-    toRna "A" |> should equal "U"
+⍤⤙≍ "U" toRna "A"
 
 # RNA complement
-    toRna "ACGTGGTCTTAA" |> should equal "UGCACCAGAAUU"
+⍤⤙≍ "UGCACCAGAAUU" toRna "ACGTGGTCTTAA"
 

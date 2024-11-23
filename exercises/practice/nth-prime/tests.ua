@@ -1,17 +1,17 @@
 ~ "nth-prime.ua" ~ NthPrime
 
 # First prime
-    prime 1 |> should equal (Some 2)
+⍤⤙≍ (Some 2) prime 1
 
 # Second prime
-    prime 2 |> should equal (Some 3)
+⍤⤙≍ (Some 3) prime 2
 
 # Sixth prime
-    prime 6 |> should equal (Some 13)
+⍤⤙≍ (Some 13) prime 6
 
 # Big prime
-    prime 10001 |> should equal (Some 104743)
+⍤⤙≍ (Some 104743) prime 10001
 
 # There is no zeroth prime
-    prime 0 |> should equal None
+⍤⤙≍ None prime 0
 

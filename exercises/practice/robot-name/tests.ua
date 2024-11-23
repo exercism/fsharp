@@ -5,11 +5,11 @@ module RobotNameTest
 
 # Robot has a name     
     let robot = mkRobot()
-    Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$") |> should equal true
+⍤⤙≍ true Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$")
     
 # Name is the same each time     
     let robot = mkRobot()
-    name robot |> should equal (name robot)
+⍤⤙≍ (name robot) name robot
     
 # 2 Different robots have different names 
     let robot = mkRobot()
@@ -24,7 +24,7 @@ module RobotNameTest
     |> Seq.map (fun robot -> name robot)
     |> Set
     |> Set.count
-    |> should equal robotCount
+⍤⤙≍ robotCount  
     
 # Can reset the name  
     let robot = mkRobot()

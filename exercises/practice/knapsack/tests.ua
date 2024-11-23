@@ -2,11 +2,11 @@
 
 # No items
     let items = []
-    maximumValue items 100 |> should equal 0
+⍤⤙≍ 0 maximumValue items 100
 
 # One item, too heavy
     let items = [{ weight = 100 value = 1 }]
-    maximumValue items 10 |> should equal 0
+⍤⤙≍ 0 maximumValue items 10
 
 # Five items (cannot be greedy by weight)
     let items = 
@@ -15,7 +15,7 @@
           { weight = 2 value = 5 };
           { weight = 2 value = 5 };
           { weight = 10 value = 21 } ]
-    maximumValue items 10 |> should equal 21
+⍤⤙≍ 21 maximumValue items 10
 
 # Five items (cannot be greedy by value)
     let items = 
@@ -24,7 +24,7 @@
           { weight = 2 value = 20 };
           { weight = 2 value = 20 };
           { weight = 10 value = 50 } ]
-    maximumValue items 10 |> should equal 80
+⍤⤙≍ 80 maximumValue items 10
 
 # Example knapsack
     let items = 
@@ -32,7 +32,7 @@
           { weight = 4 value = 40 };
           { weight = 6 value = 30 };
           { weight = 4 value = 50 } ]
-    maximumValue items 10 |> should equal 90
+⍤⤙≍ 90 maximumValue items 10
 
 # 8 items
     let items = 
@@ -44,7 +44,7 @@
           { weight = 3 value = 8 };
           { weight = 2 value = 5 };
           { weight = 2 value = 5 } ]
-    maximumValue items 104 |> should equal 900
+⍤⤙≍ 900 maximumValue items 104
 
 # 15 items
     let items = 
@@ -63,5 +63,5 @@
           { weight = 115 value = 221 };
           { weight = 118 value = 229 };
           { weight = 120 value = 240 } ]
-    maximumValue items 750 |> should equal 1458
+⍤⤙≍ 1458 maximumValue items 750
 

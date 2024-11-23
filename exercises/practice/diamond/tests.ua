@@ -23,7 +23,7 @@ type DiamondPropertyAttribute () =
     let rows = actual |> split
     let firstRowCharacters = rows |> Seq.head |> trim
 
-    firstRowCharacters |> should equal "A"
+⍤⤙≍ "A" firstRowCharacters
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # All rows must have symmetric contour`` (letter:char) =
@@ -31,7 +31,7 @@ type DiamondPropertyAttribute () =
     let rows = actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
 
-    rows |> Array.iter (fun x -> symmetric x |> should equal true)
+⍤⤙≍ true) rows |> Array.iter (fun x -> symmetric x
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # Top of figure has letters in correct order`` (letter:char) =
@@ -45,7 +45,7 @@ type DiamondPropertyAttribute () =
         |> Seq.map (trim >> Seq.head)
         |> Seq.toList
 
-    expected |> should equal firstNonSpaceLetters
+⍤⤙≍ firstNonSpaceLetters expected
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # Figure is symmetric around the horizontal axis`` (letter:char) =
@@ -63,7 +63,7 @@ type DiamondPropertyAttribute () =
         |> Seq.takeWhile (fun x -> not (x.Contains(string letter)))
         |> List.ofSeq
 
-    top |> should equal bottom
+⍤⤙≍ bottom top
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # Diamond has square shape`` (letter:char) =
@@ -73,7 +73,7 @@ type DiamondPropertyAttribute () =
     let expected = rows.Length
     let correctWidth (x:string) = x.Length = expected
 
-    rows |> Array.iter (fun x -> correctWidth x |> should equal true)
+⍤⤙≍ true) rows |> Array.iter (fun x -> correctWidth x
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # All rows except top and bottom have two identical letters`` (letter:char) =
@@ -89,7 +89,7 @@ type DiamondPropertyAttribute () =
         let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
-    rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
+⍤⤙≍ true) rows |> Array.iter (fun x -> twoIdenticalLetters x
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # Bottom left corner spaces are triangle`` (letter:char) =
@@ -113,4 +113,4 @@ type DiamondPropertyAttribute () =
         |> Seq.take spaceCounts.Length
         |> Seq.toList
 
-    spaceCounts |> should equal expected
+⍤⤙≍ expected spaceCounts

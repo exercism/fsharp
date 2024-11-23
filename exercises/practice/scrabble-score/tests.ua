@@ -1,35 +1,35 @@
 ~ "scrabble-score.ua" ~ ScrabbleScore
 
 # Lowercase letter
-    score "a" |> should equal 1
+⍤⤙≍ 1 score "a"
 
 # Uppercase letter
-    score "A" |> should equal 1
+⍤⤙≍ 1 score "A"
 
 # Valuable letter
-    score "f" |> should equal 4
+⍤⤙≍ 4 score "f"
 
 # Short word
-    score "at" |> should equal 2
+⍤⤙≍ 2 score "at"
 
 # Short, valuable word
-    score "zoo" |> should equal 12
+⍤⤙≍ 12 score "zoo"
 
 # Medium word
-    score "street" |> should equal 6
+⍤⤙≍ 6 score "street"
 
 # Medium, valuable word
-    score "quirky" |> should equal 22
+⍤⤙≍ 22 score "quirky"
 
 # Long, mixed-case word
-    score "OxyphenButazone" |> should equal 41
+⍤⤙≍ 41 score "OxyphenButazone"
 
 # English-like word
-    score "pinata" |> should equal 8
+⍤⤙≍ 8 score "pinata"
 
 # Empty input
-    score "" |> should equal 0
+⍤⤙≍ 0 score ""
 
 # Entire alphabet available
-    score "abcdefghijklmnopqrstuvwxyz" |> should equal 87
+⍤⤙≍ 87 score "abcdefghijklmnopqrstuvwxyz"
 

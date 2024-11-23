@@ -1,23 +1,23 @@
 ~ "resistor-color-duo.ua" ~ ResistorColorDuo
 
 # Brown and black
-    value ["brown" "black"] |> should equal 10
+⍤⤙≍ 10 value ["brown" "black"]
 
 # Blue and grey
-    value ["blue" "grey"] |> should equal 68
+⍤⤙≍ 68 value ["blue" "grey"]
 
 # Yellow and violet
-    value ["yellow" "violet"] |> should equal 47
+⍤⤙≍ 47 value ["yellow" "violet"]
 
 # White and red
-    value ["white" "red"] |> should equal 92
+⍤⤙≍ 92 value ["white" "red"]
 
 # Orange and orange
-    value ["orange" "orange"] |> should equal 33
+⍤⤙≍ 33 value ["orange" "orange"]
 
 # Ignore additional colors
-    value ["green" "brown" "orange"] |> should equal 51
+⍤⤙≍ 51 value ["green" "brown" "orange"]
 
 # Black and brown, one-digit
-    value ["black" "brown"] |> should equal 1
+⍤⤙≍ 1 value ["black" "brown"]
 

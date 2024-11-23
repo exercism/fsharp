@@ -1,71 +1,71 @@
 ~ "wordy.ua" ~ Wordy
 
 # Just a number
-    answer "What is 5?" |> should equal (Some 5)
+⍤⤙≍ (Some 5) answer "What is 5?"
 
 # Addition
-    answer "What is 1 plus 1?" |> should equal (Some 2)
+⍤⤙≍ (Some 2) answer "What is 1 plus 1?"
 
 # More addition
-    answer "What is 53 plus 2?" |> should equal (Some 55)
+⍤⤙≍ (Some 55) answer "What is 53 plus 2?"
 
 # Addition with negative numbers
-    answer "What is -1 plus -10?" |> should equal (Some -11)
+⍤⤙≍ (Some -11) answer "What is -1 plus -10?"
 
 # Large addition
-    answer "What is 123 plus 45678?" |> should equal (Some 45801)
+⍤⤙≍ (Some 45801) answer "What is 123 plus 45678?"
 
 # Subtraction
-    answer "What is 4 minus -12?" |> should equal (Some 16)
+⍤⤙≍ (Some 16) answer "What is 4 minus -12?"
 
 # Multiplication
-    answer "What is -3 multiplied by 25?" |> should equal (Some -75)
+⍤⤙≍ (Some -75) answer "What is -3 multiplied by 25?"
 
 # Division
-    answer "What is 33 divided by -3?" |> should equal (Some -11)
+⍤⤙≍ (Some -11) answer "What is 33 divided by -3?"
 
 # Multiple additions
-    answer "What is 1 plus 1 plus 1?" |> should equal (Some 3)
+⍤⤙≍ (Some 3) answer "What is 1 plus 1 plus 1?"
 
 # Addition and subtraction
-    answer "What is 1 plus 5 minus -2?" |> should equal (Some 8)
+⍤⤙≍ (Some 8) answer "What is 1 plus 5 minus -2?"
 
 # Multiple subtraction
-    answer "What is 20 minus 4 minus 13?" |> should equal (Some 3)
+⍤⤙≍ (Some 3) answer "What is 20 minus 4 minus 13?"
 
 # Subtraction then addition
-    answer "What is 17 minus 6 plus 3?" |> should equal (Some 14)
+⍤⤙≍ (Some 14) answer "What is 17 minus 6 plus 3?"
 
 # Multiple multiplication
-    answer "What is 2 multiplied by -2 multiplied by 3?" |> should equal (Some -12)
+⍤⤙≍ (Some -12) answer "What is 2 multiplied by -2 multiplied by 3?"
 
 # Addition and multiplication
-    answer "What is -3 plus 7 multiplied by -2?" |> should equal (Some -8)
+⍤⤙≍ (Some -8) answer "What is -3 plus 7 multiplied by -2?"
 
 # Multiple division
-    answer "What is -12 divided by 2 divided by -3?" |> should equal (Some 2)
+⍤⤙≍ (Some 2) answer "What is -12 divided by 2 divided by -3?"
 
 # Unknown operation
-    answer "What is 52 cubed?" |> should equal None
+⍤⤙≍ None answer "What is 52 cubed?"
 
 # Non math question
-    answer "Who is the President of the United States?" |> should equal None
+⍤⤙≍ None answer "Who is the President of the United States?"
 
 # Reject problem missing an operand
-    answer "What is 1 plus?" |> should equal None
+⍤⤙≍ None answer "What is 1 plus?"
 
 # Reject problem with no operands or operators
-    answer "What is?" |> should equal None
+⍤⤙≍ None answer "What is?"
 
 # Reject two operations in a row
-    answer "What is 1 plus plus 2?" |> should equal None
+⍤⤙≍ None answer "What is 1 plus plus 2?"
 
 # Reject two numbers in a row
-    answer "What is 1 plus 2 1?" |> should equal None
+⍤⤙≍ None answer "What is 1 plus 2 1?"
 
 # Reject postfix notation
-    answer "What is 1 2 plus?" |> should equal None
+⍤⤙≍ None answer "What is 1 2 plus?"
 
 # Reject prefix notation
-    answer "What is plus 1 2?" |> should equal None
+⍤⤙≍ None answer "What is plus 1 2?"
 

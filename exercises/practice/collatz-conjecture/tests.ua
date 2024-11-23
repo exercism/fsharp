@@ -1,20 +1,20 @@
 ~ "collatz-conjecture.ua" ~ CollatzConjecture
 
 # Zero steps for one
-    steps 1 |> should equal (Some 0)
+⍤⤙≍ (Some 0) steps 1
 
 # Divide if even
-    steps 16 |> should equal (Some 4)
+⍤⤙≍ (Some 4) steps 16
 
 # Even and odd steps
-    steps 12 |> should equal (Some 9)
+⍤⤙≍ (Some 9) steps 12
 
 # Large number of even and odd steps
-    steps 1000000 |> should equal (Some 152)
+⍤⤙≍ (Some 152) steps 1000000
 
 # Zero is an error
-    steps 0 |> should equal None
+⍤⤙≍ None steps 0
 
 # Negative value is an error
-    steps -15 |> should equal None
+⍤⤙≍ None steps -15
 

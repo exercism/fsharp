@@ -11,7 +11,7 @@ module LedgerTest
     let expected =
         "Date       | Description               | Change       "
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
 
 # One entry
     let currency = "USD"
@@ -24,7 +24,7 @@ module LedgerTest
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)"
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
 
 # Credit and debit
     let currency = "USD"
@@ -39,7 +39,7 @@ module LedgerTest
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/02/2015 | Get present               |       $10.00 "
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
  
 # Multiple entries on same date ordered by description
     let currency = "USD"
@@ -54,7 +54,7 @@ module LedgerTest
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/01/2015 | Get present               |       $10.00 "
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
    
 # Final order tie breaker is change
     let currency = "USD"
@@ -71,7 +71,7 @@ module LedgerTest
         "01/01/2015 | Something                 |        $0.00 " + System.Environment.NewLine +
         "01/01/2015 | Something                 |        $0.01 "
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
   
 # Overlong descriptions
     let currency = "USD"
@@ -84,7 +84,7 @@ module LedgerTest
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
   
 # Euros
     let currency = "EUR"
@@ -97,7 +97,7 @@ module LedgerTest
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      (€10.00)"
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
    
 # Dutch locale
     let currency = "USD"
@@ -110,7 +110,7 @@ module LedgerTest
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
  
 # Dutch negative number with 3 digits before decimal point
     let currency = "USD"
@@ -123,7 +123,7 @@ module LedgerTest
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |     $ -123,45"
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries
    
 # American negative number with 3 digits before decimal point
     let currency = "USD"
@@ -136,4 +136,4 @@ module LedgerTest
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "03/12/2015 | Buy present               |     ($123.45)"
 
-    formatLedger currency locale entries |> should equal expected
+⍤⤙≍ expected formatLedger currency locale entries

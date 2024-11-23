@@ -1,62 +1,62 @@
 ~ "matching-brackets.ua" ~ MatchingBrackets
 
 # Paired square brackets
-    isPaired "[]" |> should equal true
+⍤⤙≍ true isPaired "[]"
 
 # Empty string
-    isPaired "" |> should equal true
+⍤⤙≍ true isPaired ""
 
 # Unpaired brackets
-    isPaired "[[" |> should equal false
+⍤⤙≍ false isPaired "[["
 
 # Wrong ordered brackets
-    isPaired "}{" |> should equal false
+⍤⤙≍ false isPaired "}{"
 
 # Wrong closing bracket
-    isPaired "{]" |> should equal false
+⍤⤙≍ false isPaired "{]"
 
 # Paired with whitespace
-    isPaired "{ }" |> should equal true
+⍤⤙≍ true isPaired "{ }"
 
 # Partially paired brackets
-    isPaired "{[])" |> should equal false
+⍤⤙≍ false isPaired "{[])"
 
 # Simple nested brackets
-    isPaired "{[]}" |> should equal true
+⍤⤙≍ true isPaired "{[]}"
 
 # Several paired brackets
-    isPaired "{}[]" |> should equal true
+⍤⤙≍ true isPaired "{}[]"
 
 # Paired and nested brackets
-    isPaired "([{}({}[])])" |> should equal true
+⍤⤙≍ true isPaired "([{}({}[])])"
 
 # Unopened closing brackets
-    isPaired "{[)][]}" |> should equal false
+⍤⤙≍ false isPaired "{[)][]}"
 
 # Unpaired and nested brackets
-    isPaired "([{])" |> should equal false
+⍤⤙≍ false isPaired "([{])"
 
 # Paired and wrong nested brackets
-    isPaired "[({]})" |> should equal false
+⍤⤙≍ false isPaired "[({]})"
 
 # Paired and wrong nested brackets but innermost are correct
-    isPaired "[({}])" |> should equal false
+⍤⤙≍ false isPaired "[({}])"
 
 # Paired and incomplete brackets
-    isPaired "{}[" |> should equal false
+⍤⤙≍ false isPaired "{}["
 
 # Too many closing brackets
-    isPaired "[]]" |> should equal false
+⍤⤙≍ false isPaired "[]]"
 
 # Early unexpected brackets
-    isPaired ")()" |> should equal false
+⍤⤙≍ false isPaired ")()"
 
 # Early mismatched brackets
-    isPaired "{)()" |> should equal false
+⍤⤙≍ false isPaired "{)()"
 
 # Math expression
-    isPaired "(((185 + 223.85) * 15) - 543)/2" |> should equal true
+⍤⤙≍ true isPaired "(((185 + 223.85) * 15) - 543)/2"
 
 # Complex latex expression
-    isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)" |> should equal true
+⍤⤙≍ true isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)"
 

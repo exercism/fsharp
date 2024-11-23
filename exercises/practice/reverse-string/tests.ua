@@ -1,20 +1,20 @@
 ~ "reverse-string.ua" ~ ReverseString
 
 # An empty string
-    reverse "" |> should equal ""
+⍤⤙≍ "" reverse ""
 
 # A word
-    reverse "robot" |> should equal "tobor"
+⍤⤙≍ "tobor" reverse "robot"
 
 # A capitalized word
-    reverse "Ramen" |> should equal "nemaR"
+⍤⤙≍ "nemaR" reverse "Ramen"
 
 # A sentence with punctuation
-    reverse "I'm hungry!" |> should equal "!yrgnuh m'I"
+⍤⤙≍ "!yrgnuh m'I" reverse "I'm hungry!"
 
 # A palindrome
-    reverse "racecar" |> should equal "racecar"
+⍤⤙≍ "racecar" reverse "racecar"
 
 # An even-sized word
-    reverse "drawer" |> should equal "reward"
+⍤⤙≍ "reward" reverse "drawer"
 

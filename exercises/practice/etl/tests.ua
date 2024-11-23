@@ -3,7 +3,7 @@
 # Single letter
     let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList
-    transform lettersByScore |> should equal expected
+⍤⤙≍ expected transform lettersByScore
 
 # Single score with multiple letters
     let lettersByScore = [(1, ['A' 'E' 'I' 'O' 'U'])] |> Map.ofList
@@ -14,7 +14,7 @@
           ('o', 1);
           ('u', 1) ]
         |> Map.ofList
-    transform lettersByScore |> should equal expected
+⍤⤙≍ expected transform lettersByScore
 
 # Multiple scores with multiple letters
     let lettersByScore = 
@@ -27,7 +27,7 @@
           ('e', 1);
           ('g', 2) ]
         |> Map.ofList
-    transform lettersByScore |> should equal expected
+⍤⤙≍ expected transform lettersByScore
 
 # Multiple scores with differing numbers of letters
     let lettersByScore = 
@@ -67,5 +67,5 @@
           ('y', 4);
           ('z', 10) ]
         |> Map.ofList
-    transform lettersByScore |> should equal expected
+⍤⤙≍ expected transform lettersByScore
 

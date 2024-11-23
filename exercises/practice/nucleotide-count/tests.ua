@@ -9,7 +9,7 @@
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+⍤⤙≍ expected nucleotideCounts strand
 
 # Can count one nucleotide in single-character input
     let strand = "G"
@@ -20,7 +20,7 @@
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+⍤⤙≍ expected nucleotideCounts strand
 
 # Strand with repeated nucleotide
     let strand = "GGGGGGG"
@@ -31,7 +31,7 @@
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+⍤⤙≍ expected nucleotideCounts strand
 
 # Strand with multiple nucleotides
     let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
@@ -42,10 +42,10 @@
           ('T', 21) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+⍤⤙≍ expected nucleotideCounts strand
 
 # Strand with invalid nucleotides
     let strand = "AGXXACT"
     let expected = None
-    nucleotideCounts strand |> should equal expected
+⍤⤙≍ expected nucleotideCounts strand
 

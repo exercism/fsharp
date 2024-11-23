@@ -4,31 +4,31 @@
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall." ]
-    recite 99 1 |> should equal expected
+⍤⤙≍ expected recite 99 1
 
 # Last generic verse
     let expected = 
         [ "3 bottles of beer on the wall, 3 bottles of beer.";
           "Take one down and pass it around, 2 bottles of beer on the wall." ]
-    recite 3 1 |> should equal expected
+⍤⤙≍ expected recite 3 1
 
 # Verse with 2 bottles
     let expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall." ]
-    recite 2 1 |> should equal expected
+⍤⤙≍ expected recite 2 1
 
 # Verse with 1 bottle
     let expected = 
         [ "1 bottle of beer on the wall, 1 bottle of beer.";
           "Take it down and pass it around, no more bottles of beer on the wall." ]
-    recite 1 1 |> should equal expected
+⍤⤙≍ expected recite 1 1
 
 # Verse with 0 bottles
     let expected = 
         [ "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
-    recite 0 1 |> should equal expected
+⍤⤙≍ expected recite 0 1
 
 # First two verses
     let expected = 
@@ -37,7 +37,7 @@
           "";
           "98 bottles of beer on the wall, 98 bottles of beer.";
           "Take one down and pass it around, 97 bottles of beer on the wall." ]
-    recite 99 2 |> should equal expected
+⍤⤙≍ expected recite 99 2
 
 # Last three verses
     let expected = 
@@ -49,7 +49,7 @@
           "";
           "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
-    recite 2 3 |> should equal expected
+⍤⤙≍ expected recite 2 3
 
 # All verses
     let expected = 
@@ -352,5 +352,5 @@
           "";
           "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
-    recite 99 100 |> should equal expected
+⍤⤙≍ expected recite 99 100
 

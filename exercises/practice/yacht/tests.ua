@@ -1,89 +1,89 @@
 ~ "yacht.ua" ~ Yacht
 
 # Yacht
-    score Category.Yacht [Die.Five Die.Five Die.Five Die.Five Die.Five] |> should equal 50
+⍤⤙≍ 50 score Category.Yacht [Die.Five Die.Five Die.Five Die.Five Die.Five]
 
 # Not Yacht
-    score Category.Yacht [Die.One Die.Three Die.Three Die.Two Die.Five] |> should equal 0
+⍤⤙≍ 0 score Category.Yacht [Die.One Die.Three Die.Three Die.Two Die.Five]
 
 # Ones
-    score Category.Ones [Die.One Die.One Die.One Die.Three Die.Five] |> should equal 3
+⍤⤙≍ 3 score Category.Ones [Die.One Die.One Die.One Die.Three Die.Five]
 
 # Ones, out of order
-    score Category.Ones [Die.Three Die.One Die.One Die.Five Die.One] |> should equal 3
+⍤⤙≍ 3 score Category.Ones [Die.Three Die.One Die.One Die.Five Die.One]
 
 # No ones
-    score Category.Ones [Die.Four Die.Three Die.Six Die.Five Die.Five] |> should equal 0
+⍤⤙≍ 0 score Category.Ones [Die.Four Die.Three Die.Six Die.Five Die.Five]
 
 # Twos
-    score Category.Twos [Die.Two Die.Three Die.Four Die.Five Die.Six] |> should equal 2
+⍤⤙≍ 2 score Category.Twos [Die.Two Die.Three Die.Four Die.Five Die.Six]
 
 # Fours
-    score Category.Fours [Die.One Die.Four Die.One Die.Four Die.One] |> should equal 8
+⍤⤙≍ 8 score Category.Fours [Die.One Die.Four Die.One Die.Four Die.One]
 
 # Yacht counted as threes
-    score Category.Threes [Die.Three Die.Three Die.Three Die.Three Die.Three] |> should equal 15
+⍤⤙≍ 15 score Category.Threes [Die.Three Die.Three Die.Three Die.Three Die.Three]
 
 # Yacht of 3s counted as fives
-    score Category.Fives [Die.Three Die.Three Die.Three Die.Three Die.Three] |> should equal 0
+⍤⤙≍ 0 score Category.Fives [Die.Three Die.Three Die.Three Die.Three Die.Three]
 
 # Fives
-    score Category.Fives [Die.One Die.Five Die.Three Die.Five Die.Three] |> should equal 10
+⍤⤙≍ 10 score Category.Fives [Die.One Die.Five Die.Three Die.Five Die.Three]
 
 # Sixes
-    score Category.Sixes [Die.Two Die.Three Die.Four Die.Five Die.Six] |> should equal 6
+⍤⤙≍ 6 score Category.Sixes [Die.Two Die.Three Die.Four Die.Five Die.Six]
 
 # Full house two small, three big
-    score Category.FullHouse [Die.Two Die.Two Die.Four Die.Four Die.Four] |> should equal 16
+⍤⤙≍ 16 score Category.FullHouse [Die.Two Die.Two Die.Four Die.Four Die.Four]
 
 # Full house three small, two big
-    score Category.FullHouse [Die.Five Die.Three Die.Three Die.Five Die.Three] |> should equal 19
+⍤⤙≍ 19 score Category.FullHouse [Die.Five Die.Three Die.Three Die.Five Die.Three]
 
 # Two pair is not a full house
-    score Category.FullHouse [Die.Two Die.Two Die.Four Die.Four Die.Five] |> should equal 0
+⍤⤙≍ 0 score Category.FullHouse [Die.Two Die.Two Die.Four Die.Four Die.Five]
 
 # Four of a kind is not a full house
-    score Category.FullHouse [Die.One Die.Four Die.Four Die.Four Die.Four] |> should equal 0
+⍤⤙≍ 0 score Category.FullHouse [Die.One Die.Four Die.Four Die.Four Die.Four]
 
 # Yacht is not a full house
-    score Category.FullHouse [Die.Two Die.Two Die.Two Die.Two Die.Two] |> should equal 0
+⍤⤙≍ 0 score Category.FullHouse [Die.Two Die.Two Die.Two Die.Two Die.Two]
 
 # Four of a Kind
-    score Category.FourOfAKind [Die.Six Die.Six Die.Four Die.Six Die.Six] |> should equal 24
+⍤⤙≍ 24 score Category.FourOfAKind [Die.Six Die.Six Die.Four Die.Six Die.Six]
 
 # Yacht can be scored as Four of a Kind
-    score Category.FourOfAKind [Die.Three Die.Three Die.Three Die.Three Die.Three] |> should equal 12
+⍤⤙≍ 12 score Category.FourOfAKind [Die.Three Die.Three Die.Three Die.Three Die.Three]
 
 # Full house is not Four of a Kind
-    score Category.FourOfAKind [Die.Three Die.Three Die.Three Die.Five Die.Five] |> should equal 0
+⍤⤙≍ 0 score Category.FourOfAKind [Die.Three Die.Three Die.Three Die.Five Die.Five]
 
 # Little Straight
-    score Category.LittleStraight [Die.Three Die.Five Die.Four Die.One Die.Two] |> should equal 30
+⍤⤙≍ 30 score Category.LittleStraight [Die.Three Die.Five Die.Four Die.One Die.Two]
 
 # Little Straight as Big Straight
-    score Category.BigStraight [Die.One Die.Two Die.Three Die.Four Die.Five] |> should equal 0
+⍤⤙≍ 0 score Category.BigStraight [Die.One Die.Two Die.Three Die.Four Die.Five]
 
 # Four in order but not a little straight
-    score Category.LittleStraight [Die.One Die.One Die.Two Die.Three Die.Four] |> should equal 0
+⍤⤙≍ 0 score Category.LittleStraight [Die.One Die.One Die.Two Die.Three Die.Four]
 
 # No pairs but not a little straight
-    score Category.LittleStraight [Die.One Die.Two Die.Three Die.Four Die.Six] |> should equal 0
+⍤⤙≍ 0 score Category.LittleStraight [Die.One Die.Two Die.Three Die.Four Die.Six]
 
 # Minimum is 1, maximum is 5, but not a little straight
-    score Category.LittleStraight [Die.One Die.One Die.Three Die.Four Die.Five] |> should equal 0
+⍤⤙≍ 0 score Category.LittleStraight [Die.One Die.One Die.Three Die.Four Die.Five]
 
 # Big Straight
-    score Category.BigStraight [Die.Four Die.Six Die.Two Die.Five Die.Three] |> should equal 30
+⍤⤙≍ 30 score Category.BigStraight [Die.Four Die.Six Die.Two Die.Five Die.Three]
 
 # Big Straight as little straight
-    score Category.LittleStraight [Die.Six Die.Five Die.Four Die.Three Die.Two] |> should equal 0
+⍤⤙≍ 0 score Category.LittleStraight [Die.Six Die.Five Die.Four Die.Three Die.Two]
 
 # No pairs but not a big straight
-    score Category.BigStraight [Die.Six Die.Five Die.Four Die.Three Die.One] |> should equal 0
+⍤⤙≍ 0 score Category.BigStraight [Die.Six Die.Five Die.Four Die.Three Die.One]
 
 # Choice
-    score Category.Choice [Die.Three Die.Three Die.Five Die.Six Die.Six] |> should equal 23
+⍤⤙≍ 23 score Category.Choice [Die.Three Die.Three Die.Five Die.Six Die.Six]
 
 # Yacht as choice
-    score Category.Choice [Die.Two Die.Two Die.Two Die.Two Die.Two] |> should equal 10
+⍤⤙≍ 10 score Category.Choice [Die.Two Die.Two Die.Two Die.Two Die.Two]
 

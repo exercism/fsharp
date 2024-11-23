@@ -6,7 +6,7 @@
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be nine green bottles hanging on the wall." ]
-    recite 10 1 |> should equal expected
+⍤⤙≍ expected recite 10 1
 
 # Last generic verse
     let expected = 
@@ -14,7 +14,7 @@
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be two green bottles hanging on the wall." ]
-    recite 3 1 |> should equal expected
+⍤⤙≍ expected recite 3 1
 
 # Verse with 2 bottles
     let expected = 
@@ -22,7 +22,7 @@
           "Two green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be one green bottle hanging on the wall." ]
-    recite 2 1 |> should equal expected
+⍤⤙≍ expected recite 2 1
 
 # Verse with 1 bottle
     let expected = 
@@ -30,7 +30,7 @@
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    recite 1 1 |> should equal expected
+⍤⤙≍ expected recite 1 1
 
 # First two verses
     let expected = 
@@ -43,7 +43,7 @@
           "Nine green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be eight green bottles hanging on the wall." ]
-    recite 10 2 |> should equal expected
+⍤⤙≍ expected recite 10 2
 
 # Last three verses
     let expected = 
@@ -61,7 +61,7 @@
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    recite 3 3 |> should equal expected
+⍤⤙≍ expected recite 3 3
 
 # All verses
     let expected = 
@@ -114,5 +114,5 @@
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    recite 10 10 |> should equal expected
+⍤⤙≍ expected recite 10 10
 

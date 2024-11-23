@@ -2,22 +2,22 @@
 
 # No rows
     let strings = []
-    rectangles strings |> should equal 0
+⍤⤙≍ 0 rectangles strings
 
 # No columns
     let strings = [""]
-    rectangles strings |> should equal 0
+⍤⤙≍ 0 rectangles strings
 
 # No rectangles
     let strings = [" "]
-    rectangles strings |> should equal 0
+⍤⤙≍ 0 rectangles strings
 
 # One rectangle
     let strings = 
         [ "+-+";
           "| |";
           "+-+" ]
-    rectangles strings |> should equal 1
+⍤⤙≍ 1 rectangles strings
 
 # Two rectangles without shared parts
     let strings = 
@@ -26,7 +26,7 @@
           "+-+-+";
           "| |  ";
           "+-+  " ]
-    rectangles strings |> should equal 2
+⍤⤙≍ 2 rectangles strings
 
 # Five rectangles with shared parts
     let strings = 
@@ -35,26 +35,26 @@
           "+-+-+";
           "| | |";
           "+-+-+" ]
-    rectangles strings |> should equal 5
+⍤⤙≍ 5 rectangles strings
 
 # Rectangle of height 1 is counted
     let strings = 
         [ "+--+";
           "+--+" ]
-    rectangles strings |> should equal 1
+⍤⤙≍ 1 rectangles strings
 
 # Rectangle of width 1 is counted
     let strings = 
         [ "++";
           "||";
           "++" ]
-    rectangles strings |> should equal 1
+⍤⤙≍ 1 rectangles strings
 
 # 1x1 square is counted
     let strings = 
         [ "++";
           "++" ]
-    rectangles strings |> should equal 1
+⍤⤙≍ 1 rectangles strings
 
 # Only complete rectangles are counted
     let strings = 
@@ -63,7 +63,7 @@
           "+-+-+";
           "| | -";
           "+-+-+" ]
-    rectangles strings |> should equal 1
+⍤⤙≍ 1 rectangles strings
 
 # Rectangles can be of different sizes
     let strings = 
@@ -72,7 +72,7 @@
           "+---+--+    |";
           "|   |       |";
           "+---+-------+" ]
-    rectangles strings |> should equal 3
+⍤⤙≍ 3 rectangles strings
 
 # Corner is required for a rectangle to be complete
     let strings = 
@@ -81,7 +81,7 @@
           "+------+    |";
           "|   |       |";
           "+---+-------+" ]
-    rectangles strings |> should equal 2
+⍤⤙≍ 2 rectangles strings
 
 # Large input with many rectangles
     let strings = 
@@ -93,7 +93,7 @@
           "+---+--+--+-+";
           "+------+  | |";
           "          +-+" ]
-    rectangles strings |> should equal 60
+⍤⤙≍ 60 rectangles strings
 
 # Rectangles must have four sides
     let strings = 
@@ -104,5 +104,5 @@
           "+-+-+-+";
           "| | | |";
           "+-+ +-+" ]
-    rectangles strings |> should equal 5
+⍤⤙≍ 5 rectangles strings
 

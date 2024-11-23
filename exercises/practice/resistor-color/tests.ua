@@ -1,14 +1,14 @@
 ~ "resistor-color.ua" ~ ResistorColor
 
 # Black
-    colorCode "black" |> should equal 0
+⍤⤙≍ 0 colorCode "black"
 
 # White
-    colorCode "white" |> should equal 9
+⍤⤙≍ 9 colorCode "white"
 
 # Orange
-    colorCode "orange" |> should equal 3
+⍤⤙≍ 3 colorCode "orange"
 
 # Colors
-    colors |> should equal ["black" "brown" "red" "orange" "yellow" "green" "blue" "violet" "grey" "white"]
+⍤⤙≍ ["black" "brown" "red" "orange" "yellow" "green" "blue" "violet" "grey" "white"] colors
 

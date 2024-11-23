@@ -3,7 +3,7 @@
 # Just the header if no input
     let rows = []
     let expected = ["Team                           | MP |  W |  D |  L |  P"]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # A win is three points, a loss is zero points
     let rows = ["Allegoric Alaskans;Blithering Badgers;win"]
@@ -11,7 +11,7 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # A win can also be expressed as a loss
     let rows = ["Blithering Badgers;Allegoric Alaskans;loss"]
@@ -19,7 +19,7 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # A different team can win
     let rows = ["Blithering Badgers;Allegoric Alaskans;win"]
@@ -27,7 +27,7 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Blithering Badgers             |  1 |  1 |  0 |  0 |  3";
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # A draw is one point each
     let rows = ["Allegoric Alaskans;Blithering Badgers;draw"]
@@ -35,7 +35,7 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1";
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # There can be more than one match
     let rows = 
@@ -45,7 +45,7 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # There can be more than one winner
     let rows = 
@@ -55,7 +55,7 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  2 |  1 |  0 |  1 |  3";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # There can be more than two teams
     let rows = 
@@ -67,7 +67,7 @@
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3";
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # Typical input
     let rows = 
@@ -83,7 +83,7 @@
           "Allegoric Alaskans             |  3 |  2 |  0 |  1 |  6";
           "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # Incomplete competition (not all pairs have played)
     let rows = 
@@ -97,7 +97,7 @@
           "Blithering Badgers             |  2 |  1 |  1 |  0 |  4";
           "Courageous Californians        |  2 |  0 |  1 |  1 |  1";
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # Ties broken alphabetically
     let rows = 
@@ -113,7 +113,7 @@
           "Courageous Californians        |  3 |  2 |  1 |  0 |  7";
           "Blithering Badgers             |  3 |  0 |  1 |  2 |  1";
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 
 # Ensure points sorted numerically
     let rows = 
@@ -126,5 +126,5 @@
         [ "Team                           | MP |  W |  D |  L |  P";
           "Devastating Donkeys            |  5 |  4 |  0 |  1 | 12";
           "Blithering Badgers             |  5 |  1 |  0 |  4 |  3" ]
-    tally rows |> should equal expected
+⍤⤙≍ expected tally rows
 

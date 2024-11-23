@@ -1,22 +1,22 @@
 ~ "complex-numbers.ua" ~ ComplexNumbers
 
 # Real part of a purely real number
-    real (create 1.0 0.0) |> should equal 1.0
+⍤⤙≍ 1.0 real (create 1.0 0.0)
 
 # Real part of a purely imaginary number
-    real (create 0.0 1.0) |> should equal 0.0
+⍤⤙≍ 0.0 real (create 0.0 1.0)
 
 # Real part of a number with real and imaginary part
-    real (create 1.0 2.0) |> should equal 1.0
+⍤⤙≍ 1.0 real (create 1.0 2.0)
 
 # Imaginary part of a purely real number
-    imaginary (create 1.0 0.0) |> should equal 0.0
+⍤⤙≍ 0.0 imaginary (create 1.0 0.0)
 
 # Imaginary part of a purely imaginary number
-    imaginary (create 0.0 1.0) |> should equal 1.0
+⍤⤙≍ 1.0 imaginary (create 0.0 1.0)
 
 # Imaginary part of a number with real and imaginary part
-    imaginary (create 1.0 2.0) |> should equal 2.0
+⍤⤙≍ 2.0 imaginary (create 1.0 2.0)
 
 # Imaginary unit
     let sut = mul (create 0.0 1.0) (create 0.0 1.0)
@@ -84,19 +84,19 @@
     imaginary sut |> should (equalWithin 0.01) 0.08
 
 # Absolute value of a positive purely real number
-    abs (create 5.0 0.0) |> should equal 5.0
+⍤⤙≍ 5.0 abs (create 5.0 0.0)
 
 # Absolute value of a negative purely real number
-    abs (create -5.0 0.0) |> should equal 5.0
+⍤⤙≍ 5.0 abs (create -5.0 0.0)
 
 # Absolute value of a purely imaginary number with positive imaginary part
-    abs (create 0.0 5.0) |> should equal 5.0
+⍤⤙≍ 5.0 abs (create 0.0 5.0)
 
 # Absolute value of a purely imaginary number with negative imaginary part
-    abs (create 0.0 -5.0) |> should equal 5.0
+⍤⤙≍ 5.0 abs (create 0.0 -5.0)
 
 # Absolute value of a number with real and imaginary part
-    abs (create 3.0 4.0) |> should equal 5.0
+⍤⤙≍ 5.0 abs (create 3.0 4.0)
 
 # Conjugate a purely real number
     let sut = conjugate (create 5.0 0.0)

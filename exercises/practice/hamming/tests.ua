@@ -1,29 +1,29 @@
 ~ "hamming.ua" ~ Hamming
 
 # Empty strands
-    distance "" "" |> should equal (Some 0)
+⍤⤙≍ (Some 0) distance "" ""
 
 # Single letter identical strands
-    distance "A" "A" |> should equal (Some 0)
+⍤⤙≍ (Some 0) distance "A" "A"
 
 # Single letter different strands
-    distance "G" "T" |> should equal (Some 1)
+⍤⤙≍ (Some 1) distance "G" "T"
 
 # Long identical strands
-    distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> should equal (Some 0)
+⍤⤙≍ (Some 0) distance "GGACTGAAATCTG" "GGACTGAAATCTG"
 
 # Long different strands
-    distance "GGACGGATTCTG" "AGGACGGATTCT" |> should equal (Some 9)
+⍤⤙≍ (Some 9) distance "GGACGGATTCTG" "AGGACGGATTCT"
 
 # Disallow first strand longer
-    distance "AATG" "AAA" |> should equal None
+⍤⤙≍ None distance "AATG" "AAA"
 
 # Disallow second strand longer
-    distance "ATA" "AGTG" |> should equal None
+⍤⤙≍ None distance "ATA" "AGTG"
 
 # Disallow empty first strand
-    distance "" "G" |> should equal None
+⍤⤙≍ None distance "" "G"
 
 # Disallow empty second strand
-    distance "G" "" |> should equal None
+⍤⤙≍ None distance "G" ""
 

@@ -1,68 +1,68 @@
 ~ "pig-latin.ua" ~ PigLatin
 
 # Word beginning with a
-    translate "apple" |> should equal "appleay"
+⍤⤙≍ "appleay" translate "apple"
 
 # Word beginning with e
-    translate "ear" |> should equal "earay"
+⍤⤙≍ "earay" translate "ear"
 
 # Word beginning with i
-    translate "igloo" |> should equal "iglooay"
+⍤⤙≍ "iglooay" translate "igloo"
 
 # Word beginning with o
-    translate "object" |> should equal "objectay"
+⍤⤙≍ "objectay" translate "object"
 
 # Word beginning with u
-    translate "under" |> should equal "underay"
+⍤⤙≍ "underay" translate "under"
 
 # Word beginning with a vowel and followed by a qu
-    translate "equal" |> should equal "equalay"
+⍤⤙≍ "equalay" translate "equal"
 
 # Word beginning with p
-    translate "pig" |> should equal "igpay"
+⍤⤙≍ "igpay" translate "pig"
 
 # Word beginning with k
-    translate "koala" |> should equal "oalakay"
+⍤⤙≍ "oalakay" translate "koala"
 
 # Word beginning with x
-    translate "xenon" |> should equal "enonxay"
+⍤⤙≍ "enonxay" translate "xenon"
 
 # Word beginning with q without a following u
-    translate "qat" |> should equal "atqay"
+⍤⤙≍ "atqay" translate "qat"
 
 # Word beginning with ch
-    translate "chair" |> should equal "airchay"
+⍤⤙≍ "airchay" translate "chair"
 
 # Word beginning with qu
-    translate "queen" |> should equal "eenquay"
+⍤⤙≍ "eenquay" translate "queen"
 
 # Word beginning with qu and a preceding consonant
-    translate "square" |> should equal "aresquay"
+⍤⤙≍ "aresquay" translate "square"
 
 # Word beginning with th
-    translate "therapy" |> should equal "erapythay"
+⍤⤙≍ "erapythay" translate "therapy"
 
 # Word beginning with thr
-    translate "thrush" |> should equal "ushthray"
+⍤⤙≍ "ushthray" translate "thrush"
 
 # Word beginning with sch
-    translate "school" |> should equal "oolschay"
+⍤⤙≍ "oolschay" translate "school"
 
 # Word beginning with yt
-    translate "yttria" |> should equal "yttriaay"
+⍤⤙≍ "yttriaay" translate "yttria"
 
 # Word beginning with xr
-    translate "xray" |> should equal "xrayay"
+⍤⤙≍ "xrayay" translate "xray"
 
 # Y is treated like a consonant at the beginning of a word
-    translate "yellow" |> should equal "ellowyay"
+⍤⤙≍ "ellowyay" translate "yellow"
 
 # Y is treated like a vowel at the end of a consonant cluster
-    translate "rhythm" |> should equal "ythmrhay"
+⍤⤙≍ "ythmrhay" translate "rhythm"
 
 # Y as second letter in two letter word
-    translate "my" |> should equal "ymay"
+⍤⤙≍ "ymay" translate "my"
 
 # A whole phrase
-    translate "quick fast run" |> should equal "ickquay astfay unray"
+⍤⤙≍ "ickquay astfay unray" translate "quick fast run"
 

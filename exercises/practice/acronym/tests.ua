@@ -1,29 +1,29 @@
 ~ "acronym.ua" ~ Acronym
 
 # Basic
-    abbreviate "Portable Network Graphics" |> should equal "PNG"
+⍤⤙≍ "PNG" abbreviate "Portable Network Graphics"
 
 # Lowercase words
-    abbreviate "Ruby on Rails" |> should equal "ROR"
+⍤⤙≍ "ROR" abbreviate "Ruby on Rails"
 
 # Punctuation
-    abbreviate "First In, First Out" |> should equal "FIFO"
+⍤⤙≍ "FIFO" abbreviate "First In, First Out"
 
 # All caps word
-    abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
+⍤⤙≍ "GIMP" abbreviate "GNU Image Manipulation Program"
 
 # Punctuation without whitespace
-    abbreviate "Complementary metal-oxide semiconductor" |> should equal "CMOS"
+⍤⤙≍ "CMOS" abbreviate "Complementary metal-oxide semiconductor"
 
 # Very long abbreviation
-    abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" |> should equal "ROTFLSHTMDCOALM"
+⍤⤙≍ "ROTFLSHTMDCOALM" abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me"
 
 # Consecutive delimiters
-    abbreviate "Something - I made up from thin air" |> should equal "SIMUFTA"
+⍤⤙≍ "SIMUFTA" abbreviate "Something - I made up from thin air"
 
 # Apostrophes
-    abbreviate "Halley's Comet" |> should equal "HC"
+⍤⤙≍ "HC" abbreviate "Halley's Comet"
 
 # Underscore emphasis
-    abbreviate "The Road _Not_ Taken" |> should equal "TRNT"
+⍤⤙≍ "TRNT" abbreviate "The Road _Not_ Taken"
 

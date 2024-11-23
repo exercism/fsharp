@@ -13,7 +13,7 @@ module HangmanTest
 
     startGame game |> ignore
 
-    lastProgress |> should equal <| Busy 9
+⍤⤙≍ <| Busy 9 lastProgress
 
 # Initially no letters are guessed
     let game = createGame "foo"
@@ -24,7 +24,7 @@ module HangmanTest
 
     startGame game |> ignore
 
-    lastMaskedWord |> should equal "___"
+⍤⤙≍ "___" lastMaskedWord
 
 # After 10 failures the game is over
     let game = createGame "foo"
@@ -37,7 +37,7 @@ module HangmanTest
 
     [for x in 1..10 do makeGuess 'x' game] |> ignore
 
-    lastProgress |> should equal Lose
+⍤⤙≍ Lose lastProgress
     
 # Feeding a correct letter removes underscores
     let game = createGame "foobar"
@@ -50,13 +50,13 @@ module HangmanTest
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 9
-    lastState.Value.maskedWord |> should equal "___b__"
+⍤⤙≍ <| Busy 9 lastState.Value.progress
+⍤⤙≍ "___b__" lastState.Value.maskedWord
 
     makeGuess 'o' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 9
-    lastState.Value.maskedWord |> should equal "_oob__"
+⍤⤙≍ <| Busy 9 lastState.Value.progress
+⍤⤙≍ "_oob__" lastState.Value.maskedWord
     
 # Feeding a correct letter twice counts as a failure
     let game = createGame "foobar"
@@ -69,13 +69,13 @@ module HangmanTest
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 9
-    lastState.Value.maskedWord |> should equal "___b__"
+⍤⤙≍ <| Busy 9 lastState.Value.progress
+⍤⤙≍ "___b__" lastState.Value.maskedWord
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "___b__"
+⍤⤙≍ <| Busy 8 lastState.Value.progress
+⍤⤙≍ "___b__" lastState.Value.maskedWord
      
 # Getting all the letters right makes for a win
     let game = createGame "hello"
@@ -88,25 +88,25 @@ module HangmanTest
 
     makeGuess 'b' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_____"
+⍤⤙≍ <| Busy 8 lastState.Value.progress
+⍤⤙≍ "_____" lastState.Value.maskedWord
 
     makeGuess 'e' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_e___"
+⍤⤙≍ <| Busy 8 lastState.Value.progress
+⍤⤙≍ "_e___" lastState.Value.maskedWord
 
     makeGuess 'l' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_ell_"
+⍤⤙≍ <| Busy 8 lastState.Value.progress
+⍤⤙≍ "_ell_" lastState.Value.maskedWord
 
     makeGuess 'o' game |> ignore
 
-    lastState.Value.progress |> should equal <| Busy 8
-    lastState.Value.maskedWord |> should equal "_ello"
+⍤⤙≍ <| Busy 8 lastState.Value.progress
+⍤⤙≍ "_ello" lastState.Value.maskedWord
 
     makeGuess 'h' game |> ignore
 
-    lastState.Value.progress |> should equal Win
-    lastState.Value.maskedWord |> should equal "hello"
+⍤⤙≍ Win lastState.Value.progress
+⍤⤙≍ "hello" lastState.Value.maskedWord

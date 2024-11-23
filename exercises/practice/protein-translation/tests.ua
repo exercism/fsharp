@@ -4,46 +4,46 @@
     proteins "" |> should be Empty
 
 # Methionine RNA sequence
-    proteins "AUG" |> should equal ["Methionine"]
+⍤⤙≍ ["Methionine"] proteins "AUG"
 
 # Phenylalanine RNA sequence 1
-    proteins "UUU" |> should equal ["Phenylalanine"]
+⍤⤙≍ ["Phenylalanine"] proteins "UUU"
 
 # Phenylalanine RNA sequence 2
-    proteins "UUC" |> should equal ["Phenylalanine"]
+⍤⤙≍ ["Phenylalanine"] proteins "UUC"
 
 # Leucine RNA sequence 1
-    proteins "UUA" |> should equal ["Leucine"]
+⍤⤙≍ ["Leucine"] proteins "UUA"
 
 # Leucine RNA sequence 2
-    proteins "UUG" |> should equal ["Leucine"]
+⍤⤙≍ ["Leucine"] proteins "UUG"
 
 # Serine RNA sequence 1
-    proteins "UCU" |> should equal ["Serine"]
+⍤⤙≍ ["Serine"] proteins "UCU"
 
 # Serine RNA sequence 2
-    proteins "UCC" |> should equal ["Serine"]
+⍤⤙≍ ["Serine"] proteins "UCC"
 
 # Serine RNA sequence 3
-    proteins "UCA" |> should equal ["Serine"]
+⍤⤙≍ ["Serine"] proteins "UCA"
 
 # Serine RNA sequence 4
-    proteins "UCG" |> should equal ["Serine"]
+⍤⤙≍ ["Serine"] proteins "UCG"
 
 # Tyrosine RNA sequence 1
-    proteins "UAU" |> should equal ["Tyrosine"]
+⍤⤙≍ ["Tyrosine"] proteins "UAU"
 
 # Tyrosine RNA sequence 2
-    proteins "UAC" |> should equal ["Tyrosine"]
+⍤⤙≍ ["Tyrosine"] proteins "UAC"
 
 # Cysteine RNA sequence 1
-    proteins "UGU" |> should equal ["Cysteine"]
+⍤⤙≍ ["Cysteine"] proteins "UGU"
 
 # Cysteine RNA sequence 2
-    proteins "UGC" |> should equal ["Cysteine"]
+⍤⤙≍ ["Cysteine"] proteins "UGC"
 
 # Tryptophan RNA sequence
-    proteins "UGG" |> should equal ["Tryptophan"]
+⍤⤙≍ ["Tryptophan"] proteins "UGG"
 
 # STOP codon RNA sequence 1
     proteins "UAA" |> should be Empty
@@ -55,26 +55,26 @@
     proteins "UGA" |> should be Empty
 
 # Sequence of two protein codons translates into proteins
-    proteins "UUUUUU" |> should equal ["Phenylalanine" "Phenylalanine"]
+⍤⤙≍ ["Phenylalanine" "Phenylalanine"] proteins "UUUUUU"
 
 # Sequence of two different protein codons translates into proteins
-    proteins "UUAUUG" |> should equal ["Leucine" "Leucine"]
+⍤⤙≍ ["Leucine" "Leucine"] proteins "UUAUUG"
 
 # Translate RNA strand into correct protein list
-    proteins "AUGUUUUGG" |> should equal ["Methionine" "Phenylalanine" "Tryptophan"]
+⍤⤙≍ ["Methionine" "Phenylalanine" "Tryptophan"] proteins "AUGUUUUGG"
 
 # Translation stops if STOP codon at beginning of sequence
     proteins "UAGUGG" |> should be Empty
 
 # Translation stops if STOP codon at end of two-codon sequence
-    proteins "UGGUAG" |> should equal ["Tryptophan"]
+⍤⤙≍ ["Tryptophan"] proteins "UGGUAG"
 
 # Translation stops if STOP codon at end of three-codon sequence
-    proteins "AUGUUUUAA" |> should equal ["Methionine" "Phenylalanine"]
+⍤⤙≍ ["Methionine" "Phenylalanine"] proteins "AUGUUUUAA"
 
 # Translation stops if STOP codon in middle of three-codon sequence
-    proteins "UGGUAGUGG" |> should equal ["Tryptophan"]
+⍤⤙≍ ["Tryptophan"] proteins "UGGUAGUGG"
 
 # Translation stops if STOP codon in middle of six-codon sequence
-    proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan" "Cysteine" "Tyrosine"]
+⍤⤙≍ ["Tryptophan" "Cysteine" "Tyrosine"] proteins "UGGUGUUAUUAAUGGUUU"
 

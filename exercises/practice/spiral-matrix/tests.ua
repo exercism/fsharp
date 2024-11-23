@@ -4,7 +4,7 @@
     spiralMatrix 0 |> should be Empty
 
 # Trivial spiral
-    spiralMatrix 1 |> should equal [[1]]
+⍤⤙≍ [[1]] spiralMatrix 1
 
 # Spiral of size 2
     spiralMatrix 2 |> should equal 

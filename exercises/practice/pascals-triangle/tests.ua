@@ -2,24 +2,24 @@
 
 # Zero rows
     let expected: int list list = []
-    rows 0 |> should equal expected
+⍤⤙≍ expected rows 0
 
 # Single row
     let expected = [[1]]
-    rows 1 |> should equal expected
+⍤⤙≍ expected rows 1
 
 # Two rows
     let expected = 
         [ [1];
           [1 1] ]
-    rows 2 |> should equal expected
+⍤⤙≍ expected rows 2
 
 # Three rows
     let expected = 
         [ [1];
           [1 1];
           [1 2 1] ]
-    rows 3 |> should equal expected
+⍤⤙≍ expected rows 3
 
 # Four rows
     let expected = 
@@ -27,7 +27,7 @@
           [1 1];
           [1 2 1];
           [1 3 3 1] ]
-    rows 4 |> should equal expected
+⍤⤙≍ expected rows 4
 
 # Five rows
     let expected = 
@@ -36,7 +36,7 @@
           [1 2 1];
           [1 3 3 1];
           [1 4 6 4 1] ]
-    rows 5 |> should equal expected
+⍤⤙≍ expected rows 5
 
 # Six rows
     let expected = 
@@ -46,7 +46,7 @@
           [1 3 3 1];
           [1 4 6 4 1];
           [1 5 10 10 5 1] ]
-    rows 6 |> should equal expected
+⍤⤙≍ expected rows 6
 
 # Ten rows
     let expected = 
@@ -60,5 +60,5 @@
           [1 7 21 35 35 21 7 1];
           [1 8 28 56 70 56 28 8 1];
           [1 9 36 84 126 126 84 36 9 1] ]
-    rows 10 |> should equal expected
+⍤⤙≍ expected rows 10
 

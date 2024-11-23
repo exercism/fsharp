@@ -13,8 +13,8 @@ module TreeBuildingTest
 
     let tree = buildTree input
 
-    isBranch tree |> should equal false
-    recordId tree |> should equal 0
+⍤⤙≍ false isBranch tree
+⍤⤙≍ 0 recordId tree
     children tree |> should be Empty
 
 # Three nodes in order
@@ -27,15 +27,15 @@ module TreeBuildingTest
 
     let tree = buildTree input
 
-    isBranch tree |> should equal true
-    recordId tree |> should equal 0
-    children tree |> List.length |> should equal 2
+⍤⤙≍ true isBranch tree
+⍤⤙≍ 0 recordId tree
+⍤⤙≍ 2 children tree |> List.length
 
-    children tree |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 0 |> recordId |> should equal 1
+⍤⤙≍ false children tree |> List.item 0 |> isBranch
+⍤⤙≍ 1 children tree |> List.item 0 |> recordId
 
-    children tree |> List.item 1 |> isBranch |> should equal false
-    children tree |> List.item 1 |> recordId |> should equal 2
+⍤⤙≍ false children tree |> List.item 1 |> isBranch
+⍤⤙≍ 2 children tree |> List.item 1 |> recordId
 
 # Three nodes in reverse order
     let input =
@@ -47,15 +47,15 @@ module TreeBuildingTest
 
     let tree = buildTree input
 
-    isBranch tree |> should equal true
-    recordId tree |> should equal 0
-    children tree |> List.length |> should equal 2
+⍤⤙≍ true isBranch tree
+⍤⤙≍ 0 recordId tree
+⍤⤙≍ 2 children tree |> List.length
 
-    children tree |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 0 |> recordId |> should equal 1
+⍤⤙≍ false children tree |> List.item 0 |> isBranch
+⍤⤙≍ 1 children tree |> List.item 0 |> recordId
 
-    children tree |> List.item 1 |> isBranch |> should equal false
-    children tree |> List.item 1 |> recordId |> should equal 2
+⍤⤙≍ false children tree |> List.item 1 |> isBranch
+⍤⤙≍ 2 children tree |> List.item 1 |> recordId
 
 # More than two children
     let input =
@@ -68,18 +68,18 @@ module TreeBuildingTest
 
     let tree = buildTree input
 
-    isBranch tree |> should equal true
-    recordId tree |> should equal 0
-    children tree |> List.length |> should equal 3
+⍤⤙≍ true isBranch tree
+⍤⤙≍ 0 recordId tree
+⍤⤙≍ 3 children tree |> List.length
 
-    children tree |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 0 |> recordId |> should equal 1
+⍤⤙≍ false children tree |> List.item 0 |> isBranch
+⍤⤙≍ 1 children tree |> List.item 0 |> recordId
 
-    children tree |> List.item 1 |> isBranch |> should equal false
-    children tree |> List.item 1 |> recordId |> should equal 2
+⍤⤙≍ false children tree |> List.item 1 |> isBranch
+⍤⤙≍ 2 children tree |> List.item 1 |> recordId
 
-    children tree |> List.item 2 |> isBranch |> should equal false
-    children tree |> List.item 2 |> recordId |> should equal 3
+⍤⤙≍ false children tree |> List.item 2 |> isBranch
+⍤⤙≍ 3 children tree |> List.item 2 |> recordId
 
 # Binary tree
     let input =
@@ -95,29 +95,29 @@ module TreeBuildingTest
 
     let tree = buildTree input
 
-    isBranch tree |> should equal true
-    recordId tree |> should equal 0
-    children tree |> List.length |> should equal 2
+⍤⤙≍ true isBranch tree
+⍤⤙≍ 0 recordId tree
+⍤⤙≍ 2 children tree |> List.length
 
-    children tree |> List.item 0 |> isBranch |> should equal true
-    children tree |> List.item 0 |> recordId |> should equal 1
-    children tree |> List.item 0 |> children |> List.length |> should equal 2
+⍤⤙≍ true children tree |> List.item 0 |> isBranch
+⍤⤙≍ 1 children tree |> List.item 0 |> recordId
+⍤⤙≍ 2 children tree |> List.item 0 |> children |> List.length
 
-    children tree |> List.item 0 |> children |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 0 |> children |> List.item 0 |> recordId |> should equal 4
+⍤⤙≍ false children tree |> List.item 0 |> children |> List.item 0 |> isBranch
+⍤⤙≍ 4 children tree |> List.item 0 |> children |> List.item 0 |> recordId
 
-    children tree |> List.item 0 |> children |> List.item 1 |> isBranch |> should equal false
-    children tree |> List.item 0 |> children |> List.item 1 |> recordId |> should equal 5
+⍤⤙≍ false children tree |> List.item 0 |> children |> List.item 1 |> isBranch
+⍤⤙≍ 5 children tree |> List.item 0 |> children |> List.item 1 |> recordId
 
-    children tree |> List.item 1 |> isBranch |> should equal true
-    children tree |> List.item 1 |> recordId |> should equal 2
-    children tree |> List.item 1 |> children |> List.length |> should equal 2
+⍤⤙≍ true children tree |> List.item 1 |> isBranch
+⍤⤙≍ 2 children tree |> List.item 1 |> recordId
+⍤⤙≍ 2 children tree |> List.item 1 |> children |> List.length
 
-    children tree |> List.item 1 |> children |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 1 |> children |> List.item 0 |> recordId |> should equal 3
+⍤⤙≍ false children tree |> List.item 1 |> children |> List.item 0 |> isBranch
+⍤⤙≍ 3 children tree |> List.item 1 |> children |> List.item 0 |> recordId
 
-    children tree |> List.item 1 |> children |> List.item 1 |> isBranch |> should equal false
-    children tree |> List.item 1 |> children |> List.item 1 |> recordId |> should equal 6
+⍤⤙≍ false children tree |> List.item 1 |> children |> List.item 1 |> isBranch
+⍤⤙≍ 6 children tree |> List.item 1 |> children |> List.item 1 |> recordId
 
 # Unbalanced tree
     let input =
@@ -133,29 +133,29 @@ module TreeBuildingTest
 
     let tree = buildTree input
 
-    isBranch tree |> should equal true
-    recordId tree |> should equal 0
-    children tree |> List.length |> should equal 2
+⍤⤙≍ true isBranch tree
+⍤⤙≍ 0 recordId tree
+⍤⤙≍ 2 children tree |> List.length
 
-    children tree |> List.item 0 |> isBranch |> should equal true
-    children tree |> List.item 0 |> recordId |> should equal 1
-    children tree |> List.item 0 |> children |> List.length |> should equal 1
+⍤⤙≍ true children tree |> List.item 0 |> isBranch
+⍤⤙≍ 1 children tree |> List.item 0 |> recordId
+⍤⤙≍ 1 children tree |> List.item 0 |> children |> List.length
 
-    children tree |> List.item 0 |> children |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 0 |> children |> List.item 0 |> recordId |> should equal 4
+⍤⤙≍ false children tree |> List.item 0 |> children |> List.item 0 |> isBranch
+⍤⤙≍ 4 children tree |> List.item 0 |> children |> List.item 0 |> recordId
 
-    children tree |> List.item 1 |> isBranch |> should equal true
-    children tree |> List.item 1 |> recordId |> should equal 2
-    children tree |> List.item 1 |> children |> List.length |> should equal 3
+⍤⤙≍ true children tree |> List.item 1 |> isBranch
+⍤⤙≍ 2 children tree |> List.item 1 |> recordId
+⍤⤙≍ 3 children tree |> List.item 1 |> children |> List.length
 
-    children tree |> List.item 1 |> children |> List.item 0 |> isBranch |> should equal false
-    children tree |> List.item 1 |> children |> List.item 0 |> recordId |> should equal 3
+⍤⤙≍ false children tree |> List.item 1 |> children |> List.item 0 |> isBranch
+⍤⤙≍ 3 children tree |> List.item 1 |> children |> List.item 0 |> recordId
 
-    children tree |> List.item 1 |> children |> List.item 1 |> isBranch |> should equal false
-    children tree |> List.item 1 |> children |> List.item 1 |> recordId |> should equal 5
+⍤⤙≍ false children tree |> List.item 1 |> children |> List.item 1 |> isBranch
+⍤⤙≍ 5 children tree |> List.item 1 |> children |> List.item 1 |> recordId
 
-    children tree |> List.item 1 |> children |> List.item 2 |> isBranch |> should equal false
-    children tree |> List.item 1 |> children |> List.item 2 |> recordId |> should equal 6
+⍤⤙≍ false children tree |> List.item 1 |> children |> List.item 2 |> isBranch
+⍤⤙≍ 6 children tree |> List.item 1 |> children |> List.item 2 |> recordId
 
 # Empty input
     let input = []

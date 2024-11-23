@@ -3,21 +3,21 @@
 # Empty string
     let lines: string list = []
     let expected: string list = []
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Two characters in a row
     let lines = ["A1"]
     let expected = 
         [ "A";
           "1" ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Two characters in a column
     let lines = 
         [ "A";
           "1" ]
     let expected = ["A1"]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Simple
     let lines = 
@@ -27,7 +27,7 @@
         [ "A1";
           "B2";
           "C3" ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Single line
     let lines = ["Single line."]
@@ -44,7 +44,7 @@
           "n";
           "e";
           "." ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # First line longer than second line
     let lines = 
@@ -67,7 +67,7 @@
           "ne";
           "e.";
           "." ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Second line longer than first line
     let lines = 
@@ -90,7 +90,7 @@
           "en";
           ".e";
           " ." ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Mixed line length
     let lines = 
@@ -116,7 +116,7 @@
           "n";
           "e";
           "." ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Square
     let lines = 
@@ -131,7 +131,7 @@
           "ABUSE";
           "RESIN";
           "TREND" ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Rectangle
     let lines = 
@@ -148,7 +148,7 @@
           "UNIT";
           "RENT";
           "EDGE" ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Triangle
     let lines = 
@@ -165,7 +165,7 @@
           "   SER";
           "    ER";
           "     R" ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 
 # Jagged triangle
     let lines = 
@@ -182,5 +182,5 @@
           "  3 56";
           "    56";
           "    5" ]
-    transpose lines |> should equal expected
+⍤⤙≍ expected transpose lines
 

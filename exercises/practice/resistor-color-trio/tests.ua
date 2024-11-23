@@ -1,32 +1,32 @@
 ~ "resistor-color-trio.ua" ~ ResistorColorTrio
 
 # Orange and orange and black
-    label ["orange" "orange" "black"] |> should equal "33 ohms"
+⍤⤙≍ "33 ohms" label ["orange" "orange" "black"]
 
 # Blue and grey and brown
-    label ["blue" "grey" "brown"] |> should equal "680 ohms"
+⍤⤙≍ "680 ohms" label ["blue" "grey" "brown"]
 
 # Red and black and red
-    label ["red" "black" "red"] |> should equal "2 kiloohms"
+⍤⤙≍ "2 kiloohms" label ["red" "black" "red"]
 
 # Green and brown and orange
-    label ["green" "brown" "orange"] |> should equal "51 kiloohms"
+⍤⤙≍ "51 kiloohms" label ["green" "brown" "orange"]
 
 # Yellow and violet and yellow
-    label ["yellow" "violet" "yellow"] |> should equal "470 kiloohms"
+⍤⤙≍ "470 kiloohms" label ["yellow" "violet" "yellow"]
 
 # Blue and violet and blue
-    label ["blue" "violet" "blue"] |> should equal "67 megaohms"
+⍤⤙≍ "67 megaohms" label ["blue" "violet" "blue"]
 
 # Minimum possible value
-    label ["black" "black" "black"] |> should equal "0 ohms"
+⍤⤙≍ "0 ohms" label ["black" "black" "black"]
 
 # Maximum possible value
-    label ["white" "white" "white"] |> should equal "99 gigaohms"
+⍤⤙≍ "99 gigaohms" label ["white" "white" "white"]
 
 # First two colors make an invalid octal number
-    label ["black" "grey" "black"] |> should equal "8 ohms"
+⍤⤙≍ "8 ohms" label ["black" "grey" "black"]
 
 # Ignore extra colors
-    label ["blue" "green" "yellow" "orange"] |> should equal "650 kiloohms"
+⍤⤙≍ "650 kiloohms" label ["blue" "green" "yellow" "orange"]
 

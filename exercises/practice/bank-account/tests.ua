@@ -6,7 +6,7 @@ module BankAccountTest
 # Returns empty balance after opening
     let account = mkBankAccount() |> openAccount
 
-    getBalance account |> should equal (Some 0.0m)
+⍤⤙≍ (Some 0.0m) getBalance account
 
 # Check basic balance
     let account = mkBankAccount() |> openAccount
@@ -17,8 +17,8 @@ module BankAccountTest
         |> updateBalance 10.0m
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0m)
-    updatedBalance |> should equal (Some 10.0m)
+⍤⤙≍ (Some 0.0m) openingBalance
+⍤⤙≍ (Some 10.0m) updatedBalance
 
 # Balance can increment or decrement    
     let account = mkBankAccount() |> openAccount
@@ -34,9 +34,9 @@ module BankAccountTest
         |> updateBalance -15.0m
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0m)
-    addedBalance |> should equal (Some 10.0m)
-    subtractedBalance |> should equal (Some -5.0m)
+⍤⤙≍ (Some 0.0m) openingBalance
+⍤⤙≍ (Some 10.0m) addedBalance
+⍤⤙≍ (Some -5.0m) subtractedBalance
 
 # Account can be closed
     let account = 
@@ -44,7 +44,7 @@ module BankAccountTest
         |> openAccount
         |> closeAccount
 
-    getBalance account |> should equal None
+⍤⤙≍ None getBalance account
     account |> should not' (equal None)
     
 # Account can be updated from multiple threads
@@ -65,4 +65,4 @@ module BankAccountTest
     |> Async.RunSynchronously
     |> ignore
 
-    getBalance account |> should equal (Some 1000.0m)
+⍤⤙≍ (Some 1000.0m) getBalance account

@@ -1,59 +1,59 @@
 ~ "say.ua" ~ Say
 
 # Zero
-    say 0 |> should equal (Some "zero")
+⍤⤙≍ (Some "zero") say 0
 
 # One
-    say 1 |> should equal (Some "one")
+⍤⤙≍ (Some "one") say 1
 
 # Fourteen
-    say 14 |> should equal (Some "fourteen")
+⍤⤙≍ (Some "fourteen") say 14
 
 # Twenty
-    say 20 |> should equal (Some "twenty")
+⍤⤙≍ (Some "twenty") say 20
 
 # Twenty-two
-    say 22 |> should equal (Some "twenty-two")
+⍤⤙≍ (Some "twenty-two") say 22
 
 # Thirty
-    say 30 |> should equal (Some "thirty")
+⍤⤙≍ (Some "thirty") say 30
 
 # Ninety-nine
-    say 99 |> should equal (Some "ninety-nine")
+⍤⤙≍ (Some "ninety-nine") say 99
 
 # One hundred
-    say 100 |> should equal (Some "one hundred")
+⍤⤙≍ (Some "one hundred") say 100
 
 # One hundred twenty-three
-    say 123 |> should equal (Some "one hundred twenty-three")
+⍤⤙≍ (Some "one hundred twenty-three") say 123
 
 # Two hundred
-    say 200 |> should equal (Some "two hundred")
+⍤⤙≍ (Some "two hundred") say 200
 
 # Nine hundred ninety-nine
-    say 999 |> should equal (Some "nine hundred ninety-nine")
+⍤⤙≍ (Some "nine hundred ninety-nine") say 999
 
 # One thousand
-    say 1000 |> should equal (Some "one thousand")
+⍤⤙≍ (Some "one thousand") say 1000
 
 # One thousand two hundred thirty-four
-    say 1234 |> should equal (Some "one thousand two hundred thirty-four")
+⍤⤙≍ (Some "one thousand two hundred thirty-four") say 1234
 
 # One million
-    say 1000000 |> should equal (Some "one million")
+⍤⤙≍ (Some "one million") say 1000000
 
 # One million two thousand three hundred forty-five
-    say 1002345 |> should equal (Some "one million two thousand three hundred forty-five")
+⍤⤙≍ (Some "one million two thousand three hundred forty-five") say 1002345
 
 # One billion
-    say 1000000000 |> should equal (Some "one billion")
+⍤⤙≍ (Some "one billion") say 1000000000
 
 # A big number
-    say 987654321123 |> should equal (Some "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three")
+⍤⤙≍ (Some "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three") say 987654321123
 
 # Numbers below zero are out of range
-    say -1 |> should equal None
+⍤⤙≍ None say -1
 
 # Numbers above 999,999,999,999 are out of range
-    say 1000000000000 |> should equal None
+⍤⤙≍ None say 1000000000000
 

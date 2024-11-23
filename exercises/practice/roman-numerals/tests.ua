@@ -1,80 +1,80 @@
 ~ "roman-numerals.ua" ~ RomanNumerals
 
 # 1 is I
-    roman 1 |> should equal "I"
+⍤⤙≍ "I" roman 1
 
 # 2 is II
-    roman 2 |> should equal "II"
+⍤⤙≍ "II" roman 2
 
 # 3 is III
-    roman 3 |> should equal "III"
+⍤⤙≍ "III" roman 3
 
 # 4 is IV
-    roman 4 |> should equal "IV"
+⍤⤙≍ "IV" roman 4
 
 # 5 is V
-    roman 5 |> should equal "V"
+⍤⤙≍ "V" roman 5
 
 # 6 is VI
-    roman 6 |> should equal "VI"
+⍤⤙≍ "VI" roman 6
 
 # 9 is IX
-    roman 9 |> should equal "IX"
+⍤⤙≍ "IX" roman 9
 
 # 16 is XVI
-    roman 16 |> should equal "XVI"
+⍤⤙≍ "XVI" roman 16
 
 # 27 is XXVII
-    roman 27 |> should equal "XXVII"
+⍤⤙≍ "XXVII" roman 27
 
 # 48 is XLVIII
-    roman 48 |> should equal "XLVIII"
+⍤⤙≍ "XLVIII" roman 48
 
 # 49 is XLIX
-    roman 49 |> should equal "XLIX"
+⍤⤙≍ "XLIX" roman 49
 
 # 59 is LIX
-    roman 59 |> should equal "LIX"
+⍤⤙≍ "LIX" roman 59
 
 # 66 is LXVI
-    roman 66 |> should equal "LXVI"
+⍤⤙≍ "LXVI" roman 66
 
 # 93 is XCIII
-    roman 93 |> should equal "XCIII"
+⍤⤙≍ "XCIII" roman 93
 
 # 141 is CXLI
-    roman 141 |> should equal "CXLI"
+⍤⤙≍ "CXLI" roman 141
 
 # 163 is CLXIII
-    roman 163 |> should equal "CLXIII"
+⍤⤙≍ "CLXIII" roman 163
 
 # 166 is CLXVI
-    roman 166 |> should equal "CLXVI"
+⍤⤙≍ "CLXVI" roman 166
 
 # 402 is CDII
-    roman 402 |> should equal "CDII"
+⍤⤙≍ "CDII" roman 402
 
 # 575 is DLXXV
-    roman 575 |> should equal "DLXXV"
+⍤⤙≍ "DLXXV" roman 575
 
 # 666 is DCLXVI
-    roman 666 |> should equal "DCLXVI"
+⍤⤙≍ "DCLXVI" roman 666
 
 # 911 is CMXI
-    roman 911 |> should equal "CMXI"
+⍤⤙≍ "CMXI" roman 911
 
 # 1024 is MXXIV
-    roman 1024 |> should equal "MXXIV"
+⍤⤙≍ "MXXIV" roman 1024
 
 # 1666 is MDCLXVI
-    roman 1666 |> should equal "MDCLXVI"
+⍤⤙≍ "MDCLXVI" roman 1666
 
 # 3000 is MMM
-    roman 3000 |> should equal "MMM"
+⍤⤙≍ "MMM" roman 3000
 
 # 3001 is MMMI
-    roman 3001 |> should equal "MMMI"
+⍤⤙≍ "MMMI" roman 3001
 
 # 3999 is MMMCMXCIX
-    roman 3999 |> should equal "MMMCMXCIX"
+⍤⤙≍ "MMMCMXCIX" roman 3999
 

@@ -1,11 +1,11 @@
 ~ "two-fer.ua" ~ TwoFer
 
 # No name given
-    twoFer None |> should equal "One for you, one for me."
+⍤⤙≍ "One for you, one for me." twoFer None
 
 # A name given
-    twoFer (Some "Alice") |> should equal "One for Alice, one for me."
+⍤⤙≍ "One for Alice, one for me." twoFer (Some "Alice")
 
 # Another name given
-    twoFer (Some "Bob") |> should equal "One for Bob, one for me."
+⍤⤙≍ "One for Bob, one for me." twoFer (Some "Bob")
 

@@ -1,56 +1,56 @@
 ~ "book-store.ua" ~ BookStore
 
 # Only a single book
-    total [1] |> should equal 8.00m
+⍤⤙≍ 8.00m total [1]
 
 # Two of the same book
-    total [2 2] |> should equal 16.00m
+⍤⤙≍ 16.00m total [2 2]
 
 # Empty basket
-    total [] |> should equal 0.00m
+⍤⤙≍ 0.00m total []
 
 # Two different books
-    total [1 2] |> should equal 15.20m
+⍤⤙≍ 15.20m total [1 2]
 
 # Three different books
-    total [1 2 3] |> should equal 21.60m
+⍤⤙≍ 21.60m total [1 2 3]
 
 # Four different books
-    total [1 2 3 4] |> should equal 25.60m
+⍤⤙≍ 25.60m total [1 2 3 4]
 
 # Five different books
-    total [1 2 3 4 5] |> should equal 30.00m
+⍤⤙≍ 30.00m total [1 2 3 4 5]
 
 # Two groups of four is cheaper than group of five plus group of three
-    total [1 1 2 2 3 3 4 5] |> should equal 51.20m
+⍤⤙≍ 51.20m total [1 1 2 2 3 3 4 5]
 
 # Two groups of four is cheaper than groups of five and three
-    total [1 1 2 3 4 4 5 5] |> should equal 51.20m
+⍤⤙≍ 51.20m total [1 1 2 3 4 4 5 5]
 
 # Group of four plus group of two is cheaper than two groups of three
-    total [1 1 2 2 3 4] |> should equal 40.80m
+⍤⤙≍ 40.80m total [1 1 2 2 3 4]
 
 # Two each of first four books and one copy each of rest
-    total [1 1 2 2 3 3 4 4 5] |> should equal 55.60m
+⍤⤙≍ 55.60m total [1 1 2 2 3 3 4 4 5]
 
 # Two copies of each book
-    total [1 1 2 2 3 3 4 4 5 5] |> should equal 60.00m
+⍤⤙≍ 60.00m total [1 1 2 2 3 3 4 4 5 5]
 
 # Three copies of first book and two each of remaining
-    total [1 1 2 2 3 3 4 4 5 5 1] |> should equal 68.00m
+⍤⤙≍ 68.00m total [1 1 2 2 3 3 4 4 5 5 1]
 
 # Three each of first two books and two each of remaining books
-    total [1 1 2 2 3 3 4 4 5 5 1 2] |> should equal 75.20m
+⍤⤙≍ 75.20m total [1 1 2 2 3 3 4 4 5 5 1 2]
 
 # Four groups of four are cheaper than two groups each of five and three
-    total [1 1 2 2 3 3 4 5 1 1 2 2 3 3 4 5] |> should equal 102.40m
+⍤⤙≍ 102.40m total [1 1 2 2 3 3 4 5 1 1 2 2 3 3 4 5]
 
 # Check that groups of four are created properly even when there are more groups of three than groups of five
-    total [1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 5 5] |> should equal 145.60m
+⍤⤙≍ 145.60m total [1 1 1 1 1 1 2 2 2 2 2 2 3 3 3 3 3 3 4 4 5 5]
 
 # One group of one and four is cheaper than one group of two and three
-    total [1 1 2 3 4] |> should equal 33.60m
+⍤⤙≍ 33.60m total [1 1 2 3 4]
 
 # One group of one and two plus three groups of four is cheaper than one group of each size
-    total [1 2 2 3 3 3 4 4 4 4 5 5 5 5 5] |> should equal 100.00m
+⍤⤙≍ 100.00m total [1 2 2 3 3 3 4 4 4 4 5 5 5 5 5]
 

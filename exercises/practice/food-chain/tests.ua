@@ -4,7 +4,7 @@
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 1 1 |> should equal expected
+⍤⤙≍ expected recite 1 1
 
 # Spider
     let expected = 
@@ -12,7 +12,7 @@
           "It wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 2 2 |> should equal expected
+⍤⤙≍ expected recite 2 2
 
 # Bird
     let expected = 
@@ -21,7 +21,7 @@
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 3 3 |> should equal expected
+⍤⤙≍ expected recite 3 3
 
 # Cat
     let expected = 
@@ -31,7 +31,7 @@
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 4 4 |> should equal expected
+⍤⤙≍ expected recite 4 4
 
 # Dog
     let expected = 
@@ -42,7 +42,7 @@
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 5 5 |> should equal expected
+⍤⤙≍ expected recite 5 5
 
 # Goat
     let expected = 
@@ -54,7 +54,7 @@
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 6 6 |> should equal expected
+⍤⤙≍ expected recite 6 6
 
 # Cow
     let expected = 
@@ -67,13 +67,13 @@
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 7 7 |> should equal expected
+⍤⤙≍ expected recite 7 7
 
 # Horse
     let expected = 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
-    recite 8 8 |> should equal expected
+⍤⤙≍ expected recite 8 8
 
 # Multiple verses
     let expected = 
@@ -90,7 +90,7 @@
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 1 3 |> should equal expected
+⍤⤙≍ expected recite 1 3
 
 # Full song
     let expected = 
@@ -144,5 +144,5 @@
           "";
           "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
-    recite 1 8 |> should equal expected
+⍤⤙≍ expected recite 1 8
 

@@ -1,152 +1,152 @@
 ~ "allergies.ua" ~ Allergies
 
 # Testing for eggs allergy - not allergic to anything
-    allergicTo 0 Allergen.Eggs |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Eggs
 
 # Testing for eggs allergy - allergic only to eggs
-    allergicTo 1 Allergen.Eggs |> should equal true
+⍤⤙≍ true allergicTo 1 Allergen.Eggs
 
 # Testing for eggs allergy - allergic to eggs and something else
-    allergicTo 3 Allergen.Eggs |> should equal true
+⍤⤙≍ true allergicTo 3 Allergen.Eggs
 
 # Testing for eggs allergy - allergic to something, but not eggs
-    allergicTo 2 Allergen.Eggs |> should equal false
+⍤⤙≍ false allergicTo 2 Allergen.Eggs
 
 # Testing for eggs allergy - allergic to everything
-    allergicTo 255 Allergen.Eggs |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Eggs
 
 # Testing for peanuts allergy - not allergic to anything
-    allergicTo 0 Allergen.Peanuts |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic only to peanuts
-    allergicTo 2 Allergen.Peanuts |> should equal true
+⍤⤙≍ true allergicTo 2 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic to peanuts and something else
-    allergicTo 7 Allergen.Peanuts |> should equal true
+⍤⤙≍ true allergicTo 7 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic to something, but not peanuts
-    allergicTo 5 Allergen.Peanuts |> should equal false
+⍤⤙≍ false allergicTo 5 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic to everything
-    allergicTo 255 Allergen.Peanuts |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Peanuts
 
 # Testing for shellfish allergy - not allergic to anything
-    allergicTo 0 Allergen.Shellfish |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic only to shellfish
-    allergicTo 4 Allergen.Shellfish |> should equal true
+⍤⤙≍ true allergicTo 4 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic to shellfish and something else
-    allergicTo 14 Allergen.Shellfish |> should equal true
+⍤⤙≍ true allergicTo 14 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic to something, but not shellfish
-    allergicTo 10 Allergen.Shellfish |> should equal false
+⍤⤙≍ false allergicTo 10 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic to everything
-    allergicTo 255 Allergen.Shellfish |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Shellfish
 
 # Testing for strawberries allergy - not allergic to anything
-    allergicTo 0 Allergen.Strawberries |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic only to strawberries
-    allergicTo 8 Allergen.Strawberries |> should equal true
+⍤⤙≍ true allergicTo 8 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic to strawberries and something else
-    allergicTo 28 Allergen.Strawberries |> should equal true
+⍤⤙≍ true allergicTo 28 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic to something, but not strawberries
-    allergicTo 20 Allergen.Strawberries |> should equal false
+⍤⤙≍ false allergicTo 20 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic to everything
-    allergicTo 255 Allergen.Strawberries |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Strawberries
 
 # Testing for tomatoes allergy - not allergic to anything
-    allergicTo 0 Allergen.Tomatoes |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic only to tomatoes
-    allergicTo 16 Allergen.Tomatoes |> should equal true
+⍤⤙≍ true allergicTo 16 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic to tomatoes and something else
-    allergicTo 56 Allergen.Tomatoes |> should equal true
+⍤⤙≍ true allergicTo 56 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic to something, but not tomatoes
-    allergicTo 40 Allergen.Tomatoes |> should equal false
+⍤⤙≍ false allergicTo 40 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic to everything
-    allergicTo 255 Allergen.Tomatoes |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Tomatoes
 
 # Testing for chocolate allergy - not allergic to anything
-    allergicTo 0 Allergen.Chocolate |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic only to chocolate
-    allergicTo 32 Allergen.Chocolate |> should equal true
+⍤⤙≍ true allergicTo 32 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic to chocolate and something else
-    allergicTo 112 Allergen.Chocolate |> should equal true
+⍤⤙≍ true allergicTo 112 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic to something, but not chocolate
-    allergicTo 80 Allergen.Chocolate |> should equal false
+⍤⤙≍ false allergicTo 80 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic to everything
-    allergicTo 255 Allergen.Chocolate |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Chocolate
 
 # Testing for pollen allergy - not allergic to anything
-    allergicTo 0 Allergen.Pollen |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Pollen
 
 # Testing for pollen allergy - allergic only to pollen
-    allergicTo 64 Allergen.Pollen |> should equal true
+⍤⤙≍ true allergicTo 64 Allergen.Pollen
 
 # Testing for pollen allergy - allergic to pollen and something else
-    allergicTo 224 Allergen.Pollen |> should equal true
+⍤⤙≍ true allergicTo 224 Allergen.Pollen
 
 # Testing for pollen allergy - allergic to something, but not pollen
-    allergicTo 160 Allergen.Pollen |> should equal false
+⍤⤙≍ false allergicTo 160 Allergen.Pollen
 
 # Testing for pollen allergy - allergic to everything
-    allergicTo 255 Allergen.Pollen |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Pollen
 
 # Testing for cats allergy - not allergic to anything
-    allergicTo 0 Allergen.Cats |> should equal false
+⍤⤙≍ false allergicTo 0 Allergen.Cats
 
 # Testing for cats allergy - allergic only to cats
-    allergicTo 128 Allergen.Cats |> should equal true
+⍤⤙≍ true allergicTo 128 Allergen.Cats
 
 # Testing for cats allergy - allergic to cats and something else
-    allergicTo 192 Allergen.Cats |> should equal true
+⍤⤙≍ true allergicTo 192 Allergen.Cats
 
 # Testing for cats allergy - allergic to something, but not cats
-    allergicTo 64 Allergen.Cats |> should equal false
+⍤⤙≍ false allergicTo 64 Allergen.Cats
 
 # Testing for cats allergy - allergic to everything
-    allergicTo 255 Allergen.Cats |> should equal true
+⍤⤙≍ true allergicTo 255 Allergen.Cats
 
 # List - no allergies
     list 0 |> should be Empty
 
 # List - just eggs
-    list 1 |> should equal [Allergen.Eggs]
+⍤⤙≍ [Allergen.Eggs] list 1
 
 # List - just peanuts
-    list 2 |> should equal [Allergen.Peanuts]
+⍤⤙≍ [Allergen.Peanuts] list 2
 
 # List - just strawberries
-    list 8 |> should equal [Allergen.Strawberries]
+⍤⤙≍ [Allergen.Strawberries] list 8
 
 # List - eggs and peanuts
-    list 3 |> should equal [Allergen.Eggs Allergen.Peanuts]
+⍤⤙≍ [Allergen.Eggs Allergen.Peanuts] list 3
 
 # List - more than eggs but not peanuts
-    list 5 |> should equal [Allergen.Eggs Allergen.Shellfish]
+⍤⤙≍ [Allergen.Eggs Allergen.Shellfish] list 5
 
 # List - lots of stuff
-    list 248 |> should equal [Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats]
+⍤⤙≍ [Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats] list 248
 
 # List - everything
-    list 255 |> should equal [Allergen.Eggs Allergen.Peanuts Allergen.Shellfish Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats]
+⍤⤙≍ [Allergen.Eggs Allergen.Peanuts Allergen.Shellfish Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats] list 255
 
 # List - no allergen score parts
-    list 509 |> should equal [Allergen.Eggs Allergen.Shellfish Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats]
+⍤⤙≍ [Allergen.Eggs Allergen.Shellfish Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats] list 509
 
 # List - no allergen score parts without highest valid score
-    list 257 |> should equal [Allergen.Eggs]
+⍤⤙≍ [Allergen.Eggs] list 257
 

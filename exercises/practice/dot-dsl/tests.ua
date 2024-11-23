@@ -16,7 +16,7 @@ module DotDslTest
                 node "a" []
             ]            
 
-    nodes g |> should equal [node "a" []]
+⍤⤙≍ [node "a" []] nodes g
     edges g |> should be Empty
     attrs g |> should be Empty
     
@@ -25,7 +25,7 @@ module DotDslTest
                 node "a" [("color", "green")]
             ]            
 
-    nodes g |> should equal [node "a" [("color", "green")]]
+⍤⤙≍ [node "a" [("color", "green")]] nodes g
     edges g |> should be Empty
     attrs g |> should be Empty
 
@@ -35,7 +35,7 @@ module DotDslTest
             ]             
 
     nodes g |> should be Empty
-    edges g |> should equal [edge "a" "b" []]
+⍤⤙≍ [edge "a" "b" []] edges g
     attrs g |> should be Empty
 
 # Graph with one attribute 
@@ -45,7 +45,7 @@ module DotDslTest
 
     nodes g |> should be Empty
     edges g |> should be Empty
-    attrs g |> should equal [attr "foo" "1"]
+⍤⤙≍ [attr "foo" "1"] attrs g
 
 # Graph with attributes    
     let g = graph [
@@ -59,6 +59,6 @@ module DotDslTest
                 attr "bar" "true"
             ]             
 
-    nodes g |> should equal [node "a" [("color", "green")] node "b" [("label", "Beta!")] node "c" []]
-    edges g |> should equal [edge "a" "b" [("color", "blue")] edge "b" "c" []]
-    attrs g |> should equal [attr "bar" "true" attr "foo" "1" attr "title" "Testing Attrs"]
+⍤⤙≍ [node "a" [("color", "green")] node "b" [("label", "Beta!")] node "c" []] nodes g
+⍤⤙≍ [edge "a" "b" [("color", "blue")] edge "b" "c" []] edges g
+⍤⤙≍ [attr "bar" "true" attr "foo" "1" attr "title" "Testing Attrs"] attrs g

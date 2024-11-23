@@ -9,25 +9,25 @@
 # Private key is random
     let p = 7919I
     let privateKeys = [for _ in 0 .. 10 -> privateKey p]
-    List.distinct privateKeys |> List.length |> should equal (List.length privateKeys)
+⍤⤙≍ (List.length privateKeys) List.distinct privateKeys |> List.length
 
 # Can calculate public key using private key
     let p = 23I
     let g = 5I
     let privateKey = 6I
-    publicKey p g privateKey |> should equal 8I
+⍤⤙≍ 8I publicKey p g privateKey
 
 # Can calculate public key when given a different private key
     let p = 23I
     let g = 5I
     let privateKey = 15I
-    publicKey p g privateKey |> should equal 19I
+⍤⤙≍ 19I publicKey p g privateKey
 
 # Can calculate secret using other party's public key
     let p = 23I
     let theirPublicKey = 19I
     let myPrivateKey = 6I
-    secret p theirPublicKey myPrivateKey |> should equal 2I
+⍤⤙≍ 2I secret p theirPublicKey myPrivateKey
 
 # Key exchange
     let p = 23I
@@ -38,5 +38,5 @@
     let bobPublicKey = publicKey p g bobPrivateKey
     let secretA = secret p bobPublicKey alicePrivateKey
     let secretB = secret p alicePublicKey bobPrivateKey
-    secretA |> should equal secretB
+⍤⤙≍ secretB secretA
 

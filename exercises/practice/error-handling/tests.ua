@@ -26,10 +26,10 @@ type Resource() =
 // consider both possible outputs: success and failure.
 # Returning Option<'T>
     let successResult = handleErrorByReturningOption "1"
-    successResult |> should equal <| Some 1
+⍤⤙≍ <| Some 1 successResult
     
     let failureResult = handleErrorByReturningOption "a"
-    failureResult |> should equal None
+⍤⤙≍ None failureResult
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
 // In that case, one can use a different discriminated union: Result<'TSuccess, 'TError>.
@@ -38,10 +38,10 @@ type Resource() =
 // you are free to return an integer upon success and a string upon failure.
 # Returning Result<'TSuccess, 'TError>
     let successResult = handleErrorByReturningResult "1"
-    (successResult = Ok 1) |> should equal true
+⍤⤙≍ true (successResult = Ok 1)
     
     let failureResult = handleErrorByReturningResult "a"
-    (failureResult = Error "Could not convert input to integer") |> should equal true
+⍤⤙≍ true (failureResult = Error "Could not convert input to integer")
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -71,16 +71,16 @@ type Resource() =
         >> bind validate3
 
     let firstValidationFailureResult = combinedValidation 1            
-    (firstValidationFailureResult = Error "Input less than or equal to five") |> should equal true
+⍤⤙≍ true (firstValidationFailureResult = Error "Input less than or equal to five")
 
     let secondValidationFailureResult = combinedValidation 23          
-    (secondValidationFailureResult = Error "Input greater than or equal to ten") |> should equal true
+⍤⤙≍ true (secondValidationFailureResult = Error "Input greater than or equal to ten")
 
     let thirdValidationFailureResult = combinedValidation 8        
-    (thirdValidationFailureResult = Error "Input is not odd") |> should equal true
+⍤⤙≍ true (thirdValidationFailureResult = Error "Input is not odd")
 
     let successResult = combinedValidation 7        
-    (successResult = Ok 7) |> should equal true
+⍤⤙≍ true (successResult = Ok 7)
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -88,4 +88,4 @@ type Resource() =
     let resource = new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-    resource.Disposed() |> should equal true
+⍤⤙≍ true resource.Disposed()

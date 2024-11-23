@@ -3,12 +3,12 @@
 # No rows
     let minefield: string list = []
     let expected: string list = []
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # No columns
     let minefield = [""]
     let expected = [""]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # No mines
     let minefield = 
@@ -19,7 +19,7 @@
         [ "   ";
           "   ";
           "   " ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Minefield with only mines
     let minefield = 
@@ -30,7 +30,7 @@
         [ "***";
           "***";
           "***" ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Mine surrounded by spaces
     let minefield = 
@@ -41,7 +41,7 @@
         [ "111";
           "1*1";
           "111" ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Space surrounded by mines
     let minefield = 
@@ -52,17 +52,17 @@
         [ "***";
           "*8*";
           "***" ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Horizontal line
     let minefield = [" * * "]
     let expected = ["1*2*1"]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Horizontal line, mines at edges
     let minefield = ["*   *"]
     let expected = ["*1 1*"]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Vertical line
     let minefield = 
@@ -77,7 +77,7 @@
           "2";
           "*";
           "1" ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Vertical line, mines at edges
     let minefield = 
@@ -92,7 +92,7 @@
           " ";
           "1";
           "*" ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Cross
     let minefield = 
@@ -107,7 +107,7 @@
           "*****";
           "25*52";
           " 2*2 " ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 
 # Large minefield
     let minefield = 
@@ -124,5 +124,5 @@
           "112*4*";
           "1*22*2";
           "111111" ]
-    annotate minefield |> should equal expected
+⍤⤙≍ expected annotate minefield
 

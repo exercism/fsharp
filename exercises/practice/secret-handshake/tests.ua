@@ -1,34 +1,34 @@
 ~ "secret-handshake.ua" ~ SecretHandshake
 
 # Wink for 1
-    commands 1 |> should equal ["wink"]
+⍤⤙≍ ["wink"] commands 1
 
 # Double blink for 10
-    commands 2 |> should equal ["double blink"]
+⍤⤙≍ ["double blink"] commands 2
 
 # Close your eyes for 100
-    commands 4 |> should equal ["close your eyes"]
+⍤⤙≍ ["close your eyes"] commands 4
 
 # Jump for 1000
-    commands 8 |> should equal ["jump"]
+⍤⤙≍ ["jump"] commands 8
 
 # Combine two actions
-    commands 3 |> should equal ["wink" "double blink"]
+⍤⤙≍ ["wink" "double blink"] commands 3
 
 # Reverse two actions
-    commands 19 |> should equal ["double blink" "wink"]
+⍤⤙≍ ["double blink" "wink"] commands 19
 
 # Reversing one action gives the same action
-    commands 24 |> should equal ["jump"]
+⍤⤙≍ ["jump"] commands 24
 
 # Reversing no actions still gives no actions
     commands 16 |> should be Empty
 
 # All possible actions
-    commands 15 |> should equal ["wink" "double blink" "close your eyes" "jump"]
+⍤⤙≍ ["wink" "double blink" "close your eyes" "jump"] commands 15
 
 # Reverse all possible actions
-    commands 31 |> should equal ["jump" "close your eyes" "double blink" "wink"]
+⍤⤙≍ ["jump" "close your eyes" "double blink" "wink"] commands 31
 
 # Do nothing for zero
     commands 0 |> should be Empty

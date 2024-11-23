@@ -3,33 +3,33 @@
 # Input cells have a value
     let reactor = new Reactor()
     let input = reactor.createInputCell 10
-    input.Value |> should equal 10
+⍤⤙≍ 10 input.Value
 
 # An input cell's value can be set
     let reactor = new Reactor()
     let input = reactor.createInputCell 4
     input.Value <- 20
-    input.Value |> should equal 20
+⍤⤙≍ 20 input.Value
 
 # Compute cells calculate initial value
     let reactor = new Reactor()
     let input = reactor.createInputCell 1
     let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
-    output.Value |> should equal 2
+⍤⤙≍ 2 output.Value
 
 # Compute cells take inputs in the right order
     let reactor = new Reactor()
     let one = reactor.createInputCell 1
     let two = reactor.createInputCell 2
     let output = reactor.createComputeCell [one two] (fun values -> values.[0] + values.[1] * 10)
-    output.Value |> should equal 21
+⍤⤙≍ 21 output.Value
 
 # Compute cells update value when dependencies are changed
     let reactor = new Reactor()
     let input = reactor.createInputCell 1
     let output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     input.Value <- 3
-    output.Value |> should equal 4
+⍤⤙≍ 4 output.Value
 
 # Compute cells can depend on other compute cells
     let reactor = new Reactor()
@@ -37,9 +37,9 @@
     let times_two = reactor.createComputeCell [input] (fun values -> values.[0] * 2)
     let times_thirty = reactor.createComputeCell [input] (fun values -> values.[0] * 30)
     let output = reactor.createComputeCell [times_two times_thirty] (fun values -> values.[0] + values.[1])
-    output.Value |> should equal 32
+⍤⤙≍ 32 output.Value
     input.Value <- 3
-    output.Value |> should equal 96
+⍤⤙≍ 96 output.Value
 
 # Compute cells fire callbacks
     let reactor = new Reactor()
