@@ -21,7 +21,7 @@
     let reactor = new Reactor()
     let one = reactor.createInputCell 1
     let two = reactor.createInputCell 2
-    let output = reactor.createComputeCell [one; two] (fun values -> values.[0] + values.[1] * 10)
+    let output = reactor.createComputeCell [one two] (fun values -> values.[0] + values.[1] * 10)
     output.Value |> should equal 21
 
 # Compute cells update value when dependencies are changed
@@ -36,7 +36,7 @@
     let input = reactor.createInputCell 1
     let times_two = reactor.createComputeCell [input] (fun values -> values.[0] * 2)
     let times_thirty = reactor.createComputeCell [input] (fun values -> values.[0] * 30)
-    let output = reactor.createComputeCell [times_two; times_thirty] (fun values -> values.[0] + values.[1])
+    let output = reactor.createComputeCell [times_two times_thirty] (fun values -> values.[0] + values.[1])
     output.Value |> should equal 32
     input.Value <- 3
     output.Value |> should equal 96
@@ -136,7 +136,7 @@
     let plus_one = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     let minus_one1 = reactor.createComputeCell [input] (fun values -> values.[0] - 1)
     let minus_one2 = reactor.createComputeCell [minus_one1] (fun values -> values.[0] - 1)
-    let output = reactor.createComputeCell [plus_one; minus_one2] (fun values -> values.[0] * values.[1])
+    let output = reactor.createComputeCell [plus_one minus_one2] (fun values -> values.[0] * values.[1])
     let callback1Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback1Handler
     input.Value <- 4
@@ -148,7 +148,7 @@
     let input = reactor.createInputCell 1
     let plus_one = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     let minus_one = reactor.createComputeCell [input] (fun values -> values.[0] - 1)
-    let always_two = reactor.createComputeCell [plus_one; minus_one] (fun values -> values.[0] - values.[1])
+    let always_two = reactor.createComputeCell [plus_one minus_one] (fun values -> values.[0] - values.[1])
     let callback1Handler = A.Fake<Handler<int>>()
     always_two.Changed.AddHandler callback1Handler
     input.Value <- 2

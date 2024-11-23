@@ -133,19 +133,19 @@
     list 8 |> should equal [Allergen.Strawberries]
 
 # List - eggs and peanuts
-    list 3 |> should equal [Allergen.Eggs; Allergen.Peanuts]
+    list 3 |> should equal [Allergen.Eggs Allergen.Peanuts]
 
 # List - more than eggs but not peanuts
-    list 5 |> should equal [Allergen.Eggs; Allergen.Shellfish]
+    list 5 |> should equal [Allergen.Eggs Allergen.Shellfish]
 
 # List - lots of stuff
-    list 248 |> should equal [Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
+    list 248 |> should equal [Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats]
 
 # List - everything
-    list 255 |> should equal [Allergen.Eggs; Allergen.Peanuts; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
+    list 255 |> should equal [Allergen.Eggs Allergen.Peanuts Allergen.Shellfish Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats]
 
 # List - no allergen score parts
-    list 509 |> should equal [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
+    list 509 |> should equal [Allergen.Eggs Allergen.Shellfish Allergen.Strawberries Allergen.Tomatoes Allergen.Chocolate Allergen.Pollen Allergen.Cats]
 
 # List - no allergen score parts without highest valid score
     list 257 |> should equal [Allergen.Eggs]

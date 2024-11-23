@@ -107,7 +107,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["fortran"; "clojure"]
+    let wordsToSearchFor = ["fortran" "clojure"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("fortran", Some ((1, 7), (7, 7))) ]
@@ -132,7 +132,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["elixir"; "clojure"]
+    let wordsToSearchFor = ["elixir" "clojure"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5))) ]
@@ -151,7 +151,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -171,7 +171,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -192,7 +192,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -214,7 +214,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"; "lua"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -237,7 +237,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"; "lua"; "lisp"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua" "lisp"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -261,7 +261,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"; "lua"; "lisp"; "ruby"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua" "lisp" "ruby"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -286,7 +286,7 @@
           "alxhpburyi";
           "jalaycalmp";
           "clojurermt" ]
-    let wordsToSearchFor = ["clojure"; "elixir"; "ecmascript"; "rust"; "java"; "lua"; "lisp"; "ruby"; "haskell"]
+    let wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua" "lisp" "ruby" "haskell"]
     let expected = 
         [ ("clojure", Some ((1, 10), (7, 10)));
           ("elixir", Some ((6, 5), (1, 5)));
@@ -304,7 +304,7 @@
     let grid = 
         [ "abc";
           "def" ]
-    let wordsToSearchFor = ["aef"; "ced"; "abf"; "cbd"]
+    let wordsToSearchFor = ["aef" "ced" "abf" "cbd"]
     let expected = 
         [ ("aef", Option<((int * int) * (int * int))>.None);
           ("ced", Option<((int * int) * (int * int))>.None);

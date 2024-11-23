@@ -1,11 +1,11 @@
 ~ "forth.ua" ~ Forth
 
 # Parsing and numbers - numbers just get pushed onto the stack
-    let expected = Some [1; 2; 3; 4; 5]
+    let expected = Some [1 2 3 4 5]
     evaluate ["1 2 3 4 5"] |> should equal expected
 
 # Parsing and numbers - pushes negative numbers onto the stack
-    let expected = Some [-1; -2; -3; -4; -5]
+    let expected = Some [-1 -2 -3 -4 -5]
     evaluate ["-1 -2 -3 -4 -5"] |> should equal expected
 
 # Addition - can add two numbers
@@ -73,11 +73,11 @@
     evaluate ["2 4 * 3 /"] |> should equal expected
 
 # Dup - copies a value on the stack
-    let expected = Some [1; 1]
+    let expected = Some [1 1]
     evaluate ["1 dup"] |> should equal expected
 
 # Dup - copies the top value on the stack
-    let expected = Some [1; 2; 2]
+    let expected = Some [1 2 2]
     evaluate ["1 2 dup"] |> should equal expected
 
 # Dup - errors if there is nothing on the stack
@@ -97,11 +97,11 @@
     evaluate ["drop"] |> should equal expected
 
 # Swap - swaps the top two values on the stack if they are the only ones
-    let expected = Some [2; 1]
+    let expected = Some [2 1]
     evaluate ["1 2 swap"] |> should equal expected
 
 # Swap - swaps the top two values on the stack if they are not the only ones
-    let expected = Some [1; 3; 2]
+    let expected = Some [1 3 2]
     evaluate ["1 2 3 swap"] |> should equal expected
 
 # Swap - errors if there is nothing on the stack
@@ -113,11 +113,11 @@
     evaluate ["1 swap"] |> should equal expected
 
 # Over - copies the second element if there are only two
-    let expected = Some [1; 2; 1]
+    let expected = Some [1 2 1]
     evaluate ["1 2 over"] |> should equal expected
 
 # Over - copies the second element if there are more than two
-    let expected = Some [1; 2; 3; 2]
+    let expected = Some [1 2 3 2]
     evaluate ["1 2 3 over"] |> should equal expected
 
 # Over - errors if there is nothing on the stack
@@ -129,32 +129,32 @@
     evaluate ["1 over"] |> should equal expected
 
 # User-defined words - can consist of built-in words
-    let expected = Some [1; 1; 1]
-    evaluate [": dup-twice dup dup ;"; "1 dup-twice"] |> should equal expected
+    let expected = Some [1 1 1]
+    evaluate [": dup-twice dup dup ;" "1 dup-twice"] |> should equal expected
 
 # User-defined words - execute in the right order
-    let expected = Some [1; 2; 3]
-    evaluate [": countup 1 2 3 ;"; "countup"] |> should equal expected
+    let expected = Some [1 2 3]
+    evaluate [": countup 1 2 3 ;" "countup"] |> should equal expected
 
 # User-defined words - can override other user-defined words
-    let expected = Some [1; 1; 1]
-    evaluate [": foo dup ;"; ": foo dup dup ;"; "1 foo"] |> should equal expected
+    let expected = Some [1 1 1]
+    evaluate [": foo dup ;" ": foo dup dup ;" "1 foo"] |> should equal expected
 
 # User-defined words - can override built-in words
-    let expected = Some [1; 1]
-    evaluate [": swap dup ;"; "1 swap"] |> should equal expected
+    let expected = Some [1 1]
+    evaluate [": swap dup ;" "1 swap"] |> should equal expected
 
 # User-defined words - can override built-in operators
     let expected = Some [12]
-    evaluate [": + * ;"; "3 4 +"] |> should equal expected
+    evaluate [": + * ;" "3 4 +"] |> should equal expected
 
 # User-defined words - can use different words with the same name
-    let expected = Some [5; 6]
-    evaluate [": foo 5 ;"; ": bar foo ;"; ": foo 6 ;"; "bar foo"] |> should equal expected
+    let expected = Some [5 6]
+    evaluate [": foo 5 ;" ": bar foo ;" ": foo 6 ;" "bar foo"] |> should equal expected
 
 # User-defined words - can define word that uses word with the same name
     let expected = Some [11]
-    evaluate [": foo 10 ;"; ": foo foo 1 + ;"; "foo"] |> should equal expected
+    evaluate [": foo 10 ;" ": foo foo 1 + ;" "foo"] |> should equal expected
 
 # User-defined words - cannot redefine non-negative numbers
     let expected = None
@@ -169,11 +169,11 @@
     evaluate ["foo"] |> should equal expected
 
 # User-defined words - only defines locally
-    evaluate [": + - ;"; "1 1 +"] |> should equal (Some [0])
+    evaluate [": + - ;" "1 1 +"] |> should equal (Some [0])
     evaluate ["1 1 +"] |> should equal (Some [2])
 
 # Case-insensitivity - DUP is case-insensitive
-    let expected = Some [1; 1; 1; 1]
+    let expected = Some [1 1 1 1]
     evaluate ["1 DUP Dup dup"] |> should equal expected
 
 # Case-insensitivity - DROP is case-insensitive
@@ -181,18 +181,18 @@
     evaluate ["1 2 3 4 DROP Drop drop"] |> should equal expected
 
 # Case-insensitivity - SWAP is case-insensitive
-    let expected = Some [2; 3; 4; 1]
+    let expected = Some [2 3 4 1]
     evaluate ["1 2 SWAP 3 Swap 4 swap"] |> should equal expected
 
 # Case-insensitivity - OVER is case-insensitive
-    let expected = Some [1; 2; 1; 2; 1]
+    let expected = Some [1 2 1 2 1]
     evaluate ["1 2 OVER Over over"] |> should equal expected
 
 # Case-insensitivity - user-defined words are case-insensitive
-    let expected = Some [1; 1; 1; 1]
-    evaluate [": foo dup ;"; "1 FOO Foo foo"] |> should equal expected
+    let expected = Some [1 1 1 1]
+    evaluate [": foo dup ;" "1 FOO Foo foo"] |> should equal expected
 
 # Case-insensitivity - definitions are case-insensitive
-    let expected = Some [1; 1; 1; 1]
-    evaluate [": SWAP DUP Dup dup ;"; "1 swap"] |> should equal expected
+    let expected = Some [1 1 1 1]
+    evaluate [": SWAP DUP Dup dup ;" "1 swap"] |> should equal expected
 

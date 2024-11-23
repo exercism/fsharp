@@ -7,7 +7,7 @@
     treeData |> right |> should equal None
 
 # Smaller number at left node
-    let treeData = create [4; 2]
+    let treeData = create [4 2]
     treeData |> data |> should equal 4
     treeData |> left |> Option.map data |> should equal (Some 2)
     treeData |> left |> Option.bind left |> should equal None
@@ -15,7 +15,7 @@
     treeData |> right |> should equal None
 
 # Same number at left node
-    let treeData = create [4; 4]
+    let treeData = create [4 4]
     treeData |> data |> should equal 4
     treeData |> left |> Option.map data |> should equal (Some 4)
     treeData |> left |> Option.bind left |> should equal None
@@ -23,7 +23,7 @@
     treeData |> right |> should equal None
 
 # Greater number at right node
-    let treeData = create [4; 5]
+    let treeData = create [4 5]
     treeData |> data |> should equal 4
     treeData |> left |> should equal None
     treeData |> right |> Option.map data |> should equal (Some 5)
@@ -31,7 +31,7 @@
     treeData |> right |> Option.bind right |> should equal None
 
 # Can create complex tree
-    let treeData = create [4; 2; 6; 1; 3; 5; 7]
+    let treeData = create [4 2 6 1 3 5 7]
     treeData |> data |> should equal 4
     treeData |> left |> Option.map data |> should equal (Some 2)
     treeData |> left |> Option.bind left |> Option.map data |> should equal (Some 1)
@@ -53,18 +53,18 @@
     sortedData treeData |> should equal [2]
 
 # Can sort if second number is smaller than first
-    let treeData = create [2; 1]
-    sortedData treeData |> should equal [1; 2]
+    let treeData = create [2 1]
+    sortedData treeData |> should equal [1 2]
 
 # Can sort if second number is same as first
-    let treeData = create [2; 2]
-    sortedData treeData |> should equal [2; 2]
+    let treeData = create [2 2]
+    sortedData treeData |> should equal [2 2]
 
 # Can sort if second number is greater than first
-    let treeData = create [2; 3]
-    sortedData treeData |> should equal [2; 3]
+    let treeData = create [2 3]
+    sortedData treeData |> should equal [2 3]
 
 # Can sort complex tree
-    let treeData = create [2; 1; 3; 6; 7; 5]
-    sortedData treeData |> should equal [1; 2; 3; 5; 6; 7]
+    let treeData = create [2 1 3 6 7 5]
+    sortedData treeData |> should equal [1 2 3 5 6 7]
 

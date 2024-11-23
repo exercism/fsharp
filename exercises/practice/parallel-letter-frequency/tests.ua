@@ -50,7 +50,7 @@ let starSpangledBanner =
     frequency (List.replicate 10000 "  ") |> should be Empty
 
 # Many times the same text gives a predictable result
-    frequency (List.replicate 1000 "abc") |> should equal (Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)])
+    frequency (List.replicate 1000 "abc") |> should equal (Map.ofList [('a', 1000) ('b', 1000) ('c', 1000)])
 
 # Punctuation doesn't count
     let freqs = frequency [odeAnDieFreude]
@@ -62,16 +62,16 @@ let starSpangledBanner =
 
 # Letters with and without diacritics are not the same letter
     let freqs = frequency ["aä"]
-    freqs |> should equal (Map.ofList [('a', 1); ('ä', 1)])
+    freqs |> should equal (Map.ofList [('a', 1) ('ä', 1)])
 
 # All three anthems, together
-    let freqs = frequency [odeAnDieFreude; wilhelmus; starSpangledBanner]
+    let freqs = frequency [odeAnDieFreude wilhelmus starSpangledBanner]
     Map.tryFind 'a' freqs |> should equal <| Some 49
     Map.tryFind 't' freqs |> should equal <| Some 56
     Map.tryFind 'o' freqs |> should equal <| Some 34
 
 # Can handle large texts
-    let freqs = frequency (List.replicate 1000 [odeAnDieFreude; wilhelmus; starSpangledBanner] |> List.concat)
+    let freqs = frequency (List.replicate 1000 [odeAnDieFreude wilhelmus starSpangledBanner] |> List.concat)
     Map.tryFind 'a' freqs |> should equal <| Some 49000
     Map.tryFind 't' freqs |> should equal <| Some 56000
     Map.tryFind 'o' freqs |> should equal <| Some 34000

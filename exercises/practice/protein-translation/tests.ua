@@ -55,13 +55,13 @@
     proteins "UGA" |> should be Empty
 
 # Sequence of two protein codons translates into proteins
-    proteins "UUUUUU" |> should equal ["Phenylalanine"; "Phenylalanine"]
+    proteins "UUUUUU" |> should equal ["Phenylalanine" "Phenylalanine"]
 
 # Sequence of two different protein codons translates into proteins
-    proteins "UUAUUG" |> should equal ["Leucine"; "Leucine"]
+    proteins "UUAUUG" |> should equal ["Leucine" "Leucine"]
 
 # Translate RNA strand into correct protein list
-    proteins "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
+    proteins "AUGUUUUGG" |> should equal ["Methionine" "Phenylalanine" "Tryptophan"]
 
 # Translation stops if STOP codon at beginning of sequence
     proteins "UAGUGG" |> should be Empty
@@ -70,11 +70,11 @@
     proteins "UGGUAG" |> should equal ["Tryptophan"]
 
 # Translation stops if STOP codon at end of three-codon sequence
-    proteins "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
+    proteins "AUGUUUUAA" |> should equal ["Methionine" "Phenylalanine"]
 
 # Translation stops if STOP codon in middle of three-codon sequence
     proteins "UGGUAGUGG" |> should equal ["Tryptophan"]
 
 # Translation stops if STOP codon in middle of six-codon sequence
-    proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
+    proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan" "Cysteine" "Tyrosine"]
 

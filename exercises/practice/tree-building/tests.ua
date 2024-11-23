@@ -8,7 +8,7 @@ module TreeBuildingTest
 # One node
     let input =
         [
-            { RecordId = 0; ParentId = 0 }
+            { RecordId = 0 ParentId = 0 }
         ]
 
     let tree = buildTree input
@@ -20,9 +20,9 @@ module TreeBuildingTest
 # Three nodes in order
     let input =
         [
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 2; ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 2 ParentId = 0 };
         ]
 
     let tree = buildTree input
@@ -40,9 +40,9 @@ module TreeBuildingTest
 # Three nodes in reverse order
     let input =
         [
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
+            { RecordId = 2 ParentId = 0 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
         ]
 
     let tree = buildTree input
@@ -60,10 +60,10 @@ module TreeBuildingTest
 # More than two children
     let input =
         [
-            { RecordId = 3; ParentId = 0 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
+            { RecordId = 3 ParentId = 0 };
+            { RecordId = 2 ParentId = 0 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
         ]
 
     let tree = buildTree input
@@ -84,13 +84,13 @@ module TreeBuildingTest
 # Binary tree
     let input =
         [
-            { RecordId = 5; ParentId = 1 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 2 }
+            { RecordId = 5 ParentId = 1 };
+            { RecordId = 3 ParentId = 2 };
+            { RecordId = 2 ParentId = 0 };
+            { RecordId = 4 ParentId = 1 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
+            { RecordId = 6 ParentId = 2 }
         ]
 
     let tree = buildTree input
@@ -122,13 +122,13 @@ module TreeBuildingTest
 # Unbalanced tree
     let input =
         [
-            { RecordId = 5; ParentId = 2 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 2 }
+            { RecordId = 5 ParentId = 2 };
+            { RecordId = 3 ParentId = 2 };
+            { RecordId = 2 ParentId = 0 };
+            { RecordId = 4 ParentId = 1 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
+            { RecordId = 6 ParentId = 2 }
         ]
 
     let tree = buildTree input
@@ -163,55 +163,55 @@ module TreeBuildingTest
 
 # Root node has parent
     let input =
-        [ { RecordId = 0; ParentId = 1 };
-          { RecordId = 1; ParentId = 0 } ]
+        [ { RecordId = 0 ParentId = 1 };
+          { RecordId = 1 ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 # No root node
-    let input = [ { RecordId = 1; ParentId = 0 } ]
+    let input = [ { RecordId = 1 ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 # Out of bounds record id
     let input =
         [
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 4; ParentId = 2 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 }
+            { RecordId = 2 ParentId = 0 };
+            { RecordId = 4 ParentId = 2 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 # Cycle directly
     let input =
         [
-            { RecordId = 5; ParentId = 2 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 2 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 3 }
+            { RecordId = 5 ParentId = 2 };
+            { RecordId = 3 ParentId = 2 };
+            { RecordId = 2 ParentId = 2 };
+            { RecordId = 4 ParentId = 1 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
+            { RecordId = 6 ParentId = 3 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 # Cycle indirectly
     let input =
         [
-            { RecordId = 5; ParentId = 2 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 6 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 3 }
+            { RecordId = 5 ParentId = 2 };
+            { RecordId = 3 ParentId = 2 };
+            { RecordId = 2 ParentId = 6 };
+            { RecordId = 4 ParentId = 1 };
+            { RecordId = 1 ParentId = 0 };
+            { RecordId = 0 ParentId = 0 };
+            { RecordId = 6 ParentId = 3 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 # Higher id parent of lower id
     let input =
         [
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 2 }
+            { RecordId = 0 ParentId = 0 };
+            { RecordId = 2 ParentId = 0 };
+            { RecordId = 1 ParentId = 2 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>

@@ -30,10 +30,10 @@ module SimpleLinkedListTest
         
 # To list
     let values = create 2 (create 1 nil) |> toList
-    values |> should equal [2; 1]
+    values |> should equal [2 1]
         
 # From list
-    let list = fromList [11; 7; 5; 3; 2]
+    let list = fromList [11 7 5 3 2]
     list |> datum |> should equal 11
     list |> next |> datum |> should equal 7
     list |> next |> next |> datum |> should equal 5

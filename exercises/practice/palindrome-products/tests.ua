@@ -5,7 +5,7 @@
     smallest 1 9 |> should equal expected
 
 # Find the largest palindrome from single digit factors
-    let expected: int option * (int * int) list = (Some 9, [(1, 9); (3, 3)])
+    let expected: int option * (int * int) list = (Some 9, [(1, 9) (3, 3)])
     largest 1 9 |> should equal expected
 
 # Find the smallest palindrome from double digit factors

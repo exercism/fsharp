@@ -59,6 +59,6 @@ module DotDslTest
                 attr "bar" "true"
             ]             
 
-    nodes g |> should equal [node "a" [("color", "green")]; node "b" [("label", "Beta!")]; node "c" []]
-    edges g |> should equal [edge "a" "b" [("color", "blue")]; edge "b" "c" []]
-    attrs g |> should equal [attr "bar" "true"; attr "foo" "1"; attr "title" "Testing Attrs"]
+    nodes g |> should equal [node "a" [("color", "green")] node "b" [("label", "Beta!")] node "c" []]
+    edges g |> should equal [edge "a" "b" [("color", "blue")] edge "b" "c" []]
+    attrs g |> should equal [attr "bar" "true" attr "foo" "1" attr "title" "Testing Attrs"]

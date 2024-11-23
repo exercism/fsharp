@@ -6,7 +6,7 @@
     transform lettersByScore |> should equal expected
 
 # Single score with multiple letters
-    let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
+    let lettersByScore = [(1, ['A' 'E' 'I' 'O' 'U'])] |> Map.ofList
     let expected = 
         [ ('a', 1);
           ('e', 1);
@@ -18,8 +18,8 @@
 
 # Multiple scores with multiple letters
     let lettersByScore = 
-        [ (1, ['A'; 'E']);
-          (2, ['D'; 'G']) ]
+        [ (1, ['A' 'E']);
+          (2, ['D' 'G']) ]
         |> Map.ofList
     let expected = 
         [ ('a', 1);
@@ -31,13 +31,13 @@
 
 # Multiple scores with differing numbers of letters
     let lettersByScore = 
-        [ (1, ['A'; 'E'; 'I'; 'O'; 'U'; 'L'; 'N'; 'R'; 'S'; 'T']);
-          (2, ['D'; 'G']);
-          (3, ['B'; 'C'; 'M'; 'P']);
-          (4, ['F'; 'H'; 'V'; 'W'; 'Y']);
+        [ (1, ['A' 'E' 'I' 'O' 'U' 'L' 'N' 'R' 'S' 'T']);
+          (2, ['D' 'G']);
+          (3, ['B' 'C' 'M' 'P']);
+          (4, ['F' 'H' 'V' 'W' 'Y']);
           (5, ['K']);
-          (8, ['J'; 'X']);
-          (10, ['Q'; 'Z']) ]
+          (8, ['J' 'X']);
+          (10, ['Q' 'Z']) ]
         |> Map.ofList
     let expected = 
         [ ('a', 1);

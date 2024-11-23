@@ -10,5 +10,5 @@
     colorCode "orange" |> should equal 3
 
 # Colors
-    colors |> should equal ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"]
+    colors |> should equal ["black" "brown" "red" "orange" "yellow" "green" "blue" "violet" "grey" "white"]
 
