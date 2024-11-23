@@ -1,16 +1,13 @@
 ~ "sgf-parsing.ua" ~ SgfParsing
 
 # Empty input
-expected = None
-⍤⤙≍ expected parse ""
+⍤⤙≍ "TODO: insert error message" ⍣(parse "")
 
 # Tree with no nodes
-expected = None
-⍤⤙≍ expected parse "()"
+⍤⤙≍ "TODO: insert error message" ⍣(parse "()")
 
 # Node without tree
-expected = None
-⍤⤙≍ expected parse ";"
+⍤⤙≍ "TODO: insert error message" ⍣(parse ";")
 
 # Node without properties
 expected = Some (Node (Map.ofList [], []))
@@ -25,16 +22,13 @@ expected = Some (Node (Map.ofList [("A", ["b"]) ("C", ["d"])], []))
 ⍤⤙≍ expected parse "(;A[b]C[d])"
 
 # Properties without delimiter
-expected = None
-⍤⤙≍ expected parse "(;A)"
+⍤⤙≍ "TODO: insert error message" ⍣(parse "(;A)")
 
 # All lowercase property
-expected = None
-⍤⤙≍ expected parse "(;a[b])"
+⍤⤙≍ "TODO: insert error message" ⍣(parse "(;a[b])")
 
 # Upper and lowercase property
-expected = None
-⍤⤙≍ expected parse "(;Aa[b])"
+⍤⤙≍ "TODO: insert error message" ⍣(parse "(;Aa[b])")
 
 # Two nodes
 expected = Some (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], [])]))

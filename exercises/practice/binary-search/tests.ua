@@ -39,30 +39,25 @@ expected = Some 5
 # Identifies that a value is not included in the array
 array =  [1 3 4 6 8 9 11 ]
 value = 7
-expected = None
-⍤⤙≍ expected find array value
+⍤⤙≍ "TODO: insert error message" ⍣(find array value)
 
 # A value smaller than the array's smallest value is not found
 array =  [1 3 4 6 8 9 11 ]
 value = 0
-expected = None
-⍤⤙≍ expected find array value
+⍤⤙≍ "TODO: insert error message" ⍣(find array value)
 
 # A value larger than the array's largest value is not found
 array =  [1 3 4 6 8 9 11 ]
 value = 13
-expected = None
-⍤⤙≍ expected find array value
+⍤⤙≍ "TODO: insert error message" ⍣(find array value)
 
 # Nothing is found in an empty array
 array =  [ ]
 value = 1
-expected = None
-⍤⤙≍ expected find array value
+⍤⤙≍ "TODO: insert error message" ⍣(find array value)
 
 # Nothing is found when the left and right bounds cross
 array =  [1 2 ]
 value = 0
-expected = None
-⍤⤙≍ expected find array value
+⍤⤙≍ "TODO: insert error message" ⍣(find array value)
 

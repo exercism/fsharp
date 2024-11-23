@@ -3,50 +3,50 @@
 # Data is retained
 treeData = create [4]
 ⍤⤙≍ 4 treeData |> data
-⍤⤙≍ None treeData |> left
-⍤⤙≍ None treeData |> right
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right)
 
 # Smaller number at left node
 treeData = create [4 2]
 ⍤⤙≍ 4 treeData |> data
-⍤⤙≍ (Some 2) treeData |> left |> Option.map data
-⍤⤙≍ None treeData |> left |> Option.bind left
-⍤⤙≍ None treeData |> left |> Option.bind right
-⍤⤙≍ None treeData |> right
+⍤⤙≍ 2 treeData |> left |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind right)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right)
 
 # Same number at left node
 treeData = create [4 4]
 ⍤⤙≍ 4 treeData |> data
-⍤⤙≍ (Some 4) treeData |> left |> Option.map data
-⍤⤙≍ None treeData |> left |> Option.bind left
-⍤⤙≍ None treeData |> left |> Option.bind right
-⍤⤙≍ None treeData |> right
+⍤⤙≍ 4 treeData |> left |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind right)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right)
 
 # Greater number at right node
 treeData = create [4 5]
 ⍤⤙≍ 4 treeData |> data
-⍤⤙≍ None treeData |> left
-⍤⤙≍ (Some 5) treeData |> right |> Option.map data
-⍤⤙≍ None treeData |> right |> Option.bind left
-⍤⤙≍ None treeData |> right |> Option.bind right
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left)
+⍤⤙≍ 5 treeData |> right |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right |> Option.bind right)
 
 # Can create complex tree
 treeData = create [4 2 6 1 3 5 7]
 ⍤⤙≍ 4 treeData |> data
-⍤⤙≍ (Some 2) treeData |> left |> Option.map data
-⍤⤙≍ (Some 1) treeData |> left |> Option.bind left |> Option.map data
-⍤⤙≍ None treeData |> left |> Option.bind left |> Option.bind left
-⍤⤙≍ None treeData |> left |> Option.bind left |> Option.bind right
-⍤⤙≍ (Some 3) treeData |> left |> Option.bind right |> Option.map data
-⍤⤙≍ None treeData |> left |> Option.bind right |> Option.bind left
-⍤⤙≍ None treeData |> left |> Option.bind right |> Option.bind right
-⍤⤙≍ (Some 6) treeData |> right |> Option.map data
-⍤⤙≍ (Some 5) treeData |> right |> Option.bind left |> Option.map data
-⍤⤙≍ None treeData |> right |> Option.bind left |> Option.bind left
-⍤⤙≍ None treeData |> right |> Option.bind left |> Option.bind right
-⍤⤙≍ (Some 7) treeData |> right |> Option.bind right |> Option.map data
-⍤⤙≍ None treeData |> right |> Option.bind right |> Option.bind left
-⍤⤙≍ None treeData |> right |> Option.bind right |> Option.bind right
+⍤⤙≍ 2 treeData |> left |> Option.map data
+⍤⤙≍ 1 treeData |> left |> Option.bind left |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind left |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind left |> Option.bind right)
+⍤⤙≍ 3 treeData |> left |> Option.bind right |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind right |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> left |> Option.bind right |> Option.bind right)
+⍤⤙≍ 6 treeData |> right |> Option.map data
+⍤⤙≍ 5 treeData |> right |> Option.bind left |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right |> Option.bind left |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right |> Option.bind left |> Option.bind right)
+⍤⤙≍ 7 treeData |> right |> Option.bind right |> Option.map data
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right |> Option.bind right |> Option.bind left)
+⍤⤙≍ "TODO: insert error message" ⍣(treeData |> right |> Option.bind right |> Option.bind right)
 
 # Can sort single number
 treeData = create [2]

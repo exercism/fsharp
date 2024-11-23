@@ -88,62 +88,53 @@ expected = Some [4 2]
 digits = [0]
 inputBase = 1
 outputBase = 10
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Input base is zero
 digits = []
 inputBase = 0
 outputBase = 10
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Input base is negative
 digits = [1]
 inputBase = -2
 outputBase = 10
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Negative digit
 digits = [1 -1 1 0 1 0]
 inputBase = 2
 outputBase = 10
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Invalid positive digit
 digits = [1 2 1 0 1 0]
 inputBase = 2
 outputBase = 10
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Output base is one
 digits = [1 0 1 0 1 0]
 inputBase = 2
 outputBase = 1
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Output base is zero
 digits = [7]
 inputBase = 10
 outputBase = 0
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Output base is negative
 digits = [1]
 inputBase = 2
 outputBase = -7
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 
 # Both bases are negative
 digits = [1]
 inputBase = -2
 outputBase = -7
-expected = None
-⍤⤙≍ expected rebase digits inputBase outputBase
+⍤⤙≍ "TODO: insert error message" ⍣(rebase digits inputBase outputBase)
 

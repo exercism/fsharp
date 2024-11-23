@@ -57,18 +57,15 @@ expected: int list option = Some []
 # Error testing for change smaller than the smallest of coins
 coins = [5 10]
 target = 3
-expected = None
-⍤⤙≍ expected findFewestCoins coins target
+⍤⤙≍ "TODO: insert error message" ⍣(findFewestCoins coins target)
 
 # Error if no combination can add up to target
 coins = [5 10]
 target = 94
-expected = None
-⍤⤙≍ expected findFewestCoins coins target
+⍤⤙≍ "TODO: insert error message" ⍣(findFewestCoins coins target)
 
 # Cannot find negative change values
 coins = [1 2 5]
 target = -5
-expected = None
-⍤⤙≍ expected findFewestCoins coins target
+⍤⤙≍ "TODO: insert error message" ⍣(findFewestCoins coins target)
 

@@ -5,7 +5,7 @@ expected: int option * (int * int) list = (Some 1, [(1, 1)])
 ⍤⤙≍ expected smallest 1 9
 
 # Find the largest palindrome from single digit factors
-expected: int option * (int * int) list = (Some 9, [(1, 9) (3, 3)])
+expected: int option * (int * int) list = 9, [(1, 9 (3, 3)])
 ⍤⤙≍ expected largest 1 9
 
 # Find the smallest palindrome from double digit factors

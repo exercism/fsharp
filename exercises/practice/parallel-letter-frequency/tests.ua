@@ -50,11 +50,11 @@ starSpangledBanner =
 
 # Punctuation doesn't count
 freqs = frequency [odeAnDieFreude]
-⍤⤙≍ None Map.tryFind ',' freqs
+⍤⤙≍ "TODO: insert error message" ⍣(Map.tryFind ',' freqs)
 
 # Numbers don't count
 freqs = frequency ["Testing, 1, 2, 3"]
-⍤⤙≍ None Map.tryFind '1' freqs
+⍤⤙≍ "TODO: insert error message" ⍣(Map.tryFind '1' freqs)
 
 # Letters with and without diacritics are not the same letter
 freqs = frequency ["aä"]

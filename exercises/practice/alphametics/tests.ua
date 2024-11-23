@@ -12,13 +12,11 @@ expected =
 
 # Solution must have unique value for each letter
 puzzle = "A == B"
-expected = None
-⍤⤙≍ expected solve puzzle
+⍤⤙≍ "TODO: insert error message" ⍣(solve puzzle)
 
 # Leading zero solution is invalid
 puzzle = "ACA + DD == BD"
-expected = None
-⍤⤙≍ expected solve puzzle
+⍤⤙≍ "TODO: insert error message" ⍣(solve puzzle)
 
 # Puzzle with two digits final carry
 puzzle = "A + A + A + A + A + A + A + A + A + A + A + B == BCC"

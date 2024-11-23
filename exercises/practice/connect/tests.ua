@@ -7,15 +7,15 @@ board =
           "  . . . . .  ";
           "   . . . . . ";
           "    . . . . ." ]
-⍤⤙≍ None winner board
+⍤⤙≍ "TODO: insert error message" ⍣(winner board)
 
 # X can win on a 1x1 board
 board = ["X"]
-⍤⤙≍ (Some Black) winner board
+⍤⤙≍ Black winner board
 
 # O can win on a 1x1 board
 board = ["O"]
-⍤⤙≍ (Some White) winner board
+⍤⤙≍ White winner board
 
 # Only edges does not make a winner
 board = 
@@ -23,7 +23,7 @@ board =
           " X . . X  ";
           "  X . . X ";
           "   X O O O" ]
-⍤⤙≍ None winner board
+⍤⤙≍ "TODO: insert error message" ⍣(winner board)
 
 # Illegal diagonal does not make a winner
 board = 
@@ -32,7 +32,7 @@ board =
           "  O X O .  ";
           "   . O X . ";
           "    X X O O" ]
-⍤⤙≍ None winner board
+⍤⤙≍ "TODO: insert error message" ⍣(winner board)
 
 # Nobody wins crossing adjacent angles
 board = 
@@ -41,7 +41,7 @@ board =
           "  O . X O  ";
           "   . O . X ";
           "    . . O ." ]
-⍤⤙≍ None winner board
+⍤⤙≍ "TODO: insert error message" ⍣(winner board)
 
 # X wins crossing from left to right
 board = 
@@ -50,7 +50,7 @@ board =
           "  O X O .  ";
           "   X X O X ";
           "    . O X ." ]
-⍤⤙≍ (Some Black) winner board
+⍤⤙≍ Black winner board
 
 # O wins crossing from top to bottom
 board = 
@@ -59,7 +59,7 @@ board =
           "  O O O .  ";
           "   X X O X ";
           "    . O X ." ]
-⍤⤙≍ (Some White) winner board
+⍤⤙≍ White winner board
 
 # X wins using a convoluted path
 board = 
@@ -68,7 +68,7 @@ board =
           "  . X . X .  ";
           "   . X X . . ";
           "    O O O O O" ]
-⍤⤙≍ (Some Black) winner board
+⍤⤙≍ Black winner board
 
 # X wins using a spiral path
 board = 
@@ -81,5 +81,5 @@ board =
           "      O X X X X X O X O  ";
           "       O O O O O O O X O ";
           "        X X X X X X X X O" ]
-⍤⤙≍ (Some Black) winner board
+⍤⤙≍ Black winner board
 

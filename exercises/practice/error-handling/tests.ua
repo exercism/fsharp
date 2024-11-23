@@ -25,7 +25,7 @@ successResult = handleErrorByReturningOption "1"
 ⍤⤙≍ <| Some 1 successResult
     
 failureResult = handleErrorByReturningOption "a"
-⍤⤙≍ None failureResult
+⍤⤙≍ "TODO: insert error message" ⍣(failureResult)
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
 // In that case, one can use a different discriminated union: Result<'TSuccess, 'TError>.

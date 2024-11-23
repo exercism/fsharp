@@ -40,11 +40,11 @@ expected = mkGraph "x" [mkGraph "kid-1" [] mkGraph "kid-0" [] mkGraph "parent" [
 
 # Errors if target does not exist in a singleton tree
 tree = mkGraph "x" []
-⍤⤙≍ None fromPOV "nonexistent" tree 
+⍤⤙≍ "TODO: insert error message" ⍣(fromPOV "nonexistent" tree )
 
 # Errors if target does not exist in a large tree
 tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [] mkGraph "kid-1" []] mkGraph "sibling-0" [] mkGraph "sibling-1" []]
-⍤⤙≍ None fromPOV "nonexistent" tree 
+⍤⤙≍ "TODO: insert error message" ⍣(fromPOV "nonexistent" tree )
 
 # Can find path to parent
 tree = mkGraph "parent" [mkGraph "x" [] mkGraph "sibling" []]
@@ -68,9 +68,9 @@ tree = mkGraph "parent" [mkGraph "a" [] mkGraph "x" [] mkGraph "b" [] mkGraph "c
 
 # Errors if destination does not exist
 tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [] mkGraph "kid-1" []] mkGraph "sibling-0" [] mkGraph "sibling-1" []]
-⍤⤙≍ None tracePathBetween "x" "nonexistent" tree
+⍤⤙≍ "TODO: insert error message" ⍣(tracePathBetween "x" "nonexistent" tree)
 
 # Errors if source does not exist
 tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [] mkGraph "kid-1" []] mkGraph "sibling-0" [] mkGraph "sibling-1" []]
-⍤⤙≍ None tracePathBetween "nonexistent" "x" tree
+⍤⤙≍ "TODO: insert error message" ⍣(tracePathBetween "nonexistent" "x" tree)
 

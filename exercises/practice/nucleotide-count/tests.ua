@@ -46,6 +46,5 @@ expected =
 
 # Strand with invalid nucleotides
 strand = "AGXXACT"
-expected = None
-⍤⤙≍ expected nucleotideCounts strand
+⍤⤙≍ "TODO: insert error message" ⍣(nucleotideCounts strand)
 

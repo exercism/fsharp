@@ -60,7 +60,7 @@ actual = zipper |> left |> Option.get |> right |> Option.get |> up |> Option.get
 # Set left with leaf
 zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
 expected = tree 1 (subTree 2 (leaf 5) (leaf 3)) (leaf 4)
-actual = zipper |> left |> Option.get |> setLeft (Some (tree 5 None None)) |> toTree
+actual = zipper |> left |> Option.get |> setLeft (tree 5 None None) |> toTree
 ⍤⤙≍ expected actual
 
 # Set right with null
@@ -72,7 +72,7 @@ actual = zipper |> left |> Option.get |> setRight None |> toTree
 # Set right with subtree
 zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
 expected = tree 1 (subTree 2 None (leaf 3)) (subTree 6 (leaf 7) (leaf 8))
-actual = zipper |> setRight (Some (tree 6 (leaf 7) (leaf 8))) |> toTree
+actual = zipper |> setRight (tree 6 (leaf 7 (leaf 8))) |> toTree
 ⍤⤙≍ expected actual
 
 # Set value on deep focus

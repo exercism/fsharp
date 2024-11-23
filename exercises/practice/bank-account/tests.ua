@@ -2,7 +2,7 @@
 # Returns empty balance after opening
 account = mkBankAccount() |> openAccount
 
-⍤⤙≍ (Some 0.0m) getBalance account
+⍤⤙≍ 0.0m getBalance account
 
 # Check basic balance
 account = mkBankAccount() |> openAccount
@@ -13,8 +13,8 @@ updatedBalance =
         |> updateBalance 10.0m
         |> getBalance
 
-⍤⤙≍ (Some 0.0m) openingBalance
-⍤⤙≍ (Some 10.0m) updatedBalance
+⍤⤙≍ 0.0m openingBalance
+⍤⤙≍ 10.0m updatedBalance
 
 # Balance can increment or decrement    
 account = mkBankAccount() |> openAccount
@@ -30,9 +30,9 @@ subtractedBalance =
         |> updateBalance -15.0m
         |> getBalance
 
-⍤⤙≍ (Some 0.0m) openingBalance
-⍤⤙≍ (Some 10.0m) addedBalance
-⍤⤙≍ (Some -5.0m) subtractedBalance
+⍤⤙≍ 0.0m openingBalance
+⍤⤙≍ 10.0m addedBalance
+⍤⤙≍ -5.0m subtractedBalance
 
 # Account can be closed
 account = 
@@ -40,7 +40,7 @@ account =
         |> openAccount
         |> closeAccount
 
-⍤⤙≍ None getBalance account
+⍤⤙≍ "TODO: insert error message" ⍣(getBalance account)
     account |> should not' (equal None)
     
 # Account can be updated from multiple threads
@@ -61,4 +61,4 @@ updateAccountAsync =
     |> Async.RunSynchronously
     |> ignore
 
-⍤⤙≍ (Some 1000.0m) getBalance account
+⍤⤙≍ 1000.0m getBalance account
