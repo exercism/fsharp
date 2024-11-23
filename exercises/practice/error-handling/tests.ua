@@ -30,13 +30,13 @@ failureResult ← handleErrorByReturningOption "a"
 ⍤⤙≍ "TODO: insert error message" ⍣(failureResult)
 
 //If the caller is also interested what error occured, the Option<’T> type does ¬ suffice.
-//In that case, one can use a different discriminated ◰⟜: Result<’TSuccess, ’TError>.
-//This discriminated ◰⟜has two possible cases: Ok and Error, which contain data
+//In that case, one can use a different discriminated ◰⟜.
+//This discriminated ◰⟜has two possible cases: and Error, which contain data
 //of type ’TSuccess and ’TError respectively. Note that these types can be different, so
 //you are free to return an integer upon success and a string upon failure.
 # Returning Result<'TSuccess, 'TError>
 successResult ← handleErrorByReturningResult "1"
-⍤⤙≍ 1 (successResult = Ok 1)
+⍤⤙≍ 1 (successResult = 1)
 
 failureResult ← handleErrorByReturningResult "a"
 ⍤⤙≍ 1 (failureResult = Error "Could not convert input to integer")
@@ -57,9 +57,9 @@ failureResult ← handleErrorByReturningResult "a"
 //In this test, your task is to write a function "bind", that allows you to combine
 //two functions that ↙ a ’TSuccess instance and return a Result<’TSuccess, ’TError> instance.
 # Using railway-oriented programming
-validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
-validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
-validate3 x = if x ÷ 2 <> 0 then Ok x else Error "Input is not odd"
+validate1 x = if x > 5 then x else Error "Input less than or equal to five"
+validate2 x = if x < 10 then x else Error "Input greater than or equal to ten"
+validate3 x = if x ÷ 2 <> 0 then x else Error "Input is not odd"
 
 //Combine the validations. The result should be a function that takes an int parameter
 //and returns a Result<int, string> value
@@ -78,7 +78,7 @@ thirdValidationFailureResult ← combinedValidation 8
 ⍤⤙≍ 1 (thirdValidationFailureResult = Error "Input is not odd")
 
 successResult ← combinedValidation 7
-⍤⤙≍ 1 (successResult = Ok 7)
+⍤⤙≍ 1 (successResult = 7)
 
 //If you are dealing ⤙code that throws exceptions, you should ensure that any
 //disposable resources that are used are being disposed of

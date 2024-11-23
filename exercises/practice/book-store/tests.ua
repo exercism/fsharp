@@ -36,7 +36,7 @@
 # Two copies of each book
 ⍤⤙≍ 60m total [1 1 2 2 3 3 4 4 5 5]
 
-# Three copies of first book and two each of remaining
+# Three copies of first boand two each of remaining
 ⍤⤙≍ 68m total [1 1 2 2 3 3 4 4 5 5 1]
 
 # Three each of first two books and two each of remaining books

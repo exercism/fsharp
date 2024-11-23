@@ -25,7 +25,8 @@
 ⍤⤙≍ "swxtj npvyk lruol iejdc blaxk swxmh qzglf" encode 17 33 "The quick brown fox jumps over the lazy dog."
 
 # Encode with a not coprime to m
-    (fun () -> encode 6 17 "This is a test." |> ignore) |> should throw typeof<System.ArgumentException>
+(fun () -> encode 6 17 "This is a test."|> ignore)
+| > should throw typeof<System.ArgumentException>
 
 # Decode exercism
 ⍤⤙≍ "exercism" decode 3 7 "tytgn fjr"
@@ -46,5 +47,5 @@
 ⍤⤙≍ "jollygreengiant" decode 15 16 "vszzm    cly   yd cg    qdp"
 
 # Decode with a not coprime to m
-    (fun () -> decode 13 5 "Test" |> ignore) |> should throw typeof<System.ArgumentException>
-
+(fun () -> decode 13 5 "Test"|> ignore)
+| > should throw typeof<System.ArgumentException>
