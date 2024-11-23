@@ -1,13 +1,13 @@
 module DiamondTest
 
 
-let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
+let split (x: string) = x.Split( [ '\n'  ], StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()
 
-let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny [|'A'..'Z'|])
+let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny  ['A'..'Z' ])
 
-let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
+let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny  ['A'..'Z' ] + 1)
 
 type Letters =
     static member Chars () =
@@ -15,7 +15,7 @@ type Letters =
         |> Arb.filter (fun c -> 'A' <= c && c <= 'Z')
 
 type DiamondPropertyAttribute () =
-    inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
+    inherit PropertyAttribute(Arbitrary =  [ typeof<Letters>  ])
 
 [<DiamondProperty>]
 # First row contains 'A'`` (letter:char) =
