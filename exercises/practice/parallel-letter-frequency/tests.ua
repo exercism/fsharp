@@ -1,6 +1,4 @@
-module ParallelLetterFrequencyTest
-
-
+~ "SOLUTION" ~ ParallelLetterFrequency
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
 odeAnDieFreude = 

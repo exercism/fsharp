@@ -1,6 +1,4 @@
-module OctalTest
-
-
+~ "SOLUTION" ~ Octal
 
 # Octal 1 is decimal 1
 ⍤⤙≍ 1 toDecimal "1"

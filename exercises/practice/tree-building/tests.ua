@@ -1,6 +1,4 @@
-module TreeBuildingTest
-
-
+~ "SOLUTION" ~ TreeBuilding
 
 
 # One node

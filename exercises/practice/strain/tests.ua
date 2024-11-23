@@ -1,6 +1,4 @@
-module StrainTest
-
-
+~ "SOLUTION" ~ Strain
 # Empty keep
 ⍤⤙≍ [] [] |> Seq.keep (fun x -> x < 10)
 

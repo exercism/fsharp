@@ -1,6 +1,4 @@
-module BankAccountTest
-
-
+~ "SOLUTION" ~ BankAccount
 # Returns empty balance after opening
 account = mkBankAccount() |> openAccount
 

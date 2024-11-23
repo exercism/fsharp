@@ -1,6 +1,4 @@
-module DiamondTest
-
-
+~ "SOLUTION" ~ Diamond
 split (x: string) = x.Split( [ '\n'  ], StringSplitOptions.None)
 
 trim (x:string) = x.Trim()

@@ -1,6 +1,4 @@
-module ErrorHandlingTest
-
-
+~ "SOLUTION" ~ ErrorHandling
 
 // Custom class that implements IDisposable
 type Resource() = 

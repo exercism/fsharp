@@ -1,6 +1,4 @@
-module LedgerTest
-
-
+~ "SOLUTION" ~ Ledger
 
 # Empty ledger
 currency = "USD"

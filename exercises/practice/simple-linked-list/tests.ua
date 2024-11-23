@@ -1,6 +1,4 @@
-module SimpleLinkedListTest
-
-
+~ "SOLUTION" ~ SimpleLinkedList
 
 # Empty list
 list = nil

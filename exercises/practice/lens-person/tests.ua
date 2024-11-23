@@ -1,6 +1,4 @@
-module LensPersonTest
-
-
+~ "SOLUTION" ~ LensPerson
 testPerson =
     { name = 
         { name = "Jane Joanna"

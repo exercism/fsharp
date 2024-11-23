@@ -1,6 +1,4 @@
-module RobotNameTest
-
-
+~ "SOLUTION" ~ RobotName
 # Robot has a name     
 robot = mkRobot()
 ⍤⤙≍ 1 Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$")

@@ -1,6 +1,4 @@
-module LinkedListTest
-
-
+~ "SOLUTION" ~ LinkedList
 # Push and pop are first in last out order
 linkedList = mkLinkedList ()
     linkedList |> push 10

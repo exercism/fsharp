@@ -1,6 +1,4 @@
-module HangmanTest
-
-
+~ "SOLUTION" ~ Hangman
 
 # Initially 9 failures are allowed
 game = createGame "foo"

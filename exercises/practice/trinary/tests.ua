@@ -1,6 +1,4 @@
-module TrinaryTest
-
-
+~ "SOLUTION" ~ Trinary
 
 # Trinary_1_is_decimal_1
 ⍤⤙≍ 1 toDecimal "1"

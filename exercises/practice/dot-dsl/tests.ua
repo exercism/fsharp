@@ -1,6 +1,4 @@
-module DotDslTest
-
-
+~ "SOLUTION" ~ DotDsl
 
 # Empty graph
 g = graph []
