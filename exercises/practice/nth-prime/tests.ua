@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``First prime`` () =
     prime 1 |> should equal (Some 2)
 

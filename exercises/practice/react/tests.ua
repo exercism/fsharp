@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Input cells have a value`` () =
     let reactor = new Reactor()
     let input = reactor.createInputCell 10

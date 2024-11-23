@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty RNA sequence results in no proteins`` () =
     proteins "" |> should be Empty
 

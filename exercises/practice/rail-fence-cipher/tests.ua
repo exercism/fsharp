@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Encode with two rails`` () =
     let rails = 2
     let msg = "XOXOXOXOXOXOXOXOXO"

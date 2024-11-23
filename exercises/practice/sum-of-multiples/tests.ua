@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No multiples within limit`` () =
     sum [3; 5] 1 |> should equal 0
 

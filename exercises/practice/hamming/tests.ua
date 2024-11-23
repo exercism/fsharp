@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty strands`` () =
     distance "" "" |> should equal (Some 0)
 

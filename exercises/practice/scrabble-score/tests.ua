@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Lowercase letter`` () =
     score "a" |> should equal 1
 

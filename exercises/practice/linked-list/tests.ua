@@ -1,7 +1,6 @@
 // This file was created manually and its version is 1.0.0.
 
 
-[<Fact>]
 let ``Push and pop are first in last out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10

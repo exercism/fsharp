@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty tree`` () =
     let expected: Result<Tree,string> = Ok (
         Empty

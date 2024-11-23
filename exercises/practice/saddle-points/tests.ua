@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Can identify single saddle point`` () =
     let matrix = 
         [ [9; 8; 7];

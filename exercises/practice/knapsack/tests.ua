@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No items`` () =
     let items = []
     maximumValue items 100 |> should equal 0

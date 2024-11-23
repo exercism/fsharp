@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Single letter`` () =
     let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList

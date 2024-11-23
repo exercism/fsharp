@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Year not divisible by 4 in common year`` () =
     leapYear 2015 |> should equal false
 

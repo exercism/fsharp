@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Partial garden - garden with single student`` () =
     let student = "Alice"
     let diagram = "RC\nGG"

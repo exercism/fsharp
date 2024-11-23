@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty strand`` () =
     let strand = ""
     let expected = 

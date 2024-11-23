@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty RNA sequence`` () =
     toRna "" |> should equal ""
 

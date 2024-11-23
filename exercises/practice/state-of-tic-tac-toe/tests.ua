@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Finished game where X won via left column victory`` () =
     let board = 
         array2D [ ['X'; 'O'; 'O'];

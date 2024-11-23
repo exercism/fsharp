@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No users`` () =
     let database = """{"users":[]}"""
     let url = "/users"

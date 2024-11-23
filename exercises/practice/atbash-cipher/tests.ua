@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Encode yes`` () =
     encode "yes" |> should equal "bvh"
 

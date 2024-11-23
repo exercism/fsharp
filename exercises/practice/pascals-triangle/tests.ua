@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Zero rows`` () =
     let expected: int list list = []
     rows 0 |> should equal expected

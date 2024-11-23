@@ -2,7 +2,6 @@
 
 
 
-[<Fact>]
 let ``Empty graph`` () =
     let g = graph []
 

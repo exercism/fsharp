@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No rows`` () =
     let minefield: string list = []
     let expected: string list = []

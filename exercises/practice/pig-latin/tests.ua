@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Word beginning with a`` () =
     translate "apple" |> should equal "appleay"
 

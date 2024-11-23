@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Finds a value in an array with one element`` () =
     let array = [|6|]
     let value = 6

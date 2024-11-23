@@ -35,7 +35,6 @@ let starSpangledBanner =
     "O say does that star-spangled banner yet wave,\n" +
     "O'er the land of the free and the home of the brave?\n"
  
-[<Fact>]
 let ``No texts mean no letters`` () =
     frequency [] |> should be Empty
 

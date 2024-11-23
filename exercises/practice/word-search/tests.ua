@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Should accept an initial game grid and a target search word`` () =
     let grid = ["jefblpepre"]
     let wordsToSearchFor = ["clojure"]

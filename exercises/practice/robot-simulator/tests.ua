@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``At origin facing north`` () =
     let expected = create Direction.North (0, 0)
     create Direction.North (0, 0) |> should equal expected

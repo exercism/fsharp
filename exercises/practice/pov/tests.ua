@@ -8,7 +8,6 @@ let rec graphToList (graph: Graph<'a>) =
     [graph.value] @ right
 let mapToList graph = match graph with | Some x -> graphToList x | None -> []
 
-[<Fact>]
 let ``Results in the same tree if the input tree is a singleton`` () =
     let tree = mkGraph "x" []
     let expected = mkGraph "x" []

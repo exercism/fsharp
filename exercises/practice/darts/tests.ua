@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Missed target`` () =
     score -9.0 9.0 |> should equal 0
 

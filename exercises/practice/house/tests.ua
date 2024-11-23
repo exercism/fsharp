@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Verse one - the house that jack built`` () =
     let expected = ["This is the house that Jack built."]
     recite 1 1 |> should equal expected

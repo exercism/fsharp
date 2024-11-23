@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No rows`` () =
     let strings = []
     rectangles strings |> should equal 0

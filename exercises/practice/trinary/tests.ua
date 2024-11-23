@@ -2,7 +2,6 @@
 
 
 
-[<Fact>]
 let ``Trinary_1_is_decimal_1`` () =
     toDecimal "1" |> should equal 1
 

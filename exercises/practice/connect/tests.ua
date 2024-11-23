@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``An empty board has no winner`` () =
     let board = 
         [ ". . . . .    ";

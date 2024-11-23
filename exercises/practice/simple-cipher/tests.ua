@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Random key cipher - Can encode`` () =
     let sut = SimpleCipher()
     sut.Encode("aaaaaaaaaa") |> should equal sut.Key.[0..9]

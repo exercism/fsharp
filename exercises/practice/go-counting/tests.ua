@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Black corner territory on 5x5 board`` () =
     let board = 
         [ "  B  ";

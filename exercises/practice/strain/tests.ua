@@ -1,7 +1,6 @@
 // This file was created manually and its version is 1.0.0.
 
 
-[<Fact>]
 let ``Empty keep`` () =
     [] |> Seq.keep (fun x -> x < 10) |> should be Empty
 

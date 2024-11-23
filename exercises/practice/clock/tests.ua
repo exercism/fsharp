@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``On the hour`` () =
     let clock = create 8 0
     display clock |> should equal "08:00"

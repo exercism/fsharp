@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty input`` () =
     let expected = None
     parse "" |> should equal expected

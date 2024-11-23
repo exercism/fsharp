@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty string`` () =
     let lines: string list = []
     let expected: string list = []

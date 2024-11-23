@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Single bit one to decimal`` () =
     let digits = [1]
     let inputBase = 2

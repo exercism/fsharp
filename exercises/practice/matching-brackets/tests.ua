@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Paired square brackets`` () =
     isPaired "[]" |> should equal true
 

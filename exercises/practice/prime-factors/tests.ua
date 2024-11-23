@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No factors`` () =
     factors 1L |> should be Empty
 

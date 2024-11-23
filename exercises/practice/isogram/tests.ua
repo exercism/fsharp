@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty string`` () =
     isIsogram "" |> should equal true
 

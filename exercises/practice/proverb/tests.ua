@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Zero pieces`` () =
     let strings: string list = []
     let expected: string list = []

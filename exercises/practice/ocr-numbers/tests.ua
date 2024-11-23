@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Recognizes 0`` () =
     let rows = 
         [ " _ ";

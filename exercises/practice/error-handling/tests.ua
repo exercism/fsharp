@@ -14,7 +14,6 @@ type Resource() =
 
 // Throwing exceptions is not the preferred approach to handling errors in F#, 
 // but it becomes relevant when you use .NET framework methods from your F# code
-[<Fact>]
 let ``Throwing exception`` () =    
     (fun () -> handleErrorByThrowingException() |> ignore) |> should throw typeof<Exception>
 

@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Reading empty buffer should fail`` () =
     let buffer1 = mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>

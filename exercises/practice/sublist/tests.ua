@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty lists`` () =
     let listOne = []
     let listTwo = []

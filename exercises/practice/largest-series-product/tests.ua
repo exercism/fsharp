@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Finds the largest product if span equals length`` () =
     let digits = "29"
     let span = 2

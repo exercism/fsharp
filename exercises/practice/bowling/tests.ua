@@ -2,7 +2,6 @@
 
 let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls
 
-[<Fact>]
 let ``Should be able to score a game with all zeros`` () =
     let rolls = [0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0; 0]
     let game = rollMany rolls (newGame())

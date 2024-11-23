@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``No primes under two`` () =
     primes 1 |> should be Empty
 

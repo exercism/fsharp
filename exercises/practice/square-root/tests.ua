@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Root of 1`` () =
     squareRoot 1 |> should equal 1
 

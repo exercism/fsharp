@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Data is retained`` () =
     let treeData = create [4]
     treeData |> data |> should equal 4

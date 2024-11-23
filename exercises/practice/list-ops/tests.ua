@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``append empty lists`` () =
     append [] [] |> should be Empty
 

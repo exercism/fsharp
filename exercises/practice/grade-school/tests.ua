@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Roster is empty when no student is added`` () =
     let school = empty
     roster school |> should be Empty

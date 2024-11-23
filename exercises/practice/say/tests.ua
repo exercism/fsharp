@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Zero`` () =
     say 0L |> should equal (Some "zero")
 

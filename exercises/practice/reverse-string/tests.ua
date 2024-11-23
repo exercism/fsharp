@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``An empty string`` () =
     reverse "" |> should equal ""
 

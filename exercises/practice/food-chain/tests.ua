@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Fly`` () =
     let expected = 
         [ "I know an old lady who swallowed a fly.";

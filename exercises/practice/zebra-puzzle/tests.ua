@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Resident who drinks water`` () =
     drinksWater |> should equal Norwegian
 

@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty spiral`` () =
     spiralMatrix 0 |> should be Empty
 

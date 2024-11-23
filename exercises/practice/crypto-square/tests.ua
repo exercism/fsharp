@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty plaintext results in an empty ciphertext`` () =
     ciphertext "" |> should equal ""
 

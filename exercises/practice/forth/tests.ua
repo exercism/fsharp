@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Parsing and numbers - numbers just get pushed onto the stack`` () =
     let expected = Some [1; 2; 3; 4; 5]
     evaluate ["1 2 3 4 5"] |> should equal expected

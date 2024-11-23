@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty sentence`` () =
     isPangram "" |> should equal false
 

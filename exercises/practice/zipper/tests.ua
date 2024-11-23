@@ -3,7 +3,6 @@
 let subTree value left right = Some (tree value left right)
 let leaf value = subTree value None None
 
-[<Fact>]
 let ``Data is retained`` () =
     let zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
     let expected = tree 1 (subTree 2 None (leaf 3)) (leaf 4)

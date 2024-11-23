@@ -2,7 +2,6 @@
 
 
 
-[<Fact>]
 let ``Empty list`` () =
     let list = nil
     isNil list |> should equal true

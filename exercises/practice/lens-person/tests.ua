@@ -18,7 +18,6 @@ let testPerson =
           place = "Fallmeadow"
           country = "Canada" } }
 
-[<Fact>]
 let ``Set born at street`` () =
     Optic.get bornAtStreet testPerson |> should equal "Longway"
 

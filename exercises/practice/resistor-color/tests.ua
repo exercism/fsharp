@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Black`` () =
     colorCode "black" |> should equal 0
 

@@ -40,8 +40,7 @@ let createFiles() =
 
 type GrepTests() =
 
-    [<Fact>]
-    member this.``One file, one match, no flags`` () =
+        member this.``One file, one match, no flags`` () =
         let files = ["iliad.txt"]
         let flags = []
         let pattern = "Agamemnon"

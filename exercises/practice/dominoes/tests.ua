@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Empty input = empty output`` () =
     let dominoes = []
     canChain dominoes |> should equal true

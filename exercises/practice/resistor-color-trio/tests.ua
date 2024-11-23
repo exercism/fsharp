@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Orange and orange and black`` () =
     label ["orange"; "orange"; "black"] |> should equal "33 ohms"
 

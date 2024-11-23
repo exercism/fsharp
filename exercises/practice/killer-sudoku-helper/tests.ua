@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``1`` () =
     combinations [] 1 1 |> should equal [[1]]
 

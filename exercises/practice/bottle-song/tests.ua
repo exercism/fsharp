@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``First generic verse`` () =
     let expected = 
         [ "Ten green bottles hanging on the wall,";

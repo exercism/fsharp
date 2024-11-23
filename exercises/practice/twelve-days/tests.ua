@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``First day a partridge in a pear tree`` () =
     let expected = ["On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree."]
     recite 1 1 |> should equal expected

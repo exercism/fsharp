@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Basic`` () =
     abbreviate "Portable Network Graphics" |> should equal "PNG"
 

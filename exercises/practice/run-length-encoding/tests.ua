@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Encode empty string`` () =
     encode "" |> should equal ""
 

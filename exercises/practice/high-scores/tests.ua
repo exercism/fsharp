@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``List of scores`` () =
     scores [30; 50; 20; 70] |> should equal [30; 50; 20; 70]
 

@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Count one word`` () =
     let expected = [("word", 1)] |> Map.ofList
     countWords "word" |> should equal expected

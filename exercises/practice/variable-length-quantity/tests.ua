@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Zero`` () =
     encode [0x0u] |> should equal [0x0uy]
 

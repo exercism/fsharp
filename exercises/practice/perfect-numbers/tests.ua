@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Smallest perfect number is classified correctly`` () =
     classify 6 |> should equal (Some Classification.Perfect)
 

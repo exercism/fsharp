@@ -1,6 +1,5 @@
 
 
-[<Fact>]
 let ``Zero is an Armstrong number`` () =
     isArmstrongNumber 0 |> should equal true
 
