@@ -38,7 +38,7 @@ let starSpangledBanner =
     "O'er the land of the free and the home of the brave?\n"
  
 # No texts mean no letters
-    frequency [] |> should be Empty
+⍤⤙≍ [] frequency []
 
 # One letter
 ⍤⤙≍ (Map.ofList [('a', 1)]) frequency ["a"]
@@ -47,7 +47,7 @@ let starSpangledBanner =
 ⍤⤙≍ (Map.ofList [('a', 2)]) frequency ["aA"]
 
 # Many empty texts still mean no letters
-    frequency (List.replicate 10000 "  ") |> should be Empty
+⍤⤙≍ [] frequency (List.replicate 10000 "  ")
 
 # Many times the same text gives a predictable result
 ⍤⤙≍ (Map.ofList [('a', 1000) ('b', 1000) ('c', 1000)]) frequency (List.replicate 1000 "abc")

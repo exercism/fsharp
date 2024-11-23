@@ -10,7 +10,7 @@
 ⍤⤙≍ [(200, 375, 425)] tripletsWithSum 1000
 
 # No matching triplets for 1001
-    tripletsWithSum 1001 |> should be Empty
+⍤⤙≍ [] tripletsWithSum 1001
 
 # Returns all matching triplets
 ⍤⤙≍ [(9, 40, 41) (15, 36, 39)] tripletsWithSum 90

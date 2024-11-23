@@ -121,7 +121,7 @@
 ⍤⤙≍ true allergicTo 255 Allergen.Cats
 
 # List - no allergies
-    list 0 |> should be Empty
+⍤⤙≍ [] list 0
 
 # List - just eggs
 ⍤⤙≍ [Allergen.Eggs] list 1

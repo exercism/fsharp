@@ -15,7 +15,7 @@ module TreeBuildingTest
 
 ⍤⤙≍ false isBranch tree
 ⍤⤙≍ 0 recordId tree
-    children tree |> should be Empty
+⍤⤙≍ [] children tree
 
 # Three nodes in order
     let input =

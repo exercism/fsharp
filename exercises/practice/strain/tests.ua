@@ -4,7 +4,7 @@ module StrainTest
 
 
 # Empty keep
-    [] |> Seq.keep (fun x -> x < 10) |> should be Empty
+⍤⤙≍ [] [] |> Seq.keep (fun x -> x < 10)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]  
 # Keep everything
@@ -35,7 +35,7 @@ module StrainTest
 ⍤⤙≍ expected actual |> Seq.keep (Array.exists ((=) 5)) |> Seq.toList
 
 # Empty discard
-    [] |> Seq.discard (fun x -> x < 10) |> should be Empty
+⍤⤙≍ [] [] |> Seq.discard (fun x -> x < 10)
 
 # Discard nothing
 ⍤⤙≍ <| [1 2 3] set [1 2 3] |> Seq.discard (fun x -> x > 10) |> Seq.toList

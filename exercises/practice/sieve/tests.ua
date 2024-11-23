@@ -1,7 +1,7 @@
 ~ "sieve.ua" ~ Sieve
 
 # No primes under two
-    primes 1 |> should be Empty
+⍤⤙≍ [] primes 1
 
 # Find first prime
 ⍤⤙≍ [2] primes 2

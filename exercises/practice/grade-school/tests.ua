@@ -2,7 +2,7 @@
 
 # Roster is empty when no student is added
     let school = empty
-    roster school |> should be Empty
+⍤⤙≍ [] roster school
 
 # Student is added to the roster
     let school = 
@@ -73,7 +73,7 @@
 
 # Grade is empty if no students in the roster
     let school = empty
-    grade 1 school |> should be Empty
+⍤⤙≍ [] grade 1 school
 
 # Grade is empty if no students in that grade
     let school = 
@@ -82,7 +82,7 @@
         |> add "Zoe" 2
         |> add "Alex" 2
         |> add "Jim" 3
-    grade 1 school |> should be Empty
+⍤⤙≍ [] grade 1 school
 
 # Student not added to same grade more than once
     let school = 

@@ -2,7 +2,7 @@
 
 # No matches
     let candidates = ["hello" "world" "zombies" "pants"]
-    findAnagrams candidates "diaper" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "diaper"
 
 # Detects two anagrams
     let candidates = ["lemons" "cherry" "melons"]
@@ -10,7 +10,7 @@
 
 # Does not detect anagram subsets
     let candidates = ["dog" "goody"]
-    findAnagrams candidates "good" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "good"
 
 # Detects anagram
     let candidates = ["enlists" "google" "inlets" "banana"]
@@ -26,7 +26,7 @@
 
 # Does not detect non-anagrams with identical checksum
     let candidates = ["last"]
-    findAnagrams candidates "mass" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "mass"
 
 # Detects anagrams case-insensitively
     let candidates = ["cashregister" "Carthorse" "radishes"]
@@ -42,23 +42,23 @@
 
 # Does not detect an anagram if the original word is repeated
     let candidates = ["go Go GO"]
-    findAnagrams candidates "go" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "go"
 
 # Anagrams must use all letters exactly once
     let candidates = ["patter"]
-    findAnagrams candidates "tapper" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "tapper"
 
 # Words are not anagrams of themselves
     let candidates = ["BANANA"]
-    findAnagrams candidates "BANANA" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "BANANA"
 
 # Words are not anagrams of themselves even if letter case is partially different
     let candidates = ["Banana"]
-    findAnagrams candidates "BANANA" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "BANANA"
 
 # Words are not anagrams of themselves even if letter case is completely different
     let candidates = ["banana"]
-    findAnagrams candidates "BANANA" |> should be Empty
+⍤⤙≍ [] findAnagrams candidates "BANANA"
 
 # Words other than themselves can be anagrams
     let candidates = ["LISTEN" "Silent"]

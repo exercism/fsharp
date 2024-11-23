@@ -1,7 +1,7 @@
 ~ "spiral-matrix.ua" ~ SpiralMatrix
 
 # Empty spiral
-    spiralMatrix 0 |> should be Empty
+⍤⤙≍ [] spiralMatrix 0
 
 # Trivial spiral
 ⍤⤙≍ [[1]] spiralMatrix 1

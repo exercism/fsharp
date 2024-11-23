@@ -22,7 +22,7 @@
 ⍤⤙≍ ["jump"] commands 24
 
 # Reversing no actions still gives no actions
-    commands 16 |> should be Empty
+⍤⤙≍ [] commands 16
 
 # All possible actions
 ⍤⤙≍ ["wink" "double blink" "close your eyes" "jump"] commands 15
@@ -31,5 +31,5 @@
 ⍤⤙≍ ["jump" "close your eyes" "double blink" "wink"] commands 31
 
 # Do nothing for zero
-    commands 0 |> should be Empty
+⍤⤙≍ [] commands 0
 

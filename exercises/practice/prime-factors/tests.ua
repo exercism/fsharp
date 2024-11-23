@@ -1,7 +1,7 @@
 ~ "prime-factors.ua" ~ PrimeFactors
 
 # No factors
-    factors 1 |> should be Empty
+⍤⤙≍ [] factors 1
 
 # Prime number
 ⍤⤙≍ [2] factors 2

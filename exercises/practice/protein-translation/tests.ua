@@ -1,7 +1,7 @@
 ~ "protein-translation.ua" ~ ProteinTranslation
 
 # Empty RNA sequence results in no proteins
-    proteins "" |> should be Empty
+⍤⤙≍ [] proteins ""
 
 # Methionine RNA sequence
 ⍤⤙≍ ["Methionine"] proteins "AUG"
@@ -46,13 +46,13 @@
 ⍤⤙≍ ["Tryptophan"] proteins "UGG"
 
 # STOP codon RNA sequence 1
-    proteins "UAA" |> should be Empty
+⍤⤙≍ [] proteins "UAA"
 
 # STOP codon RNA sequence 2
-    proteins "UAG" |> should be Empty
+⍤⤙≍ [] proteins "UAG"
 
 # STOP codon RNA sequence 3
-    proteins "UGA" |> should be Empty
+⍤⤙≍ [] proteins "UGA"
 
 # Sequence of two protein codons translates into proteins
 ⍤⤙≍ ["Phenylalanine" "Phenylalanine"] proteins "UUUUUU"
@@ -64,7 +64,7 @@
 ⍤⤙≍ ["Methionine" "Phenylalanine" "Tryptophan"] proteins "AUGUUUUGG"
 
 # Translation stops if STOP codon at beginning of sequence
-    proteins "UAGUGG" |> should be Empty
+⍤⤙≍ [] proteins "UAGUGG"
 
 # Translation stops if STOP codon at end of two-codon sequence
 ⍤⤙≍ ["Tryptophan"] proteins "UGGUAG"

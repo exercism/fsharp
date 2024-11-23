@@ -6,7 +6,7 @@ module AccumulateTest
 let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
 
 # Empty accumulation produces empty accumulation
-    accumulate (fun x -> x + 1) List.empty |> should be Empty
+⍤⤙≍ [] accumulate (fun x -> x + 1) List.empty
 
 # Identity accumulation returns unmodified list
 ⍤⤙≍ [1 2 3] accumulate id [1 2 3]

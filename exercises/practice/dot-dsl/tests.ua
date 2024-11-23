@@ -7,9 +7,9 @@ module DotDslTest
 # Empty graph
     let g = graph []
 
-    nodes g |> should be Empty
-    edges g |> should be Empty
-    attrs g |> should be Empty
+⍤⤙≍ [] nodes g
+⍤⤙≍ [] edges g
+⍤⤙≍ [] attrs g
     
 # Graph with one node
     let g = graph [
@@ -17,8 +17,8 @@ module DotDslTest
             ]            
 
 ⍤⤙≍ [node "a" []] nodes g
-    edges g |> should be Empty
-    attrs g |> should be Empty
+⍤⤙≍ [] edges g
+⍤⤙≍ [] attrs g
     
 # Graph with one node with keywords    
     let g = graph [
@@ -26,25 +26,25 @@ module DotDslTest
             ]            
 
 ⍤⤙≍ [node "a" [("color", "green")]] nodes g
-    edges g |> should be Empty
-    attrs g |> should be Empty
+⍤⤙≍ [] edges g
+⍤⤙≍ [] attrs g
 
 # Graph with one edge    
     let g = graph [
                 edge "a" "b" []
             ]             
 
-    nodes g |> should be Empty
+⍤⤙≍ [] nodes g
 ⍤⤙≍ [edge "a" "b" []] edges g
-    attrs g |> should be Empty
+⍤⤙≍ [] attrs g
 
 # Graph with one attribute 
     let g = graph [
                 attr "foo" "1"
             ]             
 
-    nodes g |> should be Empty
-    edges g |> should be Empty
+⍤⤙≍ [] nodes g
+⍤⤙≍ [] edges g
 ⍤⤙≍ [attr "foo" "1"] attrs g
 
 # Graph with attributes    

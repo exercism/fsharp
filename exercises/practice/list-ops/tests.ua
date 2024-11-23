@@ -1,7 +1,7 @@
 ~ "list-ops.ua" ~ ListOps
 
 # append empty lists
-    append [] [] |> should be Empty
+⍤⤙≍ [] append [] []
 
 # append list to empty list
 ⍤⤙≍ [1 2 3 4] append [] [1 2 3 4]
@@ -13,7 +13,7 @@
 ⍤⤙≍ [1 2 2 3 4 5] append [1 2] [2 3 4 5]
 
 # concat empty list
-    concat [] |> should be Empty
+⍤⤙≍ [] concat []
 
 # concat list of lists
 ⍤⤙≍ [1 2 3 4 5 6] concat [[1 2] [3] [] [4 5 6]]
@@ -22,7 +22,7 @@
 ⍤⤙≍ [[1] [2] [3] [] [4 5 6]] concat [[[1] [2]] [[3]] [[]] [[4 5 6]]]
 
 # filter empty list
-    filter (fun acc -> acc % 2 = 1) [] |> should be Empty
+⍤⤙≍ [] filter (fun acc -> acc % 2 = 1) []
 
 # filter non-empty list
 ⍤⤙≍ [1 3 5] filter (fun acc -> acc % 2 = 1) [1 2 3 5]
@@ -34,7 +34,7 @@
 ⍤⤙≍ 4 length [1 2 3 4]
 
 # map empty list
-    map (fun acc -> acc + 1) [] |> should be Empty
+⍤⤙≍ [] map (fun acc -> acc + 1) []
 
 # map non-empty list
 ⍤⤙≍ [2 4 6 8] map (fun acc -> acc + 1) [1 3 5 7]
@@ -52,7 +52,7 @@
 ⍤⤙≍ 15 foldr (fun acc el -> el + acc) 5 [1 2 3 4]
 
 # reverse empty list
-    reverse [] |> should be Empty
+⍤⤙≍ [] reverse []
 
 # reverse non-empty list
 ⍤⤙≍ [7 5 3 1] reverse [1 3 5 7]

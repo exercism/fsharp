@@ -9,14 +9,14 @@
 
 # Can identify that empty matrix has no saddle points
     let matrix = [[]]
-    saddlePoints matrix |> should be Empty
+⍤⤙≍ [] saddlePoints matrix
 
 # Can identify lack of saddle points when there are none
     let matrix = 
         [ [1 2 3];
           [3 1 2];
           [2 3 1] ]
-    saddlePoints matrix |> should be Empty
+⍤⤙≍ [] saddlePoints matrix
 
 # Can identify multiple saddle points in a column
     let matrix = 
