@@ -17,12 +17,12 @@ words = "apple zebra banana zombies cherimoya zelot".Split(' ');
 
 # Keep arrays
 actual =  [
-                     [1 2 3 ];
-                     [5 5 5 ];
-                     [5 1 2 ];
-                     [2 1 2 ];
-                     [1 5 2 ];
-                     [2 2 1 ];
+                     [1 2 3 ]
+                     [5 5 5 ]
+                     [5 1 2 ]
+                     [2 1 2 ]
+                     [1 5 2 ]
+                     [2 2 1 ]
                      [1 2 5 ]
                      ]
 expected = [  [5 5 5 ]  [5 1 2 ]  [1 5 2 ]  [1 2 5 ] ]
@@ -46,12 +46,12 @@ words = "apple zebra banana zombies cherimoya zelot".Split(' ')
 
 # Discard arrays
 actual =  [
-                     [1 2 3 ];
-                     [5 5 5 ];
-                     [5 1 2 ];
-                     [2 1 2 ];
-                     [1 5 2 ];
-                     [2 2 1 ];
+                     [1 2 3 ]
+                     [5 5 5 ]
+                     [5 1 2 ]
+                     [2 1 2 ]
+                     [1 5 2 ]
+                     [2 2 1 ]
                      [1 2 5 ]
                      ]
 expected = [  [1 2 3 ]  [2 1 2 ]  [2 2 1 ] ]
