@@ -1,5 +1,3 @@
-module BeerSongTests
-
 
 
 [<Fact>]

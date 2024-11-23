@@ -1,5 +1,3 @@
-module BowlingTests
-
 
 
 let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls

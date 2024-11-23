@@ -1,5 +1,3 @@
-module MarkdownTests
-
 
 
 [<Fact>]

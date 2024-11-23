@@ -1,5 +1,3 @@
-module BookingUpForBeautyTests
-
 
 [<Fact>]
 [<UseCulture("en-US")>]

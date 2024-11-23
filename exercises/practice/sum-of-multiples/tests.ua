@@ -1,5 +1,3 @@
-module SumOfMultiplesTests
-
 
 
 [<Fact>]

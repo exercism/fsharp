@@ -1,5 +1,3 @@
-module LeapTests
-
 
 
 [<Fact>]

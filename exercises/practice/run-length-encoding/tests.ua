@@ -1,5 +1,3 @@
-module RunLengthEncodingTests
-
 
 
 [<Fact>]

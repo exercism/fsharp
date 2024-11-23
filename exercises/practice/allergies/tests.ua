@@ -1,5 +1,3 @@
-module AllergiesTests
-
 
 
 [<Fact>]

@@ -1,5 +1,3 @@
-module SpiralMatrixTests
-
 
 
 [<Fact>]

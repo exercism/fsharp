@@ -1,5 +1,3 @@
-module GuessingGameTests
-
 
 
 [<Fact>]

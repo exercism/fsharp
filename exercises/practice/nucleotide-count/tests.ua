@@ -1,5 +1,3 @@
-module NucleotideCountTests
-
 
 
 [<Fact>]

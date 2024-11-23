@@ -1,5 +1,3 @@
-module GrepTests
-
 
 
 let iliadFileName = "iliad.txt"

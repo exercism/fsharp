@@ -1,5 +1,3 @@
-module DiamondTest
-
 
 let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
 

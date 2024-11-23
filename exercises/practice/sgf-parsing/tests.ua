@@ -1,5 +1,3 @@
-module SgfParsingTests
-
 
 
 [<Fact>]

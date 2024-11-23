@@ -1,7 +1,5 @@
 // This file was created manually and its version is 1.0.0.
 
-module BinaryTest
-
 
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]

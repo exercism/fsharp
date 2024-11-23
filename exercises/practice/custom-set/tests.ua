@@ -1,5 +1,3 @@
-module CustomSetTests
-
 
 
 [<Fact>]

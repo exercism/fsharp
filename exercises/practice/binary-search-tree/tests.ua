@@ -1,5 +1,3 @@
-module BinarySearchTreeTests
-
 
 
 [<Fact>]

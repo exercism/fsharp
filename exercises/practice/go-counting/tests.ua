@@ -1,5 +1,3 @@
-module GoCountingTests
-
 
 
 [<Fact>]

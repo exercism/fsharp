@@ -1,5 +1,3 @@
-module SecretHandshakeTests
-
 
 
 [<Fact>]

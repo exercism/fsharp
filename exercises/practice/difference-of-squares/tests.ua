@@ -1,5 +1,3 @@
-module DifferenceOfSquaresTests
-
 
 
 [<Fact>]

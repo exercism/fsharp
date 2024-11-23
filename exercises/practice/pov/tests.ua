@@ -1,5 +1,3 @@
-module PovTests
-
 
 
 let rec graphToList (graph: Graph<'a>) = 

@@ -1,5 +1,3 @@
-module StateOfTicTacToeTests
-
 
 
 [<Fact>]

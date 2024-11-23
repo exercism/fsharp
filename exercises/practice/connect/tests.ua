@@ -1,5 +1,3 @@
-module ConnectTests
-
 
 
 [<Fact>]

@@ -1,5 +1,3 @@
-module IsbnVerifierTests
-
 
 
 [<Fact>]
