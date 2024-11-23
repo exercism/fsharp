@@ -58,5 +58,4 @@
 ⍤⤙≍ 1 isPaired "(((185 + 223.85) * 15) - 543)/2"
 
 # Complex latex expression
-⍤⤙≍ 1 isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)"
-
+⍤⤙≍ 1 isPaired "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\ \\mathrm{e}^{x} &... x^2 \\end{array}\\right)"

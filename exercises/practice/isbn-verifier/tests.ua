@@ -56,4 +56,3 @@
 
 # Input is too long but contains a valid isbn
 ⍤⤙≍ 0 isValid "98245726788"
-
