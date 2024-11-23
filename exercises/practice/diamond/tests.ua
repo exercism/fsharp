@@ -31,7 +31,7 @@ type DiamondPropertyAttribute () =
     let rows = actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
 
-⍤⤙≍ true) rows |> Array.iter (fun x -> symmetric x
+⍤⤙≍ 1) rows |> Array.iter (fun x -> symmetric x
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # Top of figure has letters in correct order`` (letter:char) =
@@ -73,7 +73,7 @@ type DiamondPropertyAttribute () =
     let expected = rows.Length
     let correctWidth (x:string) = x.Length = expected
 
-⍤⤙≍ true) rows |> Array.iter (fun x -> correctWidth x
+⍤⤙≍ 1) rows |> Array.iter (fun x -> correctWidth x
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # All rows except top and bottom have two identical letters`` (letter:char) =
@@ -89,7 +89,7 @@ type DiamondPropertyAttribute () =
         let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
-⍤⤙≍ true) rows |> Array.iter (fun x -> twoIdenticalLetters x
+⍤⤙≍ 1) rows |> Array.iter (fun x -> twoIdenticalLetters x
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 # Bottom left corner spaces are triangle`` (letter:char) =

@@ -1,124 +1,124 @@
 ~ "allergies.ua" ~ Allergies
 
 # Testing for eggs allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Eggs
+⍤⤙≍ 0 allergicTo 0 Allergen.Eggs
 
 # Testing for eggs allergy - allergic only to eggs
-⍤⤙≍ true allergicTo 1 Allergen.Eggs
+⍤⤙≍ 1 allergicTo 1 Allergen.Eggs
 
 # Testing for eggs allergy - allergic to eggs and something else
-⍤⤙≍ true allergicTo 3 Allergen.Eggs
+⍤⤙≍ 1 allergicTo 3 Allergen.Eggs
 
 # Testing for eggs allergy - allergic to something, but not eggs
-⍤⤙≍ false allergicTo 2 Allergen.Eggs
+⍤⤙≍ 0 allergicTo 2 Allergen.Eggs
 
 # Testing for eggs allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Eggs
+⍤⤙≍ 1 allergicTo 255 Allergen.Eggs
 
 # Testing for peanuts allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Peanuts
+⍤⤙≍ 0 allergicTo 0 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic only to peanuts
-⍤⤙≍ true allergicTo 2 Allergen.Peanuts
+⍤⤙≍ 1 allergicTo 2 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic to peanuts and something else
-⍤⤙≍ true allergicTo 7 Allergen.Peanuts
+⍤⤙≍ 1 allergicTo 7 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic to something, but not peanuts
-⍤⤙≍ false allergicTo 5 Allergen.Peanuts
+⍤⤙≍ 0 allergicTo 5 Allergen.Peanuts
 
 # Testing for peanuts allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Peanuts
+⍤⤙≍ 1 allergicTo 255 Allergen.Peanuts
 
 # Testing for shellfish allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Shellfish
+⍤⤙≍ 0 allergicTo 0 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic only to shellfish
-⍤⤙≍ true allergicTo 4 Allergen.Shellfish
+⍤⤙≍ 1 allergicTo 4 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic to shellfish and something else
-⍤⤙≍ true allergicTo 14 Allergen.Shellfish
+⍤⤙≍ 1 allergicTo 14 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic to something, but not shellfish
-⍤⤙≍ false allergicTo 10 Allergen.Shellfish
+⍤⤙≍ 0 allergicTo 10 Allergen.Shellfish
 
 # Testing for shellfish allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Shellfish
+⍤⤙≍ 1 allergicTo 255 Allergen.Shellfish
 
 # Testing for strawberries allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Strawberries
+⍤⤙≍ 0 allergicTo 0 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic only to strawberries
-⍤⤙≍ true allergicTo 8 Allergen.Strawberries
+⍤⤙≍ 1 allergicTo 8 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic to strawberries and something else
-⍤⤙≍ true allergicTo 28 Allergen.Strawberries
+⍤⤙≍ 1 allergicTo 28 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic to something, but not strawberries
-⍤⤙≍ false allergicTo 20 Allergen.Strawberries
+⍤⤙≍ 0 allergicTo 20 Allergen.Strawberries
 
 # Testing for strawberries allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Strawberries
+⍤⤙≍ 1 allergicTo 255 Allergen.Strawberries
 
 # Testing for tomatoes allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Tomatoes
+⍤⤙≍ 0 allergicTo 0 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic only to tomatoes
-⍤⤙≍ true allergicTo 16 Allergen.Tomatoes
+⍤⤙≍ 1 allergicTo 16 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic to tomatoes and something else
-⍤⤙≍ true allergicTo 56 Allergen.Tomatoes
+⍤⤙≍ 1 allergicTo 56 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic to something, but not tomatoes
-⍤⤙≍ false allergicTo 40 Allergen.Tomatoes
+⍤⤙≍ 0 allergicTo 40 Allergen.Tomatoes
 
 # Testing for tomatoes allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Tomatoes
+⍤⤙≍ 1 allergicTo 255 Allergen.Tomatoes
 
 # Testing for chocolate allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Chocolate
+⍤⤙≍ 0 allergicTo 0 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic only to chocolate
-⍤⤙≍ true allergicTo 32 Allergen.Chocolate
+⍤⤙≍ 1 allergicTo 32 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic to chocolate and something else
-⍤⤙≍ true allergicTo 112 Allergen.Chocolate
+⍤⤙≍ 1 allergicTo 112 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic to something, but not chocolate
-⍤⤙≍ false allergicTo 80 Allergen.Chocolate
+⍤⤙≍ 0 allergicTo 80 Allergen.Chocolate
 
 # Testing for chocolate allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Chocolate
+⍤⤙≍ 1 allergicTo 255 Allergen.Chocolate
 
 # Testing for pollen allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Pollen
+⍤⤙≍ 0 allergicTo 0 Allergen.Pollen
 
 # Testing for pollen allergy - allergic only to pollen
-⍤⤙≍ true allergicTo 64 Allergen.Pollen
+⍤⤙≍ 1 allergicTo 64 Allergen.Pollen
 
 # Testing for pollen allergy - allergic to pollen and something else
-⍤⤙≍ true allergicTo 224 Allergen.Pollen
+⍤⤙≍ 1 allergicTo 224 Allergen.Pollen
 
 # Testing for pollen allergy - allergic to something, but not pollen
-⍤⤙≍ false allergicTo 160 Allergen.Pollen
+⍤⤙≍ 0 allergicTo 160 Allergen.Pollen
 
 # Testing for pollen allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Pollen
+⍤⤙≍ 1 allergicTo 255 Allergen.Pollen
 
 # Testing for cats allergy - not allergic to anything
-⍤⤙≍ false allergicTo 0 Allergen.Cats
+⍤⤙≍ 0 allergicTo 0 Allergen.Cats
 
 # Testing for cats allergy - allergic only to cats
-⍤⤙≍ true allergicTo 128 Allergen.Cats
+⍤⤙≍ 1 allergicTo 128 Allergen.Cats
 
 # Testing for cats allergy - allergic to cats and something else
-⍤⤙≍ true allergicTo 192 Allergen.Cats
+⍤⤙≍ 1 allergicTo 192 Allergen.Cats
 
 # Testing for cats allergy - allergic to something, but not cats
-⍤⤙≍ false allergicTo 64 Allergen.Cats
+⍤⤙≍ 0 allergicTo 64 Allergen.Cats
 
 # Testing for cats allergy - allergic to everything
-⍤⤙≍ true allergicTo 255 Allergen.Cats
+⍤⤙≍ 1 allergicTo 255 Allergen.Cats
 
 # List - no allergies
 ⍤⤙≍ [] list 0

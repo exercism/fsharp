@@ -6,7 +6,7 @@ module SimpleLinkedListTest
 
 # Empty list
     let list = nil
-⍤⤙≍ true isNil list
+⍤⤙≍ 1 isNil list
 
 # Single item list value
     let list = create 1 nil
@@ -14,7 +14,7 @@ module SimpleLinkedListTest
         
 # Single item list has no next item
     let list = create 1 nil
-⍤⤙≍ true next list |> isNil
+⍤⤙≍ 1 next list |> isNil
         
 # Two item list first value
     let list = create 2 (create 1 nil)
@@ -26,7 +26,7 @@ module SimpleLinkedListTest
     
 # Two item list second item has no next
     let list = create 2 (create 1 nil)
-⍤⤙≍ true next list |> next |> isNil
+⍤⤙≍ 1 next list |> next |> isNil
         
 # To list
     let values = create 2 (create 1 nil) |> toList

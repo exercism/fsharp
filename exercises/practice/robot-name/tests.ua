@@ -5,7 +5,7 @@ module RobotNameTest
 
 # Robot has a name     
     let robot = mkRobot()
-⍤⤙≍ true Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$")
+⍤⤙≍ 1 Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$")
     
 # Name is the same each time     
     let robot = mkRobot()

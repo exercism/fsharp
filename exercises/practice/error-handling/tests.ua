@@ -38,10 +38,10 @@ type Resource() =
 // you are free to return an integer upon success and a string upon failure.
 # Returning Result<'TSuccess, 'TError>
     let successResult = handleErrorByReturningResult "1"
-⍤⤙≍ true (successResult = Ok 1)
+⍤⤙≍ 1 (successResult = Ok 1)
     
     let failureResult = handleErrorByReturningResult "a"
-⍤⤙≍ true (failureResult = Error "Could not convert input to integer")
+⍤⤙≍ 1 (failureResult = Error "Could not convert input to integer")
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -71,16 +71,16 @@ type Resource() =
         >> bind validate3
 
     let firstValidationFailureResult = combinedValidation 1            
-⍤⤙≍ true (firstValidationFailureResult = Error "Input less than or equal to five")
+⍤⤙≍ 1 (firstValidationFailureResult = Error "Input less than or equal to five")
 
     let secondValidationFailureResult = combinedValidation 23          
-⍤⤙≍ true (secondValidationFailureResult = Error "Input greater than or equal to ten")
+⍤⤙≍ 1 (secondValidationFailureResult = Error "Input greater than or equal to ten")
 
     let thirdValidationFailureResult = combinedValidation 8        
-⍤⤙≍ true (thirdValidationFailureResult = Error "Input is not odd")
+⍤⤙≍ 1 (thirdValidationFailureResult = Error "Input is not odd")
 
     let successResult = combinedValidation 7        
-⍤⤙≍ true (successResult = Ok 7)
+⍤⤙≍ 1 (successResult = Ok 7)
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -88,4 +88,4 @@ type Resource() =
     let resource = new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-⍤⤙≍ true resource.Disposed()
+⍤⤙≍ 1 resource.Disposed()

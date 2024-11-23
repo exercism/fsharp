@@ -1,44 +1,44 @@
 ~ "isogram.ua" ~ Isogram
 
 # Empty string
-⍤⤙≍ true isIsogram ""
+⍤⤙≍ 1 isIsogram ""
 
 # Isogram with only lower case characters
-⍤⤙≍ true isIsogram "isogram"
+⍤⤙≍ 1 isIsogram "isogram"
 
 # Word with one duplicated character
-⍤⤙≍ false isIsogram "eleven"
+⍤⤙≍ 0 isIsogram "eleven"
 
 # Word with one duplicated character from the end of the alphabet
-⍤⤙≍ false isIsogram "zzyzx"
+⍤⤙≍ 0 isIsogram "zzyzx"
 
 # Longest reported english isogram
-⍤⤙≍ true isIsogram "subdermatoglyphic"
+⍤⤙≍ 1 isIsogram "subdermatoglyphic"
 
 # Word with duplicated character in mixed case
-⍤⤙≍ false isIsogram "Alphabet"
+⍤⤙≍ 0 isIsogram "Alphabet"
 
 # Word with duplicated character in mixed case, lowercase first
-⍤⤙≍ false isIsogram "alphAbet"
+⍤⤙≍ 0 isIsogram "alphAbet"
 
 # Hypothetical isogrammic word with hyphen
-⍤⤙≍ true isIsogram "thumbscrew-japingly"
+⍤⤙≍ 1 isIsogram "thumbscrew-japingly"
 
 # Hypothetical word with duplicated character following hyphen
-⍤⤙≍ false isIsogram "thumbscrew-jappingly"
+⍤⤙≍ 0 isIsogram "thumbscrew-jappingly"
 
 # Isogram with duplicated hyphen
-⍤⤙≍ true isIsogram "six-year-old"
+⍤⤙≍ 1 isIsogram "six-year-old"
 
 # Made-up name that is an isogram
-⍤⤙≍ true isIsogram "Emily Jung Schwartzkopf"
+⍤⤙≍ 1 isIsogram "Emily Jung Schwartzkopf"
 
 # Duplicated character in the middle
-⍤⤙≍ false isIsogram "accentor"
+⍤⤙≍ 0 isIsogram "accentor"
 
 # Same first and last characters
-⍤⤙≍ false isIsogram "angola"
+⍤⤙≍ 0 isIsogram "angola"
 
 # Word with duplicated character and with two hyphens
-⍤⤙≍ false isIsogram "up-to-date"
+⍤⤙≍ 0 isIsogram "up-to-date"
 

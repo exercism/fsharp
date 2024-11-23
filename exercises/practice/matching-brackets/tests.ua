@@ -1,62 +1,62 @@
 ~ "matching-brackets.ua" ~ MatchingBrackets
 
 # Paired square brackets
-⍤⤙≍ true isPaired "[]"
+⍤⤙≍ 1 isPaired "[]"
 
 # Empty string
-⍤⤙≍ true isPaired ""
+⍤⤙≍ 1 isPaired ""
 
 # Unpaired brackets
-⍤⤙≍ false isPaired "[["
+⍤⤙≍ 0 isPaired "[["
 
 # Wrong ordered brackets
-⍤⤙≍ false isPaired "}{"
+⍤⤙≍ 0 isPaired "}{"
 
 # Wrong closing bracket
-⍤⤙≍ false isPaired "{]"
+⍤⤙≍ 0 isPaired "{]"
 
 # Paired with whitespace
-⍤⤙≍ true isPaired "{ }"
+⍤⤙≍ 1 isPaired "{ }"
 
 # Partially paired brackets
-⍤⤙≍ false isPaired "{[])"
+⍤⤙≍ 0 isPaired "{[])"
 
 # Simple nested brackets
-⍤⤙≍ true isPaired "{[]}"
+⍤⤙≍ 1 isPaired "{[]}"
 
 # Several paired brackets
-⍤⤙≍ true isPaired "{}[]"
+⍤⤙≍ 1 isPaired "{}[]"
 
 # Paired and nested brackets
-⍤⤙≍ true isPaired "([{}({}[])])"
+⍤⤙≍ 1 isPaired "([{}({}[])])"
 
 # Unopened closing brackets
-⍤⤙≍ false isPaired "{[)][]}"
+⍤⤙≍ 0 isPaired "{[)][]}"
 
 # Unpaired and nested brackets
-⍤⤙≍ false isPaired "([{])"
+⍤⤙≍ 0 isPaired "([{])"
 
 # Paired and wrong nested brackets
-⍤⤙≍ false isPaired "[({]})"
+⍤⤙≍ 0 isPaired "[({]})"
 
 # Paired and wrong nested brackets but innermost are correct
-⍤⤙≍ false isPaired "[({}])"
+⍤⤙≍ 0 isPaired "[({}])"
 
 # Paired and incomplete brackets
-⍤⤙≍ false isPaired "{}["
+⍤⤙≍ 0 isPaired "{}["
 
 # Too many closing brackets
-⍤⤙≍ false isPaired "[]]"
+⍤⤙≍ 0 isPaired "[]]"
 
 # Early unexpected brackets
-⍤⤙≍ false isPaired ")()"
+⍤⤙≍ 0 isPaired ")()"
 
 # Early mismatched brackets
-⍤⤙≍ false isPaired "{)()"
+⍤⤙≍ 0 isPaired "{)()"
 
 # Math expression
-⍤⤙≍ true isPaired "(((185 + 223.85) * 15) - 543)/2"
+⍤⤙≍ 1 isPaired "(((185 + 223.85) * 15) - 543)/2"
 
 # Complex latex expression
-⍤⤙≍ true isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)"
+⍤⤙≍ 1 isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)"
 

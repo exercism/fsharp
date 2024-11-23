@@ -147,80 +147,80 @@
 # Clocks with same time
     let clock1 = create 15 37
     let clock2 = create 15 37
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks a minute apart
     let clock1 = create 15 36
     let clock2 = create 15 37
-⍤⤙≍ false clock1 = clock2
+⍤⤙≍ 0 clock1 = clock2
 
 # Clocks an hour apart
     let clock1 = create 14 37
     let clock2 = create 15 37
-⍤⤙≍ false clock1 = clock2
+⍤⤙≍ 0 clock1 = clock2
 
 # Clocks with hour overflow
     let clock1 = create 10 37
     let clock2 = create 34 37
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with hour overflow by several days
     let clock1 = create 3 11
     let clock2 = create 99 11
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative hour
     let clock1 = create 22 40
     let clock2 = create -2 40
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative hour that wraps
     let clock1 = create 17 3
     let clock2 = create -31 3
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative hour that wraps multiple times
     let clock1 = create 13 49
     let clock2 = create -83 49
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with minute overflow
     let clock1 = create 0 1
     let clock2 = create 0 1441
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with minute overflow by several days
     let clock1 = create 2 2
     let clock2 = create 2 4322
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative minute
     let clock1 = create 2 40
     let clock2 = create 3 -20
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative minute that wraps
     let clock1 = create 4 10
     let clock2 = create 5 -1490
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative minute that wraps multiple times
     let clock1 = create 6 15
     let clock2 = create 6 -4305
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative hours and minutes
     let clock1 = create 7 32
     let clock2 = create -12 -268
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Clocks with negative hours and minutes that wrap
     let clock1 = create 18 7
     let clock2 = create -54 -11513
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 
 # Full clock and zeroed clock
     let clock1 = create 24 0
     let clock2 = create 0 0
-⍤⤙≍ true clock1 = clock2
+⍤⤙≍ 1 clock1 = clock2
 

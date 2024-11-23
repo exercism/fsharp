@@ -1,32 +1,32 @@
 ~ "pangram.ua" ~ Pangram
 
 # Empty sentence
-⍤⤙≍ false isPangram ""
+⍤⤙≍ 0 isPangram ""
 
 # Perfect lower case
-⍤⤙≍ true isPangram "abcdefghijklmnopqrstuvwxyz"
+⍤⤙≍ 1 isPangram "abcdefghijklmnopqrstuvwxyz"
 
 # Only lower case
-⍤⤙≍ true isPangram "the quick brown fox jumps over the lazy dog"
+⍤⤙≍ 1 isPangram "the quick brown fox jumps over the lazy dog"
 
 # Missing the letter 'x'
-⍤⤙≍ false isPangram "a quick movement of the enemy will jeopardize five gunboats"
+⍤⤙≍ 0 isPangram "a quick movement of the enemy will jeopardize five gunboats"
 
 # Missing the letter 'h'
-⍤⤙≍ false isPangram "five boxing wizards jump quickly at it"
+⍤⤙≍ 0 isPangram "five boxing wizards jump quickly at it"
 
 # With underscores
-⍤⤙≍ true isPangram "the_quick_brown_fox_jumps_over_the_lazy_dog"
+⍤⤙≍ 1 isPangram "the_quick_brown_fox_jumps_over_the_lazy_dog"
 
 # With numbers
-⍤⤙≍ true isPangram "the 1 quick brown fox jumps over the 2 lazy dogs"
+⍤⤙≍ 1 isPangram "the 1 quick brown fox jumps over the 2 lazy dogs"
 
 # Missing letters replaced by numbers
-⍤⤙≍ false isPangram "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog"
+⍤⤙≍ 0 isPangram "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog"
 
 # Mixed case and punctuation
-⍤⤙≍ true isPangram "\"Five quacking Zephyrs jolt my wax bed.\""
+⍤⤙≍ 1 isPangram "\"Five quacking Zephyrs jolt my wax bed.\""
 
 # A-m and A-M are 26 different characters but not a pangram
-⍤⤙≍ false isPangram "abcdefghijklm ABCDEFGHIJKLM"
+⍤⤙≍ 0 isPangram "abcdefghijklm ABCDEFGHIJKLM"
 
