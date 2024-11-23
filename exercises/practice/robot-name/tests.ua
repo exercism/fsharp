@@ -1,7 +1,7 @@
 ~ "robot-name.ua" ~ RobotName
 # Robot has a name     
 robot = mkRobot()
-⍤⤙≍ 1 Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$")
+⍤⤙≍ 1 Regex.IsMatchname robot_@"^[A-Z]{2}\d{3}$"
     
 # Name is the same each time     
 robot = mkRobot()

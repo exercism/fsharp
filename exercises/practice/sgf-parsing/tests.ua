@@ -10,15 +10,15 @@
 ⍤⤙≍ "TODO: insert error message" ⍣(parse ";")
 
 # Node without properties
-expected = (Node (Map.ofList [], []))
+expected = Node (Map.ofList []_[])
 ⍤⤙≍ expected parse "(;)"
 
 # Single node tree
-expected = (Node (Map.ofList [("A", ["B"])], []))
+expected = Node (Map.ofList [("A"_["B"]], []))
 ⍤⤙≍ expected parse "(;A[B])"
 
 # Multiple properties
-expected = (Node (Map.ofList [("A", ["b"]) ("C", ["d"])], []))
+expected = Node (Map.ofList [("A"_["b"] "C"_["d"]], []))
 ⍤⤙≍ expected parse "(;A[b]C[d])"
 
 # Properties without delimiter
@@ -31,22 +31,22 @@ expected = (Node (Map.ofList [("A", ["b"]) ("C", ["d"])], []))
 ⍤⤙≍ "TODO: insert error message" ⍣(parse "(;Aa[b])")
 
 # Two nodes
-expected = (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], [])]))
+expected = Node (Map.ofList [("A"_["B"]], [Node Map.ofList [("B"_["C"]], [])]))
 ⍤⤙≍ expected parse "(;A[B];B[C])"
 
 # Two child trees
-expected = (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], []) Node (Map.ofList [("C", ["D"])], [])]))
+expected = Node (Map.ofList [("A"_["B"]], [Node Map.ofList [("B"_["C"]], []) Node Map.ofList [("C"_["D"]], [])]))
 ⍤⤙≍ expected parse "(;A[B](;B[C])(;C[D]))"
 
 # Multiple property values
-expected = (Node (Map.ofList [("A", ["b" "c" "d"])], []))
+expected = Node (Map.ofList [("A"_["b" "c" "d"]], []))
 ⍤⤙≍ expected parse "(;A[b][c][d])"
 
 # Semicolon in property value doesn't need to be escaped
-expected = (Node (Map.ofList [("A", ["a;b" "foo"]) ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+expected = Node (Map.ofList [("A"_["a;b" "foo"] "B"_["bar"]], [Node Map.ofList [("C"_["baz"]], [])]))
 ⍤⤙≍ expected parse "(;A[a;b][foo]B[bar];C[baz])"
 
 # Parentheses in property value don't need to be escaped
-expected = (Node (Map.ofList [("A", ["x(y)z" "foo"]) ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+expected = Node (Map.ofList [("A"_["x(yz" "foo"]) "B"_["bar"]], [Node Map.ofList [("C"_["baz"]], [])]))
 ⍤⤙≍ expected parse "(;A[x(y)z][foo]B[bar];C[baz])"
 

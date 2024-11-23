@@ -37,16 +37,16 @@ starSpangledBanner =
 ⍤⤙≍ [] frequency []
 
 # One letter
-⍤⤙≍ (Map.ofList [('a', 1)]) frequency ["a"]
+⍤⤙≍ Map.ofList [('a'_1]) frequency ["a"]
 
 # Case insensitivity
-⍤⤙≍ (Map.ofList [('a', 2)]) frequency ["aA"]
+⍤⤙≍ Map.ofList [('a'_2]) frequency ["aA"]
 
 # Many empty texts still mean no letters
 ⍤⤙≍ [] frequency (List.replicate 10000 "  ")
 
 # Many times the same text gives a predictable result
-⍤⤙≍ (Map.ofList [('a', 1000) ('b', 1000) ('c', 1000)]) frequency (List.replicate 1000 "abc")
+⍤⤙≍ Map.ofList [('a'_1000 'b'_1000 'c'_1000]) frequency (List.replicate 1000 "abc")
 
 # Punctuation doesn't count
 freqs = frequency [odeAnDieFreude]
@@ -58,7 +58,7 @@ freqs = frequency ["Testing, 1, 2, 3"]
 
 # Letters with and without diacritics are not the same letter
 freqs = frequency ["aä"]
-⍤⤙≍ (Map.ofList [('a', 1) ('ä', 1)]) freqs
+⍤⤙≍ Map.ofList [('a'_1 'ä'_1]) freqs
 
 # All three anthems, together
 freqs = frequency [odeAnDieFreude wilhelmus starSpangledBanner]

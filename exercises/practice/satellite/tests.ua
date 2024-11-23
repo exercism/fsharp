@@ -8,7 +8,7 @@ expected: Result<Tree,string> = Ok (
 
 # Tree with one item
 expected: Result<Tree,string> = Ok (
-        Node("a", Empty, Empty)
+        Node"a"_Empty, Empty
     )
 ⍤⤙≍ expected treeFromTraversals ["a"] ["a"]
 
@@ -16,11 +16,11 @@ expected: Result<Tree,string> = Ok (
 expected: Result<Tree,string> = Ok (
         Node(
             "a",
-            Node("i", Empty, Empty),
+            Node"i"_Empty, Empty,
             Node(
                 "x",
-                Node("f", Empty, Empty),
-                Node("r", Empty, Empty)
+                Node"f"_Empty, Empty,
+                Node"r"_Empty, Empty
             )
         )
     )

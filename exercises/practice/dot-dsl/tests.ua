@@ -18,10 +18,10 @@ g = graph [
     
 # Graph with one node with keywords    
 g = graph [
-                node "a" [("color", "green")]
+                node "a" ["color"_"green"]
             ]            
 
-⍤⤙≍ [node "a" [("color", "green")]] nodes g
+⍤⤙≍ [node "a" ["color"_"green"]] nodes g
 ⍤⤙≍ [] edges g
 ⍤⤙≍ [] attrs g
 
@@ -47,14 +47,14 @@ g = graph [
 g = graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"
-                node "a" [("color", "green")]
+                node "a" ["color"_"green"]
                 node "c" []
-                node "b" [("label", "Beta!")]                
+                node "b" ["label"_"Beta!"]                
                 edge "b" "c" []
-                edge "a" "b" [("color", "blue")]                
+                edge "a" "b" ["color"_"blue"]                
                 attr "bar" "true"
             ]             
 
-⍤⤙≍ [node "a" [("color", "green")] node "b" [("label", "Beta!")] node "c" []] nodes g
-⍤⤙≍ [edge "a" "b" [("color", "blue")] edge "b" "c" []] edges g
+⍤⤙≍ [node "a" ["color"_"green"] node "b" ["label"_"Beta!"] node "c" []] nodes g
+⍤⤙≍ [edge "a" "b" ["color"_"blue"] edge "b" "c" []] edges g
 ⍤⤙≍ [attr "bar" "true" attr "foo" "1" attr "title" "Testing Attrs"] attrs g

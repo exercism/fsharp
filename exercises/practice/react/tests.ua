@@ -48,7 +48,7 @@ output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
 callback1Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback1Handler
     input.Value <- 3
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 4)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_4).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
 
 # Callback cells only fire on change
@@ -58,9 +58,9 @@ output = reactor.createComputeCell [input] (fun values -> if values.[0] < 3 then
 callback1Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback1Handler
     input.Value <- 2
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
     input.Value <- 4
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 222)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_222).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
 
 # Callbacks do not report already reported values
@@ -70,10 +70,10 @@ output = reactor.createComputeCell [input] (fun values -> values.[0] + 1)
 callback1Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback1Handler
     input.Value <- 2
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 3)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_3).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
     input.Value <- 3
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 4)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_4).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
 
 # Callbacks can fire from multiple cells
@@ -86,9 +86,9 @@ callback1Handler = A.Fake<Handler<int>>()
 callback2Handler = A.Fake<Handler<int>>()
     minus_one.Changed.AddHandler callback2Handler
     input.Value <- 10
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 11)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_11).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
-    A.CallTo(fun() -> callback2Handler.Invoke(A<obj>.``_``, 9)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback2Handler.Invoke(A<obj>.``_``_9).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback2Handler) |> ignore
 
 # Callbacks can be added and removed
@@ -100,19 +100,19 @@ callback1Handler = A.Fake<Handler<int>>()
 callback2Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback2Handler
     input.Value <- 31
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 32)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_32).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
-    A.CallTo(fun() -> callback2Handler.Invoke(A<obj>.``_``, 32)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback2Handler.Invoke(A<obj>.``_``_32).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback2Handler) |> ignore
     output.Changed.RemoveHandler callback1Handler
 callback3Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback3Handler
     input.Value <- 41
-    A.CallTo(fun() -> callback2Handler.Invoke(A<obj>.``_``, 42)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback2Handler.Invoke(A<obj>.``_``_42).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback2Handler) |> ignore
-    A.CallTo(fun() -> callback3Handler.Invoke(A<obj>.``_``, 42)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback3Handler.Invoke(A<obj>.``_``_42).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback3Handler) |> ignore
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
 
 # Removing a callback multiple times doesn't interfere with other callbacks
 reactor = new Reactor()
@@ -126,9 +126,9 @@ callback2Handler = A.Fake<Handler<int>>()
     output.Changed.RemoveHandler callback1Handler
     output.Changed.RemoveHandler callback1Handler
     input.Value <- 2
-    A.CallTo(fun() -> callback2Handler.Invoke(A<obj>.``_``, 3)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback2Handler.Invoke(A<obj>.``_``_3).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback2Handler) |> ignore
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
 
 # Callbacks should only be called once even if multiple dependencies change
 reactor = new Reactor()
@@ -140,7 +140,7 @@ output = reactor.createComputeCell [plus_one minus_one2] (fun values -> values.[
 callback1Handler = A.Fake<Handler<int>>()
     output.Changed.AddHandler callback1Handler
     input.Value <- 4
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, 10)).MustHaveHappenedOnceExactly() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_10).MustHaveHappenedOnceExactly() |> ignore
     Fake.ClearRecordedCalls(callback1Handler) |> ignore
 
 # Callbacks should not be called if dependencies change but output value doesn't change
@@ -152,11 +152,11 @@ always_two = reactor.createComputeCell [plus_one minus_one] (fun values -> value
 callback1Handler = A.Fake<Handler<int>>()
     always_two.Changed.AddHandler callback1Handler
     input.Value <- 2
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
     input.Value <- 3
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
     input.Value <- 4
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
     input.Value <- 5
-    A.CallTo(fun() -> callback1Handler.Invoke(A<obj>.``_``, A<int>.``_``)).MustNotHaveHappened() |> ignore
+    A.CallTofun() -> callback1Handler.Invoke(A<obj>.``_``_A<int>.``_``).MustNotHaveHappened() |> ignore
 

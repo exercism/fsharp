@@ -34,9 +34,9 @@ Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed"""
 
 createFiles() =
-    File.WriteAllText(iliadFileName, iliadContents)
-    File.WriteAllText(midsummerNightFileName, midsummerNightContents)
-    File.WriteAllText(paradiseLostFileName, paradiseLostContents)
+    File.WriteAllTextiliadFileName_iliadContents
+    File.WriteAllTextmidsummerNightFileName_midsummerNightContents
+    File.WriteAllTextparadiseLostFileName_paradiseLostContents
 
 type GrepTests() =
 

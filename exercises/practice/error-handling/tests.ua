@@ -42,7 +42,7 @@ failureResult = handleErrorByReturningResult "a"
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
 // becomes apparent when you try to do this, is that the output of one validation
-// function (which is of type Result<'TSuccess, 'TError>), cannot be used as the input of
+// function which is of type Result<'TSuccess_'TError>, cannot be used as the input of
 // another validation function (which expects a parameter of type 'TSuccess). 
 //
 // To solve this problem, you can use the railway-oriented programming model. In this

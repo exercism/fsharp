@@ -3,31 +3,31 @@
 # Should accept an initial game grid and a target search word
 grid = ["jefblpepre"]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+expected = ["clojure"_Option<((int * int * (int * int))>.None)] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate one word written left to right
 grid = ["clojurermt"]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", ((1, 1), (7, 1)))] |> Map.ofList
+expected = ["clojure"_((1, 1, 7_1))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate the same word written left to right in a different position
 grid = ["mtclojurer"]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", ((3, 1), (9, 1)))] |> Map.ofList
+expected = ["clojure"_((3, 1, 9_1))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate a different left to right word
 grid = ["coffeelplx"]
 wordsToSearchFor = ["coffee"]
-expected = [("coffee", ((1, 1), (6, 1)))] |> Map.ofList
+expected = ["coffee"_((1, 1, 6_1))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate that different left to right word in a different position
 grid = ["xcoffeezlp"]
 wordsToSearchFor = ["coffee"]
-expected = [("coffee", ((2, 1), (7, 1)))] |> Map.ofList
+expected = ["coffee"_((2, 1, 7_1))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate a left to right word in two line grid
@@ -35,7 +35,7 @@ grid =
         [ "jefblpepre";
           "tclojurerm" ]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", ((2, 2), (8, 2)))] |> Map.ofList
+expected = ["clojure"_((2, 2, 8_2))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate a left to right word in three line grid
@@ -44,7 +44,7 @@ grid =
           "jefblpepre";
           "clojurermt" ]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", ((1, 3), (7, 3)))] |> Map.ofList
+expected = ["clojure"_((1, 3, 7_3))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate a left to right word in ten line grid
@@ -60,7 +60,7 @@ grid =
           "jalaycalmp";
           "clojurermt" ]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", ((1, 10), (7, 10)))] |> Map.ofList
+expected = ["clojure"_((1, 10, 7_10))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate that left to right word in a different position in a ten line grid
@@ -76,7 +76,7 @@ grid =
           "clojurermt";
           "jalaycalmp" ]
 wordsToSearchFor = ["clojure"]
-expected = [("clojure", ((1, 9), (7, 9)))] |> Map.ofList
+expected = ["clojure"_((1, 9, 7_9))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate a different left to right word in a ten line grid
@@ -92,7 +92,7 @@ grid =
           "clojurermt";
           "jalaycalmp" ]
 wordsToSearchFor = ["fortran"]
-expected = [("fortran", ((1, 7), (7, 7)))] |> Map.ofList
+expected = ["fortran"_((1, 7, 7_7))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate multiple words
@@ -109,15 +109,15 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["fortran" "clojure"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("fortran", ((1, 7), (7, 7))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "fortran"_((1, 7, 7_7)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate a single word written right to left
 grid = ["rixilelhrs"]
 wordsToSearchFor = ["elixir"]
-expected = [("elixir", ((6, 1), (1, 1)))] |> Map.ofList
+expected = ["elixir"_((6, 1, 1_1))] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should locate multiple words written in different horizontal directions
@@ -134,8 +134,8 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["elixir" "clojure"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -153,9 +153,9 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -173,10 +173,10 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10)));
-          ("rust", ((9, 5), (9, 2))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10));
+          "rust"_((9, 5, 9_2)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -194,11 +194,11 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10)));
-          ("rust", ((9, 5), (9, 2)));
-          ("java", ((1, 1), (4, 4))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10));
+          "rust"_((9, 5, 9_2));
+          "java"_((1, 1, 4_4)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -216,12 +216,12 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10)));
-          ("rust", ((9, 5), (9, 2)));
-          ("java", ((1, 1), (4, 4)));
-          ("lua", ((8, 9), (6, 7))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10));
+          "rust"_((9, 5, 9_2));
+          "java"_((1, 1, 4_4));
+          "lua"_((8, 9, 6_7)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -239,13 +239,13 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua" "lisp"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10)));
-          ("rust", ((9, 5), (9, 2)));
-          ("java", ((1, 1), (4, 4)));
-          ("lua", ((8, 9), (6, 7)));
-          ("lisp", ((3, 6), (6, 3))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10));
+          "rust"_((9, 5, 9_2));
+          "java"_((1, 1, 4_4));
+          "lua"_((8, 9, 6_7));
+          "lisp"_((3, 6, 6_3)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -263,14 +263,14 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua" "lisp" "ruby"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10)));
-          ("rust", ((9, 5), (9, 2)));
-          ("java", ((1, 1), (4, 4)));
-          ("lua", ((8, 9), (6, 7)));
-          ("lisp", ((3, 6), (6, 3)));
-          ("ruby", ((8, 6), (5, 9))) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10));
+          "rust"_((9, 5, 9_2));
+          "java"_((1, 1, 4_4));
+          "lua"_((8, 9, 6_7));
+          "lisp"_((3, 6, 6_3));
+          "ruby"_((8, 6, 5_9)) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -288,15 +288,15 @@ grid =
           "clojurermt" ]
 wordsToSearchFor = ["clojure" "elixir" "ecmascript" "rust" "java" "lua" "lisp" "ruby" "haskell"]
 expected = 
-        [ ("clojure", ((1, 10), (7, 10)));
-          ("elixir", ((6, 5), (1, 5)));
-          ("ecmascript", ((10, 1), (10, 10)));
-          ("rust", ((9, 5), (9, 2)));
-          ("java", ((1, 1), (4, 4)));
-          ("lua", ((8, 9), (6, 7)));
-          ("lisp", ((3, 6), (6, 3)));
-          ("ruby", ((8, 6), (5, 9)));
-          ("haskell", Option<((int * int) * (int * int))>.None) ]
+        [ "clojure"_((1, 10, 7_10));
+          "elixir"_((6, 5, 1_5));
+          "ecmascript"_((10, 1, 10_10));
+          "rust"_((9, 5, 9_2));
+          "java"_((1, 1, 4_4));
+          "lua"_((8, 9, 6_7));
+          "lisp"_((3, 6, 6_3));
+          "ruby"_((8, 6, 5_9));
+          "haskell"_Option<((int * int * (int * int))>.None) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -306,10 +306,10 @@ grid =
           "def" ]
 wordsToSearchFor = ["aef" "ced" "abf" "cbd"]
 expected = 
-        [ ("aef", Option<((int * int) * (int * int))>.None);
-          ("ced", Option<((int * int) * (int * int))>.None);
-          ("abf", Option<((int * int) * (int * int))>.None);
-          ("cbd", Option<((int * int) * (int * int))>.None) ]
+        [ "aef"_Option<((int * int * (int * int))>.None);
+          "ced"_Option<((int * int * (int * int))>.None);
+          "abf"_Option<((int * int * (int * int))>.None);
+          "cbd"_Option<((int * int * (int * int))>.None) ]
         |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
@@ -318,13 +318,13 @@ grid =
         [ "abceli";
           "xirdfg" ]
 wordsToSearchFor = ["elixir"]
-expected = [("elixir", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+expected = ["elixir"_Option<((int * int * (int * int))>.None)] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should not wrap around horizontally to find a word
 grid = ["silabcdefp"]
 wordsToSearchFor = ["lisp"]
-expected = [("lisp", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+expected = ["lisp"_Option<((int * int * (int * int))>.None)] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 
 # Should not wrap around vertically to find a word
@@ -337,6 +337,6 @@ grid =
           "c";
           "t" ]
 wordsToSearchFor = ["rust"]
-expected = [("rust", Option<((int * int) * (int * int))>.None)] |> Map.ofList
+expected = ["rust"_Option<((int * int * (int * int))>.None)] |> Map.ofList
 ⍤⤙≍ expected search grid wordsToSearchFor
 

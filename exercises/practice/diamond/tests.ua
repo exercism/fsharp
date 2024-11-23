@@ -1,9 +1,9 @@
 ~ "diamond.ua" ~ Diamond
-split (x: string) = x.Split( [ '\n'  ], StringSplitOptions.None)
+split x: string) = x.Split( [ '\n'  ]_StringSplitOptions.None
 
 trim (x:string) = x.Trim()
 
-leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny  ['A'..'Z' ])
+leadingSpaces x:string) = x.Substring(0_x.IndexOfAny  ['A'..'Z' ]
 
 trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny  ['A'..'Z' ] + 1)
 
@@ -83,8 +83,8 @@ rows =
         |> Array.filter (fun x -> not (x.Contains("A")))
 
 twoIdenticalLetters (row:string) = 
-twoCharacters = row.Replace(" ", "").Length = 2
-identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
+twoCharacters = row.Replace" "_"".Length = 2
+identicalCharacters = row.Replace" "_"" |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
 ⍤⤙≍ 1) rows |> Array.iter (fun x -> twoIdenticalLetters x

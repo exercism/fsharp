@@ -3,10 +3,10 @@
 # Empty strand
 strand = ""
 expected = 
-        [ ('A', 0);
-          ('C', 0);
-          ('G', 0);
-          ('T', 0) ]
+        [ 'A'_0;
+          'C'_0;
+          'G'_0;
+          'T'_0 ]
         |> Map.ofList
         |> Some
 ⍤⤙≍ expected nucleotideCounts strand
@@ -14,10 +14,10 @@ expected =
 # Can count one nucleotide in single-character input
 strand = "G"
 expected = 
-        [ ('A', 0);
-          ('C', 0);
-          ('G', 1);
-          ('T', 0) ]
+        [ 'A'_0;
+          'C'_0;
+          'G'_1;
+          'T'_0 ]
         |> Map.ofList
         |> Some
 ⍤⤙≍ expected nucleotideCounts strand
@@ -25,10 +25,10 @@ expected =
 # Strand with repeated nucleotide
 strand = "GGGGGGG"
 expected = 
-        [ ('A', 0);
-          ('C', 0);
-          ('G', 7);
-          ('T', 0) ]
+        [ 'A'_0;
+          'C'_0;
+          'G'_7;
+          'T'_0 ]
         |> Map.ofList
         |> Some
 ⍤⤙≍ expected nucleotideCounts strand
@@ -36,10 +36,10 @@ expected =
 # Strand with multiple nucleotides
 strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
 expected = 
-        [ ('A', 20);
-          ('C', 12);
-          ('G', 17);
-          ('T', 21) ]
+        [ 'A'_20;
+          'C'_12;
+          'G'_17;
+          'T'_21 ]
         |> Map.ofList
         |> Some
 ⍤⤙≍ expected nucleotideCounts strand

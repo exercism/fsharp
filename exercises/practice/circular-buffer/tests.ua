@@ -7,13 +7,13 @@ buffer1 = mkCircularBuffer 1
 # Can read an item just written
 buffer1 = mkCircularBuffer 1
 buffer2 = write 1 buffer1
-(val3, _) = read buffer2
+val3__ = read buffer2
 ⍤⤙≍ 1 val3
 
 # Each item may only be read once
 buffer1 = mkCircularBuffer 1
 buffer2 = write 1 buffer1
-(val3, buffer3) = read buffer2
+val3_buffer3 = read buffer2
 ⍤⤙≍ 1 val3
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
@@ -21,9 +21,9 @@ buffer2 = write 1 buffer1
 buffer1 = mkCircularBuffer 2
 buffer2 = write 1 buffer1
 buffer3 = write 2 buffer2
-(val4, buffer4) = read buffer3
+val4_buffer4 = read buffer3
 ⍤⤙≍ 1 val4
-(val5, _) = read buffer4
+val5__ = read buffer4
 ⍤⤙≍ 2 val5
 
 # Full buffer can't be written to
@@ -34,22 +34,22 @@ buffer2 = write 1 buffer1
 # A read frees up capacity for another write
 buffer1 = mkCircularBuffer 1
 buffer2 = write 1 buffer1
-(val3, buffer3) = read buffer2
+val3_buffer3 = read buffer2
 ⍤⤙≍ 1 val3
 buffer4 = write 2 buffer3
-(val5, _) = read buffer4
+val5__ = read buffer4
 ⍤⤙≍ 2 val5
 
 # Read position is maintained even across multiple writes
 buffer1 = mkCircularBuffer 3
 buffer2 = write 1 buffer1
 buffer3 = write 2 buffer2
-(val4, buffer4) = read buffer3
+val4_buffer4 = read buffer3
 ⍤⤙≍ 1 val4
 buffer5 = write 3 buffer4
-(val6, buffer6) = read buffer5
+val6_buffer6 = read buffer5
 ⍤⤙≍ 2 val6
-(val7, _) = read buffer6
+val7__ = read buffer6
 ⍤⤙≍ 3 val7
 
 # Items cleared out of buffer can't be read
@@ -63,23 +63,23 @@ buffer1 = mkCircularBuffer 1
 buffer2 = write 1 buffer1
 buffer3 = clear buffer2
 buffer4 = write 2 buffer3
-(val5, _) = read buffer4
+val5__ = read buffer4
 ⍤⤙≍ 2 val5
 
 # Clear does nothing on empty buffer
 buffer1 = mkCircularBuffer 1
 buffer2 = clear buffer1
 buffer3 = write 1 buffer2
-(val4, _) = read buffer3
+val4__ = read buffer3
 ⍤⤙≍ 1 val4
 
 # Overwrite acts like write on non-full buffer
 buffer1 = mkCircularBuffer 2
 buffer2 = write 1 buffer1
 buffer3 = forceWrite 2 buffer2
-(val4, buffer4) = read buffer3
+val4_buffer4 = read buffer3
 ⍤⤙≍ 1 val4
-(val5, _) = read buffer4
+val5__ = read buffer4
 ⍤⤙≍ 2 val5
 
 # Overwrite replaces the oldest item on full buffer
@@ -87,9 +87,9 @@ buffer1 = mkCircularBuffer 2
 buffer2 = write 1 buffer1
 buffer3 = write 2 buffer2
 buffer4 = forceWrite 3 buffer3
-(val5, buffer5) = read buffer4
+val5_buffer5 = read buffer4
 ⍤⤙≍ 2 val5
-(val6, _) = read buffer5
+val6__ = read buffer5
 ⍤⤙≍ 3 val6
 
 # Overwrite replaces the oldest item remaining in buffer following a read
@@ -97,15 +97,15 @@ buffer1 = mkCircularBuffer 3
 buffer2 = write 1 buffer1
 buffer3 = write 2 buffer2
 buffer4 = write 3 buffer3
-(val5, buffer5) = read buffer4
+val5_buffer5 = read buffer4
 ⍤⤙≍ 1 val5
 buffer6 = write 4 buffer5
 buffer7 = forceWrite 5 buffer6
-(val8, buffer8) = read buffer7
+val8_buffer8 = read buffer7
 ⍤⤙≍ 3 val8
-(val9, buffer9) = read buffer8
+val9_buffer9 = read buffer8
 ⍤⤙≍ 4 val9
-(val10, _) = read buffer9
+val10__ = read buffer9
 ⍤⤙≍ 5 val10
 
 # Initial clear does not affect wrapping around
@@ -115,9 +115,9 @@ buffer3 = write 1 buffer2
 buffer4 = write 2 buffer3
 buffer5 = forceWrite 3 buffer4
 buffer6 = forceWrite 4 buffer5
-(val7, buffer7) = read buffer6
+val7_buffer7 = read buffer6
 ⍤⤙≍ 3 val7
-(val8, buffer8) = read buffer7
+val8_buffer8 = read buffer7
 ⍤⤙≍ 4 val8
     (fun () -> read buffer8 |> ignore) |> should throw typeof<Exception>
 

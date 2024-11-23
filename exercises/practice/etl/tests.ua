@@ -1,71 +1,71 @@
 ~ "etl.ua" ~ Etl
 
 # Single letter
-lettersByScore = [(1, ['A'])] |> Map.ofList
-expected = [('a', 1)] |> Map.ofList
+lettersByScore = [1_['A']] |> Map.ofList
+expected = ['a'_1] |> Map.ofList
 ⍤⤙≍ expected transform lettersByScore
 
 # Single score with multiple letters
-lettersByScore = [(1, ['A' 'E' 'I' 'O' 'U'])] |> Map.ofList
+lettersByScore = [1_['A' 'E' 'I' 'O' 'U']] |> Map.ofList
 expected = 
-        [ ('a', 1);
-          ('e', 1);
-          ('i', 1);
-          ('o', 1);
-          ('u', 1) ]
+        [ 'a'_1;
+          'e'_1;
+          'i'_1;
+          'o'_1;
+          'u'_1 ]
         |> Map.ofList
 ⍤⤙≍ expected transform lettersByScore
 
 # Multiple scores with multiple letters
 lettersByScore = 
-        [ (1, ['A' 'E']);
-          (2, ['D' 'G']) ]
+        [ 1_['A' 'E'];
+          2_['D' 'G'] ]
         |> Map.ofList
 expected = 
-        [ ('a', 1);
-          ('d', 2);
-          ('e', 1);
-          ('g', 2) ]
+        [ 'a'_1;
+          'd'_2;
+          'e'_1;
+          'g'_2 ]
         |> Map.ofList
 ⍤⤙≍ expected transform lettersByScore
 
 # Multiple scores with differing numbers of letters
 lettersByScore = 
-        [ (1, ['A' 'E' 'I' 'O' 'U' 'L' 'N' 'R' 'S' 'T']);
-          (2, ['D' 'G']);
-          (3, ['B' 'C' 'M' 'P']);
-          (4, ['F' 'H' 'V' 'W' 'Y']);
-          (5, ['K']);
-          (8, ['J' 'X']);
-          (10, ['Q' 'Z']) ]
+        [ 1_['A' 'E' 'I' 'O' 'U' 'L' 'N' 'R' 'S' 'T'];
+          2_['D' 'G'];
+          3_['B' 'C' 'M' 'P'];
+          4_['F' 'H' 'V' 'W' 'Y'];
+          5_['K'];
+          8_['J' 'X'];
+          10_['Q' 'Z'] ]
         |> Map.ofList
 expected = 
-        [ ('a', 1);
-          ('b', 3);
-          ('c', 3);
-          ('d', 2);
-          ('e', 1);
-          ('f', 4);
-          ('g', 2);
-          ('h', 4);
-          ('i', 1);
-          ('j', 8);
-          ('k', 5);
-          ('l', 1);
-          ('m', 3);
-          ('n', 1);
-          ('o', 1);
-          ('p', 3);
-          ('q', 10);
-          ('r', 1);
-          ('s', 1);
-          ('t', 1);
-          ('u', 1);
-          ('v', 4);
-          ('w', 4);
-          ('x', 8);
-          ('y', 4);
-          ('z', 10) ]
+        [ 'a'_1;
+          'b'_3;
+          'c'_3;
+          'd'_2;
+          'e'_1;
+          'f'_4;
+          'g'_2;
+          'h'_4;
+          'i'_1;
+          'j'_8;
+          'k'_5;
+          'l'_1;
+          'm'_3;
+          'n'_1;
+          'o'_1;
+          'p'_3;
+          'q'_10;
+          'r'_1;
+          's'_1;
+          't'_1;
+          'u'_1;
+          'v'_4;
+          'w'_4;
+          'x'_8;
+          'y'_4;
+          'z'_10 ]
         |> Map.ofList
 ⍤⤙≍ expected transform lettersByScore
 

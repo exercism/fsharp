@@ -14,7 +14,7 @@ sut = SimpleCipher()
 
 # Random key cipher - Key is made only of lowercase letters
 sut = SimpleCipher()
-⍤⤙≍ 1 Regex.IsMatch(sut.Key, "^[a-z]+$")
+⍤⤙≍ 1 Regex.IsMatchsut.Key_"^[a-z]+$"
 
 # Substitution cipher - Can encode
 sut = SimpleCipher("abcdefghij")
