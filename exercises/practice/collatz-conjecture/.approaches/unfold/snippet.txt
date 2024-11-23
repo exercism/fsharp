@@ -1,8 +1,0 @@
-let collatzSequence (number: int): int seq =
-    Seq.unfold (fun current ->
-        if current = 1 then None
-        elif current % 2 = 0 then Some (current, current / 2)
-        else Some (current, current * 3  + 1))
-        number
-
-collatzSequence number |> Seq.length |> Some
