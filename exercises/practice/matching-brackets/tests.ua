@@ -1,6 +1,4 @@
-module MatchingBracketsTests
-
-
+~ "SOLUTION" ~ MatchingBrackets
 
 let ``Paired square brackets`` () =
     isPaired "[]" |> should equal true

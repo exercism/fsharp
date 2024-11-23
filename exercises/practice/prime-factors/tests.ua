@@ -1,6 +1,4 @@
-module PrimeFactorsTests
-
-
+~ "SOLUTION" ~ PrimeFactors
 
 let ``No factors`` () =
     factors 1L |> should be Empty

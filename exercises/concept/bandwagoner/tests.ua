@@ -1,6 +1,4 @@
-module BandwagonerTests
-
-
+~ "SOLUTION" ~ Bandwagoner
 
 let ``Create coach that was a former player`` () =
     createCoach "Steve Kerr" true

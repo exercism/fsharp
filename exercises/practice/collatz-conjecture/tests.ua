@@ -1,6 +1,4 @@
-module CollatzConjectureTests
-
-
+~ "SOLUTION" ~ CollatzConjecture
 
 let ``Zero steps for one`` () =
     steps 1 |> should equal (Some 0)

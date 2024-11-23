@@ -1,6 +1,4 @@
-module TransposeTests
-
-
+~ "SOLUTION" ~ Transpose
 
 let ``Empty string`` () =
     let lines: string list = []

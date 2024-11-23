@@ -1,6 +1,4 @@
-module AnagramTests
-
-
+~ "SOLUTION" ~ Anagram
 
 let ``No matches`` () =
     let candidates = ["hello"; "world"; "zombies"; "pants"]

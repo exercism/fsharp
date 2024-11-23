@@ -1,6 +1,4 @@
-module RotationalCipherTests
-
-
+~ "SOLUTION" ~ RotationalCipher
 
 let ``Rotate a by 0, same output as input`` () =
     rotate 0 "a" |> should equal "a"

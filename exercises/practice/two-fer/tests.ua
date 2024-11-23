@@ -1,6 +1,4 @@
-module TwoFerTests
-
-
+~ "SOLUTION" ~ TwoFer
 
 let ``No name given`` () =
     twoFer None |> should equal "One for you, one for me."

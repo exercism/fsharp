@@ -1,6 +1,4 @@
-module SgfParsingTests
-
-
+~ "SOLUTION" ~ SgfParsing
 
 let ``Empty input`` () =
     let expected = None

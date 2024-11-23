@@ -1,6 +1,4 @@
-module ScaleGeneratorTests
-
-
+~ "SOLUTION" ~ ScaleGenerator
 
 let ``Chromatic scale with sharps`` () =
     chromatic "C" |> should equal ["C"; "C#"; "D"; "D#"; "E"; "F"; "F#"; "G"; "G#"; "A"; "A#"; "B"]

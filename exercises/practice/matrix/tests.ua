@@ -1,6 +1,4 @@
-module MatrixTests
-
-
+~ "SOLUTION" ~ Matrix
 
 let ``Extract row from one number matrix`` () =
     row 1 "1" |> should equal [1]

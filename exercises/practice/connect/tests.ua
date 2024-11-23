@@ -1,6 +1,4 @@
-module ConnectTests
-
-
+~ "SOLUTION" ~ Connect
 
 let ``An empty board has no winner`` () =
     let board = 

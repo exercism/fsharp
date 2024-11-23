@@ -1,6 +1,4 @@
-module TisburyTreasureHuntTests
-
-
+~ "SOLUTION" ~ TisburyTreasureHunt
 
 let ``Get coordinate for Scrimshaw Whale's Tooth`` () =
     getCoordinate ("Scrimshaw Whale's Tooth", "2A") |> should equal "2A"

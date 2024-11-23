@@ -1,6 +1,4 @@
-module ChangeTests
-
-
+~ "SOLUTION" ~ Change
 
 let ``Change for 1 cent`` () =
     let coins = [1; 5; 10; 25]

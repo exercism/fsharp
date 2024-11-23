@@ -1,6 +1,4 @@
-module PizzaPricingTests
-
-
+~ "SOLUTION" ~ PizzaPricing
 
 let ``Price for pizza margherita``() = pizzaPrice Margherita |> should equal 7
 

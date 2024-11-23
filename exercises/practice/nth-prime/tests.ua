@@ -1,6 +1,4 @@
-module NthPrimeTests
-
-
+~ "SOLUTION" ~ NthPrime
 
 let ``First prime`` () =
     prime 1 |> should equal (Some 2)

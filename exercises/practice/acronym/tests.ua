@@ -1,6 +1,4 @@
-module AcronymTests
-
-
+~ "SOLUTION" ~ Acronym
 
 let ``Basic`` () =
     abbreviate "Portable Network Graphics" |> should equal "PNG"

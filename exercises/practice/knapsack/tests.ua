@@ -1,6 +1,4 @@
-module KnapsackTests
-
-
+~ "SOLUTION" ~ Knapsack
 
 let ``No items`` () =
     let items = []

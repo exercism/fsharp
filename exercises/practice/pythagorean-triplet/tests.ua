@@ -1,6 +1,4 @@
-module PythagoreanTripletTests
-
-
+~ "SOLUTION" ~ PythagoreanTriplet
 
 let ``Triplets whose sum is 12`` () =
     tripletsWithSum 12 |> should equal [(3, 4, 5)]

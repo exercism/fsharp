@@ -1,6 +1,4 @@
-module SublistTests
-
-
+~ "SOLUTION" ~ Sublist
 
 let ``Empty lists`` () =
     let listOne = []

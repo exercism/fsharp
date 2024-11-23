@@ -1,6 +1,4 @@
-module PascalsTriangleTests
-
-
+~ "SOLUTION" ~ PascalsTriangle
 
 let ``Zero rows`` () =
     let expected: int list list = []

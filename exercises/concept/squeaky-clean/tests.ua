@@ -1,6 +1,4 @@
-module SqueakyCleanTests
-
-
+~ "SOLUTION" ~ SqueakyClean
 
 let ``Clean_single_letter``() = transform 'a' |> should equal "a"
 

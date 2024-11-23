@@ -1,6 +1,4 @@
-module ResistorColorTests
-
-
+~ "SOLUTION" ~ ResistorColor
 
 let ``Black`` () =
     colorCode "black" |> should equal 0

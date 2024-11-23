@@ -1,6 +1,4 @@
-module QueenAttackTests
-
-
+~ "SOLUTION" ~ QueenAttack
 
 let ``Queen with a valid position`` () =
     create (2, 2) |> should equal true

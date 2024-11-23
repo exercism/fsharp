@@ -1,6 +1,4 @@
-module LuhnTests
-
-
+~ "SOLUTION" ~ Luhn
 
 let ``Single digit strings can not be valid`` () =
     valid "1" |> should equal false

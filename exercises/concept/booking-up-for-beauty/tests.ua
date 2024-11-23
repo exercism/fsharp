@@ -1,6 +1,4 @@
-module BookingUpForBeautyTests
-
-
+~ "SOLUTION" ~ BookingUpForBeauty
 [<UseCulture("en-US")>]
 let ``Schedule date using only numbers`` () =
     schedule "7/25/2019 13:45:00"

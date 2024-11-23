@@ -1,6 +1,4 @@
-module InterestIsInterestingTests
-
-
+~ "SOLUTION" ~ InterestIsInteresting
 
 let ``Minimal first interest rate``() = interestRate 0m |> should (equalWithin 0.001) 0.5f
 

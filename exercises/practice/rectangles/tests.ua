@@ -1,6 +1,4 @@
-module RectanglesTests
-
-
+~ "SOLUTION" ~ Rectangles
 
 let ``No rows`` () =
     let strings = []

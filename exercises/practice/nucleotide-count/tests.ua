@@ -1,6 +1,4 @@
-module NucleotideCountTests
-
-
+~ "SOLUTION" ~ NucleotideCount
 
 let ``Empty strand`` () =
     let strand = ""

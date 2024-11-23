@@ -1,6 +1,4 @@
-module YachtTests
-
-
+~ "SOLUTION" ~ Yacht
 
 let ``Yacht`` () =
     score Category.Yacht [Die.Five; Die.Five; Die.Five; Die.Five; Die.Five] |> should equal 50

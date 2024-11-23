@@ -1,6 +1,4 @@
-module FoodChainTests
-
-
+~ "SOLUTION" ~ FoodChain
 
 let ``Fly`` () =
     let expected = 

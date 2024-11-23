@@ -1,6 +1,4 @@
-module ResistorColorDuoTests
-
-
+~ "SOLUTION" ~ ResistorColorDuo
 
 let ``Brown and black`` () =
     value ["brown"; "black"] |> should equal 10

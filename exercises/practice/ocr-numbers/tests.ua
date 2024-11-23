@@ -1,6 +1,4 @@
-module OcrNumbersTests
-
-
+~ "SOLUTION" ~ OcrNumbers
 
 let ``Recognizes 0`` () =
     let rows = 

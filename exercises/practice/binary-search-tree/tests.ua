@@ -1,6 +1,4 @@
-module BinarySearchTreeTests
-
-
+~ "SOLUTION" ~ BinarySearchTree
 
 let ``Data is retained`` () =
     let treeData = create [4]

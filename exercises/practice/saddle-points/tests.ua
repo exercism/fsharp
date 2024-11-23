@@ -1,6 +1,4 @@
-module SaddlePointsTests
-
-
+~ "SOLUTION" ~ SaddlePoints
 
 let ``Can identify single saddle point`` () =
     let matrix = 

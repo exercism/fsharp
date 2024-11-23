@@ -1,6 +1,4 @@
-module PigLatinTests
-
-
+~ "SOLUTION" ~ PigLatin
 
 let ``Word beginning with a`` () =
     translate "apple" |> should equal "appleay"

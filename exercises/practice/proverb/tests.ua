@@ -1,6 +1,4 @@
-module ProverbTests
-
-
+~ "SOLUTION" ~ Proverb
 
 let ``Zero pieces`` () =
     let strings: string list = []

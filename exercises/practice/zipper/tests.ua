@@ -1,6 +1,4 @@
-module ZipperTests
-
-
+~ "SOLUTION" ~ Zipper
 
 let subTree value left right = Some (tree value left right)
 let leaf value = subTree value None None

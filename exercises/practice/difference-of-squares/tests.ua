@@ -1,6 +1,4 @@
-module DifferenceOfSquaresTests
-
-
+~ "SOLUTION" ~ DifferenceOfSquares
 
 let ``Square of sum 1`` () =
     squareOfSum 1 |> should equal 1

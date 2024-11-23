@@ -1,6 +1,4 @@
-module PovTests
-
-
+~ "SOLUTION" ~ Pov
 
 let rec graphToList (graph: Graph<'a>) = 
     let right =

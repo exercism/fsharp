@@ -1,6 +1,4 @@
-module HammingTests
-
-
+~ "SOLUTION" ~ Hamming
 
 let ``Empty strands`` () =
     distance "" "" |> should equal (Some 0)

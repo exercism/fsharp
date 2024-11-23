@@ -1,6 +1,4 @@
-module BottleSongTests
-
-
+~ "SOLUTION" ~ BottleSong
 
 let ``First generic verse`` () =
     let expected = 

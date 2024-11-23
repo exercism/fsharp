@@ -1,6 +1,4 @@
-module EtlTests
-
-
+~ "SOLUTION" ~ Etl
 
 let ``Single letter`` () =
     let lettersByScore = [(1, ['A'])] |> Map.ofList

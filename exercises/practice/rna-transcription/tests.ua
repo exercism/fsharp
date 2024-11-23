@@ -1,6 +1,4 @@
-module RnaTranscriptionTests
-
-
+~ "SOLUTION" ~ RnaTranscription
 
 let ``Empty RNA sequence`` () =
     toRna "" |> should equal ""

@@ -1,6 +1,4 @@
-module AnnalynsInfiltrationTests
-
-
+~ "SOLUTION" ~ AnnalynsInfiltration
 
 let ``Cannot execute fast attack if knight is awake``() =
     let knightIsAwake = true

@@ -1,6 +1,4 @@
-module KindergartenGardenTests
-
-
+~ "SOLUTION" ~ KindergartenGarden
 
 let ``Partial garden - garden with single student`` () =
     let student = "Alice"

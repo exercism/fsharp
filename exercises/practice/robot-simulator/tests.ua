@@ -1,6 +1,4 @@
-module RobotSimulatorTests
-
-
+~ "SOLUTION" ~ RobotSimulator
 
 let ``At origin facing north`` () =
     let expected = create Direction.North (0, 0)

@@ -1,6 +1,4 @@
-module IsogramTests
-
-
+~ "SOLUTION" ~ Isogram
 
 let ``Empty string`` () =
     isIsogram "" |> should equal true

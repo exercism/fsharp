@@ -1,6 +1,4 @@
-module ListOpsTests
-
-
+~ "SOLUTION" ~ ListOps
 
 let ``append empty lists`` () =
     append [] [] |> should be Empty

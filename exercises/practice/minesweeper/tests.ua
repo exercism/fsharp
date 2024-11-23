@@ -1,6 +1,4 @@
-module MinesweeperTests
-
-
+~ "SOLUTION" ~ Minesweeper
 
 let ``No rows`` () =
     let minefield: string list = []

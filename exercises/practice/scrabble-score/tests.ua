@@ -1,6 +1,4 @@
-module ScrabbleScoreTests
-
-
+~ "SOLUTION" ~ ScrabbleScore
 
 let ``Lowercase letter`` () =
     score "a" |> should equal 1

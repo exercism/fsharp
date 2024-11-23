@@ -1,6 +1,4 @@
-module DiffieHellmanTests
-
-
+~ "SOLUTION" ~ DiffieHellman
 
 let ``Private key is greater than 1 and less than p`` () =
     let p = 7919I

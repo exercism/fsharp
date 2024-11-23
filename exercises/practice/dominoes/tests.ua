@@ -1,6 +1,4 @@
-module DominoesTests
-
-
+~ "SOLUTION" ~ Dominoes
 
 let ``Empty input = empty output`` () =
     let dominoes = []

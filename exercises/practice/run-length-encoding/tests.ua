@@ -1,6 +1,4 @@
-module RunLengthEncodingTests
-
-
+~ "SOLUTION" ~ RunLengthEncoding
 
 let ``Encode empty string`` () =
     encode "" |> should equal ""

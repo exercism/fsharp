@@ -1,6 +1,4 @@
-module AllYourBaseTests
-
-
+~ "SOLUTION" ~ AllYourBase
 
 let ``Single bit one to decimal`` () =
     let digits = [1]

@@ -1,6 +1,4 @@
-module GrepTests
-
-
+~ "SOLUTION" ~ Grep
 
 let iliadFileName = "iliad.txt"
 let iliadContents = 

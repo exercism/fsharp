@@ -1,6 +1,4 @@
-module HouseTests
-
-
+~ "SOLUTION" ~ House
 
 let ``Verse one - the house that jack built`` () =
     let expected = ["This is the house that Jack built."]

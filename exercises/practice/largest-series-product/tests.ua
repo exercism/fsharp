@@ -1,6 +1,4 @@
-module LargestSeriesProductTests
-
-
+~ "SOLUTION" ~ LargestSeriesProduct
 
 let ``Finds the largest product if span equals length`` () =
     let digits = "29"

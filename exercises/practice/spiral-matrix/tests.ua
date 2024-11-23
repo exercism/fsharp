@@ -1,6 +1,4 @@
-module SpiralMatrixTests
-
-
+~ "SOLUTION" ~ SpiralMatrix
 
 let ``Empty spiral`` () =
     spiralMatrix 0 |> should be Empty

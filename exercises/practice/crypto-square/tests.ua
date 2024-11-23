@@ -1,6 +1,4 @@
-module CryptoSquareTests
-
-
+~ "SOLUTION" ~ CryptoSquare
 
 let ``Empty plaintext results in an empty ciphertext`` () =
     ciphertext "" |> should equal ""

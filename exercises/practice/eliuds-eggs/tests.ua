@@ -1,6 +1,4 @@
-module EliudsEggsTests
-
-
+~ "SOLUTION" ~ EliudsEggs
 
 let ``0 eggs`` () =
     eggCount 0 |> should equal 0

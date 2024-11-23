@@ -1,6 +1,4 @@
-module AtbashCipherTests
-
-
+~ "SOLUTION" ~ AtbashCipher
 
 let ``Encode yes`` () =
     encode "yes" |> should equal "bvh"

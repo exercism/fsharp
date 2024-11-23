@@ -1,6 +1,4 @@
-module StateOfTicTacToeTests
-
-
+~ "SOLUTION" ~ StateOfTicTacToe
 
 let ``Finished game where X won via left column victory`` () =
     let board = 

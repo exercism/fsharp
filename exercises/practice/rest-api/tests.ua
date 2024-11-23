@@ -1,6 +1,4 @@
-module RestApiTests
-
-
+~ "SOLUTION" ~ RestApi
 
 let ``No users`` () =
     let database = """{"users":[]}"""

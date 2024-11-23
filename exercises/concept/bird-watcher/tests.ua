@@ -1,6 +1,4 @@
-module BirdWatcherTests
-
-
+~ "SOLUTION" ~ BirdWatcher
 
 let ``Last week`` () =
     lastWeek |> should equal [| 0; 2; 5; 3; 7; 8; 4 |]

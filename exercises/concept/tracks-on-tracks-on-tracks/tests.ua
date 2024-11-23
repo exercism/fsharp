@@ -1,6 +1,4 @@
-module TracksOnTracksOnTracksTests
-
-
+~ "SOLUTION" ~ TracksOnTracksOnTracks
 
 let ``New list``() =
     let expected: string list = []

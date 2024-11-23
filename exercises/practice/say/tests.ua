@@ -1,6 +1,4 @@
-module SayTests
-
-
+~ "SOLUTION" ~ Say
 
 let ``Zero`` () =
     say 0L |> should equal (Some "zero")

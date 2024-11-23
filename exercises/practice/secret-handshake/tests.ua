@@ -1,6 +1,4 @@
-module SecretHandshakeTests
-
-
+~ "SOLUTION" ~ SecretHandshake
 
 let ``Wink for 1`` () =
     commands 1 |> should equal ["wink"]

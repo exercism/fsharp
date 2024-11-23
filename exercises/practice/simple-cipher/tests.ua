@@ -1,6 +1,4 @@
-module SimpleCipherTests
-
-
+~ "SOLUTION" ~ SimpleCipher
 
 let ``Random key cipher - Can encode`` () =
     let sut = SimpleCipher()

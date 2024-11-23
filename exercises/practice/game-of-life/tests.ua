@@ -1,6 +1,4 @@
-module GameOfLifeTests
-
-
+~ "SOLUTION" ~ GameOfLife
 
 let ``Empty matrix`` () =
     let matrix: int[,] = array2D []

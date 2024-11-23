@@ -1,6 +1,4 @@
-module ReverseStringTests
-
-
+~ "SOLUTION" ~ ReverseString
 
 let ``An empty string`` () =
     reverse "" |> should equal ""

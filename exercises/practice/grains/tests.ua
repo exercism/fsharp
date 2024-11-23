@@ -1,6 +1,4 @@
-module GrainsTests
-
-
+~ "SOLUTION" ~ Grains
 
 let ``Grains on square 1`` () =
     let expected: Result<uint64,string> = Ok 1UL

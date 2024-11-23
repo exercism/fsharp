@@ -1,6 +1,4 @@
-module WordyTests
-
-
+~ "SOLUTION" ~ Wordy
 
 let ``Just a number`` () =
     answer "What is 5?" |> should equal (Some 5)

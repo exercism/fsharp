@@ -1,6 +1,4 @@
-module PokerTests
-
-
+~ "SOLUTION" ~ Poker
 
 let ``Single hand always wins`` () =
     let hands = ["4S 5S 7H 8D JC"]

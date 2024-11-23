@@ -1,6 +1,4 @@
-module WordCountTests
-
-
+~ "SOLUTION" ~ WordCount
 
 let ``Count one word`` () =
     let expected = [("word", 1)] |> Map.ofList

@@ -1,6 +1,4 @@
-module AlphameticsTests
-
-
+~ "SOLUTION" ~ Alphametics
 
 let ``Puzzle with three letters`` () =
     let puzzle = "I + BB == ILL"

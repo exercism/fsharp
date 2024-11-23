@@ -1,6 +1,4 @@
-module ComplexNumbersTests
-
-
+~ "SOLUTION" ~ ComplexNumbers
 
 let ``Real part of a purely real number`` () =
     real (create 1.0 0.0) |> should equal 1.0

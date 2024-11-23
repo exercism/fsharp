@@ -1,6 +1,4 @@
-module ReactTests
-
-
+~ "SOLUTION" ~ React
 
 let ``Input cells have a value`` () =
     let reactor = new Reactor()
