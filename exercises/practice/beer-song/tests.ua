@@ -27,7 +27,7 @@ expected =
 # Verse with 0 bottles
 expected = 
         [ "No more bottles of beer on the wall, no more bottles of beer.";
-          "Go to the store and buy some more, 99 bottles of beer on the wall." ]
+          "Go to the store and buy more, 99 bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 0 1
 
 # First two verses
@@ -48,7 +48,7 @@ expected =
           "Take it down and pass it around, no more bottles of beer on the wall.";
           "";
           "No more bottles of beer on the wall, no more bottles of beer.";
-          "Go to the store and buy some more, 99 bottles of beer on the wall." ]
+          "Go to the store and buy more, 99 bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 2 3
 
 # All verses
@@ -351,6 +351,6 @@ expected =
           "Take it down and pass it around, no more bottles of beer on the wall.";
           "";
           "No more bottles of beer on the wall, no more bottles of beer.";
-          "Go to the store and buy some more, 99 bottles of beer on the wall." ]
+          "Go to the store and buy more, 99 bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 99 100
 

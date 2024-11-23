@@ -24,7 +24,7 @@
 # Factors not relatively prime
 ⍤⤙≍ 30 sum [4 6] 15
 
-# Some pairs of factors relatively prime and some not
+# pairs of factors relatively prime and not
 ⍤⤙≍ 4419 sum [5 6 8] 150
 
 # One factor is a multiple of another

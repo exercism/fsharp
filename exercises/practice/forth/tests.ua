@@ -1,15 +1,15 @@
 ~ "forth.ua" ~ Forth
 
 # Parsing and numbers - numbers just get pushed onto the stack
-expected = Some [1 2 3 4 5]
+expected = [1 2 3 4 5]
 ⍤⤙≍ expected evaluate ["1 2 3 4 5"]
 
 # Parsing and numbers - pushes negative numbers onto the stack
-expected = Some [-1 -2 -3 -4 -5]
+expected = [-1 -2 -3 -4 -5]
 ⍤⤙≍ expected evaluate ["-1 -2 -3 -4 -5"]
 
 # Addition - can add two numbers
-expected = Some [3]
+expected = [3]
 ⍤⤙≍ expected evaluate ["1 2 +"]
 
 # Addition - errors if there is nothing on the stack
@@ -19,7 +19,7 @@ expected = Some [3]
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["1 +"])
 
 # Subtraction - can subtract two numbers
-expected = Some [-1]
+expected = [-1]
 ⍤⤙≍ expected evaluate ["3 4 -"]
 
 # Subtraction - errors if there is nothing on the stack
@@ -29,7 +29,7 @@ expected = Some [-1]
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["1 -"])
 
 # Multiplication - can multiply two numbers
-expected = Some [8]
+expected = [8]
 ⍤⤙≍ expected evaluate ["2 4 *"]
 
 # Multiplication - errors if there is nothing on the stack
@@ -39,11 +39,11 @@ expected = Some [8]
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["1 *"])
 
 # Division - can divide two numbers
-expected = Some [4]
+expected = [4]
 ⍤⤙≍ expected evaluate ["12 3 /"]
 
 # Division - performs integer division
-expected = Some [2]
+expected = [2]
 ⍤⤙≍ expected evaluate ["8 3 /"]
 
 # Division - errors if dividing by zero
@@ -56,41 +56,41 @@ expected = Some [2]
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["1 /"])
 
 # Combined arithmetic - addition and subtraction
-expected = Some [-1]
+expected = [-1]
 ⍤⤙≍ expected evaluate ["1 2 + 4 -"]
 
 # Combined arithmetic - multiplication and division
-expected = Some [2]
+expected = [2]
 ⍤⤙≍ expected evaluate ["2 4 * 3 /"]
 
 # Dup - copies a value on the stack
-expected = Some [1 1]
+expected = [1 1]
 ⍤⤙≍ expected evaluate ["1 dup"]
 
 # Dup - copies the top value on the stack
-expected = Some [1 2 2]
+expected = [1 2 2]
 ⍤⤙≍ expected evaluate ["1 2 dup"]
 
 # Dup - errors if there is nothing on the stack
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["dup"])
 
 # Drop - removes the top value on the stack if it is the only one
-expected: int list option = Some []
+expected: int list option = []
 ⍤⤙≍ expected evaluate ["1 drop"]
 
 # Drop - removes the top value on the stack if it is not the only one
-expected = Some [1]
+expected = [1]
 ⍤⤙≍ expected evaluate ["1 2 drop"]
 
 # Drop - errors if there is nothing on the stack
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["drop"])
 
 # Swap - swaps the top two values on the stack if they are the only ones
-expected = Some [2 1]
+expected = [2 1]
 ⍤⤙≍ expected evaluate ["1 2 swap"]
 
 # Swap - swaps the top two values on the stack if they are not the only ones
-expected = Some [1 3 2]
+expected = [1 3 2]
 ⍤⤙≍ expected evaluate ["1 2 3 swap"]
 
 # Swap - errors if there is nothing on the stack
@@ -100,11 +100,11 @@ expected = Some [1 3 2]
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["1 swap"])
 
 # Over - copies the second element if there are only two
-expected = Some [1 2 1]
+expected = [1 2 1]
 ⍤⤙≍ expected evaluate ["1 2 over"]
 
 # Over - copies the second element if there are more than two
-expected = Some [1 2 3 2]
+expected = [1 2 3 2]
 ⍤⤙≍ expected evaluate ["1 2 3 over"]
 
 # Over - errors if there is nothing on the stack
@@ -114,31 +114,31 @@ expected = Some [1 2 3 2]
 ⍤⤙≍ "TODO: insert error message" ⍣(evaluate ["1 over"])
 
 # User-defined words - can consist of built-in words
-expected = Some [1 1 1]
+expected = [1 1 1]
 ⍤⤙≍ expected evaluate [": dup-twice dup dup ;" "1 dup-twice"]
 
 # User-defined words - execute in the right order
-expected = Some [1 2 3]
+expected = [1 2 3]
 ⍤⤙≍ expected evaluate [": countup 1 2 3 ;" "countup"]
 
 # User-defined words - can override other user-defined words
-expected = Some [1 1 1]
+expected = [1 1 1]
 ⍤⤙≍ expected evaluate [": foo dup ;" ": foo dup dup ;" "1 foo"]
 
 # User-defined words - can override built-in words
-expected = Some [1 1]
+expected = [1 1]
 ⍤⤙≍ expected evaluate [": swap dup ;" "1 swap"]
 
 # User-defined words - can override built-in operators
-expected = Some [12]
+expected = [12]
 ⍤⤙≍ expected evaluate [": + * ;" "3 4 +"]
 
 # User-defined words - can use different words with the same name
-expected = Some [5 6]
+expected = [5 6]
 ⍤⤙≍ expected evaluate [": foo 5 ;" ": bar foo ;" ": foo 6 ;" "bar foo"]
 
 # User-defined words - can define word that uses word with the same name
-expected = Some [11]
+expected = [11]
 ⍤⤙≍ expected evaluate [": foo 10 ;" ": foo foo 1 + ;" "foo"]
 
 # User-defined words - cannot redefine non-negative numbers
@@ -155,26 +155,26 @@ expected = Some [11]
 ⍤⤙≍ [2] evaluate ["1 1 +"]
 
 # Case-insensitivity - DUP is case-insensitive
-expected = Some [1 1 1 1]
+expected = [1 1 1 1]
 ⍤⤙≍ expected evaluate ["1 DUP Dup dup"]
 
 # Case-insensitivity - DROP is case-insensitive
-expected = Some [1]
+expected = [1]
 ⍤⤙≍ expected evaluate ["1 2 3 4 DROP Drop drop"]
 
 # Case-insensitivity - SWAP is case-insensitive
-expected = Some [2 3 4 1]
+expected = [2 3 4 1]
 ⍤⤙≍ expected evaluate ["1 2 SWAP 3 Swap 4 swap"]
 
 # Case-insensitivity - OVER is case-insensitive
-expected = Some [1 2 1 2 1]
+expected = [1 2 1 2 1]
 ⍤⤙≍ expected evaluate ["1 2 OVER Over over"]
 
 # Case-insensitivity - user-defined words are case-insensitive
-expected = Some [1 1 1 1]
+expected = [1 1 1 1]
 ⍤⤙≍ expected evaluate [": foo dup ;" "1 FOO Foo foo"]
 
 # Case-insensitivity - definitions are case-insensitive
-expected = Some [1 1 1 1]
+expected = [1 1 1 1]
 ⍤⤙≍ expected evaluate [": SWAP DUP Dup dup ;" "1 swap"]
 

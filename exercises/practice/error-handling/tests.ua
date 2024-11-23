@@ -16,13 +16,13 @@ mutable disposed = false
     (fun () -> handleErrorByThrowingException() |> ignore) |> should throw typeof<Exception>
 
 // A better approach than exceptions is to use the Option<'T> discriminated union. 
-// If the function is successful, Some x is returned (with x being the value).
+// If the function is successful, x is returned (with x being the value).
 // Upon failure, None is returned. The caller can then pattern match on the
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
 # Returning Option<'T>
 successResult = handleErrorByReturningOption "1"
-⍤⤙≍ <| Some 1 successResult
+⍤⤙≍ <| 1 successResult
     
 failureResult = handleErrorByReturningOption "a"
 ⍤⤙≍ "TODO: insert error message" ⍣(failureResult)

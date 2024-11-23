@@ -40,7 +40,7 @@ game = createGame "foobar"
 states = statesObservable game
 
 mutable lastState = None
-    states.Add(fun state -> lastState <- Some state) |> ignore
+    states.Add(fun state -> lastState <- state) |> ignore
 
     startGame game |> ignore
 
@@ -59,7 +59,7 @@ game = createGame "foobar"
 states = statesObservable game
 
 mutable lastState = None
-    states.Add(fun state -> lastState <- Some state) |> ignore
+    states.Add(fun state -> lastState <- state) |> ignore
 
     startGame game |> ignore
 
@@ -78,7 +78,7 @@ game = createGame "hello"
 states = statesObservable game
 
 mutable lastState = None
-    states.Add(fun state -> lastState <- Some state) |> ignore
+    states.Add(fun state -> lastState <- state) |> ignore
 
     startGame game |> ignore
 

@@ -1,6 +1,6 @@
 ~ "zipper.ua" ~ Zipper
 
-subTree value left right = Some (tree value left right)
+subTree value left right = (tree value left right)
 leaf value = subTree value None None
 
 # Data is retained

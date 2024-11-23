@@ -62,12 +62,12 @@ freqs = frequency ["aä"]
 
 # All three anthems, together
 freqs = frequency [odeAnDieFreude wilhelmus starSpangledBanner]
-⍤⤙≍ <| Some 49 Map.tryFind 'a' freqs
-⍤⤙≍ <| Some 56 Map.tryFind 't' freqs
-⍤⤙≍ <| Some 34 Map.tryFind 'o' freqs
+⍤⤙≍ <| 49 Map.tryFind 'a' freqs
+⍤⤙≍ <| 56 Map.tryFind 't' freqs
+⍤⤙≍ <| 34 Map.tryFind 'o' freqs
 
 # Can handle large texts
 freqs = frequency (List.replicate 1000 [odeAnDieFreude wilhelmus starSpangledBanner] |> List.concat)
-⍤⤙≍ <| Some 49000 Map.tryFind 'a' freqs
-⍤⤙≍ <| Some 56000 Map.tryFind 't' freqs
-⍤⤙≍ <| Some 34000 Map.tryFind 'o' freqs
+⍤⤙≍ <| 49000 Map.tryFind 'a' freqs
+⍤⤙≍ <| 56000 Map.tryFind 't' freqs
+⍤⤙≍ <| 34000 Map.tryFind 'o' freqs

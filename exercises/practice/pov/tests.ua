@@ -6,7 +6,7 @@ right =
         |> List.sortBy (fun x -> x.value)
         |> List.collect graphToList
     [graph.value] @ right
-mapToList graph = match graph with | Some x -> graphToList x | None -> []
+mapToList graph = match graph with | x -> graphToList x | None -> []
 
 # Results in the same tree if the input tree is a singleton
 tree = mkGraph "x" []
@@ -48,23 +48,23 @@ tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [] mkGraph "kid-1" []] mkG
 
 # Can find path to parent
 tree = mkGraph "parent" [mkGraph "x" [] mkGraph "sibling" []]
-⍤⤙≍ <| Some ["x" "parent"] tracePathBetween "x" "parent" tree
+⍤⤙≍ <| ["x" "parent"] tracePathBetween "x" "parent" tree
 
 # Can find path to sibling
 tree = mkGraph "parent" [mkGraph "a" [] mkGraph "x" [] mkGraph "b" [] mkGraph "c" []]
-⍤⤙≍ <| Some ["x" "parent" "b"] tracePathBetween "x" "b" tree
+⍤⤙≍ <| ["x" "parent" "b"] tracePathBetween "x" "b" tree
 
 # Can find path to cousin
 tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [] mkGraph "kid-1" []] mkGraph "sibling-0" [] mkGraph "sibling-1" []] mkGraph "uncle" [mkGraph "cousin-0" [] mkGraph "cousin-1" []]]
-⍤⤙≍ <| Some ["x" "parent" "grandparent" "uncle" "cousin-1"] tracePathBetween "x" "cousin-1" tree
+⍤⤙≍ <| ["x" "parent" "grandparent" "uncle" "cousin-1"] tracePathBetween "x" "cousin-1" tree
 
 # Can find path not involving root
 tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [] mkGraph "sibling-0" [] mkGraph "sibling-1" []]]
-⍤⤙≍ <| Some ["x" "parent" "sibling-1"] tracePathBetween "x" "sibling-1" tree
+⍤⤙≍ <| ["x" "parent" "sibling-1"] tracePathBetween "x" "sibling-1" tree
 
 # Can find path from nodes other than x
 tree = mkGraph "parent" [mkGraph "a" [] mkGraph "x" [] mkGraph "b" [] mkGraph "c" []]
-⍤⤙≍ <| Some ["a" "parent" "c"] tracePathBetween "a" "c" tree
+⍤⤙≍ <| ["a" "parent" "c"] tracePathBetween "a" "c" tree
 
 # Errors if destination does not exist
 tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [] mkGraph "kid-1" []] mkGraph "sibling-0" [] mkGraph "sibling-1" []]
