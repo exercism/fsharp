@@ -1,74 +1,74 @@
 ~ "phone-number.ua" ~ PhoneNumber
 
-let ``Cleans the number`` () =
+# Cleans the number
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "(223) 456-7890" |> should equal expected
 
-let ``Cleans numbers with dots`` () =
+# Cleans numbers with dots
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "223.456.7890" |> should equal expected
 
-let ``Cleans numbers with multiple spaces`` () =
+# Cleans numbers with multiple spaces
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "223 456   7890   " |> should equal expected
 
-let ``Invalid when 9 digits`` () =
+# Invalid when 9 digits
     let expected: Result<uint64,string> = Error "incorrect number of digits"
     clean "123456789" |> should equal expected
 
-let ``Invalid when 11 digits does not start with a 1`` () =
+# Invalid when 11 digits does not start with a 1
     let expected: Result<uint64,string> = Error "11 digits must start with 1"
     clean "22234567890" |> should equal expected
 
-let ``Valid when 11 digits and starting with 1`` () =
+# Valid when 11 digits and starting with 1
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "12234567890" |> should equal expected
 
-let ``Valid when 11 digits and starting with 1 even with punctuation`` () =
+# Valid when 11 digits and starting with 1 even with punctuation
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "+1 (223) 456-7890" |> should equal expected
 
-let ``Invalid when more than 11 digits`` () =
+# Invalid when more than 11 digits
     let expected: Result<uint64,string> = Error "more than 11 digits"
     clean "321234567890" |> should equal expected
 
-let ``Invalid with letters`` () =
+# Invalid with letters
     let expected: Result<uint64,string> = Error "letters not permitted"
     clean "523-abc-7890" |> should equal expected
 
-let ``Invalid with punctuations`` () =
+# Invalid with punctuations
     let expected: Result<uint64,string> = Error "punctuations not permitted"
     clean "523-@:!-7890" |> should equal expected
 
-let ``Invalid if area code starts with 0`` () =
+# Invalid if area code starts with 0
     let expected: Result<uint64,string> = Error "area code cannot start with zero"
     clean "(023) 456-7890" |> should equal expected
 
-let ``Invalid if area code starts with 1`` () =
+# Invalid if area code starts with 1
     let expected: Result<uint64,string> = Error "area code cannot start with one"
     clean "(123) 456-7890" |> should equal expected
 
-let ``Invalid if exchange code starts with 0`` () =
+# Invalid if exchange code starts with 0
     let expected: Result<uint64,string> = Error "exchange code cannot start with zero"
     clean "(223) 056-7890" |> should equal expected
 
-let ``Invalid if exchange code starts with 1`` () =
+# Invalid if exchange code starts with 1
     let expected: Result<uint64,string> = Error "exchange code cannot start with one"
     clean "(223) 156-7890" |> should equal expected
 
-let ``Invalid if area code starts with 0 on valid 11-digit number`` () =
+# Invalid if area code starts with 0 on valid 11-digit number
     let expected: Result<uint64,string> = Error "area code cannot start with zero"
     clean "1 (023) 456-7890" |> should equal expected
 
-let ``Invalid if area code starts with 1 on valid 11-digit number`` () =
+# Invalid if area code starts with 1 on valid 11-digit number
     let expected: Result<uint64,string> = Error "area code cannot start with one"
     clean "1 (123) 456-7890" |> should equal expected
 
-let ``Invalid if exchange code starts with 0 on valid 11-digit number`` () =
+# Invalid if exchange code starts with 0 on valid 11-digit number
     let expected: Result<uint64,string> = Error "exchange code cannot start with zero"
     clean "1 (223) 056-7890" |> should equal expected
 
-let ``Invalid if exchange code starts with 1 on valid 11-digit number`` () =
+# Invalid if exchange code starts with 1 on valid 11-digit number
     let expected: Result<uint64,string> = Error "exchange code cannot start with one"
     clean "1 (223) 156-7890" |> should equal expected
 

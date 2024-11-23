@@ -1,14 +1,14 @@
 ~ "knapsack.ua" ~ Knapsack
 
-let ``No items`` () =
+# No items
     let items = []
     maximumValue items 100 |> should equal 0
 
-let ``One item, too heavy`` () =
+# One item, too heavy
     let items = [{ weight = 100; value = 1 }]
     maximumValue items 10 |> should equal 0
 
-let ``Five items (cannot be greedy by weight)`` () =
+# Five items (cannot be greedy by weight)
     let items = 
         [ { weight = 2; value = 5 };
           { weight = 2; value = 5 };
@@ -17,7 +17,7 @@ let ``Five items (cannot be greedy by weight)`` () =
           { weight = 10; value = 21 } ]
     maximumValue items 10 |> should equal 21
 
-let ``Five items (cannot be greedy by value)`` () =
+# Five items (cannot be greedy by value)
     let items = 
         [ { weight = 2; value = 20 };
           { weight = 2; value = 20 };
@@ -26,7 +26,7 @@ let ``Five items (cannot be greedy by value)`` () =
           { weight = 10; value = 50 } ]
     maximumValue items 10 |> should equal 80
 
-let ``Example knapsack`` () =
+# Example knapsack
     let items = 
         [ { weight = 5; value = 10 };
           { weight = 4; value = 40 };
@@ -34,7 +34,7 @@ let ``Example knapsack`` () =
           { weight = 4; value = 50 } ]
     maximumValue items 10 |> should equal 90
 
-let ``8 items`` () =
+# 8 items
     let items = 
         [ { weight = 25; value = 350 };
           { weight = 35; value = 400 };
@@ -46,7 +46,7 @@ let ``8 items`` () =
           { weight = 2; value = 5 } ]
     maximumValue items 104 |> should equal 900
 
-let ``15 items`` () =
+# 15 items
     let items = 
         [ { weight = 70; value = 135 };
           { weight = 73; value = 139 };

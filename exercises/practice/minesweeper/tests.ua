@@ -1,16 +1,16 @@
 ~ "minesweeper.ua" ~ Minesweeper
 
-let ``No rows`` () =
+# No rows
     let minefield: string list = []
     let expected: string list = []
     annotate minefield |> should equal expected
 
-let ``No columns`` () =
+# No columns
     let minefield = [""]
     let expected = [""]
     annotate minefield |> should equal expected
 
-let ``No mines`` () =
+# No mines
     let minefield = 
         [ "   ";
           "   ";
@@ -21,7 +21,7 @@ let ``No mines`` () =
           "   " ]
     annotate minefield |> should equal expected
 
-let ``Minefield with only mines`` () =
+# Minefield with only mines
     let minefield = 
         [ "***";
           "***";
@@ -32,7 +32,7 @@ let ``Minefield with only mines`` () =
           "***" ]
     annotate minefield |> should equal expected
 
-let ``Mine surrounded by spaces`` () =
+# Mine surrounded by spaces
     let minefield = 
         [ "   ";
           " * ";
@@ -43,7 +43,7 @@ let ``Mine surrounded by spaces`` () =
           "111" ]
     annotate minefield |> should equal expected
 
-let ``Space surrounded by mines`` () =
+# Space surrounded by mines
     let minefield = 
         [ "***";
           "* *";
@@ -54,17 +54,17 @@ let ``Space surrounded by mines`` () =
           "***" ]
     annotate minefield |> should equal expected
 
-let ``Horizontal line`` () =
+# Horizontal line
     let minefield = [" * * "]
     let expected = ["1*2*1"]
     annotate minefield |> should equal expected
 
-let ``Horizontal line, mines at edges`` () =
+# Horizontal line, mines at edges
     let minefield = ["*   *"]
     let expected = ["*1 1*"]
     annotate minefield |> should equal expected
 
-let ``Vertical line`` () =
+# Vertical line
     let minefield = 
         [ " ";
           "*";
@@ -79,7 +79,7 @@ let ``Vertical line`` () =
           "1" ]
     annotate minefield |> should equal expected
 
-let ``Vertical line, mines at edges`` () =
+# Vertical line, mines at edges
     let minefield = 
         [ "*";
           " ";
@@ -94,7 +94,7 @@ let ``Vertical line, mines at edges`` () =
           "*" ]
     annotate minefield |> should equal expected
 
-let ``Cross`` () =
+# Cross
     let minefield = 
         [ "  *  ";
           "  *  ";
@@ -109,7 +109,7 @@ let ``Cross`` () =
           " 2*2 " ]
     annotate minefield |> should equal expected
 
-let ``Large minefield`` () =
+# Large minefield
     let minefield = 
         [ " *  * ";
           "  *   ";

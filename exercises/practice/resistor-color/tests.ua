@@ -1,14 +1,14 @@
 ~ "resistor-color.ua" ~ ResistorColor
 
-let ``Black`` () =
+# Black
     colorCode "black" |> should equal 0
 
-let ``White`` () =
+# White
     colorCode "white" |> should equal 9
 
-let ``Orange`` () =
+# Orange
     colorCode "orange" |> should equal 3
 
-let ``Colors`` () =
+# Colors
     colors |> should equal ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"]
 

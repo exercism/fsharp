@@ -4,7 +4,7 @@ module LedgerTest
 
 
 
-let ``Empty ledger`` () =
+# Empty ledger
     let currency = "USD"
     let locale = "en-US"
     let entries = []
@@ -13,7 +13,7 @@ let ``Empty ledger`` () =
 
     formatLedger currency locale entries |> should equal expected
 
-let ``One entry`` () =
+# One entry
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -26,7 +26,7 @@ let ``One entry`` () =
 
     formatLedger currency locale entries |> should equal expected
 
-let ``Credit and debit`` () =
+# Credit and debit
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -41,7 +41,7 @@ let ``Credit and debit`` () =
 
     formatLedger currency locale entries |> should equal expected
  
-let ``Multiple entries on same date ordered by description`` () =
+# Multiple entries on same date ordered by description
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -56,7 +56,7 @@ let ``Multiple entries on same date ordered by description`` () =
 
     formatLedger currency locale entries |> should equal expected
    
-let ``Final order tie breaker is change`` () =
+# Final order tie breaker is change
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -73,7 +73,7 @@ let ``Final order tie breaker is change`` () =
 
     formatLedger currency locale entries |> should equal expected
   
-let ``Overlong descriptions`` () =
+# Overlong descriptions
     let currency = "USD"
     let locale = "en-US"
     let entries =
@@ -86,7 +86,7 @@ let ``Overlong descriptions`` () =
 
     formatLedger currency locale entries |> should equal expected
   
-let ``Euros`` () =
+# Euros
     let currency = "EUR"
     let locale = "en-US"
     let entries =
@@ -99,7 +99,7 @@ let ``Euros`` () =
 
     formatLedger currency locale entries |> should equal expected
    
-let ``Dutch locale`` () =
+# Dutch locale
     let currency = "USD"
     let locale = "nl-NL"
     let entries =
@@ -112,7 +112,7 @@ let ``Dutch locale`` () =
 
     formatLedger currency locale entries |> should equal expected
  
-let ``Dutch negative number with 3 digits before decimal point`` () =
+# Dutch negative number with 3 digits before decimal point
     let currency = "USD"
     let locale = "nl-NL"
     let entries =
@@ -125,7 +125,7 @@ let ``Dutch negative number with 3 digits before decimal point`` () =
 
     formatLedger currency locale entries |> should equal expected
    
-let ``American negative number with 3 digits before decimal point`` () =
+# American negative number with 3 digits before decimal point
     let currency = "USD"
     let locale = "en-US"
     let entries =

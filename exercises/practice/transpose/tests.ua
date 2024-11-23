@@ -1,25 +1,25 @@
 ~ "transpose.ua" ~ Transpose
 
-let ``Empty string`` () =
+# Empty string
     let lines: string list = []
     let expected: string list = []
     transpose lines |> should equal expected
 
-let ``Two characters in a row`` () =
+# Two characters in a row
     let lines = ["A1"]
     let expected = 
         [ "A";
           "1" ]
     transpose lines |> should equal expected
 
-let ``Two characters in a column`` () =
+# Two characters in a column
     let lines = 
         [ "A";
           "1" ]
     let expected = ["A1"]
     transpose lines |> should equal expected
 
-let ``Simple`` () =
+# Simple
     let lines = 
         [ "ABC";
           "123" ]
@@ -29,7 +29,7 @@ let ``Simple`` () =
           "C3" ]
     transpose lines |> should equal expected
 
-let ``Single line`` () =
+# Single line
     let lines = ["Single line."]
     let expected = 
         [ "S";
@@ -46,7 +46,7 @@ let ``Single line`` () =
           "." ]
     transpose lines |> should equal expected
 
-let ``First line longer than second line`` () =
+# First line longer than second line
     let lines = 
         [ "The fourth line.";
           "The fifth line." ]
@@ -69,7 +69,7 @@ let ``First line longer than second line`` () =
           "." ]
     transpose lines |> should equal expected
 
-let ``Second line longer than first line`` () =
+# Second line longer than first line
     let lines = 
         [ "The first line.";
           "The second line." ]
@@ -92,7 +92,7 @@ let ``Second line longer than first line`` () =
           " ." ]
     transpose lines |> should equal expected
 
-let ``Mixed line length`` () =
+# Mixed line length
     let lines = 
         [ "The longest line.";
           "A long line.";
@@ -118,7 +118,7 @@ let ``Mixed line length`` () =
           "." ]
     transpose lines |> should equal expected
 
-let ``Square`` () =
+# Square
     let lines = 
         [ "HEART";
           "EMBER";
@@ -133,7 +133,7 @@ let ``Square`` () =
           "TREND" ]
     transpose lines |> should equal expected
 
-let ``Rectangle`` () =
+# Rectangle
     let lines = 
         [ "FRACTURE";
           "OUTLINED";
@@ -150,7 +150,7 @@ let ``Rectangle`` () =
           "EDGE" ]
     transpose lines |> should equal expected
 
-let ``Triangle`` () =
+# Triangle
     let lines = 
         [ "T";
           "EE";
@@ -167,7 +167,7 @@ let ``Triangle`` () =
           "     R" ]
     transpose lines |> should equal expected
 
-let ``Jagged triangle`` () =
+# Jagged triangle
     let lines = 
         [ "11";
           "2";

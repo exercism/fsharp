@@ -1,11 +1,11 @@
 ~ "tournament.ua" ~ Tournament
 
-let ``Just the header if no input`` () =
+# Just the header if no input
     let rows = []
     let expected = ["Team                           | MP |  W |  D |  L |  P"]
     tally rows |> should equal expected
 
-let ``A win is three points, a loss is zero points`` () =
+# A win is three points, a loss is zero points
     let rows = ["Allegoric Alaskans;Blithering Badgers;win"]
     let expected = 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -13,7 +13,7 @@ let ``A win is three points, a loss is zero points`` () =
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-let ``A win can also be expressed as a loss`` () =
+# A win can also be expressed as a loss
     let rows = ["Blithering Badgers;Allegoric Alaskans;loss"]
     let expected = 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -21,7 +21,7 @@ let ``A win can also be expressed as a loss`` () =
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-let ``A different team can win`` () =
+# A different team can win
     let rows = ["Blithering Badgers;Allegoric Alaskans;win"]
     let expected = 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -29,7 +29,7 @@ let ``A different team can win`` () =
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-let ``A draw is one point each`` () =
+# A draw is one point each
     let rows = ["Allegoric Alaskans;Blithering Badgers;draw"]
     let expected = 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -37,7 +37,7 @@ let ``A draw is one point each`` () =
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
     tally rows |> should equal expected
 
-let ``There can be more than one match`` () =
+# There can be more than one match
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;win";
           "Allegoric Alaskans;Blithering Badgers;win" ]
@@ -47,7 +47,7 @@ let ``There can be more than one match`` () =
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
     tally rows |> should equal expected
 
-let ``There can be more than one winner`` () =
+# There can be more than one winner
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;loss";
           "Allegoric Alaskans;Blithering Badgers;win" ]
@@ -57,7 +57,7 @@ let ``There can be more than one winner`` () =
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
     tally rows |> should equal expected
 
-let ``There can be more than two teams`` () =
+# There can be more than two teams
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;win";
           "Blithering Badgers;Courageous Californians;win";
@@ -69,7 +69,7 @@ let ``There can be more than two teams`` () =
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
     tally rows |> should equal expected
 
-let ``Typical input`` () =
+# Typical input
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;win";
           "Devastating Donkeys;Courageous Californians;draw";
@@ -85,7 +85,7 @@ let ``Typical input`` () =
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
     tally rows |> should equal expected
 
-let ``Incomplete competition (not all pairs have played)`` () =
+# Incomplete competition (not all pairs have played)
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;loss";
           "Devastating Donkeys;Allegoric Alaskans;loss";
@@ -99,7 +99,7 @@ let ``Incomplete competition (not all pairs have played)`` () =
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-let ``Ties broken alphabetically`` () =
+# Ties broken alphabetically
     let rows = 
         [ "Courageous Californians;Devastating Donkeys;win";
           "Allegoric Alaskans;Blithering Badgers;win";
@@ -115,7 +115,7 @@ let ``Ties broken alphabetically`` () =
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
     tally rows |> should equal expected
 
-let ``Ensure points sorted numerically`` () =
+# Ensure points sorted numerically
     let rows = 
         [ "Devastating Donkeys;Blithering Badgers;win";
           "Devastating Donkeys;Blithering Badgers;win";

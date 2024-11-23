@@ -1,16 +1,16 @@
 ~ "grade-school.ua" ~ GradeSchool
 
-let ``Roster is empty when no student is added`` () =
+# Roster is empty when no student is added
     let school = empty
     roster school |> should be Empty
 
-let ``Student is added to the roster`` () =
+# Student is added to the roster
     let school = 
         empty
         |> add "Aimee" 2
     roster school |> should equal ["Aimee"]
 
-let ``Multiple students in the same grade are added to the roster`` () =
+# Multiple students in the same grade are added to the roster
     let school = 
         empty
         |> add "Blair" 2
@@ -18,7 +18,7 @@ let ``Multiple students in the same grade are added to the roster`` () =
         |> add "Paul" 2
     roster school |> should equal ["Blair"; "James"; "Paul"]
 
-let ``Student not added to same grade in the roster more than once`` () =
+# Student not added to same grade in the roster more than once
     let school = 
         empty
         |> add "Blair" 2
@@ -27,14 +27,14 @@ let ``Student not added to same grade in the roster more than once`` () =
         |> add "Paul" 2
     roster school |> should equal ["Blair"; "James"; "Paul"]
 
-let ``Students in multiple grades are added to the roster`` () =
+# Students in multiple grades are added to the roster
     let school = 
         empty
         |> add "Chelsea" 3
         |> add "Logan" 7
     roster school |> should equal ["Chelsea"; "Logan"]
 
-let ``Student not added to multiple grades in the roster`` () =
+# Student not added to multiple grades in the roster
     let school = 
         empty
         |> add "Blair" 2
@@ -43,7 +43,7 @@ let ``Student not added to multiple grades in the roster`` () =
         |> add "Paul" 3
     roster school |> should equal ["Blair"; "James"; "Paul"]
 
-let ``Students are sorted by grades in the roster`` () =
+# Students are sorted by grades in the roster
     let school = 
         empty
         |> add "Jim" 3
@@ -51,7 +51,7 @@ let ``Students are sorted by grades in the roster`` () =
         |> add "Anna" 1
     roster school |> should equal ["Anna"; "Peter"; "Jim"]
 
-let ``Students are sorted by name in the roster`` () =
+# Students are sorted by name in the roster
     let school = 
         empty
         |> add "Peter" 2
@@ -59,7 +59,7 @@ let ``Students are sorted by name in the roster`` () =
         |> add "Alex" 2
     roster school |> should equal ["Alex"; "Peter"; "Zoe"]
 
-let ``Students are sorted by grades and then by name in the roster`` () =
+# Students are sorted by grades and then by name in the roster
     let school = 
         empty
         |> add "Peter" 2
@@ -71,11 +71,11 @@ let ``Students are sorted by grades and then by name in the roster`` () =
         |> add "Charlie" 1
     roster school |> should equal ["Anna"; "Barb"; "Charlie"; "Alex"; "Peter"; "Zoe"; "Jim"]
 
-let ``Grade is empty if no students in the roster`` () =
+# Grade is empty if no students in the roster
     let school = empty
     grade 1 school |> should be Empty
 
-let ``Grade is empty if no students in that grade`` () =
+# Grade is empty if no students in that grade
     let school = 
         empty
         |> add "Peter" 2
@@ -84,7 +84,7 @@ let ``Grade is empty if no students in that grade`` () =
         |> add "Jim" 3
     grade 1 school |> should be Empty
 
-let ``Student not added to same grade more than once`` () =
+# Student not added to same grade more than once
     let school = 
         empty
         |> add "Blair" 2
@@ -93,7 +93,7 @@ let ``Student not added to same grade more than once`` () =
         |> add "Paul" 2
     grade 2 school |> should equal ["Blair"; "James"; "Paul"]
 
-let ``Student not added to multiple grades`` () =
+# Student not added to multiple grades
     let school = 
         empty
         |> add "Blair" 2
@@ -102,7 +102,7 @@ let ``Student not added to multiple grades`` () =
         |> add "Paul" 3
     grade 2 school |> should equal ["Blair"; "James"]
 
-let ``Student not added to other grade for multiple grades`` () =
+# Student not added to other grade for multiple grades
     let school = 
         empty
         |> add "Blair" 2
@@ -111,7 +111,7 @@ let ``Student not added to other grade for multiple grades`` () =
         |> add "Paul" 3
     grade 3 school |> should equal ["Paul"]
 
-let ``Students are sorted by name in a grade`` () =
+# Students are sorted by name in a grade
     let school = 
         empty
         |> add "Franklin" 5

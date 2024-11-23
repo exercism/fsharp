@@ -1,6 +1,6 @@
 ~ "go-counting.ua" ~ GoCounting
 
-let ``Black corner territory on 5x5 board`` () =
+# Black corner territory on 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -11,7 +11,7 @@ let ``Black corner territory on 5x5 board`` () =
     let expected = Option.Some (Owner.Black, [(0, 0); (0, 1); (1, 0)])
     territory board position |> should equal expected
 
-let ``White center territory on 5x5 board`` () =
+# White center territory on 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -22,7 +22,7 @@ let ``White center territory on 5x5 board`` () =
     let expected = Option.Some (Owner.White, [(2, 3)])
     territory board position |> should equal expected
 
-let ``    let board = 
+#     let board = 
         [ "  B  ";
           " B B ";
           "B W B";
@@ -32,7 +32,7 @@ let ``    let board =
     let expected = Option.Some (Owner.None, [(0, 3); (0, 4); (1, 4)])
     territory board position |> should equal expected
 
-let ``A stone and not a territory on 5x5 board`` () =
+# A stone and not a territory on 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -43,7 +43,7 @@ let ``A stone and not a territory on 5x5 board`` () =
     let expected: (Owner * (int * int) list) option = Option.Some (Owner.None, [])
     territory board position |> should equal expected
 
-let ``Invalid because X is too low for 5x5 board`` () =
+# Invalid because X is too low for 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -54,7 +54,7 @@ let ``Invalid because X is too low for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-let ``Invalid because X is too high for 5x5 board`` () =
+# Invalid because X is too high for 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -65,7 +65,7 @@ let ``Invalid because X is too high for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-let ``Invalid because Y is too low for 5x5 board`` () =
+# Invalid because Y is too low for 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -76,7 +76,7 @@ let ``Invalid because Y is too low for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-let ``Invalid because Y is too high for 5x5 board`` () =
+# Invalid because Y is too high for 5x5 board
     let board = 
         [ "  B  ";
           " B B ";
@@ -87,7 +87,7 @@ let ``Invalid because Y is too high for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-let ``One territory is the whole board`` () =
+# One territory is the whole board
     let board = [" "]
     let expected = 
         [ (Owner.Black, []);
@@ -96,7 +96,7 @@ let ``One territory is the whole board`` () =
         |> Map.ofList
     territories board |> should equal expected
 
-let ``Two territory rectangular board`` () =
+# Two territory rectangular board
     let board = 
         [ " BW ";
           " BW " ]
@@ -107,7 +107,7 @@ let ``Two territory rectangular board`` () =
         |> Map.ofList
     territories board |> should equal expected
 
-let ``Two region rectangular board`` () =
+# Two region rectangular board
     let board = [" B "]
     let expected = 
         [ (Owner.Black, [(0, 0); (2, 0)]);

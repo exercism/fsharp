@@ -1,6 +1,6 @@
 ~ "connect.ua" ~ Connect
 
-let ``An empty board has no winner`` () =
+# An empty board has no winner
     let board = 
         [ ". . . . .    ";
           " . . . . .   ";
@@ -9,15 +9,15 @@ let ``An empty board has no winner`` () =
           "    . . . . ." ]
     winner board |> should equal None
 
-let ``X can win on a 1x1 board`` () =
+# X can win on a 1x1 board
     let board = ["X"]
     winner board |> should equal (Some Black)
 
-let ``O can win on a 1x1 board`` () =
+# O can win on a 1x1 board
     let board = ["O"]
     winner board |> should equal (Some White)
 
-let ``Only edges does not make a winner`` () =
+# Only edges does not make a winner
     let board = 
         [ "O O O X   ";
           " X . . X  ";
@@ -25,7 +25,7 @@ let ``Only edges does not make a winner`` () =
           "   X O O O" ]
     winner board |> should equal None
 
-let ``Illegal diagonal does not make a winner`` () =
+# Illegal diagonal does not make a winner
     let board = 
         [ "X O . .    ";
           " O X X X   ";
@@ -34,7 +34,7 @@ let ``Illegal diagonal does not make a winner`` () =
           "    X X O O" ]
     winner board |> should equal None
 
-let ``Nobody wins crossing adjacent angles`` () =
+# Nobody wins crossing adjacent angles
     let board = 
         [ "X . . .    ";
           " . X O .   ";
@@ -43,7 +43,7 @@ let ``Nobody wins crossing adjacent angles`` () =
           "    . . O ." ]
     winner board |> should equal None
 
-let ``X wins crossing from left to right`` () =
+# X wins crossing from left to right
     let board = 
         [ ". O . .    ";
           " O X X X   ";
@@ -52,7 +52,7 @@ let ``X wins crossing from left to right`` () =
           "    . O X ." ]
     winner board |> should equal (Some Black)
 
-let ``O wins crossing from top to bottom`` () =
+# O wins crossing from top to bottom
     let board = 
         [ ". O . .    ";
           " O X X X   ";
@@ -61,7 +61,7 @@ let ``O wins crossing from top to bottom`` () =
           "    . O X ." ]
     winner board |> should equal (Some White)
 
-let ``X wins using a convoluted path`` () =
+# X wins using a convoluted path
     let board = 
         [ ". X X . .    ";
           " X . X . X   ";
@@ -70,7 +70,7 @@ let ``X wins using a convoluted path`` () =
           "    O O O O O" ]
     winner board |> should equal (Some Black)
 
-let ``X wins using a spiral path`` () =
+# X wins using a spiral path
     let board = 
         [ "O X X X X X X X X        ";
           " O X O O O O O O O       ";

@@ -1,5 +1,5 @@
 ~ "hello-world.ua" ~ HelloWorld
 
-let ``Say Hi!`` () =
+# Say Hi!
     hello |> should equal "Hello, World!"
 

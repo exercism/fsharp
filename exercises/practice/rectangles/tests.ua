@@ -1,25 +1,25 @@
 ~ "rectangles.ua" ~ Rectangles
 
-let ``No rows`` () =
+# No rows
     let strings = []
     rectangles strings |> should equal 0
 
-let ``No columns`` () =
+# No columns
     let strings = [""]
     rectangles strings |> should equal 0
 
-let ``No rectangles`` () =
+# No rectangles
     let strings = [" "]
     rectangles strings |> should equal 0
 
-let ``One rectangle`` () =
+# One rectangle
     let strings = 
         [ "+-+";
           "| |";
           "+-+" ]
     rectangles strings |> should equal 1
 
-let ``Two rectangles without shared parts`` () =
+# Two rectangles without shared parts
     let strings = 
         [ "  +-+";
           "  | |";
@@ -28,7 +28,7 @@ let ``Two rectangles without shared parts`` () =
           "+-+  " ]
     rectangles strings |> should equal 2
 
-let ``Five rectangles with shared parts`` () =
+# Five rectangles with shared parts
     let strings = 
         [ "  +-+";
           "  | |";
@@ -37,26 +37,26 @@ let ``Five rectangles with shared parts`` () =
           "+-+-+" ]
     rectangles strings |> should equal 5
 
-let ``Rectangle of height 1 is counted`` () =
+# Rectangle of height 1 is counted
     let strings = 
         [ "+--+";
           "+--+" ]
     rectangles strings |> should equal 1
 
-let ``Rectangle of width 1 is counted`` () =
+# Rectangle of width 1 is counted
     let strings = 
         [ "++";
           "||";
           "++" ]
     rectangles strings |> should equal 1
 
-let ``1x1 square is counted`` () =
+# 1x1 square is counted
     let strings = 
         [ "++";
           "++" ]
     rectangles strings |> should equal 1
 
-let ``Only complete rectangles are counted`` () =
+# Only complete rectangles are counted
     let strings = 
         [ "  +-+";
           "    |";
@@ -65,7 +65,7 @@ let ``Only complete rectangles are counted`` () =
           "+-+-+" ]
     rectangles strings |> should equal 1
 
-let ``Rectangles can be of different sizes`` () =
+# Rectangles can be of different sizes
     let strings = 
         [ "+------+----+";
           "|      |    |";
@@ -74,7 +74,7 @@ let ``Rectangles can be of different sizes`` () =
           "+---+-------+" ]
     rectangles strings |> should equal 3
 
-let ``Corner is required for a rectangle to be complete`` () =
+# Corner is required for a rectangle to be complete
     let strings = 
         [ "+------+----+";
           "|      |    |";
@@ -83,7 +83,7 @@ let ``Corner is required for a rectangle to be complete`` () =
           "+---+-------+" ]
     rectangles strings |> should equal 2
 
-let ``Large input with many rectangles`` () =
+# Large input with many rectangles
     let strings = 
         [ "+---+--+----+";
           "|   +--+----+";
@@ -95,7 +95,7 @@ let ``Large input with many rectangles`` () =
           "          +-+" ]
     rectangles strings |> should equal 60
 
-let ``Rectangles must have four sides`` () =
+# Rectangles must have four sides
     let strings = 
         [ "+-+ +-+";
           "| | | |";

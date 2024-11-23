@@ -1,8 +1,8 @@
 ~ "zebra-puzzle.ua" ~ ZebraPuzzle
 
-let ``Resident who drinks water`` () =
+# Resident who drinks water
     drinksWater |> should equal Norwegian
 
-let ``Resident who owns zebra`` () =
+# Resident who owns zebra
     ownsZebra |> should equal Japanese
 

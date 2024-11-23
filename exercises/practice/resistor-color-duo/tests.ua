@@ -1,23 +1,23 @@
 ~ "resistor-color-duo.ua" ~ ResistorColorDuo
 
-let ``Brown and black`` () =
+# Brown and black
     value ["brown"; "black"] |> should equal 10
 
-let ``Blue and grey`` () =
+# Blue and grey
     value ["blue"; "grey"] |> should equal 68
 
-let ``Yellow and violet`` () =
+# Yellow and violet
     value ["yellow"; "violet"] |> should equal 47
 
-let ``White and red`` () =
+# White and red
     value ["white"; "red"] |> should equal 92
 
-let ``Orange and orange`` () =
+# Orange and orange
     value ["orange"; "orange"] |> should equal 33
 
-let ``Ignore additional colors`` () =
+# Ignore additional colors
     value ["green"; "brown"; "orange"] |> should equal 51
 
-let ``Black and brown, one-digit`` () =
+# Black and brown, one-digit
     value ["black"; "brown"] |> should equal 1
 

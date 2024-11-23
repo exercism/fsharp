@@ -20,14 +20,14 @@ let testPerson =
           place = "Fallmeadow"
           country = "Canada" } }
 
-let ``Set born at street`` () =
+# Set born at street
     Optic.get bornAtStreet testPerson |> should equal "Longway"
 
-let ``Set current street`` () =
+# Set current street
     Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet |> should equal "Middleroad"
 
-let ``Upper case born at street`` () =
+# Upper case born at street
     Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet |> should equal "LONGWAY"
 
-let ``Set birth month`` () =
+# Set birth month
     Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)

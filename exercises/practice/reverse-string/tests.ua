@@ -1,20 +1,20 @@
 ~ "reverse-string.ua" ~ ReverseString
 
-let ``An empty string`` () =
+# An empty string
     reverse "" |> should equal ""
 
-let ``A word`` () =
+# A word
     reverse "robot" |> should equal "tobor"
 
-let ``A capitalized word`` () =
+# A capitalized word
     reverse "Ramen" |> should equal "nemaR"
 
-let ``A sentence with punctuation`` () =
+# A sentence with punctuation
     reverse "I'm hungry!" |> should equal "!yrgnuh m'I"
 
-let ``A palindrome`` () =
+# A palindrome
     reverse "racecar" |> should equal "racecar"
 
-let ``An even-sized word`` () =
+# An even-sized word
     reverse "drawer" |> should equal "reward"
 

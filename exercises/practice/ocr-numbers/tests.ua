@@ -1,6 +1,6 @@
 ~ "ocr-numbers.ua" ~ OcrNumbers
 
-let ``Recognizes 0`` () =
+# Recognizes 0
     let rows = 
         [ " _ ";
           "| |";
@@ -8,7 +8,7 @@ let ``Recognizes 0`` () =
           "   " ]
     convert rows |> should equal (Some "0")
 
-let ``Recognizes 1`` () =
+# Recognizes 1
     let rows = 
         [ "   ";
           "  |";
@@ -16,7 +16,7 @@ let ``Recognizes 1`` () =
           "   " ]
     convert rows |> should equal (Some "1")
 
-let ``Unreadable but correctly sized inputs return ?`` () =
+# Unreadable but correctly sized inputs return ?
     let rows = 
         [ "   ";
           "  _";
@@ -24,14 +24,14 @@ let ``Unreadable but correctly sized inputs return ?`` () =
           "   " ]
     convert rows |> should equal (Some "?")
 
-let ``Input with a number of lines that is not a multiple of four raises an error`` () =
+# Input with a number of lines that is not a multiple of four raises an error
     let rows = 
         [ " _ ";
           "| |";
           "   " ]
     convert rows |> should equal None
 
-let ``Input with a number of columns that is not a multiple of three raises an error`` () =
+# Input with a number of columns that is not a multiple of three raises an error
     let rows = 
         [ "    ";
           "   |";
@@ -39,7 +39,7 @@ let ``Input with a number of columns that is not a multiple of three raises an e
           "    " ]
     convert rows |> should equal None
 
-let ``Recognizes 110101100`` () =
+# Recognizes 110101100
     let rows = 
         [ "       _     _        _  _ ";
           "  |  || |  || |  |  || || |";
@@ -47,7 +47,7 @@ let ``Recognizes 110101100`` () =
           "                           " ]
     convert rows |> should equal (Some "110101100")
 
-let ``Garbled numbers in a string are replaced with ?`` () =
+# Garbled numbers in a string are replaced with ?
     let rows = 
         [ "       _     _           _ ";
           "  |  || |  || |     || || |";
@@ -55,7 +55,7 @@ let ``Garbled numbers in a string are replaced with ?`` () =
           "                           " ]
     convert rows |> should equal (Some "11?10?1?0")
 
-let ``Recognizes 2`` () =
+# Recognizes 2
     let rows = 
         [ " _ ";
           " _|";
@@ -63,7 +63,7 @@ let ``Recognizes 2`` () =
           "   " ]
     convert rows |> should equal (Some "2")
 
-let ``Recognizes 3`` () =
+# Recognizes 3
     let rows = 
         [ " _ ";
           " _|";
@@ -71,7 +71,7 @@ let ``Recognizes 3`` () =
           "   " ]
     convert rows |> should equal (Some "3")
 
-let ``Recognizes 4`` () =
+# Recognizes 4
     let rows = 
         [ "   ";
           "|_|";
@@ -79,7 +79,7 @@ let ``Recognizes 4`` () =
           "   " ]
     convert rows |> should equal (Some "4")
 
-let ``Recognizes 5`` () =
+# Recognizes 5
     let rows = 
         [ " _ ";
           "|_ ";
@@ -87,7 +87,7 @@ let ``Recognizes 5`` () =
           "   " ]
     convert rows |> should equal (Some "5")
 
-let ``Recognizes 6`` () =
+# Recognizes 6
     let rows = 
         [ " _ ";
           "|_ ";
@@ -95,7 +95,7 @@ let ``Recognizes 6`` () =
           "   " ]
     convert rows |> should equal (Some "6")
 
-let ``Recognizes 7`` () =
+# Recognizes 7
     let rows = 
         [ " _ ";
           "  |";
@@ -103,7 +103,7 @@ let ``Recognizes 7`` () =
           "   " ]
     convert rows |> should equal (Some "7")
 
-let ``Recognizes 8`` () =
+# Recognizes 8
     let rows = 
         [ " _ ";
           "|_|";
@@ -111,7 +111,7 @@ let ``Recognizes 8`` () =
           "   " ]
     convert rows |> should equal (Some "8")
 
-let ``Recognizes 9`` () =
+# Recognizes 9
     let rows = 
         [ " _ ";
           "|_|";
@@ -119,7 +119,7 @@ let ``Recognizes 9`` () =
           "   " ]
     convert rows |> should equal (Some "9")
 
-let ``Recognizes string of decimal numbers`` () =
+# Recognizes string of decimal numbers
     let rows = 
         [ "    _  _     _  _  _  _  _  _ ";
           "  | _| _||_||_ |_   ||_||_|| |";
@@ -127,7 +127,7 @@ let ``Recognizes string of decimal numbers`` () =
           "                              " ]
     convert rows |> should equal (Some "1234567890")
 
-let ``Numbers separated by empty lines are recognized. Lines are joined by commas.`` () =
+# Numbers separated by empty lines are recognized. Lines are joined by commas.
     let rows = 
         [ "    _  _ ";
           "  | _| _|";

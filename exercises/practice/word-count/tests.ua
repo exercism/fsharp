@@ -1,10 +1,10 @@
 ~ "word-count.ua" ~ WordCount
 
-let ``Count one word`` () =
+# Count one word
     let expected = [("word", 1)] |> Map.ofList
     countWords "word" |> should equal expected
 
-let ``Count one of each word`` () =
+# Count one of each word
     let expected = 
         [ ("one", 1);
           ("of", 1);
@@ -12,7 +12,7 @@ let ``Count one of each word`` () =
         |> Map.ofList
     countWords "one of each" |> should equal expected
 
-let ``Multiple occurrences of a word`` () =
+# Multiple occurrences of a word
     let expected = 
         [ ("one", 1);
           ("fish", 4);
@@ -22,7 +22,7 @@ let ``Multiple occurrences of a word`` () =
         |> Map.ofList
     countWords "one fish two fish red fish blue fish" |> should equal expected
 
-let ``Handles cramped lists`` () =
+# Handles cramped lists
     let expected = 
         [ ("one", 1);
           ("two", 1);
@@ -30,7 +30,7 @@ let ``Handles cramped lists`` () =
         |> Map.ofList
     countWords "one,two,three" |> should equal expected
 
-let ``Handles expanded lists`` () =
+# Handles expanded lists
     let expected = 
         [ ("one", 1);
           ("two", 1);
@@ -38,7 +38,7 @@ let ``Handles expanded lists`` () =
         |> Map.ofList
     countWords "one,\ntwo,\nthree" |> should equal expected
 
-let ``Ignore punctuation`` () =
+# Ignore punctuation
     let expected = 
         [ ("car", 1);
           ("carpet", 1);
@@ -48,7 +48,7 @@ let ``Ignore punctuation`` () =
         |> Map.ofList
     countWords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
 
-let ``Include numbers`` () =
+# Include numbers
     let expected = 
         [ ("testing", 2);
           ("1", 1);
@@ -56,14 +56,14 @@ let ``Include numbers`` () =
         |> Map.ofList
     countWords "testing, 1, 2 testing" |> should equal expected
 
-let ``Normalize case`` () =
+# Normalize case
     let expected = 
         [ ("go", 3);
           ("stop", 2) ]
         |> Map.ofList
     countWords "go Go GO Stop stop" |> should equal expected
 
-let ``With apostrophes`` () =
+# With apostrophes
     let expected = 
         [ ("first", 1);
           ("don't", 2);
@@ -76,7 +76,7 @@ let ``With apostrophes`` () =
         |> Map.ofList
     countWords "'First: don't laugh. Then: don't cry. You're getting it.'" |> should equal expected
 
-let ``With quotations`` () =
+# With quotations
     let expected = 
         [ ("joe", 1);
           ("can't", 1);
@@ -87,7 +87,7 @@ let ``With quotations`` () =
         |> Map.ofList
     countWords "Joe can't tell between 'large' and large." |> should equal expected
 
-let ``Substrings from the beginning`` () =
+# Substrings from the beginning
     let expected = 
         [ ("joe", 1);
           ("can't", 1);
@@ -100,14 +100,14 @@ let ``Substrings from the beginning`` () =
         |> Map.ofList
     countWords "Joe can't tell between app, apple and a." |> should equal expected
 
-let ``Multiple spaces not detected as a word`` () =
+# Multiple spaces not detected as a word
     let expected = 
         [ ("multiple", 1);
           ("whitespaces", 1) ]
         |> Map.ofList
     countWords " multiple   whitespaces" |> should equal expected
 
-let ``Alternating word separators not detected as a word`` () =
+# Alternating word separators not detected as a word
     let expected = 
         [ ("one", 1);
           ("two", 1);
@@ -115,7 +115,7 @@ let ``Alternating word separators not detected as a word`` () =
         |> Map.ofList
     countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
 
-let ``Quotation for word with apostrophe`` () =
+# Quotation for word with apostrophe
     let expected = 
         [ ("can", 1);
           ("can't", 2) ]

@@ -1,62 +1,62 @@
 ~ "matching-brackets.ua" ~ MatchingBrackets
 
-let ``Paired square brackets`` () =
+# Paired square brackets
     isPaired "[]" |> should equal true
 
-let ``Empty string`` () =
+# Empty string
     isPaired "" |> should equal true
 
-let ``Unpaired brackets`` () =
+# Unpaired brackets
     isPaired "[[" |> should equal false
 
-let ``Wrong ordered brackets`` () =
+# Wrong ordered brackets
     isPaired "}{" |> should equal false
 
-let ``Wrong closing bracket`` () =
+# Wrong closing bracket
     isPaired "{]" |> should equal false
 
-let ``Paired with whitespace`` () =
+# Paired with whitespace
     isPaired "{ }" |> should equal true
 
-let ``Partially paired brackets`` () =
+# Partially paired brackets
     isPaired "{[])" |> should equal false
 
-let ``Simple nested brackets`` () =
+# Simple nested brackets
     isPaired "{[]}" |> should equal true
 
-let ``Several paired brackets`` () =
+# Several paired brackets
     isPaired "{}[]" |> should equal true
 
-let ``Paired and nested brackets`` () =
+# Paired and nested brackets
     isPaired "([{}({}[])])" |> should equal true
 
-let ``Unopened closing brackets`` () =
+# Unopened closing brackets
     isPaired "{[)][]}" |> should equal false
 
-let ``Unpaired and nested brackets`` () =
+# Unpaired and nested brackets
     isPaired "([{])" |> should equal false
 
-let ``Paired and wrong nested brackets`` () =
+# Paired and wrong nested brackets
     isPaired "[({]})" |> should equal false
 
-let ``Paired and wrong nested brackets but innermost are correct`` () =
+# Paired and wrong nested brackets but innermost are correct
     isPaired "[({}])" |> should equal false
 
-let ``Paired and incomplete brackets`` () =
+# Paired and incomplete brackets
     isPaired "{}[" |> should equal false
 
-let ``Too many closing brackets`` () =
+# Too many closing brackets
     isPaired "[]]" |> should equal false
 
-let ``Early unexpected brackets`` () =
+# Early unexpected brackets
     isPaired ")()" |> should equal false
 
-let ``Early mismatched brackets`` () =
+# Early mismatched brackets
     isPaired "{)()" |> should equal false
 
-let ``Math expression`` () =
+# Math expression
     isPaired "(((185 + 223.85) * 15) - 543)/2" |> should equal true
 
-let ``Complex latex expression`` () =
+# Complex latex expression
     isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)" |> should equal true
 

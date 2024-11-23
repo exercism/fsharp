@@ -1,51 +1,51 @@
 ~ "saddle-points.ua" ~ SaddlePoints
 
-let ``Can identify single saddle point`` () =
+# Can identify single saddle point
     let matrix = 
         [ [9; 8; 7];
           [5; 3; 2];
           [6; 6; 7] ]
     saddlePoints matrix |> should equal [(2, 1)]
 
-let ``Can identify that empty matrix has no saddle points`` () =
+# Can identify that empty matrix has no saddle points
     let matrix = [[]]
     saddlePoints matrix |> should be Empty
 
-let ``Can identify lack of saddle points when there are none`` () =
+# Can identify lack of saddle points when there are none
     let matrix = 
         [ [1; 2; 3];
           [3; 1; 2];
           [2; 3; 1] ]
     saddlePoints matrix |> should be Empty
 
-let ``Can identify multiple saddle points in a column`` () =
+# Can identify multiple saddle points in a column
     let matrix = 
         [ [4; 5; 4];
           [3; 5; 5];
           [1; 5; 4] ]
     saddlePoints matrix |> should equal [(1, 2); (2, 2); (3, 2)]
 
-let ``Can identify multiple saddle points in a row`` () =
+# Can identify multiple saddle points in a row
     let matrix = 
         [ [6; 7; 8];
           [5; 5; 5];
           [7; 5; 6] ]
     saddlePoints matrix |> should equal [(2, 1); (2, 2); (2, 3)]
 
-let ``Can identify saddle point in bottom right corner`` () =
+# Can identify saddle point in bottom right corner
     let matrix = 
         [ [8; 7; 9];
           [6; 7; 6];
           [3; 2; 5] ]
     saddlePoints matrix |> should equal [(3, 3)]
 
-let ``Can identify saddle points in a non square matrix`` () =
+# Can identify saddle points in a non square matrix
     let matrix = 
         [ [3; 1; 3];
           [3; 2; 4] ]
     saddlePoints matrix |> should equal [(1, 1); (1, 3)]
 
-let ``Can identify that saddle points in a single column matrix are those with the minimum value`` () =
+# Can identify that saddle points in a single column matrix are those with the minimum value
     let matrix = 
         [ [2];
           [1];
@@ -53,7 +53,7 @@ let ``Can identify that saddle points in a single column matrix are those with t
           [1] ]
     saddlePoints matrix |> should equal [(2, 1); (4, 1)]
 
-let ``Can identify that saddle points in a single row matrix are those with the maximum value`` () =
+# Can identify that saddle points in a single row matrix are those with the maximum value
     let matrix = [[2; 5; 3; 5]]
     saddlePoints matrix |> should equal [(1, 2); (1, 4)]
 

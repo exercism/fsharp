@@ -3,12 +3,12 @@
 module BankAccountTest
 
 
-let ``Returns empty balance after opening`` () =
+# Returns empty balance after opening
     let account = mkBankAccount() |> openAccount
 
     getBalance account |> should equal (Some 0.0m)
 
-let ``Check basic balance`` () =
+# Check basic balance
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
 
@@ -20,7 +20,7 @@ let ``Check basic balance`` () =
     openingBalance |> should equal (Some 0.0m)
     updatedBalance |> should equal (Some 10.0m)
 
-let ``Balance can increment or decrement`` () =    
+# Balance can increment or decrement    
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
 
@@ -38,7 +38,7 @@ let ``Balance can increment or decrement`` () =
     addedBalance |> should equal (Some 10.0m)
     subtractedBalance |> should equal (Some -5.0m)
 
-let ``Account can be closed`` () =
+# Account can be closed
     let account = 
         mkBankAccount()
         |> openAccount
@@ -47,7 +47,7 @@ let ``Account can be closed`` () =
     getBalance account |> should equal None
     account |> should not' (equal None)
     
-let ``Account can be updated from multiple threads`` () =
+# Account can be updated from multiple threads
     let account = 
         mkBankAccount()
         |> openAccount
