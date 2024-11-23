@@ -5,7 +5,6 @@ let ``Single letter`` () =
     let expected = [('a', 1)] |> Map.ofList
     transform lettersByScore |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Single score with multiple letters`` () =
     let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
     let expected = 
@@ -17,7 +16,6 @@ let ``Single score with multiple letters`` () =
         |> Map.ofList
     transform lettersByScore |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Multiple scores with multiple letters`` () =
     let lettersByScore = 
         [ (1, ['A'; 'E']);
@@ -31,7 +29,6 @@ let ``Multiple scores with multiple letters`` () =
         |> Map.ofList
     transform lettersByScore |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Multiple scores with differing numbers of letters`` () =
     let lettersByScore = 
         [ (1, ['A'; 'E'; 'I'; 'O'; 'U'; 'L'; 'N'; 'R'; 'S'; 'T']);

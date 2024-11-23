@@ -21,14 +21,11 @@ let testPerson =
 let ``Set born at street`` () =
     Optic.get bornAtStreet testPerson |> should equal "Longway"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Set current street`` () =
     Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet |> should equal "Middleroad"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Upper case born at street`` () =
     Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet |> should equal "LONGWAY"
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Set birth month`` () =
     Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)

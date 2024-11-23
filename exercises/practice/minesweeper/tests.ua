@@ -5,13 +5,11 @@ let ``No rows`` () =
     let expected: string list = []
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``No columns`` () =
     let minefield = [""]
     let expected = [""]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``No mines`` () =
     let minefield = 
         [ "   ";
@@ -23,7 +21,6 @@ let ``No mines`` () =
           "   " ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Minefield with only mines`` () =
     let minefield = 
         [ "***";
@@ -35,7 +32,6 @@ let ``Minefield with only mines`` () =
           "***" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Mine surrounded by spaces`` () =
     let minefield = 
         [ "   ";
@@ -47,7 +43,6 @@ let ``Mine surrounded by spaces`` () =
           "111" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Space surrounded by mines`` () =
     let minefield = 
         [ "***";
@@ -59,19 +54,16 @@ let ``Space surrounded by mines`` () =
           "***" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Horizontal line`` () =
     let minefield = [" * * "]
     let expected = ["1*2*1"]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Horizontal line, mines at edges`` () =
     let minefield = ["*   *"]
     let expected = ["*1 1*"]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Vertical line`` () =
     let minefield = 
         [ " ";
@@ -87,7 +79,6 @@ let ``Vertical line`` () =
           "1" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Vertical line, mines at edges`` () =
     let minefield = 
         [ "*";
@@ -103,7 +94,6 @@ let ``Vertical line, mines at edges`` () =
           "*" ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cross`` () =
     let minefield = 
         [ "  *  ";
@@ -119,7 +109,6 @@ let ``Cross`` () =
           " 2*2 " ]
     annotate minefield |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Large minefield`` () =
     let minefield = 
         [ " *  * ";

@@ -11,7 +11,6 @@ let ``Black corner territory on 5x5 board`` () =
     let expected = Option.Some (Owner.Black, [(0, 0); (0, 1); (1, 0)])
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``White center territory on 5x5 board`` () =
     let board = 
         [ "  B  ";
@@ -23,7 +22,6 @@ let ``White center territory on 5x5 board`` () =
     let expected = Option.Some (Owner.White, [(2, 3)])
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``    let board = 
         [ "  B  ";
           " B B ";
@@ -34,7 +32,6 @@ let ``    let board =
     let expected = Option.Some (Owner.None, [(0, 3); (0, 4); (1, 4)])
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A stone and not a territory on 5x5 board`` () =
     let board = 
         [ "  B  ";
@@ -46,7 +43,6 @@ let ``A stone and not a territory on 5x5 board`` () =
     let expected: (Owner * (int * int) list) option = Option.Some (Owner.None, [])
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid because X is too low for 5x5 board`` () =
     let board = 
         [ "  B  ";
@@ -58,7 +54,6 @@ let ``Invalid because X is too low for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid because X is too high for 5x5 board`` () =
     let board = 
         [ "  B  ";
@@ -70,7 +65,6 @@ let ``Invalid because X is too high for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid because Y is too low for 5x5 board`` () =
     let board = 
         [ "  B  ";
@@ -82,7 +76,6 @@ let ``Invalid because Y is too low for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid because Y is too high for 5x5 board`` () =
     let board = 
         [ "  B  ";
@@ -94,7 +87,6 @@ let ``Invalid because Y is too high for 5x5 board`` () =
     let expected = Option.None
     territory board position |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One territory is the whole board`` () =
     let board = [" "]
     let expected = 
@@ -104,7 +96,6 @@ let ``One territory is the whole board`` () =
         |> Map.ofList
     territories board |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Two territory rectangular board`` () =
     let board = 
         [ " BW ";
@@ -116,7 +107,6 @@ let ``Two territory rectangular board`` () =
         |> Map.ofList
     territories board |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Two region rectangular board`` () =
     let board = [" B "]
     let expected = 

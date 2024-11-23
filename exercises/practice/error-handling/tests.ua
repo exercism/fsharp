@@ -22,7 +22,6 @@ let ``Throwing exception`` () =
 // Upon failure, None is returned. The caller can then pattern match on the
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Returning Option<'T>`` () =
     let successResult = handleErrorByReturningOption "1"
     successResult |> should equal <| Some 1
@@ -35,7 +34,6 @@ let ``Returning Option<'T>`` () =
 // This discriminated union has two possible cases: Ok and Error, which contain data
 // of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Returning Result<'TSuccess, 'TError>`` () =
     let successResult = handleErrorByReturningResult "1"
     (successResult = Ok 1) |> should equal true
@@ -58,7 +56,6 @@ let ``Returning Result<'TSuccess, 'TError>`` () =
 //
 // In this test, your task is to write a function "bind", that allows you to combine
 // two functions that take a 'TSuccess instance and return a Result<'TSuccess, 'TError> instance.
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Using railway-oriented programming`` () =
     let validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
     let validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
@@ -85,7 +82,6 @@ let ``Using railway-oriented programming`` () =
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cleaning up disposables when throwing exception`` () =    
     let resource = new Resource()
 

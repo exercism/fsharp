@@ -4,14 +4,12 @@ let ``Reading empty buffer should fail`` () =
     let buffer1 = mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can read an item just written`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let (val3, _) = read buffer2
     val3 |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Each item may only be read once`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
@@ -19,7 +17,6 @@ let ``Each item may only be read once`` () =
     val3 |> should equal 1
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Items are read in the order they are written`` () =
     let buffer1 = mkCircularBuffer 2
     let buffer2 = write 1 buffer1
@@ -29,13 +26,11 @@ let ``Items are read in the order they are written`` () =
     let (val5, _) = read buffer4
     val5 |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Full buffer can't be written to`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     (fun () -> write 2 buffer2 |> ignore) |> should throw typeof<Exception>
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A read frees up capacity for another write`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
@@ -45,7 +40,6 @@ let ``A read frees up capacity for another write`` () =
     let (val5, _) = read buffer4
     val5 |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Read position is maintained even across multiple writes`` () =
     let buffer1 = mkCircularBuffer 3
     let buffer2 = write 1 buffer1
@@ -58,14 +52,12 @@ let ``Read position is maintained even across multiple writes`` () =
     let (val7, _) = read buffer6
     val7 |> should equal 3
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Items cleared out of buffer can't be read`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
     let buffer3 = clear buffer2
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Clear frees up capacity for another write`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = write 1 buffer1
@@ -74,7 +66,6 @@ let ``Clear frees up capacity for another write`` () =
     let (val5, _) = read buffer4
     val5 |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Clear does nothing on empty buffer`` () =
     let buffer1 = mkCircularBuffer 1
     let buffer2 = clear buffer1
@@ -82,7 +73,6 @@ let ``Clear does nothing on empty buffer`` () =
     let (val4, _) = read buffer3
     val4 |> should equal 1
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Overwrite acts like write on non-full buffer`` () =
     let buffer1 = mkCircularBuffer 2
     let buffer2 = write 1 buffer1
@@ -92,7 +82,6 @@ let ``Overwrite acts like write on non-full buffer`` () =
     let (val5, _) = read buffer4
     val5 |> should equal 2
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Overwrite replaces the oldest item on full buffer`` () =
     let buffer1 = mkCircularBuffer 2
     let buffer2 = write 1 buffer1
@@ -103,7 +92,6 @@ let ``Overwrite replaces the oldest item on full buffer`` () =
     let (val6, _) = read buffer5
     val6 |> should equal 3
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Overwrite replaces the oldest item remaining in buffer following a read`` () =
     let buffer1 = mkCircularBuffer 3
     let buffer2 = write 1 buffer1
@@ -120,7 +108,6 @@ let ``Overwrite replaces the oldest item remaining in buffer following a read`` 
     let (val10, _) = read buffer9
     val10 |> should equal 5
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Initial clear does not affect wrapping around`` () =
     let buffer1 = mkCircularBuffer 2
     let buffer2 = clear buffer1

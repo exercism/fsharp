@@ -9,17 +9,14 @@ let ``An empty board has no winner`` () =
           "    . . . . ." ]
     winner board |> should equal None
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``X can win on a 1x1 board`` () =
     let board = ["X"]
     winner board |> should equal (Some Black)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``O can win on a 1x1 board`` () =
     let board = ["O"]
     winner board |> should equal (Some White)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Only edges does not make a winner`` () =
     let board = 
         [ "O O O X   ";
@@ -28,7 +25,6 @@ let ``Only edges does not make a winner`` () =
           "   X O O O" ]
     winner board |> should equal None
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Illegal diagonal does not make a winner`` () =
     let board = 
         [ "X O . .    ";
@@ -38,7 +34,6 @@ let ``Illegal diagonal does not make a winner`` () =
           "    X X O O" ]
     winner board |> should equal None
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Nobody wins crossing adjacent angles`` () =
     let board = 
         [ "X . . .    ";
@@ -48,7 +43,6 @@ let ``Nobody wins crossing adjacent angles`` () =
           "    . . O ." ]
     winner board |> should equal None
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``X wins crossing from left to right`` () =
     let board = 
         [ ". O . .    ";
@@ -58,7 +52,6 @@ let ``X wins crossing from left to right`` () =
           "    . O X ." ]
     winner board |> should equal (Some Black)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``O wins crossing from top to bottom`` () =
     let board = 
         [ ". O . .    ";
@@ -68,7 +61,6 @@ let ``O wins crossing from top to bottom`` () =
           "    . O X ." ]
     winner board |> should equal (Some White)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``X wins using a convoluted path`` () =
     let board = 
         [ ". X X . .    ";
@@ -78,7 +70,6 @@ let ``X wins using a convoluted path`` () =
           "    O O O O O" ]
     winner board |> should equal (Some Black)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``X wins using a spiral path`` () =
     let board = 
         [ "O X X X X X X X X        ";
