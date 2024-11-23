@@ -6,7 +6,7 @@ module ErrorHandlingTest
 
 // Custom class that implements IDisposable
 type Resource() = 
-    let mutable disposed = false
+mutable disposed = false
 
     member this.Disposed() = disposed
 
@@ -25,10 +25,10 @@ type Resource() =
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
 # Returning Option<'T>
-    let successResult = handleErrorByReturningOption "1"
+successResult = handleErrorByReturningOption "1"
 ⍤⤙≍ <| Some 1 successResult
     
-    let failureResult = handleErrorByReturningOption "a"
+failureResult = handleErrorByReturningOption "a"
 ⍤⤙≍ None failureResult
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
@@ -37,10 +37,10 @@ type Resource() =
 // of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
 # Returning Result<'TSuccess, 'TError>
-    let successResult = handleErrorByReturningResult "1"
+successResult = handleErrorByReturningResult "1"
 ⍤⤙≍ 1 (successResult = Ok 1)
     
-    let failureResult = handleErrorByReturningResult "a"
+failureResult = handleErrorByReturningResult "a"
 ⍤⤙≍ 1 (failureResult = Error "Could not convert input to integer")
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
@@ -59,33 +59,33 @@ type Resource() =
 // In this test, your task is to write a function "bind", that allows you to combine
 // two functions that take a 'TSuccess instance and return a Result<'TSuccess, 'TError> instance.
 # Using railway-oriented programming
-    let validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
-    let validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
-    let validate3 x = if x % 2 <> 0 then Ok x else Error "Input is not odd"
+validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
+validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
+validate3 x = if x % 2 <> 0 then Ok x else Error "Input is not odd"
     
     // Combine the validations. The result should be a function that takes an int parameter
     // and returns a Result<int, string> value
-    let combinedValidation =
+combinedValidation =
         validate1
         >> bind validate2
         >> bind validate3
 
-    let firstValidationFailureResult = combinedValidation 1            
+firstValidationFailureResult = combinedValidation 1            
 ⍤⤙≍ 1 (firstValidationFailureResult = Error "Input less than or equal to five")
 
-    let secondValidationFailureResult = combinedValidation 23          
+secondValidationFailureResult = combinedValidation 23          
 ⍤⤙≍ 1 (secondValidationFailureResult = Error "Input greater than or equal to ten")
 
-    let thirdValidationFailureResult = combinedValidation 8        
+thirdValidationFailureResult = combinedValidation 8        
 ⍤⤙≍ 1 (thirdValidationFailureResult = Error "Input is not odd")
 
-    let successResult = combinedValidation 7        
+successResult = combinedValidation 7        
 ⍤⤙≍ 1 (successResult = Ok 7)
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
 # Cleaning up disposables when throwing exception    
-    let resource = new Resource()
+resource = new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
 ⍤⤙≍ 1 resource.Disposed()

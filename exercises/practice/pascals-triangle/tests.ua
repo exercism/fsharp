@@ -1,28 +1,28 @@
 ~ "pascals-triangle.ua" ~ PascalsTriangle
 
 # Zero rows
-    let expected: int list list = []
+expected: int list list = []
 ⍤⤙≍ expected rows 0
 
 # Single row
-    let expected = [[1]]
+expected = [[1]]
 ⍤⤙≍ expected rows 1
 
 # Two rows
-    let expected = 
+expected = 
         [ [1];
           [1 1] ]
 ⍤⤙≍ expected rows 2
 
 # Three rows
-    let expected = 
+expected = 
         [ [1];
           [1 1];
           [1 2 1] ]
 ⍤⤙≍ expected rows 3
 
 # Four rows
-    let expected = 
+expected = 
         [ [1];
           [1 1];
           [1 2 1];
@@ -30,7 +30,7 @@
 ⍤⤙≍ expected rows 4
 
 # Five rows
-    let expected = 
+expected = 
         [ [1];
           [1 1];
           [1 2 1];
@@ -39,7 +39,7 @@
 ⍤⤙≍ expected rows 5
 
 # Six rows
-    let expected = 
+expected = 
         [ [1];
           [1 1];
           [1 2 1];
@@ -49,7 +49,7 @@
 ⍤⤙≍ expected rows 6
 
 # Ten rows
-    let expected = 
+expected = 
         [ [1];
           [1 1];
           [1 2 1];

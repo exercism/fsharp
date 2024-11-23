@@ -18,11 +18,11 @@ module StrainTest
 ⍤⤙≍ [2 4] [1 2 3 4 5] |> Seq.keep (fun x -> x % 2 = 0) |> Seq.toList
 
 # Keep strings
-    let words = "apple zebra banana zombies cherimoya zelot".Split(' ');
+words = "apple zebra banana zombies cherimoya zelot".Split(' ');
 ⍤⤙≍ <| List.ofArray("zebra zombies zelot".Split(' ')) words |> Seq.keep (fun (x:string) -> x.StartsWith("z")) |> Seq.toList
 
 # Keep arrays
-    let actual =  [
+actual =  [
                      [1 2 3 ];
                      [5 5 5 ];
                      [5 1 2 ];
@@ -31,7 +31,7 @@ module StrainTest
                      [2 2 1 ];
                      [1 2 5 ]
                      ]
-    let expected = [  [5 5 5 ]  [5 1 2 ]  [1 5 2 ]  [1 2 5 ] ]
+expected = [  [5 5 5 ]  [5 1 2 ]  [1 5 2 ]  [1 2 5 ] ]
 ⍤⤙≍ expected actual |> Seq.keep (Array.exists ((=) 5)) |> Seq.toList
 
 # Empty discard
@@ -47,11 +47,11 @@ module StrainTest
 ⍤⤙≍ [1 3 5] [1 2 3 4 5] |> Seq.discard (fun x -> x % 2 = 0) |> Seq.toList
 
 # Discard strings
-    let words = "apple zebra banana zombies cherimoya zelot".Split(' ')
+words = "apple zebra banana zombies cherimoya zelot".Split(' ')
 ⍤⤙≍ <| List.ofArray("apple banana cherimoya".Split(' ')) words |> Seq.discard (fun (x:string) -> x.StartsWith("z")) |> Seq.toList
 
 # Discard arrays
-    let actual =  [
+actual =  [
                      [1 2 3 ];
                      [5 5 5 ];
                      [5 1 2 ];
@@ -60,5 +60,5 @@ module StrainTest
                      [2 2 1 ];
                      [1 2 5 ]
                      ]
-    let expected = [  [1 2 3 ]  [2 1 2 ]  [2 2 1 ] ]
+expected = [  [1 2 3 ]  [2 1 2 ]  [2 2 1 ] ]
 ⍤⤙≍ expected actual |> Seq.discard (Array.exists ((=) 5)) |> Seq.toList

@@ -1,37 +1,37 @@
 ~ "transpose.ua" ~ Transpose
 
 # Empty string
-    let lines: string list = []
-    let expected: string list = []
+lines: string list = []
+expected: string list = []
 ⍤⤙≍ expected transpose lines
 
 # Two characters in a row
-    let lines = ["A1"]
-    let expected = 
+lines = ["A1"]
+expected = 
         [ "A";
           "1" ]
 ⍤⤙≍ expected transpose lines
 
 # Two characters in a column
-    let lines = 
+lines = 
         [ "A";
           "1" ]
-    let expected = ["A1"]
+expected = ["A1"]
 ⍤⤙≍ expected transpose lines
 
 # Simple
-    let lines = 
+lines = 
         [ "ABC";
           "123" ]
-    let expected = 
+expected = 
         [ "A1";
           "B2";
           "C3" ]
 ⍤⤙≍ expected transpose lines
 
 # Single line
-    let lines = ["Single line."]
-    let expected = 
+lines = ["Single line."]
+expected = 
         [ "S";
           "i";
           "n";
@@ -47,10 +47,10 @@
 ⍤⤙≍ expected transpose lines
 
 # First line longer than second line
-    let lines = 
+lines = 
         [ "The fourth line.";
           "The fifth line." ]
-    let expected = 
+expected = 
         [ "TT";
           "hh";
           "ee";
@@ -70,10 +70,10 @@
 ⍤⤙≍ expected transpose lines
 
 # Second line longer than first line
-    let lines = 
+lines = 
         [ "The first line.";
           "The second line." ]
-    let expected = 
+expected = 
         [ "TT";
           "hh";
           "ee";
@@ -93,12 +93,12 @@
 ⍤⤙≍ expected transpose lines
 
 # Mixed line length
-    let lines = 
+lines = 
         [ "The longest line.";
           "A long line.";
           "A longer line.";
           "A line." ]
-    let expected = 
+expected = 
         [ "TAAA";
           "h   ";
           "elll";
@@ -119,13 +119,13 @@
 ⍤⤙≍ expected transpose lines
 
 # Square
-    let lines = 
+lines = 
         [ "HEART";
           "EMBER";
           "ABUSE";
           "RESIN";
           "TREND" ]
-    let expected = 
+expected = 
         [ "HEART";
           "EMBER";
           "ABUSE";
@@ -134,12 +134,12 @@
 ⍤⤙≍ expected transpose lines
 
 # Rectangle
-    let lines = 
+lines = 
         [ "FRACTURE";
           "OUTLINED";
           "BLOOMING";
           "SEPTETTE" ]
-    let expected = 
+expected = 
         [ "FOBS";
           "RULE";
           "ATOP";
@@ -151,14 +151,14 @@
 ⍤⤙≍ expected transpose lines
 
 # Triangle
-    let lines = 
+lines = 
         [ "T";
           "EE";
           "AAA";
           "SSSS";
           "EEEEE";
           "RRRRRR" ]
-    let expected = 
+expected = 
         [ "TEASER";
           " EASER";
           "  ASER";
@@ -168,14 +168,14 @@
 ⍤⤙≍ expected transpose lines
 
 # Jagged triangle
-    let lines = 
+lines = 
         [ "11";
           "2";
           "3333";
           "444";
           "555555";
           "66666" ]
-    let expected = 
+expected = 
         [ "123456";
           "1 3456";
           "  3456";

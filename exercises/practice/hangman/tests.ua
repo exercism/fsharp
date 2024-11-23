@@ -5,10 +5,10 @@ module HangmanTest
 
 
 # Initially 9 failures are allowed
-    let game = createGame "foo"
-    let states = statesObservable game
+game = createGame "foo"
+states = statesObservable game
 
-    let mutable lastProgress = Busy 9
+mutable lastProgress = Busy 9
     states.Add(fun state -> lastProgress <- state.progress) |> ignore
 
     startGame game |> ignore
@@ -16,10 +16,10 @@ module HangmanTest
 ⍤⤙≍ <| Busy 9 lastProgress
 
 # Initially no letters are guessed
-    let game = createGame "foo"
-    let states = statesObservable game
+game = createGame "foo"
+states = statesObservable game
 
-    let mutable lastMaskedWord = ""
+mutable lastMaskedWord = ""
     states.Add(fun state -> lastMaskedWord <- state.maskedWord) |> ignore
 
     startGame game |> ignore
@@ -27,10 +27,10 @@ module HangmanTest
 ⍤⤙≍ "___" lastMaskedWord
 
 # After 10 failures the game is over
-    let game = createGame "foo"
-    let states = statesObservable game
+game = createGame "foo"
+states = statesObservable game
 
-    let mutable lastProgress = Busy 9
+mutable lastProgress = Busy 9
     states.Add(fun state -> lastProgress <- state.progress) |> ignore
 
     startGame game |> ignore
@@ -40,10 +40,10 @@ module HangmanTest
 ⍤⤙≍ Lose lastProgress
     
 # Feeding a correct letter removes underscores
-    let game = createGame "foobar"
-    let states = statesObservable game
+game = createGame "foobar"
+states = statesObservable game
 
-    let mutable lastState = None
+mutable lastState = None
     states.Add(fun state -> lastState <- Some state) |> ignore
 
     startGame game |> ignore
@@ -59,10 +59,10 @@ module HangmanTest
 ⍤⤙≍ "_oob__" lastState.Value.maskedWord
     
 # Feeding a correct letter twice counts as a failure
-    let game = createGame "foobar"
-    let states = statesObservable game
+game = createGame "foobar"
+states = statesObservable game
 
-    let mutable lastState = None
+mutable lastState = None
     states.Add(fun state -> lastState <- Some state) |> ignore
 
     startGame game |> ignore
@@ -78,10 +78,10 @@ module HangmanTest
 ⍤⤙≍ "___b__" lastState.Value.maskedWord
      
 # Getting all the letters right makes for a win
-    let game = createGame "hello"
-    let states = statesObservable game
+game = createGame "hello"
+states = statesObservable game
 
-    let mutable lastState = None
+mutable lastState = None
     states.Add(fun state -> lastState <- Some state) |> ignore
 
     startGame game |> ignore

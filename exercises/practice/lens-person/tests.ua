@@ -3,7 +3,7 @@
 module LensPersonTest
 
 
-let testPerson =
+testPerson =
     { name = 
         { name = "Jane Joanna"
           surName = "Doe" }

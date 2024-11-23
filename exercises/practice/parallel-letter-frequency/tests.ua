@@ -5,7 +5,7 @@ module ParallelLetterFrequencyTest
 
 
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
-let odeAnDieFreude = 
+odeAnDieFreude = 
     "Freude schöner Götterfunken\n" +
     "Tochter aus Elysium,\n" +
     "Wir betreten feuertrunken,\n" +
@@ -16,7 +16,7 @@ let odeAnDieFreude =
     "Wo dein sanfter Flügel weilt."
 
 // Dutch national anthem
-let wilhelmus = 
+wilhelmus = 
     "Wilhelmus van Nassouwe\n" +
     "ben ik, van Duitsen bloed,\n" +
     "den vaderland getrouwe\n" +
@@ -27,7 +27,7 @@ let wilhelmus =
     "heb ik altijd geëerd."
 
 // American national anthem
-let starSpangledBanner = 
+starSpangledBanner = 
     "O say can you see by the dawn's early light,\n" +
     "What so proudly we hailed at the twilight's last gleaming,\n" +
     "Whose broad stripes and bright stars through the perilous fight,\n" +
@@ -53,25 +53,25 @@ let starSpangledBanner =
 ⍤⤙≍ (Map.ofList [('a', 1000) ('b', 1000) ('c', 1000)]) frequency (List.replicate 1000 "abc")
 
 # Punctuation doesn't count
-    let freqs = frequency [odeAnDieFreude]
+freqs = frequency [odeAnDieFreude]
 ⍤⤙≍ None Map.tryFind ',' freqs
 
 # Numbers don't count
-    let freqs = frequency ["Testing, 1, 2, 3"]
+freqs = frequency ["Testing, 1, 2, 3"]
 ⍤⤙≍ None Map.tryFind '1' freqs
 
 # Letters with and without diacritics are not the same letter
-    let freqs = frequency ["aä"]
+freqs = frequency ["aä"]
 ⍤⤙≍ (Map.ofList [('a', 1) ('ä', 1)]) freqs
 
 # All three anthems, together
-    let freqs = frequency [odeAnDieFreude wilhelmus starSpangledBanner]
+freqs = frequency [odeAnDieFreude wilhelmus starSpangledBanner]
 ⍤⤙≍ <| Some 49 Map.tryFind 'a' freqs
 ⍤⤙≍ <| Some 56 Map.tryFind 't' freqs
 ⍤⤙≍ <| Some 34 Map.tryFind 'o' freqs
 
 # Can handle large texts
-    let freqs = frequency (List.replicate 1000 [odeAnDieFreude wilhelmus starSpangledBanner] |> List.concat)
+freqs = frequency (List.replicate 1000 [odeAnDieFreude wilhelmus starSpangledBanner] |> List.concat)
 ⍤⤙≍ <| Some 49000 Map.tryFind 'a' freqs
 ⍤⤙≍ <| Some 56000 Map.tryFind 't' freqs
 ⍤⤙≍ <| Some 34000 Map.tryFind 'o' freqs

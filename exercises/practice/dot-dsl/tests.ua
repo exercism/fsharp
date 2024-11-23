@@ -5,14 +5,14 @@ module DotDslTest
 
 
 # Empty graph
-    let g = graph []
+g = graph []
 
 ⍤⤙≍ [] nodes g
 ⍤⤙≍ [] edges g
 ⍤⤙≍ [] attrs g
     
 # Graph with one node
-    let g = graph [
+g = graph [
                 node "a" []
             ]            
 
@@ -21,7 +21,7 @@ module DotDslTest
 ⍤⤙≍ [] attrs g
     
 # Graph with one node with keywords    
-    let g = graph [
+g = graph [
                 node "a" [("color", "green")]
             ]            
 
@@ -30,7 +30,7 @@ module DotDslTest
 ⍤⤙≍ [] attrs g
 
 # Graph with one edge    
-    let g = graph [
+g = graph [
                 edge "a" "b" []
             ]             
 
@@ -39,7 +39,7 @@ module DotDslTest
 ⍤⤙≍ [] attrs g
 
 # Graph with one attribute 
-    let g = graph [
+g = graph [
                 attr "foo" "1"
             ]             
 
@@ -48,7 +48,7 @@ module DotDslTest
 ⍤⤙≍ [attr "foo" "1"] attrs g
 
 # Graph with attributes    
-    let g = graph [
+g = graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"
                 node "a" [("color", "green")]

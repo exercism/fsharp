@@ -1,15 +1,15 @@
 ~ "knapsack.ua" ~ Knapsack
 
 # No items
-    let items = []
+items = []
 ⍤⤙≍ 0 maximumValue items 100
 
 # One item, too heavy
-    let items = [{ weight = 100 value = 1 }]
+items = [{ weight = 100 value = 1 }]
 ⍤⤙≍ 0 maximumValue items 10
 
 # Five items (cannot be greedy by weight)
-    let items = 
+items = 
         [ { weight = 2 value = 5 };
           { weight = 2 value = 5 };
           { weight = 2 value = 5 };
@@ -18,7 +18,7 @@
 ⍤⤙≍ 21 maximumValue items 10
 
 # Five items (cannot be greedy by value)
-    let items = 
+items = 
         [ { weight = 2 value = 20 };
           { weight = 2 value = 20 };
           { weight = 2 value = 20 };
@@ -27,7 +27,7 @@
 ⍤⤙≍ 80 maximumValue items 10
 
 # Example knapsack
-    let items = 
+items = 
         [ { weight = 5 value = 10 };
           { weight = 4 value = 40 };
           { weight = 6 value = 30 };
@@ -35,7 +35,7 @@
 ⍤⤙≍ 90 maximumValue items 10
 
 # 8 items
-    let items = 
+items = 
         [ { weight = 25 value = 350 };
           { weight = 35 value = 400 };
           { weight = 45 value = 450 };
@@ -47,7 +47,7 @@
 ⍤⤙≍ 900 maximumValue items 104
 
 # 15 items
-    let items = 
+items = 
         [ { weight = 70 value = 135 };
           { weight = 73 value = 139 };
           { weight = 77 value = 149 };

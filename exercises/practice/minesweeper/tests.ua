@@ -1,77 +1,77 @@
 ~ "minesweeper.ua" ~ Minesweeper
 
 # No rows
-    let minefield: string list = []
-    let expected: string list = []
+minefield: string list = []
+expected: string list = []
 ⍤⤙≍ expected annotate minefield
 
 # No columns
-    let minefield = [""]
-    let expected = [""]
+minefield = [""]
+expected = [""]
 ⍤⤙≍ expected annotate minefield
 
 # No mines
-    let minefield = 
+minefield = 
         [ "   ";
           "   ";
           "   " ]
-    let expected = 
+expected = 
         [ "   ";
           "   ";
           "   " ]
 ⍤⤙≍ expected annotate minefield
 
 # Minefield with only mines
-    let minefield = 
+minefield = 
         [ "***";
           "***";
           "***" ]
-    let expected = 
+expected = 
         [ "***";
           "***";
           "***" ]
 ⍤⤙≍ expected annotate minefield
 
 # Mine surrounded by spaces
-    let minefield = 
+minefield = 
         [ "   ";
           " * ";
           "   " ]
-    let expected = 
+expected = 
         [ "111";
           "1*1";
           "111" ]
 ⍤⤙≍ expected annotate minefield
 
 # Space surrounded by mines
-    let minefield = 
+minefield = 
         [ "***";
           "* *";
           "***" ]
-    let expected = 
+expected = 
         [ "***";
           "*8*";
           "***" ]
 ⍤⤙≍ expected annotate minefield
 
 # Horizontal line
-    let minefield = [" * * "]
-    let expected = ["1*2*1"]
+minefield = [" * * "]
+expected = ["1*2*1"]
 ⍤⤙≍ expected annotate minefield
 
 # Horizontal line, mines at edges
-    let minefield = ["*   *"]
-    let expected = ["*1 1*"]
+minefield = ["*   *"]
+expected = ["*1 1*"]
 ⍤⤙≍ expected annotate minefield
 
 # Vertical line
-    let minefield = 
+minefield = 
         [ " ";
           "*";
           " ";
           "*";
           " " ]
-    let expected = 
+expected = 
         [ "1";
           "*";
           "2";
@@ -80,13 +80,13 @@
 ⍤⤙≍ expected annotate minefield
 
 # Vertical line, mines at edges
-    let minefield = 
+minefield = 
         [ "*";
           " ";
           " ";
           " ";
           "*" ]
-    let expected = 
+expected = 
         [ "*";
           "1";
           " ";
@@ -95,13 +95,13 @@
 ⍤⤙≍ expected annotate minefield
 
 # Cross
-    let minefield = 
+minefield = 
         [ "  *  ";
           "  *  ";
           "*****";
           "  *  ";
           "  *  " ]
-    let expected = 
+expected = 
         [ " 2*2 ";
           "25*52";
           "*****";
@@ -110,14 +110,14 @@
 ⍤⤙≍ expected annotate minefield
 
 # Large minefield
-    let minefield = 
+minefield = 
         [ " *  * ";
           "  *   ";
           "    * ";
           "   * *";
           " *  * ";
           "      " ]
-    let expected = 
+expected = 
         [ "1*22*1";
           "12*322";
           " 123*2";

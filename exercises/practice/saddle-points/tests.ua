@@ -1,52 +1,52 @@
 ~ "saddle-points.ua" ~ SaddlePoints
 
 # Can identify single saddle point
-    let matrix = 
+matrix = 
         [ [9 8 7];
           [5 3 2];
           [6 6 7] ]
 ⍤⤙≍ [(2, 1)] saddlePoints matrix
 
 # Can identify that empty matrix has no saddle points
-    let matrix = [[]]
+matrix = [[]]
 ⍤⤙≍ [] saddlePoints matrix
 
 # Can identify lack of saddle points when there are none
-    let matrix = 
+matrix = 
         [ [1 2 3];
           [3 1 2];
           [2 3 1] ]
 ⍤⤙≍ [] saddlePoints matrix
 
 # Can identify multiple saddle points in a column
-    let matrix = 
+matrix = 
         [ [4 5 4];
           [3 5 5];
           [1 5 4] ]
 ⍤⤙≍ [(1, 2) (2, 2) (3, 2)] saddlePoints matrix
 
 # Can identify multiple saddle points in a row
-    let matrix = 
+matrix = 
         [ [6 7 8];
           [5 5 5];
           [7 5 6] ]
 ⍤⤙≍ [(2, 1) (2, 2) (2, 3)] saddlePoints matrix
 
 # Can identify saddle point in bottom right corner
-    let matrix = 
+matrix = 
         [ [8 7 9];
           [6 7 6];
           [3 2 5] ]
 ⍤⤙≍ [(3, 3)] saddlePoints matrix
 
 # Can identify saddle points in a non square matrix
-    let matrix = 
+matrix = 
         [ [3 1 3];
           [3 2 4] ]
 ⍤⤙≍ [(1, 1) (1, 3)] saddlePoints matrix
 
 # Can identify that saddle points in a single column matrix are those with the minimum value
-    let matrix = 
+matrix = 
         [ [2];
           [1];
           [4];
@@ -54,6 +54,6 @@
 ⍤⤙≍ [(2, 1) (4, 1)] saddlePoints matrix
 
 # Can identify that saddle points in a single row matrix are those with the maximum value
-    let matrix = [[2 5 3 5]]
+matrix = [[2 5 3 5]]
 ⍤⤙≍ [(1, 2) (1, 4)] saddlePoints matrix
 

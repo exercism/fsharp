@@ -1,66 +1,66 @@
 ~ "anagram.ua" ~ Anagram
 
 # No matches
-    let candidates = ["hello" "world" "zombies" "pants"]
+candidates = ["hello" "world" "zombies" "pants"]
 ⍤⤙≍ [] findAnagrams candidates "diaper"
 
 # Detects two anagrams
-    let candidates = ["lemons" "cherry" "melons"]
+candidates = ["lemons" "cherry" "melons"]
 ⍤⤙≍ ["lemons" "melons"] findAnagrams candidates "solemn"
 
 # Does not detect anagram subsets
-    let candidates = ["dog" "goody"]
+candidates = ["dog" "goody"]
 ⍤⤙≍ [] findAnagrams candidates "good"
 
 # Detects anagram
-    let candidates = ["enlists" "google" "inlets" "banana"]
+candidates = ["enlists" "google" "inlets" "banana"]
 ⍤⤙≍ ["inlets"] findAnagrams candidates "listen"
 
 # Detects three anagrams
-    let candidates = ["gallery" "ballerina" "regally" "clergy" "largely" "leading"]
+candidates = ["gallery" "ballerina" "regally" "clergy" "largely" "leading"]
 ⍤⤙≍ ["gallery" "regally" "largely"] findAnagrams candidates "allergy"
 
 # Detects multiple anagrams with different case
-    let candidates = ["Eons" "ONES"]
+candidates = ["Eons" "ONES"]
 ⍤⤙≍ ["Eons" "ONES"] findAnagrams candidates "nose"
 
 # Does not detect non-anagrams with identical checksum
-    let candidates = ["last"]
+candidates = ["last"]
 ⍤⤙≍ [] findAnagrams candidates "mass"
 
 # Detects anagrams case-insensitively
-    let candidates = ["cashregister" "Carthorse" "radishes"]
+candidates = ["cashregister" "Carthorse" "radishes"]
 ⍤⤙≍ ["Carthorse"] findAnagrams candidates "Orchestra"
 
 # Detects anagrams using case-insensitive subject
-    let candidates = ["cashregister" "carthorse" "radishes"]
+candidates = ["cashregister" "carthorse" "radishes"]
 ⍤⤙≍ ["carthorse"] findAnagrams candidates "Orchestra"
 
 # Detects anagrams using case-insensitive possible matches
-    let candidates = ["cashregister" "Carthorse" "radishes"]
+candidates = ["cashregister" "Carthorse" "radishes"]
 ⍤⤙≍ ["Carthorse"] findAnagrams candidates "orchestra"
 
 # Does not detect an anagram if the original word is repeated
-    let candidates = ["go Go GO"]
+candidates = ["go Go GO"]
 ⍤⤙≍ [] findAnagrams candidates "go"
 
 # Anagrams must use all letters exactly once
-    let candidates = ["patter"]
+candidates = ["patter"]
 ⍤⤙≍ [] findAnagrams candidates "tapper"
 
 # Words are not anagrams of themselves
-    let candidates = ["BANANA"]
+candidates = ["BANANA"]
 ⍤⤙≍ [] findAnagrams candidates "BANANA"
 
 # Words are not anagrams of themselves even if letter case is partially different
-    let candidates = ["Banana"]
+candidates = ["Banana"]
 ⍤⤙≍ [] findAnagrams candidates "BANANA"
 
 # Words are not anagrams of themselves even if letter case is completely different
-    let candidates = ["banana"]
+candidates = ["banana"]
 ⍤⤙≍ [] findAnagrams candidates "BANANA"
 
 # Words other than themselves can be anagrams
-    let candidates = ["LISTEN" "Silent"]
+candidates = ["LISTEN" "Silent"]
 ⍤⤙≍ ["Silent"] findAnagrams candidates "LISTEN"
 

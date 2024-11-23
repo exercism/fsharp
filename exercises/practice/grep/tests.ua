@@ -1,7 +1,7 @@
 ~ "grep.ua" ~ Grep
 
-let iliadFileName = "iliad.txt"
-let iliadContents = 
+iliadFileName = "iliad.txt"
+iliadContents = 
     """Achilles sing, O Goddess! Peleus' son;
 His wrath pernicious, who ten thousand woes
 Caused to Achaia's host, sent many a soul
@@ -12,8 +12,8 @@ When fierce dispute had separated once
 The noble Chief Achilles from the son
 Of Atreus, Agamemnon, King of men."""
 
-let midsummerNightFileName = "midsummer-night.txt"
-let midsummerNightContents = 
+midsummerNightFileName = "midsummer-night.txt"
+midsummerNightContents = 
     """I do entreat your grace to pardon me.
 I know not by what power I am made bold,
 Nor how it may concern my modesty,
@@ -22,8 +22,8 @@ But I beseech your grace that I may know
 The worst that may befall me in this case,
 If I refuse to wed Demetrius."""
 
-let paradiseLostFileName = "paradise-lost.txt"
-let paradiseLostContents = 
+paradiseLostFileName = "paradise-lost.txt"
+paradiseLostContents = 
     """Of Mans First Disobedience, and the Fruit
 Of that Forbidden Tree, whose mortal tast
 Brought Death into the World, and all our woe,
@@ -33,7 +33,7 @@ Sing Heav'nly Muse, that on the secret top
 Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed"""
 
-let createFiles() =
+createFiles() =
     File.WriteAllText(iliadFileName, iliadContents)
     File.WriteAllText(midsummerNightFileName, midsummerNightContents)
     File.WriteAllText(paradiseLostFileName, paradiseLostContents)
@@ -41,64 +41,64 @@ let createFiles() =
 type GrepTests() =
 
         member this.``One file, one match, no flags
-        let files = ["iliad.txt"]
-        let flags = []
-        let pattern = "Agamemnon"
-        let expected = ["Of Atreus, Agamemnon, King of men."]
+files = ["iliad.txt"]
+flags = []
+pattern = "Agamemnon"
+expected = ["Of Atreus, Agamemnon, King of men."]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, one match, print line numbers flag
-        let files = ["paradise-lost.txt"]
-        let flags = ["-n"]
-        let pattern = "Forbidden"
-        let expected = ["2:Of that Forbidden Tree, whose mortal tast"]
+files = ["paradise-lost.txt"]
+flags = ["-n"]
+pattern = "Forbidden"
+expected = ["2:Of that Forbidden Tree, whose mortal tast"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, one match, case-insensitive flag
-        let files = ["paradise-lost.txt"]
-        let flags = ["-i"]
-        let pattern = "FORBIDDEN"
-        let expected = ["Of that Forbidden Tree, whose mortal tast"]
+files = ["paradise-lost.txt"]
+flags = ["-i"]
+pattern = "FORBIDDEN"
+expected = ["Of that Forbidden Tree, whose mortal tast"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, one match, print file names flag
-        let files = ["paradise-lost.txt"]
-        let flags = ["-l"]
-        let pattern = "Forbidden"
-        let expected = ["paradise-lost.txt"]
+files = ["paradise-lost.txt"]
+flags = ["-l"]
+pattern = "Forbidden"
+expected = ["paradise-lost.txt"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, one match, match entire lines flag
-        let files = ["paradise-lost.txt"]
-        let flags = ["-x"]
-        let pattern = "With loss of Eden, till one greater Man"
-        let expected = ["With loss of Eden, till one greater Man"]
+files = ["paradise-lost.txt"]
+flags = ["-x"]
+pattern = "With loss of Eden, till one greater Man"
+expected = ["With loss of Eden, till one greater Man"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, one match, multiple flags
-        let files = ["iliad.txt"]
-        let flags = ["-n" "-i" "-x"]
-        let pattern = "OF ATREUS, Agamemnon, KIng of MEN."
-        let expected = ["9:Of Atreus, Agamemnon, King of men."]
+files = ["iliad.txt"]
+flags = ["-n" "-i" "-x"]
+pattern = "OF ATREUS, Agamemnon, KIng of MEN."
+expected = ["9:Of Atreus, Agamemnon, King of men."]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, several matches, no flags
-        let files = ["midsummer-night.txt"]
-        let flags = []
-        let pattern = "may"
-        let expected = 
+files = ["midsummer-night.txt"]
+flags = []
+pattern = "may"
+expected = 
             [ "Nor how it may concern my modesty,";
               "But I beseech your grace that I may know";
               "The worst that may befall me in this case," ]
@@ -107,10 +107,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, several matches, print line numbers flag
-        let files = ["midsummer-night.txt"]
-        let flags = ["-n"]
-        let pattern = "may"
-        let expected = 
+files = ["midsummer-night.txt"]
+flags = ["-n"]
+pattern = "may"
+expected = 
             [ "3:Nor how it may concern my modesty,";
               "5:But I beseech your grace that I may know";
               "6:The worst that may befall me in this case," ]
@@ -119,19 +119,19 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, several matches, match entire lines flag
-        let files = ["midsummer-night.txt"]
-        let flags = ["-x"]
-        let pattern = "may"
-        let expected: string list = []
+files = ["midsummer-night.txt"]
+flags = ["-x"]
+pattern = "may"
+expected: string list = []
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, several matches, case-insensitive flag
-        let files = ["iliad.txt"]
-        let flags = ["-i"]
-        let pattern = "ACHILLES"
-        let expected = 
+files = ["iliad.txt"]
+flags = ["-i"]
+pattern = "ACHILLES"
+expected = 
             [ "Achilles sing, O Goddess! Peleus' son;";
               "The noble Chief Achilles from the son" ]
         
@@ -139,10 +139,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, several matches, inverted flag
-        let files = ["paradise-lost.txt"]
-        let flags = ["-v"]
-        let pattern = "Of"
-        let expected = 
+files = ["paradise-lost.txt"]
+flags = ["-v"]
+pattern = "Of"
+expected = 
             [ "Brought Death into the World, and all our woe,";
               "With loss of Eden, till one greater Man";
               "Restore us, and regain the blissful Seat,";
@@ -153,28 +153,28 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, no matches, various flags
-        let files = ["iliad.txt"]
-        let flags = ["-n" "-l" "-x" "-i"]
-        let pattern = "Gandalf"
-        let expected: string list = []
+files = ["iliad.txt"]
+flags = ["-n" "-l" "-x" "-i"]
+pattern = "Gandalf"
+expected: string list = []
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, one match, file flag takes precedence over line flag
-        let files = ["iliad.txt"]
-        let flags = ["-n" "-l"]
-        let pattern = "ten"
-        let expected = ["iliad.txt"]
+files = ["iliad.txt"]
+flags = ["-n" "-l"]
+pattern = "ten"
+expected = ["iliad.txt"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``One file, several matches, inverted and match entire lines flags
-        let files = ["iliad.txt"]
-        let flags = ["-x" "-v"]
-        let pattern = "Illustrious into Ades premature,"
-        let expected = 
+files = ["iliad.txt"]
+flags = ["-x" "-v"]
+pattern = "Illustrious into Ades premature,"
+expected = 
             [ "Achilles sing, O Goddess! Peleus' son;";
               "His wrath pernicious, who ten thousand woes";
               "Caused to Achaia's host, sent many a soul";
@@ -188,19 +188,19 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, one match, no flags
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = []
-        let pattern = "Agamemnon"
-        let expected = ["iliad.txt:Of Atreus, Agamemnon, King of men."]
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = []
+pattern = "Agamemnon"
+expected = ["iliad.txt:Of Atreus, Agamemnon, King of men."]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, several matches, no flags
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = []
-        let pattern = "may"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = []
+pattern = "may"
+expected = 
             [ "midsummer-night.txt:Nor how it may concern my modesty,";
               "midsummer-night.txt:But I beseech your grace that I may know";
               "midsummer-night.txt:The worst that may befall me in this case," ]
@@ -209,10 +209,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, several matches, print line numbers flag
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-n"]
-        let pattern = "that"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-n"]
+pattern = "that"
+expected = 
             [ "midsummer-night.txt:5:But I beseech your grace that I may know";
               "midsummer-night.txt:6:The worst that may befall me in this case,";
               "paradise-lost.txt:2:Of that Forbidden Tree, whose mortal tast";
@@ -222,10 +222,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, one match, print file names flag
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-l"]
-        let pattern = "who"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-l"]
+pattern = "who"
+expected = 
             [ "iliad.txt";
               "paradise-lost.txt" ]
         
@@ -233,10 +233,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, several matches, case-insensitive flag
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-i"]
-        let pattern = "TO"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-i"]
+pattern = "TO"
+expected = 
             [ "iliad.txt:Caused to Achaia's host, sent many a soul";
               "iliad.txt:Illustrious into Ades premature,";
               "iliad.txt:And Heroes gave (so stood the will of Jove)";
@@ -252,10 +252,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, several matches, inverted flag
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-v"]
-        let pattern = "a"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-v"]
+pattern = "a"
+expected = 
             [ "iliad.txt:Achilles sing, O Goddess! Peleus' son;";
               "iliad.txt:The noble Chief Achilles from the son";
               "midsummer-night.txt:If I refuse to wed Demetrius." ]
@@ -264,37 +264,37 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, one match, match entire lines flag
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-x"]
-        let pattern = "But I beseech your grace that I may know"
-        let expected = ["midsummer-night.txt:But I beseech your grace that I may know"]
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-x"]
+pattern = "But I beseech your grace that I may know"
+expected = ["midsummer-night.txt:But I beseech your grace that I may know"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, one match, multiple flags
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-n" "-i" "-x"]
-        let pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN"
-        let expected = ["paradise-lost.txt:4:With loss of Eden, till one greater Man"]
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-n" "-i" "-x"]
+pattern = "WITH LOSS OF EDEN, TILL ONE GREATER MAN"
+expected = ["paradise-lost.txt:4:With loss of Eden, till one greater Man"]
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, no matches, various flags
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-n" "-l" "-x" "-i"]
-        let pattern = "Frodo"
-        let expected: string list = []
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-n" "-l" "-x" "-i"]
+pattern = "Frodo"
+expected: string list = []
         
         createFiles() |> ignore
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, several matches, file flag takes precedence over line number flag
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-n" "-l"]
-        let pattern = "who"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-n" "-l"]
+pattern = "who"
+expected = 
             [ "iliad.txt";
               "paradise-lost.txt" ]
         
@@ -302,10 +302,10 @@ type GrepTests() =
 ⍤⤙≍ expected grep files flags pattern
 
         member this.``Multiple files, several matches, inverted and match entire lines flags
-        let files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
-        let flags = ["-x" "-v"]
-        let pattern = "Illustrious into Ades premature,"
-        let expected = 
+files = ["iliad.txt" "midsummer-night.txt" "paradise-lost.txt"]
+flags = ["-x" "-v"]
+pattern = "Illustrious into Ades premature,"
+expected = 
             [ "iliad.txt:Achilles sing, O Goddess! Peleus' son;";
               "iliad.txt:His wrath pernicious, who ten thousand woes";
               "iliad.txt:Caused to Achaia's host, sent many a soul";

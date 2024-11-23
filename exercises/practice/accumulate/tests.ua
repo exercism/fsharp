@@ -3,7 +3,7 @@
 module AccumulateTest
 
 
-let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
+reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
 
 # Empty accumulation produces empty accumulation
 ⍤⤙≍ [] accumulate (fun x -> x + 1) List.empty

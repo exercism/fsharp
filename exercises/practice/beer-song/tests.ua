@@ -1,37 +1,37 @@
 ~ "beer-song.ua" ~ BeerSong
 
 # First generic verse
-    let expected = 
+expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 99 1
 
 # Last generic verse
-    let expected = 
+expected = 
         [ "3 bottles of beer on the wall, 3 bottles of beer.";
           "Take one down and pass it around, 2 bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 3 1
 
 # Verse with 2 bottles
-    let expected = 
+expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall." ]
 ⍤⤙≍ expected recite 2 1
 
 # Verse with 1 bottle
-    let expected = 
+expected = 
         [ "1 bottle of beer on the wall, 1 bottle of beer.";
           "Take it down and pass it around, no more bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 1 1
 
 # Verse with 0 bottles
-    let expected = 
+expected = 
         [ "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
 ⍤⤙≍ expected recite 0 1
 
 # First two verses
-    let expected = 
+expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall.";
           "";
@@ -40,7 +40,7 @@
 ⍤⤙≍ expected recite 99 2
 
 # Last three verses
-    let expected = 
+expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall.";
           "";
@@ -52,7 +52,7 @@
 ⍤⤙≍ expected recite 2 3
 
 # All verses
-    let expected = 
+expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall.";
           "";

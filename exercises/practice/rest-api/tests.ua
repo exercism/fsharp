@@ -1,73 +1,73 @@
 ~ "rest-api.ua" ~ RestApi
 
 # No users
-    let database = """{"users":[]}"""
-    let url = "/users"
-    let expected = """{"users":[]}"""
-    let api = RestApi(database)
+database = """{"users":[]}"""
+url = "/users"
+expected = """{"users":[]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Get url
 
 # Add user
-    let database = """{"users":[]}"""
-    let payload = """{"user":"Adam"}"""
-    let url = "/add"
-    let expected = """{"name":"Adam","owes":{},"owed_by":{},"balance":0.0}"""
-    let api = RestApi(database)
+database = """{"users":[]}"""
+payload = """{"user":"Adam"}"""
+url = "/add"
+expected = """{"name":"Adam","owes":{},"owed_by":{},"balance":0.0}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 
 # Get single user
-    let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
-    let payload = """{"users":["Bob"]}"""
-    let url = "/users"
-    let expected = """{"users":[{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
+payload = """{"users":["Bob"]}"""
+url = "/users"
+expected = """{"users":[{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Get (url, payload)
 
 # Both users have 0 balance
-    let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
-    let payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
-    let url = "/iou"
-    let expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":3.0},"balance":3.0},{"name":"Bob","owes":{"Adam":3.0},"owed_by":{},"balance":-3.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
+payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
+url = "/iou"
+expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":3.0},"balance":3.0},{"name":"Bob","owes":{"Adam":3.0},"owed_by":{},"balance":-3.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 
 # Borrower has negative balance
-    let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
-    let payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
-    let url = "/iou"
-    let expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":3.0},"balance":3.0},{"name":"Bob","owes":{"Adam":3.0,"Chuck":3.0},"owed_by":{},"balance":-6.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
+payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
+url = "/iou"
+expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":3.0},"balance":3.0},{"name":"Bob","owes":{"Adam":3.0,"Chuck":3.0},"owed_by":{},"balance":-6.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 
 # Lender has negative balance
-    let database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
-    let payload = """{"lender":"Bob","borrower":"Adam","amount":3.0}"""
-    let url = "/iou"
-    let expected = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{"Adam":3.0},"balance":0.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
+payload = """{"lender":"Bob","borrower":"Adam","amount":3.0}"""
+url = "/iou"
+expected = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{"Adam":3.0},"balance":0.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 
 # Lender owes borrower
-    let database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
-    let payload = """{"lender":"Adam","borrower":"Bob","amount":2.0}"""
-    let url = "/iou"
-    let expected = """{"users":[{"name":"Adam","owes":{"Bob":1.0},"owed_by":{},"balance":-1.0},{"name":"Bob","owes":{},"owed_by":{"Adam":1.0},"balance":1.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
+payload = """{"lender":"Adam","borrower":"Bob","amount":2.0}"""
+url = "/iou"
+expected = """{"users":[{"name":"Adam","owes":{"Bob":1.0},"owed_by":{},"balance":-1.0},{"name":"Bob","owes":{},"owed_by":{"Adam":1.0},"balance":1.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 
 # Lender owes borrower less than new loan
-    let database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
-    let payload = """{"lender":"Adam","borrower":"Bob","amount":4.0}"""
-    let url = "/iou"
-    let expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":1.0},"balance":1.0},{"name":"Bob","owes":{"Adam":1.0},"owed_by":{},"balance":-1.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
+payload = """{"lender":"Adam","borrower":"Bob","amount":4.0}"""
+url = "/iou"
+expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":1.0},"balance":1.0},{"name":"Bob","owes":{"Adam":1.0},"owed_by":{},"balance":-1.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 
 # Lender owes borrower same as new loan
-    let database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
-    let payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
-    let url = "/iou"
-    let expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
-    let api = RestApi(database)
+database = """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
+payload = """{"lender":"Adam","borrower":"Bob","amount":3.0}"""
+url = "/iou"
+expected = """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
+api = RestApi(database)
 ⍤⤙≍ expected api.Post (url, payload)
 

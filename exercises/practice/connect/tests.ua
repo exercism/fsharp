@@ -1,7 +1,7 @@
 ~ "connect.ua" ~ Connect
 
 # An empty board has no winner
-    let board = 
+board = 
         [ ". . . . .    ";
           " . . . . .   ";
           "  . . . . .  ";
@@ -10,15 +10,15 @@
 ⍤⤙≍ None winner board
 
 # X can win on a 1x1 board
-    let board = ["X"]
+board = ["X"]
 ⍤⤙≍ (Some Black) winner board
 
 # O can win on a 1x1 board
-    let board = ["O"]
+board = ["O"]
 ⍤⤙≍ (Some White) winner board
 
 # Only edges does not make a winner
-    let board = 
+board = 
         [ "O O O X   ";
           " X . . X  ";
           "  X . . X ";
@@ -26,7 +26,7 @@
 ⍤⤙≍ None winner board
 
 # Illegal diagonal does not make a winner
-    let board = 
+board = 
         [ "X O . .    ";
           " O X X X   ";
           "  O X O .  ";
@@ -35,7 +35,7 @@
 ⍤⤙≍ None winner board
 
 # Nobody wins crossing adjacent angles
-    let board = 
+board = 
         [ "X . . .    ";
           " . X O .   ";
           "  O . X O  ";
@@ -44,7 +44,7 @@
 ⍤⤙≍ None winner board
 
 # X wins crossing from left to right
-    let board = 
+board = 
         [ ". O . .    ";
           " O X X X   ";
           "  O X O .  ";
@@ -53,7 +53,7 @@
 ⍤⤙≍ (Some Black) winner board
 
 # O wins crossing from top to bottom
-    let board = 
+board = 
         [ ". O . .    ";
           " O X X X   ";
           "  O O O .  ";
@@ -62,7 +62,7 @@
 ⍤⤙≍ (Some White) winner board
 
 # X wins using a convoluted path
-    let board = 
+board = 
         [ ". X X . .    ";
           " X . X . X   ";
           "  . X . X .  ";
@@ -71,7 +71,7 @@
 ⍤⤙≍ (Some Black) winner board
 
 # X wins using a spiral path
-    let board = 
+board = 
         [ "O X X X X X X X X        ";
           " O X O O O O O O O       ";
           "  O X O X X X X X O      ";

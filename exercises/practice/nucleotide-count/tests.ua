@@ -1,8 +1,8 @@
 ~ "nucleotide-count.ua" ~ NucleotideCount
 
 # Empty strand
-    let strand = ""
-    let expected = 
+strand = ""
+expected = 
         [ ('A', 0);
           ('C', 0);
           ('G', 0);
@@ -12,8 +12,8 @@
 ⍤⤙≍ expected nucleotideCounts strand
 
 # Can count one nucleotide in single-character input
-    let strand = "G"
-    let expected = 
+strand = "G"
+expected = 
         [ ('A', 0);
           ('C', 0);
           ('G', 1);
@@ -23,8 +23,8 @@
 ⍤⤙≍ expected nucleotideCounts strand
 
 # Strand with repeated nucleotide
-    let strand = "GGGGGGG"
-    let expected = 
+strand = "GGGGGGG"
+expected = 
         [ ('A', 0);
           ('C', 0);
           ('G', 7);
@@ -34,8 +34,8 @@
 ⍤⤙≍ expected nucleotideCounts strand
 
 # Strand with multiple nucleotides
-    let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
-    let expected = 
+strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+expected = 
         [ ('A', 20);
           ('C', 12);
           ('G', 17);
@@ -45,7 +45,7 @@
 ⍤⤙≍ expected nucleotideCounts strand
 
 # Strand with invalid nucleotides
-    let strand = "AGXXACT"
-    let expected = None
+strand = "AGXXACT"
+expected = None
 ⍤⤙≍ expected nucleotideCounts strand
 

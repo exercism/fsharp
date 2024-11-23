@@ -50,13 +50,13 @@
 
 # Random ability is within range
     for i in 1 .. 10 do
-        let ability = ability()
+ability = ability()
         ability |> should be (greaterThanOrEqualTo 3)
         ability |> should be (lessThanOrEqualTo  18)
 
 # Random character is valid
     for i in 1 .. 10 do
-        let character = createCharacter()
+character = createCharacter()
         character.Strength |> should be (greaterThanOrEqualTo 3)
         character.Strength |> should be (lessThanOrEqualTo  18)
         character.Dexterity |> should be (greaterThanOrEqualTo 3)
@@ -73,7 +73,7 @@
 
 # Each ability is only calculated once
     for i in 1 .. 10 do
-        let character = createCharacter()
+character = createCharacter()
 ⍤⤙≍ character.Strength character.Strength
 ⍤⤙≍ character.Dexterity character.Dexterity
 ⍤⤙≍ character.Constitution character.Constitution
