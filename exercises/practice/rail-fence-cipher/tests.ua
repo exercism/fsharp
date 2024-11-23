@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ RailFenceCipher
+~ "rail-fence-cipher.ua" ~ RailFenceCipher
 
 let ``Encode with two rails`` () =
     let rails = 2

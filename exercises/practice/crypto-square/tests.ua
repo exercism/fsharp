@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ CryptoSquare
+~ "crypto-square.ua" ~ CryptoSquare
 
 let ``Empty plaintext results in an empty ciphertext`` () =
     ciphertext "" |> should equal ""

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ NucleotideCount
+~ "nucleotide-count.ua" ~ NucleotideCount
 
 let ``Empty strand`` () =
     let strand = ""

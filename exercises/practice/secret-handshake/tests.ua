@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ SecretHandshake
+~ "secret-handshake.ua" ~ SecretHandshake
 
 let ``Wink for 1`` () =
     commands 1 |> should equal ["wink"]

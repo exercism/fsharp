@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Acronym
+~ "acronym.ua" ~ Acronym
 
 let ``Basic`` () =
     abbreviate "Portable Network Graphics" |> should equal "PNG"

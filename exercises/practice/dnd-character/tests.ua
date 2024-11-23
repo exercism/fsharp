@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ DndCharacter
+~ "dnd-character.ua" ~ DndCharacter
 
 let ``Ability modifier for score 3 is -4`` () =
     modifier 3 |> should equal -4

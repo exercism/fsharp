@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Clock
+~ "clock.ua" ~ Clock
 
 let ``On the hour`` () =
     let clock = create 8 0

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ TwoFer
+~ "two-fer.ua" ~ TwoFer
 
 let ``No name given`` () =
     twoFer None |> should equal "One for you, one for me."

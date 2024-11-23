@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ StateOfTicTacToe
+~ "state-of-tic-tac-toe.ua" ~ StateOfTicTacToe
 
 let ``Finished game where X won via left column victory`` () =
     let board = 

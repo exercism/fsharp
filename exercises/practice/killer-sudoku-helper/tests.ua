@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ KillerSudokuHelper
+~ "killer-sudoku-helper.ua" ~ KillerSudokuHelper
 
 let ``1`` () =
     combinations [] 1 1 |> should equal [[1]]

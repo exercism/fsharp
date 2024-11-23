@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ OcrNumbers
+~ "ocr-numbers.ua" ~ OcrNumbers
 
 let ``Recognizes 0`` () =
     let rows = 

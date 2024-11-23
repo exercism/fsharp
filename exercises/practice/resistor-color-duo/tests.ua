@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ResistorColorDuo
+~ "resistor-color-duo.ua" ~ ResistorColorDuo
 
 let ``Brown and black`` () =
     value ["brown"; "black"] |> should equal 10

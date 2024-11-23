@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ RunLengthEncoding
+~ "run-length-encoding.ua" ~ RunLengthEncoding
 
 let ``Encode empty string`` () =
     encode "" |> should equal ""

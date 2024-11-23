@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ZebraPuzzle
+~ "zebra-puzzle.ua" ~ ZebraPuzzle
 
 let ``Resident who drinks water`` () =
     drinksWater |> should equal Norwegian

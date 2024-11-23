@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Say
+~ "say.ua" ~ Say
 
 let ``Zero`` () =
     say 0L |> should equal (Some "zero")

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ RnaTranscription
+~ "rna-transcription.ua" ~ RnaTranscription
 
 let ``Empty RNA sequence`` () =
     toRna "" |> should equal ""

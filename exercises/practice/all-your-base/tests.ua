@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ AllYourBase
+~ "all-your-base.ua" ~ AllYourBase
 
 let ``Single bit one to decimal`` () =
     let digits = [1]

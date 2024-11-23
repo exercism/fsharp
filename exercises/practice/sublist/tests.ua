@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Sublist
+~ "sublist.ua" ~ Sublist
 
 let ``Empty lists`` () =
     let listOne = []

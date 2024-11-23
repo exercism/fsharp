@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ React
+~ "react.ua" ~ React
 
 let ``Input cells have a value`` () =
     let reactor = new Reactor()

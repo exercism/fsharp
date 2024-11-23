@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Tournament
+~ "tournament.ua" ~ Tournament
 
 let ``Just the header if no input`` () =
     let rows = []

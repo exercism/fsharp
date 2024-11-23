@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Dominoes
+~ "dominoes.ua" ~ Dominoes
 
 let ``Empty input = empty output`` () =
     let dominoes = []

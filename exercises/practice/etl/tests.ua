@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Etl
+~ "etl.ua" ~ Etl
 
 let ``Single letter`` () =
     let lettersByScore = [(1, ['A'])] |> Map.ofList

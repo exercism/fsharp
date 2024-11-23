@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ IsbnVerifier
+~ "isbn-verifier.ua" ~ IsbnVerifier
 
 let ``Valid isbn`` () =
     isValid "3-598-21508-8" |> should equal true

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ SpaceAge
+~ "space-age.ua" ~ SpaceAge
 
 let ``Age on Earth`` () =
     age Earth 1000000000L |> should (equalWithin 0.01) 31.69

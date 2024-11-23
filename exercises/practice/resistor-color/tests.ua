@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ResistorColor
+~ "resistor-color.ua" ~ ResistorColor
 
 let ``Black`` () =
     colorCode "black" |> should equal 0

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Rectangles
+~ "rectangles.ua" ~ Rectangles
 
 let ``No rows`` () =
     let strings = []

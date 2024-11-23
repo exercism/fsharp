@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Minesweeper
+~ "minesweeper.ua" ~ Minesweeper
 
 let ``No rows`` () =
     let minefield: string list = []

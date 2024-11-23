@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ FoodChain
+~ "food-chain.ua" ~ FoodChain
 
 let ``Fly`` () =
     let expected = 

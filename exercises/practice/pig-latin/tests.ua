@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ PigLatin
+~ "pig-latin.ua" ~ PigLatin
 
 let ``Word beginning with a`` () =
     translate "apple" |> should equal "appleay"

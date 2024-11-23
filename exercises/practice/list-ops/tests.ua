@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ListOps
+~ "list-ops.ua" ~ ListOps
 
 let ``append empty lists`` () =
     append [] [] |> should be Empty

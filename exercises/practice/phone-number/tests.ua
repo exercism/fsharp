@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ PhoneNumber
+~ "phone-number.ua" ~ PhoneNumber
 
 let ``Cleans the number`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL

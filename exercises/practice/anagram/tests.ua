@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Anagram
+~ "anagram.ua" ~ Anagram
 
 let ``No matches`` () =
     let candidates = ["hello"; "world"; "zombies"; "pants"]

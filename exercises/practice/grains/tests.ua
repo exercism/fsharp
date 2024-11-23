@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Grains
+~ "grains.ua" ~ Grains
 
 let ``Grains on square 1`` () =
     let expected: Result<uint64,string> = Ok 1UL

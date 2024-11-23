@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Proverb
+~ "proverb.ua" ~ Proverb
 
 let ``Zero pieces`` () =
     let strings: string list = []

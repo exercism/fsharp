@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ CustomSet
+~ "custom-set.ua" ~ CustomSet
 
 let ``Sets with no elements are empty`` () =
     let actual = CustomSet.isEmpty (CustomSet.fromList [])

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ReverseString
+~ "reverse-string.ua" ~ ReverseString
 
 let ``An empty string`` () =
     reverse "" |> should equal ""

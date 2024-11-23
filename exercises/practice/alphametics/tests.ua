@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Alphametics
+~ "alphametics.ua" ~ Alphametics
 
 let ``Puzzle with three letters`` () =
     let puzzle = "I + BB == ILL"

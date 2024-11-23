@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Triangle
+~ "triangle.ua" ~ Triangle
 
 let ``Equilateral returns all sides are equal`` () =
     equilateral [2.0; 2.0; 2.0] |> should equal true

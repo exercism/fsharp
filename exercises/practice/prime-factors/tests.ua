@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ PrimeFactors
+~ "prime-factors.ua" ~ PrimeFactors
 
 let ``No factors`` () =
     factors 1L |> should be Empty

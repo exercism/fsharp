@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ NthPrime
+~ "nth-prime.ua" ~ NthPrime
 
 let ``First prime`` () =
     prime 1 |> should equal (Some 2)

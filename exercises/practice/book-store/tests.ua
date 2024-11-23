@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ BookStore
+~ "book-store.ua" ~ BookStore
 
 let ``Only a single book`` () =
     total [1] |> should equal 8.00m

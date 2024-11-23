@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Knapsack
+~ "knapsack.ua" ~ Knapsack
 
 let ``No items`` () =
     let items = []

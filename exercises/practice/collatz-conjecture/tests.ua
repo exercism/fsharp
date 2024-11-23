@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ CollatzConjecture
+~ "collatz-conjecture.ua" ~ CollatzConjecture
 
 let ``Zero steps for one`` () =
     steps 1 |> should equal (Some 0)

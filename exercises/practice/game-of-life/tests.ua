@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ GameOfLife
+~ "game-of-life.ua" ~ GameOfLife
 
 let ``Empty matrix`` () =
     let matrix: int[,] = array2D []

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ PerfectNumbers
+~ "perfect-numbers.ua" ~ PerfectNumbers
 
 let ``Smallest perfect number is classified correctly`` () =
     classify 6 |> should equal (Some Classification.Perfect)

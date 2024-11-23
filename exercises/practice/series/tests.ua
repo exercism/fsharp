@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Series
+~ "series.ua" ~ Series
 
 let ``Slices of one from one`` () =
     slices "1" 1 |> should equal (Some ["1"])

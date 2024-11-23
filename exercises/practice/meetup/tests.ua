@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Meetup
+~ "meetup.ua" ~ Meetup
 
 let ``When teenth Monday is the 13th, the first day of the teenth week`` () =
     meetup 2013 5 Week.Teenth DayOfWeek.Monday |> should equal (DateTime(2013, 5, 13))

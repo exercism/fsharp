@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Wordy
+~ "wordy.ua" ~ Wordy
 
 let ``Just a number`` () =
     answer "What is 5?" |> should equal (Some 5)

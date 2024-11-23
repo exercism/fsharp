@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Allergies
+~ "allergies.ua" ~ Allergies
 
 let ``Testing for eggs allergy - not allergic to anything`` () =
     allergicTo 0 Allergen.Eggs |> should equal false

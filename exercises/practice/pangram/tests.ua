@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Pangram
+~ "pangram.ua" ~ Pangram
 
 let ``Empty sentence`` () =
     isPangram "" |> should equal false

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ SgfParsing
+~ "sgf-parsing.ua" ~ SgfParsing
 
 let ``Empty input`` () =
     let expected = None

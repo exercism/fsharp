@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ AtbashCipher
+~ "atbash-cipher.ua" ~ AtbashCipher
 
 let ``Encode yes`` () =
     encode "yes" |> should equal "bvh"

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ GradeSchool
+~ "grade-school.ua" ~ GradeSchool
 
 let ``Roster is empty when no student is added`` () =
     let school = empty

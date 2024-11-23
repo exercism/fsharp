@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ CircularBuffer
+~ "circular-buffer.ua" ~ CircularBuffer
 
 let ``Reading empty buffer should fail`` () =
     let buffer1 = mkCircularBuffer 1

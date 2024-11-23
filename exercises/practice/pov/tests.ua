@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Pov
+~ "pov.ua" ~ Pov
 
 let rec graphToList (graph: Graph<'a>) = 
     let right =

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ MatchingBrackets
+~ "matching-brackets.ua" ~ MatchingBrackets
 
 let ``Paired square brackets`` () =
     isPaired "[]" |> should equal true

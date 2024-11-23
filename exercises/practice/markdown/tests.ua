@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Markdown
+~ "markdown.ua" ~ Markdown
 
 let ``Parses normal text as a paragraph`` () =
     let markdown = "This will be a paragraph"

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ BinarySearchTree
+~ "binary-search-tree.ua" ~ BinarySearchTree
 
 let ``Data is retained`` () =
     let treeData = create [4]

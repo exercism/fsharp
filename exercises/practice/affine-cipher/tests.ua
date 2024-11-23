@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ AffineCipher
+~ "affine-cipher.ua" ~ AffineCipher
 
 let ``Encode yes`` () =
     encode 5 7 "yes" |> should equal "xbt"

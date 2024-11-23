@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ RomanNumerals
+~ "roman-numerals.ua" ~ RomanNumerals
 
 let ``1 is I`` () =
     roman 1 |> should equal "I"

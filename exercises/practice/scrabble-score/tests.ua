@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ScrabbleScore
+~ "scrabble-score.ua" ~ ScrabbleScore
 
 let ``Lowercase letter`` () =
     score "a" |> should equal 1

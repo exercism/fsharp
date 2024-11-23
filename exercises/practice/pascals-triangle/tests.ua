@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ PascalsTriangle
+~ "pascals-triangle.ua" ~ PascalsTriangle
 
 let ``Zero rows`` () =
     let expected: int list list = []

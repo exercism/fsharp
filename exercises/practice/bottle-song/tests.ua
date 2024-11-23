@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ BottleSong
+~ "bottle-song.ua" ~ BottleSong
 
 let ``First generic verse`` () =
     let expected = 

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ PalindromeProducts
+~ "palindrome-products.ua" ~ PalindromeProducts
 
 let ``Find the smallest palindrome from single digit factors`` () =
     let expected: int option * (int * int) list = (Some 1, [(1, 1)])

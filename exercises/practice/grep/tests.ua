@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Grep
+~ "grep.ua" ~ Grep
 
 let iliadFileName = "iliad.txt"
 let iliadContents = 

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ SaddlePoints
+~ "saddle-points.ua" ~ SaddlePoints
 
 let ``Can identify single saddle point`` () =
     let matrix = 

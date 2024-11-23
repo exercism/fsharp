@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Poker
+~ "poker.ua" ~ Poker
 
 let ``Single hand always wins`` () =
     let hands = ["4S 5S 7H 8D JC"]

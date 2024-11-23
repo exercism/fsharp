@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ RestApi
+~ "rest-api.ua" ~ RestApi
 
 let ``No users`` () =
     let database = """{"users":[]}"""

@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Connect
+~ "connect.ua" ~ Connect
 
 let ``An empty board has no winner`` () =
     let board = 

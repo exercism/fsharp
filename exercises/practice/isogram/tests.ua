@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Isogram
+~ "isogram.ua" ~ Isogram
 
 let ``Empty string`` () =
     isIsogram "" |> should equal true

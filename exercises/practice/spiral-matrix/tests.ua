@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ SpiralMatrix
+~ "spiral-matrix.ua" ~ SpiralMatrix
 
 let ``Empty spiral`` () =
     spiralMatrix 0 |> should be Empty

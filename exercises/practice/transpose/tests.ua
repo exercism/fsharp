@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Transpose
+~ "transpose.ua" ~ Transpose
 
 let ``Empty string`` () =
     let lines: string list = []

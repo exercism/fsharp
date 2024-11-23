@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Hamming
+~ "hamming.ua" ~ Hamming
 
 let ``Empty strands`` () =
     distance "" "" |> should equal (Some 0)

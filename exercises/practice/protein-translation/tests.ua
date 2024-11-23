@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ ProteinTranslation
+~ "protein-translation.ua" ~ ProteinTranslation
 
 let ``Empty RNA sequence results in no proteins`` () =
     proteins "" |> should be Empty

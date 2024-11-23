@@ -1,4 +1,4 @@
-~ "SOLUTION" ~ Satellite
+~ "satellite.ua" ~ Satellite
 
 let ``Empty tree`` () =
     let expected: Result<Tree,string> = Ok (
