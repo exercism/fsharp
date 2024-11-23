@@ -1,59 +1,59 @@
 ~ "dot-dsl.ua" ~ DotDsl
 
 # Empty graph
-g = graph []
+g ← graph []
 
 ⍤⤙≍ [] nodes g
 ⍤⤙≍ [] edges g
 ⍤⤙≍ [] attrs g
-    
+
 # Graph with one node
-g = graph [
-                node "a" []
-            ]            
+g ← graph [
+  node "a" []
+]
 
 ⍤⤙≍ [node "a" []] nodes g
 ⍤⤙≍ [] edges g
 ⍤⤙≍ [] attrs g
-    
+
 # Graph with one node with keywords    
-g = graph [
-                node "a" ["color"_"green"]
-            ]            
+g ← graph [
+  node "a" ["color"_"green"]
+]
 
 ⍤⤙≍ [node "a" ["color"_"green"]] nodes g
 ⍤⤙≍ [] edges g
 ⍤⤙≍ [] attrs g
 
 # Graph with one edge    
-g = graph [
-                edge "a" "b" []
-            ]             
+g ← graph [
+  edge "a" "b" []
+]
 
 ⍤⤙≍ [] nodes g
 ⍤⤙≍ [edge "a" "b" []] edges g
 ⍤⤙≍ [] attrs g
 
 # Graph with one attribute 
-g = graph [
-                attr "foo" "1"
-            ]             
+g ← graph [
+  attr "foo" "1"
+]
 
 ⍤⤙≍ [] nodes g
 ⍤⤙≍ [] edges g
 ⍤⤙≍ [attr "foo" "1"] attrs g
 
 # Graph with attributes    
-g = graph [
-                attr "foo" "1"
-                attr "title" "Testing Attrs"
-                node "a" ["color"_"green"]
-                node "c" []
-                node "b" ["label"_"Beta!"]                
-                edge "b" "c" []
-                edge "a" "b" ["color"_"blue"]                
-                attr "bar" "true"
-            ]             
+g ← graph [
+  attr "foo" "1"
+  attr "title" "Testing Attrs"
+  node "a" ["color"_"green"]
+  node "c" []
+  node "b" ["label"_"Beta!"]
+  edge "b" "c" []
+  edge "a" "b" ["color"_"blue"]
+  attr "bar" "true"
+]
 
 ⍤⤙≍ [node "a" ["color"_"green"] node "b" ["label"_"Beta!"] node "c" []] nodes g
 ⍤⤙≍ [edge "a" "b" ["color"_"blue"] edge "b" "c" []] edges g

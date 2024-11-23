@@ -1,108 +1,68 @@
 ~ "rectangles.ua" ~ Rectangles
 
 # No rows
-strings = []
+strings ← []
 ⍤⤙≍ 0 rectangles strings
 
 # No columns
-strings = [""]
+strings ← [""]
 ⍤⤙≍ 0 rectangles strings
 
 # No rectangles
-strings = [" "]
+strings ← [" "]
 ⍤⤙≍ 0 rectangles strings
 
 # One rectangle
-strings = 
-        [ "+-+";
-          "| |";
-          "+-+" ]
+strings ←
+["+-+""| |""+-+"]
 ⍤⤙≍ 1 rectangles strings
 
 # Two rectangles without shared parts
-strings = 
-        [ "  +-+";
-          "  | |";
-          "+-+-+";
-          "| |  ";
-          "+-+  " ]
+strings ←
+["  +-+""  | |""+-+-+""| |  ""+-+  "]
 ⍤⤙≍ 2 rectangles strings
 
 # Five rectangles with shared parts
-strings = 
-        [ "  +-+";
-          "  | |";
-          "+-+-+";
-          "| | |";
-          "+-+-+" ]
+strings ←
+["  +-+""  | |""+-+-+""| | |""+-+-+"]
 ⍤⤙≍ 5 rectangles strings
 
 # Rectangle of height 1 is counted
-strings = 
-        [ "+--+";
-          "+--+" ]
+strings ←
+["+--+""+--+"]
 ⍤⤙≍ 1 rectangles strings
 
 # Rectangle of width 1 is counted
-strings = 
-        [ "++";
-          "||";
-          "++" ]
+strings ←
+["++""||""++"]
 ⍤⤙≍ 1 rectangles strings
 
 # 1x1 square is counted
-strings = 
-        [ "++";
-          "++" ]
+strings ←
+["++""++"]
 ⍤⤙≍ 1 rectangles strings
 
 # Only complete rectangles are counted
-strings = 
-        [ "  +-+";
-          "    |";
-          "+-+-+";
-          "| | -";
-          "+-+-+" ]
+strings ←
+["  +-+""    |""+-+-+""| | -""+-+-+"]
 ⍤⤙≍ 1 rectangles strings
 
 # Rectangles can be of different sizes
-strings = 
-        [ "+------+----+";
-          "|      |    |";
-          "+---+--+    |";
-          "|   |       |";
-          "+---+-------+" ]
+strings ←
+["+------+----+""|      |    |""+---+--+    |""|   |       |""+---+-------+"]
 ⍤⤙≍ 3 rectangles strings
 
 # Corner is required for a rectangle to be complete
-strings = 
-        [ "+------+----+";
-          "|      |    |";
-          "+------+    |";
-          "|   |       |";
-          "+---+-------+" ]
+strings ←
+["+------+----+""|      |    |""+------+    |""|   |       |""+---+-------+"]
 ⍤⤙≍ 2 rectangles strings
 
 # Large input with many rectangles
-strings = 
-        [ "+---+--+----+";
-          "|   +--+----+";
-          "+---+--+    |";
-          "|   +--+----+";
-          "+---+--+--+-+";
-          "+---+--+--+-+";
-          "+------+  | |";
-          "          +-+" ]
+strings ←
+["+---+--+----+""|   +--+----+""+---+--+    |""|   +--+----+""+---+--+--+-+""+---+--+--+-+""+------+  | |""          +-+"]
 ⍤⤙≍ 60 rectangles strings
 
 # Rectangles must have four sides
-strings = 
-        [ "+-+ +-+";
-          "| | | |";
-          "+-+-+-+";
-          "  | |  ";
-          "+-+-+-+";
-          "| | | |";
-          "+-+ +-+" ]
+strings ←
+["+-+ +-+""| | | |""+-+-+-+""  | |  ""+-+-+-+""| | | |""+-+ +-+"]
 ⍤⤙≍ 5 rectangles strings
-

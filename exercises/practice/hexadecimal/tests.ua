@@ -29,4 +29,3 @@
 
 # Hexadecimal carrot is decimal 0
 ⍤⤙≍ 0 toDecimal "carrot"
-

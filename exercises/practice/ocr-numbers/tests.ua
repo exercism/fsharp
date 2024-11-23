@@ -1,145 +1,86 @@
 ~ "ocr-numbers.ua" ~ OcrNumbers
 
 # Recognizes 0
-rows = 
-        [ " _ ";
-          "| |";
-          "|_|";
-          "   " ]
-⍤⤙≍ "0" convert rows
+≡=
+[" _ ""| |""|_|""   "]
+⍤⤙≍ "0" convert ≡
 
 # Recognizes 1
-rows = 
-        [ "   ";
-          "  |";
-          "  |";
-          "   " ]
-⍤⤙≍ "1" convert rows
+≡=
+["   ""  |""  |""   "]
+⍤⤙≍ "1" convert ≡
 
 # Unreadable but correctly sized inputs return ?
-rows = 
-        [ "   ";
-          "  _";
-          "  |";
-          "   " ]
-⍤⤙≍ "?" convert rows
+≡=
+["   ""  _""  |""   "]
+⍤⤙≍ "?" convert ≡
 
 # Input with a number of lines that is not a multiple of four raises an error
-rows = 
-        [ " _ ";
-          "| |";
-          "   " ]
-⍤⤙≍ "TODO: insert error message" ⍣(convert rows)
+≡=
+[" _ ""| |""   "]
+⍤⤙≍ "TODO: insert error message" ⍣(convert ≡)
 
 # Input with a number of columns that is not a multiple of three raises an error
-rows = 
-        [ "    ";
-          "   |";
-          "   |";
-          "    " ]
-⍤⤙≍ "TODO: insert error message" ⍣(convert rows)
+≡=
+["    ""   |""   |""    "]
+⍤⤙≍ "TODO: insert error message" ⍣(convert ≡)
 
 # Recognizes 110101100
-rows = 
-        [ "       _     _        _  _ ";
-          "  |  || |  || |  |  || || |";
-          "  |  ||_|  ||_|  |  ||_||_|";
-          "                           " ]
-⍤⤙≍ "110101100" convert rows
+≡=
+["       _     _        _  _ ""  |  || |  || |  |  || || |""  |  ||_|  ||_|  |  ||_||_|""                           "]
+⍤⤙≍ "110101100" convert ≡
 
 # Garbled numbers in a string are replaced with ?
-rows = 
-        [ "       _     _           _ ";
-          "  |  || |  || |     || || |";
-          "  |  | _|  ||_|  |  ||_||_|";
-          "                           " ]
-⍤⤙≍ "11?10?1?0" convert rows
+≡=
+["       _     _           _ ""  |  || |  || |     || || |""  |  | _|  ||_|  |  ||_||_|""                           "]
+⍤⤙≍ "11?10?1?0" convert ≡
 
 # Recognizes 2
-rows = 
-        [ " _ ";
-          " _|";
-          "|_ ";
-          "   " ]
-⍤⤙≍ "2" convert rows
+≡=
+[" _ "" _|""|_ ""   "]
+⍤⤙≍ "2" convert ≡
 
 # Recognizes 3
-rows = 
-        [ " _ ";
-          " _|";
-          " _|";
-          "   " ]
-⍤⤙≍ "3" convert rows
+≡=
+[" _ "" _|"" _|""   "]
+⍤⤙≍ "3" convert ≡
 
 # Recognizes 4
-rows = 
-        [ "   ";
-          "|_|";
-          "  |";
-          "   " ]
-⍤⤙≍ "4" convert rows
+≡=
+["   ""|_|""  |""   "]
+⍤⤙≍ "4" convert ≡
 
 # Recognizes 5
-rows = 
-        [ " _ ";
-          "|_ ";
-          " _|";
-          "   " ]
-⍤⤙≍ "5" convert rows
+≡=
+[" _ ""|_ "" _|""   "]
+⍤⤙≍ "5" convert ≡
 
 # Recognizes 6
-rows = 
-        [ " _ ";
-          "|_ ";
-          "|_|";
-          "   " ]
-⍤⤙≍ "6" convert rows
+≡=
+[" _ ""|_ ""|_|""   "]
+⍤⤙≍ "6" convert ≡
 
 # Recognizes 7
-rows = 
-        [ " _ ";
-          "  |";
-          "  |";
-          "   " ]
-⍤⤙≍ "7" convert rows
+≡=
+[" _ ""  |""  |""   "]
+⍤⤙≍ "7" convert ≡
 
 # Recognizes 8
-rows = 
-        [ " _ ";
-          "|_|";
-          "|_|";
-          "   " ]
-⍤⤙≍ "8" convert rows
+≡=
+[" _ ""|_|""|_|""   "]
+⍤⤙≍ "8" convert ≡
 
 # Recognizes 9
-rows = 
-        [ " _ ";
-          "|_|";
-          " _|";
-          "   " ]
-⍤⤙≍ "9" convert rows
+≡=
+[" _ ""|_|"" _|""   "]
+⍤⤙≍ "9" convert ≡
 
 # Recognizes string of decimal numbers
-rows = 
-        [ "    _  _     _  _  _  _  _  _ ";
-          "  | _| _||_||_ |_   ||_||_|| |";
-          "  ||_  _|  | _||_|  ||_| _||_|";
-          "                              " ]
-⍤⤙≍ "1234567890" convert rows
+≡=
+["    _  _     _  _  _  _  _  _ ""  | _| _||_||_ |_   ||_||_|| |""  ||_  _|  | _||_|  ||_| _||_|""                              "]
+⍤⤙≍ "1234567890" convert ≡
 
 # Numbers separated by empty lines are recognized. Lines are joined by commas.
-rows = 
-        [ "    _  _ ";
-          "  | _| _|";
-          "  ||_  _|";
-          "         ";
-          "    _  _ ";
-          "|_||_ |_ ";
-          "  | _||_|";
-          "         ";
-          " _  _  _ ";
-          "  ||_||_|";
-          "  ||_| _|";
-          "         " ]
-⍤⤙≍ "123,456,789" convert rows
-
+≡=
+["    _  _ ""  | _| _|""  ||_  _|""         ""    _  _ ""|_||_ |_ ""  | _||_|""         "" _  _  _ ""  ||_||_|""  ||_| _|""         "]
+⍤⤙≍ "123,456,789" convert ≡

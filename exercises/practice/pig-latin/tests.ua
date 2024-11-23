@@ -65,4 +65,3 @@
 
 # A whole phrase
 ⍤⤙≍ "ickquay astfay unray" translate "quick fast run"
-

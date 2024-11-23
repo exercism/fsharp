@@ -5,4 +5,3 @@
 
 # Resident who owns zebra
 ⍤⤙≍ Japanese ownsZebra
-

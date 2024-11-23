@@ -49,31 +49,45 @@
 ⍤⤙≍ 4 modifier 18
 
 # Random ability is within range
-    for i in 1 .. 10 do
-ability = ability()
-        ability |> should be (greaterThanOrEqualTo 3)
-        ability |> should be (lessThanOrEqualTo  18)
+⊃i in 1 .. 10 ⍢
+ability ← ability()
+ability
+| > should be (greaterThanOrEqualTo 3)
+ability
+| > should be (lessThanOrEqualTo 18)
 
 # Random character is valid
-    for i in 1 .. 10 do
-character = createCharacter()
-        character.Strength |> should be (greaterThanOrEqualTo 3)
-        character.Strength |> should be (lessThanOrEqualTo  18)
-        character.Dexterity |> should be (greaterThanOrEqualTo 3)
-        character.Dexterity |> should be (lessThanOrEqualTo  18)
-        character.Constitution |> should be (greaterThanOrEqualTo 3)
-        character.Constitution |> should be (lessThanOrEqualTo  18)
-        character.Intelligence |> should be (greaterThanOrEqualTo 3)
-        character.Intelligence |> should be (lessThanOrEqualTo  18)
-        character.Wisdom |> should be (greaterThanOrEqualTo 3)
-        character.Wisdom |> should be (lessThanOrEqualTo  18)
-        character.Charisma |> should be (greaterThanOrEqualTo 3)
-        character.Charisma |> should be (lessThanOrEqualTo  18)
+⊃i in 1 .. 10 ⍢
+character ← createCharacter()
+character.Strength
+| > should be (greaterThanOrEqualTo 3)
+character.Strength
+| > should be (lessThanOrEqualTo 18)
+character.Dexterity
+| > should be (greaterThanOrEqualTo 3)
+character.Dexterity
+| > should be (lessThanOrEqualTo 18)
+character.Constitution
+| > should be (greaterThanOrEqualTo 3)
+character.Constitution
+| > should be (lessThanOrEqualTo 18)
+character.Intelligence
+| > should be (greaterThanOrEqualTo 3)
+character.Intelligence
+| > should be (lessThanOrEqualTo 18)
+character.Wisdom
+| > should be (greaterThanOrEqualTo 3)
+character.Wisdom
+| > should be (lessThanOrEqualTo 18)
+character.Charisma
+| > should be (greaterThanOrEqualTo 3)
+character.Charisma
+| > should be (lessThanOrEqualTo 18)
 ⍤⤙≍ (10 + modifier(character.Constitution)) character.Hitpoints
 
 # Each ability is only calculated once
-    for i in 1 .. 10 do
-character = createCharacter()
+⊃i in 1 .. 10 ⍢
+character ← createCharacter()
 ⍤⤙≍ character.Strength character.Strength
 ⍤⤙≍ character.Dexterity character.Dexterity
 ⍤⤙≍ character.Constitution character.Constitution
@@ -81,4 +95,3 @@ character = createCharacter()
 ⍤⤙≍ character.Wisdom character.Wisdom
 ⍤⤙≍ character.Charisma character.Charisma
 ⍤⤙≍ character.Hitpoints character.Hitpoints
-

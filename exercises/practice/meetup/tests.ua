@@ -284,4 +284,3 @@
 
 # When first Friday is the 7th, the last day of the first week
 ⍤⤙≍ DateTime(2012_12, 7) meetup 2012 12 Week.First DayOfWeek.Friday
-

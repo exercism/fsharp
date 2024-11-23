@@ -1,29 +1,33 @@
 ~ "lens-person.ua" ~ LensPerson
-testPerson =
-    { name = 
-        { name = "Jane Joanna"
-          surName = "Doe" }
-      born = 
-        { at = 
-            { street = "Longway"
-              houseNumber = 1024
-              place = "Springfield"
-              country = "United States" }
-          on = DateTime1984_4, 12 }
-      address = 
-        { street = "Shortlane"
-          houseNumber = 2
-          place = "Fallmeadow"
-          country = "Canada" } }
+testPerson ←
+{name =
+ {name = "Jane Joanna"
+  surName = "Doe"}
+ born =
+ {at =
+  {street = "Longway"
+   houseNumber = 1024
+   place = "Springfield"
+   country = "United States"}
+  ⟜= DateTime1984_4, 12}
+ address =
+ {street = "Shortlane"
+  houseNumber = 2
+  place = "Fallmeadow"
+  country = "Canada"}}
 
 # Set born at street
 ⍤⤙≍ "Longway" Optic.get bornAtStreet testPerson
 
 # Set current street
-⍤⤙≍ "Middleroad" Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet
+⍤⤙≍ "Middleroad" Optic.set currentStreet "Middleroad" testPerson
+| > Optic.get currentStreet
 
 # Upper case born at street
-⍤⤙≍ "LONGWAY" Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet
+⍤⤙≍ "LONGWAY" Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson
+| > Optic.get bornAtStreet
 
 # Set birth month
-⍤⤙≍ <| DateTime1984_9, 12 Optic.set birthMonth 9 testPerson |> Optic.get bornOn
+⍤⤙≍ <
+|DateTime  1984_9, 12 Optic.set birthMonth 9 testPerson
+| > Optic.get bornOn

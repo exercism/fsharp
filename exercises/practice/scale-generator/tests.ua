@@ -50,4 +50,3 @@
 
 # Enigmatic
 ⍤⤙≍ ["G" "G#" "B" "C#" "D#" "F" "F#" "G"] interval "mAMMMmm" "G"
-

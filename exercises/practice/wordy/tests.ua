@@ -68,4 +68,3 @@
 
 # Reject prefix notation
 ⍤⤙≍ "TODO: insert error message" ⍣(answer "What is plus 1 2?")
-

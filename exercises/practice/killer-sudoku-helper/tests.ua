@@ -38,4 +38,3 @@
 
 # Cage with several combinations that is restricted
 ⍤⤙≍ [[2 8] [3 7]] combinations [1 4] 2 10
-

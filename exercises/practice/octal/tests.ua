@@ -38,4 +38,3 @@
 
 # Invalid Octal abc1z is decimal 0
 ⍤⤙≍ 0 toDecimal "abc1z"
-

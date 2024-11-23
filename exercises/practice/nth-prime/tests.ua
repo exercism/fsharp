@@ -14,4 +14,3 @@
 
 # There is no zeroth prime
 ⍤⤙≍ "TODO: insert error message" ⍣(prime 0)
-

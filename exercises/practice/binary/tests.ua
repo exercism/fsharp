@@ -44,4 +44,3 @@
 
 # A_number_and_a_word_whitespace_separated_is_invalid
 ⍤⤙≍ 0 toDecimal "001 nope"
-

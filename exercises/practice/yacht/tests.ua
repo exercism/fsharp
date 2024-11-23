@@ -86,4 +86,3 @@
 
 # Yacht as choice
 ⍤⤙≍ 10 score Category.Choice [Die.Two Die.Two Die.Two Die.Two Die.Two]
-
