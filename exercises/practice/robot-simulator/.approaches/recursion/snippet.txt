@@ -1,8 +1,0 @@
-let rec applyInstruction (robot: Robot) (instructions: char list): Robot =
-        match instructions with
-        | [] -> robot
-        | 'L' :: remainingInstructions -> applyInstruction (turnLeft robot) remainingInstructions
-        | 'R' :: remainingInstructions -> applyInstruction (turnRight robot) remainingInstructions
-        | 'A' :: remainingInstructions -> applyInstruction (advance robot) remainingInstructions
-
-    applyInstruction robot (Seq.toList instructions)

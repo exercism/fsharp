@@ -1,7 +1,0 @@
-let singleScore (target: Die) (dice: Die list): int =
-    dice |> List.filter (fun die -> die = target) |> List.sumBy dieScore
-
-let littleStraightScore (dice: Die list): int =
-    match List.sort dice with
-    | [Die.One; Die.Two; Die.Three; Die.Four; Die.Five] -> 30
-    | _ -> 0
