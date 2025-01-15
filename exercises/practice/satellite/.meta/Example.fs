@@ -13,7 +13,7 @@ let rec createTree inorder preorder =
         let leftPreorder, rightPreorder = tail[0 .. leftInorder.Length - 1], tail[leftInorder.Length ..]
         Node(hd, createTree leftInorder leftPreorder, createTree rightInorder rightPreorder)
 
-let treeFromTraversals preorder inorder =
+let treeFromTraversals inorder preorder =
     if List.length preorder <> List.length inorder then
         Error "traversals must have the same length"
     elif List.sort preorder <> List.sort inorder then
@@ -21,4 +21,4 @@ let treeFromTraversals preorder inorder =
     elif List.distinct preorder <> preorder then
         Error "traversals must contain unique items"
     else
-        Ok(createTree preorder inorder)
+        Ok(createTree inorder preorder)
