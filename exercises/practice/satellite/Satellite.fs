@@ -4,5 +4,5 @@ type Tree =
     | Empty
     | Node of value: string * left: Tree * right: Tree
 
-let treeFromTraversals preorder inorder =
+let treeFromTraversals inorder preorder =
     failwith "Please implement the 'treeFromTraversals' function"
