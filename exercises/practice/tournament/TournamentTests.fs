@@ -1,17 +1,16 @@
-module TournamentTests
+source("./tournament.R")
+library(testthat)
 
 open FsUnit.Xunit
 open Xunit
 
 open Tournament
 
-[<Fact>]
 let ``Just the header if no input`` () =
     let rows = []
     let expected = ["Team                           | MP |  W |  D |  L |  P"]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A win is three points, a loss is zero points`` () =
     let rows = ["Allegoric Alaskans;Blithering Badgers;win"]
     let expected = 
@@ -20,7 +19,6 @@ let ``A win is three points, a loss is zero points`` () =
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A win can also be expressed as a loss`` () =
     let rows = ["Blithering Badgers;Allegoric Alaskans;loss"]
     let expected = 
@@ -29,7 +27,6 @@ let ``A win can also be expressed as a loss`` () =
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A different team can win`` () =
     let rows = ["Blithering Badgers;Allegoric Alaskans;win"]
     let expected = 
@@ -38,7 +35,6 @@ let ``A different team can win`` () =
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A draw is one point each`` () =
     let rows = ["Allegoric Alaskans;Blithering Badgers;draw"]
     let expected = 
@@ -47,7 +43,6 @@ let ``A draw is one point each`` () =
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``There can be more than one match`` () =
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;win";
@@ -58,7 +53,6 @@ let ``There can be more than one match`` () =
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``There can be more than one winner`` () =
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;loss";
@@ -69,7 +63,6 @@ let ``There can be more than one winner`` () =
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``There can be more than two teams`` () =
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;win";
@@ -82,7 +75,6 @@ let ``There can be more than two teams`` () =
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Typical input`` () =
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;win";
@@ -99,7 +91,6 @@ let ``Typical input`` () =
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Incomplete competition (not all pairs have played)`` () =
     let rows = 
         [ "Allegoric Alaskans;Blithering Badgers;loss";
@@ -114,7 +105,6 @@ let ``Incomplete competition (not all pairs have played)`` () =
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Ties broken alphabetically`` () =
     let rows = 
         [ "Courageous Californians;Devastating Donkeys;win";
@@ -131,7 +121,6 @@ let ``Ties broken alphabetically`` () =
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
     tally rows |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Ensure points sorted numerically`` () =
     let rows = 
         [ "Devastating Donkeys;Blithering Badgers;win";

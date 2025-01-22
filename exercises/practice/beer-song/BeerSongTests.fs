@@ -1,46 +1,41 @@
-module BeerSongTests
+source("./beer-song.R")
+library(testthat)
 
 open FsUnit.Xunit
 open Xunit
 
 open BeerSong
 
-[<Fact>]
 let ``First generic verse`` () =
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall." ]
     recite 99 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Last generic verse`` () =
     let expected = 
         [ "3 bottles of beer on the wall, 3 bottles of beer.";
           "Take one down and pass it around, 2 bottles of beer on the wall." ]
     recite 3 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Verse with 2 bottles`` () =
     let expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall." ]
     recite 2 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Verse with 1 bottle`` () =
     let expected = 
         [ "1 bottle of beer on the wall, 1 bottle of beer.";
           "Take it down and pass it around, no more bottles of beer on the wall." ]
     recite 1 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Verse with 0 bottles`` () =
     let expected = 
         [ "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
     recite 0 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``First two verses`` () =
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
@@ -50,7 +45,6 @@ let ``First two verses`` () =
           "Take one down and pass it around, 97 bottles of beer on the wall." ]
     recite 99 2 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Last three verses`` () =
     let expected = 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
@@ -63,7 +57,6 @@ let ``Last three verses`` () =
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
     recite 2 3 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``All verses`` () =
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";

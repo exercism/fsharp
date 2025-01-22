@@ -1,18 +1,17 @@
-module FoodChainTests
+source("./food-chain.R")
+library(testthat)
 
 open FsUnit.Xunit
 open Xunit
 
 open FoodChain
 
-[<Fact>]
 let ``Fly`` () =
     let expected = 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 1 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Spider`` () =
     let expected = 
         [ "I know an old lady who swallowed a spider.";
@@ -21,7 +20,6 @@ let ``Spider`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 2 2 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Bird`` () =
     let expected = 
         [ "I know an old lady who swallowed a bird.";
@@ -31,7 +29,6 @@ let ``Bird`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 3 3 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cat`` () =
     let expected = 
         [ "I know an old lady who swallowed a cat.";
@@ -42,7 +39,6 @@ let ``Cat`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 4 4 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Dog`` () =
     let expected = 
         [ "I know an old lady who swallowed a dog.";
@@ -54,7 +50,6 @@ let ``Dog`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 5 5 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Goat`` () =
     let expected = 
         [ "I know an old lady who swallowed a goat.";
@@ -67,7 +62,6 @@ let ``Goat`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 6 6 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cow`` () =
     let expected = 
         [ "I know an old lady who swallowed a cow.";
@@ -81,14 +75,12 @@ let ``Cow`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 7 7 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Horse`` () =
     let expected = 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
     recite 8 8 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Multiple verses`` () =
     let expected = 
         [ "I know an old lady who swallowed a fly.";
@@ -106,7 +98,6 @@ let ``Multiple verses`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 1 3 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Full song`` () =
     let expected = 
         [ "I know an old lady who swallowed a fly.";

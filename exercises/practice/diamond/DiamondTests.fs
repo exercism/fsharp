@@ -1,4 +1,5 @@
-module DiamondTest
+source("./diamond-test.R")
+library(testthat)
 
 open Diamond
 open System

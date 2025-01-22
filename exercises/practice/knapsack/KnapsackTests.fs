@@ -1,21 +1,19 @@
-module KnapsackTests
+source("./knapsack.R")
+library(testthat)
 
 open FsUnit.Xunit
 open Xunit
 
 open Knapsack
 
-[<Fact>]
 let ``No items`` () =
     let items = []
     maximumValue items 100 |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One item, too heavy`` () =
     let items = [{ weight = 100; value = 1 }]
     maximumValue items 10 |> should equal 0
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Five items (cannot be greedy by weight)`` () =
     let items = 
         [ { weight = 2; value = 5 };
@@ -25,7 +23,6 @@ let ``Five items (cannot be greedy by weight)`` () =
           { weight = 10; value = 21 } ]
     maximumValue items 10 |> should equal 21
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Five items (cannot be greedy by value)`` () =
     let items = 
         [ { weight = 2; value = 20 };
@@ -35,7 +32,6 @@ let ``Five items (cannot be greedy by value)`` () =
           { weight = 10; value = 50 } ]
     maximumValue items 10 |> should equal 80
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Example knapsack`` () =
     let items = 
         [ { weight = 5; value = 10 };
@@ -44,7 +40,6 @@ let ``Example knapsack`` () =
           { weight = 4; value = 50 } ]
     maximumValue items 10 |> should equal 90
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``8 items`` () =
     let items = 
         [ { weight = 25; value = 350 };
@@ -57,7 +52,6 @@ let ``8 items`` () =
           { weight = 2; value = 5 } ]
     maximumValue items 104 |> should equal 900
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``15 items`` () =
     let items = 
         [ { weight = 70; value = 135 };

@@ -1,4 +1,5 @@
-module Generators.Tests
+source("./generators..R")
+library(testthat)
 
 open System
 open System.IO
