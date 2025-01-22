@@ -2,27 +2,27 @@ source("./complex-numbers.R")
 library(testthat)
 
 test_that("Real part of a purely real number", {
-    expect_equal(real (create 1.0 0.0), 1.0)
+  expect_equal(real (create 1.0 0.0), 1.0)
 })
 
 test_that("Real part of a purely imaginary number", {
-    expect_equal(real (create 0.0 1.0), 0.0)
+  expect_equal(real (create 0.0 1.0), 0.0)
 })
 
 test_that("Real part of a number with real and imaginary part", {
-    expect_equal(real (create 1.0 2.0), 1.0)
+  expect_equal(real (create 1.0 2.0), 1.0)
 })
 
 test_that("Imaginary part of a purely real number", {
-    expect_equal(imaginary (create 1.0 0.0), 0.0)
+  expect_equal(imaginary (create 1.0 0.0), 0.0)
 })
 
 test_that("Imaginary part of a purely imaginary number", {
-    expect_equal(imaginary (create 0.0 1.0), 1.0)
+  expect_equal(imaginary (create 0.0 1.0), 1.0)
 })
 
 test_that("Imaginary part of a number with real and imaginary part", {
-    expect_equal(imaginary (create 1.0 2.0), 2.0)
+  expect_equal(imaginary (create 1.0 2.0), 2.0)
 })
 
 test_that("Imaginary unit", {
@@ -91,23 +91,23 @@ test_that("Divide numbers with real and imaginary part", {
     imaginary sut |> should (equalWithin 0.01) 0.08
 
 test_that("Absolute value of a positive purely real number", {
-    expect_equal(abs (create 5.0 0.0), 5.0)
+  expect_equal(abs (create 5.0 0.0), 5.0)
 })
 
 test_that("Absolute value of a negative purely real number", {
-    expect_equal(abs (create -5.0 0.0), 5.0)
+  expect_equal(abs (create -5.0 0.0), 5.0)
 })
 
 test_that("Absolute value of a purely imaginary number with positive imaginary part", {
-    expect_equal(abs (create 0.0 5.0), 5.0)
+  expect_equal(abs (create 0.0 5.0), 5.0)
 })
 
 test_that("Absolute value of a purely imaginary number with negative imaginary part", {
-    expect_equal(abs (create 0.0 -5.0), 5.0)
+  expect_equal(abs (create 0.0 -5.0), 5.0)
 })
 
 test_that("Absolute value of a number with real and imaginary part", {
-    expect_equal(abs (create 3.0 4.0), 5.0)
+  expect_equal(abs (create 3.0 4.0), 5.0)
 })
 
 test_that("Conjugate a purely real number", {

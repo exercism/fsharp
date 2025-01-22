@@ -4,21 +4,21 @@ library(testthat)
 test_that("Input cells have a value", {
     reactor <- new Reactor()
     input <- reactor.createInputCell 10
-    expect_equal(input.Value, 10)
+  expect_equal(input.Value, 10)
 })
 
 test_that("An input cell's value can be set", {
     reactor <- new Reactor()
     input <- reactor.createInputCell 4
     input.Value <- 20
-    expect_equal(input.Value, 20)
+  expect_equal(input.Value, 20)
 })
 
 test_that("Compute cells calculate initial value", {
     reactor <- new Reactor()
     input <- reactor.createInputCell 1
     output <- reactor.createComputeCell c(input) (fun values -> values.c(0) + 1)
-    expect_equal(output.Value, 2)
+  expect_equal(output.Value, 2)
 })
 
 test_that("Compute cells take inputs in the right order", {
@@ -26,7 +26,7 @@ test_that("Compute cells take inputs in the right order", {
     one <- reactor.createInputCell 1
     two <- reactor.createInputCell 2
     output <- reactor.createComputeCell c(one, two) (fun values -> values.c(0) + values.c(1) * 10)
-    expect_equal(output.Value, 21)
+  expect_equal(output.Value, 21)
 })
 
 test_that("Compute cells update value when dependencies are changed", {
@@ -34,7 +34,7 @@ test_that("Compute cells update value when dependencies are changed", {
     input <- reactor.createInputCell 1
     output <- reactor.createComputeCell c(input) (fun values -> values.c(0) + 1)
     input.Value <- 3
-    expect_equal(output.Value, 4)
+  expect_equal(output.Value, 4)
 })
 
 test_that("Compute cells can depend on other compute cells", {
@@ -43,9 +43,9 @@ test_that("Compute cells can depend on other compute cells", {
     times_two <- reactor.createComputeCell c(input) (fun values -> values.c(0) * 2)
     times_thirty <- reactor.createComputeCell c(input) (fun values -> values.c(0) * 30)
     output <- reactor.createComputeCell c(times_two, times_thirty) (fun values -> values.c(0) + values.c(1))
-    expect_equal(output.Value, 32)
+  expect_equal(output.Value, 32)
     input.Value <- 3
-    expect_equal(output.Value, 96)
+  expect_equal(output.Value, 96)
 })
 
 test_that("Compute cells fire callbacks", {

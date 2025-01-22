@@ -25,10 +25,10 @@ test_that("Throwing exception", {
 // consider both possible outputs: success and failure.
 test_that("Returning Option<'T>", {
     successResult <- handleErrorByReturningOption "1"
-    expect_equal(successResult, <| Some 1)
+  expect_equal(successResult, <| Some 1)
     
     failureResult <- handleErrorByReturningOption "a"
-    expect_equal(failureResult, None)
+  expect_equal(failureResult, None)
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
 // In that case, one can use a different discriminated union: Result<'TSuccess, 'TError>.
@@ -37,10 +37,10 @@ test_that("Returning Option<'T>", {
 // you are free to return an integer upon success and a string upon failure.
 test_that("Returning Result<'TSuccess, 'TError>", {
     successResult <- handleErrorByReturningResult "1"
-    expect_true((successResult = Ok 1))
+  expect_true((successResult = Ok 1))
     
     failureResult <- handleErrorByReturningResult "a"
-    expect_true((failureResult = Error "Could not convert input to integer"))
+  expect_true((failureResult = Error "Could not convert input to integer"))
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
 // to be able to execute several validations in sequence. The problem that quickly
@@ -70,16 +70,16 @@ test_that("Using railway-oriented programming", {
         >> bind validate3
 
     firstValidationFailureResult <- combinedValidation 1            
-    expect_true((firstValidationFailureResult = Error "Input less than or equal to five"))
+  expect_true((firstValidationFailureResult = Error "Input less than or equal to five"))
 
     secondValidationFailureResult <- combinedValidation 23          
-    expect_true((secondValidationFailureResult = Error "Input greater than or equal to ten"))
+  expect_true((secondValidationFailureResult = Error "Input greater than or equal to ten"))
 
     thirdValidationFailureResult <- combinedValidation 8        
-    expect_true((thirdValidationFailureResult = Error "Input is not odd"))
+  expect_true((thirdValidationFailureResult = Error "Input is not odd"))
 
     successResult <- combinedValidation 7        
-    expect_true((successResult = Ok 7))
+  expect_true((successResult = Ok 7))
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
@@ -87,4 +87,4 @@ test_that("Cleaning up disposables when throwing exception", {
     resource <- new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
-    expect_true(resource.Disposed())
+  expect_true(resource.Disposed())

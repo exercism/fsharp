@@ -4,13 +4,13 @@ library(testthat)
 test_that("No rows", {
     let minefield: string list = []
     let expected: string list = []
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("No columns", {
     minefield <- c("")
     expected <- c("")
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("No mines", {
@@ -22,7 +22,7 @@ test_that("No mines", {
         [ "   ";
           "   ";
           "   " ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Minefield with only mines", {
@@ -34,7 +34,7 @@ test_that("Minefield with only mines", {
         [ "***";
           "***";
           "***" ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Mine surrounded by spaces", {
@@ -46,7 +46,7 @@ test_that("Mine surrounded by spaces", {
         [ "111";
           "1*1";
           "111" ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Space surrounded by mines", {
@@ -58,19 +58,19 @@ test_that("Space surrounded by mines", {
         [ "***";
           "*8*";
           "***" ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Horizontal line", {
     minefield <- c(" * * ")
     expected <- c("1*2*1")
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Horizontal line, mines at edges", {
     minefield <- c("*   *")
     expected <- c("*1 1*")
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Vertical line", {
@@ -86,7 +86,7 @@ test_that("Vertical line", {
           "2";
           "*";
           "1" ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Vertical line, mines at edges", {
@@ -102,7 +102,7 @@ test_that("Vertical line, mines at edges", {
           " ";
           "1";
           "*" ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Cross", {
@@ -118,7 +118,7 @@ test_that("Cross", {
           "*****";
           "25*52";
           " 2*2 " ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })
 
 test_that("Large minefield", {
@@ -136,5 +136,5 @@ test_that("Large minefield", {
           "112*4*";
           "1*22*2";
           "111111" ]
-    expect_equal(annotate(minefield), expected)
+  expect_equal(annotate(minefield), expected)
 })

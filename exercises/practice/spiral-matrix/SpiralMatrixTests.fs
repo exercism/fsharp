@@ -5,7 +5,7 @@ test_that("Empty spiral", {
     spiralMatrix 0 |> should be Empty
 
 test_that("Trivial spiral", {
-    expect_equal(spiralMatrix(1), c([1)])
+  expect_equal(spiralMatrix(1), c([1)])
 })
 
 test_that("Spiral of size 2", {

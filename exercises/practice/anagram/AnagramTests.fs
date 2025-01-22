@@ -7,7 +7,7 @@ test_that("No matches", {
 
 test_that("Detects two anagrams", {
     candidates <- c("lemons", "cherry", "melons")
-    expect_equal(findAnagrams candidates "solemn", c("lemons", "melons"))
+  expect_equal(findAnagrams candidates "solemn", c("lemons", "melons"))
 })
 
 test_that("Does not detect anagram subsets", {
@@ -16,17 +16,17 @@ test_that("Does not detect anagram subsets", {
 
 test_that("Detects anagram", {
     candidates <- c("enlists", "google", "inlets", "banana")
-    expect_equal(findAnagrams candidates "listen", c("inlets"))
+  expect_equal(findAnagrams candidates "listen", c("inlets"))
 })
 
 test_that("Detects three anagrams", {
     candidates <- c("gallery", "ballerina", "regally", "clergy", "largely", "leading")
-    expect_equal(findAnagrams candidates "allergy", c("gallery", "regally", "largely"))
+  expect_equal(findAnagrams candidates "allergy", c("gallery", "regally", "largely"))
 })
 
 test_that("Detects multiple anagrams with different case", {
     candidates <- c("Eons", "ONES")
-    expect_equal(findAnagrams candidates "nose", c("Eons", "ONES"))
+  expect_equal(findAnagrams candidates "nose", c("Eons", "ONES"))
 })
 
 test_that("Does not detect non-anagrams with identical checksum", {
@@ -35,17 +35,17 @@ test_that("Does not detect non-anagrams with identical checksum", {
 
 test_that("Detects anagrams case-insensitively", {
     candidates <- c("cashregister", "Carthorse", "radishes")
-    expect_equal(findAnagrams candidates "Orchestra", c("Carthorse"))
+  expect_equal(findAnagrams candidates "Orchestra", c("Carthorse"))
 })
 
 test_that("Detects anagrams using case-insensitive subject", {
     candidates <- c("cashregister", "carthorse", "radishes")
-    expect_equal(findAnagrams candidates "Orchestra", c("carthorse"))
+  expect_equal(findAnagrams candidates "Orchestra", c("carthorse"))
 })
 
 test_that("Detects anagrams using case-insensitive possible matches", {
     candidates <- c("cashregister", "Carthorse", "radishes")
-    expect_equal(findAnagrams candidates "orchestra", c("Carthorse"))
+  expect_equal(findAnagrams candidates "orchestra", c("Carthorse"))
 })
 
 test_that("Does not detect an anagram if the original word is repeated", {
@@ -70,5 +70,5 @@ test_that("Words are not anagrams of themselves even if letter case is completel
 
 test_that("Words other than themselves can be anagrams", {
     candidates <- c("LISTEN", "Silent")
-    expect_equal(findAnagrams candidates "LISTEN", c("Silent"))
+  expect_equal(findAnagrams candidates "LISTEN", c("Silent"))
 })

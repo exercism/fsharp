@@ -6,7 +6,7 @@ test_that("Single bit one to decimal", {
     inputBase <- 2
     outputBase <- 10
     expected <- c(1)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Binary to single decimal", {
@@ -14,7 +14,7 @@ test_that("Binary to single decimal", {
     inputBase <- 2
     outputBase <- 10
     expected <- c(5)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Single decimal to binary", {
@@ -22,7 +22,7 @@ test_that("Single decimal to binary", {
     inputBase <- 10
     outputBase <- 2
     expected <- c(1, 0, 1)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Binary to multiple decimal", {
@@ -30,7 +30,7 @@ test_that("Binary to multiple decimal", {
     inputBase <- 2
     outputBase <- 10
     expected <- c(4, 2)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Decimal to binary", {
@@ -38,7 +38,7 @@ test_that("Decimal to binary", {
     inputBase <- 10
     outputBase <- 2
     expected <- c(1, 0, 1, 0, 1, 0)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Trinary to hexadecimal", {
@@ -46,7 +46,7 @@ test_that("Trinary to hexadecimal", {
     inputBase <- 3
     outputBase <- 16
     expected <- c(2, 10)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Hexadecimal to trinary", {
@@ -54,7 +54,7 @@ test_that("Hexadecimal to trinary", {
     inputBase <- 16
     outputBase <- 3
     expected <- c(1, 1, 2, 0)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("15-bit integer", {
@@ -62,7 +62,7 @@ test_that("15-bit integer", {
     inputBase <- 97
     outputBase <- 73
     expected <- c(6, 10, 45)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Empty list", {
@@ -70,7 +70,7 @@ test_that("Empty list", {
     inputBase <- 2
     outputBase <- 10
     expected <- c(0)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Single zero", {
@@ -78,7 +78,7 @@ test_that("Single zero", {
     inputBase <- 10
     outputBase <- 2
     expected <- c(0)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Multiple zeros", {
@@ -86,7 +86,7 @@ test_that("Multiple zeros", {
     inputBase <- 10
     outputBase <- 2
     expected <- c(0)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Leading zeros", {
@@ -94,7 +94,7 @@ test_that("Leading zeros", {
     inputBase <- 7
     outputBase <- 10
     expected <- c(4, 2)
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Input base is one", {
@@ -102,7 +102,7 @@ test_that("Input base is one", {
     inputBase <- 1
     outputBase <- 10
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Input base is zero", {
@@ -110,7 +110,7 @@ test_that("Input base is zero", {
     inputBase <- 0
     outputBase <- 10
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Input base is negative", {
@@ -118,7 +118,7 @@ test_that("Input base is negative", {
     inputBase <- -2
     outputBase <- 10
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Negative digit", {
@@ -126,7 +126,7 @@ test_that("Negative digit", {
     inputBase <- 2
     outputBase <- 10
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Invalid positive digit", {
@@ -134,7 +134,7 @@ test_that("Invalid positive digit", {
     inputBase <- 2
     outputBase <- 10
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Output base is one", {
@@ -142,7 +142,7 @@ test_that("Output base is one", {
     inputBase <- 2
     outputBase <- 1
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Output base is zero", {
@@ -150,7 +150,7 @@ test_that("Output base is zero", {
     inputBase <- 10
     outputBase <- 0
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Output base is negative", {
@@ -158,7 +158,7 @@ test_that("Output base is negative", {
     inputBase <- 2
     outputBase <- -7
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
 
 test_that("Both bases are negative", {
@@ -166,5 +166,5 @@ test_that("Both bases are negative", {
     inputBase <- -2
     outputBase <- -7
     expected <- None
-    expect_equal(rebase(digits, inputBase, outputBase), expected)
+  expect_equal(rebase(digits, inputBase, outputBase), expected)
 })

@@ -7,7 +7,7 @@ test_that("First generic verse", {
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be nine green bottles hanging on the wall." ]
-    expect_equal(recite(10, 1), expected)
+  expect_equal(recite(10, 1), expected)
 })
 
 test_that("Last generic verse", {
@@ -16,7 +16,7 @@ test_that("Last generic verse", {
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be two green bottles hanging on the wall." ]
-    expect_equal(recite(3, 1), expected)
+  expect_equal(recite(3, 1), expected)
 })
 
 test_that("Verse with 2 bottles", {
@@ -25,7 +25,7 @@ test_that("Verse with 2 bottles", {
           "Two green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be one green bottle hanging on the wall." ]
-    expect_equal(recite(2, 1), expected)
+  expect_equal(recite(2, 1), expected)
 })
 
 test_that("Verse with 1 bottle", {
@@ -34,7 +34,7 @@ test_that("Verse with 1 bottle", {
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    expect_equal(recite(1, 1), expected)
+  expect_equal(recite(1, 1), expected)
 })
 
 test_that("First two verses", {
@@ -48,7 +48,7 @@ test_that("First two verses", {
           "Nine green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be eight green bottles hanging on the wall." ]
-    expect_equal(recite(10, 2), expected)
+  expect_equal(recite(10, 2), expected)
 })
 
 test_that("Last three verses", {
@@ -67,7 +67,7 @@ test_that("Last three verses", {
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    expect_equal(recite(3, 3), expected)
+  expect_equal(recite(3, 3), expected)
 })
 
 test_that("All verses", {
@@ -121,5 +121,5 @@ test_that("All verses", {
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    expect_equal(recite(10, 10), expected)
+  expect_equal(recite(10, 10), expected)
 })

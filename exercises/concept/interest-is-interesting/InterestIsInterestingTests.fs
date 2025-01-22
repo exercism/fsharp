@@ -55,17 +55,17 @@ test_that("Annual balance update for small negative start balance", {
 test_that("Annual balance update for large negative start balance", {
     annualBalanceUpdate -152964.231M |> should (equalWithin 0.001) -157878.97174203M
 
-    expect_equal(test_that("Amount to donate for empty start balance", {
+  expect_equal(test_that("Amount to donate for empty start balance", {
 
-    expect_equal(test_that("Amount to donate for small positive start balance", {
+  expect_equal(test_that("Amount to donate for small positive start balance", {
 
-    expect_equal(test_that("Amount to donate for average positive start balance", {
+  expect_equal(test_that("Amount to donate for average positive start balance", {
 
-    expect_equal(test_that("Amount to donate for large positive start balance", {
+  expect_equal(test_that("Amount to donate for large positive start balance", {
 
 test_that("Amount to donate for huge positive start balance", {
-    expect_equal(amountToDonate 898124017.826243404425m 2.65, 47600572)
+  expect_equal(amountToDonate 898124017.826243404425m 2.65, 47600572)
 
-    expect_equal(test_that("Amount to donate for small negative start balance", {
+  expect_equal(test_that("Amount to donate for small negative start balance", {
 
-    expect_equal(test_that("Amount to donate for large negative start balance", {
+  expect_equal(test_that("Amount to donate for large negative start balance", {

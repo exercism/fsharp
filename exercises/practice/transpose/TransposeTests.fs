@@ -4,7 +4,7 @@ library(testthat)
 test_that("Empty string", {
     let lines: string list = []
     let expected: string list = []
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Two characters in a row", {
@@ -12,7 +12,7 @@ test_that("Two characters in a row", {
     expected <- 
         [ "A";
           "1" ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Two characters in a column", {
@@ -20,7 +20,7 @@ test_that("Two characters in a column", {
         [ "A";
           "1" ]
     expected <- c("A1")
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Simple", {
@@ -31,7 +31,7 @@ test_that("Simple", {
         [ "A1";
           "B2";
           "C3" ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Single line", {
@@ -49,7 +49,7 @@ test_that("Single line", {
           "n";
           "e";
           "." ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("First line longer than second line", {
@@ -73,7 +73,7 @@ test_that("First line longer than second line", {
           "ne";
           "e.";
           "." ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Second line longer than first line", {
@@ -97,7 +97,7 @@ test_that("Second line longer than first line", {
           "en";
           ".e";
           " ." ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Mixed line length", {
@@ -124,7 +124,7 @@ test_that("Mixed line length", {
           "n";
           "e";
           "." ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Square", {
@@ -140,7 +140,7 @@ test_that("Square", {
           "ABUSE";
           "RESIN";
           "TREND" ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Rectangle", {
@@ -158,7 +158,7 @@ test_that("Rectangle", {
           "UNIT";
           "RENT";
           "EDGE" ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Triangle", {
@@ -176,7 +176,7 @@ test_that("Triangle", {
           "   SER";
           "    ER";
           "     R" ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })
 
 test_that("Jagged triangle", {
@@ -194,5 +194,5 @@ test_that("Jagged triangle", {
           "  3 56";
           "    56";
           "    5" ]
-    expect_equal(transpose(lines), expected)
+  expect_equal(transpose(lines), expected)
 })

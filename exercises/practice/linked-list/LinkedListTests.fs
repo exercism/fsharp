@@ -11,8 +11,8 @@ test_that("Push and pop are first in last out order", {
     val1 <- pop linkedList
     val2 <- pop linkedList
 
-    expect_equal(val1, 20)
-    expect_equal(val2, 10)
+  expect_equal(val1, 20)
+  expect_equal(val2, 10)
 })
 
 test_that("Push and shift are first in first out order", {
@@ -23,8 +23,8 @@ test_that("Push and shift are first in first out order", {
     val1 <- shift linkedList
     val2 <- shift linkedList
 
-    expect_equal(val1, 10)
-    expect_equal(val2, 20)
+  expect_equal(val1, 10)
+  expect_equal(val2, 20)
 })
 
 test_that("Unshift and shift are last in first out order", {
@@ -35,8 +35,8 @@ test_that("Unshift and shift are last in first out order", {
     val1 <- shift linkedList
     val2 <- shift linkedList
 
-    expect_equal(val1, 20)
-    expect_equal(val2, 10)
+  expect_equal(val1, 20)
+  expect_equal(val2, 10)
 })
 
 test_that("Unshift and pop are last in last out order", {
@@ -47,8 +47,8 @@ test_that("Unshift and pop are last in last out order", {
     val1 <- pop linkedList
     val2 <- pop linkedList
 
-    expect_equal(val1, 10)
-    expect_equal(val2, 20)
+  expect_equal(val1, 10)
+  expect_equal(val2, 20)
 })
 
 test_that("Push and pop can handle multiple values", {
@@ -61,9 +61,9 @@ test_that("Push and pop can handle multiple values", {
     val2 <- pop linkedList
     val3 <- pop linkedList
 
-    expect_equal(val1, 30)
-    expect_equal(val2, 20)
-    expect_equal(val3, 10)
+  expect_equal(val1, 30)
+  expect_equal(val2, 20)
+  expect_equal(val3, 10)
 })
 
 test_that("Unshift and shift can handle multiple values", {
@@ -76,9 +76,9 @@ test_that("Unshift and shift can handle multiple values", {
     val2 <- shift linkedList
     val3 <- shift linkedList
 
-    expect_equal(val1, 30)
-    expect_equal(val2, 20)
-    expect_equal(val3, 10)
+  expect_equal(val1, 30)
+  expect_equal(val2, 20)
+  expect_equal(val3, 10)
 })
 
 test_that("All methods of manipulating the linkedList can be used together", {
@@ -88,12 +88,12 @@ test_that("All methods of manipulating the linkedList can be used together", {
 
     val1 <- pop linkedList
 
-    expect_equal(val1, 20)
+  expect_equal(val1, 20)
 
     linkedList |> push 30
     val2 <- shift linkedList
 
-    expect_equal(val2, 10)
+  expect_equal(val2, 10)
 
     linkedList |> unshift 40
     linkedList |> push 50
@@ -102,6 +102,6 @@ test_that("All methods of manipulating the linkedList can be used together", {
     val4 <- pop linkedList
     val5 <- shift linkedList
 
-    expect_equal(val3, 40)
-    expect_equal(val4, 50)
-    expect_equal(val5, 30)
+  expect_equal(val3, 40)
+  expect_equal(val4, 50)
+  expect_equal(val5, 30)

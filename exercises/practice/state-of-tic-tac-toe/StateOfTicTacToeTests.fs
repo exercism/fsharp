@@ -7,7 +7,7 @@ test_that("Finished game where X won via left column victory", {
                   c('X', ' ', ' ');
                   c('X', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via middle column victory", {
@@ -16,7 +16,7 @@ test_that("Finished game where X won via middle column victory", {
                   c(' ', 'X', ' ');
                   c(' ', 'X', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via right column victory", {
@@ -25,7 +25,7 @@ test_that("Finished game where X won via right column victory", {
                   c(' ', ' ', 'X');
                   c(' ', ' ', 'X') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via left column victory", {
@@ -34,7 +34,7 @@ test_that("Finished game where O won via left column victory", {
                   c('O', 'X', ' ');
                   c('O', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via middle column victory", {
@@ -43,7 +43,7 @@ test_that("Finished game where O won via middle column victory", {
                   c(' ', 'O', 'X');
                   c(' ', 'O', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via right column victory", {
@@ -52,7 +52,7 @@ test_that("Finished game where O won via right column victory", {
                   c(' ', 'X', 'O');
                   c(' ', ' ', 'O') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via top row victory", {
@@ -61,7 +61,7 @@ test_that("Finished game where X won via top row victory", {
                   c('X', 'O', 'O');
                   c('O', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via middle row victory", {
@@ -70,7 +70,7 @@ test_that("Finished game where X won via middle row victory", {
                   c('X', 'X', 'X');
                   c(' ', 'O', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via bottom row victory", {
@@ -79,7 +79,7 @@ test_that("Finished game where X won via bottom row victory", {
                   c('O', ' ', 'X');
                   c('X', 'X', 'X') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via top row victory", {
@@ -88,7 +88,7 @@ test_that("Finished game where O won via top row victory", {
                   c('X', 'X', 'O');
                   c('X', 'X', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via middle row victory", {
@@ -97,7 +97,7 @@ test_that("Finished game where O won via middle row victory", {
                   c('O', 'O', 'O');
                   c('X', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via bottom row victory", {
@@ -106,7 +106,7 @@ test_that("Finished game where O won via bottom row victory", {
                   c(' ', 'X', 'X');
                   c('O', 'O', 'O') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via falling diagonal victory", {
@@ -115,7 +115,7 @@ test_that("Finished game where X won via falling diagonal victory", {
                   c(' ', 'X', ' ');
                   c(' ', ' ', 'X') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via rising diagonal victory", {
@@ -124,7 +124,7 @@ test_that("Finished game where X won via rising diagonal victory", {
                   c('O', 'X', ' ');
                   c('X', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via falling diagonal victory", {
@@ -133,7 +133,7 @@ test_that("Finished game where O won via falling diagonal victory", {
                   c('O', 'O', 'X');
                   c('X', ' ', 'O') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where O won via rising diagonal victory", {
@@ -142,7 +142,7 @@ test_that("Finished game where O won via rising diagonal victory", {
                   c(' ', 'O', 'X');
                   c('O', 'X', 'X') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via a row and a column victory", {
@@ -151,7 +151,7 @@ test_that("Finished game where X won via a row and a column victory", {
                   c('X', 'O', 'O');
                   c('X', 'O', 'O') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Finished game where X won via two diagonal victories", {
@@ -160,7 +160,7 @@ test_that("Finished game where X won via two diagonal victories", {
                   c('O', 'X', 'O');
                   c('X', 'O', 'X') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Draw", {
@@ -169,7 +169,7 @@ test_that("Draw", {
                   c('X', 'X', 'O');
                   c('O', 'X', 'O') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Another draw", {
@@ -178,7 +178,7 @@ test_that("Another draw", {
                   c('O', 'X', 'X');
                   c('X', 'O', 'O') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Ongoing game: one move in", {
@@ -187,7 +187,7 @@ test_that("Ongoing game: one move in", {
                   c('X', ' ', ' ');
                   c(' ', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Ongoing game: two moves in", {
@@ -196,7 +196,7 @@ test_that("Ongoing game: two moves in", {
                   c(' ', 'X', ' ');
                   c(' ', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Ongoing game: five moves in", {
@@ -205,7 +205,7 @@ test_that("Ongoing game: five moves in", {
                   c(' ', 'X', 'O');
                   c('O', 'X', ' ') ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Invalid board: X went twice", {
@@ -214,7 +214,7 @@ test_that("Invalid board: X went twice", {
                   c(' ', ' ', ' ');
                   c(' ', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Error ConsecutiveMovesBySamePlayer
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Invalid board: O started", {
@@ -223,7 +223,7 @@ test_that("Invalid board: O started", {
                   c(' ', ' ', ' ');
                   c(' ', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Error WrongPlayerStarted
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Invalid board: X won and O kept playing", {
@@ -232,7 +232,7 @@ test_that("Invalid board: X won and O kept playing", {
                   c('O', 'O', 'O');
                   c(' ', ' ', ' ') ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })
 
 test_that("Invalid board: players kept playing after a win", {
@@ -241,5 +241,5 @@ test_that("Invalid board: players kept playing after a win", {
                   c('O', 'O', 'O');
                   c('X', 'O', 'X') ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    expect_equal(gamestate(board), expected)
+  expect_equal(gamestate(board), expected)
 })

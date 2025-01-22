@@ -23,7 +23,7 @@ test_that("First row contains 'A'", {
     rows <- actual |> split
     firstRowCharacters <- rows |> Seq.head |> trim
 
-    expect_equal(firstRowCharacters, "A")
+  expect_equal(firstRowCharacters, "A")
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("All rows must have symmetric contour", {
@@ -31,7 +31,7 @@ test_that("All rows must have symmetric contour", {
     rows <- actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
 
-    expect_equal(rows |> Array.iter (fun x -> symmetric x, true))
+  expect_equal(rows |> Array.iter (fun x -> symmetric x, true))
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Top of figure has letters in correct order", {
@@ -45,7 +45,7 @@ test_that("Top of figure has letters in correct order", {
         |> Seq.map (trim >> Seq.head)
         |> Seq.toList
 
-    expect_equal(expected, firstNonSpaceLetters)
+  expect_equal(expected, firstNonSpaceLetters)
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Figure is symmetric around the horizontal axis", {
@@ -63,7 +63,7 @@ test_that("Figure is symmetric around the horizontal axis", {
         |> Seq.takeWhile (fun x -> not (x.Contains(string letter)))
         |> List.ofSeq
 
-    expect_equal(top, bottom)
+  expect_equal(top, bottom)
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Diamond has square shape", {
@@ -73,7 +73,7 @@ test_that("Diamond has square shape", {
     expected <- rows.Length
     let correctWidth (x:string) = x.Length = expected
 
-    expect_equal(rows |> Array.iter (fun x -> correctWidth x, true))
+  expect_equal(rows |> Array.iter (fun x -> correctWidth x, true))
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("All rows except top and bottom have two identical letters", {
@@ -89,7 +89,7 @@ test_that("All rows except top and bottom have two identical letters", {
         identicalCharacters <- row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
-    expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, true))
+  expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, true))
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Bottom left corner spaces are triangle", {
@@ -113,4 +113,4 @@ test_that("Bottom left corner spaces are triangle", {
         |> Seq.take spaceCounts.Length
         |> Seq.toList
 
-    expect_equal(spaceCounts, expected)
+  expect_equal(spaceCounts, expected)

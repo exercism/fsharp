@@ -3,12 +3,12 @@ library(testthat)
 
 test_that("No items", {
     items <- []
-    expect_equal(maximumValue(items, 100), 0)
+  expect_equal(maximumValue(items, 100), 0)
 })
 
 test_that("One item, too heavy", {
     items <- c({ weight = 100, value = 1 })
-    expect_equal(maximumValue(items, 10), 0)
+  expect_equal(maximumValue(items, 10), 0)
 })
 
 test_that("Five items (cannot be greedy by weight)", {
@@ -18,7 +18,7 @@ test_that("Five items (cannot be greedy by weight)", {
           { weight = 2, value = 5 };
           { weight = 2, value = 5 };
           { weight = 10, value = 21 } ]
-    expect_equal(maximumValue(items, 10), 21)
+  expect_equal(maximumValue(items, 10), 21)
 })
 
 test_that("Five items (cannot be greedy by value)", {
@@ -28,7 +28,7 @@ test_that("Five items (cannot be greedy by value)", {
           { weight = 2, value = 20 };
           { weight = 2, value = 20 };
           { weight = 10, value = 50 } ]
-    expect_equal(maximumValue(items, 10), 80)
+  expect_equal(maximumValue(items, 10), 80)
 })
 
 test_that("Example knapsack", {
@@ -37,7 +37,7 @@ test_that("Example knapsack", {
           { weight = 4, value = 40 };
           { weight = 6, value = 30 };
           { weight = 4, value = 50 } ]
-    expect_equal(maximumValue(items, 10), 90)
+  expect_equal(maximumValue(items, 10), 90)
 })
 
 test_that("8 items", {
@@ -50,7 +50,7 @@ test_that("8 items", {
           { weight = 3, value = 8 };
           { weight = 2, value = 5 };
           { weight = 2, value = 5 } ]
-    expect_equal(maximumValue(items, 104), 900)
+  expect_equal(maximumValue(items, 104), 900)
 })
 
 test_that("15 items", {
@@ -70,5 +70,5 @@ test_that("15 items", {
           { weight = 115, value = 221 };
           { weight = 118, value = 229 };
           { weight = 120, value = 240 } ]
-    expect_equal(maximumValue(items, 750), 1458)
+  expect_equal(maximumValue(items, 750), 1458)
 })
