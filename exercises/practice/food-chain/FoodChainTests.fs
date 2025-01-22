@@ -5,7 +5,7 @@ let ``Fly`` () =
     expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 1 1 |> should equal expected
+    expect_equal(recite 1 1, expected)
 
 let ``Spider`` () =
     expected <- 
@@ -13,7 +13,7 @@ let ``Spider`` () =
           "It wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 2 2 |> should equal expected
+    expect_equal(recite 2 2, expected)
 
 let ``Bird`` () =
     expected <- 
@@ -22,7 +22,7 @@ let ``Bird`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 3 3 |> should equal expected
+    expect_equal(recite 3 3, expected)
 
 let ``Cat`` () =
     expected <- 
@@ -32,7 +32,7 @@ let ``Cat`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 4 4 |> should equal expected
+    expect_equal(recite 4 4, expected)
 
 let ``Dog`` () =
     expected <- 
@@ -43,7 +43,7 @@ let ``Dog`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 5 5 |> should equal expected
+    expect_equal(recite 5 5, expected)
 
 let ``Goat`` () =
     expected <- 
@@ -55,7 +55,7 @@ let ``Goat`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 6 6 |> should equal expected
+    expect_equal(recite 6 6, expected)
 
 let ``Cow`` () =
     expected <- 
@@ -68,13 +68,13 @@ let ``Cow`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 7 7 |> should equal expected
+    expect_equal(recite 7 7, expected)
 
 let ``Horse`` () =
     expected <- 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
-    recite 8 8 |> should equal expected
+    expect_equal(recite 8 8, expected)
 
 let ``Multiple verses`` () =
     expected <- 
@@ -91,7 +91,7 @@ let ``Multiple verses`` () =
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
-    recite 1 3 |> should equal expected
+    expect_equal(recite 1 3, expected)
 
 let ``Full song`` () =
     expected <- 
@@ -145,5 +145,5 @@ let ``Full song`` () =
           "";
           "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
-    recite 1 8 |> should equal expected
+    expect_equal(recite 1 8, expected)
 

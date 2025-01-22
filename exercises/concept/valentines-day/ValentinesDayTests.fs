@@ -1,30 +1,30 @@
 source("./valentines-day.R")
 library(testthat)
 
-let ``Rate board game``() = rateActivity BoardGame |> should equal No
+    expect_equal(let ``Rate board game``() = rateActivity BoardGame, No)
 
-let ``Rate chilling``() = rateActivity Chill |> should equal No
+    expect_equal(let ``Rate chilling``() = rateActivity Chill, No)
 
-let ``Rate crime movie``() = rateActivity (Movie Crime) |> should equal No
+    expect_equal(let ``Rate crime movie``() = rateActivity (Movie Crime), No)
 
-let ``Rate horror movie``() = rateActivity (Movie Horror) |> should equal No
+    expect_equal(let ``Rate horror movie``() = rateActivity (Movie Horror), No)
 
-let ``Rate romance movie``() = rateActivity (Movie Romance) |> should equal Yes
+    expect_equal(let ``Rate romance movie``() = rateActivity (Movie Romance), Yes)
 
-let ``Rate thriller movie``() = rateActivity (Movie Thriller) |> should equal No
+    expect_equal(let ``Rate thriller movie``() = rateActivity (Movie Thriller), No)
 
-let ``Rate Korean restaurant``() = rateActivity (Restaurant Korean) |> should equal Yes
+    expect_equal(let ``Rate Korean restaurant``() = rateActivity (Restaurant Korean), Yes)
 
-let ``Rate Turkish restaurant``() = rateActivity (Restaurant Turkish) |> should equal Maybe
+    expect_equal(let ``Rate Turkish restaurant``() = rateActivity (Restaurant Turkish), Maybe)
 
-let ``Rate walk of 1 kilometer``() = rateActivity (Walk 1) |> should equal Yes
+    expect_equal(let ``Rate walk of 1 kilometer``() = rateActivity (Walk 1), Yes)
 
-let ``Rate walk of 2 kilometers``() = rateActivity (Walk 2) |> should equal Yes
+    expect_equal(let ``Rate walk of 2 kilometers``() = rateActivity (Walk 2), Yes)
 
-let ``Rate walk of 3 kilometers``() = rateActivity (Walk 3) |> should equal Maybe
+    expect_equal(let ``Rate walk of 3 kilometers``() = rateActivity (Walk 3), Maybe)
 
-let ``Rate walk of 4 kilometers``() = rateActivity (Walk 4) |> should equal Maybe
+    expect_equal(let ``Rate walk of 4 kilometers``() = rateActivity (Walk 4), Maybe)
 
-let ``Rate walk of 5 kilometers``() = rateActivity (Walk 5) |> should equal No
+    expect_equal(let ``Rate walk of 5 kilometers``() = rateActivity (Walk 5), No)
 
-let ``Rate walk over 5 kilometers``() = rateActivity (Walk 8) |> should equal No
+    expect_equal(let ``Rate walk over 5 kilometers``() = rateActivity (Walk 8), No)

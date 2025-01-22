@@ -2,22 +2,22 @@ source("./complex-numbers.R")
 library(testthat)
 
 let ``Real part of a purely real number`` () =
-    real (create 1.0 0.0) |> should equal 1.0
+    expect_equal(real (create 1.0 0.0), 1.0)
 
 let ``Real part of a purely imaginary number`` () =
-    real (create 0.0 1.0) |> should equal 0.0
+    expect_equal(real (create 0.0 1.0), 0.0)
 
 let ``Real part of a number with real and imaginary part`` () =
-    real (create 1.0 2.0) |> should equal 1.0
+    expect_equal(real (create 1.0 2.0), 1.0)
 
 let ``Imaginary part of a purely real number`` () =
-    imaginary (create 1.0 0.0) |> should equal 0.0
+    expect_equal(imaginary (create 1.0 0.0), 0.0)
 
 let ``Imaginary part of a purely imaginary number`` () =
-    imaginary (create 0.0 1.0) |> should equal 1.0
+    expect_equal(imaginary (create 0.0 1.0), 1.0)
 
 let ``Imaginary part of a number with real and imaginary part`` () =
-    imaginary (create 1.0 2.0) |> should equal 2.0
+    expect_equal(imaginary (create 1.0 2.0), 2.0)
 
 let ``Imaginary unit`` () =
     sut <- mul (create 0.0 1.0) (create 0.0 1.0)
@@ -85,19 +85,19 @@ let ``Divide numbers with real and imaginary part`` () =
     imaginary sut |> should (equalWithin 0.01) 0.08
 
 let ``Absolute value of a positive purely real number`` () =
-    abs (create 5.0 0.0) |> should equal 5.0
+    expect_equal(abs (create 5.0 0.0), 5.0)
 
 let ``Absolute value of a negative purely real number`` () =
-    abs (create -5.0 0.0) |> should equal 5.0
+    expect_equal(abs (create -5.0 0.0), 5.0)
 
 let ``Absolute value of a purely imaginary number with positive imaginary part`` () =
-    abs (create 0.0 5.0) |> should equal 5.0
+    expect_equal(abs (create 0.0 5.0), 5.0)
 
 let ``Absolute value of a purely imaginary number with negative imaginary part`` () =
-    abs (create 0.0 -5.0) |> should equal 5.0
+    expect_equal(abs (create 0.0 -5.0), 5.0)
 
 let ``Absolute value of a number with real and imaginary part`` () =
-    abs (create 3.0 4.0) |> should equal 5.0
+    expect_equal(abs (create 3.0 4.0), 5.0)
 
 let ``Conjugate a purely real number`` () =
     sut <- conjugate (create 5.0 0.0)

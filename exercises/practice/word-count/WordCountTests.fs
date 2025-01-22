@@ -3,7 +3,7 @@ library(testthat)
 
 let ``Count one word`` () =
     expected <- [("word", 1)] |> Map.ofList
-    countWords "word" |> should equal expected
+    expect_equal(countWords "word", expected)
 
 let ``Count one of each word`` () =
     expected <- 
@@ -11,7 +11,7 @@ let ``Count one of each word`` () =
           ("of", 1);
           ("each", 1) ]
         |> Map.ofList
-    countWords "one of each" |> should equal expected
+    expect_equal(countWords "one of each", expected)
 
 let ``Multiple occurrences of a word`` () =
     expected <- 
@@ -21,7 +21,7 @@ let ``Multiple occurrences of a word`` () =
           ("red", 1);
           ("blue", 1) ]
         |> Map.ofList
-    countWords "one fish two fish red fish blue fish" |> should equal expected
+    expect_equal(countWords "one fish two fish red fish blue fish", expected)
 
 let ``Handles cramped lists`` () =
     expected <- 
@@ -29,7 +29,7 @@ let ``Handles cramped lists`` () =
           ("two", 1);
           ("three", 1) ]
         |> Map.ofList
-    countWords "one,two,three" |> should equal expected
+    expect_equal(countWords "one,two,three", expected)
 
 let ``Handles expanded lists`` () =
     expected <- 
@@ -37,7 +37,7 @@ let ``Handles expanded lists`` () =
           ("two", 1);
           ("three", 1) ]
         |> Map.ofList
-    countWords "one,\ntwo,\nthree" |> should equal expected
+    expect_equal(countWords "one,\ntwo,\nthree", expected)
 
 let ``Ignore punctuation`` () =
     expected <- 
@@ -47,7 +47,7 @@ let ``Ignore punctuation`` () =
           ("java", 1);
           ("javascript", 1) ]
         |> Map.ofList
-    countWords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
+    expect_equal(countWords "car: carpet as java: javascript!!&@$%^&", expected)
 
 let ``Include numbers`` () =
     expected <- 
@@ -55,14 +55,14 @@ let ``Include numbers`` () =
           ("1", 1);
           ("2", 1) ]
         |> Map.ofList
-    countWords "testing, 1, 2 testing" |> should equal expected
+    expect_equal(countWords "testing, 1, 2 testing", expected)
 
 let ``Normalize case`` () =
     expected <- 
         [ ("go", 3);
           ("stop", 2) ]
         |> Map.ofList
-    countWords "go Go GO Stop stop" |> should equal expected
+    expect_equal(countWords "go Go GO Stop stop", expected)
 
 let ``With apostrophes`` () =
     expected <- 
@@ -75,7 +75,7 @@ let ``With apostrophes`` () =
           ("getting", 1);
           ("it", 1) ]
         |> Map.ofList
-    countWords "'First: don't laugh. Then: don't cry. You're getting it.'" |> should equal expected
+    expect_equal(countWords "'First: don't laugh. Then: don't cry. You're getting it.'", expected)
 
 let ``With quotations`` () =
     expected <- 
@@ -86,7 +86,7 @@ let ``With quotations`` () =
           ("large", 2);
           ("and", 1) ]
         |> Map.ofList
-    countWords "Joe can't tell between 'large' and large." |> should equal expected
+    expect_equal(countWords "Joe can't tell between 'large' and large.", expected)
 
 let ``Substrings from the beginning`` () =
     expected <- 
@@ -99,14 +99,14 @@ let ``Substrings from the beginning`` () =
           ("and", 1);
           ("a", 1) ]
         |> Map.ofList
-    countWords "Joe can't tell between app, apple and a." |> should equal expected
+    expect_equal(countWords "Joe can't tell between app, apple and a.", expected)
 
 let ``Multiple spaces not detected as a word`` () =
     expected <- 
         [ ("multiple", 1);
           ("whitespaces", 1) ]
         |> Map.ofList
-    countWords " multiple   whitespaces" |> should equal expected
+    expect_equal(countWords " multiple   whitespaces", expected)
 
 let ``Alternating word separators not detected as a word`` () =
     expected <- 
@@ -114,12 +114,12 @@ let ``Alternating word separators not detected as a word`` () =
           ("two", 1);
           ("three", 1) ]
         |> Map.ofList
-    countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
+    expect_equal(countWords ",\n,one,\n ,two \n 'three'", expected)
 
 let ``Quotation for word with apostrophe`` () =
     expected <- 
         [ ("can", 1);
           ("can't", 2) ]
         |> Map.ofList
-    countWords "can, can't, 'can't'" |> should equal expected
+    expect_equal(countWords "can, can't, 'can't'", expected)
 

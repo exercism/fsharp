@@ -4,21 +4,21 @@ library(testthat)
 let ``Empty string`` () =
     let lines: string list = []
     let expected: string list = []
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Two characters in a row`` () =
     lines <- ["A1"]
     expected <- 
         [ "A";
           "1" ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Two characters in a column`` () =
     lines <- 
         [ "A";
           "1" ]
     expected <- ["A1"]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Simple`` () =
     lines <- 
@@ -28,7 +28,7 @@ let ``Simple`` () =
         [ "A1";
           "B2";
           "C3" ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Single line`` () =
     lines <- ["Single line."]
@@ -45,7 +45,7 @@ let ``Single line`` () =
           "n";
           "e";
           "." ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``First line longer than second line`` () =
     lines <- 
@@ -68,7 +68,7 @@ let ``First line longer than second line`` () =
           "ne";
           "e.";
           "." ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Second line longer than first line`` () =
     lines <- 
@@ -91,7 +91,7 @@ let ``Second line longer than first line`` () =
           "en";
           ".e";
           " ." ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Mixed line length`` () =
     lines <- 
@@ -117,7 +117,7 @@ let ``Mixed line length`` () =
           "n";
           "e";
           "." ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Square`` () =
     lines <- 
@@ -132,7 +132,7 @@ let ``Square`` () =
           "ABUSE";
           "RESIN";
           "TREND" ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Rectangle`` () =
     lines <- 
@@ -149,7 +149,7 @@ let ``Rectangle`` () =
           "UNIT";
           "RENT";
           "EDGE" ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Triangle`` () =
     lines <- 
@@ -166,7 +166,7 @@ let ``Triangle`` () =
           "   SER";
           "    ER";
           "     R" ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 
 let ``Jagged triangle`` () =
     lines <- 
@@ -183,5 +183,5 @@ let ``Jagged triangle`` () =
           "  3 56";
           "    56";
           "    5" ]
-    transpose lines |> should equal expected
+    expect_equal(transpose lines, expected)
 

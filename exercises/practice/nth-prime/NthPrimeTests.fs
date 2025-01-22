@@ -2,17 +2,17 @@ source("./nth-prime.R")
 library(testthat)
 
 let ``First prime`` () =
-    prime 1 |> should equal (Some 2)
+    expect_equal(prime 1, (Some 2))
 
 let ``Second prime`` () =
-    prime 2 |> should equal (Some 3)
+    expect_equal(prime 2, (Some 3))
 
 let ``Sixth prime`` () =
-    prime 6 |> should equal (Some 13)
+    expect_equal(prime 6, (Some 13))
 
 let ``Big prime`` () =
-    prime 10001 |> should equal (Some 104743)
+    expect_equal(prime 10001, (Some 104743))
 
 let ``There is no zeroth prime`` () =
-    prime 0 |> should equal None
+    expect_equal(prime 0, None)
 

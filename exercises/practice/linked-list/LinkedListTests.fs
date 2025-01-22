@@ -11,8 +11,8 @@ let ``Push and pop are first in last out order`` () =
     val1 <- pop linkedList
     val2 <- pop linkedList
 
-    val1 |> should equal 20
-    val2 |> should equal 10
+    expect_equal(val1, 20)
+    expect_equal(val2, 10)
 
 let ``Push and shift are first in first out order`` () =
     linkedList <- mkLinkedList ()
@@ -22,8 +22,8 @@ let ``Push and shift are first in first out order`` () =
     val1 <- shift linkedList
     val2 <- shift linkedList
 
-    val1 |> should equal 10
-    val2 |> should equal 20
+    expect_equal(val1, 10)
+    expect_equal(val2, 20)
 
 let ``Unshift and shift are last in first out order`` () =
     linkedList <- mkLinkedList ()
@@ -33,8 +33,8 @@ let ``Unshift and shift are last in first out order`` () =
     val1 <- shift linkedList
     val2 <- shift linkedList
 
-    val1 |> should equal 20
-    val2 |> should equal 10
+    expect_equal(val1, 20)
+    expect_equal(val2, 10)
 
 let ``Unshift and pop are last in last out order`` () =
     linkedList <- mkLinkedList ()
@@ -44,8 +44,8 @@ let ``Unshift and pop are last in last out order`` () =
     val1 <- pop linkedList
     val2 <- pop linkedList
 
-    val1 |> should equal 10
-    val2 |> should equal 20
+    expect_equal(val1, 10)
+    expect_equal(val2, 20)
 
 let ``Push and pop can handle multiple values`` () =
     linkedList <- mkLinkedList ()
@@ -57,9 +57,9 @@ let ``Push and pop can handle multiple values`` () =
     val2 <- pop linkedList
     val3 <- pop linkedList
 
-    val1 |> should equal 30
-    val2 |> should equal 20
-    val3 |> should equal 10
+    expect_equal(val1, 30)
+    expect_equal(val2, 20)
+    expect_equal(val3, 10)
 
 let ``Unshift and shift can handle multiple values`` () =
     linkedList <- mkLinkedList ()
@@ -71,9 +71,9 @@ let ``Unshift and shift can handle multiple values`` () =
     val2 <- shift linkedList
     val3 <- shift linkedList
 
-    val1 |> should equal 30
-    val2 |> should equal 20
-    val3 |> should equal 10
+    expect_equal(val1, 30)
+    expect_equal(val2, 20)
+    expect_equal(val3, 10)
 
 let ``All methods of manipulating the linkedList can be used together`` () =
     linkedList <- mkLinkedList ()
@@ -82,12 +82,12 @@ let ``All methods of manipulating the linkedList can be used together`` () =
 
     val1 <- pop linkedList
 
-    val1 |> should equal 20
+    expect_equal(val1, 20)
 
     linkedList |> push 30
     val2 <- shift linkedList
 
-    val2 |> should equal 10
+    expect_equal(val2, 10)
 
     linkedList |> unshift 40
     linkedList |> push 50
@@ -96,6 +96,6 @@ let ``All methods of manipulating the linkedList can be used together`` () =
     val4 <- pop linkedList
     val5 <- shift linkedList
 
-    val3 |> should equal 40
-    val4 |> should equal 50
-    val5 |> should equal 30
+    expect_equal(val3, 40)
+    expect_equal(val4, 50)
+    expect_equal(val5, 30)

@@ -18,17 +18,17 @@ let ``Create coach that wasn't a former player`` () =
 [<Task(3)>]
 let ``Create stats for winning team`` () =
     createStats 55 27
-    |> should equal { Wins = 55; Losses = 27 }
+    expect_equal( , { Wins = 55; Losses = 27 })
 
 [<Task(3)>]
 let ``Create stats for losing team`` () =
     createStats 39 43
-    |> should equal { Wins = 39; Losses = 43 }
+    expect_equal( , { Wins = 39; Losses = 43 })
 
 [<Task(3)>]
 let ``Create stats for all-time season record`` () =
     createStats 73 9
-    |> should equal { Wins = 73; Losses = 9 }
+    expect_equal( , { Wins = 73; Losses = 9 })
 
 [<Task(4)>]
 let ``Create 60's team`` () =
@@ -101,7 +101,7 @@ let ``Same team is duplicate`` () =
     team <- createTeam "Los Angeles Lakers" coach stats
 
     isSameTeam team team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(6)>]
 let ``Same team with different stats is not a duplicate`` () =
@@ -113,7 +113,7 @@ let ``Same team with different stats is not a duplicate`` () =
     teamWithDifferentStats <- createTeam "Los Angeles Lakers" coach newStats
 
     isSameTeam team teamWithDifferentStats
-    |> should equal false
+    expect_equal( , false)
 
 [<Task(6)>]
 let ``Same team with different coach is not a duplicate`` () =
@@ -125,7 +125,7 @@ let ``Same team with different coach is not a duplicate`` () =
     teamWithDifferentCoach <- createTeam "Los Angeles Lakers" newCoach stats
 
     isSameTeam team teamWithDifferentCoach
-    |> should equal false
+    expect_equal( , false)
 
 [<Task(6)>]
 let ``Different team with same coach and stats`` () =
@@ -136,7 +136,7 @@ let ``Different team with same coach and stats`` () =
     otherTeam <- createTeam "Phoenix Suns" coach stats
 
     isSameTeam team otherTeam
-    |> should equal false
+    expect_equal( , false)
 
 [<Task(6)>]
 let ``Different team with different coach and stats`` () =
@@ -149,7 +149,7 @@ let ``Different team with different coach and stats`` () =
     otherTeam <- createTeam "Milwaukee Bucks" otherCoach otherStats
 
     isSameTeam team otherTeam
-    |> should equal false
+    expect_equal( , false)
 
 [<Task(7)>]
 let ``Root for team with favorite coach and winning stats`` () =
@@ -158,7 +158,7 @@ let ``Root for team with favorite coach and winning stats`` () =
     team <- createTeam "San Antonio Spurs" coach stats
 
     rootForTeam team
-    |> should equal true    
+    expect_equal( , true    )
 
 [<Task(7)>]
 let ``Root for team with favorite coach and losing stats`` () =
@@ -167,7 +167,7 @@ let ``Root for team with favorite coach and losing stats`` () =
     team <- createTeam "San Antonio Spurs" coach stats
 
     rootForTeam team
-    |> should equal true    
+    expect_equal( , true    )
 
 [<Task(7)>]
 let ``Root for team with coach is former player and winning stats`` () =
@@ -176,7 +176,7 @@ let ``Root for team with coach is former player and winning stats`` () =
     team <- createTeam "Portland Trail Blazers" coach stats
 
     rootForTeam team
-    |> should equal true    
+    expect_equal( , true    )
 
 [<Task(7)>]
 let ``Root for team with coach is former player and losing stats`` () =
@@ -185,7 +185,7 @@ let ``Root for team with coach is former player and losing stats`` () =
     team <- createTeam "Indiana Pacers" coach stats
 
     rootForTeam team
-    |> should equal true  
+    expect_equal( , true  )
 
 [<Task(7)>]
 let ``Root for favorite team and winning stats`` () =
@@ -194,7 +194,7 @@ let ``Root for favorite team and winning stats`` () =
     team <- createTeam "Chicago Bulls" coach stats
 
     rootForTeam team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(7)>]
 let ``Root for favorite team and losing stats`` () =
@@ -203,7 +203,7 @@ let ``Root for favorite team and losing stats`` () =
     team <- createTeam "Chicago Bulls" coach stats
 
     rootForTeam team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(7)>]
 let ``Root for team with sixty or more wins and former player coach`` () =
@@ -212,7 +212,7 @@ let ``Root for team with sixty or more wins and former player coach`` () =
     team <- createTeam "Philadelphia 76'ers" coach stats
 
     rootForTeam team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(7)>]
 let ``Root for team with sixty or more wins and non former player coach`` () =
@@ -221,7 +221,7 @@ let ``Root for team with sixty or more wins and non former player coach`` () =
     team <- createTeam "Milwaukee Bucks" coach stats
 
     rootForTeam team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(7)>]
 let ``Root for team with more losses than wins and former player coach`` () =
@@ -230,7 +230,7 @@ let ``Root for team with more losses than wins and former player coach`` () =
     team <- createTeam "Washington Bullets" coach stats
 
     rootForTeam team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(7)>]
 let ``Root for team with more losses than wins and non former player coach`` () =
@@ -239,7 +239,7 @@ let ``Root for team with more losses than wins and non former player coach`` () 
     team <- createTeam "Rochester Royals" coach stats
 
     rootForTeam team
-    |> should equal true
+    expect_equal( , true)
 
 [<Task(7)>]
 let ``Don't root for team not matching criteria`` () =
@@ -248,4 +248,4 @@ let ``Don't root for team not matching criteria`` () =
     team <- createTeam "Utah Jazz" coach stats
 
     rootForTeam team
-    |> should equal false
+    expect_equal( , false)

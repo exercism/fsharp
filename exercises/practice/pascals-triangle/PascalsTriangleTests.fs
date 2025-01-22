@@ -3,24 +3,24 @@ library(testthat)
 
 let ``Zero rows`` () =
     let expected: int list list = []
-    rows 0 |> should equal expected
+    expect_equal(rows 0, expected)
 
 let ``Single row`` () =
     expected <- [[1]]
-    rows 1 |> should equal expected
+    expect_equal(rows 1, expected)
 
 let ``Two rows`` () =
     expected <- 
         [ [1];
           [1; 1] ]
-    rows 2 |> should equal expected
+    expect_equal(rows 2, expected)
 
 let ``Three rows`` () =
     expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1] ]
-    rows 3 |> should equal expected
+    expect_equal(rows 3, expected)
 
 let ``Four rows`` () =
     expected <- 
@@ -28,7 +28,7 @@ let ``Four rows`` () =
           [1; 1];
           [1; 2; 1];
           [1; 3; 3; 1] ]
-    rows 4 |> should equal expected
+    expect_equal(rows 4, expected)
 
 let ``Five rows`` () =
     expected <- 
@@ -37,7 +37,7 @@ let ``Five rows`` () =
           [1; 2; 1];
           [1; 3; 3; 1];
           [1; 4; 6; 4; 1] ]
-    rows 5 |> should equal expected
+    expect_equal(rows 5, expected)
 
 let ``Six rows`` () =
     expected <- 
@@ -47,7 +47,7 @@ let ``Six rows`` () =
           [1; 3; 3; 1];
           [1; 4; 6; 4; 1];
           [1; 5; 10; 10; 5; 1] ]
-    rows 6 |> should equal expected
+    expect_equal(rows 6, expected)
 
 let ``Ten rows`` () =
     expected <- 
@@ -61,5 +61,5 @@ let ``Ten rows`` () =
           [1; 7; 21; 35; 35; 21; 7; 1];
           [1; 8; 28; 56; 70; 56; 28; 8; 1];
           [1; 9; 36; 84; 126; 126; 84; 36; 9; 1] ]
-    rows 10 |> should equal expected
+    expect_equal(rows 10, expected)
 

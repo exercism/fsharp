@@ -7,7 +7,7 @@ let ``First generic verse`` () =
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be nine green bottles hanging on the wall." ]
-    recite 10 1 |> should equal expected
+    expect_equal(recite 10 1, expected)
 
 let ``Last generic verse`` () =
     expected <- 
@@ -15,7 +15,7 @@ let ``Last generic verse`` () =
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be two green bottles hanging on the wall." ]
-    recite 3 1 |> should equal expected
+    expect_equal(recite 3 1, expected)
 
 let ``Verse with 2 bottles`` () =
     expected <- 
@@ -23,7 +23,7 @@ let ``Verse with 2 bottles`` () =
           "Two green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be one green bottle hanging on the wall." ]
-    recite 2 1 |> should equal expected
+    expect_equal(recite 2 1, expected)
 
 let ``Verse with 1 bottle`` () =
     expected <- 
@@ -31,7 +31,7 @@ let ``Verse with 1 bottle`` () =
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    recite 1 1 |> should equal expected
+    expect_equal(recite 1 1, expected)
 
 let ``First two verses`` () =
     expected <- 
@@ -44,7 +44,7 @@ let ``First two verses`` () =
           "Nine green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be eight green bottles hanging on the wall." ]
-    recite 10 2 |> should equal expected
+    expect_equal(recite 10 2, expected)
 
 let ``Last three verses`` () =
     expected <- 
@@ -62,7 +62,7 @@ let ``Last three verses`` () =
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    recite 3 3 |> should equal expected
+    expect_equal(recite 3 3, expected)
 
 let ``All verses`` () =
     expected <- 
@@ -115,5 +115,5 @@ let ``All verses`` () =
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
-    recite 10 10 |> should equal expected
+    expect_equal(recite 10 10, expected)
 

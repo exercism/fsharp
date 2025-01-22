@@ -4,33 +4,33 @@ library(testthat)
 let ``Input cells have a value`` () =
     reactor <- new Reactor()
     input <- reactor.createInputCell 10
-    input.Value |> should equal 10
+    expect_equal(input.Value, 10)
 
 let ``An input cell's value can be set`` () =
     reactor <- new Reactor()
     input <- reactor.createInputCell 4
     input.Value <- 20
-    input.Value |> should equal 20
+    expect_equal(input.Value, 20)
 
 let ``Compute cells calculate initial value`` () =
     reactor <- new Reactor()
     input <- reactor.createInputCell 1
     output <- reactor.createComputeCell [input] (fun values -> values.[0] + 1)
-    output.Value |> should equal 2
+    expect_equal(output.Value, 2)
 
 let ``Compute cells take inputs in the right order`` () =
     reactor <- new Reactor()
     one <- reactor.createInputCell 1
     two <- reactor.createInputCell 2
     output <- reactor.createComputeCell [one; two] (fun values -> values.[0] + values.[1] * 10)
-    output.Value |> should equal 21
+    expect_equal(output.Value, 21)
 
 let ``Compute cells update value when dependencies are changed`` () =
     reactor <- new Reactor()
     input <- reactor.createInputCell 1
     output <- reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     input.Value <- 3
-    output.Value |> should equal 4
+    expect_equal(output.Value, 4)
 
 let ``Compute cells can depend on other compute cells`` () =
     reactor <- new Reactor()
@@ -38,9 +38,9 @@ let ``Compute cells can depend on other compute cells`` () =
     times_two <- reactor.createComputeCell [input] (fun values -> values.[0] * 2)
     times_thirty <- reactor.createComputeCell [input] (fun values -> values.[0] * 30)
     output <- reactor.createComputeCell [times_two; times_thirty] (fun values -> values.[0] + values.[1])
-    output.Value |> should equal 32
+    expect_equal(output.Value, 32)
     input.Value <- 3
-    output.Value |> should equal 96
+    expect_equal(output.Value, 96)
 
 let ``Compute cells fire callbacks`` () =
     reactor <- new Reactor()

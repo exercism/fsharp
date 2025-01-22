@@ -2,41 +2,41 @@ source("./run-length-encoding.R")
 library(testthat)
 
 let ``Encode empty string`` () =
-    encode "" |> should equal ""
+    expect_equal(encode "", "")
 
 let ``Encode single characters only are encoded without count`` () =
-    encode "XYZ" |> should equal "XYZ"
+    expect_equal(encode "XYZ", "XYZ")
 
 let ``Encode string with no single characters`` () =
-    encode "AABBBCCCC" |> should equal "2A3B4C"
+    expect_equal(encode "AABBBCCCC", "2A3B4C")
 
 let ``Encode single characters mixed with repeated characters`` () =
-    encode "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB" |> should equal "12WB12W3B24WB"
+    expect_equal(encode "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB", "12WB12W3B24WB")
 
 let ``Encode multiple whitespace mixed in string`` () =
-    encode "  hsqq qww  " |> should equal "2 hs2q q2w2 "
+    expect_equal(encode "  hsqq qww  ", "2 hs2q q2w2 ")
 
 let ``Encode lowercase characters`` () =
-    encode "aabbbcccc" |> should equal "2a3b4c"
+    expect_equal(encode "aabbbcccc", "2a3b4c")
 
 let ``Decode empty string`` () =
-    decode "" |> should equal ""
+    expect_equal(decode "", "")
 
 let ``Decode single characters only`` () =
-    decode "XYZ" |> should equal "XYZ"
+    expect_equal(decode "XYZ", "XYZ")
 
 let ``Decode string with no single characters`` () =
-    decode "2A3B4C" |> should equal "AABBBCCCC"
+    expect_equal(decode "2A3B4C", "AABBBCCCC")
 
 let ``Decode single characters with repeated characters`` () =
-    decode "12WB12W3B24WB" |> should equal "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
+    expect_equal(decode "12WB12W3B24WB", "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB")
 
 let ``Decode multiple whitespace mixed in string`` () =
-    decode "2 hs2q q2w2 " |> should equal "  hsqq qww  "
+    expect_equal(decode "2 hs2q q2w2 ", "  hsqq qww  ")
 
 let ``Decode lowercase string`` () =
-    decode "2a3b4c" |> should equal "aabbbcccc"
+    expect_equal(decode "2a3b4c", "aabbbcccc")
 
 let ``Encode followed by decode gives original string`` () =
-    "zzz ZZ  zZ" |> encode |> decode |> should equal "zzz ZZ  zZ"
+    expect_equal("zzz ZZ  zZ" |> encode |> decode, "zzz ZZ  zZ")
 

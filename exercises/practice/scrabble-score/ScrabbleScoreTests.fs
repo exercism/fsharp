@@ -2,35 +2,35 @@ source("./scrabble-score.R")
 library(testthat)
 
 let ``Lowercase letter`` () =
-    score "a" |> should equal 1
+    expect_equal(score "a", 1)
 
 let ``Uppercase letter`` () =
-    score "A" |> should equal 1
+    expect_equal(score "A", 1)
 
 let ``Valuable letter`` () =
-    score "f" |> should equal 4
+    expect_equal(score "f", 4)
 
 let ``Short word`` () =
-    score "at" |> should equal 2
+    expect_equal(score "at", 2)
 
 let ``Short, valuable word`` () =
-    score "zoo" |> should equal 12
+    expect_equal(score "zoo", 12)
 
 let ``Medium word`` () =
-    score "street" |> should equal 6
+    expect_equal(score "street", 6)
 
 let ``Medium, valuable word`` () =
-    score "quirky" |> should equal 22
+    expect_equal(score "quirky", 22)
 
 let ``Long, mixed-case word`` () =
-    score "OxyphenButazone" |> should equal 41
+    expect_equal(score "OxyphenButazone", 41)
 
 let ``English-like word`` () =
-    score "pinata" |> should equal 8
+    expect_equal(score "pinata", 8)
 
 let ``Empty input`` () =
-    score "" |> should equal 0
+    expect_equal(score "", 0)
 
 let ``Entire alphabet available`` () =
-    score "abcdefghijklmnopqrstuvwxyz" |> should equal 87
+    expect_equal(score "abcdefghijklmnopqrstuvwxyz", 87)
 

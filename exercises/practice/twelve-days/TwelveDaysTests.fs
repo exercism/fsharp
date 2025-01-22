@@ -3,65 +3,65 @@ library(testthat)
 
 let ``First day a partridge in a pear tree`` () =
     expected <- ["On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree."]
-    recite 1 1 |> should equal expected
+    expect_equal(recite 1 1, expected)
 
 let ``Second day two turtle doves`` () =
     expected <- ["On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 2 2 |> should equal expected
+    expect_equal(recite 2 2, expected)
 
 let ``Third day three french hens`` () =
     expected <- ["On the third day of Christmas my true love gave to me: three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 3 3 |> should equal expected
+    expect_equal(recite 3 3, expected)
 
 let ``Fourth day four calling birds`` () =
     expected <- ["On the fourth day of Christmas my true love gave to me: four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 4 4 |> should equal expected
+    expect_equal(recite 4 4, expected)
 
 let ``Fifth day five gold rings`` () =
     expected <- ["On the fifth day of Christmas my true love gave to me: five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 5 5 |> should equal expected
+    expect_equal(recite 5 5, expected)
 
 let ``Sixth day six geese-a-laying`` () =
     expected <- ["On the sixth day of Christmas my true love gave to me: six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 6 6 |> should equal expected
+    expect_equal(recite 6 6, expected)
 
 let ``Seventh day seven swans-a-swimming`` () =
     expected <- ["On the seventh day of Christmas my true love gave to me: seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 7 7 |> should equal expected
+    expect_equal(recite 7 7, expected)
 
 let ``Eighth day eight maids-a-milking`` () =
     expected <- ["On the eighth day of Christmas my true love gave to me: eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 8 8 |> should equal expected
+    expect_equal(recite 8 8, expected)
 
 let ``Ninth day nine ladies dancing`` () =
     expected <- ["On the ninth day of Christmas my true love gave to me: nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 9 9 |> should equal expected
+    expect_equal(recite 9 9, expected)
 
 let ``Tenth day ten lords-a-leaping`` () =
     expected <- ["On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 10 10 |> should equal expected
+    expect_equal(recite 10 10, expected)
 
 let ``Eleventh day eleven pipers piping`` () =
     expected <- ["On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 11 11 |> should equal expected
+    expect_equal(recite 11 11, expected)
 
 let ``Twelfth day twelve drummers drumming`` () =
     expected <- ["On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree."]
-    recite 12 12 |> should equal expected
+    expect_equal(recite 12 12, expected)
 
 let ``Recites first three verses of the song`` () =
     expected <- 
         [ "On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.";
           "On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.";
           "On the third day of Christmas my true love gave to me: three French Hens, two Turtle Doves, and a Partridge in a Pear Tree." ]
-    recite 1 3 |> should equal expected
+    expect_equal(recite 1 3, expected)
 
 let ``Recites three verses from the middle of the song`` () =
     expected <- 
         [ "On the fourth day of Christmas my true love gave to me: four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.";
           "On the fifth day of Christmas my true love gave to me: five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.";
           "On the sixth day of Christmas my true love gave to me: six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree." ]
-    recite 4 6 |> should equal expected
+    expect_equal(recite 4 6, expected)
 
 let ``Recites the whole song`` () =
     expected <- 
@@ -77,5 +77,5 @@ let ``Recites the whole song`` () =
           "On the tenth day of Christmas my true love gave to me: ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.";
           "On the eleventh day of Christmas my true love gave to me: eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.";
           "On the twelfth day of Christmas my true love gave to me: twelve Drummers Drumming, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree." ]
-    recite 1 12 |> should equal expected
+    expect_equal(recite 1 12, expected)
 

@@ -21,13 +21,13 @@ testPerson <-
           country = "Canada" } }
 
 let ``Set born at street`` () =
-    Optic.get bornAtStreet testPerson |> should equal "Longway"
+    expect_equal(Optic.get bornAtStreet testPerson, "Longway")
 
 let ``Set current street`` () =
-    Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet |> should equal "Middleroad"
+    expect_equal(Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet, "Middleroad")
 
 let ``Upper case born at street`` () =
-    Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet |> should equal "LONGWAY"
+    expect_equal(Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet, "LONGWAY")
 
 let ``Set birth month`` () =
-    Optic.set birthMonth 9 testPerson |> Optic.get bornOn |> should equal <| DateTime(1984, 9, 12)
+    expect_equal(Optic.set birthMonth 9 testPerson |> Optic.get bornOn, <| DateTime(1984, 9, 12))

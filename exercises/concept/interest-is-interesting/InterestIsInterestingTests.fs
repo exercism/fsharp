@@ -80,23 +80,23 @@ let ``Annual balance update for large negative start balance``() =
     annualBalanceUpdate -152964.231M |> should (equalWithin 0.001) -157878.97174203M
 
 [<Task(4)>]
-let ``Amount to donate for empty start balance``() = amountToDonate 0.0m 2.0 |> should equal 0
+    expect_equal(let ``Amount to donate for empty start balance``() = amountToDonate 0.0m 2.0, 0)
 
 [<Task(4)>]
-let ``Amount to donate for small positive start balance``() = amountToDonate 0.000001m 2.1 |> should equal 0
+    expect_equal(let ``Amount to donate for small positive start balance``() = amountToDonate 0.000001m 2.1, 0)
 
 [<Task(4)>]
-let ``Amount to donate for average positive start balance``() = amountToDonate 1_000.0m 2.0 |> should equal 40
+    expect_equal(let ``Amount to donate for average positive start balance``() = amountToDonate 1_000.0m 2.0, 40)
 
 [<Task(4)>]
-let ``Amount to donate for large positive start balance``() = amountToDonate 1_000.0001m 0.99 |> should equal 19
+    expect_equal(let ``Amount to donate for large positive start balance``() = amountToDonate 1_000.0001m 0.99, 19)
 
 [<Task(4)>]
 let ``Amount to donate for huge positive start balance``() =
-    amountToDonate 898124017.826243404425m 2.65 |> should equal 47600572
+    expect_equal(amountToDonate 898124017.826243404425m 2.65, 47600572)
 
 [<Task(4)>]
-let ``Amount to donate for small negative start balance``() = amountToDonate -0.123M 3.33 |> should equal 0
+    expect_equal(let ``Amount to donate for small negative start balance``() = amountToDonate -0.123M 3.33, 0)
 
 [<Task(4)>]
-let ``Amount to donate for large negative start balance``() = amountToDonate -152964.231M 5.4 |> should equal 0
+    expect_equal(let ``Amount to donate for large negative start balance``() = amountToDonate -152964.231M 5.4, 0)

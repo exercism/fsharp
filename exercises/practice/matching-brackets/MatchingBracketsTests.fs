@@ -2,62 +2,62 @@ source("./matching-brackets.R")
 library(testthat)
 
 let ``Paired square brackets`` () =
-    isPaired "[]" |> should equal true
+    expect_equal(isPaired "[]", true)
 
 let ``Empty string`` () =
-    isPaired "" |> should equal true
+    expect_equal(isPaired "", true)
 
 let ``Unpaired brackets`` () =
-    isPaired "[[" |> should equal false
+    expect_equal(isPaired "[[", false)
 
 let ``Wrong ordered brackets`` () =
-    isPaired "}{" |> should equal false
+    expect_equal(isPaired "}{", false)
 
 let ``Wrong closing bracket`` () =
-    isPaired "{]" |> should equal false
+    expect_equal(isPaired "{]", false)
 
 let ``Paired with whitespace`` () =
-    isPaired "{ }" |> should equal true
+    expect_equal(isPaired "{ }", true)
 
 let ``Partially paired brackets`` () =
-    isPaired "{[])" |> should equal false
+    expect_equal(isPaired "{[])", false)
 
 let ``Simple nested brackets`` () =
-    isPaired "{[]}" |> should equal true
+    expect_equal(isPaired "{[]}", true)
 
 let ``Several paired brackets`` () =
-    isPaired "{}[]" |> should equal true
+    expect_equal(isPaired "{}[]", true)
 
 let ``Paired and nested brackets`` () =
-    isPaired "([{}({}[])])" |> should equal true
+    expect_equal(isPaired "([{}({}[])])", true)
 
 let ``Unopened closing brackets`` () =
-    isPaired "{[)][]}" |> should equal false
+    expect_equal(isPaired "{[)][]}", false)
 
 let ``Unpaired and nested brackets`` () =
-    isPaired "([{])" |> should equal false
+    expect_equal(isPaired "([{])", false)
 
 let ``Paired and wrong nested brackets`` () =
-    isPaired "[({]})" |> should equal false
+    expect_equal(isPaired "[({]})", false)
 
 let ``Paired and wrong nested brackets but innermost are correct`` () =
-    isPaired "[({}])" |> should equal false
+    expect_equal(isPaired "[({}])", false)
 
 let ``Paired and incomplete brackets`` () =
-    isPaired "{}[" |> should equal false
+    expect_equal(isPaired "{}[", false)
 
 let ``Too many closing brackets`` () =
-    isPaired "[]]" |> should equal false
+    expect_equal(isPaired "[]]", false)
 
 let ``Early unexpected brackets`` () =
-    isPaired ")()" |> should equal false
+    expect_equal(isPaired ")()", false)
 
 let ``Early mismatched brackets`` () =
-    isPaired "{)()" |> should equal false
+    expect_equal(isPaired "{)()", false)
 
 let ``Math expression`` () =
-    isPaired "(((185 + 223.85) * 15) - 543)/2" |> should equal true
+    expect_equal(isPaired "(((185 + 223.85) * 15) - 543)/2", true)
 
 let ``Complex latex expression`` () =
-    isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)" |> should equal true
+    expect_equal(isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)", true)
 

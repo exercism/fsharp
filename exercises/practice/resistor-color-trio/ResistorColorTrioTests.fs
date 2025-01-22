@@ -2,32 +2,32 @@ source("./resistor-color-trio.R")
 library(testthat)
 
 let ``Orange and orange and black`` () =
-    label ["orange"; "orange"; "black"] |> should equal "33 ohms"
+    expect_equal(label ["orange"; "orange"; "black"], "33 ohms")
 
 let ``Blue and grey and brown`` () =
-    label ["blue"; "grey"; "brown"] |> should equal "680 ohms"
+    expect_equal(label ["blue"; "grey"; "brown"], "680 ohms")
 
 let ``Red and black and red`` () =
-    label ["red"; "black"; "red"] |> should equal "2 kiloohms"
+    expect_equal(label ["red"; "black"; "red"], "2 kiloohms")
 
 let ``Green and brown and orange`` () =
-    label ["green"; "brown"; "orange"] |> should equal "51 kiloohms"
+    expect_equal(label ["green"; "brown"; "orange"], "51 kiloohms")
 
 let ``Yellow and violet and yellow`` () =
-    label ["yellow"; "violet"; "yellow"] |> should equal "470 kiloohms"
+    expect_equal(label ["yellow"; "violet"; "yellow"], "470 kiloohms")
 
 let ``Blue and violet and blue`` () =
-    label ["blue"; "violet"; "blue"] |> should equal "67 megaohms"
+    expect_equal(label ["blue"; "violet"; "blue"], "67 megaohms")
 
 let ``Minimum possible value`` () =
-    label ["black"; "black"; "black"] |> should equal "0 ohms"
+    expect_equal(label ["black"; "black"; "black"], "0 ohms")
 
 let ``Maximum possible value`` () =
-    label ["white"; "white"; "white"] |> should equal "99 gigaohms"
+    expect_equal(label ["white"; "white"; "white"], "99 gigaohms")
 
 let ``First two colors make an invalid octal number`` () =
-    label ["black"; "grey"; "black"] |> should equal "8 ohms"
+    expect_equal(label ["black"; "grey"; "black"], "8 ohms")
 
 let ``Ignore extra colors`` () =
-    label ["blue"; "green"; "yellow"; "orange"] |> should equal "650 kiloohms"
+    expect_equal(label ["blue"; "green"; "yellow"; "orange"], "650 kiloohms")
 

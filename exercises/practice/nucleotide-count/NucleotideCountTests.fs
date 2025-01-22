@@ -10,7 +10,7 @@ let ``Empty strand`` () =
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+    expect_equal(nucleotideCounts strand, expected)
 
 let ``Can count one nucleotide in single-character input`` () =
     strand <- "G"
@@ -21,7 +21,7 @@ let ``Can count one nucleotide in single-character input`` () =
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+    expect_equal(nucleotideCounts strand, expected)
 
 let ``Strand with repeated nucleotide`` () =
     strand <- "GGGGGGG"
@@ -32,7 +32,7 @@ let ``Strand with repeated nucleotide`` () =
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+    expect_equal(nucleotideCounts strand, expected)
 
 let ``Strand with multiple nucleotides`` () =
     strand <- "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
@@ -43,10 +43,10 @@ let ``Strand with multiple nucleotides`` () =
           ('T', 21) ]
         |> Map.ofList
         |> Some
-    nucleotideCounts strand |> should equal expected
+    expect_equal(nucleotideCounts strand, expected)
 
 let ``Strand with invalid nucleotides`` () =
     strand <- "AGXXACT"
     expected <- None
-    nucleotideCounts strand |> should equal expected
+    expect_equal(nucleotideCounts strand, expected)
 

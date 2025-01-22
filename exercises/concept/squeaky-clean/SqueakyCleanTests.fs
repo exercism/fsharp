@@ -2,34 +2,34 @@ source("./squeaky-clean.R")
 library(testthat)
 
 [<Task(1)>]
-let ``Clean_single_letter``() = transform 'a' |> should equal "a"
+    expect_equal(let ``Clean_single_letter``() = transform 'a', "a")
 
 [<Task(1)>]
-let ``Clean_hyphen``() = transform '-' |> should equal "_"
+    expect_equal(let ``Clean_hyphen``() = transform '-', "_")
 
 [<Task(2)>]
-let ``Remove_whitespace``() = transform ' ' |> should equal ""
+    expect_equal(let ``Remove_whitespace``() = transform ' ', "")
 
 [<Task(3)>]
-let ``Convert_camel_to_kebab_case``() = transform 'Γ' |> should equal "-γ"
+    expect_equal(let ``Convert_camel_to_kebab_case``() = transform 'Γ', "-γ")
 
 [<Task(4)>]
-let ``Remove_digits``() = transform '4' |> should equal ""
+    expect_equal(let ``Remove_digits``() = transform '4', "")
 
 [<Task(5)>]
-let ``Replace_lower_case_greek_letters``() = transform 'ω' |> should equal "?"
+    expect_equal(let ``Replace_lower_case_greek_letters``() = transform 'ω', "?")
 
 [<Task(6)>]
-let ``Clean_empty_string``() = clean "" |> should equal ""
+    expect_equal(let ``Clean_empty_string``() = clean "", "")
 
 [<Task(6)>]
-let ``Clean_clean_string``() = clean "àḃç" |> should equal "àḃç"
+    expect_equal(let ``Clean_clean_string``() = clean "àḃç", "àḃç")
 
 [<Task(6)>]
-let ``Clean_string_with_spaces``() = clean "my   id" |> should equal "myid"
+    expect_equal(let ``Clean_string_with_spaces``() = clean "my   id", "myid")
 
 [<Task(6)>]
-let ``Clean_string_with_leading_and_trailing_spaces``() = clean "   my   id  " |> should equal "myid"
+    expect_equal(let ``Clean_string_with_leading_and_trailing_spaces``() = clean "   my   id  ", "myid")
 
 [<Task(6)>]
-let ``Combine_conversions``() = clean "9 cAbcĐ😀ω" |> should equal "c-abc-đ😀?"
+    expect_equal(let ``Combine_conversions``() = clean "9 cAbcĐ😀ω", "c-abc-đ😀?")

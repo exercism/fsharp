@@ -3,22 +3,22 @@ library(testthat)
 
 let ``No rows`` () =
     strings <- []
-    rectangles strings |> should equal 0
+    expect_equal(rectangles strings, 0)
 
 let ``No columns`` () =
     strings <- [""]
-    rectangles strings |> should equal 0
+    expect_equal(rectangles strings, 0)
 
 let ``No rectangles`` () =
     strings <- [" "]
-    rectangles strings |> should equal 0
+    expect_equal(rectangles strings, 0)
 
 let ``One rectangle`` () =
     strings <- 
         [ "+-+";
           "| |";
           "+-+" ]
-    rectangles strings |> should equal 1
+    expect_equal(rectangles strings, 1)
 
 let ``Two rectangles without shared parts`` () =
     strings <- 
@@ -27,7 +27,7 @@ let ``Two rectangles without shared parts`` () =
           "+-+-+";
           "| |  ";
           "+-+  " ]
-    rectangles strings |> should equal 2
+    expect_equal(rectangles strings, 2)
 
 let ``Five rectangles with shared parts`` () =
     strings <- 
@@ -36,26 +36,26 @@ let ``Five rectangles with shared parts`` () =
           "+-+-+";
           "| | |";
           "+-+-+" ]
-    rectangles strings |> should equal 5
+    expect_equal(rectangles strings, 5)
 
 let ``Rectangle of height 1 is counted`` () =
     strings <- 
         [ "+--+";
           "+--+" ]
-    rectangles strings |> should equal 1
+    expect_equal(rectangles strings, 1)
 
 let ``Rectangle of width 1 is counted`` () =
     strings <- 
         [ "++";
           "||";
           "++" ]
-    rectangles strings |> should equal 1
+    expect_equal(rectangles strings, 1)
 
 let ``1x1 square is counted`` () =
     strings <- 
         [ "++";
           "++" ]
-    rectangles strings |> should equal 1
+    expect_equal(rectangles strings, 1)
 
 let ``Only complete rectangles are counted`` () =
     strings <- 
@@ -64,7 +64,7 @@ let ``Only complete rectangles are counted`` () =
           "+-+-+";
           "| | -";
           "+-+-+" ]
-    rectangles strings |> should equal 1
+    expect_equal(rectangles strings, 1)
 
 let ``Rectangles can be of different sizes`` () =
     strings <- 
@@ -73,7 +73,7 @@ let ``Rectangles can be of different sizes`` () =
           "+---+--+    |";
           "|   |       |";
           "+---+-------+" ]
-    rectangles strings |> should equal 3
+    expect_equal(rectangles strings, 3)
 
 let ``Corner is required for a rectangle to be complete`` () =
     strings <- 
@@ -82,7 +82,7 @@ let ``Corner is required for a rectangle to be complete`` () =
           "+------+    |";
           "|   |       |";
           "+---+-------+" ]
-    rectangles strings |> should equal 2
+    expect_equal(rectangles strings, 2)
 
 let ``Large input with many rectangles`` () =
     strings <- 
@@ -94,7 +94,7 @@ let ``Large input with many rectangles`` () =
           "+---+--+--+-+";
           "+------+  | |";
           "          +-+" ]
-    rectangles strings |> should equal 60
+    expect_equal(rectangles strings, 60)
 
 let ``Rectangles must have four sides`` () =
     strings <- 
@@ -105,5 +105,5 @@ let ``Rectangles must have four sides`` () =
           "+-+-+-+";
           "| | | |";
           "+-+ +-+" ]
-    rectangles strings |> should equal 5
+    expect_equal(rectangles strings, 5)
 

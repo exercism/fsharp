@@ -8,15 +8,15 @@ let ``An empty board has no winner`` () =
           "  . . . . .  ";
           "   . . . . . ";
           "    . . . . ." ]
-    winner board |> should equal None
+    expect_equal(winner board, None)
 
 let ``X can win on a 1x1 board`` () =
     board <- ["X"]
-    winner board |> should equal (Some Black)
+    expect_equal(winner board, (Some Black))
 
 let ``O can win on a 1x1 board`` () =
     board <- ["O"]
-    winner board |> should equal (Some White)
+    expect_equal(winner board, (Some White))
 
 let ``Only edges does not make a winner`` () =
     board <- 
@@ -24,7 +24,7 @@ let ``Only edges does not make a winner`` () =
           " X . . X  ";
           "  X . . X ";
           "   X O O O" ]
-    winner board |> should equal None
+    expect_equal(winner board, None)
 
 let ``Illegal diagonal does not make a winner`` () =
     board <- 
@@ -33,7 +33,7 @@ let ``Illegal diagonal does not make a winner`` () =
           "  O X O .  ";
           "   . O X . ";
           "    X X O O" ]
-    winner board |> should equal None
+    expect_equal(winner board, None)
 
 let ``Nobody wins crossing adjacent angles`` () =
     board <- 
@@ -42,7 +42,7 @@ let ``Nobody wins crossing adjacent angles`` () =
           "  O . X O  ";
           "   . O . X ";
           "    . . O ." ]
-    winner board |> should equal None
+    expect_equal(winner board, None)
 
 let ``X wins crossing from left to right`` () =
     board <- 
@@ -51,7 +51,7 @@ let ``X wins crossing from left to right`` () =
           "  O X O .  ";
           "   X X O X ";
           "    . O X ." ]
-    winner board |> should equal (Some Black)
+    expect_equal(winner board, (Some Black))
 
 let ``O wins crossing from top to bottom`` () =
     board <- 
@@ -60,7 +60,7 @@ let ``O wins crossing from top to bottom`` () =
           "  O O O .  ";
           "   X X O X ";
           "    . O X ." ]
-    winner board |> should equal (Some White)
+    expect_equal(winner board, (Some White))
 
 let ``X wins using a convoluted path`` () =
     board <- 
@@ -69,7 +69,7 @@ let ``X wins using a convoluted path`` () =
           "  . X . X .  ";
           "   . X X . . ";
           "    O O O O O" ]
-    winner board |> should equal (Some Black)
+    expect_equal(winner board, (Some Black))
 
 let ``X wins using a spiral path`` () =
     board <- 
@@ -82,5 +82,5 @@ let ``X wins using a spiral path`` () =
           "      O X X X X X O X O  ";
           "       O O O O O O O X O ";
           "        X X X X X X X X O" ]
-    winner board |> should equal (Some Black)
+    expect_equal(winner board, (Some Black))
 

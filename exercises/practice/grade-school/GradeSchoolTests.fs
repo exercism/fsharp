@@ -9,7 +9,7 @@ let ``Student is added to the roster`` () =
     school <- 
         empty
         |> add "Aimee" 2
-    roster school |> should equal ["Aimee"]
+    expect_equal(roster school, ["Aimee"])
 
 let ``Multiple students in the same grade are added to the roster`` () =
     school <- 
@@ -17,7 +17,7 @@ let ``Multiple students in the same grade are added to the roster`` () =
         |> add "Blair" 2
         |> add "James" 2
         |> add "Paul" 2
-    roster school |> should equal ["Blair"; "James"; "Paul"]
+    expect_equal(roster school, ["Blair"; "James"; "Paul"])
 
 let ``Student not added to same grade in the roster more than once`` () =
     school <- 
@@ -26,14 +26,14 @@ let ``Student not added to same grade in the roster more than once`` () =
         |> add "James" 2
         |> add "James" 2
         |> add "Paul" 2
-    roster school |> should equal ["Blair"; "James"; "Paul"]
+    expect_equal(roster school, ["Blair"; "James"; "Paul"])
 
 let ``Students in multiple grades are added to the roster`` () =
     school <- 
         empty
         |> add "Chelsea" 3
         |> add "Logan" 7
-    roster school |> should equal ["Chelsea"; "Logan"]
+    expect_equal(roster school, ["Chelsea"; "Logan"])
 
 let ``Student not added to multiple grades in the roster`` () =
     school <- 
@@ -42,7 +42,7 @@ let ``Student not added to multiple grades in the roster`` () =
         |> add "James" 2
         |> add "James" 3
         |> add "Paul" 3
-    roster school |> should equal ["Blair"; "James"; "Paul"]
+    expect_equal(roster school, ["Blair"; "James"; "Paul"])
 
 let ``Students are sorted by grades in the roster`` () =
     school <- 
@@ -50,7 +50,7 @@ let ``Students are sorted by grades in the roster`` () =
         |> add "Jim" 3
         |> add "Peter" 2
         |> add "Anna" 1
-    roster school |> should equal ["Anna"; "Peter"; "Jim"]
+    expect_equal(roster school, ["Anna"; "Peter"; "Jim"])
 
 let ``Students are sorted by name in the roster`` () =
     school <- 
@@ -58,7 +58,7 @@ let ``Students are sorted by name in the roster`` () =
         |> add "Peter" 2
         |> add "Zoe" 2
         |> add "Alex" 2
-    roster school |> should equal ["Alex"; "Peter"; "Zoe"]
+    expect_equal(roster school, ["Alex"; "Peter"; "Zoe"])
 
 let ``Students are sorted by grades and then by name in the roster`` () =
     school <- 
@@ -70,7 +70,7 @@ let ``Students are sorted by grades and then by name in the roster`` () =
         |> add "Alex" 2
         |> add "Jim" 3
         |> add "Charlie" 1
-    roster school |> should equal ["Anna"; "Barb"; "Charlie"; "Alex"; "Peter"; "Zoe"; "Jim"]
+    expect_equal(roster school, ["Anna"; "Barb"; "Charlie"; "Alex"; "Peter"; "Zoe"; "Jim"])
 
 let ``Grade is empty if no students in the roster`` () =
     school <- empty
@@ -92,7 +92,7 @@ let ``Student not added to same grade more than once`` () =
         |> add "James" 2
         |> add "James" 2
         |> add "Paul" 2
-    grade 2 school |> should equal ["Blair"; "James"; "Paul"]
+    expect_equal(grade 2 school, ["Blair"; "James"; "Paul"])
 
 let ``Student not added to multiple grades`` () =
     school <- 
@@ -101,7 +101,7 @@ let ``Student not added to multiple grades`` () =
         |> add "James" 2
         |> add "James" 3
         |> add "Paul" 3
-    grade 2 school |> should equal ["Blair"; "James"]
+    expect_equal(grade 2 school, ["Blair"; "James"])
 
 let ``Student not added to other grade for multiple grades`` () =
     school <- 
@@ -110,7 +110,7 @@ let ``Student not added to other grade for multiple grades`` () =
         |> add "James" 2
         |> add "James" 3
         |> add "Paul" 3
-    grade 3 school |> should equal ["Paul"]
+    expect_equal(grade 3 school, ["Paul"])
 
 let ``Students are sorted by name in a grade`` () =
     school <- 
@@ -118,5 +118,5 @@ let ``Students are sorted by name in a grade`` () =
         |> add "Franklin" 5
         |> add "Bradley" 5
         |> add "Jeff" 1
-    grade 5 school |> should equal ["Bradley"; "Franklin"]
+    expect_equal(grade 5 school, ["Bradley"; "Franklin"])
 

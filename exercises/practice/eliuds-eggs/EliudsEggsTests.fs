@@ -2,14 +2,14 @@ source("./eliuds-eggs.R")
 library(testthat)
 
 let ``0 eggs`` () =
-    eggCount 0 |> should equal 0
+    expect_equal(eggCount 0, 0)
 
 let ``1 egg`` () =
-    eggCount 16 |> should equal 1
+    expect_equal(eggCount 16, 1)
 
 let ``4 eggs`` () =
-    eggCount 89 |> should equal 4
+    expect_equal(eggCount 89, 4)
 
 let ``13 eggs`` () =
-    eggCount 2000000000 |> should equal 13
+    expect_equal(eggCount 2000000000, 13)
 

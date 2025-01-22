@@ -7,7 +7,7 @@ let ``No matches`` () =
 
 let ``Detects two anagrams`` () =
     candidates <- ["lemons"; "cherry"; "melons"]
-    findAnagrams candidates "solemn" |> should equal ["lemons"; "melons"]
+    expect_equal(findAnagrams candidates "solemn", ["lemons"; "melons"])
 
 let ``Does not detect anagram subsets`` () =
     candidates <- ["dog"; "goody"]
@@ -15,15 +15,15 @@ let ``Does not detect anagram subsets`` () =
 
 let ``Detects anagram`` () =
     candidates <- ["enlists"; "google"; "inlets"; "banana"]
-    findAnagrams candidates "listen" |> should equal ["inlets"]
+    expect_equal(findAnagrams candidates "listen", ["inlets"])
 
 let ``Detects three anagrams`` () =
     candidates <- ["gallery"; "ballerina"; "regally"; "clergy"; "largely"; "leading"]
-    findAnagrams candidates "allergy" |> should equal ["gallery"; "regally"; "largely"]
+    expect_equal(findAnagrams candidates "allergy", ["gallery"; "regally"; "largely"])
 
 let ``Detects multiple anagrams with different case`` () =
     candidates <- ["Eons"; "ONES"]
-    findAnagrams candidates "nose" |> should equal ["Eons"; "ONES"]
+    expect_equal(findAnagrams candidates "nose", ["Eons"; "ONES"])
 
 let ``Does not detect non-anagrams with identical checksum`` () =
     candidates <- ["last"]
@@ -31,15 +31,15 @@ let ``Does not detect non-anagrams with identical checksum`` () =
 
 let ``Detects anagrams case-insensitively`` () =
     candidates <- ["cashregister"; "Carthorse"; "radishes"]
-    findAnagrams candidates "Orchestra" |> should equal ["Carthorse"]
+    expect_equal(findAnagrams candidates "Orchestra", ["Carthorse"])
 
 let ``Detects anagrams using case-insensitive subject`` () =
     candidates <- ["cashregister"; "carthorse"; "radishes"]
-    findAnagrams candidates "Orchestra" |> should equal ["carthorse"]
+    expect_equal(findAnagrams candidates "Orchestra", ["carthorse"])
 
 let ``Detects anagrams using case-insensitive possible matches`` () =
     candidates <- ["cashregister"; "Carthorse"; "radishes"]
-    findAnagrams candidates "orchestra" |> should equal ["Carthorse"]
+    expect_equal(findAnagrams candidates "orchestra", ["Carthorse"])
 
 let ``Does not detect an anagram if the original word is repeated`` () =
     candidates <- ["go Go GO"]
@@ -63,5 +63,5 @@ let ``Words are not anagrams of themselves even if letter case is completely dif
 
 let ``Words other than themselves can be anagrams`` () =
     candidates <- ["LISTEN"; "Silent"]
-    findAnagrams candidates "LISTEN" |> should equal ["Silent"]
+    expect_equal(findAnagrams candidates "LISTEN", ["Silent"])
 

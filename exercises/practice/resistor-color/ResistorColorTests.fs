@@ -2,14 +2,14 @@ source("./resistor-color.R")
 library(testthat)
 
 let ``Black`` () =
-    colorCode "black" |> should equal 0
+    expect_equal(colorCode "black", 0)
 
 let ``White`` () =
-    colorCode "white" |> should equal 9
+    expect_equal(colorCode "white", 9)
 
 let ``Orange`` () =
-    colorCode "orange" |> should equal 3
+    expect_equal(colorCode "orange", 3)
 
 let ``Colors`` () =
-    colors |> should equal ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"]
+    expect_equal(colors, ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"])
 

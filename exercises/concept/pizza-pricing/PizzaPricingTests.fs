@@ -2,44 +2,44 @@ source("./pizza-pricing.R")
 library(testthat)
 
 [<Task(2)>]
-let ``Price for pizza margherita``() = pizzaPrice Margherita |> should equal 7
+    expect_equal(let ``Price for pizza margherita``() = pizzaPrice Margherita, 7)
 
 [<Task(2)>]
-let ``Price for pizza formaggio``() = pizzaPrice Formaggio |> should equal 10
+    expect_equal(let ``Price for pizza formaggio``() = pizzaPrice Formaggio, 10)
 
 [<Task(2)>]
-let ``Price for pizza caprese``() = pizzaPrice Caprese |> should equal 9
+    expect_equal(let ``Price for pizza caprese``() = pizzaPrice Caprese, 9)
 
 [<Task(2)>]
-let ``Price for pizza margherita with extra sauce``() = pizzaPrice (ExtraSauce Margherita) |> should equal 8
+    expect_equal(let ``Price for pizza margherita with extra sauce``() = pizzaPrice (ExtraSauce Margherita), 8)
 
 [<Task(2)>]
-let ``Price for pizza caprese with extra toppings``() = pizzaPrice (ExtraToppings Caprese) |> should equal 11
+    expect_equal(let ``Price for pizza caprese with extra toppings``() = pizzaPrice (ExtraToppings Caprese), 11)
 
 [<Task(2)>]
 let ``Price for pizza formaggio with extra sauce and toppings``() =
-    pizzaPrice (ExtraSauce(ExtraToppings Caprese)) |> should equal 12
+    expect_equal(pizzaPrice (ExtraSauce(ExtraToppings Caprese)), 12)
 
 [<Task(2)>]
 let ``Price for pizza caprese with extra sauce and toppings``() =
-    pizzaPrice (ExtraToppings(ExtraSauce Formaggio)) |> should equal 13
+    expect_equal(pizzaPrice (ExtraToppings(ExtraSauce Formaggio)), 13)
 
 [<Task(3)>]
-let ``Order price for no pizzas``() = orderPrice [] |> should equal 0
+    expect_equal(let ``Order price for no pizzas``() = orderPrice [], 0)
 
 [<Task(3)>]
-let ``Order price for single pizza caprese``() = orderPrice [ Caprese ] |> should equal 12
+    expect_equal(let ``Order price for single pizza caprese``() = orderPrice [ Caprese ], 12)
 
 [<Task(3)>]
 let ``Order price for single pizza formaggio with extra sauce``() =
-    orderPrice [ ExtraSauce Formaggio ] |> should equal 14
+    expect_equal(orderPrice [ ExtraSauce Formaggio ], 14)
 
 [<Task(3)>]
 let ``Order price for one pizza margherita and one pizza caprese with extra toppings``() =
     orderPrice
         [ Margherita
           ExtraToppings Caprese ]
-    |> should equal 20
+    expect_equal( , 20)
 
 [<Task(3)>]
 let ``Order price for very large order``() =
@@ -52,7 +52,7 @@ let ``Order price for very large order``() =
           ExtraSauce Formaggio
           ExtraToppings(ExtraSauce Formaggio)
           ExtraToppings(ExtraSauce Formaggio) ]
-    |> should equal 82
+    expect_equal( , 82)
 
 [<Task(3)>]
-let ``Order price for gigantic order``() = orderPrice (List.replicate 100_000 Margherita) |> should equal 700_000
+    expect_equal(let ``Order price for gigantic order``() = orderPrice (List.replicate 100_000 Margherita), 700_000)

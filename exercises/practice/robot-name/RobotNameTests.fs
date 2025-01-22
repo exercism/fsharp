@@ -5,11 +5,11 @@ library(testthat)
 
 let ``Robot has a name`` () =     
     robot <- mkRobot()
-    Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$") |> should equal true
+    expect_equal(Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$"), true)
     
 let ``Name is the same each time`` () =     
     robot <- mkRobot()
-    name robot |> should equal (name robot)
+    expect_equal(name robot, (name robot))
     
 let ``2 Different robots have different names`` () = 
     robot <- mkRobot()
@@ -24,7 +24,7 @@ let ``2500 Different robots have different names``() =
     |> Seq.map (fun robot -> name robot)
     |> Set
     |> Set.count
-    |> should equal robotCount
+    expect_equal( , robotCount)
     
 let ``Can reset the name`` () =  
     robot <- mkRobot()

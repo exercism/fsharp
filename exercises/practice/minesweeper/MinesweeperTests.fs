@@ -4,12 +4,12 @@ library(testthat)
 let ``No rows`` () =
     let minefield: string list = []
     let expected: string list = []
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``No columns`` () =
     minefield <- [""]
     expected <- [""]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``No mines`` () =
     minefield <- 
@@ -20,7 +20,7 @@ let ``No mines`` () =
         [ "   ";
           "   ";
           "   " ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Minefield with only mines`` () =
     minefield <- 
@@ -31,7 +31,7 @@ let ``Minefield with only mines`` () =
         [ "***";
           "***";
           "***" ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Mine surrounded by spaces`` () =
     minefield <- 
@@ -42,7 +42,7 @@ let ``Mine surrounded by spaces`` () =
         [ "111";
           "1*1";
           "111" ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Space surrounded by mines`` () =
     minefield <- 
@@ -53,17 +53,17 @@ let ``Space surrounded by mines`` () =
         [ "***";
           "*8*";
           "***" ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Horizontal line`` () =
     minefield <- [" * * "]
     expected <- ["1*2*1"]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Horizontal line, mines at edges`` () =
     minefield <- ["*   *"]
     expected <- ["*1 1*"]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Vertical line`` () =
     minefield <- 
@@ -78,7 +78,7 @@ let ``Vertical line`` () =
           "2";
           "*";
           "1" ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Vertical line, mines at edges`` () =
     minefield <- 
@@ -93,7 +93,7 @@ let ``Vertical line, mines at edges`` () =
           " ";
           "1";
           "*" ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Cross`` () =
     minefield <- 
@@ -108,7 +108,7 @@ let ``Cross`` () =
           "*****";
           "25*52";
           " 2*2 " ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 
 let ``Large minefield`` () =
     minefield <- 
@@ -125,5 +125,5 @@ let ``Large minefield`` () =
           "112*4*";
           "1*22*2";
           "111111" ]
-    annotate minefield |> should equal expected
+    expect_equal(annotate minefield, expected)
 

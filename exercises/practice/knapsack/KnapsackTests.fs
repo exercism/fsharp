@@ -3,11 +3,11 @@ library(testthat)
 
 let ``No items`` () =
     items <- []
-    maximumValue items 100 |> should equal 0
+    expect_equal(maximumValue items 100, 0)
 
 let ``One item, too heavy`` () =
     items <- [{ weight = 100; value = 1 }]
-    maximumValue items 10 |> should equal 0
+    expect_equal(maximumValue items 10, 0)
 
 let ``Five items (cannot be greedy by weight)`` () =
     items <- 
@@ -16,7 +16,7 @@ let ``Five items (cannot be greedy by weight)`` () =
           { weight = 2; value = 5 };
           { weight = 2; value = 5 };
           { weight = 10; value = 21 } ]
-    maximumValue items 10 |> should equal 21
+    expect_equal(maximumValue items 10, 21)
 
 let ``Five items (cannot be greedy by value)`` () =
     items <- 
@@ -25,7 +25,7 @@ let ``Five items (cannot be greedy by value)`` () =
           { weight = 2; value = 20 };
           { weight = 2; value = 20 };
           { weight = 10; value = 50 } ]
-    maximumValue items 10 |> should equal 80
+    expect_equal(maximumValue items 10, 80)
 
 let ``Example knapsack`` () =
     items <- 
@@ -33,7 +33,7 @@ let ``Example knapsack`` () =
           { weight = 4; value = 40 };
           { weight = 6; value = 30 };
           { weight = 4; value = 50 } ]
-    maximumValue items 10 |> should equal 90
+    expect_equal(maximumValue items 10, 90)
 
 let ``8 items`` () =
     items <- 
@@ -45,7 +45,7 @@ let ``8 items`` () =
           { weight = 3; value = 8 };
           { weight = 2; value = 5 };
           { weight = 2; value = 5 } ]
-    maximumValue items 104 |> should equal 900
+    expect_equal(maximumValue items 104, 900)
 
 let ``15 items`` () =
     items <- 
@@ -64,5 +64,5 @@ let ``15 items`` () =
           { weight = 115; value = 221 };
           { weight = 118; value = 229 };
           { weight = 120; value = 240 } ]
-    maximumValue items 750 |> should equal 1458
+    expect_equal(maximumValue items 750, 1458)
 

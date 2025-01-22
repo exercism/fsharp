@@ -2,68 +2,68 @@ source("./pig-latin.R")
 library(testthat)
 
 let ``Word beginning with a`` () =
-    translate "apple" |> should equal "appleay"
+    expect_equal(translate "apple", "appleay")
 
 let ``Word beginning with e`` () =
-    translate "ear" |> should equal "earay"
+    expect_equal(translate "ear", "earay")
 
 let ``Word beginning with i`` () =
-    translate "igloo" |> should equal "iglooay"
+    expect_equal(translate "igloo", "iglooay")
 
 let ``Word beginning with o`` () =
-    translate "object" |> should equal "objectay"
+    expect_equal(translate "object", "objectay")
 
 let ``Word beginning with u`` () =
-    translate "under" |> should equal "underay"
+    expect_equal(translate "under", "underay")
 
 let ``Word beginning with a vowel and followed by a qu`` () =
-    translate "equal" |> should equal "equalay"
+    expect_equal(translate "equal", "equalay")
 
 let ``Word beginning with p`` () =
-    translate "pig" |> should equal "igpay"
+    expect_equal(translate "pig", "igpay")
 
 let ``Word beginning with k`` () =
-    translate "koala" |> should equal "oalakay"
+    expect_equal(translate "koala", "oalakay")
 
 let ``Word beginning with x`` () =
-    translate "xenon" |> should equal "enonxay"
+    expect_equal(translate "xenon", "enonxay")
 
 let ``Word beginning with q without a following u`` () =
-    translate "qat" |> should equal "atqay"
+    expect_equal(translate "qat", "atqay")
 
 let ``Word beginning with ch`` () =
-    translate "chair" |> should equal "airchay"
+    expect_equal(translate "chair", "airchay")
 
 let ``Word beginning with qu`` () =
-    translate "queen" |> should equal "eenquay"
+    expect_equal(translate "queen", "eenquay")
 
 let ``Word beginning with qu and a preceding consonant`` () =
-    translate "square" |> should equal "aresquay"
+    expect_equal(translate "square", "aresquay")
 
 let ``Word beginning with th`` () =
-    translate "therapy" |> should equal "erapythay"
+    expect_equal(translate "therapy", "erapythay")
 
 let ``Word beginning with thr`` () =
-    translate "thrush" |> should equal "ushthray"
+    expect_equal(translate "thrush", "ushthray")
 
 let ``Word beginning with sch`` () =
-    translate "school" |> should equal "oolschay"
+    expect_equal(translate "school", "oolschay")
 
 let ``Word beginning with yt`` () =
-    translate "yttria" |> should equal "yttriaay"
+    expect_equal(translate "yttria", "yttriaay")
 
 let ``Word beginning with xr`` () =
-    translate "xray" |> should equal "xrayay"
+    expect_equal(translate "xray", "xrayay")
 
 let ``Y is treated like a consonant at the beginning of a word`` () =
-    translate "yellow" |> should equal "ellowyay"
+    expect_equal(translate "yellow", "ellowyay")
 
 let ``Y is treated like a vowel at the end of a consonant cluster`` () =
-    translate "rhythm" |> should equal "ythmrhay"
+    expect_equal(translate "rhythm", "ythmrhay")
 
 let ``Y as second letter in two letter word`` () =
-    translate "my" |> should equal "ymay"
+    expect_equal(translate "my", "ymay")
 
 let ``A whole phrase`` () =
-    translate "quick fast run" |> should equal "ickquay astfay unray"
+    expect_equal(translate "quick fast run", "ickquay astfay unray")
 

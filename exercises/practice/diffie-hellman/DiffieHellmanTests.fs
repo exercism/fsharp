@@ -10,25 +10,25 @@ let ``Private key is greater than 1 and less than p`` () =
 let ``Private key is random`` () =
     p <- 7919I
     privateKeys <- [for _ in 0 .. 10 -> privateKey p]
-    List.distinct privateKeys |> List.length |> should equal (List.length privateKeys)
+    expect_equal(List.distinct privateKeys |> List.length, (List.length privateKeys))
 
 let ``Can calculate public key using private key`` () =
     p <- 23I
     g <- 5I
     privateKey <- 6I
-    publicKey p g privateKey |> should equal 8I
+    expect_equal(publicKey p g privateKey, 8I)
 
 let ``Can calculate public key when given a different private key`` () =
     p <- 23I
     g <- 5I
     privateKey <- 15I
-    publicKey p g privateKey |> should equal 19I
+    expect_equal(publicKey p g privateKey, 19I)
 
 let ``Can calculate secret using other party's public key`` () =
     p <- 23I
     theirPublicKey <- 19I
     myPrivateKey <- 6I
-    secret p theirPublicKey myPrivateKey |> should equal 2I
+    expect_equal(secret p theirPublicKey myPrivateKey, 2I)
 
 let ``Key exchange`` () =
     p <- 23I
@@ -39,5 +39,5 @@ let ``Key exchange`` () =
     bobPublicKey <- publicKey p g bobPrivateKey
     secretA <- secret p bobPublicKey alicePrivateKey
     secretB <- secret p alicePublicKey bobPrivateKey
-    secretA |> should equal secretB
+    expect_equal(secretA, secretB)
 

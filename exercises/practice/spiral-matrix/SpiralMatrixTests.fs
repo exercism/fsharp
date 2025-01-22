@@ -5,7 +5,7 @@ let ``Empty spiral`` () =
     spiralMatrix 0 |> should be Empty
 
 let ``Trivial spiral`` () =
-    spiralMatrix 1 |> should equal [[1]]
+    expect_equal(spiralMatrix 1, [[1]])
 
 let ``Spiral of size 2`` () =
     spiralMatrix 2 |> should equal 

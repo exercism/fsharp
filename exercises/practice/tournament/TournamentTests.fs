@@ -4,7 +4,7 @@ library(testthat)
 let ``Just the header if no input`` () =
     rows <- []
     expected <- ["Team                           | MP |  W |  D |  L |  P"]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``A win is three points, a loss is zero points`` () =
     rows <- ["Allegoric Alaskans;Blithering Badgers;win"]
@@ -12,7 +12,7 @@ let ``A win is three points, a loss is zero points`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``A win can also be expressed as a loss`` () =
     rows <- ["Blithering Badgers;Allegoric Alaskans;loss"]
@@ -20,7 +20,7 @@ let ``A win can also be expressed as a loss`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``A different team can win`` () =
     rows <- ["Blithering Badgers;Allegoric Alaskans;win"]
@@ -28,7 +28,7 @@ let ``A different team can win`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Blithering Badgers             |  1 |  1 |  0 |  0 |  3";
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``A draw is one point each`` () =
     rows <- ["Allegoric Alaskans;Blithering Badgers;draw"]
@@ -36,7 +36,7 @@ let ``A draw is one point each`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1";
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``There can be more than one match`` () =
     rows <- 
@@ -46,7 +46,7 @@ let ``There can be more than one match`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``There can be more than one winner`` () =
     rows <- 
@@ -56,7 +56,7 @@ let ``There can be more than one winner`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  2 |  1 |  0 |  1 |  3";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``There can be more than two teams`` () =
     rows <- 
@@ -68,7 +68,7 @@ let ``There can be more than two teams`` () =
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3";
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``Typical input`` () =
     rows <- 
@@ -84,7 +84,7 @@ let ``Typical input`` () =
           "Allegoric Alaskans             |  3 |  2 |  0 |  1 |  6";
           "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``Incomplete competition (not all pairs have played)`` () =
     rows <- 
@@ -98,7 +98,7 @@ let ``Incomplete competition (not all pairs have played)`` () =
           "Blithering Badgers             |  2 |  1 |  1 |  0 |  4";
           "Courageous Californians        |  2 |  0 |  1 |  1 |  1";
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``Ties broken alphabetically`` () =
     rows <- 
@@ -114,7 +114,7 @@ let ``Ties broken alphabetically`` () =
           "Courageous Californians        |  3 |  2 |  1 |  0 |  7";
           "Blithering Badgers             |  3 |  0 |  1 |  2 |  1";
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 
 let ``Ensure points sorted numerically`` () =
     rows <- 
@@ -127,5 +127,5 @@ let ``Ensure points sorted numerically`` () =
         [ "Team                           | MP |  W |  D |  L |  P";
           "Devastating Donkeys            |  5 |  4 |  0 |  1 | 12";
           "Blithering Badgers             |  5 |  1 |  0 |  4 |  3" ]
-    tally rows |> should equal expected
+    expect_equal(tally rows, expected)
 

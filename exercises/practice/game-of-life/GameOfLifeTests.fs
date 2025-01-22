@@ -4,7 +4,7 @@ library(testthat)
 let ``Empty matrix`` () =
     let matrix: int[,] = array2D []
     let expected: int[,] = array2D []
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Live cells with zero live neighbors die`` () =
     matrix <- 
@@ -15,7 +15,7 @@ let ``Live cells with zero live neighbors die`` () =
         array2D [ [0; 0; 0];
                   [0; 0; 0];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Live cells with only one live neighbor die`` () =
     matrix <- 
@@ -26,7 +26,7 @@ let ``Live cells with only one live neighbor die`` () =
         array2D [ [0; 0; 0];
                   [0; 0; 0];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Live cells with two live neighbors stay alive`` () =
     matrix <- 
@@ -37,7 +37,7 @@ let ``Live cells with two live neighbors stay alive`` () =
         array2D [ [0; 0; 0];
                   [1; 0; 1];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Live cells with three live neighbors stay alive`` () =
     matrix <- 
@@ -48,7 +48,7 @@ let ``Live cells with three live neighbors stay alive`` () =
         array2D [ [0; 0; 0];
                   [1; 0; 0];
                   [1; 1; 0] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Dead cells with three live neighbors become alive`` () =
     matrix <- 
@@ -59,7 +59,7 @@ let ``Dead cells with three live neighbors become alive`` () =
         array2D [ [0; 0; 0];
                   [1; 1; 0];
                   [0; 0; 0] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Live cells with four or more neighbors die`` () =
     matrix <- 
@@ -70,7 +70,7 @@ let ``Live cells with four or more neighbors die`` () =
         array2D [ [1; 0; 1];
                   [0; 0; 0];
                   [1; 0; 1] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 
 let ``Bigger matrix`` () =
     matrix <- 
@@ -91,5 +91,5 @@ let ``Bigger matrix`` () =
                   [1; 1; 0; 1; 0; 0; 0; 1];
                   [1; 0; 0; 0; 0; 0; 0; 0];
                   [0; 0; 0; 0; 0; 0; 1; 1] ]
-    tick matrix |> should equal expected
+    expect_equal(tick matrix, expected)
 

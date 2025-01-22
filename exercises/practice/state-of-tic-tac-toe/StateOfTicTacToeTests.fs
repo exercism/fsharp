@@ -7,7 +7,7 @@ let ``Finished game where X won via left column victory`` () =
                   ['X'; ' '; ' '];
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via middle column victory`` () =
     board <- 
@@ -15,7 +15,7 @@ let ``Finished game where X won via middle column victory`` () =
                   [' '; 'X'; ' '];
                   [' '; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via right column victory`` () =
     board <- 
@@ -23,7 +23,7 @@ let ``Finished game where X won via right column victory`` () =
                   [' '; ' '; 'X'];
                   [' '; ' '; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via left column victory`` () =
     board <- 
@@ -31,7 +31,7 @@ let ``Finished game where O won via left column victory`` () =
                   ['O'; 'X'; ' '];
                   ['O'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via middle column victory`` () =
     board <- 
@@ -39,7 +39,7 @@ let ``Finished game where O won via middle column victory`` () =
                   [' '; 'O'; 'X'];
                   [' '; 'O'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via right column victory`` () =
     board <- 
@@ -47,7 +47,7 @@ let ``Finished game where O won via right column victory`` () =
                   [' '; 'X'; 'O'];
                   [' '; ' '; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via top row victory`` () =
     board <- 
@@ -55,7 +55,7 @@ let ``Finished game where X won via top row victory`` () =
                   ['X'; 'O'; 'O'];
                   ['O'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via middle row victory`` () =
     board <- 
@@ -63,7 +63,7 @@ let ``Finished game where X won via middle row victory`` () =
                   ['X'; 'X'; 'X'];
                   [' '; 'O'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via bottom row victory`` () =
     board <- 
@@ -71,7 +71,7 @@ let ``Finished game where X won via bottom row victory`` () =
                   ['O'; ' '; 'X'];
                   ['X'; 'X'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via top row victory`` () =
     board <- 
@@ -79,7 +79,7 @@ let ``Finished game where O won via top row victory`` () =
                   ['X'; 'X'; 'O'];
                   ['X'; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via middle row victory`` () =
     board <- 
@@ -87,7 +87,7 @@ let ``Finished game where O won via middle row victory`` () =
                   ['O'; 'O'; 'O'];
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via bottom row victory`` () =
     board <- 
@@ -95,7 +95,7 @@ let ``Finished game where O won via bottom row victory`` () =
                   [' '; 'X'; 'X'];
                   ['O'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via falling diagonal victory`` () =
     board <- 
@@ -103,7 +103,7 @@ let ``Finished game where X won via falling diagonal victory`` () =
                   [' '; 'X'; ' '];
                   [' '; ' '; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via rising diagonal victory`` () =
     board <- 
@@ -111,7 +111,7 @@ let ``Finished game where X won via rising diagonal victory`` () =
                   ['O'; 'X'; ' '];
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via falling diagonal victory`` () =
     board <- 
@@ -119,7 +119,7 @@ let ``Finished game where O won via falling diagonal victory`` () =
                   ['O'; 'O'; 'X'];
                   ['X'; ' '; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where O won via rising diagonal victory`` () =
     board <- 
@@ -127,7 +127,7 @@ let ``Finished game where O won via rising diagonal victory`` () =
                   [' '; 'O'; 'X'];
                   ['O'; 'X'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via a row and a column victory`` () =
     board <- 
@@ -135,7 +135,7 @@ let ``Finished game where X won via a row and a column victory`` () =
                   ['X'; 'O'; 'O'];
                   ['X'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Finished game where X won via two diagonal victories`` () =
     board <- 
@@ -143,7 +143,7 @@ let ``Finished game where X won via two diagonal victories`` () =
                   ['O'; 'X'; 'O'];
                   ['X'; 'O'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Draw`` () =
     board <- 
@@ -151,7 +151,7 @@ let ``Draw`` () =
                   ['X'; 'X'; 'O'];
                   ['O'; 'X'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Another draw`` () =
     board <- 
@@ -159,7 +159,7 @@ let ``Another draw`` () =
                   ['O'; 'X'; 'X'];
                   ['X'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Ongoing game: one move in`` () =
     board <- 
@@ -167,7 +167,7 @@ let ``Ongoing game: one move in`` () =
                   ['X'; ' '; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Ongoing game: two moves in`` () =
     board <- 
@@ -175,7 +175,7 @@ let ``Ongoing game: two moves in`` () =
                   [' '; 'X'; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Ongoing game: five moves in`` () =
     board <- 
@@ -183,7 +183,7 @@ let ``Ongoing game: five moves in`` () =
                   [' '; 'X'; 'O'];
                   ['O'; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Invalid board: X went twice`` () =
     board <- 
@@ -191,7 +191,7 @@ let ``Invalid board: X went twice`` () =
                   [' '; ' '; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error ConsecutiveMovesBySamePlayer
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Invalid board: O started`` () =
     board <- 
@@ -199,7 +199,7 @@ let ``Invalid board: O started`` () =
                   [' '; ' '; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error WrongPlayerStarted
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Invalid board: X won and O kept playing`` () =
     board <- 
@@ -207,7 +207,7 @@ let ``Invalid board: X won and O kept playing`` () =
                   ['O'; 'O'; 'O'];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 
 let ``Invalid board: players kept playing after a win`` () =
     board <- 
@@ -215,5 +215,5 @@ let ``Invalid board: players kept playing after a win`` () =
                   ['O'; 'O'; 'O'];
                   ['X'; 'O'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    gamestate board |> should equal expected
+    expect_equal(gamestate board, expected)
 

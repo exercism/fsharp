@@ -2,80 +2,80 @@ source("./roman-numerals.R")
 library(testthat)
 
 let ``1 is I`` () =
-    roman 1 |> should equal "I"
+    expect_equal(roman 1, "I")
 
 let ``2 is II`` () =
-    roman 2 |> should equal "II"
+    expect_equal(roman 2, "II")
 
 let ``3 is III`` () =
-    roman 3 |> should equal "III"
+    expect_equal(roman 3, "III")
 
 let ``4 is IV`` () =
-    roman 4 |> should equal "IV"
+    expect_equal(roman 4, "IV")
 
 let ``5 is V`` () =
-    roman 5 |> should equal "V"
+    expect_equal(roman 5, "V")
 
 let ``6 is VI`` () =
-    roman 6 |> should equal "VI"
+    expect_equal(roman 6, "VI")
 
 let ``9 is IX`` () =
-    roman 9 |> should equal "IX"
+    expect_equal(roman 9, "IX")
 
 let ``16 is XVI`` () =
-    roman 16 |> should equal "XVI"
+    expect_equal(roman 16, "XVI")
 
 let ``27 is XXVII`` () =
-    roman 27 |> should equal "XXVII"
+    expect_equal(roman 27, "XXVII")
 
 let ``48 is XLVIII`` () =
-    roman 48 |> should equal "XLVIII"
+    expect_equal(roman 48, "XLVIII")
 
 let ``49 is XLIX`` () =
-    roman 49 |> should equal "XLIX"
+    expect_equal(roman 49, "XLIX")
 
 let ``59 is LIX`` () =
-    roman 59 |> should equal "LIX"
+    expect_equal(roman 59, "LIX")
 
 let ``66 is LXVI`` () =
-    roman 66 |> should equal "LXVI"
+    expect_equal(roman 66, "LXVI")
 
 let ``93 is XCIII`` () =
-    roman 93 |> should equal "XCIII"
+    expect_equal(roman 93, "XCIII")
 
 let ``141 is CXLI`` () =
-    roman 141 |> should equal "CXLI"
+    expect_equal(roman 141, "CXLI")
 
 let ``163 is CLXIII`` () =
-    roman 163 |> should equal "CLXIII"
+    expect_equal(roman 163, "CLXIII")
 
 let ``166 is CLXVI`` () =
-    roman 166 |> should equal "CLXVI"
+    expect_equal(roman 166, "CLXVI")
 
 let ``402 is CDII`` () =
-    roman 402 |> should equal "CDII"
+    expect_equal(roman 402, "CDII")
 
 let ``575 is DLXXV`` () =
-    roman 575 |> should equal "DLXXV"
+    expect_equal(roman 575, "DLXXV")
 
 let ``666 is DCLXVI`` () =
-    roman 666 |> should equal "DCLXVI"
+    expect_equal(roman 666, "DCLXVI")
 
 let ``911 is CMXI`` () =
-    roman 911 |> should equal "CMXI"
+    expect_equal(roman 911, "CMXI")
 
 let ``1024 is MXXIV`` () =
-    roman 1024 |> should equal "MXXIV"
+    expect_equal(roman 1024, "MXXIV")
 
 let ``1666 is MDCLXVI`` () =
-    roman 1666 |> should equal "MDCLXVI"
+    expect_equal(roman 1666, "MDCLXVI")
 
 let ``3000 is MMM`` () =
-    roman 3000 |> should equal "MMM"
+    expect_equal(roman 3000, "MMM")
 
 let ``3001 is MMMI`` () =
-    roman 3001 |> should equal "MMMI"
+    expect_equal(roman 3001, "MMMI")
 
 let ``3999 is MMMCMXCIX`` () =
-    roman 3999 |> should equal "MMMCMXCIX"
+    expect_equal(roman 3999, "MMMCMXCIX")
 

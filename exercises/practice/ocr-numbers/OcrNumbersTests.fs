@@ -7,7 +7,7 @@ let ``Recognizes 0`` () =
           "| |";
           "|_|";
           "   " ]
-    convert rows |> should equal (Some "0")
+    expect_equal(convert rows, (Some "0"))
 
 let ``Recognizes 1`` () =
     rows <- 
@@ -15,7 +15,7 @@ let ``Recognizes 1`` () =
           "  |";
           "  |";
           "   " ]
-    convert rows |> should equal (Some "1")
+    expect_equal(convert rows, (Some "1"))
 
 let ``Unreadable but correctly sized inputs return ?`` () =
     rows <- 
@@ -23,14 +23,14 @@ let ``Unreadable but correctly sized inputs return ?`` () =
           "  _";
           "  |";
           "   " ]
-    convert rows |> should equal (Some "?")
+    expect_equal(convert rows, (Some "?"))
 
 let ``Input with a number of lines that is not a multiple of four raises an error`` () =
     rows <- 
         [ " _ ";
           "| |";
           "   " ]
-    convert rows |> should equal None
+    expect_equal(convert rows, None)
 
 let ``Input with a number of columns that is not a multiple of three raises an error`` () =
     rows <- 
@@ -38,7 +38,7 @@ let ``Input with a number of columns that is not a multiple of three raises an e
           "   |";
           "   |";
           "    " ]
-    convert rows |> should equal None
+    expect_equal(convert rows, None)
 
 let ``Recognizes 110101100`` () =
     rows <- 
@@ -46,7 +46,7 @@ let ``Recognizes 110101100`` () =
           "  |  || |  || |  |  || || |";
           "  |  ||_|  ||_|  |  ||_||_|";
           "                           " ]
-    convert rows |> should equal (Some "110101100")
+    expect_equal(convert rows, (Some "110101100"))
 
 let ``Garbled numbers in a string are replaced with ?`` () =
     rows <- 
@@ -54,7 +54,7 @@ let ``Garbled numbers in a string are replaced with ?`` () =
           "  |  || |  || |     || || |";
           "  |  | _|  ||_|  |  ||_||_|";
           "                           " ]
-    convert rows |> should equal (Some "11?10?1?0")
+    expect_equal(convert rows, (Some "11?10?1?0"))
 
 let ``Recognizes 2`` () =
     rows <- 
@@ -62,7 +62,7 @@ let ``Recognizes 2`` () =
           " _|";
           "|_ ";
           "   " ]
-    convert rows |> should equal (Some "2")
+    expect_equal(convert rows, (Some "2"))
 
 let ``Recognizes 3`` () =
     rows <- 
@@ -70,7 +70,7 @@ let ``Recognizes 3`` () =
           " _|";
           " _|";
           "   " ]
-    convert rows |> should equal (Some "3")
+    expect_equal(convert rows, (Some "3"))
 
 let ``Recognizes 4`` () =
     rows <- 
@@ -78,7 +78,7 @@ let ``Recognizes 4`` () =
           "|_|";
           "  |";
           "   " ]
-    convert rows |> should equal (Some "4")
+    expect_equal(convert rows, (Some "4"))
 
 let ``Recognizes 5`` () =
     rows <- 
@@ -86,7 +86,7 @@ let ``Recognizes 5`` () =
           "|_ ";
           " _|";
           "   " ]
-    convert rows |> should equal (Some "5")
+    expect_equal(convert rows, (Some "5"))
 
 let ``Recognizes 6`` () =
     rows <- 
@@ -94,7 +94,7 @@ let ``Recognizes 6`` () =
           "|_ ";
           "|_|";
           "   " ]
-    convert rows |> should equal (Some "6")
+    expect_equal(convert rows, (Some "6"))
 
 let ``Recognizes 7`` () =
     rows <- 
@@ -102,7 +102,7 @@ let ``Recognizes 7`` () =
           "  |";
           "  |";
           "   " ]
-    convert rows |> should equal (Some "7")
+    expect_equal(convert rows, (Some "7"))
 
 let ``Recognizes 8`` () =
     rows <- 
@@ -110,7 +110,7 @@ let ``Recognizes 8`` () =
           "|_|";
           "|_|";
           "   " ]
-    convert rows |> should equal (Some "8")
+    expect_equal(convert rows, (Some "8"))
 
 let ``Recognizes 9`` () =
     rows <- 
@@ -118,7 +118,7 @@ let ``Recognizes 9`` () =
           "|_|";
           " _|";
           "   " ]
-    convert rows |> should equal (Some "9")
+    expect_equal(convert rows, (Some "9"))
 
 let ``Recognizes string of decimal numbers`` () =
     rows <- 
@@ -126,7 +126,7 @@ let ``Recognizes string of decimal numbers`` () =
           "  | _| _||_||_ |_   ||_||_|| |";
           "  ||_  _|  | _||_|  ||_| _||_|";
           "                              " ]
-    convert rows |> should equal (Some "1234567890")
+    expect_equal(convert rows, (Some "1234567890"))
 
 let ``Numbers separated by empty lines are recognized. Lines are joined by commas.`` () =
     rows <- 
@@ -142,5 +142,5 @@ let ``Numbers separated by empty lines are recognized. Lines are joined by comma
           "  ||_||_|";
           "  ||_| _|";
           "         " ]
-    convert rows |> should equal (Some "123,456,789")
+    expect_equal(convert rows, (Some "123,456,789"))
 

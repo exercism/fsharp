@@ -10,7 +10,7 @@ let ``Empty ledger`` () =
     expected <-
         "Date       | Description               | Change       "
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
 
 let ``One entry`` () =
     currency <- "USD"
@@ -23,7 +23,7 @@ let ``One entry`` () =
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)"
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
 
 let ``Credit and debit`` () =
     currency <- "USD"
@@ -38,7 +38,7 @@ let ``Credit and debit`` () =
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/02/2015 | Get present               |       $10.00 "
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
  
 let ``Multiple entries on same date ordered by description`` () =
     currency <- "USD"
@@ -53,7 +53,7 @@ let ``Multiple entries on same date ordered by description`` () =
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/01/2015 | Get present               |       $10.00 "
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
    
 let ``Final order tie breaker is change`` () =
     currency <- "USD"
@@ -70,7 +70,7 @@ let ``Final order tie breaker is change`` () =
         "01/01/2015 | Something                 |        $0.00 " + System.Environment.NewLine +
         "01/01/2015 | Something                 |        $0.01 "
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
   
 let ``Overlong descriptions`` () =
     currency <- "USD"
@@ -83,7 +83,7 @@ let ``Overlong descriptions`` () =
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
   
 let ``Euros`` () =
     currency <- "EUR"
@@ -96,7 +96,7 @@ let ``Euros`` () =
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      (€10.00)"
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
    
 let ``Dutch locale`` () =
     currency <- "USD"
@@ -109,7 +109,7 @@ let ``Dutch locale`` () =
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
  
 let ``Dutch negative number with 3 digits before decimal point`` () =
     currency <- "USD"
@@ -122,7 +122,7 @@ let ``Dutch negative number with 3 digits before decimal point`` () =
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |     $ -123,45"
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)
    
 let ``American negative number with 3 digits before decimal point`` () =
     currency <- "USD"
@@ -135,4 +135,4 @@ let ``American negative number with 3 digits before decimal point`` () =
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "03/12/2015 | Buy present               |     ($123.45)"
 
-    formatLedger currency locale entries |> should equal expected
+    expect_equal(formatLedger currency locale entries, expected)

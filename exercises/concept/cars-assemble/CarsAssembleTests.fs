@@ -38,19 +38,19 @@ let ``Production rate per hour for speed 9``() = productionRatePerHour 9 |> shou
 let ``Production rate per hour for speed 10``() = productionRatePerHour 10 |> should (equalWithin 0.1) 1701.7
 
 [<Task(3)>]
-let ``Working items per minute for speed 0``() = workingItemsPerMinute 0 |> should equal 0
+    expect_equal(let ``Working items per minute for speed 0``() = workingItemsPerMinute 0, 0)
 
 [<Task(3)>]
-let ``Working items per minute for speed 1``() = workingItemsPerMinute 1 |> should equal 3
+    expect_equal(let ``Working items per minute for speed 1``() = workingItemsPerMinute 1, 3)
 
 [<Task(3)>]
-let ``Working items per minute for speed 5``() = workingItemsPerMinute 5 |> should equal 16
+    expect_equal(let ``Working items per minute for speed 5``() = workingItemsPerMinute 5, 16)
 
 [<Task(3)>]
-let ``Working items per minute for speed 8``() = workingItemsPerMinute 8 |> should equal 26
+    expect_equal(let ``Working items per minute for speed 8``() = workingItemsPerMinute 8, 26)
 
 [<Task(3)>]
-let ``Working items per minute for speed 9``() = workingItemsPerMinute 9 |> should equal 26
+    expect_equal(let ``Working items per minute for speed 9``() = workingItemsPerMinute 9, 26)
 
 [<Task(3)>]
-let ``Working items per minute for speed 10``() = workingItemsPerMinute 10 |> should equal 28
+    expect_equal(let ``Working items per minute for speed 10``() = workingItemsPerMinute 10, 28)

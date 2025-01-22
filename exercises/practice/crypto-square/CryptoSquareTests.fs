@@ -2,23 +2,23 @@ source("./crypto-square.R")
 library(testthat)
 
 let ``Empty plaintext results in an empty ciphertext`` () =
-    ciphertext "" |> should equal ""
+    expect_equal(ciphertext "", "")
 
 let ``Lowercase`` () =
-    ciphertext "A" |> should equal "a"
+    expect_equal(ciphertext "A", "a")
 
 let ``Remove spaces`` () =
-    ciphertext "  b " |> should equal "b"
+    expect_equal(ciphertext "  b ", "b")
 
 let ``Remove punctuation`` () =
-    ciphertext "@1,%!" |> should equal "1"
+    expect_equal(ciphertext "@1,%!", "1")
 
 let ``9 character plaintext results in 3 chunks of 3 characters`` () =
-    ciphertext "This is fun!" |> should equal "tsf hiu isn"
+    expect_equal(ciphertext "This is fun!", "tsf hiu isn")
 
 let ``8 character plaintext results in 3 chunks, the last one with a trailing space`` () =
-    ciphertext "Chill out." |> should equal "clu hlt io "
+    expect_equal(ciphertext "Chill out.", "clu hlt io ")
 
 let ``54 character plaintext results in 7 chunks, the last two with trailing spaces`` () =
-    ciphertext "If man was meant to stay on the ground, god would have given us roots." |> should equal "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau "
+    expect_equal(ciphertext "If man was meant to stay on the ground, god would have given us roots.", "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ")
 
