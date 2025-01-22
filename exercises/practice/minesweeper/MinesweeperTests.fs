@@ -1,17 +1,17 @@
 source("./minesweeper.R")
 library(testthat)
 
-let ``No rows`` () =
+test_that("No rows", {
     let minefield: string list = []
     let expected: string list = []
     expect_equal(annotate minefield, expected)
 
-let ``No columns`` () =
+test_that("No columns", {
     minefield <- [""]
     expected <- [""]
     expect_equal(annotate minefield, expected)
 
-let ``No mines`` () =
+test_that("No mines", {
     minefield <- 
         [ "   ";
           "   ";
@@ -22,7 +22,7 @@ let ``No mines`` () =
           "   " ]
     expect_equal(annotate minefield, expected)
 
-let ``Minefield with only mines`` () =
+test_that("Minefield with only mines", {
     minefield <- 
         [ "***";
           "***";
@@ -33,7 +33,7 @@ let ``Minefield with only mines`` () =
           "***" ]
     expect_equal(annotate minefield, expected)
 
-let ``Mine surrounded by spaces`` () =
+test_that("Mine surrounded by spaces", {
     minefield <- 
         [ "   ";
           " * ";
@@ -44,7 +44,7 @@ let ``Mine surrounded by spaces`` () =
           "111" ]
     expect_equal(annotate minefield, expected)
 
-let ``Space surrounded by mines`` () =
+test_that("Space surrounded by mines", {
     minefield <- 
         [ "***";
           "* *";
@@ -55,17 +55,17 @@ let ``Space surrounded by mines`` () =
           "***" ]
     expect_equal(annotate minefield, expected)
 
-let ``Horizontal line`` () =
+test_that("Horizontal line", {
     minefield <- [" * * "]
     expected <- ["1*2*1"]
     expect_equal(annotate minefield, expected)
 
-let ``Horizontal line, mines at edges`` () =
+test_that("Horizontal line, mines at edges", {
     minefield <- ["*   *"]
     expected <- ["*1 1*"]
     expect_equal(annotate minefield, expected)
 
-let ``Vertical line`` () =
+test_that("Vertical line", {
     minefield <- 
         [ " ";
           "*";
@@ -80,7 +80,7 @@ let ``Vertical line`` () =
           "1" ]
     expect_equal(annotate minefield, expected)
 
-let ``Vertical line, mines at edges`` () =
+test_that("Vertical line, mines at edges", {
     minefield <- 
         [ "*";
           " ";
@@ -95,7 +95,7 @@ let ``Vertical line, mines at edges`` () =
           "*" ]
     expect_equal(annotate minefield, expected)
 
-let ``Cross`` () =
+test_that("Cross", {
     minefield <- 
         [ "  *  ";
           "  *  ";
@@ -110,7 +110,7 @@ let ``Cross`` () =
           " 2*2 " ]
     expect_equal(annotate minefield, expected)
 
-let ``Large minefield`` () =
+test_that("Large minefield", {
     minefield <- 
         [ " *  * ";
           "  *   ";

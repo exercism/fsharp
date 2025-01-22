@@ -1,30 +1,30 @@
 source("./hamming.R")
 library(testthat)
 
-let ``Empty strands`` () =
+test_that("Empty strands", {
     expect_equal(distance "" "", (Some 0))
 
-let ``Single letter identical strands`` () =
+test_that("Single letter identical strands", {
     expect_equal(distance "A" "A", (Some 0))
 
-let ``Single letter different strands`` () =
+test_that("Single letter different strands", {
     expect_equal(distance "G" "T", (Some 1))
 
-let ``Long identical strands`` () =
+test_that("Long identical strands", {
     expect_equal(distance "GGACTGAAATCTG" "GGACTGAAATCTG", (Some 0))
 
-let ``Long different strands`` () =
+test_that("Long different strands", {
     expect_equal(distance "GGACGGATTCTG" "AGGACGGATTCT", (Some 9))
 
-let ``Disallow first strand longer`` () =
+test_that("Disallow first strand longer", {
     expect_equal(distance "AATG" "AAA", None)
 
-let ``Disallow second strand longer`` () =
+test_that("Disallow second strand longer", {
     expect_equal(distance "ATA" "AGTG", None)
 
-let ``Disallow empty first strand`` () =
+test_that("Disallow empty first strand", {
     expect_equal(distance "" "G", None)
 
-let ``Disallow empty second strand`` () =
+test_that("Disallow empty second strand", {
     expect_equal(distance "G" "", None)
 

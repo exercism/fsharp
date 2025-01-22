@@ -1,28 +1,28 @@
 source("./pascals-triangle.R")
 library(testthat)
 
-let ``Zero rows`` () =
+test_that("Zero rows", {
     let expected: int list list = []
     expect_equal(rows 0, expected)
 
-let ``Single row`` () =
+test_that("Single row", {
     expected <- [[1]]
     expect_equal(rows 1, expected)
 
-let ``Two rows`` () =
+test_that("Two rows", {
     expected <- 
         [ [1];
           [1; 1] ]
     expect_equal(rows 2, expected)
 
-let ``Three rows`` () =
+test_that("Three rows", {
     expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1] ]
     expect_equal(rows 3, expected)
 
-let ``Four rows`` () =
+test_that("Four rows", {
     expected <- 
         [ [1];
           [1; 1];
@@ -30,7 +30,7 @@ let ``Four rows`` () =
           [1; 3; 3; 1] ]
     expect_equal(rows 4, expected)
 
-let ``Five rows`` () =
+test_that("Five rows", {
     expected <- 
         [ [1];
           [1; 1];
@@ -39,7 +39,7 @@ let ``Five rows`` () =
           [1; 4; 6; 4; 1] ]
     expect_equal(rows 5, expected)
 
-let ``Six rows`` () =
+test_that("Six rows", {
     expected <- 
         [ [1];
           [1; 1];
@@ -49,7 +49,7 @@ let ``Six rows`` () =
           [1; 5; 10; 10; 5; 1] ]
     expect_equal(rows 6, expected)
 
-let ``Ten rows`` () =
+test_that("Ten rows", {
     expected <- 
         [ [1];
           [1; 1];

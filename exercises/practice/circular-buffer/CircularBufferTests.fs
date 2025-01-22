@@ -1,24 +1,24 @@
 source("./circular-buffer.R")
 library(testthat)
 
-let ``Reading empty buffer should fail`` () =
+test_that("Reading empty buffer should fail", {
     buffer1 <- mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>
 
-let ``Can read an item just written`` () =
+test_that("Can read an item just written", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- write 1 buffer1
     let (val3, _) = read buffer2
     expect_equal(val3, 1)
 
-let ``Each item may only be read once`` () =
+test_that("Each item may only be read once", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- write 1 buffer1
     let (val3, buffer3) = read buffer2
     expect_equal(val3, 1)
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
-let ``Items are read in the order they are written`` () =
+test_that("Items are read in the order they are written", {
     buffer1 <- mkCircularBuffer 2
     buffer2 <- write 1 buffer1
     buffer3 <- write 2 buffer2
@@ -27,12 +27,12 @@ let ``Items are read in the order they are written`` () =
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
 
-let ``Full buffer can't be written to`` () =
+test_that("Full buffer can't be written to", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- write 1 buffer1
     (fun () -> write 2 buffer2 |> ignore) |> should throw typeof<Exception>
 
-let ``A read frees up capacity for another write`` () =
+test_that("A read frees up capacity for another write", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- write 1 buffer1
     let (val3, buffer3) = read buffer2
@@ -41,7 +41,7 @@ let ``A read frees up capacity for another write`` () =
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
 
-let ``Read position is maintained even across multiple writes`` () =
+test_that("Read position is maintained even across multiple writes", {
     buffer1 <- mkCircularBuffer 3
     buffer2 <- write 1 buffer1
     buffer3 <- write 2 buffer2
@@ -53,13 +53,13 @@ let ``Read position is maintained even across multiple writes`` () =
     let (val7, _) = read buffer6
     expect_equal(val7, 3)
 
-let ``Items cleared out of buffer can't be read`` () =
+test_that("Items cleared out of buffer can't be read", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- write 1 buffer1
     buffer3 <- clear buffer2
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
-let ``Clear frees up capacity for another write`` () =
+test_that("Clear frees up capacity for another write", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- write 1 buffer1
     buffer3 <- clear buffer2
@@ -67,14 +67,14 @@ let ``Clear frees up capacity for another write`` () =
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
 
-let ``Clear does nothing on empty buffer`` () =
+test_that("Clear does nothing on empty buffer", {
     buffer1 <- mkCircularBuffer 1
     buffer2 <- clear buffer1
     buffer3 <- write 1 buffer2
     let (val4, _) = read buffer3
     expect_equal(val4, 1)
 
-let ``Overwrite acts like write on non-full buffer`` () =
+test_that("Overwrite acts like write on non-full buffer", {
     buffer1 <- mkCircularBuffer 2
     buffer2 <- write 1 buffer1
     buffer3 <- forceWrite 2 buffer2
@@ -83,7 +83,7 @@ let ``Overwrite acts like write on non-full buffer`` () =
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
 
-let ``Overwrite replaces the oldest item on full buffer`` () =
+test_that("Overwrite replaces the oldest item on full buffer", {
     buffer1 <- mkCircularBuffer 2
     buffer2 <- write 1 buffer1
     buffer3 <- write 2 buffer2
@@ -93,7 +93,7 @@ let ``Overwrite replaces the oldest item on full buffer`` () =
     let (val6, _) = read buffer5
     expect_equal(val6, 3)
 
-let ``Overwrite replaces the oldest item remaining in buffer following a read`` () =
+test_that("Overwrite replaces the oldest item remaining in buffer following a read", {
     buffer1 <- mkCircularBuffer 3
     buffer2 <- write 1 buffer1
     buffer3 <- write 2 buffer2
@@ -109,7 +109,7 @@ let ``Overwrite replaces the oldest item remaining in buffer following a read`` 
     let (val10, _) = read buffer9
     expect_equal(val10, 5)
 
-let ``Initial clear does not affect wrapping around`` () =
+test_that("Initial clear does not affect wrapping around", {
     buffer1 <- mkCircularBuffer 2
     buffer2 <- clear buffer1
     buffer3 <- write 1 buffer2

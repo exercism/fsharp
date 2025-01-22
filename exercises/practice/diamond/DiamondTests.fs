@@ -18,7 +18,7 @@ type DiamondPropertyAttribute () =
     inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
 
 [<DiamondProperty>]
-let ``First row contains 'A'`` (letter:char) =
+test_that("First row contains 'A'", {
     actual <- make letter
     rows <- actual |> split
     firstRowCharacters <- rows |> Seq.head |> trim
@@ -26,7 +26,7 @@ let ``First row contains 'A'`` (letter:char) =
     expect_equal(firstRowCharacters, "A")
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``All rows must have symmetric contour`` (letter:char) =
+test_that("All rows must have symmetric contour", {
     actual <- make letter
     rows <- actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
@@ -34,7 +34,7 @@ let ``All rows must have symmetric contour`` (letter:char) =
     expect_equal(rows |> Array.iter (fun x -> symmetric x, true))
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Top of figure has letters in correct order`` (letter:char) =
+test_that("Top of figure has letters in correct order", {
     actual <- make letter
 
     expected <- ['A'..letter]
@@ -48,7 +48,7 @@ let ``Top of figure has letters in correct order`` (letter:char) =
     expect_equal(expected, firstNonSpaceLetters)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Figure is symmetric around the horizontal axis`` (letter:char) =
+test_that("Figure is symmetric around the horizontal axis", {
     actual <- make letter
 
     rows <- actual |> split
@@ -66,7 +66,7 @@ let ``Figure is symmetric around the horizontal axis`` (letter:char) =
     expect_equal(top, bottom)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Diamond has square shape`` (letter:char) =
+test_that("Diamond has square shape", {
     actual <- make letter
 
     rows <- actual |> split
@@ -76,7 +76,7 @@ let ``Diamond has square shape`` (letter:char) =
     expect_equal(rows |> Array.iter (fun x -> correctWidth x, true))
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``All rows except top and bottom have two identical letters`` (letter:char) =
+test_that("All rows except top and bottom have two identical letters", {
     actual <- make letter
 
     rows <- 
@@ -92,7 +92,7 @@ let ``All rows except top and bottom have two identical letters`` (letter:char) 
     expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, true))
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
-let ``Bottom left corner spaces are triangle`` (letter:char) =
+test_that("Bottom left corner spaces are triangle", {
     actual <- make letter
 
     rows <- actual |> split

@@ -1,37 +1,37 @@
 source("./word-search.R")
 library(testthat)
 
-let ``Should accept an initial game grid and a target search word`` () =
+test_that("Should accept an initial game grid and a target search word", {
     grid <- ["jefblpepre"]
     wordsToSearchFor <- ["clojure"]
     expected <- [("clojure", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate one word written left to right`` () =
+test_that("Should locate one word written left to right", {
     grid <- ["clojurermt"]
     wordsToSearchFor <- ["clojure"]
     expected <- [("clojure", Some ((1, 1), (7, 1)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate the same word written left to right in a different position`` () =
+test_that("Should locate the same word written left to right in a different position", {
     grid <- ["mtclojurer"]
     wordsToSearchFor <- ["clojure"]
     expected <- [("clojure", Some ((3, 1), (9, 1)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate a different left to right word`` () =
+test_that("Should locate a different left to right word", {
     grid <- ["coffeelplx"]
     wordsToSearchFor <- ["coffee"]
     expected <- [("coffee", Some ((1, 1), (6, 1)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate that different left to right word in a different position`` () =
+test_that("Should locate that different left to right word in a different position", {
     grid <- ["xcoffeezlp"]
     wordsToSearchFor <- ["coffee"]
     expected <- [("coffee", Some ((2, 1), (7, 1)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate a left to right word in two line grid`` () =
+test_that("Should locate a left to right word in two line grid", {
     grid <- 
         [ "jefblpepre";
           "tclojurerm" ]
@@ -39,7 +39,7 @@ let ``Should locate a left to right word in two line grid`` () =
     expected <- [("clojure", Some ((2, 2), (8, 2)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate a left to right word in three line grid`` () =
+test_that("Should locate a left to right word in three line grid", {
     grid <- 
         [ "camdcimgtc";
           "jefblpepre";
@@ -48,7 +48,7 @@ let ``Should locate a left to right word in three line grid`` () =
     expected <- [("clojure", Some ((1, 3), (7, 3)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate a left to right word in ten line grid`` () =
+test_that("Should locate a left to right word in ten line grid", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -64,7 +64,7 @@ let ``Should locate a left to right word in ten line grid`` () =
     expected <- [("clojure", Some ((1, 10), (7, 10)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate that left to right word in a different position in a ten line grid`` () =
+test_that("Should locate that left to right word in a different position in a ten line grid", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -80,7 +80,7 @@ let ``Should locate that left to right word in a different position in a ten lin
     expected <- [("clojure", Some ((1, 9), (7, 9)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate a different left to right word in a ten line grid`` () =
+test_that("Should locate a different left to right word in a ten line grid", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -96,7 +96,7 @@ let ``Should locate a different left to right word in a ten line grid`` () =
     expected <- [("fortran", Some ((1, 7), (7, 7)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate multiple words`` () =
+test_that("Should locate multiple words", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -115,13 +115,13 @@ let ``Should locate multiple words`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate a single word written right to left`` () =
+test_that("Should locate a single word written right to left", {
     grid <- ["rixilelhrs"]
     wordsToSearchFor <- ["elixir"]
     expected <- [("elixir", Some ((6, 1), (1, 1)))] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate multiple words written in different horizontal directions`` () =
+test_that("Should locate multiple words written in different horizontal directions", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -140,7 +140,7 @@ let ``Should locate multiple words written in different horizontal directions`` 
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate words written top to bottom`` () =
+test_that("Should locate words written top to bottom", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -160,7 +160,7 @@ let ``Should locate words written top to bottom`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate words written bottom to top`` () =
+test_that("Should locate words written bottom to top", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -181,7 +181,7 @@ let ``Should locate words written bottom to top`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate words written top left to bottom right`` () =
+test_that("Should locate words written top left to bottom right", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -203,7 +203,7 @@ let ``Should locate words written top left to bottom right`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate words written bottom right to top left`` () =
+test_that("Should locate words written bottom right to top left", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -226,7 +226,7 @@ let ``Should locate words written bottom right to top left`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate words written bottom left to top right`` () =
+test_that("Should locate words written bottom left to top right", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -250,7 +250,7 @@ let ``Should locate words written bottom left to top right`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should locate words written top right to bottom left`` () =
+test_that("Should locate words written top right to bottom left", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -275,7 +275,7 @@ let ``Should locate words written top right to bottom left`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should fail to locate a word that is not in the puzzle`` () =
+test_that("Should fail to locate a word that is not in the puzzle", {
     grid <- 
         [ "jefblpepre";
           "camdcimgtc";
@@ -301,7 +301,7 @@ let ``Should fail to locate a word that is not in the puzzle`` () =
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should fail to locate words that are not on horizontal, vertical, or diagonal lines`` () =
+test_that("Should fail to locate words that are not on horizontal, vertical, or diagonal lines", {
     grid <- 
         [ "abc";
           "def" ]
@@ -314,7 +314,7 @@ let ``Should fail to locate words that are not on horizontal, vertical, or diago
         |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should not concatenate different lines to find a horizontal word`` () =
+test_that("Should not concatenate different lines to find a horizontal word", {
     grid <- 
         [ "abceli";
           "xirdfg" ]
@@ -322,13 +322,13 @@ let ``Should not concatenate different lines to find a horizontal word`` () =
     expected <- [("elixir", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should not wrap around horizontally to find a word`` () =
+test_that("Should not wrap around horizontally to find a word", {
     grid <- ["silabcdefp"]
     wordsToSearchFor <- ["lisp"]
     expected <- [("lisp", Option<((int * int) * (int * int))>.None)] |> Map.ofList
     expect_equal(search grid wordsToSearchFor, expected)
 
-let ``Should not wrap around vertically to find a word`` () =
+test_that("Should not wrap around vertically to find a word", {
     grid <- 
         [ "s";
           "u";

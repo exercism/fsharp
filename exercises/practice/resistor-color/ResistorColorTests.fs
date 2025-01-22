@@ -1,15 +1,15 @@
 source("./resistor-color.R")
 library(testthat)
 
-let ``Black`` () =
+test_that("Black", {
     expect_equal(colorCode "black", 0)
 
-let ``White`` () =
+test_that("White", {
     expect_equal(colorCode "white", 9)
 
-let ``Orange`` () =
+test_that("Orange", {
     expect_equal(colorCode "orange", 3)
 
-let ``Colors`` () =
+test_that("Colors", {
     expect_equal(colors, ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"])
 

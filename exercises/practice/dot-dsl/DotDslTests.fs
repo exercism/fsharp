@@ -3,14 +3,14 @@
 source("./dot-dsl-test.R")
 library(testthat)
 
-let ``Empty graph`` () =
+test_that("Empty graph", {
     g <- graph []
 
     nodes g |> should be Empty
     edges g |> should be Empty
     attrs g |> should be Empty
     
-let ``Graph with one node`` () =
+test_that("Graph with one node", {
     g <- graph [
                 node "a" []
             ]            
@@ -19,7 +19,7 @@ let ``Graph with one node`` () =
     edges g |> should be Empty
     attrs g |> should be Empty
     
-let ``Graph with one node with keywords`` () =    
+test_that("Graph with one node with keywords", {
     g <- graph [
                 node "a" [("color", "green")]
             ]            
@@ -28,7 +28,7 @@ let ``Graph with one node with keywords`` () =
     edges g |> should be Empty
     attrs g |> should be Empty
 
-let ``Graph with one edge`` () =    
+test_that("Graph with one edge", {
     g <- graph [
                 edge "a" "b" []
             ]             
@@ -37,7 +37,7 @@ let ``Graph with one edge`` () =
     expect_equal(edges g, [edge "a" "b" []])
     attrs g |> should be Empty
 
-let ``Graph with one attribute`` () = 
+test_that("Graph with one attribute", {
     g <- graph [
                 attr "foo" "1"
             ]             
@@ -46,7 +46,7 @@ let ``Graph with one attribute`` () =
     edges g |> should be Empty
     expect_equal(attrs g, [attr "foo" "1"])
 
-let ``Graph with attributes`` () =    
+test_that("Graph with attributes", {
     g <- graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"

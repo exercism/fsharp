@@ -36,40 +36,40 @@ starSpangledBanner <-
     "O say does that star-spangled banner yet wave,\n" +
     "O'er the land of the free and the home of the brave?\n"
  
-let ``No texts mean no letters`` () =
+test_that("No texts mean no letters", {
     frequency [] |> should be Empty
 
-let ``One letter`` () =
+test_that("One letter", {
     expect_equal(frequency ["a"], (Map.ofList [('a', 1)]))
 
-let ``Case insensitivity`` () =
+test_that("Case insensitivity", {
     expect_equal(frequency ["aA"], (Map.ofList [('a', 2)]))
 
-let ``Many empty texts still mean no letters`` () =
+test_that("Many empty texts still mean no letters", {
     frequency (List.replicate 10000 "  ") |> should be Empty
 
-let ``Many times the same text gives a predictable result`` () =
+test_that("Many times the same text gives a predictable result", {
     expect_equal(frequency (List.replicate 1000 "abc"), (Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)]))
 
-let ``Punctuation doesn't count`` () =
+test_that("Punctuation doesn't count", {
     freqs <- frequency [odeAnDieFreude]
     expect_equal(Map.tryFind ',' freqs, None)
 
-let ``Numbers don't count`` () =
+test_that("Numbers don't count", {
     freqs <- frequency ["Testing, 1, 2, 3"]
     expect_equal(Map.tryFind '1' freqs, None)
 
-let ``Letters with and without diacritics are not the same letter`` () =
+test_that("Letters with and without diacritics are not the same letter", {
     freqs <- frequency ["aä"]
     expect_equal(freqs, (Map.ofList [('a', 1); ('ä', 1)]))
 
-let ``All three anthems, together`` () =
+test_that("All three anthems, together", {
     freqs <- frequency [odeAnDieFreude; wilhelmus; starSpangledBanner]
     expect_equal(Map.tryFind 'a' freqs, <| Some 49)
     expect_equal(Map.tryFind 't' freqs, <| Some 56)
     expect_equal(Map.tryFind 'o' freqs, <| Some 34)
 
-let ``Can handle large texts`` () =
+test_that("Can handle large texts", {
     freqs <- frequency (List.replicate 1000 [odeAnDieFreude; wilhelmus; starSpangledBanner] |> List.concat)
     expect_equal(Map.tryFind 'a' freqs, <| Some 49000)
     expect_equal(Map.tryFind 't' freqs, <| Some 56000)

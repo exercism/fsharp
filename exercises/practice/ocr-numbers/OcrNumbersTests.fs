@@ -1,7 +1,7 @@
 source("./ocr-numbers.R")
 library(testthat)
 
-let ``Recognizes 0`` () =
+test_that("Recognizes 0", {
     rows <- 
         [ " _ ";
           "| |";
@@ -9,7 +9,7 @@ let ``Recognizes 0`` () =
           "   " ]
     expect_equal(convert rows, (Some "0"))
 
-let ``Recognizes 1`` () =
+test_that("Recognizes 1", {
     rows <- 
         [ "   ";
           "  |";
@@ -17,7 +17,7 @@ let ``Recognizes 1`` () =
           "   " ]
     expect_equal(convert rows, (Some "1"))
 
-let ``Unreadable but correctly sized inputs return ?`` () =
+test_that("Unreadable but correctly sized inputs return ?", {
     rows <- 
         [ "   ";
           "  _";
@@ -25,14 +25,14 @@ let ``Unreadable but correctly sized inputs return ?`` () =
           "   " ]
     expect_equal(convert rows, (Some "?"))
 
-let ``Input with a number of lines that is not a multiple of four raises an error`` () =
+test_that("Input with a number of lines that is not a multiple of four raises an error", {
     rows <- 
         [ " _ ";
           "| |";
           "   " ]
     expect_equal(convert rows, None)
 
-let ``Input with a number of columns that is not a multiple of three raises an error`` () =
+test_that("Input with a number of columns that is not a multiple of three raises an error", {
     rows <- 
         [ "    ";
           "   |";
@@ -40,7 +40,7 @@ let ``Input with a number of columns that is not a multiple of three raises an e
           "    " ]
     expect_equal(convert rows, None)
 
-let ``Recognizes 110101100`` () =
+test_that("Recognizes 110101100", {
     rows <- 
         [ "       _     _        _  _ ";
           "  |  || |  || |  |  || || |";
@@ -48,7 +48,7 @@ let ``Recognizes 110101100`` () =
           "                           " ]
     expect_equal(convert rows, (Some "110101100"))
 
-let ``Garbled numbers in a string are replaced with ?`` () =
+test_that("Garbled numbers in a string are replaced with ?", {
     rows <- 
         [ "       _     _           _ ";
           "  |  || |  || |     || || |";
@@ -56,7 +56,7 @@ let ``Garbled numbers in a string are replaced with ?`` () =
           "                           " ]
     expect_equal(convert rows, (Some "11?10?1?0"))
 
-let ``Recognizes 2`` () =
+test_that("Recognizes 2", {
     rows <- 
         [ " _ ";
           " _|";
@@ -64,7 +64,7 @@ let ``Recognizes 2`` () =
           "   " ]
     expect_equal(convert rows, (Some "2"))
 
-let ``Recognizes 3`` () =
+test_that("Recognizes 3", {
     rows <- 
         [ " _ ";
           " _|";
@@ -72,7 +72,7 @@ let ``Recognizes 3`` () =
           "   " ]
     expect_equal(convert rows, (Some "3"))
 
-let ``Recognizes 4`` () =
+test_that("Recognizes 4", {
     rows <- 
         [ "   ";
           "|_|";
@@ -80,7 +80,7 @@ let ``Recognizes 4`` () =
           "   " ]
     expect_equal(convert rows, (Some "4"))
 
-let ``Recognizes 5`` () =
+test_that("Recognizes 5", {
     rows <- 
         [ " _ ";
           "|_ ";
@@ -88,7 +88,7 @@ let ``Recognizes 5`` () =
           "   " ]
     expect_equal(convert rows, (Some "5"))
 
-let ``Recognizes 6`` () =
+test_that("Recognizes 6", {
     rows <- 
         [ " _ ";
           "|_ ";
@@ -96,7 +96,7 @@ let ``Recognizes 6`` () =
           "   " ]
     expect_equal(convert rows, (Some "6"))
 
-let ``Recognizes 7`` () =
+test_that("Recognizes 7", {
     rows <- 
         [ " _ ";
           "  |";
@@ -104,7 +104,7 @@ let ``Recognizes 7`` () =
           "   " ]
     expect_equal(convert rows, (Some "7"))
 
-let ``Recognizes 8`` () =
+test_that("Recognizes 8", {
     rows <- 
         [ " _ ";
           "|_|";
@@ -112,7 +112,7 @@ let ``Recognizes 8`` () =
           "   " ]
     expect_equal(convert rows, (Some "8"))
 
-let ``Recognizes 9`` () =
+test_that("Recognizes 9", {
     rows <- 
         [ " _ ";
           "|_|";
@@ -120,7 +120,7 @@ let ``Recognizes 9`` () =
           "   " ]
     expect_equal(convert rows, (Some "9"))
 
-let ``Recognizes string of decimal numbers`` () =
+test_that("Recognizes string of decimal numbers", {
     rows <- 
         [ "    _  _     _  _  _  _  _  _ ";
           "  | _| _||_||_ |_   ||_||_|| |";
@@ -128,7 +128,7 @@ let ``Recognizes string of decimal numbers`` () =
           "                              " ]
     expect_equal(convert rows, (Some "1234567890"))
 
-let ``Numbers separated by empty lines are recognized. Lines are joined by commas.`` () =
+test_that("Numbers separated by empty lines are recognized. Lines are joined by commas.", {
     rows <- 
         [ "    _  _ ";
           "  | _| _|";

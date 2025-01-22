@@ -1,7 +1,7 @@
 source("./bottle-song.R")
 library(testthat)
 
-let ``First generic verse`` () =
+test_that("First generic verse", {
     expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
@@ -9,7 +9,7 @@ let ``First generic verse`` () =
           "There'll be nine green bottles hanging on the wall." ]
     expect_equal(recite 10 1, expected)
 
-let ``Last generic verse`` () =
+test_that("Last generic verse", {
     expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
@@ -17,7 +17,7 @@ let ``Last generic verse`` () =
           "There'll be two green bottles hanging on the wall." ]
     expect_equal(recite 3 1, expected)
 
-let ``Verse with 2 bottles`` () =
+test_that("Verse with 2 bottles", {
     expected <- 
         [ "Two green bottles hanging on the wall,";
           "Two green bottles hanging on the wall,";
@@ -25,7 +25,7 @@ let ``Verse with 2 bottles`` () =
           "There'll be one green bottle hanging on the wall." ]
     expect_equal(recite 2 1, expected)
 
-let ``Verse with 1 bottle`` () =
+test_that("Verse with 1 bottle", {
     expected <- 
         [ "One green bottle hanging on the wall,";
           "One green bottle hanging on the wall,";
@@ -33,7 +33,7 @@ let ``Verse with 1 bottle`` () =
           "There'll be no green bottles hanging on the wall." ]
     expect_equal(recite 1 1, expected)
 
-let ``First two verses`` () =
+test_that("First two verses", {
     expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
@@ -46,7 +46,7 @@ let ``First two verses`` () =
           "There'll be eight green bottles hanging on the wall." ]
     expect_equal(recite 10 2, expected)
 
-let ``Last three verses`` () =
+test_that("Last three verses", {
     expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
@@ -64,7 +64,7 @@ let ``Last three verses`` () =
           "There'll be no green bottles hanging on the wall." ]
     expect_equal(recite 3 3, expected)
 
-let ``All verses`` () =
+test_that("All verses", {
     expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";

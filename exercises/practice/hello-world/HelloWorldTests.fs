@@ -1,6 +1,6 @@
 source("./hello-world.R")
 library(testthat)
 
-let ``Say Hi!`` () =
+test_that("Say Hi!", {
     expect_equal(hello, "Hello, World!")
 

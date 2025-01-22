@@ -1,30 +1,30 @@
 source("./acronym.R")
 library(testthat)
 
-let ``Basic`` () =
+test_that("Basic", {
     expect_equal(abbreviate "Portable Network Graphics", "PNG")
 
-let ``Lowercase words`` () =
+test_that("Lowercase words", {
     expect_equal(abbreviate "Ruby on Rails", "ROR")
 
-let ``Punctuation`` () =
+test_that("Punctuation", {
     expect_equal(abbreviate "First In, First Out", "FIFO")
 
-let ``All caps word`` () =
+test_that("All caps word", {
     expect_equal(abbreviate "GNU Image Manipulation Program", "GIMP")
 
-let ``Punctuation without whitespace`` () =
+test_that("Punctuation without whitespace", {
     expect_equal(abbreviate "Complementary metal-oxide semiconductor", "CMOS")
 
-let ``Very long abbreviation`` () =
+test_that("Very long abbreviation", {
     expect_equal(abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me", "ROTFLSHTMDCOALM")
 
-let ``Consecutive delimiters`` () =
+test_that("Consecutive delimiters", {
     expect_equal(abbreviate "Something - I made up from thin air", "SIMUFTA")
 
-let ``Apostrophes`` () =
+test_that("Apostrophes", {
     expect_equal(abbreviate "Halley's Comet", "HC")
 
-let ``Underscore emphasis`` () =
+test_that("Underscore emphasis", {
     expect_equal(abbreviate "The Road _Not_ Taken", "TRNT")
 

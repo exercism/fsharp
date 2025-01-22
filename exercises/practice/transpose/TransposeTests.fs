@@ -1,26 +1,26 @@
 source("./transpose.R")
 library(testthat)
 
-let ``Empty string`` () =
+test_that("Empty string", {
     let lines: string list = []
     let expected: string list = []
     expect_equal(transpose lines, expected)
 
-let ``Two characters in a row`` () =
+test_that("Two characters in a row", {
     lines <- ["A1"]
     expected <- 
         [ "A";
           "1" ]
     expect_equal(transpose lines, expected)
 
-let ``Two characters in a column`` () =
+test_that("Two characters in a column", {
     lines <- 
         [ "A";
           "1" ]
     expected <- ["A1"]
     expect_equal(transpose lines, expected)
 
-let ``Simple`` () =
+test_that("Simple", {
     lines <- 
         [ "ABC";
           "123" ]
@@ -30,7 +30,7 @@ let ``Simple`` () =
           "C3" ]
     expect_equal(transpose lines, expected)
 
-let ``Single line`` () =
+test_that("Single line", {
     lines <- ["Single line."]
     expected <- 
         [ "S";
@@ -47,7 +47,7 @@ let ``Single line`` () =
           "." ]
     expect_equal(transpose lines, expected)
 
-let ``First line longer than second line`` () =
+test_that("First line longer than second line", {
     lines <- 
         [ "The fourth line.";
           "The fifth line." ]
@@ -70,7 +70,7 @@ let ``First line longer than second line`` () =
           "." ]
     expect_equal(transpose lines, expected)
 
-let ``Second line longer than first line`` () =
+test_that("Second line longer than first line", {
     lines <- 
         [ "The first line.";
           "The second line." ]
@@ -93,7 +93,7 @@ let ``Second line longer than first line`` () =
           " ." ]
     expect_equal(transpose lines, expected)
 
-let ``Mixed line length`` () =
+test_that("Mixed line length", {
     lines <- 
         [ "The longest line.";
           "A long line.";
@@ -119,7 +119,7 @@ let ``Mixed line length`` () =
           "." ]
     expect_equal(transpose lines, expected)
 
-let ``Square`` () =
+test_that("Square", {
     lines <- 
         [ "HEART";
           "EMBER";
@@ -134,7 +134,7 @@ let ``Square`` () =
           "TREND" ]
     expect_equal(transpose lines, expected)
 
-let ``Rectangle`` () =
+test_that("Rectangle", {
     lines <- 
         [ "FRACTURE";
           "OUTLINED";
@@ -151,7 +151,7 @@ let ``Rectangle`` () =
           "EDGE" ]
     expect_equal(transpose lines, expected)
 
-let ``Triangle`` () =
+test_that("Triangle", {
     lines <- 
         [ "T";
           "EE";
@@ -168,7 +168,7 @@ let ``Triangle`` () =
           "     R" ]
     expect_equal(transpose lines, expected)
 
-let ``Jagged triangle`` () =
+test_that("Jagged triangle", {
     lines <- 
         [ "11";
           "2";

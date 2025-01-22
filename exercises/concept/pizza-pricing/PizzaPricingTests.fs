@@ -2,47 +2,47 @@ source("./pizza-pricing.R")
 library(testthat)
 
 [<Task(2)>]
-    expect_equal(let ``Price for pizza margherita``() = pizzaPrice Margherita, 7)
+    expect_equal(test_that("Price for pizza margherita", {
 
 [<Task(2)>]
-    expect_equal(let ``Price for pizza formaggio``() = pizzaPrice Formaggio, 10)
+    expect_equal(test_that("Price for pizza formaggio", {
 
 [<Task(2)>]
-    expect_equal(let ``Price for pizza caprese``() = pizzaPrice Caprese, 9)
+    expect_equal(test_that("Price for pizza caprese", {
 
 [<Task(2)>]
-    expect_equal(let ``Price for pizza margherita with extra sauce``() = pizzaPrice (ExtraSauce Margherita), 8)
+    expect_equal(test_that("Price for pizza margherita with extra sauce", {
 
 [<Task(2)>]
-    expect_equal(let ``Price for pizza caprese with extra toppings``() = pizzaPrice (ExtraToppings Caprese), 11)
+    expect_equal(test_that("Price for pizza caprese with extra toppings", {
 
 [<Task(2)>]
-let ``Price for pizza formaggio with extra sauce and toppings``() =
+test_that("Price for pizza formaggio with extra sauce and toppings", {
     expect_equal(pizzaPrice (ExtraSauce(ExtraToppings Caprese)), 12)
 
 [<Task(2)>]
-let ``Price for pizza caprese with extra sauce and toppings``() =
+test_that("Price for pizza caprese with extra sauce and toppings", {
     expect_equal(pizzaPrice (ExtraToppings(ExtraSauce Formaggio)), 13)
 
 [<Task(3)>]
-    expect_equal(let ``Order price for no pizzas``() = orderPrice [], 0)
+    expect_equal(test_that("Order price for no pizzas", {
 
 [<Task(3)>]
-    expect_equal(let ``Order price for single pizza caprese``() = orderPrice [ Caprese ], 12)
+    expect_equal(test_that("Order price for single pizza caprese", {
 
 [<Task(3)>]
-let ``Order price for single pizza formaggio with extra sauce``() =
+test_that("Order price for single pizza formaggio with extra sauce", {
     expect_equal(orderPrice [ ExtraSauce Formaggio ], 14)
 
 [<Task(3)>]
-let ``Order price for one pizza margherita and one pizza caprese with extra toppings``() =
+test_that("Order price for one pizza margherita and one pizza caprese with extra toppings", {
     orderPrice
         [ Margherita
           ExtraToppings Caprese ]
     expect_equal( , 20)
 
 [<Task(3)>]
-let ``Order price for very large order``() =
+test_that("Order price for very large order", {
     orderPrice
         [ Margherita
           ExtraSauce Margherita
@@ -55,4 +55,4 @@ let ``Order price for very large order``() =
     expect_equal( , 82)
 
 [<Task(3)>]
-    expect_equal(let ``Order price for gigantic order``() = orderPrice (List.replicate 100_000 Margherita), 700_000)
+    expect_equal(test_that("Order price for gigantic order", {

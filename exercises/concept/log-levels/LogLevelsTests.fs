@@ -2,39 +2,39 @@ source("./log-levels.R")
 library(testthat)
 
 [<Task(1)>]
-    expect_equal(let ``Error message``() = message "[ERROR]: Stack overflow", "Stack overflow")
+    expect_equal(test_that("Error message", {
 
 [<Task(1)>]
-    expect_equal(let ``Warning message``() = message "[WARNING]: Disk almost full", "Disk almost full")
+    expect_equal(test_that("Warning message", {
 
 [<Task(1)>]
-    expect_equal(let ``Info message``() = message "[INFO]: File moved", "File moved")
+    expect_equal(test_that("Info message", {
 
 [<Task(1)>]
-let ``Message with leading and trailing white space``() =
+test_that("Message with leading and trailing white space", {
     message "[WARNING]:   \tTimezone not set  \r\n"
     expect_equal( , "Timezone not set")
 
 [<Task(2)>]
-    expect_equal(let ``Error log level``() = logLevel "[ERROR]: Disk full", "error")
+    expect_equal(test_that("Error log level", {
 
 [<Task(2)>]
-    expect_equal(let ``Warning log level``() = logLevel "[WARNING]: Unsafe password", "warning")
+    expect_equal(test_that("Warning log level", {
 
 [<Task(2)>]
-    expect_equal(let ``Info log level``() = logLevel "[INFO]: Timezone changed", "info")
+    expect_equal(test_that("Info log level", {
 
 [<Task(3)>]
-    expect_equal(let ``Error reformat``() = reformat "[ERROR]: Segmentation fault", "Segmentation fault (error)")
+    expect_equal(test_that("Error reformat", {
 
 [<Task(3)>]
-let ``Warning reformat``() =
+test_that("Warning reformat", {
     expect_equal(reformat "[WARNING]: Decreased performance", "Decreased performance (warning)")
 
 [<Task(3)>]
-    expect_equal(let ``Info reformat``() = reformat "[INFO]: Disk defragmented", "Disk defragmented (info)")
+    expect_equal(test_that("Info reformat", {
 
 [<Task(3)>]
-let ``Reformat with leading and trailing white space``() =
+test_that("Reformat with leading and trailing white space", {
     reformat "[ERROR]: \t Corrupt disk\t \t \r\n"
     expect_equal( , "Corrupt disk (error)")

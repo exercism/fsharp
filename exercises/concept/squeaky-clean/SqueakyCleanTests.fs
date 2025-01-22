@@ -2,34 +2,34 @@ source("./squeaky-clean.R")
 library(testthat)
 
 [<Task(1)>]
-    expect_equal(let ``Clean_single_letter``() = transform 'a', "a")
+    expect_equal(test_that("Clean_single_letter", {
 
 [<Task(1)>]
-    expect_equal(let ``Clean_hyphen``() = transform '-', "_")
+    expect_equal(test_that("Clean_hyphen", {
 
 [<Task(2)>]
-    expect_equal(let ``Remove_whitespace``() = transform ' ', "")
+    expect_equal(test_that("Remove_whitespace", {
 
 [<Task(3)>]
-    expect_equal(let ``Convert_camel_to_kebab_case``() = transform 'Γ', "-γ")
+    expect_equal(test_that("Convert_camel_to_kebab_case", {
 
 [<Task(4)>]
-    expect_equal(let ``Remove_digits``() = transform '4', "")
+    expect_equal(test_that("Remove_digits", {
 
 [<Task(5)>]
-    expect_equal(let ``Replace_lower_case_greek_letters``() = transform 'ω', "?")
+    expect_equal(test_that("Replace_lower_case_greek_letters", {
 
 [<Task(6)>]
-    expect_equal(let ``Clean_empty_string``() = clean "", "")
+    expect_equal(test_that("Clean_empty_string", {
 
 [<Task(6)>]
-    expect_equal(let ``Clean_clean_string``() = clean "àḃç", "àḃç")
+    expect_equal(test_that("Clean_clean_string", {
 
 [<Task(6)>]
-    expect_equal(let ``Clean_string_with_spaces``() = clean "my   id", "myid")
+    expect_equal(test_that("Clean_string_with_spaces", {
 
 [<Task(6)>]
-    expect_equal(let ``Clean_string_with_leading_and_trailing_spaces``() = clean "   my   id  ", "myid")
+    expect_equal(test_that("Clean_string_with_leading_and_trailing_spaces", {
 
 [<Task(6)>]
-    expect_equal(let ``Combine_conversions``() = clean "9 cAbcĐ😀ω", "c-abc-đ😀?")
+    expect_equal(test_that("Combine_conversions", {

@@ -3,7 +3,7 @@
 source("./hangman-test.R")
 library(testthat)
 
-let ``Initially 9 failures are allowed`` () =
+test_that("Initially 9 failures are allowed", {
     game <- createGame "foo"
     states <- statesObservable game
 
@@ -14,7 +14,7 @@ let ``Initially 9 failures are allowed`` () =
 
     expect_equal(lastProgress, <| Busy 9)
 
-let ``Initially no letters are guessed`` () =
+test_that("Initially no letters are guessed", {
     game <- createGame "foo"
     states <- statesObservable game
 
@@ -25,7 +25,7 @@ let ``Initially no letters are guessed`` () =
 
     expect_equal(lastMaskedWord, "___")
 
-let ``After 10 failures the game is over`` () =
+test_that("After 10 failures the game is over", {
     game <- createGame "foo"
     states <- statesObservable game
 
@@ -38,7 +38,7 @@ let ``After 10 failures the game is over`` () =
 
     expect_equal(lastProgress, Lose)
     
-let ``Feeding a correct letter removes underscores`` () =
+test_that("Feeding a correct letter removes underscores", {
     game <- createGame "foobar"
     states <- statesObservable game
 
@@ -57,7 +57,7 @@ let ``Feeding a correct letter removes underscores`` () =
     expect_equal(lastState.Value.progress, <| Busy 9)
     expect_equal(lastState.Value.maskedWord, "_oob__")
     
-let ``Feeding a correct letter twice counts as a failure`` () =
+test_that("Feeding a correct letter twice counts as a failure", {
     game <- createGame "foobar"
     states <- statesObservable game
 
@@ -76,7 +76,7 @@ let ``Feeding a correct letter twice counts as a failure`` () =
     expect_equal(lastState.Value.progress, <| Busy 8)
     expect_equal(lastState.Value.maskedWord, "___b__")
      
-let ``Getting all the letters right makes for a win`` () =
+test_that("Getting all the letters right makes for a win", {
     game <- createGame "hello"
     states <- statesObservable game
 

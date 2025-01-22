@@ -1,13 +1,13 @@
 source("./food-chain.R")
 library(testthat)
 
-let ``Fly`` () =
+test_that("Fly", {
     expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 1 1, expected)
 
-let ``Spider`` () =
+test_that("Spider", {
     expected <- 
         [ "I know an old lady who swallowed a spider.";
           "It wriggled and jiggled and tickled inside her.";
@@ -15,7 +15,7 @@ let ``Spider`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 2 2, expected)
 
-let ``Bird`` () =
+test_that("Bird", {
     expected <- 
         [ "I know an old lady who swallowed a bird.";
           "How absurd to swallow a bird!";
@@ -24,7 +24,7 @@ let ``Bird`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 3 3, expected)
 
-let ``Cat`` () =
+test_that("Cat", {
     expected <- 
         [ "I know an old lady who swallowed a cat.";
           "Imagine that, to swallow a cat!";
@@ -34,7 +34,7 @@ let ``Cat`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 4 4, expected)
 
-let ``Dog`` () =
+test_that("Dog", {
     expected <- 
         [ "I know an old lady who swallowed a dog.";
           "What a hog, to swallow a dog!";
@@ -45,7 +45,7 @@ let ``Dog`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 5 5, expected)
 
-let ``Goat`` () =
+test_that("Goat", {
     expected <- 
         [ "I know an old lady who swallowed a goat.";
           "Just opened her throat and swallowed a goat!";
@@ -57,7 +57,7 @@ let ``Goat`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 6 6, expected)
 
-let ``Cow`` () =
+test_that("Cow", {
     expected <- 
         [ "I know an old lady who swallowed a cow.";
           "I don't know how she swallowed a cow!";
@@ -70,13 +70,13 @@ let ``Cow`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 7 7, expected)
 
-let ``Horse`` () =
+test_that("Horse", {
     expected <- 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
     expect_equal(recite 8 8, expected)
 
-let ``Multiple verses`` () =
+test_that("Multiple verses", {
     expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";
@@ -93,7 +93,7 @@ let ``Multiple verses`` () =
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     expect_equal(recite 1 3, expected)
 
-let ``Full song`` () =
+test_that("Full song", {
     expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";

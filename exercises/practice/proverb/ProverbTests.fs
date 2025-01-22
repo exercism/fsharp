@@ -1,24 +1,24 @@
 source("./proverb.R")
 library(testthat)
 
-let ``Zero pieces`` () =
+test_that("Zero pieces", {
     let strings: string list = []
     let expected: string list = []
     expect_equal(recite strings, expected)
 
-let ``One piece`` () =
+test_that("One piece", {
     strings <- ["nail"]
     expected <- ["And all for the want of a nail."]
     expect_equal(recite strings, expected)
 
-let ``Two pieces`` () =
+test_that("Two pieces", {
     strings <- ["nail"; "shoe"]
     expected <- 
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
     expect_equal(recite strings, expected)
 
-let ``Three pieces`` () =
+test_that("Three pieces", {
     strings <- ["nail"; "shoe"; "horse"]
     expected <- 
         [ "For want of a nail the shoe was lost.";
@@ -26,7 +26,7 @@ let ``Three pieces`` () =
           "And all for the want of a nail." ]
     expect_equal(recite strings, expected)
 
-let ``Full proverb`` () =
+test_that("Full proverb", {
     strings <- ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
     expected <- 
         [ "For want of a nail the shoe was lost.";
@@ -38,7 +38,7 @@ let ``Full proverb`` () =
           "And all for the want of a nail." ]
     expect_equal(recite strings, expected)
 
-let ``Four pieces modernized`` () =
+test_that("Four pieces modernized", {
     strings <- ["pin"; "gun"; "soldier"; "battle"]
     expected <- 
         [ "For want of a pin the gun was lost.";

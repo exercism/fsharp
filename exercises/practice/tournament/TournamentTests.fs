@@ -1,12 +1,12 @@
 source("./tournament.R")
 library(testthat)
 
-let ``Just the header if no input`` () =
+test_that("Just the header if no input", {
     rows <- []
     expected <- ["Team                           | MP |  W |  D |  L |  P"]
     expect_equal(tally rows, expected)
 
-let ``A win is three points, a loss is zero points`` () =
+test_that("A win is three points, a loss is zero points", {
     rows <- ["Allegoric Alaskans;Blithering Badgers;win"]
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -14,7 +14,7 @@ let ``A win is three points, a loss is zero points`` () =
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     expect_equal(tally rows, expected)
 
-let ``A win can also be expressed as a loss`` () =
+test_that("A win can also be expressed as a loss", {
     rows <- ["Blithering Badgers;Allegoric Alaskans;loss"]
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -22,7 +22,7 @@ let ``A win can also be expressed as a loss`` () =
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
     expect_equal(tally rows, expected)
 
-let ``A different team can win`` () =
+test_that("A different team can win", {
     rows <- ["Blithering Badgers;Allegoric Alaskans;win"]
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -30,7 +30,7 @@ let ``A different team can win`` () =
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
     expect_equal(tally rows, expected)
 
-let ``A draw is one point each`` () =
+test_that("A draw is one point each", {
     rows <- ["Allegoric Alaskans;Blithering Badgers;draw"]
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
@@ -38,7 +38,7 @@ let ``A draw is one point each`` () =
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
     expect_equal(tally rows, expected)
 
-let ``There can be more than one match`` () =
+test_that("There can be more than one match", {
     rows <- 
         [ "Allegoric Alaskans;Blithering Badgers;win";
           "Allegoric Alaskans;Blithering Badgers;win" ]
@@ -48,7 +48,7 @@ let ``There can be more than one match`` () =
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
     expect_equal(tally rows, expected)
 
-let ``There can be more than one winner`` () =
+test_that("There can be more than one winner", {
     rows <- 
         [ "Allegoric Alaskans;Blithering Badgers;loss";
           "Allegoric Alaskans;Blithering Badgers;win" ]
@@ -58,7 +58,7 @@ let ``There can be more than one winner`` () =
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
     expect_equal(tally rows, expected)
 
-let ``There can be more than two teams`` () =
+test_that("There can be more than two teams", {
     rows <- 
         [ "Allegoric Alaskans;Blithering Badgers;win";
           "Blithering Badgers;Courageous Californians;win";
@@ -70,7 +70,7 @@ let ``There can be more than two teams`` () =
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
     expect_equal(tally rows, expected)
 
-let ``Typical input`` () =
+test_that("Typical input", {
     rows <- 
         [ "Allegoric Alaskans;Blithering Badgers;win";
           "Devastating Donkeys;Courageous Californians;draw";
@@ -86,7 +86,7 @@ let ``Typical input`` () =
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
     expect_equal(tally rows, expected)
 
-let ``Incomplete competition (not all pairs have played)`` () =
+test_that("Incomplete competition (not all pairs have played)", {
     rows <- 
         [ "Allegoric Alaskans;Blithering Badgers;loss";
           "Devastating Donkeys;Allegoric Alaskans;loss";
@@ -100,7 +100,7 @@ let ``Incomplete competition (not all pairs have played)`` () =
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
     expect_equal(tally rows, expected)
 
-let ``Ties broken alphabetically`` () =
+test_that("Ties broken alphabetically", {
     rows <- 
         [ "Courageous Californians;Devastating Donkeys;win";
           "Allegoric Alaskans;Blithering Badgers;win";
@@ -116,7 +116,7 @@ let ``Ties broken alphabetically`` () =
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
     expect_equal(tally rows, expected)
 
-let ``Ensure points sorted numerically`` () =
+test_that("Ensure points sorted numerically", {
     rows <- 
         [ "Devastating Donkeys;Blithering Badgers;win";
           "Devastating Donkeys;Blithering Badgers;win";

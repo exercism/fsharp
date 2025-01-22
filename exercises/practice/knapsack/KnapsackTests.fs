@@ -1,15 +1,15 @@
 source("./knapsack.R")
 library(testthat)
 
-let ``No items`` () =
+test_that("No items", {
     items <- []
     expect_equal(maximumValue items 100, 0)
 
-let ``One item, too heavy`` () =
+test_that("One item, too heavy", {
     items <- [{ weight = 100; value = 1 }]
     expect_equal(maximumValue items 10, 0)
 
-let ``Five items (cannot be greedy by weight)`` () =
+test_that("Five items (cannot be greedy by weight)", {
     items <- 
         [ { weight = 2; value = 5 };
           { weight = 2; value = 5 };
@@ -18,7 +18,7 @@ let ``Five items (cannot be greedy by weight)`` () =
           { weight = 10; value = 21 } ]
     expect_equal(maximumValue items 10, 21)
 
-let ``Five items (cannot be greedy by value)`` () =
+test_that("Five items (cannot be greedy by value)", {
     items <- 
         [ { weight = 2; value = 20 };
           { weight = 2; value = 20 };
@@ -27,7 +27,7 @@ let ``Five items (cannot be greedy by value)`` () =
           { weight = 10; value = 50 } ]
     expect_equal(maximumValue items 10, 80)
 
-let ``Example knapsack`` () =
+test_that("Example knapsack", {
     items <- 
         [ { weight = 5; value = 10 };
           { weight = 4; value = 40 };
@@ -35,7 +35,7 @@ let ``Example knapsack`` () =
           { weight = 4; value = 50 } ]
     expect_equal(maximumValue items 10, 90)
 
-let ``8 items`` () =
+test_that("8 items", {
     items <- 
         [ { weight = 25; value = 350 };
           { weight = 35; value = 400 };
@@ -47,7 +47,7 @@ let ``8 items`` () =
           { weight = 2; value = 5 } ]
     expect_equal(maximumValue items 104, 900)
 
-let ``15 items`` () =
+test_that("15 items", {
     items <- 
         [ { weight = 70; value = 135 };
           { weight = 73; value = 139 };

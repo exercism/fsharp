@@ -1,21 +1,21 @@
 source("./reverse-string.R")
 library(testthat)
 
-let ``An empty string`` () =
+test_that("An empty string", {
     expect_equal(reverse "", "")
 
-let ``A word`` () =
+test_that("A word", {
     expect_equal(reverse "robot", "tobor")
 
-let ``A capitalized word`` () =
+test_that("A capitalized word", {
     expect_equal(reverse "Ramen", "nemaR")
 
-let ``A sentence with punctuation`` () =
+test_that("A sentence with punctuation", {
     expect_equal(reverse "I'm hungry!", "!yrgnuh m'I")
 
-let ``A palindrome`` () =
+test_that("A palindrome", {
     expect_equal(reverse "racecar", "racecar")
 
-let ``An even-sized word`` () =
+test_that("An even-sized word", {
     expect_equal(reverse "drawer", "reward")
 

@@ -3,7 +3,7 @@
 source("./linked-list-test.R")
 library(testthat)
 
-let ``Push and pop are first in last out order`` () =
+test_that("Push and pop are first in last out order", {
     linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
@@ -14,7 +14,7 @@ let ``Push and pop are first in last out order`` () =
     expect_equal(val1, 20)
     expect_equal(val2, 10)
 
-let ``Push and shift are first in first out order`` () =
+test_that("Push and shift are first in first out order", {
     linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
@@ -25,7 +25,7 @@ let ``Push and shift are first in first out order`` () =
     expect_equal(val1, 10)
     expect_equal(val2, 20)
 
-let ``Unshift and shift are last in first out order`` () =
+test_that("Unshift and shift are last in first out order", {
     linkedList <- mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
@@ -36,7 +36,7 @@ let ``Unshift and shift are last in first out order`` () =
     expect_equal(val1, 20)
     expect_equal(val2, 10)
 
-let ``Unshift and pop are last in last out order`` () =
+test_that("Unshift and pop are last in last out order", {
     linkedList <- mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
@@ -47,7 +47,7 @@ let ``Unshift and pop are last in last out order`` () =
     expect_equal(val1, 10)
     expect_equal(val2, 20)
 
-let ``Push and pop can handle multiple values`` () =
+test_that("Push and pop can handle multiple values", {
     linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
@@ -61,7 +61,7 @@ let ``Push and pop can handle multiple values`` () =
     expect_equal(val2, 20)
     expect_equal(val3, 10)
 
-let ``Unshift and shift can handle multiple values`` () =
+test_that("Unshift and shift can handle multiple values", {
     linkedList <- mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
@@ -75,7 +75,7 @@ let ``Unshift and shift can handle multiple values`` () =
     expect_equal(val2, 20)
     expect_equal(val3, 10)
 
-let ``All methods of manipulating the linkedList can be used together`` () =
+test_that("All methods of manipulating the linkedList can be used together", {
     linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20

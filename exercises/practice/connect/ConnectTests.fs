@@ -1,7 +1,7 @@
 source("./connect.R")
 library(testthat)
 
-let ``An empty board has no winner`` () =
+test_that("An empty board has no winner", {
     board <- 
         [ ". . . . .    ";
           " . . . . .   ";
@@ -10,15 +10,15 @@ let ``An empty board has no winner`` () =
           "    . . . . ." ]
     expect_equal(winner board, None)
 
-let ``X can win on a 1x1 board`` () =
+test_that("X can win on a 1x1 board", {
     board <- ["X"]
     expect_equal(winner board, (Some Black))
 
-let ``O can win on a 1x1 board`` () =
+test_that("O can win on a 1x1 board", {
     board <- ["O"]
     expect_equal(winner board, (Some White))
 
-let ``Only edges does not make a winner`` () =
+test_that("Only edges does not make a winner", {
     board <- 
         [ "O O O X   ";
           " X . . X  ";
@@ -26,7 +26,7 @@ let ``Only edges does not make a winner`` () =
           "   X O O O" ]
     expect_equal(winner board, None)
 
-let ``Illegal diagonal does not make a winner`` () =
+test_that("Illegal diagonal does not make a winner", {
     board <- 
         [ "X O . .    ";
           " O X X X   ";
@@ -35,7 +35,7 @@ let ``Illegal diagonal does not make a winner`` () =
           "    X X O O" ]
     expect_equal(winner board, None)
 
-let ``Nobody wins crossing adjacent angles`` () =
+test_that("Nobody wins crossing adjacent angles", {
     board <- 
         [ "X . . .    ";
           " . X O .   ";
@@ -44,7 +44,7 @@ let ``Nobody wins crossing adjacent angles`` () =
           "    . . O ." ]
     expect_equal(winner board, None)
 
-let ``X wins crossing from left to right`` () =
+test_that("X wins crossing from left to right", {
     board <- 
         [ ". O . .    ";
           " O X X X   ";
@@ -53,7 +53,7 @@ let ``X wins crossing from left to right`` () =
           "    . O X ." ]
     expect_equal(winner board, (Some Black))
 
-let ``O wins crossing from top to bottom`` () =
+test_that("O wins crossing from top to bottom", {
     board <- 
         [ ". O . .    ";
           " O X X X   ";
@@ -62,7 +62,7 @@ let ``O wins crossing from top to bottom`` () =
           "    . O X ." ]
     expect_equal(winner board, (Some White))
 
-let ``X wins using a convoluted path`` () =
+test_that("X wins using a convoluted path", {
     board <- 
         [ ". X X . .    ";
           " X . X . X   ";
@@ -71,7 +71,7 @@ let ``X wins using a convoluted path`` () =
           "    O O O O O" ]
     expect_equal(winner board, (Some Black))
 
-let ``X wins using a spiral path`` () =
+test_that("X wins using a spiral path", {
     board <- 
         [ "O X X X X X X X X        ";
           " O X O O O O O O O       ";
