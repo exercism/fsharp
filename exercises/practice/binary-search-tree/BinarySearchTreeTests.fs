@@ -56,25 +56,25 @@ test_that("Can create complex tree", {
 
 test_that("Can sort single number", {
     treeData <- create c(2)
-    expect_equal(sortedData treeData, c(2))
+    expect_equal(sortedData(treeData), c(2))
 })
 
 test_that("Can sort if second number is smaller than first", {
     treeData <- create c(2, 1)
-    expect_equal(sortedData treeData, c(1, 2))
+    expect_equal(sortedData(treeData), c(1, 2))
 })
 
 test_that("Can sort if second number is same as first", {
     treeData <- create c(2, 2)
-    expect_equal(sortedData treeData, c(2, 2))
+    expect_equal(sortedData(treeData), c(2, 2))
 })
 
 test_that("Can sort if second number is greater than first", {
     treeData <- create c(2, 3)
-    expect_equal(sortedData treeData, c(2, 3))
+    expect_equal(sortedData(treeData), c(2, 3))
 })
 
 test_that("Can sort complex tree", {
     treeData <- create c(2, 1, 3, 6, 7, 5)
-    expect_equal(sortedData treeData, c(1, 2, 3, 5, 6, 7))
+    expect_equal(sortedData(treeData), c(1, 2, 3, 5, 6, 7))
 })

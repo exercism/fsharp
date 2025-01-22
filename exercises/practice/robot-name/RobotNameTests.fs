@@ -9,7 +9,7 @@ test_that("Robot has a name", {
     
 test_that("Name is the same each time", {
     robot <- mkRobot()
-    expect_equal(name robot, (name robot))
+    expect_equal(name(robot), (name robot))
     
 test_that("2 Different robots have different names", {
     robot <- mkRobot()

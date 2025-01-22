@@ -9,19 +9,19 @@ test_that("Puzzle with three letters", {
           ('L', 0) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Solution must have unique value for each letter", {
     puzzle <- "A == B"
     expected <- None
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Leading zero solution is invalid", {
     puzzle <- "ACA + DD == BD"
     expected <- None
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with two digits final carry", {
@@ -32,7 +32,7 @@ test_that("Puzzle with two digits final carry", {
           ('C', 0) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with four letters", {
@@ -44,7 +44,7 @@ test_that("Puzzle with four letters", {
           ('O', 0) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with six letters", {
@@ -58,7 +58,7 @@ test_that("Puzzle with six letters", {
           ('E', 2) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with seven letters", {
@@ -73,7 +73,7 @@ test_that("Puzzle with seven letters", {
           ('T', 7) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with eight letters", {
@@ -89,7 +89,7 @@ test_that("Puzzle with eight letters", {
           ('Y', 2) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with ten letters", {
@@ -107,7 +107,7 @@ test_that("Puzzle with ten letters", {
           ('T', 9) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })
 
 test_that("Puzzle with ten letters and 199 addends", {
@@ -125,5 +125,5 @@ test_that("Puzzle with ten letters and 199 addends", {
           ('T', 9) ]
         |> Map.ofList
         |> Some
-    expect_equal(solve puzzle, expected)
+    expect_equal(solve(puzzle), expected)
 })

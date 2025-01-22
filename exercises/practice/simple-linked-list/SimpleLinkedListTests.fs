@@ -10,7 +10,7 @@ test_that("Empty list", {
 
 test_that("Single item list value", {
     list <- create 1 nil
-    expect_equal(datum list, 1)
+    expect_equal(datum(list), 1)
         
 test_that("Single item list has no next item", {
     list <- create 1 nil
@@ -18,7 +18,7 @@ test_that("Single item list has no next item", {
         
 test_that("Two item list first value", {
     list <- create 2 (create 1 nil)
-    expect_equal(datum list, 2)
+    expect_equal(datum(list), 2)
     
 test_that("Two item list second value", {
     list <- create 2 (create 1 nil)

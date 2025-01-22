@@ -22,7 +22,7 @@ test_that("Add language to existing list", {
 
 test_that("Reverse order of new list", {
     let expected: string list = []
-    expect_equal(reverseList newList, expected)
+    expect_equal(reverseList(newList), expected)
 
     expect_equal(test_that("Reverse order of existing list", {
 

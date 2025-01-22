@@ -10,7 +10,7 @@ test_that("Empty strand", {
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    expect_equal(nucleotideCounts strand, expected)
+    expect_equal(nucleotideCounts(strand), expected)
 })
 
 test_that("Can count one nucleotide in single-character input", {
@@ -22,7 +22,7 @@ test_that("Can count one nucleotide in single-character input", {
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    expect_equal(nucleotideCounts strand, expected)
+    expect_equal(nucleotideCounts(strand), expected)
 })
 
 test_that("Strand with repeated nucleotide", {
@@ -34,7 +34,7 @@ test_that("Strand with repeated nucleotide", {
           ('T', 0) ]
         |> Map.ofList
         |> Some
-    expect_equal(nucleotideCounts strand, expected)
+    expect_equal(nucleotideCounts(strand), expected)
 })
 
 test_that("Strand with multiple nucleotides", {
@@ -46,11 +46,11 @@ test_that("Strand with multiple nucleotides", {
           ('T', 21) ]
         |> Map.ofList
         |> Some
-    expect_equal(nucleotideCounts strand, expected)
+    expect_equal(nucleotideCounts(strand), expected)
 })
 
 test_that("Strand with invalid nucleotides", {
     strand <- "AGXXACT"
     expected <- None
-    expect_equal(nucleotideCounts strand, expected)
+    expect_equal(nucleotideCounts(strand), expected)
 })

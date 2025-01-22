@@ -4,7 +4,7 @@ library(testthat)
 test_that("Just the header if no input", {
     rows <- []
     expected <- c("Team                           | MP |  W |  D |  L |  P")
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("A win is three points, a loss is zero points", {
@@ -13,7 +13,7 @@ test_that("A win is three points, a loss is zero points", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("A win can also be expressed as a loss", {
@@ -22,7 +22,7 @@ test_that("A win can also be expressed as a loss", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
           "Blithering Badgers             |  1 |  0 |  0 |  1 |  0" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("A different team can win", {
@@ -31,7 +31,7 @@ test_that("A different team can win", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Blithering Badgers             |  1 |  1 |  0 |  0 |  3";
           "Allegoric Alaskans             |  1 |  0 |  0 |  1 |  0" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("A draw is one point each", {
@@ -40,7 +40,7 @@ test_that("A draw is one point each", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1";
           "Blithering Badgers             |  1 |  0 |  1 |  0 |  1" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("There can be more than one match", {
@@ -51,7 +51,7 @@ test_that("There can be more than one match", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  0 |  0 |  2 |  0" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("There can be more than one winner", {
@@ -62,7 +62,7 @@ test_that("There can be more than one winner", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  2 |  1 |  0 |  1 |  3";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("There can be more than two teams", {
@@ -75,7 +75,7 @@ test_that("There can be more than two teams", {
           "Allegoric Alaskans             |  2 |  2 |  0 |  0 |  6";
           "Blithering Badgers             |  2 |  1 |  0 |  1 |  3";
           "Courageous Californians        |  2 |  0 |  0 |  2 |  0" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("Typical input", {
@@ -92,7 +92,7 @@ test_that("Typical input", {
           "Allegoric Alaskans             |  3 |  2 |  0 |  1 |  6";
           "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
           "Courageous Californians        |  3 |  0 |  1 |  2 |  1" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("Incomplete competition (not all pairs have played)", {
@@ -107,7 +107,7 @@ test_that("Incomplete competition (not all pairs have played)", {
           "Blithering Badgers             |  2 |  1 |  1 |  0 |  4";
           "Courageous Californians        |  2 |  0 |  1 |  1 |  1";
           "Devastating Donkeys            |  1 |  0 |  0 |  1 |  0" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("Ties broken alphabetically", {
@@ -124,7 +124,7 @@ test_that("Ties broken alphabetically", {
           "Courageous Californians        |  3 |  2 |  1 |  0 |  7";
           "Blithering Badgers             |  3 |  0 |  1 |  2 |  1";
           "Devastating Donkeys            |  3 |  0 |  1 |  2 |  1" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })
 
 test_that("Ensure points sorted numerically", {
@@ -138,5 +138,5 @@ test_that("Ensure points sorted numerically", {
         [ "Team                           | MP |  W |  D |  L |  P";
           "Devastating Donkeys            |  5 |  4 |  0 |  1 | 12";
           "Blithering Badgers             |  5 |  1 |  0 |  4 |  3" ]
-    expect_equal(tally rows, expected)
+    expect_equal(tally(rows), expected)
 })

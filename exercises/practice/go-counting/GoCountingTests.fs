@@ -104,7 +104,7 @@ test_that("One territory is the whole board", {
           (Owner.White, []);
           (Owner.None, c((0, 0))) ]
         |> Map.ofList
-    expect_equal(territories board, expected)
+    expect_equal(territories(board), expected)
 })
 
 test_that("Two territory rectangular board", {
@@ -116,7 +116,7 @@ test_that("Two territory rectangular board", {
           (Owner.White, c((3, 0), (3, 1)));
           (Owner.None, c(]) )
         |> Map.ofList
-    expect_equal(territories board, expected)
+    expect_equal(territories(board), expected)
 })
 
 test_that("Two region rectangular board", {
@@ -126,5 +126,5 @@ test_that("Two region rectangular board", {
           (Owner.White, []);
           (Owner.None, c(]) )
         |> Map.ofList
-    expect_equal(territories board, expected)
+    expect_equal(territories(board), expected)
 })

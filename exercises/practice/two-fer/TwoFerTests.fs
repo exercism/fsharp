@@ -2,7 +2,7 @@ source("./two-fer.R")
 library(testthat)
 
 test_that("No name given", {
-    expect_equal(twoFer None, "One for you, one for me.")
+    expect_equal(twoFer(None), "One for you, one for me.")
 })
 
 test_that("A name given", {

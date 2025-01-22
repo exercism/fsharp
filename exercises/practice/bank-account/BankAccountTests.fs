@@ -6,7 +6,7 @@ library(testthat)
 test_that("Returns empty balance after opening", {
     account <- mkBankAccount() |> openAccount
 
-    expect_equal(getBalance account, (Some 0.0m))
+    expect_equal(getBalance(account), (Some 0.0m))
 })
 
 test_that("Check basic balance", {
@@ -47,7 +47,7 @@ test_that("Account can be closed", {
         |> openAccount
         |> closeAccount
 
-    expect_equal(getBalance account, None)
+    expect_equal(getBalance(account), None)
     account |> should not' (equal None)
     
 test_that("Account can be updated from multiple threads", {
@@ -68,4 +68,4 @@ test_that("Account can be updated from multiple threads", {
     |> Async.RunSynchronously
     |> ignore
 
-    expect_equal(getBalance account, (Some 1000.0m))
+    expect_equal(getBalance(account), (Some 1000.0m))

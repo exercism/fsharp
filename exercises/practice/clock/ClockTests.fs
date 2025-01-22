@@ -3,102 +3,102 @@ library(testthat)
 
 test_that("On the hour", {
     clock <- create 8 0
-    expect_equal(display clock, "08:00")
+    expect_equal(display(clock), "08:00")
 })
 
 test_that("Past the hour", {
     clock <- create 11 9
-    expect_equal(display clock, "11:09")
+    expect_equal(display(clock), "11:09")
 })
 
 test_that("Midnight is zero hours", {
     clock <- create 24 0
-    expect_equal(display clock, "00:00")
+    expect_equal(display(clock), "00:00")
 })
 
 test_that("Hour rolls over", {
     clock <- create 25 0
-    expect_equal(display clock, "01:00")
+    expect_equal(display(clock), "01:00")
 })
 
 test_that("Hour rolls over continuously", {
     clock <- create 100 0
-    expect_equal(display clock, "04:00")
+    expect_equal(display(clock), "04:00")
 })
 
 test_that("Sixty minutes is next hour", {
     clock <- create 1 60
-    expect_equal(display clock, "02:00")
+    expect_equal(display(clock), "02:00")
 })
 
 test_that("Minutes roll over", {
     clock <- create 0 160
-    expect_equal(display clock, "02:40")
+    expect_equal(display(clock), "02:40")
 })
 
 test_that("Minutes roll over continuously", {
     clock <- create 0 1723
-    expect_equal(display clock, "04:43")
+    expect_equal(display(clock), "04:43")
 })
 
 test_that("Hour and minutes roll over", {
     clock <- create 25 160
-    expect_equal(display clock, "03:40")
+    expect_equal(display(clock), "03:40")
 })
 
 test_that("Hour and minutes roll over continuously", {
     clock <- create 201 3001
-    expect_equal(display clock, "11:01")
+    expect_equal(display(clock), "11:01")
 })
 
 test_that("Hour and minutes roll over to exactly midnight", {
     clock <- create 72 8640
-    expect_equal(display clock, "00:00")
+    expect_equal(display(clock), "00:00")
 })
 
 test_that("Negative hour", {
     clock <- create -1 15
-    expect_equal(display clock, "23:15")
+    expect_equal(display(clock), "23:15")
 })
 
 test_that("Negative hour rolls over", {
     clock <- create -25 0
-    expect_equal(display clock, "23:00")
+    expect_equal(display(clock), "23:00")
 })
 
 test_that("Negative hour rolls over continuously", {
     clock <- create -91 0
-    expect_equal(display clock, "05:00")
+    expect_equal(display(clock), "05:00")
 })
 
 test_that("Negative minutes", {
     clock <- create 1 -40
-    expect_equal(display clock, "00:20")
+    expect_equal(display(clock), "00:20")
 })
 
 test_that("Negative minutes roll over", {
     clock <- create 1 -160
-    expect_equal(display clock, "22:20")
+    expect_equal(display(clock), "22:20")
 })
 
 test_that("Negative minutes roll over continuously", {
     clock <- create 1 -4820
-    expect_equal(display clock, "16:40")
+    expect_equal(display(clock), "16:40")
 })
 
 test_that("Negative sixty minutes is previous hour", {
     clock <- create 2 -60
-    expect_equal(display clock, "01:00")
+    expect_equal(display(clock), "01:00")
 })
 
 test_that("Negative hour and minutes both roll over", {
     clock <- create -25 -160
-    expect_equal(display clock, "20:20")
+    expect_equal(display(clock), "20:20")
 })
 
 test_that("Negative hour and minutes both roll over continuously", {
     clock <- create -121 -5810
-    expect_equal(display clock, "22:10")
+    expect_equal(display(clock), "22:10")
 })
 
 test_that("Add minutes", {
