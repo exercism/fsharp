@@ -3,7 +3,7 @@ library(testthat)
 
 test_that("Count one word", {
     expected <- c(("word", 1)) |> Map.ofList
-    expect_equal(countWords "word", expected)
+    expect_equal(countWords("word", expected))
 })
 
 test_that("Count one of each word", {

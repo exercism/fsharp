@@ -2,15 +2,15 @@ source("./atbash-cipher.R")
 library(testthat)
 
 test_that("Encode yes", {
-    expect_equal(encode "yes", "bvh")
+    expect_equal(encode("yes", "bvh"))
 })
 
 test_that("Encode no", {
-    expect_equal(encode "no", "ml")
+    expect_equal(encode("no", "ml"))
 })
 
 test_that("Encode OMG", {
-    expect_equal(encode "OMG", "lnt")
+    expect_equal(encode("OMG", "lnt"))
 })
 
 test_that("Encode spaces", {
@@ -54,5 +54,5 @@ test_that("Decode with too many spaces", {
 })
 
 test_that("Decode with no spaces", {
-    expect_equal(decode "zmlyhgzxovrhlugvmzhgvkkrmthglmv", "anobstacleisoftenasteppingstone")
+    expect_equal(decode("zmlyhgzxovrhlugvmzhgvkkrmthglmv", "anobstacleisoftenasteppingstone"))
 })

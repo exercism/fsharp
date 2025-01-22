@@ -18,17 +18,17 @@ test_that("Cleans numbers with multiple spaces", {
 
 test_that("Invalid when 9 digits", {
     let expected: Result<uint64,string> = Error "incorrect number of digits"
-    expect_equal(clean "123456789", expected)
+    expect_equal(clean("123456789", expected))
 })
 
 test_that("Invalid when 11 digits does not start with a 1", {
     let expected: Result<uint64,string> = Error "11 digits must start with 1"
-    expect_equal(clean "22234567890", expected)
+    expect_equal(clean("22234567890", expected))
 })
 
 test_that("Valid when 11 digits and starting with 1", {
     let expected: Result<uint64,string> = Ok 2234567890UL
-    expect_equal(clean "12234567890", expected)
+    expect_equal(clean("12234567890", expected))
 })
 
 test_that("Valid when 11 digits and starting with 1 even with punctuation", {
@@ -38,7 +38,7 @@ test_that("Valid when 11 digits and starting with 1 even with punctuation", {
 
 test_that("Invalid when more than 11 digits", {
     let expected: Result<uint64,string> = Error "more than 11 digits"
-    expect_equal(clean "321234567890", expected)
+    expect_equal(clean("321234567890", expected))
 })
 
 test_that("Invalid with letters", {

@@ -3,7 +3,7 @@ library(testthat)
 
 test_that("Empty input", {
     expected <- None
-    expect_equal(parse "", expected)
+    expect_equal(parse("", expected))
 })
 
 test_that("Tree with no nodes", {

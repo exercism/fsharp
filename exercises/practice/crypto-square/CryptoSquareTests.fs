@@ -2,11 +2,11 @@ source("./crypto-square.R")
 library(testthat)
 
 test_that("Empty plaintext results in an empty ciphertext", {
-    expect_equal(ciphertext "", "")
+    expect_equal(ciphertext("", ""))
 })
 
 test_that("Lowercase", {
-    expect_equal(ciphertext "A", "a")
+    expect_equal(ciphertext("A", "a"))
 })
 
 test_that("Remove spaces", {
