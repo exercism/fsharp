@@ -34,6 +34,7 @@ test_that("Three nodes in order", {
 
     expect_equal(children tree |> List.item 1 |> isBranch, false)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
+})
 
 test_that("Three nodes in reverse order", {
     input <-
@@ -54,6 +55,7 @@ test_that("Three nodes in reverse order", {
 
     expect_equal(children tree |> List.item 1 |> isBranch, false)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
+})
 
 test_that("More than two children", {
     input <-
@@ -78,6 +80,7 @@ test_that("More than two children", {
 
     expect_equal(children tree |> List.item 2 |> isBranch, false)
     expect_equal(children tree |> List.item 2 |> recordId, 3)
+})
 
 test_that("Binary tree", {
     input <-
@@ -116,6 +119,7 @@ test_that("Binary tree", {
 
     expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> isBranch, false)
     expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> recordId, 6)
+})
 
 test_that("Unbalanced tree", {
     input <-
@@ -154,6 +158,7 @@ test_that("Unbalanced tree", {
 
     expect_equal(children tree |> List.item 1 |> children |> List.item 2 |> isBranch, false)
     expect_equal(children tree |> List.item 1 |> children |> List.item 2 |> recordId, 6)
+})
 
 test_that("Empty input", {
     input <- []

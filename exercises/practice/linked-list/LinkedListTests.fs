@@ -13,6 +13,7 @@ test_that("Push and pop are first in last out order", {
 
     expect_equal(val1, 20)
     expect_equal(val2, 10)
+})
 
 test_that("Push and shift are first in first out order", {
     linkedList <- mkLinkedList ()
@@ -24,6 +25,7 @@ test_that("Push and shift are first in first out order", {
 
     expect_equal(val1, 10)
     expect_equal(val2, 20)
+})
 
 test_that("Unshift and shift are last in first out order", {
     linkedList <- mkLinkedList ()
@@ -35,6 +37,7 @@ test_that("Unshift and shift are last in first out order", {
 
     expect_equal(val1, 20)
     expect_equal(val2, 10)
+})
 
 test_that("Unshift and pop are last in last out order", {
     linkedList <- mkLinkedList ()
@@ -46,6 +49,7 @@ test_that("Unshift and pop are last in last out order", {
 
     expect_equal(val1, 10)
     expect_equal(val2, 20)
+})
 
 test_that("Push and pop can handle multiple values", {
     linkedList <- mkLinkedList ()
@@ -60,6 +64,7 @@ test_that("Push and pop can handle multiple values", {
     expect_equal(val1, 30)
     expect_equal(val2, 20)
     expect_equal(val3, 10)
+})
 
 test_that("Unshift and shift can handle multiple values", {
     linkedList <- mkLinkedList ()
@@ -74,6 +79,7 @@ test_that("Unshift and shift can handle multiple values", {
     expect_equal(val1, 30)
     expect_equal(val2, 20)
     expect_equal(val3, 10)
+})
 
 test_that("All methods of manipulating the linkedList can be used together", {
     linkedList <- mkLinkedList ()

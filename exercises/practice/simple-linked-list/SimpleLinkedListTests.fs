@@ -6,6 +6,7 @@ library(testthat)
 test_that("Empty list", {
     list <- nil
     expect_equal(isNil list, true)
+})
 
 test_that("Single item list value", {
     list <- create 1 nil
@@ -38,45 +39,53 @@ test_that("From list", {
     expect_equal(list |> next |> next |> datum, 5)
     expect_equal(list |> next |> next |> next |> datum, 3)
     expect_equal(list |> next |> next |> next |> next |> datum, 2)
+})
 
 test_that("Reverse length 1", {
     values <- [1..1]
     list <- fromList values
     reversed <- reverse list
     expect_equal(reversed |> toList, <| List.rev values)
+})
 
 test_that("Reverse length 2", {
     values <- [1..2]
     list <- fromList values
     reversed <- reverse list
     expect_equal(reversed |> toList, <| List.rev values )
+})
 
 test_that("Reverse length 10", {
     values <- [1..10]
     list <- fromList values
     reversed <- reverse list
     expect_equal(reversed |> toList, <| List.rev values )
+})
 
 test_that("Reverse length 100", {
     values <- [1..100]
     list <- fromList values
     reversed <- reverse list
     expect_equal(reversed |> toList, <| List.rev values )
+})
 
 test_that("Roundtrip length 1", {
     values <- [1..1]
     listValues <- fromList values
     expect_equal(listValues |> toList, values)
+})
 
 test_that("Roundtrip length 2", {
     values <- [1..2]
     listValues <- fromList values
     expect_equal(listValues |> toList, values)
+})
 
 test_that("Roundtrip length 10", {
     values <- [1..10]
     listValues <- fromList values
     expect_equal(listValues |> toList, values)
+})
 
 test_that("Roundtrip length 100", {
     values <- [1..100]

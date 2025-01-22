@@ -8,6 +8,7 @@ test_that("Measure using bucket one of size 3 and bucket two of size 5 - start w
     startBucket <- Bucket.One
     expected <- { Moves = 4; GoalBucket = Bucket.One; OtherBucket = 5 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+})
 
 test_that("Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two", {
     bucketOne <- 3
@@ -16,6 +17,7 @@ test_that("Measure using bucket one of size 3 and bucket two of size 5 - start w
     startBucket <- Bucket.Two
     expected <- { Moves = 8; GoalBucket = Bucket.Two; OtherBucket = 3 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+})
 
 test_that("Measure using bucket one of size 7 and bucket two of size 11 - start with bucket one", {
     bucketOne <- 7
@@ -24,6 +26,7 @@ test_that("Measure using bucket one of size 7 and bucket two of size 11 - start 
     startBucket <- Bucket.One
     expected <- { Moves = 14; GoalBucket = Bucket.One; OtherBucket = 11 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+})
 
 test_that("Measure using bucket one of size 7 and bucket two of size 11 - start with bucket two", {
     bucketOne <- 7
@@ -32,6 +35,7 @@ test_that("Measure using bucket one of size 7 and bucket two of size 11 - start 
     startBucket <- Bucket.Two
     expected <- { Moves = 18; GoalBucket = Bucket.Two; OtherBucket = 7 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+})
 
 test_that("Measure one step using bucket one of size 1 and bucket two of size 3 - start with bucket two", {
     bucketOne <- 1
@@ -40,6 +44,7 @@ test_that("Measure one step using bucket one of size 1 and bucket two of size 3 
     startBucket <- Bucket.Two
     expected <- { Moves = 1; GoalBucket = Bucket.Two; OtherBucket = 0 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+})
 
 test_that("Measure using bucket one of size 2 and bucket two of size 3 - start with bucket one and end with bucket two", {
     bucketOne <- 2
@@ -48,6 +53,7 @@ test_that("Measure using bucket one of size 2 and bucket two of size 3 - start w
     startBucket <- Bucket.One
     expected <- { Moves = 2; GoalBucket = Bucket.Two; OtherBucket = 2 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+})
 
 test_that("With the same buckets but a different goal, then it is possible", {
     bucketOne <- 6
@@ -56,4 +62,4 @@ test_that("With the same buckets but a different goal, then it is possible", {
     startBucket <- Bucket.One
     expected <- { Moves = 10; GoalBucket = Bucket.Two; OtherBucket = 0 }
     expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
-
+})

@@ -10,6 +10,7 @@ test_that("Can read an item just written", {
     buffer2 <- write 1 buffer1
     let (val3, _) = read buffer2
     expect_equal(val3, 1)
+})
 
 test_that("Each item may only be read once", {
     buffer1 <- mkCircularBuffer 1
@@ -26,6 +27,7 @@ test_that("Items are read in the order they are written", {
     expect_equal(val4, 1)
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
+})
 
 test_that("Full buffer can't be written to", {
     buffer1 <- mkCircularBuffer 1
@@ -40,6 +42,7 @@ test_that("A read frees up capacity for another write", {
     buffer4 <- write 2 buffer3
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
+})
 
 test_that("Read position is maintained even across multiple writes", {
     buffer1 <- mkCircularBuffer 3
@@ -52,6 +55,7 @@ test_that("Read position is maintained even across multiple writes", {
     expect_equal(val6, 2)
     let (val7, _) = read buffer6
     expect_equal(val7, 3)
+})
 
 test_that("Items cleared out of buffer can't be read", {
     buffer1 <- mkCircularBuffer 1
@@ -66,6 +70,7 @@ test_that("Clear frees up capacity for another write", {
     buffer4 <- write 2 buffer3
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
+})
 
 test_that("Clear does nothing on empty buffer", {
     buffer1 <- mkCircularBuffer 1
@@ -73,6 +78,7 @@ test_that("Clear does nothing on empty buffer", {
     buffer3 <- write 1 buffer2
     let (val4, _) = read buffer3
     expect_equal(val4, 1)
+})
 
 test_that("Overwrite acts like write on non-full buffer", {
     buffer1 <- mkCircularBuffer 2
@@ -82,6 +88,7 @@ test_that("Overwrite acts like write on non-full buffer", {
     expect_equal(val4, 1)
     let (val5, _) = read buffer4
     expect_equal(val5, 2)
+})
 
 test_that("Overwrite replaces the oldest item on full buffer", {
     buffer1 <- mkCircularBuffer 2
@@ -92,6 +99,7 @@ test_that("Overwrite replaces the oldest item on full buffer", {
     expect_equal(val5, 2)
     let (val6, _) = read buffer5
     expect_equal(val6, 3)
+})
 
 test_that("Overwrite replaces the oldest item remaining in buffer following a read", {
     buffer1 <- mkCircularBuffer 3
@@ -108,6 +116,7 @@ test_that("Overwrite replaces the oldest item remaining in buffer following a re
     expect_equal(val9, 4)
     let (val10, _) = read buffer9
     expect_equal(val10, 5)
+})
 
 test_that("Initial clear does not affect wrapping around", {
     buffer1 <- mkCircularBuffer 2

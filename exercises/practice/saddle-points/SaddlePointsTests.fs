@@ -7,6 +7,7 @@ test_that("Can identify single saddle point", {
           [5; 3; 2];
           [6; 6; 7] ]
     expect_equal(saddlePoints matrix, [(2, 1)])
+})
 
 test_that("Can identify that empty matrix has no saddle points", {
     matrix <- [[]]
@@ -25,6 +26,7 @@ test_that("Can identify multiple saddle points in a column", {
           [3; 5; 5];
           [1; 5; 4] ]
     expect_equal(saddlePoints matrix, [(1, 2); (2, 2); (3, 2)])
+})
 
 test_that("Can identify multiple saddle points in a row", {
     matrix <- 
@@ -32,6 +34,7 @@ test_that("Can identify multiple saddle points in a row", {
           [5; 5; 5];
           [7; 5; 6] ]
     expect_equal(saddlePoints matrix, [(2, 1); (2, 2); (2, 3)])
+})
 
 test_that("Can identify saddle point in bottom right corner", {
     matrix <- 
@@ -39,12 +42,14 @@ test_that("Can identify saddle point in bottom right corner", {
           [6; 7; 6];
           [3; 2; 5] ]
     expect_equal(saddlePoints matrix, [(3, 3)])
+})
 
 test_that("Can identify saddle points in a non square matrix", {
     matrix <- 
         [ [3; 1; 3];
           [3; 2; 4] ]
     expect_equal(saddlePoints matrix, [(1, 1); (1, 3)])
+})
 
 test_that("Can identify that saddle points in a single column matrix are those with the minimum value", {
     matrix <- 
@@ -53,8 +58,9 @@ test_that("Can identify that saddle points in a single column matrix are those w
           [4];
           [1] ]
     expect_equal(saddlePoints matrix, [(2, 1); (4, 1)])
+})
 
 test_that("Can identify that saddle points in a single row matrix are those with the maximum value", {
     matrix <- [[2; 5; 3; 5]]
     expect_equal(saddlePoints matrix, [(1, 2); (1, 4)])
-
+})

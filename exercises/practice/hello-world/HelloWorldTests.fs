@@ -3,4 +3,4 @@ library(testthat)
 
 test_that("Say Hi!", {
     expect_equal(hello, "Hello, World!")
-
+})

@@ -13,6 +13,7 @@ test_that("Initially 9 failures are allowed", {
     startGame game |> ignore
 
     expect_equal(lastProgress, <| Busy 9)
+})
 
 test_that("Initially no letters are guessed", {
     game <- createGame "foo"
@@ -24,6 +25,7 @@ test_that("Initially no letters are guessed", {
     startGame game |> ignore
 
     expect_equal(lastMaskedWord, "___")
+})
 
 test_that("After 10 failures the game is over", {
     game <- createGame "foo"

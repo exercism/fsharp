@@ -8,6 +8,7 @@ test_that("Finished game where X won via left column victory", {
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via middle column victory", {
     board <- 
@@ -16,6 +17,7 @@ test_that("Finished game where X won via middle column victory", {
                   [' '; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via right column victory", {
     board <- 
@@ -24,6 +26,7 @@ test_that("Finished game where X won via right column victory", {
                   [' '; ' '; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via left column victory", {
     board <- 
@@ -32,6 +35,7 @@ test_that("Finished game where O won via left column victory", {
                   ['O'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via middle column victory", {
     board <- 
@@ -40,6 +44,7 @@ test_that("Finished game where O won via middle column victory", {
                   [' '; 'O'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via right column victory", {
     board <- 
@@ -48,6 +53,7 @@ test_that("Finished game where O won via right column victory", {
                   [' '; ' '; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via top row victory", {
     board <- 
@@ -56,6 +62,7 @@ test_that("Finished game where X won via top row victory", {
                   ['O'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via middle row victory", {
     board <- 
@@ -64,6 +71,7 @@ test_that("Finished game where X won via middle row victory", {
                   [' '; 'O'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via bottom row victory", {
     board <- 
@@ -72,6 +80,7 @@ test_that("Finished game where X won via bottom row victory", {
                   ['X'; 'X'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via top row victory", {
     board <- 
@@ -80,6 +89,7 @@ test_that("Finished game where O won via top row victory", {
                   ['X'; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via middle row victory", {
     board <- 
@@ -88,6 +98,7 @@ test_that("Finished game where O won via middle row victory", {
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via bottom row victory", {
     board <- 
@@ -96,6 +107,7 @@ test_that("Finished game where O won via bottom row victory", {
                   ['O'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via falling diagonal victory", {
     board <- 
@@ -104,6 +116,7 @@ test_that("Finished game where X won via falling diagonal victory", {
                   [' '; ' '; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via rising diagonal victory", {
     board <- 
@@ -112,6 +125,7 @@ test_that("Finished game where X won via rising diagonal victory", {
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via falling diagonal victory", {
     board <- 
@@ -120,6 +134,7 @@ test_that("Finished game where O won via falling diagonal victory", {
                   ['X'; ' '; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where O won via rising diagonal victory", {
     board <- 
@@ -128,6 +143,7 @@ test_that("Finished game where O won via rising diagonal victory", {
                   ['O'; 'X'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via a row and a column victory", {
     board <- 
@@ -136,6 +152,7 @@ test_that("Finished game where X won via a row and a column victory", {
                   ['X'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Finished game where X won via two diagonal victories", {
     board <- 
@@ -144,6 +161,7 @@ test_that("Finished game where X won via two diagonal victories", {
                   ['X'; 'O'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
     expect_equal(gamestate board, expected)
+})
 
 test_that("Draw", {
     board <- 
@@ -152,6 +170,7 @@ test_that("Draw", {
                   ['O'; 'X'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
     expect_equal(gamestate board, expected)
+})
 
 test_that("Another draw", {
     board <- 
@@ -160,6 +179,7 @@ test_that("Another draw", {
                   ['X'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
     expect_equal(gamestate board, expected)
+})
 
 test_that("Ongoing game: one move in", {
     board <- 
@@ -168,6 +188,7 @@ test_that("Ongoing game: one move in", {
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
     expect_equal(gamestate board, expected)
+})
 
 test_that("Ongoing game: two moves in", {
     board <- 
@@ -176,6 +197,7 @@ test_that("Ongoing game: two moves in", {
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
     expect_equal(gamestate board, expected)
+})
 
 test_that("Ongoing game: five moves in", {
     board <- 
@@ -184,6 +206,7 @@ test_that("Ongoing game: five moves in", {
                   ['O'; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
     expect_equal(gamestate board, expected)
+})
 
 test_that("Invalid board: X went twice", {
     board <- 
@@ -192,6 +215,7 @@ test_that("Invalid board: X went twice", {
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error ConsecutiveMovesBySamePlayer
     expect_equal(gamestate board, expected)
+})
 
 test_that("Invalid board: O started", {
     board <- 
@@ -200,6 +224,7 @@ test_that("Invalid board: O started", {
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error WrongPlayerStarted
     expect_equal(gamestate board, expected)
+})
 
 test_that("Invalid board: X won and O kept playing", {
     board <- 
@@ -208,6 +233,7 @@ test_that("Invalid board: X won and O kept playing", {
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
     expect_equal(gamestate board, expected)
+})
 
 test_that("Invalid board: players kept playing after a win", {
     board <- 
@@ -216,4 +242,4 @@ test_that("Invalid board: players kept playing after a win", {
                   ['X'; 'O'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
     expect_equal(gamestate board, expected)
-
+})

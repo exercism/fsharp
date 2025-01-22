@@ -5,6 +5,7 @@ test_that("Single letter", {
     lettersByScore <- [(1, ['A'])] |> Map.ofList
     expected <- [('a', 1)] |> Map.ofList
     expect_equal(transform lettersByScore, expected)
+})
 
 test_that("Single score with multiple letters", {
     lettersByScore <- [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
@@ -16,6 +17,7 @@ test_that("Single score with multiple letters", {
           ('u', 1) ]
         |> Map.ofList
     expect_equal(transform lettersByScore, expected)
+})
 
 test_that("Multiple scores with multiple letters", {
     lettersByScore <- 
@@ -29,6 +31,7 @@ test_that("Multiple scores with multiple letters", {
           ('g', 2) ]
         |> Map.ofList
     expect_equal(transform lettersByScore, expected)
+})
 
 test_that("Multiple scores with differing numbers of letters", {
     lettersByScore <- 
@@ -69,4 +72,4 @@ test_that("Multiple scores with differing numbers of letters", {
           ('z', 10) ]
         |> Map.ofList
     expect_equal(transform lettersByScore, expected)
-
+})

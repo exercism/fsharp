@@ -3,57 +3,74 @@ library(testthat)
 
 test_that("Ability modifier for score 3 is -4", {
     expect_equal(modifier 3, -4)
+})
 
 test_that("Ability modifier for score 4 is -3", {
     expect_equal(modifier 4, -3)
+})
 
 test_that("Ability modifier for score 5 is -3", {
     expect_equal(modifier 5, -3)
+})
 
 test_that("Ability modifier for score 6 is -2", {
     expect_equal(modifier 6, -2)
+})
 
 test_that("Ability modifier for score 7 is -2", {
     expect_equal(modifier 7, -2)
+})
 
 test_that("Ability modifier for score 8 is -1", {
     expect_equal(modifier 8, -1)
+})
 
 test_that("Ability modifier for score 9 is -1", {
     expect_equal(modifier 9, -1)
+})
 
 test_that("Ability modifier for score 10 is 0", {
     expect_equal(modifier 10, 0)
+})
 
 test_that("Ability modifier for score 11 is 0", {
     expect_equal(modifier 11, 0)
+})
 
 test_that("Ability modifier for score 12 is +1", {
     expect_equal(modifier 12, 1)
+})
 
 test_that("Ability modifier for score 13 is +1", {
     expect_equal(modifier 13, 1)
+})
 
 test_that("Ability modifier for score 14 is +2", {
     expect_equal(modifier 14, 2)
+})
 
 test_that("Ability modifier for score 15 is +2", {
     expect_equal(modifier 15, 2)
+})
 
 test_that("Ability modifier for score 16 is +3", {
     expect_equal(modifier 16, 3)
+})
 
 test_that("Ability modifier for score 17 is +3", {
     expect_equal(modifier 17, 3)
+})
 
 test_that("Ability modifier for score 18 is +4", {
     expect_equal(modifier 18, 4)
+})
 
 test_that("Random ability is within range", {
     for i in 1 .. 10 do
         ability <- ability()
         ability |> should be (greaterThanOrEqualTo 3)
         ability |> should be (lessThanOrEqualTo  18)
+})
 
 test_that("Random character is valid", {
     for i in 1 .. 10 do
@@ -71,6 +88,7 @@ test_that("Random character is valid", {
         character.Charisma |> should be (greaterThanOrEqualTo 3)
         character.Charisma |> should be (lessThanOrEqualTo  18)
     expect_equal(character.Hitpoints, (10 + modifier(character.Constitution)))
+})
 
 test_that("Each ability is only calculated once", {
     for i in 1 .. 10 do
@@ -82,4 +100,4 @@ test_that("Each ability is only calculated once", {
     expect_equal(character.Wisdom, character.Wisdom)
     expect_equal(character.Charisma, character.Charisma)
     expect_equal(character.Hitpoints, character.Hitpoints)
-
+})

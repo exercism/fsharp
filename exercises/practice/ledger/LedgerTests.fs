@@ -11,6 +11,7 @@ test_that("Empty ledger", {
         "Date       | Description               | Change       "
 
     expect_equal(formatLedger currency locale entries, expected)
+})
 
 test_that("One entry", {
     currency <- "USD"
@@ -24,6 +25,7 @@ test_that("One entry", {
         "01/01/2015 | Buy present               |      ($10.00)"
 
     expect_equal(formatLedger currency locale entries, expected)
+})
 
 test_that("Credit and debit", {
     currency <- "USD"

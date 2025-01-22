@@ -5,18 +5,21 @@ test_that("Input cells have a value", {
     reactor <- new Reactor()
     input <- reactor.createInputCell 10
     expect_equal(input.Value, 10)
+})
 
 test_that("An input cell's value can be set", {
     reactor <- new Reactor()
     input <- reactor.createInputCell 4
     input.Value <- 20
     expect_equal(input.Value, 20)
+})
 
 test_that("Compute cells calculate initial value", {
     reactor <- new Reactor()
     input <- reactor.createInputCell 1
     output <- reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     expect_equal(output.Value, 2)
+})
 
 test_that("Compute cells take inputs in the right order", {
     reactor <- new Reactor()
@@ -24,6 +27,7 @@ test_that("Compute cells take inputs in the right order", {
     two <- reactor.createInputCell 2
     output <- reactor.createComputeCell [one; two] (fun values -> values.[0] + values.[1] * 10)
     expect_equal(output.Value, 21)
+})
 
 test_that("Compute cells update value when dependencies are changed", {
     reactor <- new Reactor()
@@ -31,6 +35,7 @@ test_that("Compute cells update value when dependencies are changed", {
     output <- reactor.createComputeCell [input] (fun values -> values.[0] + 1)
     input.Value <- 3
     expect_equal(output.Value, 4)
+})
 
 test_that("Compute cells can depend on other compute cells", {
     reactor <- new Reactor()
@@ -41,6 +46,7 @@ test_that("Compute cells can depend on other compute cells", {
     expect_equal(output.Value, 32)
     input.Value <- 3
     expect_equal(output.Value, 96)
+})
 
 test_that("Compute cells fire callbacks", {
     reactor <- new Reactor()

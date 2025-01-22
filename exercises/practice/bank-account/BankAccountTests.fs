@@ -7,6 +7,7 @@ test_that("Returns empty balance after opening", {
     account <- mkBankAccount() |> openAccount
 
     expect_equal(getBalance account, (Some 0.0m))
+})
 
 test_that("Check basic balance", {
     account <- mkBankAccount() |> openAccount
@@ -19,6 +20,7 @@ test_that("Check basic balance", {
 
     expect_equal(openingBalance, (Some 0.0m))
     expect_equal(updatedBalance, (Some 10.0m))
+})
 
 test_that("Balance can increment or decrement", {
     account <- mkBankAccount() |> openAccount
@@ -37,6 +39,7 @@ test_that("Balance can increment or decrement", {
     expect_equal(openingBalance, (Some 0.0m))
     expect_equal(addedBalance, (Some 10.0m))
     expect_equal(subtractedBalance, (Some -5.0m))
+})
 
 test_that("Account can be closed", {
     account <- 

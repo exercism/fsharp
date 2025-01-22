@@ -7,6 +7,7 @@ test_that("No users", {
     expected <- """{"users":[]}"""
     api <- RestApi(database)
     expect_equal(api.Get url, expected)
+})
 
 test_that("Add user", {
     database <- """{"users":[]}"""
@@ -15,6 +16,7 @@ test_that("Add user", {
     expected <- """{"name":"Adam","owes":{},"owed_by":{},"balance":0.0}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
+})
 
 test_that("Get single user", {
     database <- """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
@@ -23,6 +25,7 @@ test_that("Get single user", {
     expected <- """{"users":[{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Get (url, payload), expected)
+})
 
 test_that("Both users have 0 balance", {
     database <- """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
@@ -31,6 +34,7 @@ test_that("Both users have 0 balance", {
     expected <- """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":3.0},"balance":3.0},{"name":"Bob","owes":{"Adam":3.0},"owed_by":{},"balance":-3.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
+})
 
 test_that("Borrower has negative balance", {
     database <- """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
@@ -39,6 +43,7 @@ test_that("Borrower has negative balance", {
     expected <- """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":3.0},"balance":3.0},{"name":"Bob","owes":{"Adam":3.0,"Chuck":3.0},"owed_by":{},"balance":-6.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
+})
 
 test_that("Lender has negative balance", {
     database <- """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{},"balance":-3.0},{"name":"Chuck","owes":{},"owed_by":{"Bob":3.0},"balance":3.0}]}"""
@@ -47,6 +52,7 @@ test_that("Lender has negative balance", {
     expected <- """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{"Chuck":3.0},"owed_by":{"Adam":3.0},"balance":0.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
+})
 
 test_that("Lender owes borrower", {
     database <- """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
@@ -55,6 +61,7 @@ test_that("Lender owes borrower", {
     expected <- """{"users":[{"name":"Adam","owes":{"Bob":1.0},"owed_by":{},"balance":-1.0},{"name":"Bob","owes":{},"owed_by":{"Adam":1.0},"balance":1.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
+})
 
 test_that("Lender owes borrower less than new loan", {
     database <- """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
@@ -63,6 +70,7 @@ test_that("Lender owes borrower less than new loan", {
     expected <- """{"users":[{"name":"Adam","owes":{},"owed_by":{"Bob":1.0},"balance":1.0},{"name":"Bob","owes":{"Adam":1.0},"owed_by":{},"balance":-1.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
+})
 
 test_that("Lender owes borrower same as new loan", {
     database <- """{"users":[{"name":"Adam","owes":{"Bob":3.0},"owed_by":{},"balance":-3.0},{"name":"Bob","owes":{},"owed_by":{"Adam":3.0},"balance":3.0}]}"""
@@ -71,4 +79,4 @@ test_that("Lender owes borrower same as new loan", {
     expected <- """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
     api <- RestApi(database)
     expect_equal(api.Post (url, payload), expected)
-
+})

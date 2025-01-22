@@ -5,11 +5,13 @@ test_that("Zero pieces", {
     let strings: string list = []
     let expected: string list = []
     expect_equal(recite strings, expected)
+})
 
 test_that("One piece", {
     strings <- ["nail"]
     expected <- ["And all for the want of a nail."]
     expect_equal(recite strings, expected)
+})
 
 test_that("Two pieces", {
     strings <- ["nail"; "shoe"]
@@ -17,6 +19,7 @@ test_that("Two pieces", {
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
     expect_equal(recite strings, expected)
+})
 
 test_that("Three pieces", {
     strings <- ["nail"; "shoe"; "horse"]
@@ -25,6 +28,7 @@ test_that("Three pieces", {
           "For want of a shoe the horse was lost.";
           "And all for the want of a nail." ]
     expect_equal(recite strings, expected)
+})
 
 test_that("Full proverb", {
     strings <- ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
@@ -37,6 +41,7 @@ test_that("Full proverb", {
           "For want of a battle the kingdom was lost.";
           "And all for the want of a nail." ]
     expect_equal(recite strings, expected)
+})
 
 test_that("Four pieces modernized", {
     strings <- ["pin"; "gun"; "soldier"; "battle"]
@@ -46,4 +51,4 @@ test_that("Four pieces modernized", {
           "For want of a soldier the battle was lost.";
           "And all for the want of a pin." ]
     expect_equal(recite strings, expected)
-
+})

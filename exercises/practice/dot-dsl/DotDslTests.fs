@@ -45,6 +45,7 @@ test_that("Graph with one attribute", {
     nodes g |> should be Empty
     edges g |> should be Empty
     expect_equal(attrs g, [attr "foo" "1"])
+})
 
 test_that("Graph with attributes", {
     g <- graph [
