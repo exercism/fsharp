@@ -2,14 +2,14 @@ source("./etl.R")
 library(testthat)
 
 test_that("Single letter", {
-    lettersByScore <- c((1, ['A'))] |> Map.ofList
-    expected <- c(('a', 1)) |> Map.ofList
+  lettersByScore <- c((1, ['A'))] |> Map.ofList
+  expected <- c(('a', 1)) |> Map.ofList
   expect_equal(transform(lettersByScore), expected)
 })
 
 test_that("Single score with multiple letters", {
-    lettersByScore <- c((1, ['A', 'E', 'I', 'O', 'U'))] |> Map.ofList
-    expected <- 
+  lettersByScore <- c((1, ['A', 'E', 'I', 'O', 'U'))] |> Map.ofList
+  expected <- 
         [ ('a', 1);
           ('e', 1);
           ('i', 1);
@@ -20,11 +20,11 @@ test_that("Single score with multiple letters", {
 })
 
 test_that("Multiple scores with multiple letters", {
-    lettersByScore <- 
+  lettersByScore <- 
         c( (1, ['A', 'E'));
           (2, c('D', 'G')) ]
         |> Map.ofList
-    expected <- 
+  expected <- 
         [ ('a', 1);
           ('d', 2);
           ('e', 1);
@@ -34,7 +34,7 @@ test_that("Multiple scores with multiple letters", {
 })
 
 test_that("Multiple scores with differing numbers of letters", {
-    lettersByScore <- 
+  lettersByScore <- 
         c( (1, ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'));
           (2, c('D', 'G'));
           (3, c('B', 'C', 'M', 'P'));
@@ -43,7 +43,7 @@ test_that("Multiple scores with differing numbers of letters", {
           (8, c('J', 'X'));
           (10, c('Q', 'Z')) ]
         |> Map.ofList
-    expected <- 
+  expected <- 
         [ ('a', 1);
           ('b', 3);
           ('c', 3);

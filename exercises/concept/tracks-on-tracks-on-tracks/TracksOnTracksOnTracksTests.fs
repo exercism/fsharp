@@ -2,7 +2,7 @@ source("./tracks-on-tracks-on-tracks.R")
 library(testthat)
 
 test_that("New list", {
-    let expected: string list = []
+  expected = c()
   expect_equal(newList, expected)
 
   expect_equal(test_that("Existing list", {
@@ -21,7 +21,7 @@ test_that("Add language to existing list", {
   expect_equal(test_that("Count languages on custom list", {
 
 test_that("Reverse order of new list", {
-    let expected: string list = []
+  expected = c()
   expect_equal(reverseList(newList), expected)
 
   expect_equal(test_that("Reverse order of existing list", {

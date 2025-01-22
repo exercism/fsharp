@@ -4,62 +4,62 @@ source("./linked-list-test.R")
 library(testthat)
 
 test_that("Push and pop are first in last out order", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
 
-    val1 <- pop linkedList
-    val2 <- pop linkedList
+  val1 <- pop linkedList
+  val2 <- pop linkedList
 
   expect_equal(val1, 20)
   expect_equal(val2, 10)
 })
 
 test_that("Push and shift are first in first out order", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
 
-    val1 <- shift linkedList
-    val2 <- shift linkedList
+  val1 <- shift linkedList
+  val2 <- shift linkedList
 
   expect_equal(val1, 10)
   expect_equal(val2, 20)
 })
 
 test_that("Unshift and shift are last in first out order", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
 
-    val1 <- shift linkedList
-    val2 <- shift linkedList
+  val1 <- shift linkedList
+  val2 <- shift linkedList
 
   expect_equal(val1, 20)
   expect_equal(val2, 10)
 })
 
 test_that("Unshift and pop are last in last out order", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
 
-    val1 <- pop linkedList
-    val2 <- pop linkedList
+  val1 <- pop linkedList
+  val2 <- pop linkedList
 
   expect_equal(val1, 10)
   expect_equal(val2, 20)
 })
 
 test_that("Push and pop can handle multiple values", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
     linkedList |> push 30
 
-    val1 <- pop linkedList
-    val2 <- pop linkedList
-    val3 <- pop linkedList
+  val1 <- pop linkedList
+  val2 <- pop linkedList
+  val3 <- pop linkedList
 
   expect_equal(val1, 30)
   expect_equal(val2, 20)
@@ -67,14 +67,14 @@ test_that("Push and pop can handle multiple values", {
 })
 
 test_that("Unshift and shift can handle multiple values", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
     linkedList |> unshift 30
 
-    val1 <- shift linkedList
-    val2 <- shift linkedList
-    val3 <- shift linkedList
+  val1 <- shift linkedList
+  val2 <- shift linkedList
+  val3 <- shift linkedList
 
   expect_equal(val1, 30)
   expect_equal(val2, 20)
@@ -82,25 +82,25 @@ test_that("Unshift and shift can handle multiple values", {
 })
 
 test_that("All methods of manipulating the linkedList can be used together", {
-    linkedList <- mkLinkedList ()
+  linkedList <- mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
 
-    val1 <- pop linkedList
+  val1 <- pop linkedList
 
   expect_equal(val1, 20)
 
     linkedList |> push 30
-    val2 <- shift linkedList
+  val2 <- shift linkedList
 
   expect_equal(val2, 10)
 
     linkedList |> unshift 40
     linkedList |> push 50
 
-    val3 <- shift linkedList
-    val4 <- pop linkedList
-    val5 <- shift linkedList
+  val3 <- shift linkedList
+  val4 <- pop linkedList
+  val5 <- shift linkedList
 
   expect_equal(val3, 40)
   expect_equal(val4, 50)

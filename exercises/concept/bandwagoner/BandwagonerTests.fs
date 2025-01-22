@@ -26,9 +26,9 @@ test_that("Create stats for all-time season record", {
   expect_equal( , { Wins = 73, Losses = 9 })
 
 test_that("Create 60's team", {
-    coach <- createCoach "Red Auerbach" false
-    stats <- createStats 58 22
-    team <- createTeam "Boston Celtics" coach stats
+  coach <- createCoach "Red Auerbach" false
+  stats <- createStats 58 22
+  team <- createTeam "Boston Celtics" coach stats
 
     team
     |> should equal
@@ -39,8 +39,8 @@ test_that("Create 60's team", {
              Stats = { Wins = 58, Losses = 22 } }
 
 test_that("Create 2010's team", {
-    coach <- createCoach "Rick Carlisle" false
-    stats <- createStats 57 25
+  coach <- createCoach "Rick Carlisle" false
+  stats <- createStats 57 25
 
     team <-
         createTeam "Dallas Mavericks" coach stats
@@ -54,9 +54,9 @@ test_that("Create 2010's team", {
              Stats = { Wins = 57, Losses = 25 } }
 
 test_that("Replace coach mid-season", {
-    oldCoach <- createCoach "Willis Reed" true
-    newCoach <- createCoach "Red Holzman" true
-    stats <- createStats 6 8
+  oldCoach <- createCoach "Willis Reed" true
+  newCoach <- createCoach "Red Holzman" true
+  stats <- createStats 6 8
 
     team <-
         createTeam "New York Knicks" oldCoach stats
@@ -70,9 +70,9 @@ test_that("Replace coach mid-season", {
              Stats = { Wins = 6, Losses = 8 } }
 
 test_that("Replace coach after season", {
-    oldCoach <- createCoach "Rudy Tomjanovich" true
-    newCoach <- createCoach "Jeff van Gundy" true
-    stats <- createStats 43 39
+  oldCoach <- createCoach "Rudy Tomjanovich" true
+  newCoach <- createCoach "Jeff van Gundy" true
+  stats <- createStats 43 39
 
     team <-
         createTeam "Houston Rockets" oldCoach stats
@@ -86,141 +86,141 @@ test_that("Replace coach after season", {
              Stats = { Wins = 43, Losses = 39 } }
 
 test_that("Same team is duplicate", {
-    coach <- createCoach "Pat Riley" true
-    stats <- createStats 57 25
-    team <- createTeam "Los Angeles Lakers" coach stats
+  coach <- createCoach "Pat Riley" true
+  stats <- createStats 57 25
+  team <- createTeam "Los Angeles Lakers" coach stats
 
     isSameTeam team team
   expect_true( )
 
 test_that("Same team with different stats is not a duplicate", {
-    coach <- createCoach "Pat Riley" true
-    stats <- createStats 57 25
-    team <- createTeam "Los Angeles Lakers" coach stats
+  coach <- createCoach "Pat Riley" true
+  stats <- createStats 57 25
+  team <- createTeam "Los Angeles Lakers" coach stats
     
-    newStats <- createStats 62 20
-    teamWithDifferentStats <- createTeam "Los Angeles Lakers" coach newStats
+  newStats <- createStats 62 20
+  teamWithDifferentStats <- createTeam "Los Angeles Lakers" coach newStats
 
     isSameTeam team teamWithDifferentStats
   expect_false( )
 
 test_that("Same team with different coach is not a duplicate", {
-    coach <- createCoach "Pat Riley" true    
-    stats <- createStats 33 39    
-    team <- createTeam "Los Angeles Lakers" coach stats
+  coach <- createCoach "Pat Riley" true    
+  stats <- createStats 33 39    
+  team <- createTeam "Los Angeles Lakers" coach stats
     
-    newCoach <- createCoach "John Kundla" true
-    teamWithDifferentCoach <- createTeam "Los Angeles Lakers" newCoach stats
+  newCoach <- createCoach "John Kundla" true
+  teamWithDifferentCoach <- createTeam "Los Angeles Lakers" newCoach stats
 
     isSameTeam team teamWithDifferentCoach
   expect_false( )
 
 test_that("Different team with same coach and stats", {
-    stats <- createStats 0 0
-    coach <- createCoach "Mike d'Antoni" true
+  stats <- createStats 0 0
+  coach <- createCoach "Mike d'Antoni" true
     
-    team <- createTeam "Denver Nuggets" coach stats
-    otherTeam <- createTeam "Phoenix Suns" coach stats
+  team <- createTeam "Denver Nuggets" coach stats
+  otherTeam <- createTeam "Phoenix Suns" coach stats
 
     isSameTeam team otherTeam
   expect_false( )
 
 test_that("Different team with different coach and stats", {
-    stats <- createStats 42 40
-    coach <- createCoach "Dave Joerger" true    
-    team <- createTeam "Memphis Grizzlies" coach stats
+  stats <- createStats 42 40
+  coach <- createCoach "Dave Joerger" true    
+  team <- createTeam "Memphis Grizzlies" coach stats
     
-    otherStats <- createStats 63 19
-    otherCoach <- createCoach "Larry Costello" true
-    otherTeam <- createTeam "Milwaukee Bucks" otherCoach otherStats
+  otherStats <- createStats 63 19
+  otherCoach <- createCoach "Larry Costello" true
+  otherTeam <- createTeam "Milwaukee Bucks" otherCoach otherStats
 
     isSameTeam team otherTeam
   expect_false( )
 
 test_that("Root for team with favorite coach and winning stats", {
-    stats <- createStats 60 22
-    coach <- createCoach "Gregg Popovich" false    
-    team <- createTeam "San Antonio Spurs" coach stats
+  stats <- createStats 60 22
+  coach <- createCoach "Gregg Popovich" false    
+  team <- createTeam "San Antonio Spurs" coach stats
 
     rootForTeam team
   expect_equal( , true    )
 
 test_that("Root for team with favorite coach and losing stats", {
-    stats <- createStats 17 47
-    coach <- createCoach "Gregg Popovich" false    
-    team <- createTeam "San Antonio Spurs" coach stats
+  stats <- createStats 17 47
+  coach <- createCoach "Gregg Popovich" false    
+  team <- createTeam "San Antonio Spurs" coach stats
 
     rootForTeam team
   expect_equal( , true    )
 
 test_that("Root for team with coach is former player and winning stats", {
-    stats <- createStats 49 33
-    coach <- createCoach "Jack Ramsay" true    
-    team <- createTeam "Portland Trail Blazers" coach stats
+  stats <- createStats 49 33
+  coach <- createCoach "Jack Ramsay" true    
+  team <- createTeam "Portland Trail Blazers" coach stats
 
     rootForTeam team
   expect_equal( , true    )
 
 test_that("Root for team with coach is former player and losing stats", {
-    stats <- createStats 0 7
-    coach <- createCoach "Jack Ramsay" true    
-    team <- createTeam "Indiana Pacers" coach stats
+  stats <- createStats 0 7
+  coach <- createCoach "Jack Ramsay" true    
+  team <- createTeam "Indiana Pacers" coach stats
 
     rootForTeam team
   expect_equal( , true  )
 
 test_that("Root for favorite team and winning stats", {
-    stats <- createStats 61 21
-    coach <- createCoach "Phil Jackson" true    
-    team <- createTeam "Chicago Bulls" coach stats
+  stats <- createStats 61 21
+  coach <- createCoach "Phil Jackson" true    
+  team <- createTeam "Chicago Bulls" coach stats
 
     rootForTeam team
   expect_true( )
 
 test_that("Root for favorite team and losing stats", {
-    stats <- createStats 24 58
-    coach <- createCoach "Dick Motta" false    
-    team <- createTeam "Chicago Bulls" coach stats
+  stats <- createStats 24 58
+  coach <- createCoach "Dick Motta" false    
+  team <- createTeam "Chicago Bulls" coach stats
 
     rootForTeam team
   expect_true( )
 
 test_that("Root for team with sixty or more wins and former player coach", {
-    stats <- createStats 65 17
-    coach <- createCoach "Billy Cunningham" true    
-    team <- createTeam "Philadelphia 76'ers" coach stats
+  stats <- createStats 65 17
+  coach <- createCoach "Billy Cunningham" true    
+  team <- createTeam "Philadelphia 76'ers" coach stats
 
     rootForTeam team
   expect_true( )
 
 test_that("Root for team with sixty or more wins and non former player coach", {
-    stats <- createStats 60 22
-    coach <- createCoach "Mike Budenholzer" false    
-    team <- createTeam "Milwaukee Bucks" coach stats
+  stats <- createStats 60 22
+  coach <- createCoach "Mike Budenholzer" false    
+  team <- createTeam "Milwaukee Bucks" coach stats
 
     rootForTeam team
   expect_true( )
 
 test_that("Root for team with more losses than wins and former player coach", {
-    stats <- createStats 40 42
-    coach <- createCoach "Wes Unseld" true    
-    team <- createTeam "Washington Bullets" coach stats
+  stats <- createStats 40 42
+  coach <- createCoach "Wes Unseld" true    
+  team <- createTeam "Washington Bullets" coach stats
 
     rootForTeam team
   expect_true( )
 
 test_that("Root for team with more losses than wins and non former player coach", {
-    stats <- createStats 29 43
-    coach <- createCoach "Kenny Atkinson" false    
-    team <- createTeam "Rochester Royals" coach stats
+  stats <- createStats 29 43
+  coach <- createCoach "Kenny Atkinson" false    
+  team <- createTeam "Rochester Royals" coach stats
 
     rootForTeam team
   expect_true( )
 
 test_that("Don't root for team not matching criteria", {
-    stats <- createStats 51 31
-    coach <- createCoach "Frank Layden" false    
-    team <- createTeam "Utah Jazz" coach stats
+  stats <- createStats 51 31
+  coach <- createCoach "Frank Layden" false    
+  team <- createTeam "Utah Jazz" coach stats
 
     rootForTeam team
   expect_false( )

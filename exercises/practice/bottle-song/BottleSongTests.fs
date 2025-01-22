@@ -2,7 +2,7 @@ source("./bottle-song.R")
 library(testthat)
 
 test_that("First generic verse", {
-    expected <- 
+  expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -11,7 +11,7 @@ test_that("First generic verse", {
 })
 
 test_that("Last generic verse", {
-    expected <- 
+  expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -20,7 +20,7 @@ test_that("Last generic verse", {
 })
 
 test_that("Verse with 2 bottles", {
-    expected <- 
+  expected <- 
         [ "Two green bottles hanging on the wall,";
           "Two green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -29,7 +29,7 @@ test_that("Verse with 2 bottles", {
 })
 
 test_that("Verse with 1 bottle", {
-    expected <- 
+  expected <- 
         [ "One green bottle hanging on the wall,";
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -38,7 +38,7 @@ test_that("Verse with 1 bottle", {
 })
 
 test_that("First two verses", {
-    expected <- 
+  expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -52,7 +52,7 @@ test_that("First two verses", {
 })
 
 test_that("Last three verses", {
-    expected <- 
+  expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -71,7 +71,7 @@ test_that("Last three verses", {
 })
 
 test_that("All verses", {
-    expected <- 
+  expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";

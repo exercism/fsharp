@@ -67,14 +67,14 @@ test_that("Ability modifier for score 18 is +4", {
 
 test_that("Random ability is within range", {
     for i in 1 .. 10 do
-        ability <- ability()
+      ability <- ability()
         ability |> should be (greaterThanOrEqualTo 3)
         ability |> should be (lessThanOrEqualTo  18)
 })
 
 test_that("Random character is valid", {
     for i in 1 .. 10 do
-        character <- createCharacter()
+      character <- createCharacter()
         character.Strength |> should be (greaterThanOrEqualTo 3)
         character.Strength |> should be (lessThanOrEqualTo  18)
         character.Dexterity |> should be (greaterThanOrEqualTo 3)
@@ -92,7 +92,7 @@ test_that("Random character is valid", {
 
 test_that("Each ability is only calculated once", {
     for i in 1 .. 10 do
-        character <- createCharacter()
+      character <- createCharacter()
   expect_equal(character.Strength, character.Strength)
   expect_equal(character.Dexterity, character.Dexterity)
   expect_equal(character.Constitution, character.Constitution)

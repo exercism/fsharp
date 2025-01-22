@@ -28,12 +28,12 @@ test_that("Day without birds for week that did not have day without birds", {
   expect_false( )
 
 test_that("Increment today's count with no previous visits", {
-    birdCounts <- c(| 6, 5, 5, 11, 2, 5, 0 |)
+  birdCounts <- c(| 6, 5, 5, 11, 2, 5, 0 |)
     incrementTodaysCount birdCounts
   expect_equal( , c(| 6, 5, 5, 11, 2, 5, 1 |))
 
 test_that("Increment today's count with multiple previous visits", {
-    birdCounts <- c(| 5, 2, 4, 2, 4, 5, 7 |)
+  birdCounts <- c(| 5, 2, 4, 2, 4, 5, 7 |)
     incrementTodaysCount birdCounts
   expect_equal( , c(| 5, 2, 4, 2, 4, 5, 8 |))
 

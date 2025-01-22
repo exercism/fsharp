@@ -2,42 +2,42 @@ source("./beer-song.R")
 library(testthat)
 
 test_that("First generic verse", {
-    expected <- 
+  expected <- 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall." ]
   expect_equal(recite(99, 1), expected)
 })
 
 test_that("Last generic verse", {
-    expected <- 
+  expected <- 
         [ "3 bottles of beer on the wall, 3 bottles of beer.";
           "Take one down and pass it around, 2 bottles of beer on the wall." ]
   expect_equal(recite(3, 1), expected)
 })
 
 test_that("Verse with 2 bottles", {
-    expected <- 
+  expected <- 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall." ]
   expect_equal(recite(2, 1), expected)
 })
 
 test_that("Verse with 1 bottle", {
-    expected <- 
+  expected <- 
         [ "1 bottle of beer on the wall, 1 bottle of beer.";
           "Take it down and pass it around, no more bottles of beer on the wall." ]
   expect_equal(recite(1, 1), expected)
 })
 
 test_that("Verse with 0 bottles", {
-    expected <- 
+  expected <- 
         [ "No more bottles of beer on the wall, no more bottles of beer.";
           "Go to the store and buy some more, 99 bottles of beer on the wall." ]
   expect_equal(recite(0, 1), expected)
 })
 
 test_that("First two verses", {
-    expected <- 
+  expected <- 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall.";
           "";
@@ -47,7 +47,7 @@ test_that("First two verses", {
 })
 
 test_that("Last three verses", {
-    expected <- 
+  expected <- 
         [ "2 bottles of beer on the wall, 2 bottles of beer.";
           "Take one down and pass it around, 1 bottle of beer on the wall.";
           "";
@@ -60,7 +60,7 @@ test_that("Last three verses", {
 })
 
 test_that("All verses", {
-    expected <- 
+  expected <- 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";
           "Take one down and pass it around, 98 bottles of beer on the wall.";
           "";

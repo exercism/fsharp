@@ -2,14 +2,14 @@ source("./food-chain.R")
 library(testthat)
 
 test_that("Fly", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
   expect_equal(recite(1, 1), expected)
 })
 
 test_that("Spider", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a spider.";
           "It wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
@@ -18,7 +18,7 @@ test_that("Spider", {
 })
 
 test_that("Bird", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a bird.";
           "How absurd to swallow a bird!";
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
@@ -28,7 +28,7 @@ test_that("Bird", {
 })
 
 test_that("Cat", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a cat.";
           "Imagine that, to swallow a cat!";
           "She swallowed the cat to catch the bird.";
@@ -39,7 +39,7 @@ test_that("Cat", {
 })
 
 test_that("Dog", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a dog.";
           "What a hog, to swallow a dog!";
           "She swallowed the dog to catch the cat.";
@@ -51,7 +51,7 @@ test_that("Dog", {
 })
 
 test_that("Goat", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a goat.";
           "Just opened her throat and swallowed a goat!";
           "She swallowed the goat to catch the dog.";
@@ -64,7 +64,7 @@ test_that("Goat", {
 })
 
 test_that("Cow", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a cow.";
           "I don't know how she swallowed a cow!";
           "She swallowed the cow to catch the goat.";
@@ -78,14 +78,14 @@ test_that("Cow", {
 })
 
 test_that("Horse", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
   expect_equal(recite(8, 8), expected)
 })
 
 test_that("Multiple verses", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";
           "";
@@ -103,7 +103,7 @@ test_that("Multiple verses", {
 })
 
 test_that("Full song", {
-    expected <- 
+  expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";
           "";

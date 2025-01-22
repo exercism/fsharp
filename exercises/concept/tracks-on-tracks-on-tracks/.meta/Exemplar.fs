@@ -1,6 +1,6 @@
 module TracksOnTracksOnTracks
 
-let newList: string list = []
+let newList = c()
 
 let existingList: string list = [ "F#"; "Clojure"; "Haskell" ]
 

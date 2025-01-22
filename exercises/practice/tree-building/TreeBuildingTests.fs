@@ -9,7 +9,7 @@ test_that("One node", {
             { RecordId = 0, ParentId = 0 }
         ]
 
-    tree <- buildTree input
+  tree <- buildTree input
 
   expect_false(isBranch tree)
   expect_equal(recordId(tree), 0)
@@ -23,7 +23,7 @@ test_that("Three nodes in order", {
             { RecordId = 2, ParentId = 0 };
         ]
 
-    tree <- buildTree input
+  tree <- buildTree input
 
   expect_true(isBranch tree)
   expect_equal(recordId(tree), 0)
@@ -44,7 +44,7 @@ test_that("Three nodes in reverse order", {
             { RecordId = 0, ParentId = 0 };
         ]
 
-    tree <- buildTree input
+  tree <- buildTree input
 
   expect_true(isBranch tree)
   expect_equal(recordId(tree), 0)
@@ -66,7 +66,7 @@ test_that("More than two children", {
             { RecordId = 0, ParentId = 0 };
         ]
 
-    tree <- buildTree input
+  tree <- buildTree input
 
   expect_true(isBranch tree)
   expect_equal(recordId(tree), 0)
@@ -94,7 +94,7 @@ test_that("Binary tree", {
             { RecordId = 6, ParentId = 2 }
         ]
 
-    tree <- buildTree input
+  tree <- buildTree input
 
   expect_true(isBranch tree)
   expect_equal(recordId(tree), 0)
@@ -133,7 +133,7 @@ test_that("Unbalanced tree", {
             { RecordId = 6, ParentId = 2 }
         ]
 
-    tree <- buildTree input
+  tree <- buildTree input
 
   expect_true(isBranch tree)
   expect_equal(recordId(tree), 0)
@@ -161,7 +161,7 @@ test_that("Unbalanced tree", {
 })
 
 test_that("Empty input", {
-    input <- []
+  input <- c()
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("Root node has parent", {
@@ -171,7 +171,7 @@ test_that("Root node has parent", {
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("No root node", {
-    input <- c( { RecordId = 1, ParentId = 0 } )
+  input <- c( { RecordId = 1, ParentId = 0 } )
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("Out of bounds record id", {

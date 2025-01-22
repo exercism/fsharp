@@ -2,23 +2,23 @@ source("./minesweeper.R")
 library(testthat)
 
 test_that("No rows", {
-    let minefield: string list = []
-    let expected: string list = []
+  minefield = c()
+  expected = c()
   expect_equal(annotate(minefield), expected)
 })
 
 test_that("No columns", {
-    minefield <- c("")
-    expected <- c("")
+  minefield <- c("")
+  expected <- c("")
   expect_equal(annotate(minefield), expected)
 })
 
 test_that("No mines", {
-    minefield <- 
+  minefield <- 
         [ "   ";
           "   ";
           "   " ]
-    expected <- 
+  expected <- 
         [ "   ";
           "   ";
           "   " ]
@@ -26,11 +26,11 @@ test_that("No mines", {
 })
 
 test_that("Minefield with only mines", {
-    minefield <- 
+  minefield <- 
         [ "***";
           "***";
           "***" ]
-    expected <- 
+  expected <- 
         [ "***";
           "***";
           "***" ]
@@ -38,11 +38,11 @@ test_that("Minefield with only mines", {
 })
 
 test_that("Mine surrounded by spaces", {
-    minefield <- 
+  minefield <- 
         [ "   ";
           " * ";
           "   " ]
-    expected <- 
+  expected <- 
         [ "111";
           "1*1";
           "111" ]
@@ -50,11 +50,11 @@ test_that("Mine surrounded by spaces", {
 })
 
 test_that("Space surrounded by mines", {
-    minefield <- 
+  minefield <- 
         [ "***";
           "* *";
           "***" ]
-    expected <- 
+  expected <- 
         [ "***";
           "*8*";
           "***" ]
@@ -62,25 +62,25 @@ test_that("Space surrounded by mines", {
 })
 
 test_that("Horizontal line", {
-    minefield <- c(" * * ")
-    expected <- c("1*2*1")
+  minefield <- c(" * * ")
+  expected <- c("1*2*1")
   expect_equal(annotate(minefield), expected)
 })
 
 test_that("Horizontal line, mines at edges", {
-    minefield <- c("*   *")
-    expected <- c("*1 1*")
+  minefield <- c("*   *")
+  expected <- c("*1 1*")
   expect_equal(annotate(minefield), expected)
 })
 
 test_that("Vertical line", {
-    minefield <- 
+  minefield <- 
         [ " ";
           "*";
           " ";
           "*";
           " " ]
-    expected <- 
+  expected <- 
         [ "1";
           "*";
           "2";
@@ -90,13 +90,13 @@ test_that("Vertical line", {
 })
 
 test_that("Vertical line, mines at edges", {
-    minefield <- 
+  minefield <- 
         [ "*";
           " ";
           " ";
           " ";
           "*" ]
-    expected <- 
+  expected <- 
         [ "*";
           "1";
           " ";
@@ -106,13 +106,13 @@ test_that("Vertical line, mines at edges", {
 })
 
 test_that("Cross", {
-    minefield <- 
+  minefield <- 
         [ "  *  ";
           "  *  ";
           "*****";
           "  *  ";
           "  *  " ]
-    expected <- 
+  expected <- 
         [ " 2*2 ";
           "25*52";
           "*****";
@@ -122,14 +122,14 @@ test_that("Cross", {
 })
 
 test_that("Large minefield", {
-    minefield <- 
+  minefield <- 
         [ " *  * ";
           "  *   ";
           "    * ";
           "   * *";
           " *  * ";
           "      " ]
-    expected <- 
+  expected <- 
         [ "1*22*1";
           "12*322";
           " 123*2";

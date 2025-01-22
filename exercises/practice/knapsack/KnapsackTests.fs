@@ -2,17 +2,17 @@ source("./knapsack.R")
 library(testthat)
 
 test_that("No items", {
-    items <- []
+  items <- c()
   expect_equal(maximumValue(items, 100), 0)
 })
 
 test_that("One item, too heavy", {
-    items <- c({ weight = 100, value = 1 })
+  items <- c({ weight = 100, value = 1 })
   expect_equal(maximumValue(items, 10), 0)
 })
 
 test_that("Five items (cannot be greedy by weight)", {
-    items <- 
+  items <- 
         [ { weight = 2, value = 5 };
           { weight = 2, value = 5 };
           { weight = 2, value = 5 };
@@ -22,7 +22,7 @@ test_that("Five items (cannot be greedy by weight)", {
 })
 
 test_that("Five items (cannot be greedy by value)", {
-    items <- 
+  items <- 
         [ { weight = 2, value = 20 };
           { weight = 2, value = 20 };
           { weight = 2, value = 20 };
@@ -32,7 +32,7 @@ test_that("Five items (cannot be greedy by value)", {
 })
 
 test_that("Example knapsack", {
-    items <- 
+  items <- 
         [ { weight = 5, value = 10 };
           { weight = 4, value = 40 };
           { weight = 6, value = 30 };
@@ -41,7 +41,7 @@ test_that("Example knapsack", {
 })
 
 test_that("8 items", {
-    items <- 
+  items <- 
         [ { weight = 25, value = 350 };
           { weight = 35, value = 400 };
           { weight = 45, value = 450 };
@@ -54,7 +54,7 @@ test_that("8 items", {
 })
 
 test_that("15 items", {
-    items <- 
+  items <- 
         [ { weight = 70, value = 135 };
           { weight = 73, value = 139 };
           { weight = 77, value = 149 };

@@ -4,9 +4,9 @@ source("./ledger-test.R")
 library(testthat)
 
 test_that("Empty ledger", {
-    currency <- "USD"
-    locale <- "en-US"
-    entries <- []
+  currency <- "USD"
+  locale <- "en-US"
+  entries <- c()
     expected <-
         "Date       | Description               | Change       "
 
@@ -14,8 +14,8 @@ test_that("Empty ledger", {
 })
 
 test_that("One entry", {
-    currency <- "USD"
-    locale <- "en-US"
+  currency <- "USD"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-01-01" "Buy present" -1000
@@ -28,8 +28,8 @@ test_that("One entry", {
 })
 
 test_that("Credit and debit", {
-    currency <- "USD"
-    locale <- "en-US"
+  currency <- "USD"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-01-02" "Get present"  1000;
@@ -43,8 +43,8 @@ test_that("Credit and debit", {
   expect_equal(formatLedger(currency, locale, entries), expected)
  
 test_that("Multiple entries on same date ordered by description", {
-    currency <- "USD"
-    locale <- "en-US"
+  currency <- "USD"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-01-01" "Buy present" -1000;
@@ -58,8 +58,8 @@ test_that("Multiple entries on same date ordered by description", {
   expect_equal(formatLedger(currency, locale, entries), expected)
    
 test_that("Final order tie breaker is change", {
-    currency <- "USD"
-    locale <- "en-US"
+  currency <- "USD"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-01-01" "Something" 0;
@@ -75,8 +75,8 @@ test_that("Final order tie breaker is change", {
   expect_equal(formatLedger(currency, locale, entries), expected)
   
 test_that("Overlong descriptions", {
-    currency <- "USD"
-    locale <- "en-US"
+  currency <- "USD"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-01-01" "Freude schoner Gotterfunken" -123456
@@ -88,8 +88,8 @@ test_that("Overlong descriptions", {
   expect_equal(formatLedger(currency, locale, entries), expected)
   
 test_that("Euros", {
-    currency <- "EUR"
-    locale <- "en-US"
+  currency <- "EUR"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-01-01" "Buy present" -1000
@@ -101,8 +101,8 @@ test_that("Euros", {
   expect_equal(formatLedger(currency, locale, entries), expected)
    
 test_that("Dutch locale", {
-    currency <- "USD"
-    locale <- "nl-NL"
+  currency <- "USD"
+  locale <- "nl-NL"
     entries <-
         [
             mkEntry "2015-03-12" "Buy present" 123456
@@ -114,8 +114,8 @@ test_that("Dutch locale", {
   expect_equal(formatLedger(currency, locale, entries), expected)
  
 test_that("Dutch negative number with 3 digits before decimal point", {
-    currency <- "USD"
-    locale <- "nl-NL"
+  currency <- "USD"
+  locale <- "nl-NL"
     entries <-
         [
             mkEntry "2015-03-12" "Buy present" -12345
@@ -127,8 +127,8 @@ test_that("Dutch negative number with 3 digits before decimal point", {
   expect_equal(formatLedger(currency, locale, entries), expected)
    
 test_that("American negative number with 3 digits before decimal point", {
-    currency <- "USD"
-    locale <- "en-US"
+  currency <- "USD"
+  locale <- "en-US"
     entries <-
         [
             mkEntry "2015-03-12" "Buy present" -12345

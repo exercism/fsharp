@@ -29,78 +29,78 @@ test_that("Convert coordinate for 6A", {
   expect_equal(convertCoordinate "6A", (6, 'A'))
 
 test_that("Compare records for first matched records returns true", {
-    azarasData <- ("Scrimshaw Whale's Tooth", "2A")
-    ruisData <- ("Deserted Docks", (2, 'A'), "Blue")   
+  azarasData <- ("Scrimshaw Whale's Tooth", "2A")
+  ruisData <- ("Deserted Docks", (2, 'A'), "Blue")   
   expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for second matched records returns true", {
-    azarasData <- ("Glass Starfish", "6D")
-    ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
+  azarasData <- ("Glass Starfish", "6D")
+  ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
   expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for third matched records returns true", {
-    azarasData <- ("Vintage Pirate Hat", "7E")
-    ruisData <- ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
+  azarasData <- ("Vintage Pirate Hat", "7E")
+  ruisData <- ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
   expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for forth matched records returns true", {
-    azarasData <- ("Glass Starfish", "6D")
-    ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
+  azarasData <- ("Glass Starfish", "6D")
+  ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
   expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for first unmatched records returns true", {
-    azarasData <- ("Angry Monkey Figurine", "5B")
-    ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
+  azarasData <- ("Angry Monkey Figurine", "5B")
+  ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
   expect_false(compareRecords azarasData ruisData)
 
 test_that("Compare records for second unmatched records returns true", {
-    azarasData <- ("Brass Spyglass", "4B")
-    ruisData <- ("Spiky Rocks", (3, 'D'), "Yellow")
+  azarasData <- ("Brass Spyglass", "4B")
+  ruisData <- ("Spiky Rocks", (3, 'D'), "Yellow")
   expect_false(compareRecords azarasData ruisData)
 
 test_that("Compare records for third unmatched records returns true", {
-    azarasData <- ("Angry Monkey Figurine", "5B")
-    ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
+  azarasData <- ("Angry Monkey Figurine", "5B")
+  ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
   expect_false(compareRecords azarasData ruisData)
 
 test_that("Create Record for first matched records returns correct tuple", {
-    azarasData <- ("Scrimshaw Whale's Tooth", "2A")
-    ruisData <- ("Deserted Docks", (2, 'A'), "Blue")
-    expected <- ("2A", "Deserted Docks", "Blue", "Scrimshaw Whale's Tooth")
+  azarasData <- ("Scrimshaw Whale's Tooth", "2A")
+  ruisData <- ("Deserted Docks", (2, 'A'), "Blue")
+  expected <- ("2A", "Deserted Docks", "Blue", "Scrimshaw Whale's Tooth")
   expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for second matched records returns correct tuple", {
-    azarasData <- ("Glass Starfish", "6D")
-    ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
-    expected <- ("6D", "Tangled Seaweed Patch", "Orange", "Glass Starfish")
+  azarasData <- ("Glass Starfish", "6D")
+  ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
+  expected <- ("6D", "Tangled Seaweed Patch", "Orange", "Glass Starfish")
   expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for third matched records returns correct tuple", {
-    azarasData <- ("Vintage Pirate Hat", "7E")
-    ruisData <- ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
-    expected <- ("7E", "Quiet Inlet (Island of Mystery)", "Orange", "Vintage Pirate Hat")
+  azarasData <- ("Vintage Pirate Hat", "7E")
+  ruisData <- ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
+  expected <- ("7E", "Quiet Inlet (Island of Mystery)", "Orange", "Vintage Pirate Hat")
   expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for forth matched records returns correct tuple", {
-    azarasData <- ("Glass Starfish", "6D")
-    ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
-    expected <- ("6D", "Tangled Seaweed Patch", "Orange", "Glass Starfish")
+  azarasData <- ("Glass Starfish", "6D")
+  ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
+  expected <- ("6D", "Tangled Seaweed Patch", "Orange", "Glass Starfish")
   expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for first unmatched records returns correct empty tuple", {
-    azarasData <- ("Angry Monkey Figurine", "5B")
-    ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
-    expected <- ("", "", "", "")
+  azarasData <- ("Angry Monkey Figurine", "5B")
+  ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
+  expected <- ("", "", "", "")
   expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for second unmatched records returns correct empty tuple", {
-    azarasData <- ("Brass Spyglass", "4B")
-    ruisData <- ("Spiky Rocks", (3, 'D'), "Yellow")
-    expected <- ("", "", "", "")
+  azarasData <- ("Brass Spyglass", "4B")
+  ruisData <- ("Spiky Rocks", (3, 'D'), "Yellow")
+  expected <- ("", "", "", "")
   expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for third unmatched records returns correct empty tuple", {
-    azarasData <- ("Angry Monkey Figurine", "5B")
-    ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
-    expected <- ("", "", "", "")
+  azarasData <- ("Angry Monkey Figurine", "5B")
+  ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
+  expected <- ("", "", "", "")
   expect_equal(createRecord(azarasData, ruisData), expected)

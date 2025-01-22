@@ -2,8 +2,8 @@ source("./nucleotide-count.R")
 library(testthat)
 
 test_that("Empty strand", {
-    strand <- ""
-    expected <- 
+  strand <- ""
+  expected <- 
         [ ('A', 0);
           ('C', 0);
           ('G', 0);
@@ -14,8 +14,8 @@ test_that("Empty strand", {
 })
 
 test_that("Can count one nucleotide in single-character input", {
-    strand <- "G"
-    expected <- 
+  strand <- "G"
+  expected <- 
         [ ('A', 0);
           ('C', 0);
           ('G', 1);
@@ -26,8 +26,8 @@ test_that("Can count one nucleotide in single-character input", {
 })
 
 test_that("Strand with repeated nucleotide", {
-    strand <- "GGGGGGG"
-    expected <- 
+  strand <- "GGGGGGG"
+  expected <- 
         [ ('A', 0);
           ('C', 0);
           ('G', 7);
@@ -38,8 +38,8 @@ test_that("Strand with repeated nucleotide", {
 })
 
 test_that("Strand with multiple nucleotides", {
-    strand <- "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
-    expected <- 
+  strand <- "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+  expected <- 
         [ ('A', 20);
           ('C', 12);
           ('G', 17);
@@ -50,7 +50,7 @@ test_that("Strand with multiple nucleotides", {
 })
 
 test_that("Strand with invalid nucleotides", {
-    strand <- "AGXXACT"
-    expected <- None
+  strand <- "AGXXACT"
+  expected <- None
   expect_equal(nucleotideCounts(strand), expected)
 })

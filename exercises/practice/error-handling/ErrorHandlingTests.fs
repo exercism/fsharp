@@ -5,13 +5,13 @@ library(testthat)
 
 // Custom class that implements IDisposable
 type Resource() = 
-    let mutable disposed = false
+  mutable disposed = false
 
     member this.Disposed() = disposed
 
     interface System.IDisposable with
         member this.Dispose() =
-            disposed <- true
+          disposed <- true
 
 // Throwing exceptions is not the preferred approach to handling errors in F#, 
 // but it becomes relevant when you use .NET framework methods from your F# code
@@ -24,10 +24,10 @@ test_that("Throwing exception", {
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
 test_that("Returning Option<'T>", {
-    successResult <- handleErrorByReturningOption "1"
+  successResult <- handleErrorByReturningOption "1"
   expect_equal(successResult, <| Some 1)
     
-    failureResult <- handleErrorByReturningOption "a"
+  failureResult <- handleErrorByReturningOption "a"
   expect_equal(failureResult, None)
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
@@ -36,10 +36,10 @@ test_that("Returning Option<'T>", {
 // of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
 test_that("Returning Result<'TSuccess, 'TError>", {
-    successResult <- handleErrorByReturningResult "1"
+  successResult <- handleErrorByReturningResult "1"
   expect_true((successResult = Ok 1))
     
-    failureResult <- handleErrorByReturningResult "a"
+  failureResult <- handleErrorByReturningResult "a"
   expect_true((failureResult = Error "Could not convert input to integer"))
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
@@ -58,9 +58,9 @@ test_that("Returning Result<'TSuccess, 'TError>", {
 // In this test, your task is to write a function "bind", that allows you to combine
 // two functions that take a 'TSuccess instance and return a Result<'TSuccess, 'TError> instance.
 test_that("Using railway-oriented programming", {
-    let validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
-    let validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
-    let validate3 x = if x % 2 <> 0 then Ok x else Error "Input is not odd"
+  validate1 x = if x > 5 then Ok x else Error "Input less than or equal to five"
+  validate2 x = if x < 10 then Ok x else Error "Input greater than or equal to ten"
+  validate3 x = if x % 2 <> 0 then Ok x else Error "Input is not odd"
     
     // Combine the validations. The result should be a function that takes an int parameter
     // and returns a Result<int, string> value
@@ -69,22 +69,22 @@ test_that("Using railway-oriented programming", {
         >> bind validate2
         >> bind validate3
 
-    firstValidationFailureResult <- combinedValidation 1            
+  firstValidationFailureResult <- combinedValidation 1            
   expect_true((firstValidationFailureResult = Error "Input less than or equal to five"))
 
-    secondValidationFailureResult <- combinedValidation 23          
+  secondValidationFailureResult <- combinedValidation 23          
   expect_true((secondValidationFailureResult = Error "Input greater than or equal to ten"))
 
-    thirdValidationFailureResult <- combinedValidation 8        
+  thirdValidationFailureResult <- combinedValidation 8        
   expect_true((thirdValidationFailureResult = Error "Input is not odd"))
 
-    successResult <- combinedValidation 7        
+  successResult <- combinedValidation 7        
   expect_true((successResult = Ok 7))
     
 // If you are dealing with code that throws exceptions, you should ensure that any
 // disposable resources that are used are being disposed of
 test_that("Cleaning up disposables when throwing exception", {
-    resource <- new Resource()
+  resource <- new Resource()
 
     (fun () -> cleanupDisposablesWhenThrowingException resource |> ignore) |> should throw typeof<Exception>
   expect_true(resource.Disposed())

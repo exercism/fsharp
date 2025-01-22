@@ -2,32 +2,32 @@ source("./transpose.R")
 library(testthat)
 
 test_that("Empty string", {
-    let lines: string list = []
-    let expected: string list = []
+  lines = c()
+  expected = c()
   expect_equal(transpose(lines), expected)
 })
 
 test_that("Two characters in a row", {
-    lines <- c("A1")
-    expected <- 
+  lines <- c("A1")
+  expected <- 
         [ "A";
           "1" ]
   expect_equal(transpose(lines), expected)
 })
 
 test_that("Two characters in a column", {
-    lines <- 
+  lines <- 
         [ "A";
           "1" ]
-    expected <- c("A1")
+  expected <- c("A1")
   expect_equal(transpose(lines), expected)
 })
 
 test_that("Simple", {
-    lines <- 
+  lines <- 
         [ "ABC";
           "123" ]
-    expected <- 
+  expected <- 
         [ "A1";
           "B2";
           "C3" ]
@@ -35,8 +35,8 @@ test_that("Simple", {
 })
 
 test_that("Single line", {
-    lines <- c("Single line.")
-    expected <- 
+  lines <- c("Single line.")
+  expected <- 
         [ "S";
           "i";
           "n";
@@ -53,10 +53,10 @@ test_that("Single line", {
 })
 
 test_that("First line longer than second line", {
-    lines <- 
+  lines <- 
         [ "The fourth line.";
           "The fifth line." ]
-    expected <- 
+  expected <- 
         [ "TT";
           "hh";
           "ee";
@@ -77,10 +77,10 @@ test_that("First line longer than second line", {
 })
 
 test_that("Second line longer than first line", {
-    lines <- 
+  lines <- 
         [ "The first line.";
           "The second line." ]
-    expected <- 
+  expected <- 
         [ "TT";
           "hh";
           "ee";
@@ -101,12 +101,12 @@ test_that("Second line longer than first line", {
 })
 
 test_that("Mixed line length", {
-    lines <- 
+  lines <- 
         [ "The longest line.";
           "A long line.";
           "A longer line.";
           "A line." ]
-    expected <- 
+  expected <- 
         [ "TAAA";
           "h   ";
           "elll";
@@ -128,13 +128,13 @@ test_that("Mixed line length", {
 })
 
 test_that("Square", {
-    lines <- 
+  lines <- 
         [ "HEART";
           "EMBER";
           "ABUSE";
           "RESIN";
           "TREND" ]
-    expected <- 
+  expected <- 
         [ "HEART";
           "EMBER";
           "ABUSE";
@@ -144,12 +144,12 @@ test_that("Square", {
 })
 
 test_that("Rectangle", {
-    lines <- 
+  lines <- 
         [ "FRACTURE";
           "OUTLINED";
           "BLOOMING";
           "SEPTETTE" ]
-    expected <- 
+  expected <- 
         [ "FOBS";
           "RULE";
           "ATOP";
@@ -162,14 +162,14 @@ test_that("Rectangle", {
 })
 
 test_that("Triangle", {
-    lines <- 
+  lines <- 
         [ "T";
           "EE";
           "AAA";
           "SSSS";
           "EEEEE";
           "RRRRRR" ]
-    expected <- 
+  expected <- 
         [ "TEASER";
           " EASER";
           "  ASER";
@@ -180,14 +180,14 @@ test_that("Triangle", {
 })
 
 test_that("Jagged triangle", {
-    lines <- 
+  lines <- 
         [ "11";
           "2";
           "3333";
           "444";
           "555555";
           "66666" ]
-    expected <- 
+  expected <- 
         [ "123456";
           "1 3456";
           "  3456";

@@ -2,12 +2,12 @@ source("./word-count.R")
 library(testthat)
 
 test_that("Count one word", {
-    expected <- c(("word", 1)) |> Map.ofList
+  expected <- c(("word", 1)) |> Map.ofList
   expect_equal(countWords("word", expected))
 })
 
 test_that("Count one of each word", {
-    expected <- 
+  expected <- 
         [ ("one", 1);
           ("of", 1);
           ("each", 1) ]
@@ -16,7 +16,7 @@ test_that("Count one of each word", {
 })
 
 test_that("Multiple occurrences of a word", {
-    expected <- 
+  expected <- 
         [ ("one", 1);
           ("fish", 4);
           ("two", 1);
@@ -27,7 +27,7 @@ test_that("Multiple occurrences of a word", {
 })
 
 test_that("Handles cramped lists", {
-    expected <- 
+  expected <- 
         [ ("one", 1);
           ("two", 1);
           ("three", 1) ]
@@ -36,7 +36,7 @@ test_that("Handles cramped lists", {
 })
 
 test_that("Handles expanded lists", {
-    expected <- 
+  expected <- 
         [ ("one", 1);
           ("two", 1);
           ("three", 1) ]
@@ -45,7 +45,7 @@ test_that("Handles expanded lists", {
 })
 
 test_that("Ignore punctuation", {
-    expected <- 
+  expected <- 
         [ ("car", 1);
           ("carpet", 1);
           ("as", 1);
@@ -56,7 +56,7 @@ test_that("Ignore punctuation", {
 })
 
 test_that("Include numbers", {
-    expected <- 
+  expected <- 
         [ ("testing", 2);
           ("1", 1);
           ("2", 1) ]
@@ -65,7 +65,7 @@ test_that("Include numbers", {
 })
 
 test_that("Normalize case", {
-    expected <- 
+  expected <- 
         [ ("go", 3);
           ("stop", 2) ]
         |> Map.ofList
@@ -73,7 +73,7 @@ test_that("Normalize case", {
 })
 
 test_that("With apostrophes", {
-    expected <- 
+  expected <- 
         [ ("first", 1);
           ("don't", 2);
           ("laugh", 1);
@@ -87,7 +87,7 @@ test_that("With apostrophes", {
 })
 
 test_that("With quotations", {
-    expected <- 
+  expected <- 
         [ ("joe", 1);
           ("can't", 1);
           ("tell", 1);
@@ -99,7 +99,7 @@ test_that("With quotations", {
 })
 
 test_that("Substrings from the beginning", {
-    expected <- 
+  expected <- 
         [ ("joe", 1);
           ("can't", 1);
           ("tell", 1);
@@ -113,7 +113,7 @@ test_that("Substrings from the beginning", {
 })
 
 test_that("Multiple spaces not detected as a word", {
-    expected <- 
+  expected <- 
         [ ("multiple", 1);
           ("whitespaces", 1) ]
         |> Map.ofList
@@ -121,7 +121,7 @@ test_that("Multiple spaces not detected as a word", {
 })
 
 test_that("Alternating word separators not detected as a word", {
-    expected <- 
+  expected <- 
         [ ("one", 1);
           ("two", 1);
           ("three", 1) ]
@@ -130,7 +130,7 @@ test_that("Alternating word separators not detected as a word", {
 })
 
 test_that("Quotation for word with apostrophe", {
-    expected <- 
+  expected <- 
         [ ("can", 1);
           ("can't", 2) ]
         |> Map.ofList

@@ -2,7 +2,7 @@ source("./ocr-numbers.R")
 library(testthat)
 
 test_that("Recognizes 0", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "| |";
           "|_|";
@@ -11,7 +11,7 @@ test_that("Recognizes 0", {
 })
 
 test_that("Recognizes 1", {
-    rows <- 
+  rows <- 
         [ "   ";
           "  |";
           "  |";
@@ -20,7 +20,7 @@ test_that("Recognizes 1", {
 })
 
 test_that("Unreadable but correctly sized inputs return ?", {
-    rows <- 
+  rows <- 
         [ "   ";
           "  _";
           "  |";
@@ -29,7 +29,7 @@ test_that("Unreadable but correctly sized inputs return ?", {
 })
 
 test_that("Input with a number of lines that is not a multiple of four raises an error", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "| |";
           "   " ]
@@ -37,7 +37,7 @@ test_that("Input with a number of lines that is not a multiple of four raises an
 })
 
 test_that("Input with a number of columns that is not a multiple of three raises an error", {
-    rows <- 
+  rows <- 
         [ "    ";
           "   |";
           "   |";
@@ -46,7 +46,7 @@ test_that("Input with a number of columns that is not a multiple of three raises
 })
 
 test_that("Recognizes 110101100", {
-    rows <- 
+  rows <- 
         [ "       _     _        _  _ ";
           "  |  || |  || |  |  || || |";
           "  |  ||_|  ||_|  |  ||_||_|";
@@ -55,7 +55,7 @@ test_that("Recognizes 110101100", {
 })
 
 test_that("Garbled numbers in a string are replaced with ?", {
-    rows <- 
+  rows <- 
         [ "       _     _           _ ";
           "  |  || |  || |     || || |";
           "  |  | _|  ||_|  |  ||_||_|";
@@ -64,7 +64,7 @@ test_that("Garbled numbers in a string are replaced with ?", {
 })
 
 test_that("Recognizes 2", {
-    rows <- 
+  rows <- 
         [ " _ ";
           " _|";
           "|_ ";
@@ -73,7 +73,7 @@ test_that("Recognizes 2", {
 })
 
 test_that("Recognizes 3", {
-    rows <- 
+  rows <- 
         [ " _ ";
           " _|";
           " _|";
@@ -82,7 +82,7 @@ test_that("Recognizes 3", {
 })
 
 test_that("Recognizes 4", {
-    rows <- 
+  rows <- 
         [ "   ";
           "|_|";
           "  |";
@@ -91,7 +91,7 @@ test_that("Recognizes 4", {
 })
 
 test_that("Recognizes 5", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "|_ ";
           " _|";
@@ -100,7 +100,7 @@ test_that("Recognizes 5", {
 })
 
 test_that("Recognizes 6", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "|_ ";
           "|_|";
@@ -109,7 +109,7 @@ test_that("Recognizes 6", {
 })
 
 test_that("Recognizes 7", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "  |";
           "  |";
@@ -118,7 +118,7 @@ test_that("Recognizes 7", {
 })
 
 test_that("Recognizes 8", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "|_|";
           "|_|";
@@ -127,7 +127,7 @@ test_that("Recognizes 8", {
 })
 
 test_that("Recognizes 9", {
-    rows <- 
+  rows <- 
         [ " _ ";
           "|_|";
           " _|";
@@ -136,7 +136,7 @@ test_that("Recognizes 9", {
 })
 
 test_that("Recognizes string of decimal numbers", {
-    rows <- 
+  rows <- 
         [ "    _  _     _  _  _  _  _  _ ";
           "  | _| _||_||_ |_   ||_||_|| |";
           "  ||_  _|  | _||_|  ||_| _||_|";
@@ -145,7 +145,7 @@ test_that("Recognizes string of decimal numbers", {
 })
 
 test_that("Numbers separated by empty lines are recognized. Lines are joined by commas.", {
-    rows <- 
+  rows <- 
         [ "    _  _ ";
           "  | _| _|";
           "  ||_  _|";

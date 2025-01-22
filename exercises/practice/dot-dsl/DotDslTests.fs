@@ -4,14 +4,14 @@ source("./dot-dsl-test.R")
 library(testthat)
 
 test_that("Empty graph", {
-    g <- graph []
+  g <- graph []
 
     nodes g |> should be Empty
     edges g |> should be Empty
     attrs g |> should be Empty
     
 test_that("Graph with one node", {
-    g <- graph [
+  g <- graph [
                 node "a" []
             ]            
 
@@ -20,7 +20,7 @@ test_that("Graph with one node", {
     attrs g |> should be Empty
     
 test_that("Graph with one node with keywords", {
-    g <- graph [
+  g <- graph [
                 node "a" c(("color", "green"))
             ]            
 
@@ -29,7 +29,7 @@ test_that("Graph with one node with keywords", {
     attrs g |> should be Empty
 
 test_that("Graph with one edge", {
-    g <- graph [
+  g <- graph [
                 edge "a" "b" []
             ]             
 
@@ -38,7 +38,7 @@ test_that("Graph with one edge", {
     attrs g |> should be Empty
 
 test_that("Graph with one attribute", {
-    g <- graph [
+  g <- graph [
                 attr "foo" "1"
             ]             
 
@@ -48,7 +48,7 @@ test_that("Graph with one attribute", {
 })
 
 test_that("Graph with attributes", {
-    g <- graph [
+  g <- graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"
                 node "a" c(("color", "green"))

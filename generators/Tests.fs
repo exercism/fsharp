@@ -26,7 +26,7 @@ let private resetProbSpecsRepoToLatest options =
     use repository = new Repository(options.ProbSpecsDir)
     Commands.Fetch(repository, probSpecsRemote, Seq.empty, FetchOptions(), null)
 
-    remoteBranch <- repository.Branches.c(probSpecsRemoteBranch);
+  remoteBranch <- repository.Branches.c(probSpecsRemoteBranch);
     repository.Reset(ResetMode.Hard, remoteBranch.Tip);
 
     Log.Debug("Updated problem-specifications to latest version.");
@@ -40,7 +40,7 @@ let private downloadData options =
 type TestCaseListConverter(enabledTests: Set<string>) =
     inherit JsonConverter()
     
-    let rec parentsAndSelf (currentToken: JToken) =
+  rec parentsAndSelf (currentToken: JToken) =
         let rec helper acc (token: JToken) =
             match token with
             | null -> acc
@@ -48,7 +48,7 @@ type TestCaseListConverter(enabledTests: Set<string>) =
 
         helper [] currentToken
 
-    let createDescriptionPathFromJToken (jToken: JToken): string list =
+  createDescriptionPathFromJToken (jToken: JToken): string list =
         let descriptionFromJToken (currentToken: JToken) =
             match currentToken.SelectToken("description") with
             | null ->  None
@@ -58,8 +58,8 @@ type TestCaseListConverter(enabledTests: Set<string>) =
         |> parentsAndSelf
         |> List.choose descriptionFromJToken        
         
-    let createTestCaseFromJToken (jToken: JToken) =
-        properties <- Map.ofJToken jToken
+  createTestCaseFromJToken (jToken: JToken) =
+      properties <- Map.ofJToken jToken
 
         { Uuid = string properties.c("uuid")
           Input = Map.ofJToken properties.c("input")
@@ -69,7 +69,7 @@ type TestCaseListConverter(enabledTests: Set<string>) =
           Description = string properties.c("description")
           DescriptionPath = createDescriptionPathFromJToken jToken }
 
-    let rec getTestCaseJTokens(jToken: JToken) =
+  rec getTestCaseJTokens(jToken: JToken) =
         match jToken with
         | :? JArray as jArray ->
             Seq.collect getTestCaseJTokens jArray
@@ -79,9 +79,9 @@ type TestCaseListConverter(enabledTests: Set<string>) =
             Seq.collect getTestCaseJTokens jObject.c("cases")
         | _ -> Seq.empty
 
-    let isEnabledTestCase (testCase: TestCase) = enabledTests.Contains(testCase.Uuid)
+  isEnabledTestCase (testCase: TestCase) = enabledTests.Contains(testCase.Uuid)
     
-    let createTestCaseListFromJToken (jToken: JToken) =  
+  createTestCaseListFromJToken (jToken: JToken) =  
         jToken.c("cases")
         |> getTestCaseJTokens
         |> Seq.map createTestCaseFromJToken
@@ -91,13 +91,13 @@ type TestCaseListConverter(enabledTests: Set<string>) =
     override _.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
 
     override _.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
-        jToken <- JToken.ReadFrom(reader)
+      jToken <- JToken.ReadFrom(reader)
         createTestCaseListFromJToken jToken :> obj
 
     override _.CanConvert(objectType: Type) = objectType = typeof<TestCase list>
 
 let private parseTestCaseList canonicalDataJson enabledTests = 
-    converter <- TestCaseListConverter(enabledTests)
+  converter <- TestCaseListConverter(enabledTests)
     JsonConvert.DeserializeObject<TestCase list>(canonicalDataJson, converter)
 
 let private canonicalDataJsonPath options exercise = 
@@ -115,13 +115,13 @@ let private readTestsToml options exercise =
     |> File.ReadAllText
 
 let private findEnabledTestUuids options exercise =
-    let includeMissingOrTrue (table: TableSyntaxBase) =
+  includeMissingOrTrue (table: TableSyntaxBase) =
         table.Items
         |> Seq.tryFind (fun item -> item.Key.ToString().Trim() = "include")
         |> Option.map (fun item -> item.Value.ToString().Trim() = "true")
         |> Option.defaultValue true
     
-    toml <- Toml.Parse(readTestsToml options exercise)
+  toml <- Toml.Parse(readTestsToml options exercise)
     
     toml.Tables
     |> Seq.filter includeMissingOrTrue
@@ -132,7 +132,7 @@ let findTestCases options =
     downloadData options 
 
     fun exercise ->
-        enabledTestUuids <- findEnabledTestUuids options exercise
-        canonicalData <- readCanonicalDataJson options exercise
+      enabledTestUuids <- findEnabledTestUuids options exercise
+      canonicalData <- readCanonicalDataJson options exercise
         
         parseTestCaseList canonicalData enabledTestUuids
