@@ -42,22 +42,22 @@ test_that("Reverse order of custom list", {
     expect_equal(test_that("Two-item list without F# is not exciting", {
 
 test_that("Three-item list with F# as first item is exciting", {
-    expect_equal(excitingList c( "F#", "Lisp", "Clojure" ), true)
+    expect_true(excitingList c( "F#", "Lisp", "Clojure" ))
 
 test_that("Three-item list with F# as second item is exciting", {
-    expect_equal(excitingList c( "Java", "F#", "C#" ), true)
+    expect_true(excitingList c( "Java", "F#", "C#" ))
 
 test_that("Three-item list with F# as third item is not exciting", {
-    expect_equal(excitingList c( "Julia", "Assembly", "F#" ), false)
+    expect_false(excitingList c( "Julia", "Assembly", "F#" ))
 
 test_that("Four-item list with F# as first item is exciting", {
-    expect_equal(excitingList c( "F#", "C", "C++", "C#" ), true)
+    expect_true(excitingList c( "F#", "C", "C++", "C#" ))
 
 test_that("Four-item list with F# as second item is not exciting", {
-    expect_equal(excitingList c( "Elm", "F#", "C#", "Scheme" ), false)
+    expect_false(excitingList c( "Elm", "F#", "C#", "Scheme" ))
 
 test_that("Four-item list with F# as third item is not exciting", {
-    expect_equal(excitingList c( "Delphi", "D", "F#", "Prolog" ), false)
+    expect_false(excitingList c( "Delphi", "D", "F#", "Prolog" ))
 
 test_that("Four-item list with F# as fourth item is not exciting", {
-    expect_equal(excitingList c( "Julia", "Assembly", "Crystal", "F#" ), false)
+    expect_false(excitingList c( "Julia", "Assembly", "Crystal", "F#" ))

@@ -19,92 +19,92 @@ test_that("Schedule date with textual month and weekday", {
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment 1 year ago", {
     hasPassed (DateTime.Now.AddYears(-1).AddHours(2.0))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment months ago", {
     hasPassed (DateTime.Now.AddMonths(-8))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment days ago", {
     hasPassed (DateTime.Now.AddDays(-23.0))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment hours ago", {
     hasPassed (DateTime.Now.AddHours(-12.0))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment minutes ago", {
     hasPassed (DateTime.Now.AddMinutes(-55.0))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment 1 minute ago", {
     hasPassed (DateTime.Now.AddMinutes(-1.0))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment in 1 minute", {
     hasPassed (DateTime.Now.AddMinutes(1.0))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment in minutes", {
     hasPassed (DateTime.Now.AddMinutes(5.0))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment in days", {
     hasPassed (DateTime.Now.AddDays(19.0))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment in months", {
     hasPassed (DateTime.Now.AddMonths(10))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Has passed with appointment in years", {
     hasPassed (DateTime.Now.AddYears(2).AddMonths(3).AddDays(6.0))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for early morning appointment", {
     isAfternoonAppointment (DateTime(2019, 6, 17, 8, 15, 0))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for late morning appointment", {
     isAfternoonAppointment (DateTime(2019, 2, 23, 11, 59, 59))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for noon appointment", {
     isAfternoonAppointment (DateTime(2019, 8, 9, 12, 0, 0))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for early afternoon appointment", {
     isAfternoonAppointment (DateTime(2019, 8, 9, 12, 0, 1))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for late afternoon appointment", {
     isAfternoonAppointment (DateTime(2019, 9, 1, 17, 59, 59))
-    expect_equal( , true)
+    expect_true( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for early evening appointment", {
     isAfternoonAppointment (DateTime(2019, 9, 1, 18, 0, 0))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Is afternoon appointment for late evening appointment", {
     isAfternoonAppointment (DateTime(2019, 9, 1, 23, 59, 59))
-    expect_equal( , false)
+    expect_false( )
 
 c(<UseCulture("en-US")>)
 test_that("Description on Friday afternoon", {

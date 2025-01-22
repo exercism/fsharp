@@ -21,11 +21,11 @@ test_that("Total number of birds of busy week", {
 
 test_that("Day without birds for week that had day without birds", {
     dayWithoutBirds c(| 5, 5, 4, 0, 7, 6, 7 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Day without birds for week that did not have day without birds", {
     dayWithoutBirds c(| 4, 5, 9, 10, 9, 4, 3 |)
-    expect_equal( , false)
+    expect_false( )
 
 test_that("Increment today's count with no previous visits", {
     birdCounts <- c(| 6, 5, 5, 11, 2, 5, 0 |)
@@ -39,40 +39,40 @@ test_that("Increment today's count with multiple previous visits", {
 
 test_that("Unusual week for first week matching odd days zero pattern", {
     unusualWeek c(| 1, 0, 2, 0, 3, 0, 4 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Unusual week for second week matching odd days zero pattern", {
     unusualWeek c(| 10, 0, 6, 0, 9, 0, 4 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Unusual week for first week matching odd days ten pattern", {
     unusualWeek c(| 6, 10, 2, 10, 5, 10, 8 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Unusual week for second week matching odd days ten pattern", {
     unusualWeek c(| 16, 10, 8, 10, 4, 10, 7 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Unusual week for first week matching even days five pattern", {
     unusualWeek c(| 5, 1, 5, 2, 5, 3, 5 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Unusual week for second week matching even days five pattern", {
     unusualWeek c(| 5, 12, 5, 6, 5, 5, 5 |)
-    expect_equal( , true)
+    expect_true( )
 
 test_that("Unusual week for first week that does not match odd pattern", {
     unusualWeek c(| 2, 2, 1, 0, 1, 1, 1 |)
-    expect_equal( , false)
+    expect_false( )
 
 test_that("Unusual week for second week that does not match odd pattern", {
     unusualWeek c(| 2, 0, 1, 1, 1, 0, 1 |)
-    expect_equal( , false)
+    expect_false( )
 
 test_that("Unusual week for third week that does not match odd pattern", {
     unusualWeek c(| 2, 9, 1, 10, 1, 11, 1 |)
-    expect_equal( , false)
+    expect_false( )
 
 test_that("Unusual week for fourth week that does not match odd pattern", {
     unusualWeek c(| 5, 0, 5, 1, 4, 0, 6 |)
-    expect_equal( , false)
+    expect_false( )

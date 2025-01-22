@@ -31,37 +31,37 @@ test_that("Convert coordinate for 6A", {
 test_that("Compare records for first matched records returns true", {
     azarasData <- ("Scrimshaw Whale's Tooth", "2A")
     ruisData <- ("Deserted Docks", (2, 'A'), "Blue")   
-    expect_equal(compareRecords azarasData ruisData, true)
+    expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for second matched records returns true", {
     azarasData <- ("Glass Starfish", "6D")
     ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
-    expect_equal(compareRecords azarasData ruisData, true)
+    expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for third matched records returns true", {
     azarasData <- ("Vintage Pirate Hat", "7E")
     ruisData <- ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
-    expect_equal(compareRecords azarasData ruisData, true)
+    expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for forth matched records returns true", {
     azarasData <- ("Glass Starfish", "6D")
     ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
-    expect_equal(compareRecords azarasData ruisData, true)
+    expect_true(compareRecords azarasData ruisData)
 
 test_that("Compare records for first unmatched records returns true", {
     azarasData <- ("Angry Monkey Figurine", "5B")
     ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
-    expect_equal(compareRecords azarasData ruisData, false)
+    expect_false(compareRecords azarasData ruisData)
 
 test_that("Compare records for second unmatched records returns true", {
     azarasData <- ("Brass Spyglass", "4B")
     ruisData <- ("Spiky Rocks", (3, 'D'), "Yellow")
-    expect_equal(compareRecords azarasData ruisData, false)
+    expect_false(compareRecords azarasData ruisData)
 
 test_that("Compare records for third unmatched records returns true", {
     azarasData <- ("Angry Monkey Figurine", "5B")
     ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
-    expect_equal(compareRecords azarasData ruisData, false)
+    expect_false(compareRecords azarasData ruisData)
 
 test_that("Create Record for first matched records returns correct tuple", {
     azarasData <- ("Scrimshaw Whale's Tooth", "2A")

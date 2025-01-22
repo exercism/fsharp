@@ -11,7 +11,7 @@ test_that("One node", {
 
     tree <- buildTree input
 
-    expect_equal(isBranch tree, false)
+    expect_false(isBranch tree)
     expect_equal(recordId tree, 0)
     children tree |> should be Empty
 
@@ -25,14 +25,14 @@ test_that("Three nodes in order", {
 
     tree <- buildTree input
 
-    expect_equal(isBranch tree, true)
+    expect_true(isBranch tree)
     expect_equal(recordId tree, 0)
     expect_equal(children tree |> List.length, 2)
 
-    expect_equal(children tree |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> recordId, 1)
 
-    expect_equal(children tree |> List.item 1 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
 })
 
@@ -46,14 +46,14 @@ test_that("Three nodes in reverse order", {
 
     tree <- buildTree input
 
-    expect_equal(isBranch tree, true)
+    expect_true(isBranch tree)
     expect_equal(recordId tree, 0)
     expect_equal(children tree |> List.length, 2)
 
-    expect_equal(children tree |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> recordId, 1)
 
-    expect_equal(children tree |> List.item 1 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
 })
 
@@ -68,17 +68,17 @@ test_that("More than two children", {
 
     tree <- buildTree input
 
-    expect_equal(isBranch tree, true)
+    expect_true(isBranch tree)
     expect_equal(recordId tree, 0)
     expect_equal(children tree |> List.length, 3)
 
-    expect_equal(children tree |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> recordId, 1)
 
-    expect_equal(children tree |> List.item 1 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
 
-    expect_equal(children tree |> List.item 2 |> isBranch, false)
+    expect_false(children tree |> List.item 2 |> isBranch)
     expect_equal(children tree |> List.item 2 |> recordId, 3)
 })
 
@@ -96,28 +96,28 @@ test_that("Binary tree", {
 
     tree <- buildTree input
 
-    expect_equal(isBranch tree, true)
+    expect_true(isBranch tree)
     expect_equal(recordId tree, 0)
     expect_equal(children tree |> List.length, 2)
 
-    expect_equal(children tree |> List.item 0 |> isBranch, true)
+    expect_true(children tree |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> recordId, 1)
     expect_equal(children tree |> List.item 0 |> children |> List.length, 2)
 
-    expect_equal(children tree |> List.item 0 |> children |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 0 |> children |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> children |> List.item 0 |> recordId, 4)
 
-    expect_equal(children tree |> List.item 0 |> children |> List.item 1 |> isBranch, false)
+    expect_false(children tree |> List.item 0 |> children |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 0 |> children |> List.item 1 |> recordId, 5)
 
-    expect_equal(children tree |> List.item 1 |> isBranch, true)
+    expect_true(children tree |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
     expect_equal(children tree |> List.item 1 |> children |> List.length, 2)
 
-    expect_equal(children tree |> List.item 1 |> children |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> children |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 1 |> children |> List.item 0 |> recordId, 3)
 
-    expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> children |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> recordId, 6)
 })
 
@@ -135,28 +135,28 @@ test_that("Unbalanced tree", {
 
     tree <- buildTree input
 
-    expect_equal(isBranch tree, true)
+    expect_true(isBranch tree)
     expect_equal(recordId tree, 0)
     expect_equal(children tree |> List.length, 2)
 
-    expect_equal(children tree |> List.item 0 |> isBranch, true)
+    expect_true(children tree |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> recordId, 1)
     expect_equal(children tree |> List.item 0 |> children |> List.length, 1)
 
-    expect_equal(children tree |> List.item 0 |> children |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 0 |> children |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 0 |> children |> List.item 0 |> recordId, 4)
 
-    expect_equal(children tree |> List.item 1 |> isBranch, true)
+    expect_true(children tree |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> recordId, 2)
     expect_equal(children tree |> List.item 1 |> children |> List.length, 3)
 
-    expect_equal(children tree |> List.item 1 |> children |> List.item 0 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> children |> List.item 0 |> isBranch)
     expect_equal(children tree |> List.item 1 |> children |> List.item 0 |> recordId, 3)
 
-    expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> children |> List.item 1 |> isBranch)
     expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> recordId, 5)
 
-    expect_equal(children tree |> List.item 1 |> children |> List.item 2 |> isBranch, false)
+    expect_false(children tree |> List.item 1 |> children |> List.item 2 |> isBranch)
     expect_equal(children tree |> List.item 1 |> children |> List.item 2 |> recordId, 6)
 })
 
