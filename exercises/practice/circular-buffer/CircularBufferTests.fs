@@ -1,12 +1,6 @@
 source("./circular-buffer.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open System
-
-open CircularBuffer
-
 let ``Reading empty buffer should fail`` () =
     let buffer1 = mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>

@@ -1,11 +1,6 @@
 source("./book-store.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open BookStore
-
 let ``Only a single book`` () =
     total [1] |> should equal 8.00m
 

@@ -1,11 +1,6 @@
 source("./robot-simulator.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RobotSimulator
-
 let ``At origin facing north`` () =
     let expected = create Direction.North (0, 0)
     create Direction.North (0, 0) |> should equal expected

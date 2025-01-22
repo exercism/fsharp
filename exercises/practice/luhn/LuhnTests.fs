@@ -1,11 +1,6 @@
 source("./luhn.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Luhn
-
 let ``Single digit strings can not be valid`` () =
     valid "1" |> should equal false
 

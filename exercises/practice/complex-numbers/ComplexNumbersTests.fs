@@ -1,12 +1,6 @@
 source("./complex-numbers.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open System
-
-open ComplexNumbers
-
 let ``Real part of a purely real number`` () =
     real (create 1.0 0.0) |> should equal 1.0
 

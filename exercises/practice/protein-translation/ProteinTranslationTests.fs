@@ -1,11 +1,6 @@
 source("./protein-translation.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ProteinTranslation
-
 let ``Empty RNA sequence results in no proteins`` () =
     proteins "" |> should be Empty
 

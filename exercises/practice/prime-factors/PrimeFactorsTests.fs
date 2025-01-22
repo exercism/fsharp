@@ -1,11 +1,6 @@
 source("./prime-factors.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open PrimeFactors
-
 let ``No factors`` () =
     factors 1L |> should be Empty
 

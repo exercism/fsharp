@@ -1,11 +1,6 @@
 source("./proverb.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Proverb
-
 let ``Zero pieces`` () =
     let strings: string list = []
     let expected: string list = []

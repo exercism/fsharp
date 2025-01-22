@@ -1,11 +1,6 @@
 source("./hamming.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Hamming
-
 let ``Empty strands`` () =
     distance "" "" |> should equal (Some 0)
 

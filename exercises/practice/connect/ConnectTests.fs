@@ -1,11 +1,6 @@
 source("./connect.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Connect
-
 let ``An empty board has no winner`` () =
     let board = 
         [ ". . . . .    ";

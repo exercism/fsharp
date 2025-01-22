@@ -1,11 +1,6 @@
 source("./resistor-color.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ResistorColor
-
 let ``Black`` () =
     colorCode "black" |> should equal 0
 

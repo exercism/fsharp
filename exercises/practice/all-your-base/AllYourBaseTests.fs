@@ -1,11 +1,6 @@
 source("./all-your-base.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open AllYourBase
-
 let ``Single bit one to decimal`` () =
     let digits = [1]
     let inputBase = 2

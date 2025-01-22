@@ -1,11 +1,6 @@
 source("./knapsack.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Knapsack
-
 let ``No items`` () =
     let items = []
     maximumValue items 100 |> should equal 0

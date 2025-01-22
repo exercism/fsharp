@@ -1,11 +1,6 @@
 source("./crypto-square.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open CryptoSquare
-
 let ``Empty plaintext results in an empty ciphertext`` () =
     ciphertext "" |> should equal ""
 

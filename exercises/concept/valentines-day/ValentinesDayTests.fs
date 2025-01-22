@@ -1,11 +1,6 @@
 source("./valentines-day.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ValentinesDay
-
 let ``Rate board game``() = rateActivity BoardGame |> should equal No
 
 let ``Rate chilling``() = rateActivity Chill |> should equal No

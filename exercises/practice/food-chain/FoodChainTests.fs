@@ -1,11 +1,6 @@
 source("./food-chain.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open FoodChain
-
 let ``Fly`` () =
     let expected = 
         [ "I know an old lady who swallowed a fly.";

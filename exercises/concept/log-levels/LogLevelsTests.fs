@@ -1,12 +1,6 @@
 source("./log-levels.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open LogLevels
-
 [<Task(1)>]
 let ``Error message``() = message "[ERROR]: Stack overflow" |> should equal "Stack overflow"
 

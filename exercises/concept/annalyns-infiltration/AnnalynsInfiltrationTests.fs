@@ -1,11 +1,5 @@
 module annalynsInfiltrationTests
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open AnnalynsInfiltration
-
 [<Task(1)>]
 let ``Cannot execute fast attack if knight is awake``() =
     let knightIsAwake = true

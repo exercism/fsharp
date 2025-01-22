@@ -1,11 +1,6 @@
 source("./pig-latin.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open PigLatin
-
 let ``Word beginning with a`` () =
     translate "apple" |> should equal "appleay"
 

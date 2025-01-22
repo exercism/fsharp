@@ -1,12 +1,6 @@
 source("./grep.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open System.IO
-
-open Grep
-
 let iliadFileName = "iliad.txt"
 let iliadContents = 
     """Achilles sing, O Goddess! Peleus' son;

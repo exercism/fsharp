@@ -1,11 +1,6 @@
 source("./rotational-cipher.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RotationalCipher
-
 let ``Rotate a by 0, same output as input`` () =
     rotate 0 "a" |> should equal "a"
 

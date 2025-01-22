@@ -1,11 +1,6 @@
 source("./nucleotide-count.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open NucleotideCount
-
 let ``Empty strand`` () =
     let strand = ""
     let expected = 

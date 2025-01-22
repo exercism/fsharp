@@ -1,11 +1,6 @@
 source("./markdown.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Markdown
-
 let ``Parses normal text as a paragraph`` () =
     let markdown = "This will be a paragraph"
     let expected = "<p>This will be a paragraph</p>"

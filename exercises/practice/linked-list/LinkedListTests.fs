@@ -3,10 +3,6 @@
 source("./linked-list-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-open LinkedList
-
 let ``Push and pop are first in last out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10

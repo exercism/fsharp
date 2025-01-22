@@ -1,11 +1,6 @@
 source("./binary-search-tree.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open BinarySearchTree
-
 let ``Data is retained`` () =
     let treeData = create [4]
     treeData |> data |> should equal 4

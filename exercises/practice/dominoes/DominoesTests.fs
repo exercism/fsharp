@@ -1,11 +1,6 @@
 source("./dominoes.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Dominoes
-
 let ``Empty input = empty output`` () =
     let dominoes = []
     canChain dominoes |> should equal true

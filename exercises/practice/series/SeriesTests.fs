@@ -1,11 +1,6 @@
 source("./series.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Series
-
 let ``Slices of one from one`` () =
     slices "1" 1 |> should equal (Some ["1"])
 

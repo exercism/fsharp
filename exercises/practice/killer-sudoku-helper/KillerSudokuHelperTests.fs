@@ -1,11 +1,6 @@
 source("./killer-sudoku-helper.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open KillerSudokuHelper
-
 let ``1`` () =
     combinations [] 1 1 |> should equal [[1]]
 

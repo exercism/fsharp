@@ -1,11 +1,6 @@
 source("./saddle-points.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open SaddlePoints
-
 let ``Can identify single saddle point`` () =
     let matrix = 
         [ [9; 8; 7];

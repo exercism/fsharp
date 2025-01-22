@@ -1,12 +1,6 @@
 source("./bird-watcher.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open BirdWatcher
-
 [<Task(1)>]
 let ``Last week`` () =
     lastWeek |> should equal [| 0; 2; 5; 3; 7; 8; 4 |]

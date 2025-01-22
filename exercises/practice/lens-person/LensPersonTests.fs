@@ -3,13 +3,6 @@
 source("./lens-person-test.R")
 library(testthat)
 
-open System
-open Xunit
-open FsUnit.Xunit
-open Aether
-open Aether.Operators
-open LensPerson
-
 let testPerson =
     { name = 
         { name = "Jane Joanna"

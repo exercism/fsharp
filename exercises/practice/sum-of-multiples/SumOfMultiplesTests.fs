@@ -1,11 +1,6 @@
 source("./sum-of-multiples.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open SumOfMultiples
-
 let ``No multiples within limit`` () =
     sum [3; 5] 1 |> should equal 0
 

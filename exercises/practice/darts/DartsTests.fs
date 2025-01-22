@@ -1,11 +1,6 @@
 source("./darts.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Darts
-
 let ``Missed target`` () =
     score -9.0 9.0 |> should equal 0
 

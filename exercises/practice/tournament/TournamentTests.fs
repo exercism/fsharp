@@ -1,11 +1,6 @@
 source("./tournament.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Tournament
-
 let ``Just the header if no input`` () =
     let rows = []
     let expected = ["Team                           | MP |  W |  D |  L |  P"]

@@ -1,12 +1,6 @@
 source("./gigasecond.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open System
-
-open Gigasecond
-
 let ``Date only specification of time`` () =
     add (DateTime(2011, 4, 25)) |> should equal (DateTime(2043, 1, 1, 1, 46, 40))
 

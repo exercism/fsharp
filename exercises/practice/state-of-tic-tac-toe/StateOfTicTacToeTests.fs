@@ -1,11 +1,6 @@
 source("./state-of-tic-tac-toe.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open StateOfTicTacToe
-
 let ``Finished game where X won via left column victory`` () =
     let board = 
         array2D [ ['X'; 'O'; 'O'];

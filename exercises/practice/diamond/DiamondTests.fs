@@ -1,13 +1,6 @@
 source("./diamond-test.R")
 library(testthat)
 
-open Diamond
-open System
-open FsUnit.Xunit
-open Xunit
-open FsCheck
-open FsCheck.Xunit
-
 let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()

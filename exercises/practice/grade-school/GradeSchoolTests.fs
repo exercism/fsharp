@@ -1,11 +1,6 @@
 source("./grade-school.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open GradeSchool
-
 let ``Roster is empty when no student is added`` () =
     let school = empty
     roster school |> should be Empty

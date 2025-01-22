@@ -1,11 +1,6 @@
 source("./sublist.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Sublist
-
 let ``Empty lists`` () =
     let listOne = []
     let listTwo = []

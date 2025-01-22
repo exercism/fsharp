@@ -1,11 +1,6 @@
 source("./largest-series-product.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open LargestSeriesProduct
-
 let ``Finds the largest product if span equals length`` () =
     let digits = "29"
     let span = 2

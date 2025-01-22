@@ -1,11 +1,6 @@
 source("./bowling.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Bowling
-
 let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls
 
 let ``Should be able to score a game with all zeros`` () =

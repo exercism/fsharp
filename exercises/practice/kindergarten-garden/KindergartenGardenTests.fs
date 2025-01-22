@@ -1,11 +1,6 @@
 source("./kindergarten-garden.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open KindergartenGarden
-
 let ``Partial garden - garden with single student`` () =
     let student = "Alice"
     let diagram = "RC\nGG"

@@ -1,11 +1,6 @@
 source("./say.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Say
-
 let ``Zero`` () =
     say 0L |> should equal (Some "zero")
 

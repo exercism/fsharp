@@ -1,12 +1,6 @@
 source("./pizza-pricing.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open PizzaPricing
-
 [<Task(2)>]
 let ``Price for pizza margherita``() = pizzaPrice Margherita |> should equal 7
 

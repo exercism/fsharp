@@ -3,11 +3,6 @@
 source("./hexadecimal-test.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Hexadecimal
-
 let ``Hexadecimal 1 is decimal 1`` () =
     toDecimal "1" |> should equal 1
 

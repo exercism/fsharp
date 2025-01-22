@@ -3,11 +3,6 @@
 source("./robot-name-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-open System.Text.RegularExpressions
-open RobotName
-
 let ``Robot has a name`` () =     
     let robot = mkRobot()
     Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$") |> should equal true

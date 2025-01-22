@@ -1,11 +1,6 @@
 source("./sgf-parsing.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open SgfParsing
-
 let ``Empty input`` () =
     let expected = None
     parse "" |> should equal expected

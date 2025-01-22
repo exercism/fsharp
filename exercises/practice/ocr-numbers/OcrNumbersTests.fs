@@ -1,11 +1,6 @@
 source("./ocr-numbers.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open OcrNumbers
-
 let ``Recognizes 0`` () =
     let rows = 
         [ " _ ";

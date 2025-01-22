@@ -1,12 +1,6 @@
 source("./tracks-on-tracks-on-tracks.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open TracksOnTracksOnTracks
-
 [<Task(1)>]
 let ``New list``() =
     let expected: string list = []

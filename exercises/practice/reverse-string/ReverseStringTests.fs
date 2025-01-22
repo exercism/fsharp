@@ -1,11 +1,6 @@
 source("./reverse-string.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ReverseString
-
 let ``An empty string`` () =
     reverse "" |> should equal ""
 

@@ -1,12 +1,6 @@
 source("./squeaky-clean.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open SqueakyClean
-
 [<Task(1)>]
 let ``Clean_single_letter``() = transform 'a' |> should equal "a"
 

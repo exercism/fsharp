@@ -1,11 +1,6 @@
 source("./eliuds-eggs.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open EliudsEggs
-
 let ``0 eggs`` () =
     eggCount 0 |> should equal 0
 

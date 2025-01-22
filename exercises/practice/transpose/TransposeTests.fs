@@ -1,11 +1,6 @@
 source("./transpose.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Transpose
-
 let ``Empty string`` () =
     let lines: string list = []
     let expected: string list = []

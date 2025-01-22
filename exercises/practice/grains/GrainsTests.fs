@@ -1,11 +1,6 @@
 source("./grains.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Grains
-
 let ``Grains on square 1`` () =
     let expected: Result<uint64,string> = Ok 1UL
     square 1 |> should equal expected

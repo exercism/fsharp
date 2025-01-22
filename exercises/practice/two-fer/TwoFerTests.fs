@@ -1,11 +1,6 @@
 source("./two-fer.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open TwoFer
-
 let ``No name given`` () =
     twoFer None |> should equal "One for you, one for me."
 

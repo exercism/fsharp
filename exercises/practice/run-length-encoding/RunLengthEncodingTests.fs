@@ -1,11 +1,6 @@
 source("./run-length-encoding.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RunLengthEncoding
-
 let ``Encode empty string`` () =
     encode "" |> should equal ""
 

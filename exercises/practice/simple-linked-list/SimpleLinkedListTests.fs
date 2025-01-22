@@ -3,11 +3,6 @@
 source("./simple-linked-list-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-
-open SimpleLinkedList
-
 let ``Empty list`` () =
     let list = nil
     isNil list |> should equal true

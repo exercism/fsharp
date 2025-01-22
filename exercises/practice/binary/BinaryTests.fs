@@ -3,11 +3,6 @@
 source("./binary-test.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Binary
-
 let ``Binary_0_is_decimal_0`` () =
     toDecimal "0" |> should equal 0
 

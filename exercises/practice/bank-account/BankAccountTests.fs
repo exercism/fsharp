@@ -3,10 +3,6 @@
 source("./bank-account-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-open BankAccount
-
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount
 

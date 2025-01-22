@@ -1,11 +1,6 @@
 source("./allergies.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Allergies
-
 let ``Testing for eggs allergy - not allergic to anything`` () =
     allergicTo 0 Allergen.Eggs |> should equal false
 

@@ -1,11 +1,6 @@
 source("./atbash-cipher.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open AtbashCipher
-
 let ``Encode yes`` () =
     encode "yes" |> should equal "bvh"
 

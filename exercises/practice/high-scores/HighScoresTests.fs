@@ -1,11 +1,6 @@
 source("./high-scores.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open HighScores
-
 let ``List of scores`` () =
     scores [30; 50; 20; 70] |> should equal [30; 50; 20; 70]
 

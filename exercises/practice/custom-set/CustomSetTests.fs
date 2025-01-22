@@ -1,11 +1,6 @@
 source("./custom-set.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open CustomSet
-
 let ``Sets with no elements are empty`` () =
     let actual = CustomSet.isEmpty (CustomSet.fromList [])
     actual |> should equal true

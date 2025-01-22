@@ -1,11 +1,6 @@
 source("./nth-prime.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open NthPrime
-
 let ``First prime`` () =
     prime 1 |> should equal (Some 2)
 

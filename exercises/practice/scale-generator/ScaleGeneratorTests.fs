@@ -1,11 +1,6 @@
 source("./scale-generator.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ScaleGenerator
-
 let ``Chromatic scale with sharps`` () =
     chromatic "C" |> should equal ["C"; "C#"; "D"; "D#"; "E"; "F"; "F#"; "G"; "G#"; "A"; "A#"; "B"]
 

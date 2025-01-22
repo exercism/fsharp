@@ -3,12 +3,6 @@
 source("./error-handling-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-open System
-
-open ErrorHandling
-
 // Custom class that implements IDisposable
 type Resource() = 
     let mutable disposed = false

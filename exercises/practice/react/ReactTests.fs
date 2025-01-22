@@ -1,12 +1,6 @@
 source("./react.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open FakeItEasy
-
-open React
-
 let ``Input cells have a value`` () =
     let reactor = new Reactor()
     let input = reactor.createInputCell 10

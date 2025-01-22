@@ -1,11 +1,6 @@
 source("./change.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Change
-
 let ``Change for 1 cent`` () =
     let coins = [1; 5; 10; 25]
     let target = 1

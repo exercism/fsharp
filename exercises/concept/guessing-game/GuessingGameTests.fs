@@ -1,12 +1,6 @@
 source("./guessing-game.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open GuessingGame
-
 [<Task(1)>]
 let ``Give hint for 42``() = reply 42 |> should equal "Correct"
 

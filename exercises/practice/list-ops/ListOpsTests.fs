@@ -1,11 +1,6 @@
 source("./list-ops.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ListOps
-
 let ``append empty lists`` () =
     append [] [] |> should be Empty
 

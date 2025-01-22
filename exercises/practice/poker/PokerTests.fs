@@ -1,11 +1,6 @@
 source("./poker.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Poker
-
 let ``Single hand always wins`` () =
     let hands = ["4S 5S 7H 8D JC"]
     let expected = ["4S 5S 7H 8D JC"]

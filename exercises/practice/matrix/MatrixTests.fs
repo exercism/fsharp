@@ -1,11 +1,6 @@
 source("./matrix.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Matrix
-
 let ``Extract row from one number matrix`` () =
     row 1 "1" |> should equal [1]
 

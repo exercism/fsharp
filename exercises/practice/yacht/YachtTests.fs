@@ -1,11 +1,6 @@
 source("./yacht.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Yacht
-
 let ``Yacht`` () =
     score Category.Yacht [Die.Five; Die.Five; Die.Five; Die.Five; Die.Five] |> should equal 50
 

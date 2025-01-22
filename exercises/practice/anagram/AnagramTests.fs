@@ -1,11 +1,6 @@
 source("./anagram.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Anagram
-
 let ``No matches`` () =
     let candidates = ["hello"; "world"; "zombies"; "pants"]
     findAnagrams candidates "diaper" |> should be Empty

@@ -1,11 +1,6 @@
 source("./etl.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Etl
-
 let ``Single letter`` () =
     let lettersByScore = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList

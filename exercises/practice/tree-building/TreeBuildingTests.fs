@@ -3,14 +3,6 @@
 source("./tree-building-test.R")
 library(testthat)
 
-open System
-
-open FsUnit.Xunit
-open Xunit
-
-open TreeBuildingTypes
-open TreeBuilding
-
 let ``One node`` () =
     let input =
         [

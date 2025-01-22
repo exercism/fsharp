@@ -1,11 +1,6 @@
 source("./secret-handshake.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open SecretHandshake
-
 let ``Wink for 1`` () =
     commands 1 |> should equal ["wink"]
 

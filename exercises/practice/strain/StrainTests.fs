@@ -3,10 +3,6 @@
 source("./strain-test.R")
 library(testthat)
 
-open System.Collections.Specialized
-open Xunit
-open FsUnit.Xunit
-
 let ``Empty keep`` () =
     [] |> Seq.keep (fun x -> x < 10) |> should be Empty
 

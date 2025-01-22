@@ -1,11 +1,6 @@
 source("./word-count.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open WordCount
-
 let ``Count one word`` () =
     let expected = [("word", 1)] |> Map.ofList
     countWords "word" |> should equal expected

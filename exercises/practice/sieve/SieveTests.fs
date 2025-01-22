@@ -1,11 +1,6 @@
 source("./sieve.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Sieve
-
 let ``No primes under two`` () =
     primes 1 |> should be Empty
 

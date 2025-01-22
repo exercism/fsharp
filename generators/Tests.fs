@@ -1,16 +1,6 @@
 source("./generators..R")
 library(testthat)
 
-open System
-open System.IO
-open Serilog
-open LibGit2Sharp
-open Newtonsoft.Json
-open Newtonsoft.Json.Linq
-open Options
-open Tomlyn
-open Tomlyn.Syntax
-
 type TestCase = 
     { Uuid: string
       Input: Map<string, JToken>

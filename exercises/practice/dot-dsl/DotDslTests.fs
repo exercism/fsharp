@@ -3,11 +3,6 @@
 source("./dot-dsl-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-
-open DotDsl
-
 let ``Empty graph`` () =
     let g = graph []
 

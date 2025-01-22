@@ -1,11 +1,6 @@
 source("./diffie-hellman.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open DiffieHellman
-
 let ``Private key is greater than 1 and less than p`` () =
     let p = 7919I
     let privateKeys = [for _ in 0 .. 10 -> privateKey p]

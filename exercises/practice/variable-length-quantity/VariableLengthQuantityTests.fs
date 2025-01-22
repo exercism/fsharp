@@ -1,11 +1,6 @@
 source("./variable-length-quantity.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open VariableLengthQuantity
-
 let ``Zero`` () =
     encode [0x0u] |> should equal [0x0uy]
 

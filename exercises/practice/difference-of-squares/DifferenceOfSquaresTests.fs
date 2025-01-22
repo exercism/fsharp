@@ -1,11 +1,6 @@
 source("./difference-of-squares.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open DifferenceOfSquares
-
 let ``Square of sum 1`` () =
     squareOfSum 1 |> should equal 1
 

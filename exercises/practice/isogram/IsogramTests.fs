@@ -1,11 +1,6 @@
 source("./isogram.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Isogram
-
 let ``Empty string`` () =
     isIsogram "" |> should equal true
 

@@ -1,11 +1,6 @@
 source("./collatz-conjecture.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open CollatzConjecture
-
 let ``Zero steps for one`` () =
     steps 1 |> should equal (Some 0)
 

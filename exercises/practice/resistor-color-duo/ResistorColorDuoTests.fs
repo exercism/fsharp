@@ -1,11 +1,6 @@
 source("./resistor-color-duo.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ResistorColorDuo
-
 let ``Brown and black`` () =
     value ["brown"; "black"] |> should equal 10
 

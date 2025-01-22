@@ -1,11 +1,6 @@
 source("./go-counting.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open GoCounting
-
 let ``Black corner territory on 5x5 board`` () =
     let board = 
         [ "  B  ";

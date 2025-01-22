@@ -1,11 +1,6 @@
 source("./matching-brackets.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open MatchingBrackets
-
 let ``Paired square brackets`` () =
     isPaired "[]" |> should equal true
 

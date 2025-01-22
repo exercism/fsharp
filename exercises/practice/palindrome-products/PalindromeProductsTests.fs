@@ -1,11 +1,6 @@
 source("./palindrome-products.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open PalindromeProducts
-
 let ``Find the smallest palindrome from single digit factors`` () =
     let expected: int option * (int * int) list = (Some 1, [(1, 1)])
     smallest 1 9 |> should equal expected

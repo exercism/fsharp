@@ -1,11 +1,6 @@
 source("./armstrong-numbers.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ArmstrongNumbers
-
 let ``Zero is an Armstrong number`` () =
     isArmstrongNumber 0 |> should equal true
 

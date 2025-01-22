@@ -1,11 +1,6 @@
 source("./rna-transcription.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RnaTranscription
-
 let ``Empty RNA sequence`` () =
     toRna "" |> should equal ""
 

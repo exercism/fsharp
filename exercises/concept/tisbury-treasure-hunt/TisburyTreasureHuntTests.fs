@@ -1,12 +1,6 @@
 source("./tisbury-treasure-hunt.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open TisburyTreasureHunt
-
 [<Task(1)>]
 let ``Get coordinate for Scrimshaw Whale's Tooth`` () =
     getCoordinate ("Scrimshaw Whale's Tooth", "2A") |> should equal "2A"

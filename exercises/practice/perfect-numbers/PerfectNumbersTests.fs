@@ -1,11 +1,6 @@
 source("./perfect-numbers.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open PerfectNumbers
-
 let ``Smallest perfect number is classified correctly`` () =
     classify 6 |> should equal (Some Classification.Perfect)
 

@@ -1,11 +1,6 @@
 source("./dnd-character.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open DndCharacter
-
 let ``Ability modifier for score 3 is -4`` () =
     modifier 3 |> should equal -4
 

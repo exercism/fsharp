@@ -1,11 +1,6 @@
 source("./triangle.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Triangle
-
 let ``Equilateral returns all sides are equal`` () =
     equilateral [2.0; 2.0; 2.0] |> should equal true
 

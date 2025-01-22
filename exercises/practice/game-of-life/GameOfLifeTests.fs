@@ -1,11 +1,6 @@
 source("./game-of-life.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open GameOfLife
-
 let ``Empty matrix`` () =
     let matrix: int[,] = array2D []
     let expected: int[,] = array2D []

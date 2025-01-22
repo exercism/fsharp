@@ -1,11 +1,6 @@
 source("./pangram.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Pangram
-
 let ``Empty sentence`` () =
     isPangram "" |> should equal false
 

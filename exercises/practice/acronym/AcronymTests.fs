@@ -1,11 +1,6 @@
 source("./acronym.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Acronym
-
 let ``Basic`` () =
     abbreviate "Portable Network Graphics" |> should equal "PNG"
 

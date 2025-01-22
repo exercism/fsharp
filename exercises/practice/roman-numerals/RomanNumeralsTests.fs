@@ -1,11 +1,6 @@
 source("./roman-numerals.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RomanNumerals
-
 let ``1 is I`` () =
     roman 1 |> should equal "I"
 

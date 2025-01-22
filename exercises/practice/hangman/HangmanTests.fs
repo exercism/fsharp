@@ -3,11 +3,6 @@
 source("./hangman-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-
-open Hangman
-
 let ``Initially 9 failures are allowed`` () =
     let game = createGame "foo"
     let states = statesObservable game

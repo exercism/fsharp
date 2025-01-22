@@ -1,13 +1,6 @@
 source("./simple-cipher.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open System.Text.RegularExpressions
-open System
-
-open SimpleCipher
-
 let ``Random key cipher - Can encode`` () =
     let sut = SimpleCipher()
     sut.Encode("aaaaaaaaaa") |> should equal sut.Key.[0..9]

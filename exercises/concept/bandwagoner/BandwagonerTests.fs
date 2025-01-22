@@ -1,12 +1,6 @@
 source("./bandwagoner.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open Bandwagoner
-
 [<Task(2)>]
 let ``Create coach that was a former player`` () =
     createCoach "Steve Kerr" true

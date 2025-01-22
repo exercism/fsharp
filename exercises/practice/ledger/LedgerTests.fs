@@ -3,11 +3,6 @@
 source("./ledger-test.R")
 library(testthat)
 
-open Xunit
-open FsUnit.Xunit
-
-open Ledger
-
 let ``Empty ledger`` () =
     let currency = "USD"
     let locale = "en-US"

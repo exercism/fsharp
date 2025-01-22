@@ -1,11 +1,6 @@
 source("./square-root.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open SquareRoot
-
 let ``Root of 1`` () =
     squareRoot 1 |> should equal 1
 

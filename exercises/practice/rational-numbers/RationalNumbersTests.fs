@@ -1,11 +1,6 @@
 source("./rational-numbers.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RationalNumbers
-
 let ``Add two positive rational numbers`` () =
     add (create 1 2) (create 2 3) |> should equal (create 7 6)
 

@@ -1,12 +1,6 @@
 source("./cars-assemble.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open CarsAssemble
-
 [<Task(1)>]
 let ``Success rate for speed 10``() = successRate 10 |> should (equalWithin 0.01) 0.77
 

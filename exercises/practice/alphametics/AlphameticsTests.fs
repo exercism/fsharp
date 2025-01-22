@@ -1,11 +1,6 @@
 source("./alphametics.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Alphametics
-
 let ``Puzzle with three letters`` () =
     let puzzle = "I + BB == ILL"
     let expected = 

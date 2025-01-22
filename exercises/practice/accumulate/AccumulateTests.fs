@@ -3,11 +3,6 @@
 source("./accumulate-test.R")
 library(testthat)
 
-open System
-open Xunit
-open FsUnit.Xunit
-open Accumulate
-
 let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
 
 let ``Empty accumulation produces empty accumulation`` () =

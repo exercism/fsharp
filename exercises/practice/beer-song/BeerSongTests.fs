@@ -1,11 +1,6 @@
 source("./beer-song.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open BeerSong
-
 let ``First generic verse`` () =
     let expected = 
         [ "99 bottles of beer on the wall, 99 bottles of beer.";

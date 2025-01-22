@@ -1,11 +1,6 @@
 source("./resistor-color-trio.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ResistorColorTrio
-
 let ``Orange and orange and black`` () =
     label ["orange"; "orange"; "black"] |> should equal "33 ohms"
 

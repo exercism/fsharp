@@ -1,11 +1,6 @@
 source("./minesweeper.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Minesweeper
-
 let ``No rows`` () =
     let minefield: string list = []
     let expected: string list = []

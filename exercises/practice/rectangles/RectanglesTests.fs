@@ -1,11 +1,6 @@
 source("./rectangles.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Rectangles
-
 let ``No rows`` () =
     let strings = []
     rectangles strings |> should equal 0

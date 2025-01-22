@@ -1,11 +1,6 @@
 source("./wordy.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Wordy
-
 let ``Just a number`` () =
     answer "What is 5?" |> should equal (Some 5)
 

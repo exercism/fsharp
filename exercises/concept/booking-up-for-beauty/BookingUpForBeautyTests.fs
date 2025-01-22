@@ -1,12 +1,6 @@
 source("./booking-up-for-beauty.R")
 library(testthat)
 
-open System
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-open BookingUpForBeauty
-
 [<UseCulture("en-US")>]
 [<Task(1)>]
 let ``Schedule date using only numbers`` () =

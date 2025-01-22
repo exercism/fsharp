@@ -1,11 +1,6 @@
 source("./phone-number.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open PhoneNumber
-
 let ``Cleans the number`` () =
     let expected: Result<uint64,string> = Ok 2234567890UL
     clean "(223) 456-7890" |> should equal expected

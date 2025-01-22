@@ -1,11 +1,6 @@
 source("./isbn-verifier.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open IsbnVerifier
-
 let ``Valid isbn`` () =
     isValid "3-598-21508-8" |> should equal true
 

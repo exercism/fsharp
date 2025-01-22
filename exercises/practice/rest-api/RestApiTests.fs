@@ -1,11 +1,6 @@
 source("./rest-api.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RestApi
-
 let ``No users`` () =
     let database = """{"users":[]}"""
     let url = "/users"

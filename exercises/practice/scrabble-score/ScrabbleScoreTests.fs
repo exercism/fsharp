@@ -1,11 +1,6 @@
 source("./scrabble-score.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open ScrabbleScore
-
 let ``Lowercase letter`` () =
     score "a" |> should equal 1
 

@@ -1,11 +1,6 @@
 source("./pov.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Pov
-
 let rec graphToList (graph: Graph<'a>) = 
     let right =
         graph.children

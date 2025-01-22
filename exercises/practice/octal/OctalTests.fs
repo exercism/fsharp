@@ -3,11 +3,6 @@
 source("./octal-test.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Octal
-
 let ``Octal 1 is decimal 1`` () =
     toDecimal "1" |> should equal 1
 

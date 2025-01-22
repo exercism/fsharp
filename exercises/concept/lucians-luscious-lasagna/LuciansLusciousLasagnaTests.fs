@@ -1,12 +1,6 @@
 source("./lucians-luscious-lasagna.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open LuciansLusciousLasagna
-
 [<Task(1)>]
 let ``Expected minutes in oven`` () = expectedMinutesInOven |> should equal 40
 

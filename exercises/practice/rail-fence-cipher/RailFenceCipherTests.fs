@@ -1,11 +1,6 @@
 source("./rail-fence-cipher.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open RailFenceCipher
-
 let ``Encode with two rails`` () =
     let rails = 2
     let msg = "XOXOXOXOXOXOXOXOXO"

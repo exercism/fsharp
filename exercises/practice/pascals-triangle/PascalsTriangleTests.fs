@@ -1,11 +1,6 @@
 source("./pascals-triangle.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open PascalsTriangle
-
 let ``Zero rows`` () =
     let expected: int list list = []
     rows 0 |> should equal expected

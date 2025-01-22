@@ -1,11 +1,6 @@
 source("./spiral-matrix.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open SpiralMatrix
-
 let ``Empty spiral`` () =
     spiralMatrix 0 |> should be Empty
 

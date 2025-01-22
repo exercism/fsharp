@@ -1,12 +1,6 @@
 source("./interest-is-interesting.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-open Exercism.Tests
-
-open InterestIsInteresting
-
 [<Task(1)>]
 let ``Minimal first interest rate``() = interestRate 0m |> should (equalWithin 0.001) 0.5f
 

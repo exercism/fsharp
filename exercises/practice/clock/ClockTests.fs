@@ -1,11 +1,6 @@
 source("./clock.R")
 library(testthat)
 
-open FsUnit.Xunit
-open Xunit
-
-open Clock
-
 let ``On the hour`` () =
     let clock = create 8 0
     display clock |> should equal "08:00"
