@@ -6,7 +6,7 @@ library(testthat)
 test_that("One node", {
     input <-
         [
-            { RecordId = 0; ParentId = 0 }
+            { RecordId = 0, ParentId = 0 }
         ]
 
     tree <- buildTree input
@@ -18,9 +18,9 @@ test_that("One node", {
 test_that("Three nodes in order", {
     input <-
         [
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 2; ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 2, ParentId = 0 };
         ]
 
     tree <- buildTree input
@@ -39,9 +39,9 @@ test_that("Three nodes in order", {
 test_that("Three nodes in reverse order", {
     input <-
         [
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
+            { RecordId = 2, ParentId = 0 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
         ]
 
     tree <- buildTree input
@@ -60,10 +60,10 @@ test_that("Three nodes in reverse order", {
 test_that("More than two children", {
     input <-
         [
-            { RecordId = 3; ParentId = 0 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
+            { RecordId = 3, ParentId = 0 };
+            { RecordId = 2, ParentId = 0 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
         ]
 
     tree <- buildTree input
@@ -85,13 +85,13 @@ test_that("More than two children", {
 test_that("Binary tree", {
     input <-
         [
-            { RecordId = 5; ParentId = 1 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 2 }
+            { RecordId = 5, ParentId = 1 };
+            { RecordId = 3, ParentId = 2 };
+            { RecordId = 2, ParentId = 0 };
+            { RecordId = 4, ParentId = 1 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
+            { RecordId = 6, ParentId = 2 }
         ]
 
     tree <- buildTree input
@@ -124,13 +124,13 @@ test_that("Binary tree", {
 test_that("Unbalanced tree", {
     input <-
         [
-            { RecordId = 5; ParentId = 2 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 2 }
+            { RecordId = 5, ParentId = 2 };
+            { RecordId = 3, ParentId = 2 };
+            { RecordId = 2, ParentId = 0 };
+            { RecordId = 4, ParentId = 1 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
+            { RecordId = 6, ParentId = 2 }
         ]
 
     tree <- buildTree input
@@ -166,55 +166,55 @@ test_that("Empty input", {
 
 test_that("Root node has parent", {
     input <-
-        [ { RecordId = 0; ParentId = 1 };
-          { RecordId = 1; ParentId = 0 } ]
+        [ { RecordId = 0, ParentId = 1 };
+          { RecordId = 1, ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("No root node", {
-    input <- [ { RecordId = 1; ParentId = 0 } ]
+    input <- c( { RecordId = 1, ParentId = 0 } )
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("Out of bounds record id", {
     input <-
         [
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 4; ParentId = 2 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 }
+            { RecordId = 2, ParentId = 0 };
+            { RecordId = 4, ParentId = 2 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("Cycle directly", {
     input <-
         [
-            { RecordId = 5; ParentId = 2 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 2 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 3 }
+            { RecordId = 5, ParentId = 2 };
+            { RecordId = 3, ParentId = 2 };
+            { RecordId = 2, ParentId = 2 };
+            { RecordId = 4, ParentId = 1 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
+            { RecordId = 6, ParentId = 3 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("Cycle indirectly", {
     input <-
         [
-            { RecordId = 5; ParentId = 2 };
-            { RecordId = 3; ParentId = 2 };
-            { RecordId = 2; ParentId = 6 };
-            { RecordId = 4; ParentId = 1 };
-            { RecordId = 1; ParentId = 0 };
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 6; ParentId = 3 }
+            { RecordId = 5, ParentId = 2 };
+            { RecordId = 3, ParentId = 2 };
+            { RecordId = 2, ParentId = 6 };
+            { RecordId = 4, ParentId = 1 };
+            { RecordId = 1, ParentId = 0 };
+            { RecordId = 0, ParentId = 0 };
+            { RecordId = 6, ParentId = 3 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 test_that("Higher id parent of lower id", {
     input <-
         [
-            { RecordId = 0; ParentId = 0 };
-            { RecordId = 2; ParentId = 0 };
-            { RecordId = 1; ParentId = 2 }
+            { RecordId = 0, ParentId = 0 };
+            { RecordId = 2, ParentId = 0 };
+            { RecordId = 1, ParentId = 2 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>

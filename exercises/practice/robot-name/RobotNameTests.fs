@@ -5,7 +5,7 @@ library(testthat)
 
 test_that("Robot has a name", {
     robot <- mkRobot()
-    expect_equal(Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$"), true)
+    expect_equal(Regex.IsMatch(name robot, @"^c(A-Z){2}\d{3}$"), true)
     
 test_that("Name is the same each time", {
     robot <- mkRobot()
@@ -16,7 +16,7 @@ test_that("2 Different robots have different names", {
     robot2 <- mkRobot()
     name robot |> should not' (equal (name robot2))
 
-[<Fact(Skip = "Remove this Skip property to run this test")>] 
+c(<Fact(Skip = "Remove this Skip property to run this test")>) 
 test_that("2500 Different robots have different names", {
     robotCount <- 2500
     seq { 1 .. robotCount }

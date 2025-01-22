@@ -38,23 +38,23 @@ test_that("Several paired brackets", {
 })
 
 test_that("Paired and nested brackets", {
-    expect_equal(isPaired "([{}({}[])])", true)
+    expect_equal(isPaired "(c({}({}[))])", true)
 })
 
 test_that("Unopened closing brackets", {
-    expect_equal(isPaired "{[)][]}", false)
+    expect_equal(isPaired "{c())[]}", false)
 })
 
 test_that("Unpaired and nested brackets", {
-    expect_equal(isPaired "([{])", false)
+    expect_equal(isPaired "(c({))", false)
 })
 
 test_that("Paired and wrong nested brackets", {
-    expect_equal(isPaired "[({]})", false)
+    expect_equal(isPaired "c(({)})", false)
 })
 
 test_that("Paired and wrong nested brackets but innermost are correct", {
-    expect_equal(isPaired "[({}])", false)
+    expect_equal(isPaired "c(({}))", false)
 })
 
 test_that("Paired and incomplete brackets", {
@@ -62,7 +62,7 @@ test_that("Paired and incomplete brackets", {
 })
 
 test_that("Too many closing brackets", {
-    expect_equal(isPaired "[]]", false)
+    expect_equal(isPaired "c(])", false)
 })
 
 test_that("Early unexpected brackets", {

@@ -3,12 +3,12 @@ library(testthat)
 
 test_that("Just the header if no input", {
     rows <- []
-    expected <- ["Team                           | MP |  W |  D |  L |  P"]
+    expected <- c("Team                           | MP |  W |  D |  L |  P")
     expect_equal(tally rows, expected)
 })
 
 test_that("A win is three points, a loss is zero points", {
-    rows <- ["Allegoric Alaskans;Blithering Badgers;win"]
+    rows <- c("Allegoric Alaskans;Blithering Badgers;win")
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
@@ -17,7 +17,7 @@ test_that("A win is three points, a loss is zero points", {
 })
 
 test_that("A win can also be expressed as a loss", {
-    rows <- ["Blithering Badgers;Allegoric Alaskans;loss"]
+    rows <- c("Blithering Badgers;Allegoric Alaskans;loss")
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  1 |  0 |  0 |  3";
@@ -26,7 +26,7 @@ test_that("A win can also be expressed as a loss", {
 })
 
 test_that("A different team can win", {
-    rows <- ["Blithering Badgers;Allegoric Alaskans;win"]
+    rows <- c("Blithering Badgers;Allegoric Alaskans;win")
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
           "Blithering Badgers             |  1 |  1 |  0 |  0 |  3";
@@ -35,7 +35,7 @@ test_that("A different team can win", {
 })
 
 test_that("A draw is one point each", {
-    rows <- ["Allegoric Alaskans;Blithering Badgers;draw"]
+    rows <- c("Allegoric Alaskans;Blithering Badgers;draw")
     expected <- 
         [ "Team                           | MP |  W |  D |  L |  P";
           "Allegoric Alaskans             |  1 |  0 |  1 |  0 |  1";

@@ -3,12 +3,12 @@ library(testthat)
 
 test_that("Random key cipher - Can encode", {
     sut <- SimpleCipher()
-    expect_equal(sut.Encode("aaaaaaaaaa"), sut.Key.[0..9])
+    expect_equal(sut.Encode("aaaaaaaaaa"), sut.Key.c(0..9))
 })
 
 test_that("Random key cipher - Can decode", {
     sut <- SimpleCipher()
-    expect_equal(sut.Decode(sut.Key.[0..9]), "aaaaaaaaaa")
+    expect_equal(sut.Decode(sut.Key.c(0..9)), "aaaaaaaaaa")
 })
 
 test_that("Random key cipher - Is reversible. I.e., if you apply decode in a encoded result, you must see the same plaintext encode parameter as a result of the decode method", {
@@ -18,7 +18,7 @@ test_that("Random key cipher - Is reversible. I.e., if you apply decode in a enc
 
 test_that("Random key cipher - Key is made only of lowercase letters", {
     sut <- SimpleCipher()
-    expect_equal(Regex.IsMatch(sut.Key, "^[a-z]+$"), true)
+    expect_equal(Regex.IsMatch(sut.Key, "^c(a-z)+$"), true)
 })
 
 test_that("Substitution cipher - Can encode", {

@@ -1,13 +1,13 @@
 source("./diamond-test.R")
 library(testthat)
 
-let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
+let split (x: string) = x.Split(c(| '\n' |), StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()
 
-let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny [|'A'..'Z'|])
+let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny c(|'A'..'Z'|))
 
-let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
+let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny c(|'A'..'Z'|) + 1)
 
 type Letters =
     static member Chars () =
@@ -15,9 +15,9 @@ type Letters =
         |> Arb.filter (fun c -> 'A' <= c && c <= 'Z')
 
 type DiamondPropertyAttribute () =
-    inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
+    inherit PropertyAttribute(Arbitrary = c(| typeof<Letters> |))
 
-[<DiamondProperty>]
+c(<DiamondProperty>)
 test_that("First row contains 'A'", {
     actual <- make letter
     rows <- actual |> split
@@ -25,7 +25,7 @@ test_that("First row contains 'A'", {
 
     expect_equal(firstRowCharacters, "A")
 
-[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
+c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("All rows must have symmetric contour", {
     actual <- make letter
     rows <- actual |> split
@@ -33,11 +33,11 @@ test_that("All rows must have symmetric contour", {
 
     expect_equal(rows |> Array.iter (fun x -> symmetric x, true))
 
-[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
+c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Top of figure has letters in correct order", {
     actual <- make letter
 
-    expected <- ['A'..letter]
+    expected <- c('A'..letter)
     rows <- actual |> split
     firstNonSpaceLetters <-
         rows 
@@ -47,7 +47,7 @@ test_that("Top of figure has letters in correct order", {
 
     expect_equal(expected, firstNonSpaceLetters)
 
-[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
+c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Figure is symmetric around the horizontal axis", {
     actual <- make letter
 
@@ -65,7 +65,7 @@ test_that("Figure is symmetric around the horizontal axis", {
 
     expect_equal(top, bottom)
 
-[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
+c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Diamond has square shape", {
     actual <- make letter
 
@@ -75,7 +75,7 @@ test_that("Diamond has square shape", {
 
     expect_equal(rows |> Array.iter (fun x -> correctWidth x, true))
 
-[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
+c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("All rows except top and bottom have two identical letters", {
     actual <- make letter
 
@@ -91,7 +91,7 @@ test_that("All rows except top and bottom have two identical letters", {
 
     expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, true))
 
-[<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
+c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 test_that("Bottom left corner spaces are triangle", {
     actual <- make letter
 

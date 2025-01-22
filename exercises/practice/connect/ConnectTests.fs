@@ -12,12 +12,12 @@ test_that("An empty board has no winner", {
 })
 
 test_that("X can win on a 1x1 board", {
-    board <- ["X"]
+    board <- c("X")
     expect_equal(winner board, (Some Black))
 })
 
 test_that("O can win on a 1x1 board", {
-    board <- ["O"]
+    board <- c("O")
     expect_equal(winner board, (Some White))
 })
 

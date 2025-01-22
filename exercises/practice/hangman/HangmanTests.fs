@@ -36,7 +36,7 @@ test_that("After 10 failures the game is over", {
 
     startGame game |> ignore
 
-    [for x in 1..10 do makeGuess 'x' game] |> ignore
+    c(for x in 1..10 do makeGuess 'x' game) |> ignore
 
     expect_equal(lastProgress, Lose)
     
@@ -45,7 +45,7 @@ test_that("Feeding a correct letter removes underscores", {
     states <- statesObservable game
 
     let mutable lastState = None
-    states.Add(fun state -> lastState <- Some state) |> ignore
+    states.Add(fun state -> lastState <- state) |> ignore
 
     startGame game |> ignore
 
@@ -64,7 +64,7 @@ test_that("Feeding a correct letter twice counts as a failure", {
     states <- statesObservable game
 
     let mutable lastState = None
-    states.Add(fun state -> lastState <- Some state) |> ignore
+    states.Add(fun state -> lastState <- state) |> ignore
 
     startGame game |> ignore
 
@@ -83,7 +83,7 @@ test_that("Getting all the letters right makes for a win", {
     states <- statesObservable game
 
     let mutable lastState = None
-    states.Add(fun state -> lastState <- Some state) |> ignore
+    states.Add(fun state -> lastState <- state) |> ignore
 
     startGame game |> ignore
 

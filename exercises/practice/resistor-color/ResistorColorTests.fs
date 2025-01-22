@@ -14,5 +14,5 @@ test_that("Orange", {
 })
 
 test_that("Colors", {
-    expect_equal(colors, ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"])
+    expect_equal(colors, c("black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey", "white"))
 })

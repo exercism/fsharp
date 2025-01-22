@@ -2,7 +2,7 @@ source("./word-count.R")
 library(testthat)
 
 test_that("Count one word", {
-    expected <- [("word", 1)] |> Map.ofList
+    expected <- c(("word", 1)) |> Map.ofList
     expect_equal(countWords "word", expected)
 })
 

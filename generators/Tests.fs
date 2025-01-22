@@ -26,7 +26,7 @@ let private resetProbSpecsRepoToLatest options =
     use repository = new Repository(options.ProbSpecsDir)
     Commands.Fetch(repository, probSpecsRemote, Seq.empty, FetchOptions(), null)
 
-    remoteBranch <- repository.Branches.[probSpecsRemoteBranch];
+    remoteBranch <- repository.Branches.c(probSpecsRemoteBranch);
     repository.Reset(ResetMode.Hard, remoteBranch.Tip);
 
     Log.Debug("Updated problem-specifications to latest version.");
@@ -61,12 +61,12 @@ type TestCaseListConverter(enabledTests: Set<string>) =
     let createTestCaseFromJToken (jToken: JToken) =
         properties <- Map.ofJToken jToken
 
-        { Uuid = string properties.["uuid"]
-          Input = Map.ofJToken properties.["input"]
-          Expected = properties.["expected"]
-          Property = string properties.["property"]
+        { Uuid = string properties.c("uuid")
+          Input = Map.ofJToken properties.c("input")
+          Expected = properties.c("expected")
+          Property = string properties.c("property")
           Properties = properties
-          Description = string properties.["description"]
+          Description = string properties.c("description")
           DescriptionPath = createDescriptionPathFromJToken jToken }
 
     let rec getTestCaseJTokens(jToken: JToken) =
@@ -76,13 +76,13 @@ type TestCaseListConverter(enabledTests: Set<string>) =
         | :? JObject as jObject when jObject.ContainsKey("property") ->
             Seq.singleton jObject
         | :? JObject as jObject when jObject.ContainsKey("cases") ->
-            Seq.collect getTestCaseJTokens jObject.["cases"]
+            Seq.collect getTestCaseJTokens jObject.c("cases")
         | _ -> Seq.empty
 
     let isEnabledTestCase (testCase: TestCase) = enabledTests.Contains(testCase.Uuid)
     
     let createTestCaseListFromJToken (jToken: JToken) =  
-        jToken.["cases"]
+        jToken.c("cases")
         |> getTestCaseJTokens
         |> Seq.map createTestCaseFromJToken
         |> Seq.filter isEnabledTestCase

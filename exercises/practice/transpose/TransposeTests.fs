@@ -8,7 +8,7 @@ test_that("Empty string", {
 })
 
 test_that("Two characters in a row", {
-    lines <- ["A1"]
+    lines <- c("A1")
     expected <- 
         [ "A";
           "1" ]
@@ -19,7 +19,7 @@ test_that("Two characters in a column", {
     lines <- 
         [ "A";
           "1" ]
-    expected <- ["A1"]
+    expected <- c("A1")
     expect_equal(transpose lines, expected)
 })
 
@@ -35,7 +35,7 @@ test_that("Simple", {
 })
 
 test_that("Single line", {
-    lines <- ["Single line."]
+    lines <- c("Single line.")
     expected <- 
         [ "S";
           "i";

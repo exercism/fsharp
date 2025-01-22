@@ -8,13 +8,13 @@ test_that("Zero pieces", {
 })
 
 test_that("One piece", {
-    strings <- ["nail"]
-    expected <- ["And all for the want of a nail."]
+    strings <- c("nail")
+    expected <- c("And all for the want of a nail.")
     expect_equal(recite strings, expected)
 })
 
 test_that("Two pieces", {
-    strings <- ["nail"; "shoe"]
+    strings <- c("nail", "shoe")
     expected <- 
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
@@ -22,7 +22,7 @@ test_that("Two pieces", {
 })
 
 test_that("Three pieces", {
-    strings <- ["nail"; "shoe"; "horse"]
+    strings <- c("nail", "shoe", "horse")
     expected <- 
         [ "For want of a nail the shoe was lost.";
           "For want of a shoe the horse was lost.";
@@ -31,7 +31,7 @@ test_that("Three pieces", {
 })
 
 test_that("Full proverb", {
-    strings <- ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
+    strings <- c("nail", "shoe", "horse", "rider", "message", "battle", "kingdom")
     expected <- 
         [ "For want of a nail the shoe was lost.";
           "For want of a shoe the horse was lost.";
@@ -44,7 +44,7 @@ test_that("Full proverb", {
 })
 
 test_that("Four pieces modernized", {
-    strings <- ["pin"; "gun"; "soldier"; "battle"]
+    strings <- c("pin", "gun", "soldier", "battle")
     expected <- 
         [ "For want of a pin the gun was lost.";
           "For want of a gun the soldier was lost.";

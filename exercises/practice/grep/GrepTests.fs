@@ -42,61 +42,61 @@ let createFiles() =
 type GrepTests() =
 
         member this.``One file, one match, no flags`` () =
-        files <- ["iliad.txt"]
+        files <- c("iliad.txt")
         flags <- []
         pattern <- "Agamemnon"
-        expected <- ["Of Atreus, Agamemnon, King of men."]
+        expected <- c("Of Atreus, Agamemnon, King of men.")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, one match, print line numbers flag`` () =
-        files <- ["paradise-lost.txt"]
-        flags <- ["-n"]
+        files <- c("paradise-lost.txt")
+        flags <- c("-n")
         pattern <- "Forbidden"
-        expected <- ["2:Of that Forbidden Tree, whose mortal tast"]
+        expected <- c("2:Of that Forbidden Tree, whose mortal tast")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, one match, case-insensitive flag`` () =
-        files <- ["paradise-lost.txt"]
-        flags <- ["-i"]
+        files <- c("paradise-lost.txt")
+        flags <- c("-i")
         pattern <- "FORBIDDEN"
-        expected <- ["Of that Forbidden Tree, whose mortal tast"]
+        expected <- c("Of that Forbidden Tree, whose mortal tast")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, one match, print file names flag`` () =
-        files <- ["paradise-lost.txt"]
-        flags <- ["-l"]
+        files <- c("paradise-lost.txt")
+        flags <- c("-l")
         pattern <- "Forbidden"
-        expected <- ["paradise-lost.txt"]
+        expected <- c("paradise-lost.txt")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, one match, match entire lines flag`` () =
-        files <- ["paradise-lost.txt"]
-        flags <- ["-x"]
+        files <- c("paradise-lost.txt")
+        flags <- c("-x")
         pattern <- "With loss of Eden, till one greater Man"
-        expected <- ["With loss of Eden, till one greater Man"]
+        expected <- c("With loss of Eden, till one greater Man")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, one match, multiple flags`` () =
-        files <- ["iliad.txt"]
-        flags <- ["-n"; "-i"; "-x"]
+        files <- c("iliad.txt")
+        flags <- c("-n", "-i", "-x")
         pattern <- "OF ATREUS, Agamemnon, KIng of MEN."
-        expected <- ["9:Of Atreus, Agamemnon, King of men."]
+        expected <- c("9:Of Atreus, Agamemnon, King of men.")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, several matches, no flags`` () =
-        files <- ["midsummer-night.txt"]
+        files <- c("midsummer-night.txt")
         flags <- []
         pattern <- "may"
         expected <- 
@@ -108,8 +108,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, several matches, print line numbers flag`` () =
-        files <- ["midsummer-night.txt"]
-        flags <- ["-n"]
+        files <- c("midsummer-night.txt")
+        flags <- c("-n")
         pattern <- "may"
         expected <- 
             [ "3:Nor how it may concern my modesty,";
@@ -120,8 +120,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, several matches, match entire lines flag`` () =
-        files <- ["midsummer-night.txt"]
-        flags <- ["-x"]
+        files <- c("midsummer-night.txt")
+        flags <- c("-x")
         pattern <- "may"
         let expected: string list = []
         
@@ -129,8 +129,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, several matches, case-insensitive flag`` () =
-        files <- ["iliad.txt"]
-        flags <- ["-i"]
+        files <- c("iliad.txt")
+        flags <- c("-i")
         pattern <- "ACHILLES"
         expected <- 
             [ "Achilles sing, O Goddess! Peleus' son;";
@@ -140,8 +140,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, several matches, inverted flag`` () =
-        files <- ["paradise-lost.txt"]
-        flags <- ["-v"]
+        files <- c("paradise-lost.txt")
+        flags <- c("-v")
         pattern <- "Of"
         expected <- 
             [ "Brought Death into the World, and all our woe,";
@@ -154,8 +154,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, no matches, various flags`` () =
-        files <- ["iliad.txt"]
-        flags <- ["-n"; "-l"; "-x"; "-i"]
+        files <- c("iliad.txt")
+        flags <- c("-n", "-l", "-x", "-i")
         pattern <- "Gandalf"
         let expected: string list = []
         
@@ -163,17 +163,17 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, one match, file flag takes precedence over line flag`` () =
-        files <- ["iliad.txt"]
-        flags <- ["-n"; "-l"]
+        files <- c("iliad.txt")
+        flags <- c("-n", "-l")
         pattern <- "ten"
-        expected <- ["iliad.txt"]
+        expected <- c("iliad.txt")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``One file, several matches, inverted and match entire lines flags`` () =
-        files <- ["iliad.txt"]
-        flags <- ["-x"; "-v"]
+        files <- c("iliad.txt")
+        flags <- c("-x", "-v")
         pattern <- "Illustrious into Ades premature,"
         expected <- 
             [ "Achilles sing, O Goddess! Peleus' son;";
@@ -189,16 +189,16 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, one match, no flags`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
         flags <- []
         pattern <- "Agamemnon"
-        expected <- ["iliad.txt:Of Atreus, Agamemnon, King of men."]
+        expected <- c("iliad.txt:Of Atreus, Agamemnon, King of men.")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, several matches, no flags`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
         flags <- []
         pattern <- "may"
         expected <- 
@@ -210,8 +210,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, several matches, print line numbers flag`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-n"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-n")
         pattern <- "that"
         expected <- 
             [ "midsummer-night.txt:5:But I beseech your grace that I may know";
@@ -223,8 +223,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, one match, print file names flag`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-l"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-l")
         pattern <- "who"
         expected <- 
             [ "iliad.txt";
@@ -234,8 +234,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, several matches, case-insensitive flag`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-i"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-i")
         pattern <- "TO"
         expected <- 
             [ "iliad.txt:Caused to Achaia's host, sent many a soul";
@@ -253,8 +253,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, several matches, inverted flag`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-v"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-v")
         pattern <- "a"
         expected <- 
             [ "iliad.txt:Achilles sing, O Goddess! Peleus' son;";
@@ -265,26 +265,26 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, one match, match entire lines flag`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-x"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-x")
         pattern <- "But I beseech your grace that I may know"
-        expected <- ["midsummer-night.txt:But I beseech your grace that I may know"]
+        expected <- c("midsummer-night.txt:But I beseech your grace that I may know")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, one match, multiple flags`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-n"; "-i"; "-x"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-n", "-i", "-x")
         pattern <- "WITH LOSS OF EDEN, TILL ONE GREATER MAN"
-        expected <- ["paradise-lost.txt:4:With loss of Eden, till one greater Man"]
+        expected <- c("paradise-lost.txt:4:With loss of Eden, till one greater Man")
         
         createFiles() |> ignore
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, no matches, various flags`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-n"; "-l"; "-x"; "-i"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-n", "-l", "-x", "-i")
         pattern <- "Frodo"
         let expected: string list = []
         
@@ -292,8 +292,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, several matches, file flag takes precedence over line number flag`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-n"; "-l"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-n", "-l")
         pattern <- "who"
         expected <- 
             [ "iliad.txt";
@@ -303,8 +303,8 @@ type GrepTests() =
     expect_equal(grep files flags pattern, expected)
 
         member this.``Multiple files, several matches, inverted and match entire lines flags`` () =
-        files <- ["iliad.txt"; "midsummer-night.txt"; "paradise-lost.txt"]
-        flags <- ["-x"; "-v"]
+        files <- c("iliad.txt", "midsummer-night.txt", "paradise-lost.txt")
+        flags <- c("-x", "-v")
         pattern <- "Illustrious into Ades premature,"
         expected <- 
             [ "iliad.txt:Achilles sing, O Goddess! Peleus' son;";

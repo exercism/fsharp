@@ -2,27 +2,27 @@ source("./series.R")
 library(testthat)
 
 test_that("Slices of one from one", {
-    expect_equal(slices "1" 1, (Some ["1"]))
+    expect_equal(slices "1" 1, (Some c("1")))
 })
 
 test_that("Slices of one from two", {
-    expect_equal(slices "12" 1, (Some ["1"; "2"]))
+    expect_equal(slices "12" 1, (Some c("1", "2")))
 })
 
 test_that("Slices of two", {
-    expect_equal(slices "35" 2, (Some ["35"]))
+    expect_equal(slices "35" 2, (Some c("35")))
 })
 
 test_that("Slices of two overlap", {
-    expect_equal(slices "9142" 2, (Some ["91"; "14"; "42"]))
+    expect_equal(slices "9142" 2, (Some c("91", "14", "42")))
 })
 
 test_that("Slices can include duplicates", {
-    expect_equal(slices "777777" 3, (Some ["777"; "777"; "777"; "777"]))
+    expect_equal(slices "777777" 3, (Some c("777", "777", "777", "777")))
 })
 
 test_that("Slices of a long series", {
-    expect_equal(slices "918493904243" 5, (Some ["91849"; "18493"; "84939"; "49390"; "93904"; "39042"; "90424"; "04243"]))
+    expect_equal(slices "918493904243" 5, (Some c("91849", "18493", "84939", "49390", "93904", "39042", "90424", "04243")))
 })
 
 test_that("Slice length is too large", {

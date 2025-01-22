@@ -8,8 +8,8 @@ test_that("No rows", {
 })
 
 test_that("No columns", {
-    minefield <- [""]
-    expected <- [""]
+    minefield <- c("")
+    expected <- c("")
     expect_equal(annotate minefield, expected)
 })
 
@@ -62,14 +62,14 @@ test_that("Space surrounded by mines", {
 })
 
 test_that("Horizontal line", {
-    minefield <- [" * * "]
-    expected <- ["1*2*1"]
+    minefield <- c(" * * ")
+    expected <- c("1*2*1")
     expect_equal(annotate minefield, expected)
 })
 
 test_that("Horizontal line, mines at edges", {
-    minefield <- ["*   *"]
-    expected <- ["*1 1*"]
+    minefield <- c("*   *")
+    expected <- c("*1 1*")
     expect_equal(annotate minefield, expected)
 })
 

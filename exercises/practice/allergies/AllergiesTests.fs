@@ -165,37 +165,37 @@ test_that("List - no allergies", {
     list 0 |> should be Empty
 
 test_that("List - just eggs", {
-    expect_equal(list 1, [Allergen.Eggs])
+    expect_equal(list 1, c(Allergen.Eggs))
 })
 
 test_that("List - just peanuts", {
-    expect_equal(list 2, [Allergen.Peanuts])
+    expect_equal(list 2, c(Allergen.Peanuts))
 })
 
 test_that("List - just strawberries", {
-    expect_equal(list 8, [Allergen.Strawberries])
+    expect_equal(list 8, c(Allergen.Strawberries))
 })
 
 test_that("List - eggs and peanuts", {
-    expect_equal(list 3, [Allergen.Eggs; Allergen.Peanuts])
+    expect_equal(list 3, c(Allergen.Eggs, Allergen.Peanuts))
 })
 
 test_that("List - more than eggs but not peanuts", {
-    expect_equal(list 5, [Allergen.Eggs; Allergen.Shellfish])
+    expect_equal(list 5, c(Allergen.Eggs, Allergen.Shellfish))
 })
 
 test_that("List - lots of stuff", {
-    expect_equal(list 248, [Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats])
+    expect_equal(list 248, c(Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
 })
 
 test_that("List - everything", {
-    expect_equal(list 255, [Allergen.Eggs; Allergen.Peanuts; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats])
+    expect_equal(list 255, c(Allergen.Eggs, Allergen.Peanuts, Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
 })
 
 test_that("List - no allergen score parts", {
-    expect_equal(list 509, [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats])
+    expect_equal(list 509, c(Allergen.Eggs, Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
 })
 
 test_that("List - no allergen score parts without highest valid score", {
-    expect_equal(list 257, [Allergen.Eggs])
+    expect_equal(list 257, c(Allergen.Eggs))
 })

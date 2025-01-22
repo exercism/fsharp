@@ -7,12 +7,12 @@ test_that("No rows", {
 })
 
 test_that("No columns", {
-    strings <- [""]
+    strings <- c("")
     expect_equal(rectangles strings, 0)
 })
 
 test_that("No rectangles", {
-    strings <- [" "]
+    strings <- c(" ")
     expect_equal(rectangles strings, 0)
 })
 
