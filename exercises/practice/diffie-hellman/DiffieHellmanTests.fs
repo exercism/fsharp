@@ -18,21 +18,21 @@ test_that("Can calculate public key using private key", {
     p <- 23I
     g <- 5I
     privateKey <- 6I
-    expect_equal(publicKey p g privateKey, 8I)
+    expect_equal(publicKey(p, g, privateKey), 8I)
 })
 
 test_that("Can calculate public key when given a different private key", {
     p <- 23I
     g <- 5I
     privateKey <- 15I
-    expect_equal(publicKey p g privateKey, 19I)
+    expect_equal(publicKey(p, g, privateKey), 19I)
 })
 
 test_that("Can calculate secret using other party's public key", {
     p <- 23I
     theirPublicKey <- 19I
     myPrivateKey <- 6I
-    expect_equal(secret p theirPublicKey myPrivateKey, 2I)
+    expect_equal(secret(p, theirPublicKey, myPrivateKey), 2I)
 })
 
 test_that("Key exchange", {

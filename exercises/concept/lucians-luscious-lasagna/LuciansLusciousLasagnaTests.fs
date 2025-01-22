@@ -13,7 +13,7 @@ test_that("Preparation time in minutes for multiple layers", {
     expect_equal(preparationTimeInMinutes(4), 8)
 
 test_that("Elapsed time in minutes for one layer", {
-    expect_equal(elapsedTimeInMinutes 1 30, 32)
+    expect_equal(elapsedTimeInMinutes(1, 30), 32)
 
 test_that("Elapsed time in minutes for multiple layers", {
-    expect_equal(elapsedTimeInMinutes 4 8, 16)
+    expect_equal(elapsedTimeInMinutes(4, 8), 16)

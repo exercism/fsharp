@@ -10,7 +10,7 @@ test_that("Empty ledger", {
     expected <-
         "Date       | Description               | Change       "
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
 })
 
 test_that("One entry", {
@@ -24,7 +24,7 @@ test_that("One entry", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)"
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
 })
 
 test_that("Credit and debit", {
@@ -40,7 +40,7 @@ test_that("Credit and debit", {
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/02/2015 | Get present               |       $10.00 "
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
  
 test_that("Multiple entries on same date ordered by description", {
     currency <- "USD"
@@ -55,7 +55,7 @@ test_that("Multiple entries on same date ordered by description", {
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/01/2015 | Get present               |       $10.00 "
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
    
 test_that("Final order tie breaker is change", {
     currency <- "USD"
@@ -72,7 +72,7 @@ test_that("Final order tie breaker is change", {
         "01/01/2015 | Something                 |        $0.00 " + System.Environment.NewLine +
         "01/01/2015 | Something                 |        $0.01 "
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
   
 test_that("Overlong descriptions", {
     currency <- "USD"
@@ -85,7 +85,7 @@ test_that("Overlong descriptions", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
   
 test_that("Euros", {
     currency <- "EUR"
@@ -98,7 +98,7 @@ test_that("Euros", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      (€10.00)"
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
    
 test_that("Dutch locale", {
     currency <- "USD"
@@ -111,7 +111,7 @@ test_that("Dutch locale", {
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
  
 test_that("Dutch negative number with 3 digits before decimal point", {
     currency <- "USD"
@@ -124,7 +124,7 @@ test_that("Dutch negative number with 3 digits before decimal point", {
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |     $ -123,45"
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)
    
 test_that("American negative number with 3 digits before decimal point", {
     currency <- "USD"
@@ -137,4 +137,4 @@ test_that("American negative number with 3 digits before decimal point", {
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "03/12/2015 | Buy present               |     ($123.45)"
 
-    expect_equal(formatLedger currency locale entries, expected)
+    expect_equal(formatLedger(currency, locale, entries), expected)

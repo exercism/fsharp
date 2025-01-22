@@ -67,40 +67,40 @@ test_that("Create Record for first matched records returns correct tuple", {
     azarasData <- ("Scrimshaw Whale's Tooth", "2A")
     ruisData <- ("Deserted Docks", (2, 'A'), "Blue")
     expected <- ("2A", "Deserted Docks", "Blue", "Scrimshaw Whale's Tooth")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for second matched records returns correct tuple", {
     azarasData <- ("Glass Starfish", "6D")
     ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
     expected <- ("6D", "Tangled Seaweed Patch", "Orange", "Glass Starfish")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for third matched records returns correct tuple", {
     azarasData <- ("Vintage Pirate Hat", "7E")
     ruisData <- ("Quiet Inlet (Island of Mystery)", (7, 'E'), "Orange")
     expected <- ("7E", "Quiet Inlet (Island of Mystery)", "Orange", "Vintage Pirate Hat")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for forth matched records returns correct tuple", {
     azarasData <- ("Glass Starfish", "6D")
     ruisData <- ("Tangled Seaweed Patch", (6, 'D'), "Orange")
     expected <- ("6D", "Tangled Seaweed Patch", "Orange", "Glass Starfish")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for first unmatched records returns correct empty tuple", {
     azarasData <- ("Angry Monkey Figurine", "5B")
     ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
     expected <- ("", "", "", "")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for second unmatched records returns correct empty tuple", {
     azarasData <- ("Brass Spyglass", "4B")
     ruisData <- ("Spiky Rocks", (3, 'D'), "Yellow")
     expected <- ("", "", "", "")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)
 
 test_that("Compare records for third unmatched records returns correct empty tuple", {
     azarasData <- ("Angry Monkey Figurine", "5B")
     ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
     expected <- ("", "", "", "")
-    expect_equal(createRecord azarasData ruisData, expected)
+    expect_equal(createRecord(azarasData, ruisData), expected)

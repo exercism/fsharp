@@ -100,7 +100,7 @@ test_that("Student not added to same grade more than once", {
         |> add "James" 2
         |> add "James" 2
         |> add "Paul" 2
-    expect_equal(grade 2 school, c("Blair", "James", "Paul"))
+    expect_equal(grade(2, school), c("Blair", "James", "Paul"))
 })
 
 test_that("Student not added to multiple grades", {
@@ -110,7 +110,7 @@ test_that("Student not added to multiple grades", {
         |> add "James" 2
         |> add "James" 3
         |> add "Paul" 3
-    expect_equal(grade 2 school, c("Blair", "James"))
+    expect_equal(grade(2, school), c("Blair", "James"))
 })
 
 test_that("Student not added to other grade for multiple grades", {
@@ -120,7 +120,7 @@ test_that("Student not added to other grade for multiple grades", {
         |> add "James" 2
         |> add "James" 3
         |> add "Paul" 3
-    expect_equal(grade 3 school, c("Paul"))
+    expect_equal(grade(3, school), c("Paul"))
 })
 
 test_that("Students are sorted by name in a grade", {
@@ -129,5 +129,5 @@ test_that("Students are sorted by name in a grade", {
         |> add "Franklin" 5
         |> add "Bradley" 5
         |> add "Jeff" 1
-    expect_equal(grade 5 school, c("Bradley", "Franklin"))
+    expect_equal(grade(5, school), c("Bradley", "Franklin"))
 })
