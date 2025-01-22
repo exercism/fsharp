@@ -19,27 +19,27 @@ type DiamondPropertyAttribute () =
 
 [<DiamondProperty>]
 let ``First row contains 'A'`` (letter:char) =
-    let actual = make letter
-    let rows = actual |> split
-    let firstRowCharacters = rows |> Seq.head |> trim
+    actual <- make letter
+    rows <- actual |> split
+    firstRowCharacters <- rows |> Seq.head |> trim
 
     firstRowCharacters |> should equal "A"
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``All rows must have symmetric contour`` (letter:char) =
-    let actual = make letter
-    let rows = actual |> split
+    actual <- make letter
+    rows <- actual |> split
     let symmetric (row:string) = leadingSpaces row = trailingSpaces row
 
     rows |> Array.iter (fun x -> symmetric x |> should equal true)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Top of figure has letters in correct order`` (letter:char) =
-    let actual = make letter
+    actual <- make letter
 
-    let expected = ['A'..letter]
-    let rows = actual |> split
-    let firstNonSpaceLetters =
+    expected <- ['A'..letter]
+    rows <- actual |> split
+    firstNonSpaceLetters <-
         rows 
         |> Seq.take expected.Length
         |> Seq.map (trim >> Seq.head)
@@ -49,15 +49,15 @@ let ``Top of figure has letters in correct order`` (letter:char) =
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Figure is symmetric around the horizontal axis`` (letter:char) =
-    let actual = make letter
+    actual <- make letter
 
-    let rows = actual |> split
-    let top = 
+    rows <- actual |> split
+    top <- 
         rows
         |> Seq.takeWhile (fun x -> not (x.Contains(string letter)))
         |> List.ofSeq
     
-    let bottom = 
+    bottom <- 
         rows 
         |> Array.rev
         |> Seq.takeWhile (fun x -> not (x.Contains(string letter)))
@@ -67,48 +67,48 @@ let ``Figure is symmetric around the horizontal axis`` (letter:char) =
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Diamond has square shape`` (letter:char) =
-    let actual = make letter
+    actual <- make letter
 
-    let rows = actual |> split
-    let expected = rows.Length
+    rows <- actual |> split
+    expected <- rows.Length
     let correctWidth (x:string) = x.Length = expected
 
     rows |> Array.iter (fun x -> correctWidth x |> should equal true)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``All rows except top and bottom have two identical letters`` (letter:char) =
-    let actual = make letter
+    actual <- make letter
 
-    let rows = 
+    rows <- 
         actual 
         |> split 
         |> Array.filter (fun x -> not (x.Contains("A")))
 
     let twoIdenticalLetters (row:string) = 
-        let twoCharacters = row.Replace(" ", "").Length = 2
-        let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
+        twoCharacters <- row.Replace(" ", "").Length = 2
+        identicalCharacters <- row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
     rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
 
 [<DiamondProperty(Skip = "Remove this Skip property to run this test")>]
 let ``Bottom left corner spaces are triangle`` (letter:char) =
-    let actual = make letter
+    actual <- make letter
 
-    let rows = actual |> split
+    rows <- actual |> split
     
-    let cornerSpaces = 
+    cornerSpaces <- 
         rows 
         |> Array.rev
         |> Seq.skipWhile (fun x -> not (x.Contains(string letter)))
         |> Seq.map leadingSpaces
         |> Seq.toList
 
-    let spaceCounts = 
+    spaceCounts <- 
         cornerSpaces 
         |> List.map (fun x -> x.Length)
 
-    let expected = 
+    expected <- 
         Seq.initInfinite id
         |> Seq.take spaceCounts.Length
         |> Seq.toList

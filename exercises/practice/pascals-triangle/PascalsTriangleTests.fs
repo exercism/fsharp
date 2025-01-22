@@ -6,24 +6,24 @@ let ``Zero rows`` () =
     rows 0 |> should equal expected
 
 let ``Single row`` () =
-    let expected = [[1]]
+    expected <- [[1]]
     rows 1 |> should equal expected
 
 let ``Two rows`` () =
-    let expected = 
+    expected <- 
         [ [1];
           [1; 1] ]
     rows 2 |> should equal expected
 
 let ``Three rows`` () =
-    let expected = 
+    expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1] ]
     rows 3 |> should equal expected
 
 let ``Four rows`` () =
-    let expected = 
+    expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1];
@@ -31,7 +31,7 @@ let ``Four rows`` () =
     rows 4 |> should equal expected
 
 let ``Five rows`` () =
-    let expected = 
+    expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1];
@@ -40,7 +40,7 @@ let ``Five rows`` () =
     rows 5 |> should equal expected
 
 let ``Six rows`` () =
-    let expected = 
+    expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1];
@@ -50,7 +50,7 @@ let ``Six rows`` () =
     rows 6 |> should equal expected
 
 let ``Ten rows`` () =
-    let expected = 
+    expected <- 
         [ [1];
           [1; 1];
           [1; 2; 1];

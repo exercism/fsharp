@@ -2,15 +2,15 @@ source("./knapsack.R")
 library(testthat)
 
 let ``No items`` () =
-    let items = []
+    items <- []
     maximumValue items 100 |> should equal 0
 
 let ``One item, too heavy`` () =
-    let items = [{ weight = 100; value = 1 }]
+    items <- [{ weight = 100; value = 1 }]
     maximumValue items 10 |> should equal 0
 
 let ``Five items (cannot be greedy by weight)`` () =
-    let items = 
+    items <- 
         [ { weight = 2; value = 5 };
           { weight = 2; value = 5 };
           { weight = 2; value = 5 };
@@ -19,7 +19,7 @@ let ``Five items (cannot be greedy by weight)`` () =
     maximumValue items 10 |> should equal 21
 
 let ``Five items (cannot be greedy by value)`` () =
-    let items = 
+    items <- 
         [ { weight = 2; value = 20 };
           { weight = 2; value = 20 };
           { weight = 2; value = 20 };
@@ -28,7 +28,7 @@ let ``Five items (cannot be greedy by value)`` () =
     maximumValue items 10 |> should equal 80
 
 let ``Example knapsack`` () =
-    let items = 
+    items <- 
         [ { weight = 5; value = 10 };
           { weight = 4; value = 40 };
           { weight = 6; value = 30 };
@@ -36,7 +36,7 @@ let ``Example knapsack`` () =
     maximumValue items 10 |> should equal 90
 
 let ``8 items`` () =
-    let items = 
+    items <- 
         [ { weight = 25; value = 350 };
           { weight = 35; value = 400 };
           { weight = 45; value = 450 };
@@ -48,7 +48,7 @@ let ``8 items`` () =
     maximumValue items 104 |> should equal 900
 
 let ``15 items`` () =
-    let items = 
+    items <- 
         [ { weight = 70; value = 135 };
           { weight = 73; value = 139 };
           { weight = 77; value = 149 };

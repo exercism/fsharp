@@ -2,7 +2,7 @@ source("./state-of-tic-tac-toe.R")
 library(testthat)
 
 let ``Finished game where X won via left column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'O'; 'O'];
                   ['X'; ' '; ' '];
                   ['X'; ' '; ' '] ]
@@ -10,7 +10,7 @@ let ``Finished game where X won via left column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via middle column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; 'X'; 'O'];
                   [' '; 'X'; ' '];
                   [' '; 'X'; ' '] ]
@@ -18,7 +18,7 @@ let ``Finished game where X won via middle column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via right column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; 'O'; 'X'];
                   [' '; ' '; 'X'];
                   [' '; ' '; 'X'] ]
@@ -26,7 +26,7 @@ let ``Finished game where X won via right column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via left column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; 'X'; 'X'];
                   ['O'; 'X'; ' '];
                   ['O'; ' '; ' '] ]
@@ -34,7 +34,7 @@ let ``Finished game where O won via left column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via middle column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'O'; 'X'];
                   [' '; 'O'; 'X'];
                   [' '; 'O'; ' '] ]
@@ -42,7 +42,7 @@ let ``Finished game where O won via middle column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via right column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; 'O'];
                   [' '; 'X'; 'O'];
                   [' '; ' '; 'O'] ]
@@ -50,7 +50,7 @@ let ``Finished game where O won via right column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via top row victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; 'X'];
                   ['X'; 'O'; 'O'];
                   ['O'; ' '; ' '] ]
@@ -58,7 +58,7 @@ let ``Finished game where X won via top row victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via middle row victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; ' '; ' '];
                   ['X'; 'X'; 'X'];
                   [' '; 'O'; ' '] ]
@@ -66,7 +66,7 @@ let ``Finished game where X won via middle row victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via bottom row victory`` () =
-    let board = 
+    board <- 
         array2D [ [' '; 'O'; 'O'];
                   ['O'; ' '; 'X'];
                   ['X'; 'X'; 'X'] ]
@@ -74,7 +74,7 @@ let ``Finished game where X won via bottom row victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via top row victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; 'O'; 'O'];
                   ['X'; 'X'; 'O'];
                   ['X'; 'X'; ' '] ]
@@ -82,7 +82,7 @@ let ``Finished game where O won via top row victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via middle row victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; ' '];
                   ['O'; 'O'; 'O'];
                   ['X'; ' '; ' '] ]
@@ -90,7 +90,7 @@ let ``Finished game where O won via middle row victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via bottom row victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'O'; 'X'];
                   [' '; 'X'; 'X'];
                   ['O'; 'O'; 'O'] ]
@@ -98,7 +98,7 @@ let ``Finished game where O won via bottom row victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via falling diagonal victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'O'; 'O'];
                   [' '; 'X'; ' '];
                   [' '; ' '; 'X'] ]
@@ -106,7 +106,7 @@ let ``Finished game where X won via falling diagonal victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via rising diagonal victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; ' '; 'X'];
                   ['O'; 'X'; ' '];
                   ['X'; ' '; ' '] ]
@@ -114,7 +114,7 @@ let ``Finished game where X won via rising diagonal victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via falling diagonal victory`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; 'X'; 'X'];
                   ['O'; 'O'; 'X'];
                   ['X'; ' '; 'O'] ]
@@ -122,7 +122,7 @@ let ``Finished game where O won via falling diagonal victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where O won via rising diagonal victory`` () =
-    let board = 
+    board <- 
         array2D [ [' '; ' '; 'O'];
                   [' '; 'O'; 'X'];
                   ['O'; 'X'; 'X'] ]
@@ -130,7 +130,7 @@ let ``Finished game where O won via rising diagonal victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via a row and a column victory`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; 'X'];
                   ['X'; 'O'; 'O'];
                   ['X'; 'O'; 'O'] ]
@@ -138,7 +138,7 @@ let ``Finished game where X won via a row and a column victory`` () =
     gamestate board |> should equal expected
 
 let ``Finished game where X won via two diagonal victories`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'O'; 'X'];
                   ['O'; 'X'; 'O'];
                   ['X'; 'O'; 'X'] ]
@@ -146,7 +146,7 @@ let ``Finished game where X won via two diagonal victories`` () =
     gamestate board |> should equal expected
 
 let ``Draw`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'O'; 'X'];
                   ['X'; 'X'; 'O'];
                   ['O'; 'X'; 'O'] ]
@@ -154,7 +154,7 @@ let ``Draw`` () =
     gamestate board |> should equal expected
 
 let ``Another draw`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; 'O'];
                   ['O'; 'X'; 'X'];
                   ['X'; 'O'; 'O'] ]
@@ -162,7 +162,7 @@ let ``Another draw`` () =
     gamestate board |> should equal expected
 
 let ``Ongoing game: one move in`` () =
-    let board = 
+    board <- 
         array2D [ [' '; ' '; ' '];
                   ['X'; ' '; ' '];
                   [' '; ' '; ' '] ]
@@ -170,7 +170,7 @@ let ``Ongoing game: one move in`` () =
     gamestate board |> should equal expected
 
 let ``Ongoing game: two moves in`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; ' '; ' '];
                   [' '; 'X'; ' '];
                   [' '; ' '; ' '] ]
@@ -178,7 +178,7 @@ let ``Ongoing game: two moves in`` () =
     gamestate board |> should equal expected
 
 let ``Ongoing game: five moves in`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; ' '; ' '];
                   [' '; 'X'; 'O'];
                   ['O'; 'X'; ' '] ]
@@ -186,7 +186,7 @@ let ``Ongoing game: five moves in`` () =
     gamestate board |> should equal expected
 
 let ``Invalid board: X went twice`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; ' '];
                   [' '; ' '; ' '];
                   [' '; ' '; ' '] ]
@@ -194,7 +194,7 @@ let ``Invalid board: X went twice`` () =
     gamestate board |> should equal expected
 
 let ``Invalid board: O started`` () =
-    let board = 
+    board <- 
         array2D [ ['O'; 'O'; 'X'];
                   [' '; ' '; ' '];
                   [' '; ' '; ' '] ]
@@ -202,7 +202,7 @@ let ``Invalid board: O started`` () =
     gamestate board |> should equal expected
 
 let ``Invalid board: X won and O kept playing`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; 'X'];
                   ['O'; 'O'; 'O'];
                   [' '; ' '; ' '] ]
@@ -210,7 +210,7 @@ let ``Invalid board: X won and O kept playing`` () =
     gamestate board |> should equal expected
 
 let ``Invalid board: players kept playing after a win`` () =
-    let board = 
+    board <- 
         array2D [ ['X'; 'X'; 'X'];
                   ['O'; 'O'; 'O'];
                   ['X'; 'O'; 'X'] ]

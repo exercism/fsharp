@@ -4,8 +4,8 @@ source("./hangman-test.R")
 library(testthat)
 
 let ``Initially 9 failures are allowed`` () =
-    let game = createGame "foo"
-    let states = statesObservable game
+    game <- createGame "foo"
+    states <- statesObservable game
 
     let mutable lastProgress = Busy 9
     states.Add(fun state -> lastProgress <- state.progress) |> ignore
@@ -15,8 +15,8 @@ let ``Initially 9 failures are allowed`` () =
     lastProgress |> should equal <| Busy 9
 
 let ``Initially no letters are guessed`` () =
-    let game = createGame "foo"
-    let states = statesObservable game
+    game <- createGame "foo"
+    states <- statesObservable game
 
     let mutable lastMaskedWord = ""
     states.Add(fun state -> lastMaskedWord <- state.maskedWord) |> ignore
@@ -26,8 +26,8 @@ let ``Initially no letters are guessed`` () =
     lastMaskedWord |> should equal "___"
 
 let ``After 10 failures the game is over`` () =
-    let game = createGame "foo"
-    let states = statesObservable game
+    game <- createGame "foo"
+    states <- statesObservable game
 
     let mutable lastProgress = Busy 9
     states.Add(fun state -> lastProgress <- state.progress) |> ignore
@@ -39,8 +39,8 @@ let ``After 10 failures the game is over`` () =
     lastProgress |> should equal Lose
     
 let ``Feeding a correct letter removes underscores`` () =
-    let game = createGame "foobar"
-    let states = statesObservable game
+    game <- createGame "foobar"
+    states <- statesObservable game
 
     let mutable lastState = None
     states.Add(fun state -> lastState <- Some state) |> ignore
@@ -58,8 +58,8 @@ let ``Feeding a correct letter removes underscores`` () =
     lastState.Value.maskedWord |> should equal "_oob__"
     
 let ``Feeding a correct letter twice counts as a failure`` () =
-    let game = createGame "foobar"
-    let states = statesObservable game
+    game <- createGame "foobar"
+    states <- statesObservable game
 
     let mutable lastState = None
     states.Add(fun state -> lastState <- Some state) |> ignore
@@ -77,8 +77,8 @@ let ``Feeding a correct letter twice counts as a failure`` () =
     lastState.Value.maskedWord |> should equal "___b__"
      
 let ``Getting all the letters right makes for a win`` () =
-    let game = createGame "hello"
-    let states = statesObservable game
+    game <- createGame "hello"
+    states <- statesObservable game
 
     let mutable lastState = None
     states.Add(fun state -> lastState <- Some state) |> ignore

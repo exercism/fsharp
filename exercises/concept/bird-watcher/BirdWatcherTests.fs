@@ -36,13 +36,13 @@ let ``Day without birds for week that did not have day without birds`` () =
 
 [<Task(5)>]
 let ``Increment today's count with no previous visits`` () =
-    let birdCounts = [| 6; 5; 5; 11; 2; 5; 0 |]
+    birdCounts <- [| 6; 5; 5; 11; 2; 5; 0 |]
     incrementTodaysCount birdCounts
     |> should equal [| 6; 5; 5; 11; 2; 5; 1 |]
 
 [<Task(5)>]
 let ``Increment today's count with multiple previous visits`` () =
-    let birdCounts = [| 5; 2; 4; 2; 4; 5; 7 |]
+    birdCounts <- [| 5; 2; 4; 2; 4; 5; 7 |]
     incrementTodaysCount birdCounts
     |> should equal [| 5; 2; 4; 2; 4; 5; 8 |]
 

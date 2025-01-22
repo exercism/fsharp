@@ -2,7 +2,7 @@ source("./bottle-song.R")
 library(testthat)
 
 let ``First generic verse`` () =
-    let expected = 
+    expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -10,7 +10,7 @@ let ``First generic verse`` () =
     recite 10 1 |> should equal expected
 
 let ``Last generic verse`` () =
-    let expected = 
+    expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -18,7 +18,7 @@ let ``Last generic verse`` () =
     recite 3 1 |> should equal expected
 
 let ``Verse with 2 bottles`` () =
-    let expected = 
+    expected <- 
         [ "Two green bottles hanging on the wall,";
           "Two green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -26,7 +26,7 @@ let ``Verse with 2 bottles`` () =
     recite 2 1 |> should equal expected
 
 let ``Verse with 1 bottle`` () =
-    let expected = 
+    expected <- 
         [ "One green bottle hanging on the wall,";
           "One green bottle hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -34,7 +34,7 @@ let ``Verse with 1 bottle`` () =
     recite 1 1 |> should equal expected
 
 let ``First two verses`` () =
-    let expected = 
+    expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -47,7 +47,7 @@ let ``First two verses`` () =
     recite 10 2 |> should equal expected
 
 let ``Last three verses`` () =
-    let expected = 
+    expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";
@@ -65,7 +65,7 @@ let ``Last three verses`` () =
     recite 3 3 |> should equal expected
 
 let ``All verses`` () =
-    let expected = 
+    expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
           "And if one green bottle should accidentally fall,";

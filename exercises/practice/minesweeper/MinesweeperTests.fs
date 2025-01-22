@@ -7,72 +7,72 @@ let ``No rows`` () =
     annotate minefield |> should equal expected
 
 let ``No columns`` () =
-    let minefield = [""]
-    let expected = [""]
+    minefield <- [""]
+    expected <- [""]
     annotate minefield |> should equal expected
 
 let ``No mines`` () =
-    let minefield = 
+    minefield <- 
         [ "   ";
           "   ";
           "   " ]
-    let expected = 
+    expected <- 
         [ "   ";
           "   ";
           "   " ]
     annotate minefield |> should equal expected
 
 let ``Minefield with only mines`` () =
-    let minefield = 
+    minefield <- 
         [ "***";
           "***";
           "***" ]
-    let expected = 
+    expected <- 
         [ "***";
           "***";
           "***" ]
     annotate minefield |> should equal expected
 
 let ``Mine surrounded by spaces`` () =
-    let minefield = 
+    minefield <- 
         [ "   ";
           " * ";
           "   " ]
-    let expected = 
+    expected <- 
         [ "111";
           "1*1";
           "111" ]
     annotate minefield |> should equal expected
 
 let ``Space surrounded by mines`` () =
-    let minefield = 
+    minefield <- 
         [ "***";
           "* *";
           "***" ]
-    let expected = 
+    expected <- 
         [ "***";
           "*8*";
           "***" ]
     annotate minefield |> should equal expected
 
 let ``Horizontal line`` () =
-    let minefield = [" * * "]
-    let expected = ["1*2*1"]
+    minefield <- [" * * "]
+    expected <- ["1*2*1"]
     annotate minefield |> should equal expected
 
 let ``Horizontal line, mines at edges`` () =
-    let minefield = ["*   *"]
-    let expected = ["*1 1*"]
+    minefield <- ["*   *"]
+    expected <- ["*1 1*"]
     annotate minefield |> should equal expected
 
 let ``Vertical line`` () =
-    let minefield = 
+    minefield <- 
         [ " ";
           "*";
           " ";
           "*";
           " " ]
-    let expected = 
+    expected <- 
         [ "1";
           "*";
           "2";
@@ -81,13 +81,13 @@ let ``Vertical line`` () =
     annotate minefield |> should equal expected
 
 let ``Vertical line, mines at edges`` () =
-    let minefield = 
+    minefield <- 
         [ "*";
           " ";
           " ";
           " ";
           "*" ]
-    let expected = 
+    expected <- 
         [ "*";
           "1";
           " ";
@@ -96,13 +96,13 @@ let ``Vertical line, mines at edges`` () =
     annotate minefield |> should equal expected
 
 let ``Cross`` () =
-    let minefield = 
+    minefield <- 
         [ "  *  ";
           "  *  ";
           "*****";
           "  *  ";
           "  *  " ]
-    let expected = 
+    expected <- 
         [ " 2*2 ";
           "25*52";
           "*****";
@@ -111,14 +111,14 @@ let ``Cross`` () =
     annotate minefield |> should equal expected
 
 let ``Large minefield`` () =
-    let minefield = 
+    minefield <- 
         [ " *  * ";
           "  *   ";
           "    * ";
           "   * *";
           " *  * ";
           "      " ]
-    let expected = 
+    expected <- 
         [ "1*22*1";
           "12*322";
           " 123*2";

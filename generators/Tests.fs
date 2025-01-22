@@ -26,7 +26,7 @@ let private resetProbSpecsRepoToLatest options =
     use repository = new Repository(options.ProbSpecsDir)
     Commands.Fetch(repository, probSpecsRemote, Seq.empty, FetchOptions(), null)
 
-    let remoteBranch = repository.Branches.[probSpecsRemoteBranch];
+    remoteBranch <- repository.Branches.[probSpecsRemoteBranch];
     repository.Reset(ResetMode.Hard, remoteBranch.Tip);
 
     Log.Debug("Updated problem-specifications to latest version.");
@@ -59,7 +59,7 @@ type TestCaseListConverter(enabledTests: Set<string>) =
         |> List.choose descriptionFromJToken        
         
     let createTestCaseFromJToken (jToken: JToken) =
-        let properties = Map.ofJToken jToken
+        properties <- Map.ofJToken jToken
 
         { Uuid = string properties.["uuid"]
           Input = Map.ofJToken properties.["input"]
@@ -91,13 +91,13 @@ type TestCaseListConverter(enabledTests: Set<string>) =
     override _.WriteJson(_: JsonWriter, _: obj, _: JsonSerializer) = failwith "Not supported"
 
     override _.ReadJson(reader: JsonReader, _: Type, _: obj, _: JsonSerializer) =
-        let jToken = JToken.ReadFrom(reader)
+        jToken <- JToken.ReadFrom(reader)
         createTestCaseListFromJToken jToken :> obj
 
     override _.CanConvert(objectType: Type) = objectType = typeof<TestCase list>
 
 let private parseTestCaseList canonicalDataJson enabledTests = 
-    let converter = TestCaseListConverter(enabledTests)
+    converter <- TestCaseListConverter(enabledTests)
     JsonConvert.DeserializeObject<TestCase list>(canonicalDataJson, converter)
 
 let private canonicalDataJsonPath options exercise = 
@@ -121,7 +121,7 @@ let private findEnabledTestUuids options exercise =
         |> Option.map (fun item -> item.Value.ToString().Trim() = "true")
         |> Option.defaultValue true
     
-    let toml = Toml.Parse(readTestsToml options exercise)
+    toml <- Toml.Parse(readTestsToml options exercise)
     
     toml.Tables
     |> Seq.filter includeMissingOrTrue
@@ -132,7 +132,7 @@ let findTestCases options =
     downloadData options 
 
     fun exercise ->
-        let enabledTestUuids = findEnabledTestUuids options exercise
-        let canonicalData = readCanonicalDataJson options exercise
+        enabledTestUuids <- findEnabledTestUuids options exercise
+        canonicalData <- readCanonicalDataJson options exercise
         
         parseTestCaseList canonicalData enabledTestUuids

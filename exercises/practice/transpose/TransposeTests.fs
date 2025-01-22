@@ -7,32 +7,32 @@ let ``Empty string`` () =
     transpose lines |> should equal expected
 
 let ``Two characters in a row`` () =
-    let lines = ["A1"]
-    let expected = 
+    lines <- ["A1"]
+    expected <- 
         [ "A";
           "1" ]
     transpose lines |> should equal expected
 
 let ``Two characters in a column`` () =
-    let lines = 
+    lines <- 
         [ "A";
           "1" ]
-    let expected = ["A1"]
+    expected <- ["A1"]
     transpose lines |> should equal expected
 
 let ``Simple`` () =
-    let lines = 
+    lines <- 
         [ "ABC";
           "123" ]
-    let expected = 
+    expected <- 
         [ "A1";
           "B2";
           "C3" ]
     transpose lines |> should equal expected
 
 let ``Single line`` () =
-    let lines = ["Single line."]
-    let expected = 
+    lines <- ["Single line."]
+    expected <- 
         [ "S";
           "i";
           "n";
@@ -48,10 +48,10 @@ let ``Single line`` () =
     transpose lines |> should equal expected
 
 let ``First line longer than second line`` () =
-    let lines = 
+    lines <- 
         [ "The fourth line.";
           "The fifth line." ]
-    let expected = 
+    expected <- 
         [ "TT";
           "hh";
           "ee";
@@ -71,10 +71,10 @@ let ``First line longer than second line`` () =
     transpose lines |> should equal expected
 
 let ``Second line longer than first line`` () =
-    let lines = 
+    lines <- 
         [ "The first line.";
           "The second line." ]
-    let expected = 
+    expected <- 
         [ "TT";
           "hh";
           "ee";
@@ -94,12 +94,12 @@ let ``Second line longer than first line`` () =
     transpose lines |> should equal expected
 
 let ``Mixed line length`` () =
-    let lines = 
+    lines <- 
         [ "The longest line.";
           "A long line.";
           "A longer line.";
           "A line." ]
-    let expected = 
+    expected <- 
         [ "TAAA";
           "h   ";
           "elll";
@@ -120,13 +120,13 @@ let ``Mixed line length`` () =
     transpose lines |> should equal expected
 
 let ``Square`` () =
-    let lines = 
+    lines <- 
         [ "HEART";
           "EMBER";
           "ABUSE";
           "RESIN";
           "TREND" ]
-    let expected = 
+    expected <- 
         [ "HEART";
           "EMBER";
           "ABUSE";
@@ -135,12 +135,12 @@ let ``Square`` () =
     transpose lines |> should equal expected
 
 let ``Rectangle`` () =
-    let lines = 
+    lines <- 
         [ "FRACTURE";
           "OUTLINED";
           "BLOOMING";
           "SEPTETTE" ]
-    let expected = 
+    expected <- 
         [ "FOBS";
           "RULE";
           "ATOP";
@@ -152,14 +152,14 @@ let ``Rectangle`` () =
     transpose lines |> should equal expected
 
 let ``Triangle`` () =
-    let lines = 
+    lines <- 
         [ "T";
           "EE";
           "AAA";
           "SSSS";
           "EEEEE";
           "RRRRRR" ]
-    let expected = 
+    expected <- 
         [ "TEASER";
           " EASER";
           "  ASER";
@@ -169,14 +169,14 @@ let ``Triangle`` () =
     transpose lines |> should equal expected
 
 let ``Jagged triangle`` () =
-    let lines = 
+    lines <- 
         [ "11";
           "2";
           "3333";
           "444";
           "555555";
           "66666" ]
-    let expected = 
+    expected <- 
         [ "123456";
           "1 3456";
           "  3456";

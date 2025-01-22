@@ -2,11 +2,11 @@ source("./word-count.R")
 library(testthat)
 
 let ``Count one word`` () =
-    let expected = [("word", 1)] |> Map.ofList
+    expected <- [("word", 1)] |> Map.ofList
     countWords "word" |> should equal expected
 
 let ``Count one of each word`` () =
-    let expected = 
+    expected <- 
         [ ("one", 1);
           ("of", 1);
           ("each", 1) ]
@@ -14,7 +14,7 @@ let ``Count one of each word`` () =
     countWords "one of each" |> should equal expected
 
 let ``Multiple occurrences of a word`` () =
-    let expected = 
+    expected <- 
         [ ("one", 1);
           ("fish", 4);
           ("two", 1);
@@ -24,7 +24,7 @@ let ``Multiple occurrences of a word`` () =
     countWords "one fish two fish red fish blue fish" |> should equal expected
 
 let ``Handles cramped lists`` () =
-    let expected = 
+    expected <- 
         [ ("one", 1);
           ("two", 1);
           ("three", 1) ]
@@ -32,7 +32,7 @@ let ``Handles cramped lists`` () =
     countWords "one,two,three" |> should equal expected
 
 let ``Handles expanded lists`` () =
-    let expected = 
+    expected <- 
         [ ("one", 1);
           ("two", 1);
           ("three", 1) ]
@@ -40,7 +40,7 @@ let ``Handles expanded lists`` () =
     countWords "one,\ntwo,\nthree" |> should equal expected
 
 let ``Ignore punctuation`` () =
-    let expected = 
+    expected <- 
         [ ("car", 1);
           ("carpet", 1);
           ("as", 1);
@@ -50,7 +50,7 @@ let ``Ignore punctuation`` () =
     countWords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
 
 let ``Include numbers`` () =
-    let expected = 
+    expected <- 
         [ ("testing", 2);
           ("1", 1);
           ("2", 1) ]
@@ -58,14 +58,14 @@ let ``Include numbers`` () =
     countWords "testing, 1, 2 testing" |> should equal expected
 
 let ``Normalize case`` () =
-    let expected = 
+    expected <- 
         [ ("go", 3);
           ("stop", 2) ]
         |> Map.ofList
     countWords "go Go GO Stop stop" |> should equal expected
 
 let ``With apostrophes`` () =
-    let expected = 
+    expected <- 
         [ ("first", 1);
           ("don't", 2);
           ("laugh", 1);
@@ -78,7 +78,7 @@ let ``With apostrophes`` () =
     countWords "'First: don't laugh. Then: don't cry. You're getting it.'" |> should equal expected
 
 let ``With quotations`` () =
-    let expected = 
+    expected <- 
         [ ("joe", 1);
           ("can't", 1);
           ("tell", 1);
@@ -89,7 +89,7 @@ let ``With quotations`` () =
     countWords "Joe can't tell between 'large' and large." |> should equal expected
 
 let ``Substrings from the beginning`` () =
-    let expected = 
+    expected <- 
         [ ("joe", 1);
           ("can't", 1);
           ("tell", 1);
@@ -102,14 +102,14 @@ let ``Substrings from the beginning`` () =
     countWords "Joe can't tell between app, apple and a." |> should equal expected
 
 let ``Multiple spaces not detected as a word`` () =
-    let expected = 
+    expected <- 
         [ ("multiple", 1);
           ("whitespaces", 1) ]
         |> Map.ofList
     countWords " multiple   whitespaces" |> should equal expected
 
 let ``Alternating word separators not detected as a word`` () =
-    let expected = 
+    expected <- 
         [ ("one", 1);
           ("two", 1);
           ("three", 1) ]
@@ -117,7 +117,7 @@ let ``Alternating word separators not detected as a word`` () =
     countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
 
 let ``Quotation for word with apostrophe`` () =
-    let expected = 
+    expected <- 
         [ ("can", 1);
           ("can't", 2) ]
         |> Map.ofList

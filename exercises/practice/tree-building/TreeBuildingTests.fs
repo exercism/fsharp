@@ -4,26 +4,26 @@ source("./tree-building-test.R")
 library(testthat)
 
 let ``One node`` () =
-    let input =
+    input <-
         [
             { RecordId = 0; ParentId = 0 }
         ]
 
-    let tree = buildTree input
+    tree <- buildTree input
 
     isBranch tree |> should equal false
     recordId tree |> should equal 0
     children tree |> should be Empty
 
 let ``Three nodes in order`` () =
-    let input =
+    input <-
         [
             { RecordId = 0; ParentId = 0 };
             { RecordId = 1; ParentId = 0 };
             { RecordId = 2; ParentId = 0 };
         ]
 
-    let tree = buildTree input
+    tree <- buildTree input
 
     isBranch tree |> should equal true
     recordId tree |> should equal 0
@@ -36,14 +36,14 @@ let ``Three nodes in order`` () =
     children tree |> List.item 1 |> recordId |> should equal 2
 
 let ``Three nodes in reverse order`` () =
-    let input =
+    input <-
         [
             { RecordId = 2; ParentId = 0 };
             { RecordId = 1; ParentId = 0 };
             { RecordId = 0; ParentId = 0 };
         ]
 
-    let tree = buildTree input
+    tree <- buildTree input
 
     isBranch tree |> should equal true
     recordId tree |> should equal 0
@@ -56,7 +56,7 @@ let ``Three nodes in reverse order`` () =
     children tree |> List.item 1 |> recordId |> should equal 2
 
 let ``More than two children`` () =
-    let input =
+    input <-
         [
             { RecordId = 3; ParentId = 0 };
             { RecordId = 2; ParentId = 0 };
@@ -64,7 +64,7 @@ let ``More than two children`` () =
             { RecordId = 0; ParentId = 0 };
         ]
 
-    let tree = buildTree input
+    tree <- buildTree input
 
     isBranch tree |> should equal true
     recordId tree |> should equal 0
@@ -80,7 +80,7 @@ let ``More than two children`` () =
     children tree |> List.item 2 |> recordId |> should equal 3
 
 let ``Binary tree`` () =
-    let input =
+    input <-
         [
             { RecordId = 5; ParentId = 1 };
             { RecordId = 3; ParentId = 2 };
@@ -91,7 +91,7 @@ let ``Binary tree`` () =
             { RecordId = 6; ParentId = 2 }
         ]
 
-    let tree = buildTree input
+    tree <- buildTree input
 
     isBranch tree |> should equal true
     recordId tree |> should equal 0
@@ -118,7 +118,7 @@ let ``Binary tree`` () =
     children tree |> List.item 1 |> children |> List.item 1 |> recordId |> should equal 6
 
 let ``Unbalanced tree`` () =
-    let input =
+    input <-
         [
             { RecordId = 5; ParentId = 2 };
             { RecordId = 3; ParentId = 2 };
@@ -129,7 +129,7 @@ let ``Unbalanced tree`` () =
             { RecordId = 6; ParentId = 2 }
         ]
 
-    let tree = buildTree input
+    tree <- buildTree input
 
     isBranch tree |> should equal true
     recordId tree |> should equal 0
@@ -156,21 +156,21 @@ let ``Unbalanced tree`` () =
     children tree |> List.item 1 |> children |> List.item 2 |> recordId |> should equal 6
 
 let ``Empty input`` () =
-    let input = []
+    input <- []
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 let ``Root node has parent`` () =
-    let input =
+    input <-
         [ { RecordId = 0; ParentId = 1 };
           { RecordId = 1; ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 let ``No root node`` () =
-    let input = [ { RecordId = 1; ParentId = 0 } ]
+    input <- [ { RecordId = 1; ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 let ``Out of bounds record id`` () =
-    let input =
+    input <-
         [
             { RecordId = 2; ParentId = 0 };
             { RecordId = 4; ParentId = 2 };
@@ -180,7 +180,7 @@ let ``Out of bounds record id`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 let ``Cycle directly`` () =
-    let input =
+    input <-
         [
             { RecordId = 5; ParentId = 2 };
             { RecordId = 3; ParentId = 2 };
@@ -193,7 +193,7 @@ let ``Cycle directly`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 let ``Cycle indirectly`` () =
-    let input =
+    input <-
         [
             { RecordId = 5; ParentId = 2 };
             { RecordId = 3; ParentId = 2 };
@@ -206,7 +206,7 @@ let ``Cycle indirectly`` () =
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 let ``Higher id parent of lower id`` () =
-    let input =
+    input <-
         [
             { RecordId = 0; ParentId = 0 };
             { RecordId = 2; ParentId = 0 };

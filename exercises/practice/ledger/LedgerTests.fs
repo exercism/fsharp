@@ -4,36 +4,36 @@ source("./ledger-test.R")
 library(testthat)
 
 let ``Empty ledger`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries = []
-    let expected =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <- []
+    expected <-
         "Date       | Description               | Change       "
 
     formatLedger currency locale entries |> should equal expected
 
 let ``One entry`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-01-01" "Buy present" -1000
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)"
 
     formatLedger currency locale entries |> should equal expected
 
 let ``Credit and debit`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-01-02" "Get present"  1000;
             mkEntry "2015-01-01" "Buy present" -1000
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/02/2015 | Get present               |       $10.00 "
@@ -41,14 +41,14 @@ let ``Credit and debit`` () =
     formatLedger currency locale entries |> should equal expected
  
 let ``Multiple entries on same date ordered by description`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-01-01" "Buy present" -1000;
             mkEntry "2015-01-01" "Get present"  1000
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      ($10.00)" + System.Environment.NewLine +
         "01/01/2015 | Get present               |       $10.00 "
@@ -56,15 +56,15 @@ let ``Multiple entries on same date ordered by description`` () =
     formatLedger currency locale entries |> should equal expected
    
 let ``Final order tie breaker is change`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-01-01" "Something" 0;
             mkEntry "2015-01-01" "Something" -1;
             mkEntry "2015-01-01" "Something" 1
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Something                 |       ($0.01)" + System.Environment.NewLine +
         "01/01/2015 | Something                 |        $0.00 " + System.Environment.NewLine +
@@ -73,65 +73,65 @@ let ``Final order tie breaker is change`` () =
     formatLedger currency locale entries |> should equal expected
   
 let ``Overlong descriptions`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-01-01" "Freude schoner Gotterfunken" -123456
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Freude schoner Gotterf... |   ($1,234.56)"
 
     formatLedger currency locale entries |> should equal expected
   
 let ``Euros`` () =
-    let currency = "EUR"
-    let locale = "en-US"
-    let entries =
+    currency <- "EUR"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-01-01" "Buy present" -1000
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "01/01/2015 | Buy present               |      (€10.00)"
 
     formatLedger currency locale entries |> should equal expected
    
 let ``Dutch locale`` () =
-    let currency = "USD"
-    let locale = "nl-NL"
-    let entries =
+    currency <- "USD"
+    locale <- "nl-NL"
+    entries <-
         [
             mkEntry "2015-03-12" "Buy present" 123456
         ]
-    let expected =
+    expected <-
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |   $ 1.234,56 "
 
     formatLedger currency locale entries |> should equal expected
  
 let ``Dutch negative number with 3 digits before decimal point`` () =
-    let currency = "USD"
-    let locale = "nl-NL"
-    let entries =
+    currency <- "USD"
+    locale <- "nl-NL"
+    entries <-
         [
             mkEntry "2015-03-12" "Buy present" -12345
         ]
-    let expected =
+    expected <-
         "Datum      | Omschrijving              | Verandering  " + System.Environment.NewLine +
         "12-03-2015 | Buy present               |     $ -123,45"
 
     formatLedger currency locale entries |> should equal expected
    
 let ``American negative number with 3 digits before decimal point`` () =
-    let currency = "USD"
-    let locale = "en-US"
-    let entries =
+    currency <- "USD"
+    locale <- "en-US"
+    entries <-
         [
             mkEntry "2015-03-12" "Buy present" -12345
         ]
-    let expected =
+    expected <-
         "Date       | Description               | Change       " + System.Environment.NewLine +
         "03/12/2015 | Buy present               |     ($123.45)"
 

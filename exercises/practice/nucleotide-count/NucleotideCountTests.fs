@@ -2,8 +2,8 @@ source("./nucleotide-count.R")
 library(testthat)
 
 let ``Empty strand`` () =
-    let strand = ""
-    let expected = 
+    strand <- ""
+    expected <- 
         [ ('A', 0);
           ('C', 0);
           ('G', 0);
@@ -13,8 +13,8 @@ let ``Empty strand`` () =
     nucleotideCounts strand |> should equal expected
 
 let ``Can count one nucleotide in single-character input`` () =
-    let strand = "G"
-    let expected = 
+    strand <- "G"
+    expected <- 
         [ ('A', 0);
           ('C', 0);
           ('G', 1);
@@ -24,8 +24,8 @@ let ``Can count one nucleotide in single-character input`` () =
     nucleotideCounts strand |> should equal expected
 
 let ``Strand with repeated nucleotide`` () =
-    let strand = "GGGGGGG"
-    let expected = 
+    strand <- "GGGGGGG"
+    expected <- 
         [ ('A', 0);
           ('C', 0);
           ('G', 7);
@@ -35,8 +35,8 @@ let ``Strand with repeated nucleotide`` () =
     nucleotideCounts strand |> should equal expected
 
 let ``Strand with multiple nucleotides`` () =
-    let strand = "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
-    let expected = 
+    strand <- "AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC"
+    expected <- 
         [ ('A', 20);
           ('C', 12);
           ('G', 17);
@@ -46,7 +46,7 @@ let ``Strand with multiple nucleotides`` () =
     nucleotideCounts strand |> should equal expected
 
 let ``Strand with invalid nucleotides`` () =
-    let strand = "AGXXACT"
-    let expected = None
+    strand <- "AGXXACT"
+    expected <- None
     nucleotideCounts strand |> should equal expected
 

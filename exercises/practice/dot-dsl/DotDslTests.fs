@@ -4,14 +4,14 @@ source("./dot-dsl-test.R")
 library(testthat)
 
 let ``Empty graph`` () =
-    let g = graph []
+    g <- graph []
 
     nodes g |> should be Empty
     edges g |> should be Empty
     attrs g |> should be Empty
     
 let ``Graph with one node`` () =
-    let g = graph [
+    g <- graph [
                 node "a" []
             ]            
 
@@ -20,7 +20,7 @@ let ``Graph with one node`` () =
     attrs g |> should be Empty
     
 let ``Graph with one node with keywords`` () =    
-    let g = graph [
+    g <- graph [
                 node "a" [("color", "green")]
             ]            
 
@@ -29,7 +29,7 @@ let ``Graph with one node with keywords`` () =
     attrs g |> should be Empty
 
 let ``Graph with one edge`` () =    
-    let g = graph [
+    g <- graph [
                 edge "a" "b" []
             ]             
 
@@ -38,7 +38,7 @@ let ``Graph with one edge`` () =
     attrs g |> should be Empty
 
 let ``Graph with one attribute`` () = 
-    let g = graph [
+    g <- graph [
                 attr "foo" "1"
             ]             
 
@@ -47,7 +47,7 @@ let ``Graph with one attribute`` () =
     attrs g |> should equal [attr "foo" "1"]
 
 let ``Graph with attributes`` () =    
-    let g = graph [
+    g <- graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"
                 node "a" [("color", "green")]

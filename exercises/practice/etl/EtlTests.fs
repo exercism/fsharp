@@ -2,13 +2,13 @@ source("./etl.R")
 library(testthat)
 
 let ``Single letter`` () =
-    let lettersByScore = [(1, ['A'])] |> Map.ofList
-    let expected = [('a', 1)] |> Map.ofList
+    lettersByScore <- [(1, ['A'])] |> Map.ofList
+    expected <- [('a', 1)] |> Map.ofList
     transform lettersByScore |> should equal expected
 
 let ``Single score with multiple letters`` () =
-    let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
-    let expected = 
+    lettersByScore <- [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
+    expected <- 
         [ ('a', 1);
           ('e', 1);
           ('i', 1);
@@ -18,11 +18,11 @@ let ``Single score with multiple letters`` () =
     transform lettersByScore |> should equal expected
 
 let ``Multiple scores with multiple letters`` () =
-    let lettersByScore = 
+    lettersByScore <- 
         [ (1, ['A'; 'E']);
           (2, ['D'; 'G']) ]
         |> Map.ofList
-    let expected = 
+    expected <- 
         [ ('a', 1);
           ('d', 2);
           ('e', 1);
@@ -31,7 +31,7 @@ let ``Multiple scores with multiple letters`` () =
     transform lettersByScore |> should equal expected
 
 let ``Multiple scores with differing numbers of letters`` () =
-    let lettersByScore = 
+    lettersByScore <- 
         [ (1, ['A'; 'E'; 'I'; 'O'; 'U'; 'L'; 'N'; 'R'; 'S'; 'T']);
           (2, ['D'; 'G']);
           (3, ['B'; 'C'; 'M'; 'P']);
@@ -40,7 +40,7 @@ let ``Multiple scores with differing numbers of letters`` () =
           (8, ['J'; 'X']);
           (10, ['Q'; 'Z']) ]
         |> Map.ofList
-    let expected = 
+    expected <- 
         [ ('a', 1);
           ('b', 3);
           ('c', 3);

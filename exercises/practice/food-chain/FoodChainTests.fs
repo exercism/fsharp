@@ -2,13 +2,13 @@ source("./food-chain.R")
 library(testthat)
 
 let ``Fly`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
     recite 1 1 |> should equal expected
 
 let ``Spider`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a spider.";
           "It wriggled and jiggled and tickled inside her.";
           "She swallowed the spider to catch the fly.";
@@ -16,7 +16,7 @@ let ``Spider`` () =
     recite 2 2 |> should equal expected
 
 let ``Bird`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a bird.";
           "How absurd to swallow a bird!";
           "She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.";
@@ -25,7 +25,7 @@ let ``Bird`` () =
     recite 3 3 |> should equal expected
 
 let ``Cat`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a cat.";
           "Imagine that, to swallow a cat!";
           "She swallowed the cat to catch the bird.";
@@ -35,7 +35,7 @@ let ``Cat`` () =
     recite 4 4 |> should equal expected
 
 let ``Dog`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a dog.";
           "What a hog, to swallow a dog!";
           "She swallowed the dog to catch the cat.";
@@ -46,7 +46,7 @@ let ``Dog`` () =
     recite 5 5 |> should equal expected
 
 let ``Goat`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a goat.";
           "Just opened her throat and swallowed a goat!";
           "She swallowed the goat to catch the dog.";
@@ -58,7 +58,7 @@ let ``Goat`` () =
     recite 6 6 |> should equal expected
 
 let ``Cow`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a cow.";
           "I don't know how she swallowed a cow!";
           "She swallowed the cow to catch the goat.";
@@ -71,13 +71,13 @@ let ``Cow`` () =
     recite 7 7 |> should equal expected
 
 let ``Horse`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a horse.";
           "She's dead, of course!" ]
     recite 8 8 |> should equal expected
 
 let ``Multiple verses`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";
           "";
@@ -94,7 +94,7 @@ let ``Multiple verses`` () =
     recite 1 3 |> should equal expected
 
 let ``Full song`` () =
-    let expected = 
+    expected <- 
         [ "I know an old lady who swallowed a fly.";
           "I don't know why she swallowed the fly. Perhaps she'll die.";
           "";
