@@ -4,109 +4,109 @@ with: test
 22 tests
 
 "Word beginning with a"
-    expect_equal(translate("apple"
+    ( "apple" translate )
     "appleay"
     equal?)
 
 SKIP-REST-OF-TESTS
 
 "Word beginning with e"
-    expect_equal(translate("ear"
+    ( "ear" translate )
     "earay"
     equal?)
 
 "Word beginning with i"
-    expect_equal(translate("igloo"
+    ( "igloo" translate )
     "iglooay"
     equal?)
 
 "Word beginning with o"
-    expect_equal(translate("object"
+    ( "object" translate )
     "objectay"
     equal?)
 
 "Word beginning with u"
-    expect_equal(translate("under"
+    ( "under" translate )
     "underay"
     equal?)
 
 "Word beginning with a vowel and followed by a qu"
-    expect_equal(translate("equal"
+    ( "equal" translate )
     "equalay"
     equal?)
 
 "Word beginning with p"
-    expect_equal(translate("pig"
+    ( "pig" translate )
     "igpay"
     equal?)
 
 "Word beginning with k"
-    expect_equal(translate("koala"
+    ( "koala" translate )
     "oalakay"
     equal?)
 
 "Word beginning with x"
-    expect_equal(translate("xenon"
+    ( "xenon" translate )
     "enonxay"
     equal?)
 
 "Word beginning with q without a following u"
-    expect_equal(translate("qat"
+    ( "qat" translate )
     "atqay"
     equal?)
 
 "Word beginning with ch"
-    expect_equal(translate("chair"
+    ( "chair" translate )
     "airchay"
     equal?)
 
 "Word beginning with qu"
-    expect_equal(translate("queen"
+    ( "queen" translate )
     "eenquay"
     equal?)
 
 "Word beginning with qu and a preceding consonant"
-    expect_equal(translate("square"
+    ( "square" translate )
     "aresquay"
     equal?)
 
 "Word beginning with th"
-    expect_equal(translate("therapy"
+    ( "therapy" translate )
     "erapythay"
     equal?)
 
 "Word beginning with thr"
-    expect_equal(translate("thrush"
+    ( "thrush" translate )
     "ushthray"
     equal?)
 
 "Word beginning with sch"
-    expect_equal(translate("school"
+    ( "school" translate )
     "oolschay"
     equal?)
 
 "Word beginning with yt"
-    expect_equal(translate("yttria"
+    ( "yttria" translate )
     "yttriaay"
     equal?)
 
 "Word beginning with xr"
-    expect_equal(translate("xray"
+    ( "xray" translate )
     "xrayay"
     equal?)
 
 "Y is treated like a consonant at the beginning of a word"
-    expect_equal(translate("yellow"
+    ( "yellow" translate )
     "ellowyay"
     equal?)
 
 "Y is treated like a vowel at the end of a consonant cluster"
-    expect_equal(translate("rhythm"
+    ( "rhythm" translate )
     "ythmrhay"
     equal?)
 
 "Y as second letter in two letter word"
-    expect_equal(translate("my"
+    ( "my" translate )
     "ymay"
     equal?)
 

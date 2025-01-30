@@ -9,17 +9,17 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Encode single characters only are encoded without count"
-    expect_equal(encode("XYZ"
+    ( "XYZ" encode )
     "XYZ"
     equal?)
 
 "Encode string with no single characters"
-    expect_equal(encode("AABBBCCCC"
+    ( "AABBBCCCC" encode )
     "2A3B4C"
     equal?)
 
 "Encode single characters mixed with repeated characters"
-    expect_equal(encode("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
+    ( "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB" encode )
     "12WB12W3B24WB"
     equal?)
 
@@ -29,7 +29,7 @@ SKIP-REST-OF-TESTS
     equal?
 
 "Encode lowercase characters"
-    expect_equal(encode("aabbbcccc"
+    ( "aabbbcccc" encode )
     "2a3b4c"
     equal?)
 
@@ -37,17 +37,17 @@ SKIP-REST-OF-TESTS
   expect_equal(decode("", ""))
 
 "Decode single characters only"
-    expect_equal(decode("XYZ"
+    ( "XYZ" decode )
     "XYZ"
     equal?)
 
 "Decode string with no single characters"
-    expect_equal(decode("2A3B4C"
+    ( "2A3B4C" decode )
     "AABBBCCCC"
     equal?)
 
 "Decode single characters with repeated characters"
-    expect_equal(decode("12WB12W3B24WB"
+    ( "12WB12W3B24WB" decode )
     "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
     equal?)
 
@@ -57,7 +57,7 @@ SKIP-REST-OF-TESTS
     equal?
 
 "Decode lowercase string"
-    expect_equal(decode("2a3b4c"
+    ( "2a3b4c" decode )
     "aabbbcccc"
     equal?)
 

@@ -9,7 +9,7 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Lowercase"
-    expect_equal(ciphertext("A"
+    ( "A" ciphertext )
     "a"
     equal?)
 
