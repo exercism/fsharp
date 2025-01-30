@@ -167,37 +167,51 @@ test_that("Over - errors if there is only one value on the stack", {
 
 test_that("User-defined words - can consist of built-in words", {
   expected <- c(1, 1, 1)
-  expect_equal(evaluate c(": dup-twice dup dup ;", "1 dup-twice"), expected)
+    expect_equal(evaluate c(": dup-twice dup dup ;"
+    "1 dup-twice"
+    equal?, expected)
 })
 
 test_that("User-defined words - execute in the right order", {
   expected <- c(1, 2, 3)
-  expect_equal(evaluate c(": countup 1 2 3 ;", "countup"), expected)
+    expect_equal(evaluate c(": countup 1 2 3 ;"
+    "countup"
+    equal?, expected)
 })
 
 test_that("User-defined words - can override other user-defined words", {
   expected <- c(1, 1, 1)
-  expect_equal(evaluate c(": foo dup ;", ": foo dup dup ;", "1 foo"), expected)
+    expect_equal(evaluate c(": foo dup ;", ": foo dup dup ;"
+    "1 foo"
+    equal?, expected)
 })
 
 test_that("User-defined words - can override built-in words", {
   expected <- c(1, 1)
-  expect_equal(evaluate c(": swap dup ;", "1 swap"), expected)
+    expect_equal(evaluate c(": swap dup ;"
+    "1 swap"
+    equal?, expected)
 })
 
 test_that("User-defined words - can override built-in operators", {
   expected <- c(12)
-  expect_equal(evaluate c(": + * ;", "3 4 +"), expected)
+    expect_equal(evaluate c(": + * ;"
+    "3 4 +"
+    equal?, expected)
 })
 
 test_that("User-defined words - can use different words with the same name", {
   expected <- c(5, 6)
-  expect_equal(evaluate c(": foo 5 ;", ": bar foo ;", ": foo 6 ;", "bar foo"), expected)
+    expect_equal(evaluate c(": foo 5 ;", ": bar foo ;", ": foo 6 ;"
+    "bar foo"
+    equal?, expected)
 })
 
 test_that("User-defined words - can define word that uses word with the same name", {
   expected <- c(11)
-  expect_equal(evaluate c(": foo 10 ;", ": foo foo 1 + ;", "foo"), expected)
+    expect_equal(evaluate c(": foo 10 ;", ": foo foo 1 + ;"
+    "foo"
+    equal?, expected)
 })
 
 test_that("User-defined words - cannot redefine non-negative numbers", {
@@ -216,7 +230,9 @@ test_that("User-defined words - errors if executing a non-existent word", {
 })
 
 test_that("User-defined words - only defines locally", {
-  expect_equal(evaluate c(": + - ;", "1 1 +"), (Some c(0)))
+    expect_equal(evaluate c(": + - ;"
+    "1 1 +"
+    equal?, (Some c(0)))
   expect_equal(evaluate c("1 1 +"), (Some c(2)))
 })
 
@@ -242,10 +258,14 @@ test_that("Case-insensitivity - OVER is case-insensitive", {
 
 test_that("Case-insensitivity - user-defined words are case-insensitive", {
   expected <- c(1, 1, 1, 1)
-  expect_equal(evaluate c(": foo dup ;", "1 FOO Foo foo"), expected)
+    expect_equal(evaluate c(": foo dup ;"
+    "1 FOO Foo foo"
+    equal?, expected)
 })
 
 test_that("Case-insensitivity - definitions are case-insensitive", {
   expected <- c(1, 1, 1, 1)
-  expect_equal(evaluate c(": SWAP DUP Dup dup ;", "1 swap"), expected)
+    expect_equal(evaluate c(": SWAP DUP Dup dup ;"
+    "1 swap"
+    equal?, expected)
 })

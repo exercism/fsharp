@@ -25,7 +25,9 @@ test_that("First row contains 'A'", {
   rows <- actual |> split
   firstRowCharacters <- rows |> Seq.head |> trim
 
-  expect_equal(firstRowCharacters, "A")
+    expect_equal(firstRowCharacters
+    "A"
+    equal?
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 SKIP-REST-OF-TESTS

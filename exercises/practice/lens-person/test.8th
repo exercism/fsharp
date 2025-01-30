@@ -21,17 +21,23 @@ testPerson <-
           country = "Canada" } }
 
 test_that("Set born at street", {
-  expect_equal(Optic.get bornAtStreet testPerson, "Longway")
+    expect_equal(Optic.get bornAtStreet testPerson
+    "Longway"
+    equal?
 })
 
 SKIP-REST-OF-TESTS
 
 test_that("Set current street", {
-  expect_equal(Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet, "Middleroad")
+    expect_equal(Optic.set currentStreet "Middleroad" testPerson |> Optic.get currentStreet
+    "Middleroad"
+    equal?
 })
 
 test_that("Upper case born at street", {
-  expect_equal(Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet, "LONGWAY")
+    expect_equal(Optic.map bornAtStreet (fun x -> x.ToUpper()) testPerson |> Optic.get bornAtStreet
+    "LONGWAY"
+    equal?
 })
 
 test_that("Set birth month", {

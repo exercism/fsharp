@@ -4,103 +4,153 @@ with: test
 25 tests
 
 test_that("Stating something", {
-  expect_equal(response "Tom-ay-to, tom-aaaah-to.", "Whatever.")
+    expect_equal(response "Tom-ay-to, tom-aaaah-to."
+    "Whatever."
+    equal?
 })
 
 SKIP-REST-OF-TESTS
 
 test_that("Shouting", {
-  expect_equal(response "WATCH OUT!", "Whoa, chill out!")
+    expect_equal(response "WATCH OUT!"
+    "Whoa, chill out!"
+    equal?
 })
 
 test_that("Shouting gibberish", {
-  expect_equal(response "FCECDFCAAB", "Whoa, chill out!")
+    expect_equal(response "FCECDFCAAB"
+    "Whoa, chill out!"
+    equal?
 })
 
 test_that("Asking a question", {
-  expect_equal(response "Does this cryogenic chamber make me look fat?", "Sure.")
+    expect_equal(response "Does this cryogenic chamber make me look fat?"
+    "Sure."
+    equal?
 })
 
 test_that("Asking a numeric question", {
-  expect_equal(response "You are, what, like 15?", "Sure.")
+    expect_equal(response "You are, what, like 15?"
+    "Sure."
+    equal?
 })
 
 test_that("Asking gibberish", {
-  expect_equal(response "fffbbcbeab?", "Sure.")
+    expect_equal(response "fffbbcbeab?"
+    "Sure."
+    equal?
 })
 
 test_that("Talking forcefully", {
-  expect_equal(response "Hi there!", "Whatever.")
+    expect_equal(response "Hi there!"
+    "Whatever."
+    equal?
 })
 
 test_that("Using acronyms in regular speech", {
-  expect_equal(response "It's OK if you don't want to go work for NASA.", "Whatever.")
+    expect_equal(response "It's OK if you don't want to go work for NASA."
+    "Whatever."
+    equal?
 })
 
 test_that("Forceful question", {
-  expect_equal(response "WHAT'S GOING ON?", "Calm down, I know what I'm doing!")
+    expect_equal(response "WHAT'S GOING ON?"
+    "Calm down, I know what I'm doing!"
+    equal?
 })
 
 test_that("Shouting numbers", {
-  expect_equal(response "1, 2, 3 GO!", "Whoa, chill out!")
+    expect_equal(response "1, 2, 3 GO!"
+    "Whoa, chill out!"
+    equal?
 })
 
 test_that("No letters", {
-  expect_equal(response "1, 2, 3", "Whatever.")
+    expect_equal(response "1, 2, 3"
+    "Whatever."
+    equal?
 })
 
 test_that("Question with no letters", {
-  expect_equal(response "4?", "Sure.")
+    expect_equal(response "4?"
+    "Sure."
+    equal?
 })
 
 test_that("Shouting with special characters", {
-  expect_equal(response "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!", "Whoa, chill out!")
+    expect_equal(response "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"
+    "Whoa, chill out!"
+    equal?
 })
 
 test_that("Shouting with no exclamation mark", {
-  expect_equal(response "I HATE THE DENTIST", "Whoa, chill out!")
+    expect_equal(response "I HATE THE DENTIST"
+    "Whoa, chill out!"
+    equal?
 })
 
 test_that("Statement containing question mark", {
-  expect_equal(response "Ending with ? means a question.", "Whatever.")
+    expect_equal(response "Ending with ? means a question."
+    "Whatever."
+    equal?
 })
 
 test_that("Non-letters with question", {
-  expect_equal(response ":) ?", "Sure.")
+    expect_equal(response ":) ?"
+    "Sure."
+    equal?
 })
 
 test_that("Prattling on", {
-  expect_equal(response "Wait! Hang on. Are you going to be OK?", "Sure.")
+    expect_equal(response "Wait! Hang on. Are you going to be OK?"
+    "Sure."
+    equal?
 })
 
 test_that("Silence", {
-  expect_equal(response "", "Fine. Be that way!")
+    expect_equal(response ""
+    "Fine. Be that way!"
+    equal?
 })
 
 test_that("Prolonged silence", {
-  expect_equal(response "          ", "Fine. Be that way!")
+    expect_equal(response "          "
+    "Fine. Be that way!"
+    equal?
 })
 
 test_that("Alternate silence", {
-  expect_equal(response "\t\t\t\t\t\t\t\t\t\t", "Fine. Be that way!")
+    expect_equal(response "\t\t\t\t\t\t\t\t\t\t"
+    "Fine. Be that way!"
+    equal?
 })
 
 test_that("Multiple line question", {
-  expect_equal(response "\nDoes this cryogenic chamber make me look fat?\nNo.", "Whatever.")
+    expect_equal(response "\nDoes this cryogenic chamber make me look fat?\nNo."
+    "Whatever."
+    equal?
 })
 
 test_that("Starting with whitespace", {
-  expect_equal(response "         hmmmmmmm...", "Whatever.")
+    expect_equal(response "         hmmmmmmm..."
+    "Whatever."
+    equal?
 })
 
 test_that("Ending with whitespace", {
-  expect_equal(response "Okay if like my  spacebar  quite a bit?   ", "Sure.")
+    expect_equal(response "Okay if like my  spacebar  quite a bit?   "
+    "Sure."
+    equal?
 })
 
 test_that("Other whitespace", {
-  expect_equal(response "\n\r \t", "Fine. Be that way!")
+    expect_equal(response "\n\r \t"
+    "Fine. Be that way!"
+    equal?
 })
 
 test_that("Non-question ending with whitespace", {
-  expect_equal(response "This is a statement ending with whitespace      ", "Whatever.")
+    expect_equal(response "This is a statement ending with whitespace      "
+    "Whatever."
+    equal?
 })

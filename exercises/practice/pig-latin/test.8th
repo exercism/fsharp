@@ -4,91 +4,135 @@ with: test
 22 tests
 
 test_that("Word beginning with a", {
-  expect_equal(translate("apple", "appleay"))
+    expect_equal(translate("apple"
+    "appleay"
+    equal?)
 })
 
 SKIP-REST-OF-TESTS
 
 test_that("Word beginning with e", {
-  expect_equal(translate("ear", "earay"))
+    expect_equal(translate("ear"
+    "earay"
+    equal?)
 })
 
 test_that("Word beginning with i", {
-  expect_equal(translate("igloo", "iglooay"))
+    expect_equal(translate("igloo"
+    "iglooay"
+    equal?)
 })
 
 test_that("Word beginning with o", {
-  expect_equal(translate("object", "objectay"))
+    expect_equal(translate("object"
+    "objectay"
+    equal?)
 })
 
 test_that("Word beginning with u", {
-  expect_equal(translate("under", "underay"))
+    expect_equal(translate("under"
+    "underay"
+    equal?)
 })
 
 test_that("Word beginning with a vowel and followed by a qu", {
-  expect_equal(translate("equal", "equalay"))
+    expect_equal(translate("equal"
+    "equalay"
+    equal?)
 })
 
 test_that("Word beginning with p", {
-  expect_equal(translate("pig", "igpay"))
+    expect_equal(translate("pig"
+    "igpay"
+    equal?)
 })
 
 test_that("Word beginning with k", {
-  expect_equal(translate("koala", "oalakay"))
+    expect_equal(translate("koala"
+    "oalakay"
+    equal?)
 })
 
 test_that("Word beginning with x", {
-  expect_equal(translate("xenon", "enonxay"))
+    expect_equal(translate("xenon"
+    "enonxay"
+    equal?)
 })
 
 test_that("Word beginning with q without a following u", {
-  expect_equal(translate("qat", "atqay"))
+    expect_equal(translate("qat"
+    "atqay"
+    equal?)
 })
 
 test_that("Word beginning with ch", {
-  expect_equal(translate("chair", "airchay"))
+    expect_equal(translate("chair"
+    "airchay"
+    equal?)
 })
 
 test_that("Word beginning with qu", {
-  expect_equal(translate("queen", "eenquay"))
+    expect_equal(translate("queen"
+    "eenquay"
+    equal?)
 })
 
 test_that("Word beginning with qu and a preceding consonant", {
-  expect_equal(translate("square", "aresquay"))
+    expect_equal(translate("square"
+    "aresquay"
+    equal?)
 })
 
 test_that("Word beginning with th", {
-  expect_equal(translate("therapy", "erapythay"))
+    expect_equal(translate("therapy"
+    "erapythay"
+    equal?)
 })
 
 test_that("Word beginning with thr", {
-  expect_equal(translate("thrush", "ushthray"))
+    expect_equal(translate("thrush"
+    "ushthray"
+    equal?)
 })
 
 test_that("Word beginning with sch", {
-  expect_equal(translate("school", "oolschay"))
+    expect_equal(translate("school"
+    "oolschay"
+    equal?)
 })
 
 test_that("Word beginning with yt", {
-  expect_equal(translate("yttria", "yttriaay"))
+    expect_equal(translate("yttria"
+    "yttriaay"
+    equal?)
 })
 
 test_that("Word beginning with xr", {
-  expect_equal(translate("xray", "xrayay"))
+    expect_equal(translate("xray"
+    "xrayay"
+    equal?)
 })
 
 test_that("Y is treated like a consonant at the beginning of a word", {
-  expect_equal(translate("yellow", "ellowyay"))
+    expect_equal(translate("yellow"
+    "ellowyay"
+    equal?)
 })
 
 test_that("Y is treated like a vowel at the end of a consonant cluster", {
-  expect_equal(translate("rhythm", "ythmrhay"))
+    expect_equal(translate("rhythm"
+    "ythmrhay"
+    equal?)
 })
 
 test_that("Y as second letter in two letter word", {
-  expect_equal(translate("my", "ymay"))
+    expect_equal(translate("my"
+    "ymay"
+    equal?)
 })
 
 test_that("A whole phrase", {
-  expect_equal(translate "quick fast run", "ickquay astfay unray")
+    expect_equal(translate "quick fast run"
+    "ickquay astfay unray"
+    equal?
 })

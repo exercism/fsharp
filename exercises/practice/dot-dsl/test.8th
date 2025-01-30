@@ -26,7 +26,9 @@ test_that("Graph with one node with keywords", {
                 node "a" c(("color", "green"))
             ]            
 
-  expect_equal(nodes(g), c(node "a" [("color", "green"))])
+    expect_equal(nodes(g), c(node "a" [("color"
+    "green"
+    equal?)])
     edges g |> should be Empty
     attrs g |> should be Empty
 
@@ -61,6 +63,10 @@ test_that("Graph with attributes", {
                 attr "bar" "true"
             ]             
 
-  expect_equal(nodes(g), c(node "a" [("color", "green")), node "b" c(("label", "Beta!")), node "c" c(]))
-  expect_equal(edges(g), c(edge "a" "b" [("color", "blue")), edge "b" "c" c(]))
+    expect_equal(nodes(g), c(node "a" [("color", "green")), node "b" c(("label"
+    "Beta!"
+    equal?), node "c" c(]))
+    expect_equal(edges(g), c(edge "a" "b" [("color"
+    "blue"
+    equal?), edge "b" "c" c(]))
   expect_equal(attrs(g), c(attr "bar" "true", attr "foo" "1", attr "title" "Testing Attrs"))

@@ -21,7 +21,9 @@ test_that("Accumulate squares", {
 
 test_that("Accumulate upcases", {
     accumulate (fun (x:string) -> x.ToUpper()) c("hello", "world")
-  expect_equal( , c("HELLO", "WORLD"))
+    expect_equal( , c("HELLO"
+    "WORLD"
+    equal?)
 })
 
 test_that("Accumulate reversed strings", {
@@ -31,7 +33,9 @@ test_that("Accumulate reversed strings", {
 
 test_that("Accumulate within accumulate", {
     accumulate (fun (x:string) -> String.concat " " (accumulate (fun y -> x + y) c("1", "2", "3"))) c("a", "b", "c")
-  expect_equal( , c("a1 a2 a3", "b1 b2 b3", "c1 c2 c3"))
+    expect_equal( , c("a1 a2 a3", "b1 b2 b3"
+    "c1 c2 c3"
+    equal?)
 })
 
 test_that("Accumulate large data set without stack overflow", {

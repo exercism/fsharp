@@ -4,24 +4,36 @@ with: test
 23 tests
 
 test_that("Get coordinate for Scrimshaw Whale's Tooth", {
-  expect_equal(getCoordinate ("Scrimshaw Whale's Tooth", "2A"), "2A")
+    expect_equal(getCoordinate ("Scrimshaw Whale's Tooth", "2A")
+    "2A"
+    equal?
 
 SKIP-REST-OF-TESTS
 
 test_that("Get coordinate for Brass Spyglass", {
-  expect_equal(getCoordinate ("Brass Spyglass", "4B"), "4B")
+    expect_equal(getCoordinate ("Brass Spyglass", "4B")
+    "4B"
+    equal?
 
 test_that("Get coordinate for Robot Parrot", {
-  expect_equal(getCoordinate ("Robot Parrot", "1C"), "1C")
+    expect_equal(getCoordinate ("Robot Parrot", "1C")
+    "1C"
+    equal?
 
 test_that("Get coordinate for Glass Starfish", {
-  expect_equal(getCoordinate ("Glass Starfish", "6D"), "6D")
+    expect_equal(getCoordinate ("Glass Starfish", "6D")
+    "6D"
+    equal?
 
 test_that("Get coordinate for Crystal Crab", {
-  expect_equal(getCoordinate ("Crystal Crab", "6A"), "6A")
+    expect_equal(getCoordinate ("Crystal Crab", "6A")
+    "6A"
+    equal?
 
 test_that("Get coordinate for Angry Monkey Figurine", {
-  expect_equal(getCoordinate ("Angry Monkey Figurine", "5B"), "5B")
+    expect_equal(getCoordinate ("Angry Monkey Figurine", "5B")
+    "5B"
+    equal?
 
 test_that("Convert coordinate for 2A", {
   expect_equal(convertCoordinate "2A", (2, 'A'))

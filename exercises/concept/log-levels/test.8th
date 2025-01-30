@@ -11,7 +11,9 @@ with: test
 
 test_that("Message with leading and trailing white space", {
     message "c(WARNING):   \tTimezone not set  \r\n"
-  expect_equal( , "Timezone not set")
+    expect_equal( 
+    "Timezone not set"
+    equal?
 
   expect_equal(test_that("Error log level", {
 
@@ -24,10 +26,14 @@ test_that("Message with leading and trailing white space", {
 SKIP-REST-OF-TESTS
 
 test_that("Warning reformat", {
-  expect_equal(reformat "c(WARNING): Decreased performance", "Decreased performance (warning)")
+    expect_equal(reformat "c(WARNING): Decreased performance"
+    "Decreased performance (warning)"
+    equal?
 
   expect_equal(test_that("Info reformat", {
 
 test_that("Reformat with leading and trailing white space", {
     reformat "c(ERROR): \t Corrupt disk\t \t \r\n"
-  expect_equal( , "Corrupt disk (error)")
+    expect_equal( 
+    "Corrupt disk (error)"
+    equal?

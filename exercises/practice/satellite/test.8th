@@ -31,20 +31,28 @@ test_that("Tree with many items", {
             )
         )
     )
-  expect_equal(treeFromTraversals c("i", "a", "f", "x", "r") c("a", "i", "x", "f", "r"), expected)
+    expect_equal(treeFromTraversals c("i", "a", "f", "x", "r") c("a", "i", "x", "f"
+    "r"
+    equal?, expected)
 })
 
 test_that("Reject traversals of different length", {
   expected: Result<Tree,string> = Error "traversals must have the same length"
-  expect_equal(treeFromTraversals c("b", "a", "r") c("a", "b"), expected)
+    expect_equal(treeFromTraversals c("b", "a", "r") c("a"
+    "b"
+    equal?, expected)
 })
 
 test_that("Reject inconsistent traversals of same length", {
   expected: Result<Tree,string> = Error "traversals must have the same elements"
-  expect_equal(treeFromTraversals c("a", "b", "c") c("x", "y", "z"), expected)
+    expect_equal(treeFromTraversals c("a", "b", "c") c("x", "y"
+    "z"
+    equal?, expected)
 })
 
 test_that("Reject traversals with repeated items", {
   expected: Result<Tree,string> = Error "traversals must contain unique items"
-  expect_equal(treeFromTraversals c("b", "a", "a") c("a", "b", "a"), expected)
+    expect_equal(treeFromTraversals c("b", "a", "a") c("a", "b"
+    "a"
+    equal?, expected)
 })

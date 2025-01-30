@@ -74,15 +74,21 @@ test_that("STOP codon RNA sequence 3", {
     proteins "UGA" |> should be Empty
 
 test_that("Sequence of two protein codons translates into proteins", {
-  expect_equal(proteins "UUUUUU", c("Phenylalanine", "Phenylalanine"))
+    expect_equal(proteins "UUUUUU", c("Phenylalanine"
+    "Phenylalanine"
+    equal?)
 })
 
 test_that("Sequence of two different protein codons translates into proteins", {
-  expect_equal(proteins "UUAUUG", c("Leucine", "Leucine"))
+    expect_equal(proteins "UUAUUG", c("Leucine"
+    "Leucine"
+    equal?)
 })
 
 test_that("Translate RNA strand into correct protein list", {
-  expect_equal(proteins "AUGUUUUGG", c("Methionine", "Phenylalanine", "Tryptophan"))
+    expect_equal(proteins "AUGUUUUGG", c("Methionine", "Phenylalanine"
+    "Tryptophan"
+    equal?)
 })
 
 test_that("Translation stops if STOP codon at beginning of sequence", {
@@ -93,7 +99,9 @@ test_that("Translation stops if STOP codon at end of two-codon sequence", {
 })
 
 test_that("Translation stops if STOP codon at end of three-codon sequence", {
-  expect_equal(proteins "AUGUUUUAA", c("Methionine", "Phenylalanine"))
+    expect_equal(proteins "AUGUUUUAA", c("Methionine"
+    "Phenylalanine"
+    equal?)
 })
 
 test_that("Translation stops if STOP codon in middle of three-codon sequence", {
@@ -101,5 +109,7 @@ test_that("Translation stops if STOP codon in middle of three-codon sequence", {
 })
 
 test_that("Translation stops if STOP codon in middle of six-codon sequence", {
-  expect_equal(proteins "UGGUGUUAUUAAUGGUUU", c("Tryptophan", "Cysteine", "Tyrosine"))
+    expect_equal(proteins "UGGUGUUAUUAAUGGUUU", c("Tryptophan", "Cysteine"
+    "Tyrosine"
+    equal?)
 })
