@@ -14,7 +14,7 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Add language to existing list"
-  expect_equal(addLanguage "Common Lisp" existingList, c( "Common Lisp", "F#", "Clojure", "Haskell" ))
+  expect_equal(addLanguage "Common Lisp" existingList, ["Common Lisp", "F#", "Clojure", "Haskell"])
 
   expect_equal("Add language to custom list"
 
@@ -31,7 +31,7 @@ SKIP-REST-OF-TESTS
   expect_equal("Reverse order of existing list"
 
 "Reverse order of custom list"
-  expect_equal(reverseList c( "Kotlin", "Java", "Scala", "Clojure" ), c( "Clojure", "Scala", "Java", "Kotlin" ))
+  expect_equal(reverseList ["Kotlin", "Java", "Scala", "Clojure"], ["Clojure", "Scala", "Java", "Kotlin"])
 
   expect_equal("Empty list is not exciting"
 
@@ -46,22 +46,22 @@ SKIP-REST-OF-TESTS
   expect_equal("Two-item list without F# is not exciting"
 
 "Three-item list with F# as first item is exciting"
-  expect_true(excitingList c( "F#", "Lisp", "Clojure" ))
+  expect_true(excitingList ["F#", "Lisp", "Clojure"])
 
 "Three-item list with F# as second item is exciting"
-  expect_true(excitingList c( "Java", "F#", "C#" ))
+  expect_true(excitingList ["Java", "F#", "C#"])
 
 "Three-item list with F# as third item is not exciting"
-  expect_false(excitingList c( "Julia", "Assembly", "F#" ))
+  expect_false(excitingList ["Julia", "Assembly", "F#"])
 
 "Four-item list with F# as first item is exciting"
-  expect_true(excitingList c( "F#", "C", "C++", "C#" ))
+  expect_true(excitingList ["F#", "C", "C++", "C#"])
 
 "Four-item list with F# as second item is not exciting"
-  expect_false(excitingList c( "Elm", "F#", "C#", "Scheme" ))
+  expect_false(excitingList ["Elm", "F#", "C#", "Scheme"])
 
 "Four-item list with F# as third item is not exciting"
-  expect_false(excitingList c( "Delphi", "D", "F#", "Prolog" ))
+  expect_false(excitingList ["Delphi", "D", "F#", "Prolog"])
 
 "Four-item list with F# as fourth item is not exciting"
-  expect_false(excitingList c( "Julia", "Assembly", "Crystal", "F#" ))
+  expect_false(excitingList ["Julia", "Assembly", "Crystal", "F#"])

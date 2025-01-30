@@ -13,7 +13,7 @@ SKIP-REST-OF-TESTS
   school <- 
         empty
         |> add "Aimee" 2
-  expect_equal(roster(school), c("Aimee"))
+  expect_equal(roster(school), ["Aimee"])
 
 "Multiple students in the same grade are added to the roster"
   school <- 
@@ -132,7 +132,7 @@ SKIP-REST-OF-TESTS
         |> add "James" 2
         |> add "James" 3
         |> add "Paul" 3
-  expect_equal(grade(3, school), c("Paul"))
+  expect_equal(grade(3, school), ["Paul"])
 
 "Students are sorted by name in a grade"
   school <- 

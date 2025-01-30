@@ -10,7 +10,7 @@ with: test
 SKIP-REST-OF-TESTS
 
 "One item, too heavy"
-  items <- c({ weight = 100, value = 1 })
+  items <- [{ weight = 100, value = 1 }]
   expect_equal(maximumValue(items, 10), 0)
 
 "Five items (cannot be greedy by weight)"

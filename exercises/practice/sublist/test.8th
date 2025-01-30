@@ -12,85 +12,85 @@ SKIP-REST-OF-TESTS
 
 "Empty list within non empty list"
   listOne <- c()
-  listTwo <- c(1, 2, 3)
+  listTwo <- [1, 2, 3]
   expect_equal(sublist(listOne, listTwo), SublistType.Sublist)
 
 "Non empty list contains empty list"
-  listOne <- c(1, 2, 3)
+  listOne <- [1, 2, 3]
   listTwo <- c()
   expect_equal(sublist(listOne, listTwo), SublistType.Superlist)
 
 "List equals itself"
-  listOne <- c(1, 2, 3)
-  listTwo <- c(1, 2, 3)
+  listOne <- [1, 2, 3]
+  listTwo <- [1, 2, 3]
   expect_equal(sublist(listOne, listTwo), SublistType.Equal)
 
 "Different lists"
-  listOne <- c(1, 2, 3)
-  listTwo <- c(2, 3, 4)
+  listOne <- [1, 2, 3]
+  listTwo <- [2, 3, 4]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)
 
 "False start"
-  listOne <- c(1, 2, 5)
-  listTwo <- c(0, 1, 2, 3, 1, 2, 5, 6)
+  listOne <- [1, 2, 5]
+  listTwo <- [0, 1, 2, 3, 1, 2, 5, 6]
   expect_equal(sublist(listOne, listTwo), SublistType.Sublist)
 
 "Consecutive"
-  listOne <- c(1, 1, 2)
-  listTwo <- c(0, 1, 1, 1, 2, 1, 2)
+  listOne <- [1, 1, 2]
+  listTwo <- [0, 1, 1, 1, 2, 1, 2]
   expect_equal(sublist(listOne, listTwo), SublistType.Sublist)
 
 "Sublist at start"
-  listOne <- c(0, 1, 2)
-  listTwo <- c(0, 1, 2, 3, 4, 5)
+  listOne <- [0, 1, 2]
+  listTwo <- [0, 1, 2, 3, 4, 5]
   expect_equal(sublist(listOne, listTwo), SublistType.Sublist)
 
 "Sublist in middle"
-  listOne <- c(2, 3, 4)
-  listTwo <- c(0, 1, 2, 3, 4, 5)
+  listOne <- [2, 3, 4]
+  listTwo <- [0, 1, 2, 3, 4, 5]
   expect_equal(sublist(listOne, listTwo), SublistType.Sublist)
 
 "Sublist at end"
-  listOne <- c(3, 4, 5)
-  listTwo <- c(0, 1, 2, 3, 4, 5)
+  listOne <- [3, 4, 5]
+  listTwo <- [0, 1, 2, 3, 4, 5]
   expect_equal(sublist(listOne, listTwo), SublistType.Sublist)
 
 "At start of superlist"
-  listOne <- c(0, 1, 2, 3, 4, 5)
-  listTwo <- c(0, 1, 2)
+  listOne <- [0, 1, 2, 3, 4, 5]
+  listTwo <- [0, 1, 2]
   expect_equal(sublist(listOne, listTwo), SublistType.Superlist)
 
 "In middle of superlist"
-  listOne <- c(0, 1, 2, 3, 4, 5)
-  listTwo <- c(2, 3)
+  listOne <- [0, 1, 2, 3, 4, 5]
+  listTwo <- [2, 3]
   expect_equal(sublist(listOne, listTwo), SublistType.Superlist)
 
 "At end of superlist"
-  listOne <- c(0, 1, 2, 3, 4, 5)
-  listTwo <- c(3, 4, 5)
+  listOne <- [0, 1, 2, 3, 4, 5]
+  listTwo <- [3, 4, 5]
   expect_equal(sublist(listOne, listTwo), SublistType.Superlist)
 
 "First list missing element from second list"
-  listOne <- c(1, 3)
-  listTwo <- c(1, 2, 3)
+  listOne <- [1, 3]
+  listTwo <- [1, 2, 3]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)
 
 "Second list missing element from first list"
-  listOne <- c(1, 2, 3)
-  listTwo <- c(1, 3)
+  listOne <- [1, 2, 3]
+  listTwo <- [1, 3]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)
 
 "First list missing additional digits from second list"
-  listOne <- c(1, 2)
-  listTwo <- c(1, 22)
+  listOne <- [1, 2]
+  listTwo <- [1, 22]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)
 
 "Order matters to a list"
-  listOne <- c(1, 2, 3)
-  listTwo <- c(3, 2, 1)
+  listOne <- [1, 2, 3]
+  listTwo <- [3, 2, 1]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)
 
 "Same digits but different numbers"
-  listOne <- c(1, 0, 1)
-  listTwo <- c(10, 1)
+  listOne <- [1, 0, 1]
+  listTwo <- [10, 1]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)

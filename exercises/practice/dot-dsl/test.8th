@@ -17,13 +17,13 @@ SKIP-REST-OF-TESTS
                 node "a" []
             ]            
 
-  expect_equal(nodes(g), c(node "a" [)])
+  expect_equal(nodes(g), [node "a" []])
     edges g |> should be Empty
     attrs g |> should be Empty
     
 "Graph with one node with keywords"
   g <- graph [
-                node "a" c(("color", "green"))
+                node "a" [("color", "green"])
             ]            
 
     expect_equal(nodes(g), c(node "a" [("color"
@@ -38,7 +38,7 @@ SKIP-REST-OF-TESTS
             ]             
 
     nodes g |> should be Empty
-  expect_equal(edges(g), c(edge "a" "b" [)])
+  expect_equal(edges(g), [edge "a" "b" []])
     attrs g |> should be Empty
 
 "Graph with one attribute"
@@ -48,24 +48,24 @@ SKIP-REST-OF-TESTS
 
     nodes g |> should be Empty
     edges g |> should be Empty
-  expect_equal(attrs(g), c(attr "foo" "1"))
+  expect_equal(attrs(g), [attr "foo" "1"])
 
 "Graph with attributes"
   g <- graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"
-                node "a" c(("color", "green"))
+                node "a" [("color", "green"])
                 node "c" []
-                node "b" c(("label", "Beta!"))                
+                node "b" [("label", "Beta!"])                
                 edge "b" "c" []
-                edge "a" "b" c(("color", "blue"))                
+                edge "a" "b" [("color", "blue"])                
                 attr "bar" "true"
             ]             
 
-    expect_equal(nodes(g), c(node "a" [("color", "green")), node "b" c(("label"
+    expect_equal(nodes(g), [node "a" [("color", "green"]), node "b" c(("label"
     "Beta!"
-    equal?), node "c" c(]))
+    equal?), node "c" []])
     expect_equal(edges(g), c(edge "a" "b" [("color"
     "blue"
-    equal?), edge "b" "c" c(]))
-  expect_equal(attrs(g), c(attr "bar" "true", attr "foo" "1", attr "title" "Testing Attrs"))
+    equal?), edge "b" "c" []])
+  expect_equal(attrs(g), [attr "bar" "true", attr "foo" "1", attr "title" "Testing Attrs"])

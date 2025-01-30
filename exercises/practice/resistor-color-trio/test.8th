@@ -4,53 +4,53 @@ with: test
 10 tests
 
 "Orange and orange and black"
-    expect_equal(label c("orange", "orange", "black")
+    expect_equal(label ["orange", "orange", "black"]
     "33 ohms"
     equal?
 
 SKIP-REST-OF-TESTS
 
 "Blue and grey and brown"
-    expect_equal(label c("blue", "grey", "brown")
+    expect_equal(label ["blue", "grey", "brown"]
     "680 ohms"
     equal?
 
 "Red and black and red"
-    expect_equal(label c("red", "black", "red")
+    expect_equal(label ["red", "black", "red"]
     "2 kiloohms"
     equal?
 
 "Green and brown and orange"
-    expect_equal(label c("green", "brown", "orange")
+    expect_equal(label ["green", "brown", "orange"]
     "51 kiloohms"
     equal?
 
 "Yellow and violet and yellow"
-    expect_equal(label c("yellow", "violet", "yellow")
+    expect_equal(label ["yellow", "violet", "yellow"]
     "470 kiloohms"
     equal?
 
 "Blue and violet and blue"
-    expect_equal(label c("blue", "violet", "blue")
+    expect_equal(label ["blue", "violet", "blue"]
     "67 megaohms"
     equal?
 
 "Minimum possible value"
-    expect_equal(label c("black", "black", "black")
+    expect_equal(label ["black", "black", "black"]
     "0 ohms"
     equal?
 
 "Maximum possible value"
-    expect_equal(label c("white", "white", "white")
+    expect_equal(label ["white", "white", "white"]
     "99 gigaohms"
     equal?
 
 "First two colors make an invalid octal number"
-    expect_equal(label c("black", "grey", "black")
+    expect_equal(label ["black", "grey", "black"]
     "8 ohms"
     equal?
 
 "Ignore extra colors"
-    expect_equal(label c("blue", "green", "yellow", "orange")
+    expect_equal(label ["blue", "green", "yellow", "orange"]
     "650 kiloohms"
     equal?

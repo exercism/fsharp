@@ -3,13 +3,13 @@ needs exercism/test
 with: test
 7 tests
 
-let split (x: string) = x.Split(c(| '\n' |), StringSplitOptions.None)
+let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()
 
-let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny c(|'A'..'Z'|))
+let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny [|'A'..'Z'|])
 
-let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny c(|'A'..'Z'|) + 1)
+let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
 
 type Letters =
     static member Chars () =
@@ -17,9 +17,9 @@ type Letters =
         |> Arb.filter (fun c -> 'A' <= c && c <= 'Z')
 
 type DiamondPropertyAttribute () =
-    inherit PropertyAttribute(Arbitrary = c(| typeof<Letters> |))
+    inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
 
-c(<DiamondProperty>)
+[<DiamondProperty>]
 "First row contains 'A'"
   actual <- make letter
   rows <- actual |> split
@@ -29,7 +29,7 @@ c(<DiamondProperty>)
     "A"
     equal?
 
-c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+[<DiamondProperty(Skip = "Remove this Skip property to run this test"]>)
 SKIP-REST-OF-TESTS
 
 "All rows must have symmetric contour"
@@ -39,11 +39,11 @@ SKIP-REST-OF-TESTS
 
   expect_equal(rows |> Array.iter (fun x -> symmetric x, true))
 
-c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+[<DiamondProperty(Skip = "Remove this Skip property to run this test"]>)
 "Top of figure has letters in correct order"
   actual <- make letter
 
-  expected <- c('A'..letter)
+  expected <- ['A'..letter]
   rows <- actual |> split
     firstNonSpaceLetters <-
         rows 
@@ -53,7 +53,7 @@ c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 
   expect_equal(expected, firstNonSpaceLetters)
 
-c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+[<DiamondProperty(Skip = "Remove this Skip property to run this test"]>)
 "Figure is symmetric around the horizontal axis"
   actual <- make letter
 
@@ -71,7 +71,7 @@ c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 
   expect_equal(top, bottom)
 
-c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+[<DiamondProperty(Skip = "Remove this Skip property to run this test"]>)
 "Diamond has square shape"
   actual <- make letter
 
@@ -81,7 +81,7 @@ c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 
   expect_equal(rows |> Array.iter (fun x -> correctWidth x, true))
 
-c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+[<DiamondProperty(Skip = "Remove this Skip property to run this test"]>)
 "All rows except top and bottom have two identical letters"
   actual <- make letter
 
@@ -97,7 +97,7 @@ c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
 
   expect_equal(rows |> Array.iter (fun x -> twoIdenticalLetters x, true))
 
-c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+[<DiamondProperty(Skip = "Remove this Skip property to run this test"]>)
 "Bottom left corner spaces are triangle"
   actual <- make letter
 

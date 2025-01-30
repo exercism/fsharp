@@ -11,8 +11,8 @@ with: test
 SKIP-REST-OF-TESTS
 
 "No columns"
-  minefield <- c("")
-  expected <- c("")
+  minefield <- [""]
+  expected <- [""]
   expect_equal(annotate(minefield), expected)
 
 "No mines"
@@ -60,13 +60,13 @@ SKIP-REST-OF-TESTS
   expect_equal(annotate(minefield), expected)
 
 "Horizontal line"
-  minefield <- c(" * * ")
-  expected <- c("1*2*1")
+  minefield <- [" * * "]
+  expected <- ["1*2*1"]
   expect_equal(annotate(minefield), expected)
 
 "Horizontal line, mines at edges"
-  minefield <- c("*   *")
-  expected <- c("*1 1*")
+  minefield <- ["*   *"]
+  expected <- ["*1 1*"]
   expect_equal(annotate(minefield), expected)
 
 "Vertical line"

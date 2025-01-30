@@ -10,11 +10,11 @@ with: test
 SKIP-REST-OF-TESTS
 
 "No columns"
-  strings <- c("")
+  strings <- [""]
   expect_equal(rectangles(strings), 0)
 
 "No rectangles"
-  strings <- c(" ")
+  strings <- [" "]
   expect_equal(rectangles(strings), 0)
 
 "One rectangle"

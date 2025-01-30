@@ -26,7 +26,7 @@ SKIP-REST-OF-TESTS
   expect_equal("Order price for single pizza caprese"
 
 "Order price for single pizza formaggio with extra sauce"
-  expect_equal(orderPrice c( ExtraSauce Formaggio ), 14)
+  expect_equal(orderPrice [ExtraSauce Formaggio], 14)
 
 "Order price for one pizza margherita and one pizza caprese with extra toppings"
     orderPrice

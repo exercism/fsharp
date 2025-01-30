@@ -10,7 +10,7 @@ with: test
   expect_equal("Info message"
 
 "Message with leading and trailing white space"
-    message "c(WARNING):   \tTimezone not set  \r\n"
+    message "[WARNING]:   \tTimezone not set  \r\n"
     expect_equal( 
     "Timezone not set"
     equal?
@@ -26,14 +26,14 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Warning reformat"
-    ( "c(WARNING): Decreased performance" reformat )
+    ( "[WARNING]: Decreased performance" reformat )
     "Decreased performance (warning)"
     equal?
 
   expect_equal("Info reformat"
 
 "Reformat with leading and trailing white space"
-    reformat "c(ERROR): \t Corrupt disk\t \t \r\n"
+    reformat "[ERROR]: \t Corrupt disk\t \t \r\n"
     expect_equal( 
     "Corrupt disk (error)"
     equal?

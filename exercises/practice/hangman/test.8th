@@ -38,7 +38,7 @@ SKIP-REST-OF-TESTS
 
     startGame game |> ignore
 
-    c(for x in 1..10 do makeGuess 'x' game) |> ignore
+    [for x in 1..10 do makeGuess 'x' game] |> ignore
 
   expect_equal(lastProgress, Lose)
     

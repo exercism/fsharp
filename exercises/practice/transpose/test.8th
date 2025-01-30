@@ -11,7 +11,7 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Two characters in a row"
-  lines <- c("A1")
+  lines <- ["A1"]
   expected <- 
         [ "A";
           "1" ]
@@ -21,7 +21,7 @@ SKIP-REST-OF-TESTS
   lines <- 
         [ "A";
           "1" ]
-  expected <- c("A1")
+  expected <- ["A1"]
   expect_equal(transpose(lines), expected)
 
 "Simple"
@@ -35,7 +35,7 @@ SKIP-REST-OF-TESTS
   expect_equal(transpose(lines), expected)
 
 "Single line"
-  lines <- c("Single line.")
+  lines <- ["Single line."]
   expected <- 
         [ "S";
           "i";

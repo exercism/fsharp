@@ -18,45 +18,45 @@ SKIP-REST-OF-TESTS
     null?
 
 "Node without properties"
-  expected <- (Node (Map.ofList c(], [)))
+  expected <- (Node (Map.ofList [], []))
   expect_equal(parse "(;)", expected)
 
 "Single node tree"
-  expected <- (Node (Map.ofList c(("A", ["B"))], []))
-  expect_equal(parse "(;Ac(B))", expected)
+  expected <- (Node (Map.ofList [("A", ["B"])], []))
+  expect_equal(parse "(;A[B])", expected)
 
 "Multiple properties"
-  expected <- (Node (Map.ofList c(("A", ["b")), ("C", c("d"))], []))
-  expect_equal(parse "(;Ac(b)Cc(d))", expected)
+  expected <- (Node (Map.ofList [("A", ["b"]), ("C", ["d"])], []))
+  expect_equal(parse "(;A[b]C[d])", expected)
 
 "Properties without delimiter"
     ( parse "(;A)" )
     null?
 
 "All lowercase property"
-    ( parse "(;ac(b))" )
+    ( parse "(;a[b])" )
     null?
 
 "Upper and lowercase property"
-    ( parse "(;Aac(b))" )
+    ( parse "(;Aa[b])" )
     null?
 
 "Two nodes"
-  expected <- (Node (Map.ofList c(("A", ["B"))], c(Node (Map.ofList [("B", ["C"))], c(]))))
-  expect_equal(parse "(;Ac(B);Bc(C))", expected)
+  expected <- (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], []])))
+  expect_equal(parse "(;A[B];B[C])", expected)
 
 "Two child trees"
-  expected <- (Node (Map.ofList c(("A", ["B"))], c(Node (Map.ofList [("B", ["C"))], c(]), Node (Map.ofList [("C", ["D"))], c(]))))
-  expect_equal(parse "(;Ac(B)(;Bc(C))(;Cc(D)))", expected)
+  expected <- (Node (Map.ofList [("A", ["B"])], [Node (Map.ofList [("B", ["C"])], []], Node (Map.ofList [("C", ["D"))], []])))
+  expect_equal(parse "(;A[B](;B[C])(;C[D]))", expected)
 
 "Multiple property values"
-  expected <- (Node (Map.ofList c(("A", ["b", "c", "d"))], []))
-  expect_equal(parse "(;Ac(b)c(c)c(d))", expected)
+  expected <- (Node (Map.ofList [("A", ["b", "c", "d"])], []))
+  expect_equal(parse "(;A[b][c][d])", expected)
 
 "Semicolon in property value doesn't need to be escaped"
-  expected <- (Node (Map.ofList c(("A", ["a;b", "foo")), ("B", c("bar"))], c(Node (Map.ofList [("C", ["baz"))], c(]))))
-  expect_equal(parse "(;Ac(a;b)c(foo)Bc(bar);Cc(baz))", expected)
+  expected <- (Node (Map.ofList [("A", ["a;b", "foo"]), ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], []])))
+  expect_equal(parse "(;A[a;b][foo]B[bar];C[baz])", expected)
 
 "Parentheses in property value don't need to be escaped"
-  expected <- (Node (Map.ofList c(("A", ["x(y)z", "foo")), ("B", c("bar"))], c(Node (Map.ofList [("C", ["baz"))], c(]))))
-  expect_equal(parse "(;Ac(x(y)z)c(foo)Bc(bar);Cc(baz))", expected)
+  expected <- (Node (Map.ofList [("A", ["x(y]z", "foo")), ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], []])))
+  expect_equal(parse "(;A[x(y]z)[foo]B[bar];C[baz])", expected)

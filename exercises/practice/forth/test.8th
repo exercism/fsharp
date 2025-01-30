@@ -4,219 +4,219 @@ with: test
 49 tests
 
 "Parsing and numbers - numbers just get pushed onto the stack"
-  expected <- c(1, 2, 3, 4, 5)
-  expect_equal(evaluate c("1 2 3 4 5"), expected)
+  expected <- [1, 2, 3, 4, 5]
+  expect_equal(evaluate ["1 2 3 4 5"], expected)
 
 SKIP-REST-OF-TESTS
 
 "Parsing and numbers - pushes negative numbers onto the stack"
-  expected <- c(-1, -2, -3, -4, -5)
-  expect_equal(evaluate c("-1 -2 -3 -4 -5"), expected)
+  expected <- [-1, -2, -3, -4, -5]
+  expect_equal(evaluate ["-1 -2 -3 -4 -5"], expected)
 
 "Addition - can add two numbers"
-  expected <- c(3)
-  expect_equal(evaluate c("1 2 +"), expected)
+  expected <- [3]
+  expect_equal(evaluate ["1 2 +"], expected)
 
 "Addition - errors if there is nothing on the stack"
-    ( evaluate c("+") )
+    ( evaluate ["+"] )
     null?
 
 "Addition - errors if there is only one value on the stack"
-    ( evaluate c("1 +") )
+    ( evaluate ["1 +"] )
     null?
 
 "Subtraction - can subtract two numbers"
-  expected <- c(-1)
-  expect_equal(evaluate c("3 4 -"), expected)
+  expected <- [-1]
+  expect_equal(evaluate ["3 4 -"], expected)
 
 "Subtraction - errors if there is nothing on the stack"
-    ( evaluate c("-") )
+    ( evaluate ["-"] )
     null?
 
 "Subtraction - errors if there is only one value on the stack"
-    ( evaluate c("1 -") )
+    ( evaluate ["1 -"] )
     null?
 
 "Multiplication - can multiply two numbers"
-  expected <- c(8)
-  expect_equal(evaluate c("2 4 *"), expected)
+  expected <- [8]
+  expect_equal(evaluate ["2 4 *"], expected)
 
 "Multiplication - errors if there is nothing on the stack"
-    ( evaluate c("*") )
+    ( evaluate ["*"] )
     null?
 
 "Multiplication - errors if there is only one value on the stack"
-    ( evaluate c("1 *") )
+    ( evaluate ["1 *"] )
     null?
 
 "Division - can divide two numbers"
-  expected <- c(4)
-  expect_equal(evaluate c("12 3 /"), expected)
+  expected <- [4]
+  expect_equal(evaluate ["12 3 /"], expected)
 
 "Division - performs integer division"
-  expected <- c(2)
-  expect_equal(evaluate c("8 3 /"), expected)
+  expected <- [2]
+  expect_equal(evaluate ["8 3 /"], expected)
 
 "Division - errors if dividing by zero"
-    ( evaluate c("4 0 /") )
+    ( evaluate ["4 0 /"] )
     null?
 
 "Division - errors if there is nothing on the stack"
-    ( evaluate c("/") )
+    ( evaluate ["/"] )
     null?
 
 "Division - errors if there is only one value on the stack"
-    ( evaluate c("1 /") )
+    ( evaluate ["1 /"] )
     null?
 
 "Combined arithmetic - addition and subtraction"
-  expected <- c(-1)
-  expect_equal(evaluate c("1 2 + 4 -"), expected)
+  expected <- [-1]
+  expect_equal(evaluate ["1 2 + 4 -"], expected)
 
 "Combined arithmetic - multiplication and division"
-  expected <- c(2)
-  expect_equal(evaluate c("2 4 * 3 /"), expected)
+  expected <- [2]
+  expect_equal(evaluate ["2 4 * 3 /"], expected)
 
 "Dup - copies a value on the stack"
-  expected <- c(1, 1)
-  expect_equal(evaluate c("1 dup"), expected)
+  expected <- [1, 1]
+  expect_equal(evaluate ["1 dup"], expected)
 
 "Dup - copies the top value on the stack"
-  expected <- c(1, 2, 2)
-  expect_equal(evaluate c("1 2 dup"), expected)
+  expected <- [1, 2, 2]
+  expect_equal(evaluate ["1 2 dup"], expected)
 
 "Dup - errors if there is nothing on the stack"
-    ( evaluate c("dup") )
+    ( evaluate ["dup"] )
     null?
 
 "Drop - removes the top value on the stack if it is the only one"
   expected: int list option = Some []
-  expect_equal(evaluate c("1 drop"), expected)
+  expect_equal(evaluate ["1 drop"], expected)
 
 "Drop - removes the top value on the stack if it is not the only one"
-  expected <- c(1)
-  expect_equal(evaluate c("1 2 drop"), expected)
+  expected <- [1]
+  expect_equal(evaluate ["1 2 drop"], expected)
 
 "Drop - errors if there is nothing on the stack"
-    ( evaluate c("drop") )
+    ( evaluate ["drop"] )
     null?
 
 "Swap - swaps the top two values on the stack if they are the only ones"
-  expected <- c(2, 1)
-  expect_equal(evaluate c("1 2 swap"), expected)
+  expected <- [2, 1]
+  expect_equal(evaluate ["1 2 swap"], expected)
 
 "Swap - swaps the top two values on the stack if they are not the only ones"
-  expected <- c(1, 3, 2)
-  expect_equal(evaluate c("1 2 3 swap"), expected)
+  expected <- [1, 3, 2]
+  expect_equal(evaluate ["1 2 3 swap"], expected)
 
 "Swap - errors if there is nothing on the stack"
-    ( evaluate c("swap") )
+    ( evaluate ["swap"] )
     null?
 
 "Swap - errors if there is only one value on the stack"
-    ( evaluate c("1 swap") )
+    ( evaluate ["1 swap"] )
     null?
 
 "Over - copies the second element if there are only two"
-  expected <- c(1, 2, 1)
-  expect_equal(evaluate c("1 2 over"), expected)
+  expected <- [1, 2, 1]
+  expect_equal(evaluate ["1 2 over"], expected)
 
 "Over - copies the second element if there are more than two"
-  expected <- c(1, 2, 3, 2)
-  expect_equal(evaluate c("1 2 3 over"), expected)
+  expected <- [1, 2, 3, 2]
+  expect_equal(evaluate ["1 2 3 over"], expected)
 
 "Over - errors if there is nothing on the stack"
-    ( evaluate c("over") )
+    ( evaluate ["over"] )
     null?
 
 "Over - errors if there is only one value on the stack"
-    ( evaluate c("1 over") )
+    ( evaluate ["1 over"] )
     null?
 
 "User-defined words - can consist of built-in words"
-  expected <- c(1, 1, 1)
+  expected <- [1, 1, 1]
     expect_equal(evaluate c(": dup-twice dup dup ;"
     "1 dup-twice"
     equal?, expected)
 
 "User-defined words - execute in the right order"
-  expected <- c(1, 2, 3)
+  expected <- [1, 2, 3]
     expect_equal(evaluate c(": countup 1 2 3 ;"
     "countup"
     equal?, expected)
 
 "User-defined words - can override other user-defined words"
-  expected <- c(1, 1, 1)
+  expected <- [1, 1, 1]
     expect_equal(evaluate c(": foo dup ;", ": foo dup dup ;"
     "1 foo"
     equal?, expected)
 
 "User-defined words - can override built-in words"
-  expected <- c(1, 1)
+  expected <- [1, 1]
     expect_equal(evaluate c(": swap dup ;"
     "1 swap"
     equal?, expected)
 
 "User-defined words - can override built-in operators"
-  expected <- c(12)
+  expected <- [12]
     expect_equal(evaluate c(": + * ;"
     "3 4 +"
     equal?, expected)
 
 "User-defined words - can use different words with the same name"
-  expected <- c(5, 6)
+  expected <- [5, 6]
     expect_equal(evaluate c(": foo 5 ;", ": bar foo ;", ": foo 6 ;"
     "bar foo"
     equal?, expected)
 
 "User-defined words - can define word that uses word with the same name"
-  expected <- c(11)
+  expected <- [11]
     expect_equal(evaluate c(": foo 10 ;", ": foo foo 1 + ;"
     "foo"
     equal?, expected)
 
 "User-defined words - cannot redefine non-negative numbers"
-    ( evaluate c(": 1 2 ;") )
+    ( evaluate [": 1 2 ;"] )
     null?
 
 "User-defined words - cannot redefine negative numbers"
-    ( evaluate c(": -1 2 ;") )
+    ( evaluate [": -1 2 ;"] )
     null?
 
 "User-defined words - errors if executing a non-existent word"
-    ( evaluate c("foo") )
+    ( evaluate ["foo"] )
     null?
 
 "User-defined words - only defines locally"
     expect_equal(evaluate c(": + - ;"
     "1 1 +"
-    equal?, c(0))
-  expect_equal(evaluate c("1 1 +"), c(2))
+    equal?, [0])
+  expect_equal(evaluate ["1 1 +"], [2])
 
 "Case-insensitivity - DUP is case-insensitive"
-  expected <- c(1, 1, 1, 1)
-  expect_equal(evaluate c("1 DUP Dup dup"), expected)
+  expected <- [1, 1, 1, 1]
+  expect_equal(evaluate ["1 DUP Dup dup"], expected)
 
 "Case-insensitivity - DROP is case-insensitive"
-  expected <- c(1)
-  expect_equal(evaluate c("1 2 3 4 DROP Drop drop"), expected)
+  expected <- [1]
+  expect_equal(evaluate ["1 2 3 4 DROP Drop drop"], expected)
 
 "Case-insensitivity - SWAP is case-insensitive"
-  expected <- c(2, 3, 4, 1)
-  expect_equal(evaluate c("1 2 SWAP 3 Swap 4 swap"), expected)
+  expected <- [2, 3, 4, 1]
+  expect_equal(evaluate ["1 2 SWAP 3 Swap 4 swap"], expected)
 
 "Case-insensitivity - OVER is case-insensitive"
-  expected <- c(1, 2, 1, 2, 1)
-  expect_equal(evaluate c("1 2 OVER Over over"), expected)
+  expected <- [1, 2, 1, 2, 1]
+  expect_equal(evaluate ["1 2 OVER Over over"], expected)
 
 "Case-insensitivity - user-defined words are case-insensitive"
-  expected <- c(1, 1, 1, 1)
+  expected <- [1, 1, 1, 1]
     expect_equal(evaluate c(": foo dup ;"
     "1 FOO Foo foo"
     equal?, expected)
 
 "Case-insensitivity - definitions are case-insensitive"
-  expected <- c(1, 1, 1, 1)
+  expected <- [1, 1, 1, 1]
     expect_equal(evaluate c(": SWAP DUP Dup dup ;"
     "1 swap"
     equal?, expected)

@@ -4,79 +4,79 @@ with: test
 19 tests
 
 "Last week"
-  expect_equal(lastWeek, c(| 0, 2, 5, 3, 7, 8, 4 |))
+  expect_equal(lastWeek, [| 0, 2, 5, 3, 7, 8, 4 |])
 
 SKIP-REST-OF-TESTS
 
 "Yesterday's bird count of disappointing week"
-    yesterday c(| 0, 0, 2, 0, 0, 1, 0 |)
+    yesterday [| 0, 0, 2, 0, 0, 1, 0 |]
   expect_equal( , 1)
 
 "Yesterday's bird count of busy week"
-    yesterday c(| 8, 8, 9, 5, 4, 7, 10 |)
+    yesterday [| 8, 8, 9, 5, 4, 7, 10 |]
   expect_equal( , 7)
 
 "Total number of birds of disappointing week"
-  expect_equal(total c(| 0, 0, 2, 0, 0, 1, 0 |), 3)
+  expect_equal(total [| 0, 0, 2, 0, 0, 1, 0 |], 3)
 
 "Total number of birds of busy week"
-    total c(| 5, 9, 12, 6, 8, 8, 17 |)
+    total [| 5, 9, 12, 6, 8, 8, 17 |]
   expect_equal( , 65)
 
 "Day without birds for week that had day without birds"
-    dayWithoutBirds c(| 5, 5, 4, 0, 7, 6, 7 |)
+    dayWithoutBirds [| 5, 5, 4, 0, 7, 6, 7 |]
   expect_true( )
 
 "Day without birds for week that did not have day without birds"
-    dayWithoutBirds c(| 4, 5, 9, 10, 9, 4, 3 |)
+    dayWithoutBirds [| 4, 5, 9, 10, 9, 4, 3 |]
   expect_false( )
 
 "Increment today's count with no previous visits"
-  birdCounts <- c(| 6, 5, 5, 11, 2, 5, 0 |)
+  birdCounts <- [| 6, 5, 5, 11, 2, 5, 0 |]
     incrementTodaysCount birdCounts
-  expect_equal( , c(| 6, 5, 5, 11, 2, 5, 1 |))
+  expect_equal( , [| 6, 5, 5, 11, 2, 5, 1 |])
 
 "Increment today's count with multiple previous visits"
-  birdCounts <- c(| 5, 2, 4, 2, 4, 5, 7 |)
+  birdCounts <- [| 5, 2, 4, 2, 4, 5, 7 |]
     incrementTodaysCount birdCounts
-  expect_equal( , c(| 5, 2, 4, 2, 4, 5, 8 |))
+  expect_equal( , [| 5, 2, 4, 2, 4, 5, 8 |])
 
 "Unusual week for first week matching odd days zero pattern"
-    unusualWeek c(| 1, 0, 2, 0, 3, 0, 4 |)
+    unusualWeek [| 1, 0, 2, 0, 3, 0, 4 |]
   expect_true( )
 
 "Unusual week for second week matching odd days zero pattern"
-    unusualWeek c(| 10, 0, 6, 0, 9, 0, 4 |)
+    unusualWeek [| 10, 0, 6, 0, 9, 0, 4 |]
   expect_true( )
 
 "Unusual week for first week matching odd days ten pattern"
-    unusualWeek c(| 6, 10, 2, 10, 5, 10, 8 |)
+    unusualWeek [| 6, 10, 2, 10, 5, 10, 8 |]
   expect_true( )
 
 "Unusual week for second week matching odd days ten pattern"
-    unusualWeek c(| 16, 10, 8, 10, 4, 10, 7 |)
+    unusualWeek [| 16, 10, 8, 10, 4, 10, 7 |]
   expect_true( )
 
 "Unusual week for first week matching even days five pattern"
-    unusualWeek c(| 5, 1, 5, 2, 5, 3, 5 |)
+    unusualWeek [| 5, 1, 5, 2, 5, 3, 5 |]
   expect_true( )
 
 "Unusual week for second week matching even days five pattern"
-    unusualWeek c(| 5, 12, 5, 6, 5, 5, 5 |)
+    unusualWeek [| 5, 12, 5, 6, 5, 5, 5 |]
   expect_true( )
 
 "Unusual week for first week that does not match odd pattern"
-    unusualWeek c(| 2, 2, 1, 0, 1, 1, 1 |)
+    unusualWeek [| 2, 2, 1, 0, 1, 1, 1 |]
   expect_false( )
 
 "Unusual week for second week that does not match odd pattern"
-    unusualWeek c(| 2, 0, 1, 1, 1, 0, 1 |)
+    unusualWeek [| 2, 0, 1, 1, 1, 0, 1 |]
   expect_false( )
 
 "Unusual week for third week that does not match odd pattern"
-    unusualWeek c(| 2, 9, 1, 10, 1, 11, 1 |)
+    unusualWeek [| 2, 9, 1, 10, 1, 11, 1 |]
   expect_false( )
 
 "Unusual week for fourth week that does not match odd pattern"
-    unusualWeek c(| 5, 0, 5, 1, 4, 0, 6 |)
+    unusualWeek [| 5, 0, 5, 1, 4, 0, 6 |]
   expect_false( )

@@ -4,73 +4,73 @@ with: test
 16 tests
 
 "No matches"
-  candidates <- c("hello", "world", "zombies", "pants")
+  candidates <- ["hello", "world", "zombies", "pants"]
     findAnagrams candidates "diaper" |> should be Empty
 
 SKIP-REST-OF-TESTS
 
 "Detects two anagrams"
-  candidates <- c("lemons", "cherry", "melons")
+  candidates <- ["lemons", "cherry", "melons"]
     expect_equal(findAnagrams candidates "solemn", c("lemons"
     "melons"
     equal?)
 
 "Does not detect anagram subsets"
-  candidates <- c("dog", "goody")
+  candidates <- ["dog", "goody"]
     findAnagrams candidates "good" |> should be Empty
 
 "Detects anagram"
-  candidates <- c("enlists", "google", "inlets", "banana")
-  expect_equal(findAnagrams candidates "listen", c("inlets"))
+  candidates <- ["enlists", "google", "inlets", "banana"]
+  expect_equal(findAnagrams candidates "listen", ["inlets"])
 
 "Detects three anagrams"
-  candidates <- c("gallery", "ballerina", "regally", "clergy", "largely", "leading")
+  candidates <- ["gallery", "ballerina", "regally", "clergy", "largely", "leading"]
     expect_equal(findAnagrams candidates "allergy", c("gallery", "regally"
     "largely"
     equal?)
 
 "Detects multiple anagrams with different case"
-  candidates <- c("Eons", "ONES")
+  candidates <- ["Eons", "ONES"]
     expect_equal(findAnagrams candidates "nose", c("Eons"
     "ONES"
     equal?)
 
 "Does not detect non-anagrams with identical checksum"
-  candidates <- c("last")
+  candidates <- ["last"]
     findAnagrams candidates "mass" |> should be Empty
 
 "Detects anagrams case-insensitively"
-  candidates <- c("cashregister", "Carthorse", "radishes")
-  expect_equal(findAnagrams candidates "Orchestra", c("Carthorse"))
+  candidates <- ["cashregister", "Carthorse", "radishes"]
+  expect_equal(findAnagrams candidates "Orchestra", ["Carthorse"])
 
 "Detects anagrams using case-insensitive subject"
-  candidates <- c("cashregister", "carthorse", "radishes")
-  expect_equal(findAnagrams candidates "Orchestra", c("carthorse"))
+  candidates <- ["cashregister", "carthorse", "radishes"]
+  expect_equal(findAnagrams candidates "Orchestra", ["carthorse"])
 
 "Detects anagrams using case-insensitive possible matches"
-  candidates <- c("cashregister", "Carthorse", "radishes")
-  expect_equal(findAnagrams candidates "orchestra", c("Carthorse"))
+  candidates <- ["cashregister", "Carthorse", "radishes"]
+  expect_equal(findAnagrams candidates "orchestra", ["Carthorse"])
 
 "Does not detect an anagram if the original word is repeated"
-  candidates <- c("go Go GO")
+  candidates <- ["go Go GO"]
     findAnagrams candidates "go" |> should be Empty
 
 "Anagrams must use all letters exactly once"
-  candidates <- c("patter")
+  candidates <- ["patter"]
     findAnagrams candidates "tapper" |> should be Empty
 
 "Words are not anagrams of themselves"
-  candidates <- c("BANANA")
+  candidates <- ["BANANA"]
     findAnagrams candidates "BANANA" |> should be Empty
 
 "Words are not anagrams of themselves even if letter case is partially different"
-  candidates <- c("Banana")
+  candidates <- ["Banana"]
     findAnagrams candidates "BANANA" |> should be Empty
 
 "Words are not anagrams of themselves even if letter case is completely different"
-  candidates <- c("banana")
+  candidates <- ["banana"]
     findAnagrams candidates "BANANA" |> should be Empty
 
 "Words other than themselves can be anagrams"
-  candidates <- c("LISTEN", "Silent")
-  expect_equal(findAnagrams candidates "LISTEN", c("Silent"))
+  candidates <- ["LISTEN", "Silent"]
+  expect_equal(findAnagrams candidates "LISTEN", ["Silent"])

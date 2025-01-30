@@ -5,13 +5,13 @@ with: test
 
 "Random key cipher - Can encode"
   sut <- SimpleCipher()
-  expect_equal(sut.Encode("aaaaaaaaaa"), sut.Key.c(0..9))
+  expect_equal(sut.Encode("aaaaaaaaaa"), sut.Key.[0..9])
 
 SKIP-REST-OF-TESTS
 
 "Random key cipher - Can decode"
   sut <- SimpleCipher()
-    expect_equal(sut.Decode(sut.Key.c(0..9))
+    expect_equal(sut.Decode(sut.Key.[0..9])
     "aaaaaaaaaa"
     equal?
 
@@ -23,7 +23,7 @@ SKIP-REST-OF-TESTS
 
 "Random key cipher - Key is made only of lowercase letters"
   sut <- SimpleCipher()
-  expect_true(Regex.IsMatch(sut.Key, "^c(a-z)+$"))
+  expect_true(Regex.IsMatch(sut.Key, "^[a-z]+$"))
 
 "Substitution cipher - Can encode"
   sut <- SimpleCipher("abcdefghij")

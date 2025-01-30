@@ -11,7 +11,7 @@ with: test
           " W W ";
           "  W  " ]
   position <- (0, 1)
-  expected <- Option.Some (Owner.Black, c((0, 0), (0, 1), (1, 0)))
+  expected <- Option.Some (Owner.Black, [(0, 0], (0, 1), (1, 0)))
   expect_equal(territory(board, position), expected)
 
 SKIP-REST-OF-TESTS
@@ -24,7 +24,7 @@ SKIP-REST-OF-TESTS
           " W W ";
           "  W  " ]
   position <- (2, 3)
-  expected <- Option.Some (Owner.White, c((2, 3)))
+  expected <- Option.Some (Owner.White, [(2, 3]))
   expect_equal(territory(board, position), expected)
 
 "Open corner territory on 5x5 board"
@@ -35,7 +35,7 @@ SKIP-REST-OF-TESTS
           " W W ";
           "  W  " ]
   position <- (1, 4)
-  expected <- Option.Some (Owner.None, c((0, 3), (0, 4), (1, 4)))
+  expected <- Option.Some (Owner.None, [(0, 3], (0, 4), (1, 4)))
   expect_equal(territory(board, position), expected)
 
 "A stone and not a territory on 5x5 board"
@@ -94,11 +94,11 @@ SKIP-REST-OF-TESTS
   expect_equal(territory(board, position), expected)
 
 "One territory is the whole board"
-  board <- c(" ")
+  board <- [" "]
   expected <- 
-        c( (Owner.Black, [));
+        [(Owner.Black, []);
           (Owner.White, []);
-          (Owner.None, c((0, 0))) ]
+          (Owner.None, [(0, 0])) ]
         |> Map.ofList
   expect_equal(territories(board), expected)
 
@@ -107,17 +107,17 @@ SKIP-REST-OF-TESTS
         [ " BW ";
           " BW " ]
   expected <- 
-        c( (Owner.Black, [(0, 0), (0, 1)));
-          (Owner.White, c((3, 0), (3, 1)));
-          (Owner.None, c(]) )
+        [(Owner.Black, [(0, 0], (0, 1)));
+          (Owner.White, [(3, 0], (3, 1)));
+          (Owner.None, []] )
         |> Map.ofList
   expect_equal(territories(board), expected)
 
 "Two region rectangular board"
-  board <- c(" B ")
+  board <- [" B "]
   expected <- 
-        c( (Owner.Black, [(0, 0), (2, 0)));
+        [(Owner.Black, [(0, 0], (2, 0)));
           (Owner.White, []);
-          (Owner.None, c(]) )
+          (Owner.None, []] )
         |> Map.ofList
   expect_equal(territories(board), expected)

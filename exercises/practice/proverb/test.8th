@@ -11,19 +11,19 @@ with: test
 SKIP-REST-OF-TESTS
 
 "One piece"
-  strings <- c("nail")
-  expected <- c("And all for the want of a nail.")
+  strings <- ["nail"]
+  expected <- ["And all for the want of a nail."]
   expect_equal(recite(strings), expected)
 
 "Two pieces"
-  strings <- c("nail", "shoe")
+  strings <- ["nail", "shoe"]
   expected <- 
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
   expect_equal(recite(strings), expected)
 
 "Three pieces"
-  strings <- c("nail", "shoe", "horse")
+  strings <- ["nail", "shoe", "horse"]
   expected <- 
         [ "For want of a nail the shoe was lost.";
           "For want of a shoe the horse was lost.";
@@ -31,7 +31,7 @@ SKIP-REST-OF-TESTS
   expect_equal(recite(strings), expected)
 
 "Full proverb"
-  strings <- c("nail", "shoe", "horse", "rider", "message", "battle", "kingdom")
+  strings <- ["nail", "shoe", "horse", "rider", "message", "battle", "kingdom"]
   expected <- 
         [ "For want of a nail the shoe was lost.";
           "For want of a shoe the horse was lost.";
@@ -43,7 +43,7 @@ SKIP-REST-OF-TESTS
   expect_equal(recite(strings), expected)
 
 "Four pieces modernized"
-  strings <- c("pin", "gun", "soldier", "battle")
+  strings <- ["pin", "gun", "soldier", "battle"]
   expected <- 
         [ "For want of a pin the gun was lost.";
           "For want of a gun the soldier was lost.";

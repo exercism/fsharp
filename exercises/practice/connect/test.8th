@@ -15,11 +15,11 @@ with: test
 SKIP-REST-OF-TESTS
 
 "X can win on a 1x1 board"
-  board <- c("X")
+  board <- ["X"]
   expect_equal(winner(board), Black)
 
 "O can win on a 1x1 board"
-  board <- c("O")
+  board <- ["O"]
   expect_equal(winner(board), White)
 
 "Only edges does not make a winner"

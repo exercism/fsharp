@@ -4,93 +4,93 @@ with: test
 21 tests
 
 "Single bit one to decimal"
-  digits <- c(1)
+  digits <- [1]
   inputBase <- 2
   outputBase <- 10
-  expected <- c(1)
+  expected <- [1]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 SKIP-REST-OF-TESTS
 
 "Binary to single decimal"
-  digits <- c(1, 0, 1)
+  digits <- [1, 0, 1]
   inputBase <- 2
   outputBase <- 10
-  expected <- c(5)
+  expected <- [5]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Single decimal to binary"
-  digits <- c(5)
+  digits <- [5]
   inputBase <- 10
   outputBase <- 2
-  expected <- c(1, 0, 1)
+  expected <- [1, 0, 1]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Binary to multiple decimal"
-  digits <- c(1, 0, 1, 0, 1, 0)
+  digits <- [1, 0, 1, 0, 1, 0]
   inputBase <- 2
   outputBase <- 10
-  expected <- c(4, 2)
+  expected <- [4, 2]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Decimal to binary"
-  digits <- c(4, 2)
+  digits <- [4, 2]
   inputBase <- 10
   outputBase <- 2
-  expected <- c(1, 0, 1, 0, 1, 0)
+  expected <- [1, 0, 1, 0, 1, 0]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Trinary to hexadecimal"
-  digits <- c(1, 1, 2, 0)
+  digits <- [1, 1, 2, 0]
   inputBase <- 3
   outputBase <- 16
-  expected <- c(2, 10)
+  expected <- [2, 10]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Hexadecimal to trinary"
-  digits <- c(2, 10)
+  digits <- [2, 10]
   inputBase <- 16
   outputBase <- 3
-  expected <- c(1, 1, 2, 0)
+  expected <- [1, 1, 2, 0]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "15-bit integer"
-  digits <- c(3, 46, 60)
+  digits <- [3, 46, 60]
   inputBase <- 97
   outputBase <- 73
-  expected <- c(6, 10, 45)
+  expected <- [6, 10, 45]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Empty list"
   digits <- c()
   inputBase <- 2
   outputBase <- 10
-  expected <- c(0)
+  expected <- [0]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Single zero"
-  digits <- c(0)
+  digits <- [0]
   inputBase <- 10
   outputBase <- 2
-  expected <- c(0)
+  expected <- [0]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Multiple zeros"
-  digits <- c(0, 0, 0)
+  digits <- [0, 0, 0]
   inputBase <- 10
   outputBase <- 2
-  expected <- c(0)
+  expected <- [0]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Leading zeros"
-  digits <- c(0, 6, 0)
+  digits <- [0, 6, 0]
   inputBase <- 7
   outputBase <- 10
-  expected <- c(4, 2)
+  expected <- [4, 2]
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 
 "Input base is one"
-  digits <- c(0)
+  digits <- [0]
   inputBase <- 1
   outputBase <- 10
     ( rebase(digits, inputBase, outputBase) )
@@ -104,49 +104,49 @@ SKIP-REST-OF-TESTS
     null?
 
 "Input base is negative"
-  digits <- c(1)
+  digits <- [1]
   inputBase <- -2
   outputBase <- 10
     ( rebase(digits, inputBase, outputBase) )
     null?
 
 "Negative digit"
-  digits <- c(1, -1, 1, 0, 1, 0)
+  digits <- [1, -1, 1, 0, 1, 0]
   inputBase <- 2
   outputBase <- 10
     ( rebase(digits, inputBase, outputBase) )
     null?
 
 "Invalid positive digit"
-  digits <- c(1, 2, 1, 0, 1, 0)
+  digits <- [1, 2, 1, 0, 1, 0]
   inputBase <- 2
   outputBase <- 10
     ( rebase(digits, inputBase, outputBase) )
     null?
 
 "Output base is one"
-  digits <- c(1, 0, 1, 0, 1, 0)
+  digits <- [1, 0, 1, 0, 1, 0]
   inputBase <- 2
   outputBase <- 1
     ( rebase(digits, inputBase, outputBase) )
     null?
 
 "Output base is zero"
-  digits <- c(7)
+  digits <- [7]
   inputBase <- 10
   outputBase <- 0
     ( rebase(digits, inputBase, outputBase) )
     null?
 
 "Output base is negative"
-  digits <- c(1)
+  digits <- [1]
   inputBase <- 2
   outputBase <- -7
     ( rebase(digits, inputBase, outputBase) )
     null?
 
 "Both bases are negative"
-  digits <- c(1)
+  digits <- [1]
   inputBase <- -2
   outputBase <- -7
     ( rebase(digits, inputBase, outputBase) )

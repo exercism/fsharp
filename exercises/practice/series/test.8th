@@ -4,7 +4,7 @@ with: test
 11 tests
 
 "Slices of one from one"
-  expect_equal(slices "1" 1, c("1"))
+  expect_equal(slices "1" 1, ["1"])
 
 SKIP-REST-OF-TESTS
 
@@ -14,7 +14,7 @@ SKIP-REST-OF-TESTS
     equal?))
 
 "Slices of two"
-  expect_equal(slices "35" 2, c("35"))
+  expect_equal(slices "35" 2, ["35"])
 
 "Slices of two overlap"
     expect_equal(slices "9142" 2, (Some c("91", "14"

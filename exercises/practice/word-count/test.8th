@@ -4,7 +4,7 @@ with: test
 14 tests
 
 "Count one word"
-  expected <- c(("word", 1)) |> Map.ofList
+  expected <- [("word", 1]) |> Map.ofList
   expect_equal(countWords("word", expected))
 
 SKIP-REST-OF-TESTS

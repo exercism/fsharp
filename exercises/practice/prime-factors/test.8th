@@ -9,34 +9,34 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Prime number"
-  expect_equal(factors(2L), c(2))
+  expect_equal(factors(2L), [2])
 
 "Another prime number"
-  expect_equal(factors(3L), c(3))
+  expect_equal(factors(3L), [3])
 
 "Square of a prime"
-  expect_equal(factors(9L), c(3, 3))
+  expect_equal(factors(9L), [3, 3])
 
 "Product of first prime"
-  expect_equal(factors(4L), c(2, 2))
+  expect_equal(factors(4L), [2, 2])
 
 "Cube of a prime"
-  expect_equal(factors(8L), c(2, 2, 2))
+  expect_equal(factors(8L), [2, 2, 2])
 
 "Product of second prime"
-  expect_equal(factors(27L), c(3, 3, 3))
+  expect_equal(factors(27L), [3, 3, 3])
 
 "Product of third prime"
-  expect_equal(factors(625L), c(5, 5, 5, 5))
+  expect_equal(factors(625L), [5, 5, 5, 5])
 
 "Product of first and second prime"
-  expect_equal(factors(6L), c(2, 3))
+  expect_equal(factors(6L), [2, 3])
 
 "Product of primes and non-primes"
-  expect_equal(factors(12L), c(2, 2, 3))
+  expect_equal(factors(12L), [2, 2, 3])
 
 "Product of primes"
-  expect_equal(factors(901255L), c(5, 17, 23, 461))
+  expect_equal(factors(901255L), [5, 17, 23, 461])
 
 "Factors include a large prime"
-  expect_equal(factors(93819012551L), c(11, 9539, 894119))
+  expect_equal(factors(93819012551L), [11, 9539, 894119])

@@ -5,7 +5,7 @@ with: test
 
 "Robot has a name"
   robot <- mkRobot()
-  expect_true(Regex.IsMatch(name robot, @"^c(A-Z){2}\d{3}$"))
+  expect_true(Regex.IsMatch(name robot, @"^[A-Z]{2}\d{3}$"))
     
 SKIP-REST-OF-TESTS
 
@@ -18,7 +18,7 @@ SKIP-REST-OF-TESTS
   robot2 <- mkRobot()
     name robot |> should not' (equal (name robot2))
 
-c(<Fact(Skip = "Remove this Skip property to run this test")>) 
+[<Fact(Skip = "Remove this Skip property to run this test"]>) 
 "2500 Different robots have different names"
   robotCount <- 2500
     seq { 1 .. robotCount }

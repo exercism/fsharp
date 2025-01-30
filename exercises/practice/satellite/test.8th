@@ -7,7 +7,7 @@ with: test
   expected: Result<Tree,string> = Ok (
         Empty
     )
-  expect_equal(treeFromTraversals c(] [), expected)
+  expect_equal(treeFromTraversals [] [], expected)
 
 SKIP-REST-OF-TESTS
 
@@ -15,7 +15,7 @@ SKIP-REST-OF-TESTS
   expected: Result<Tree,string> = Ok (
         Node("a", Empty, Empty)
     )
-  expect_equal(treeFromTraversals c("a") c("a"), expected)
+  expect_equal(treeFromTraversals ["a"] ["a"], expected)
 
 "Tree with many items"
   expected: Result<Tree,string> = Ok (
@@ -29,24 +29,24 @@ SKIP-REST-OF-TESTS
             )
         )
     )
-    expect_equal(treeFromTraversals c("i", "a", "f", "x", "r") c("a", "i", "x", "f"
+    expect_equal(treeFromTraversals ["i", "a", "f", "x", "r"] c("a", "i", "x", "f"
     "r"
     equal?, expected)
 
 "Reject traversals of different length"
   expected: Result<Tree,string> = Error "traversals must have the same length"
-    expect_equal(treeFromTraversals c("b", "a", "r") c("a"
+    expect_equal(treeFromTraversals ["b", "a", "r"] c("a"
     "b"
     equal?, expected)
 
 "Reject inconsistent traversals of same length"
   expected: Result<Tree,string> = Error "traversals must have the same elements"
-    expect_equal(treeFromTraversals c("a", "b", "c") c("x", "y"
+    expect_equal(treeFromTraversals ["a", "b", "c"] c("x", "y"
     "z"
     equal?, expected)
 
 "Reject traversals with repeated items"
   expected: Result<Tree,string> = Error "traversals must contain unique items"
-    expect_equal(treeFromTraversals c("b", "a", "a") c("a", "b"
+    expect_equal(treeFromTraversals ["b", "a", "a"] c("a", "b"
     "a"
     equal?, expected)

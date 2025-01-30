@@ -174,7 +174,7 @@ SKIP-REST-OF-TESTS
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 "No root node"
-  input <- c( { RecordId = 1, ParentId = 0 } )
+  input <- [{ RecordId = 1, ParentId = 0 }]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
 "Out of bounds record id"

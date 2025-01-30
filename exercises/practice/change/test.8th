@@ -4,75 +4,75 @@ with: test
 12 tests
 
 "Change for 1 cent"
-  coins <- c(1, 5, 10, 25)
+  coins <- [1, 5, 10, 25]
   target <- 1
-  expected <- c(1)
+  expected <- [1]
   expect_equal(findFewestCoins(coins, target), expected)
 
 SKIP-REST-OF-TESTS
 
 "Single coin change"
-  coins <- c(1, 5, 10, 25, 100)
+  coins <- [1, 5, 10, 25, 100]
   target <- 25
-  expected <- c(25)
+  expected <- [25]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Multiple coin change"
-  coins <- c(1, 5, 10, 25, 100)
+  coins <- [1, 5, 10, 25, 100]
   target <- 15
-  expected <- c(5, 10)
+  expected <- [5, 10]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Change with Lilliputian Coins"
-  coins <- c(1, 4, 15, 20, 50)
+  coins <- [1, 4, 15, 20, 50]
   target <- 23
-  expected <- c(4, 4, 15)
+  expected <- [4, 4, 15]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Change with Lower Elbonia Coins"
-  coins <- c(1, 5, 10, 21, 25)
+  coins <- [1, 5, 10, 21, 25]
   target <- 63
-  expected <- c(21, 21, 21)
+  expected <- [21, 21, 21]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Large target values"
-  coins <- c(1, 2, 5, 10, 20, 50, 100)
+  coins <- [1, 2, 5, 10, 20, 50, 100]
   target <- 999
-  expected <- c(2, 2, 5, 20, 20, 50, 100, 100, 100, 100, 100, 100, 100, 100, 100)
+  expected <- [2, 2, 5, 20, 20, 50, 100, 100, 100, 100, 100, 100, 100, 100, 100]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Possible change without unit coins available"
-  coins <- c(2, 5, 10, 20, 50)
+  coins <- [2, 5, 10, 20, 50]
   target <- 21
-  expected <- c(2, 2, 2, 5, 10)
+  expected <- [2, 2, 2, 5, 10]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Another possible change without unit coins available"
-  coins <- c(4, 5)
+  coins <- [4, 5]
   target <- 27
-  expected <- c(4, 4, 4, 5, 5, 5)
+  expected <- [4, 4, 4, 5, 5, 5]
   expect_equal(findFewestCoins(coins, target), expected)
 
 "No coins make 0 change"
-  coins <- c(1, 5, 10, 21, 25)
+  coins <- [1, 5, 10, 21, 25]
   target <- 0
   expected: int list option = Some []
   expect_equal(findFewestCoins(coins, target), expected)
 
 "Error testing for change smaller than the smallest of coins"
-  coins <- c(5, 10)
+  coins <- [5, 10]
   target <- 3
     ( findFewestCoins(coins, target) )
     null?
 
 "Error if no combination can add up to target"
-  coins <- c(5, 10)
+  coins <- [5, 10]
   target <- 94
     ( findFewestCoins(coins, target) )
     null?
 
 "Cannot find negative change values"
-  coins <- c(1, 2, 5)
+  coins <- [1, 2, 5]
   target <- -5
     ( findFewestCoins(coins, target) )
     null?
