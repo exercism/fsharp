@@ -4,21 +4,21 @@ with: test
 9 tests
 
 "Empty strands"
-  expect_equal(distance "" "", (Some 0))
+  expect_equal(distance "" "", 0)
 
 SKIP-REST-OF-TESTS
 
 "Single letter identical strands"
-  expect_equal(distance "A" "A", (Some 0))
+  expect_equal(distance "A" "A", 0)
 
 "Single letter different strands"
-  expect_equal(distance "G" "T", (Some 1))
+  expect_equal(distance "G" "T", 1)
 
 "Long identical strands"
-  expect_equal(distance "GGACTGAAATCTG" "GGACTGAAATCTG", (Some 0))
+  expect_equal(distance "GGACTGAAATCTG" "GGACTGAAATCTG", 0)
 
 "Long different strands"
-  expect_equal(distance "GGACGGATTCTG" "AGGACGGATTCT", (Some 9))
+  expect_equal(distance "GGACGGATTCTG" "AGGACGGATTCT", 9)
 
 "Disallow first strand longer"
   expect_equal(distance "AATG" "AAA", None)

@@ -4,57 +4,57 @@ with: test
 19 tests
 
 "Zero"
-  expect_equal(say(0L), (Some "zero"))
+  expect_equal(say(0L), "zero")
 
 SKIP-REST-OF-TESTS
 
 "One"
-  expect_equal(say(1L), (Some "one"))
+  expect_equal(say(1L), "one")
 
 "Fourteen"
-  expect_equal(say(14L), (Some "fourteen"))
+  expect_equal(say(14L), "fourteen")
 
 "Twenty"
-  expect_equal(say(20L), (Some "twenty"))
+  expect_equal(say(20L), "twenty")
 
 "Twenty-two"
-  expect_equal(say(22L), (Some "twenty-two"))
+  expect_equal(say(22L), "twenty-two")
 
 "Thirty"
-  expect_equal(say(30L), (Some "thirty"))
+  expect_equal(say(30L), "thirty")
 
 "Ninety-nine"
-  expect_equal(say(99L), (Some "ninety-nine"))
+  expect_equal(say(99L), "ninety-nine")
 
 "One hundred"
-  expect_equal(say(100L), (Some "one hundred"))
+  expect_equal(say(100L), "one hundred")
 
 "One hundred twenty-three"
-  expect_equal(say(123L), (Some "one hundred twenty-three"))
+  expect_equal(say(123L), "one hundred twenty-three")
 
 "Two hundred"
-  expect_equal(say(200L), (Some "two hundred"))
+  expect_equal(say(200L), "two hundred")
 
 "Nine hundred ninety-nine"
-  expect_equal(say(999L), (Some "nine hundred ninety-nine"))
+  expect_equal(say(999L), "nine hundred ninety-nine")
 
 "One thousand"
-  expect_equal(say(1000L), (Some "one thousand"))
+  expect_equal(say(1000L), "one thousand")
 
 "One thousand two hundred thirty-four"
-  expect_equal(say(1234L), (Some "one thousand two hundred thirty-four"))
+  expect_equal(say(1234L), "one thousand two hundred thirty-four")
 
 "One million"
-  expect_equal(say(1000000L), (Some "one million"))
+  expect_equal(say(1000000L), "one million")
 
 "One million two thousand three hundred forty-five"
-  expect_equal(say(1002345L), (Some "one million two thousand three hundred forty-five"))
+  expect_equal(say(1002345L), "one million two thousand three hundred forty-five")
 
 "One billion"
-  expect_equal(say(1000000000L), (Some "one billion"))
+  expect_equal(say(1000000000L), "one billion")
 
 "A big number"
-  expect_equal(say(987654321123L), (Some "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three"))
+  expect_equal(say(987654321123L), "nine hundred eighty-seven billion six hundred fifty-four million three hundred twenty-one thousand one hundred twenty-three")
 
 "Numbers below zero are out of range"
   expect_equal(say -1L, None)

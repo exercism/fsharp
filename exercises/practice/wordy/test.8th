@@ -4,51 +4,51 @@ with: test
 23 tests
 
 "Just a number"
-  expect_equal(answer "What is 5?", (Some 5))
+  expect_equal(answer "What is 5?", 5)
 
 SKIP-REST-OF-TESTS
 
 "Addition"
-  expect_equal(answer "What is 1 plus 1?", (Some 2))
+  expect_equal(answer "What is 1 plus 1?", 2)
 
 "More addition"
-  expect_equal(answer "What is 53 plus 2?", (Some 55))
+  expect_equal(answer "What is 53 plus 2?", 55)
 
 "Addition with negative numbers"
-  expect_equal(answer "What is -1 plus -10?", (Some -11))
+  expect_equal(answer "What is -1 plus -10?", -11)
 
 "Large addition"
-  expect_equal(answer "What is 123 plus 45678?", (Some 45801))
+  expect_equal(answer "What is 123 plus 45678?", 45801)
 
 "Subtraction"
-  expect_equal(answer "What is 4 minus -12?", (Some 16))
+  expect_equal(answer "What is 4 minus -12?", 16)
 
 "Multiplication"
-  expect_equal(answer "What is -3 multiplied by 25?", (Some -75))
+  expect_equal(answer "What is -3 multiplied by 25?", -75)
 
 "Division"
-  expect_equal(answer "What is 33 divided by -3?", (Some -11))
+  expect_equal(answer "What is 33 divided by -3?", -11)
 
 "Multiple additions"
-  expect_equal(answer "What is 1 plus 1 plus 1?", (Some 3))
+  expect_equal(answer "What is 1 plus 1 plus 1?", 3)
 
 "Addition and subtraction"
-  expect_equal(answer "What is 1 plus 5 minus -2?", (Some 8))
+  expect_equal(answer "What is 1 plus 5 minus -2?", 8)
 
 "Multiple subtraction"
-  expect_equal(answer "What is 20 minus 4 minus 13?", (Some 3))
+  expect_equal(answer "What is 20 minus 4 minus 13?", 3)
 
 "Subtraction then addition"
-  expect_equal(answer "What is 17 minus 6 plus 3?", (Some 14))
+  expect_equal(answer "What is 17 minus 6 plus 3?", 14)
 
 "Multiple multiplication"
-  expect_equal(answer "What is 2 multiplied by -2 multiplied by 3?", (Some -12))
+  expect_equal(answer "What is 2 multiplied by -2 multiplied by 3?", -12)
 
 "Addition and multiplication"
-  expect_equal(answer "What is -3 plus 7 multiplied by -2?", (Some -8))
+  expect_equal(answer "What is -3 plus 7 multiplied by -2?", -8)
 
 "Multiple division"
-  expect_equal(answer "What is -12 divided by 2 divided by -3?", (Some 2))
+  expect_equal(answer "What is -12 divided by 2 divided by -3?", 2)
 
 "Unknown operation"
   expect_equal(answer "What is 52 cubed?", None)

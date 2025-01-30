@@ -4,18 +4,18 @@ with: test
 6 tests
 
 "Zero steps for one"
-  expect_equal(steps(1), (Some 0))
+  expect_equal(steps(1), 0)
 
 SKIP-REST-OF-TESTS
 
 "Divide if even"
-  expect_equal(steps(16), (Some 4))
+  expect_equal(steps(16), 4)
 
 "Even and odd steps"
-  expect_equal(steps(12), (Some 9))
+  expect_equal(steps(12), 9)
 
 "Large number of even and odd steps"
-  expect_equal(steps(1000000), (Some 152))
+  expect_equal(steps(1000000), 152)
 
 "Zero is an error"
   expect_equal(steps(0), None)

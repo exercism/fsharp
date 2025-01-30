@@ -6,49 +6,49 @@ with: test
 "Finds the largest product if span equals length"
   digits <- "29"
   span <- 2
-  expect_equal(largestProduct(digits, span), (Some 18))
+  expect_equal(largestProduct(digits, span), 18)
 
 SKIP-REST-OF-TESTS
 
 "Can find the largest product of 2 with numbers in order"
   digits <- "0123456789"
   span <- 2
-  expect_equal(largestProduct(digits, span), (Some 72))
+  expect_equal(largestProduct(digits, span), 72)
 
 "Can find the largest product of 2"
   digits <- "576802143"
   span <- 2
-  expect_equal(largestProduct(digits, span), (Some 48))
+  expect_equal(largestProduct(digits, span), 48)
 
 "Can find the largest product of 3 with numbers in order"
   digits <- "0123456789"
   span <- 3
-  expect_equal(largestProduct(digits, span), (Some 504))
+  expect_equal(largestProduct(digits, span), 504)
 
 "Can find the largest product of 3"
   digits <- "1027839564"
   span <- 3
-  expect_equal(largestProduct(digits, span), (Some 270))
+  expect_equal(largestProduct(digits, span), 270)
 
 "Can find the largest product of 5 with numbers in order"
   digits <- "0123456789"
   span <- 5
-  expect_equal(largestProduct(digits, span), (Some 15120))
+  expect_equal(largestProduct(digits, span), 15120)
 
 "Can get the largest product of a big number"
   digits <- "73167176531330624919225119674426574742355349194934"
   span <- 6
-  expect_equal(largestProduct(digits, span), (Some 23520))
+  expect_equal(largestProduct(digits, span), 23520)
 
 "Reports zero if the only digits are zero"
   digits <- "0000"
   span <- 2
-  expect_equal(largestProduct(digits, span), (Some 0))
+  expect_equal(largestProduct(digits, span), 0)
 
 "Reports zero if all spans include zero"
   digits <- "99099"
   span <- 3
-  expect_equal(largestProduct(digits, span), (Some 0))
+  expect_equal(largestProduct(digits, span), 0)
 
 "Rejects span longer than string length"
   digits <- "123"

@@ -11,11 +11,11 @@ with: test
 SKIP-REST-OF-TESTS
 
 "A name given"
-    expect_equal(twoFer (Some "Alice")
+    expect_equal(twoFer "Alice"
     "One for Alice, one for me."
     equal?
 
 "Another name given"
-    expect_equal(twoFer (Some "Bob")
+    expect_equal(twoFer "Bob"
     "One for Bob, one for me."
     equal?

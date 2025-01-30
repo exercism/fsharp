@@ -190,8 +190,8 @@ SKIP-REST-OF-TESTS
 "User-defined words - only defines locally"
     expect_equal(evaluate c(": + - ;"
     "1 1 +"
-    equal?, (Some c(0)))
-  expect_equal(evaluate c("1 1 +"), (Some c(2)))
+    equal?, c(0))
+  expect_equal(evaluate c("1 1 +"), c(2))
 
 "Case-insensitivity - DUP is case-insensitive"
   expected <- c(1, 1, 1, 1)

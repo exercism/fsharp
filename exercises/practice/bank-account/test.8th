@@ -6,7 +6,7 @@ with: test
 "Returns empty balance after opening"
   account <- mkBankAccount() |> openAccount
 
-  expect_equal(getBalance(account), (Some 0.0m))
+  expect_equal(getBalance(account), 0.0m)
 
 SKIP-REST-OF-TESTS
 
@@ -19,8 +19,8 @@ SKIP-REST-OF-TESTS
         |> updateBalance 10.0m
         |> getBalance
 
-  expect_equal(openingBalance, (Some 0.0m))
-  expect_equal(updatedBalance, (Some 10.0m))
+  expect_equal(openingBalance, 0.0m)
+  expect_equal(updatedBalance, 10.0m)
 
 "Balance can increment or decrement"
   account <- mkBankAccount() |> openAccount
@@ -36,9 +36,9 @@ SKIP-REST-OF-TESTS
         |> updateBalance -15.0m
         |> getBalance
 
-  expect_equal(openingBalance, (Some 0.0m))
-  expect_equal(addedBalance, (Some 10.0m))
-  expect_equal(subtractedBalance, (Some -5.0m))
+  expect_equal(openingBalance, 0.0m)
+  expect_equal(addedBalance, 10.0m)
+  expect_equal(subtractedBalance, -5.0m)
 
 "Account can be closed"
   account <- 
@@ -67,4 +67,4 @@ SKIP-REST-OF-TESTS
     |> Async.RunSynchronously
     |> ignore
 
-  expect_equal(getBalance(account), (Some 1000.0m))
+  expect_equal(getBalance(account), 1000.0m)

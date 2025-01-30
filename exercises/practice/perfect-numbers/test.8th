@@ -4,39 +4,39 @@ with: test
 13 tests
 
 "Smallest perfect number is classified correctly"
-  expect_equal(classify(6), (Some Classification.Perfect))
+  expect_equal(classify(6), Classification.Perfect)
 
 SKIP-REST-OF-TESTS
 
 "Medium perfect number is classified correctly"
-  expect_equal(classify(28), (Some Classification.Perfect))
+  expect_equal(classify(28), Classification.Perfect)
 
 "Large perfect number is classified correctly"
-  expect_equal(classify(33550336), (Some Classification.Perfect))
+  expect_equal(classify(33550336), Classification.Perfect)
 
 "Smallest abundant number is classified correctly"
-  expect_equal(classify(12), (Some Classification.Abundant))
+  expect_equal(classify(12), Classification.Abundant)
 
 "Medium abundant number is classified correctly"
-  expect_equal(classify(30), (Some Classification.Abundant))
+  expect_equal(classify(30), Classification.Abundant)
 
 "Large abundant number is classified correctly"
-  expect_equal(classify(33550335), (Some Classification.Abundant))
+  expect_equal(classify(33550335), Classification.Abundant)
 
 "Smallest prime deficient number is classified correctly"
-  expect_equal(classify(2), (Some Classification.Deficient))
+  expect_equal(classify(2), Classification.Deficient)
 
 "Smallest non-prime deficient number is classified correctly"
-  expect_equal(classify(4), (Some Classification.Deficient))
+  expect_equal(classify(4), Classification.Deficient)
 
 "Medium deficient number is classified correctly"
-  expect_equal(classify(32), (Some Classification.Deficient))
+  expect_equal(classify(32), Classification.Deficient)
 
 "Large deficient number is classified correctly"
-  expect_equal(classify(33550337), (Some Classification.Deficient))
+  expect_equal(classify(33550337), Classification.Deficient)
 
 "Edge case (no factors other than itself) is classified correctly"
-  expect_equal(classify(1), (Some Classification.Deficient))
+  expect_equal(classify(1), Classification.Deficient)
 
 "Zero is rejected (as it is not a positive integer)"
   expect_equal(classify(0), None)

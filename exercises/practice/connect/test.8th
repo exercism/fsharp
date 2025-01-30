@@ -16,11 +16,11 @@ SKIP-REST-OF-TESTS
 
 "X can win on a 1x1 board"
   board <- c("X")
-  expect_equal(winner(board), (Some Black))
+  expect_equal(winner(board), Black)
 
 "O can win on a 1x1 board"
   board <- c("O")
-  expect_equal(winner(board), (Some White))
+  expect_equal(winner(board), White)
 
 "Only edges does not make a winner"
   board <- 
@@ -55,7 +55,7 @@ SKIP-REST-OF-TESTS
           "  O X O .  ";
           "   X X O X ";
           "    . O X ." ]
-  expect_equal(winner(board), (Some Black))
+  expect_equal(winner(board), Black)
 
 "O wins crossing from top to bottom"
   board <- 
@@ -64,7 +64,7 @@ SKIP-REST-OF-TESTS
           "  O O O .  ";
           "   X X O X ";
           "    . O X ." ]
-  expect_equal(winner(board), (Some White))
+  expect_equal(winner(board), White)
 
 "X wins using a convoluted path"
   board <- 
@@ -73,7 +73,7 @@ SKIP-REST-OF-TESTS
           "  . X . X .  ";
           "   . X X . . ";
           "    O O O O O" ]
-  expect_equal(winner(board), (Some Black))
+  expect_equal(winner(board), Black)
 
 "X wins using a spiral path"
   board <- 
@@ -86,4 +86,4 @@ SKIP-REST-OF-TESTS
           "      O X X X X X O X O  ";
           "       O O O O O O O X O ";
           "        X X X X X X X X O" ]
-  expect_equal(winner(board), (Some Black))
+  expect_equal(winner(board), Black)
