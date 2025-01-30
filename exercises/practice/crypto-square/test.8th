@@ -14,26 +14,26 @@ test_that("Lowercase", {
     equal?)
 
 test_that("Remove spaces", {
-    expect_equal(ciphertext "  b "
+    ( "  b " ciphertext )
     "b"
     equal?
 
 test_that("Remove punctuation", {
-    expect_equal(ciphertext "@1,%!"
+    ( "@1,%!" ciphertext )
     "1"
     equal?
 
 test_that("9 character plaintext results in 3 chunks of 3 characters", {
-    expect_equal(ciphertext "This is fun!"
+    ( "This is fun!" ciphertext )
     "tsf hiu isn"
     equal?
 
 test_that("8 character plaintext results in 3 chunks, the last one with a trailing space", {
-    expect_equal(ciphertext "Chill out."
+    ( "Chill out." ciphertext )
     "clu hlt io "
     equal?
 
 test_that("54 character plaintext results in 7 chunks, the last two with trailing spaces", {
-    expect_equal(ciphertext "If man was meant to stay on the ground, god would have given us roots."
+    ( "If man was meant to stay on the ground, god would have given us roots." ciphertext )
     "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau "
     equal?

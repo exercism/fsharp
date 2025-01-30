@@ -111,6 +111,6 @@ test_that("Y as second letter in two letter word", {
     equal?)
 
 test_that("A whole phrase", {
-    expect_equal(translate "quick fast run"
+    ( "quick fast run" translate )
     "ickquay astfay unray"
     equal?

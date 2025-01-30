@@ -21,52 +21,52 @@ test_that("Encode OMG", {
     equal?)
 
 test_that("Encode spaces", {
-    expect_equal(encode "O M G"
+    ( "O M G" encode )
     "lnt"
     equal?
 
 test_that("Encode mindblowingly", {
-    expect_equal(encode "mindblowingly"
+    ( "mindblowingly" encode )
     "nrmwy oldrm tob"
     equal?
 
 test_that("Encode numbers", {
-    expect_equal(encode "Testing,1 2 3, testing."
+    ( "Testing,1 2 3, testing." encode )
     "gvhgr mt123 gvhgr mt"
     equal?
 
 test_that("Encode deep thought", {
-    expect_equal(encode "Truth is fiction."
+    ( "Truth is fiction." encode )
     "gifgs rhurx grlm"
     equal?
 
 test_that("Encode all the letters", {
-    expect_equal(encode "The quick brown fox jumps over the lazy dog."
+    ( "The quick brown fox jumps over the lazy dog." encode )
     "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
     equal?
 
 test_that("Decode exercism", {
-    expect_equal(decode "vcvix rhn"
+    ( "vcvix rhn" decode )
     "exercism"
     equal?
 
 test_that("Decode a sentence", {
-    expect_equal(decode "zmlyh gzxov rhlug vmzhg vkkrm thglm v"
+    ( "zmlyh gzxov rhlug vmzhg vkkrm thglm v" decode )
     "anobstacleisoftenasteppingstone"
     equal?
 
 test_that("Decode numbers", {
-    expect_equal(decode "gvhgr mt123 gvhgr mt"
+    ( "gvhgr mt123 gvhgr mt" decode )
     "testing123testing"
     equal?
 
 test_that("Decode all the letters", {
-    expect_equal(decode "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+    ( "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" decode )
     "thequickbrownfoxjumpsoverthelazydog"
     equal?
 
 test_that("Decode with too many spaces", {
-    expect_equal(decode "vc vix    r hn"
+    ( "vc vix    r hn" decode )
     "exercism"
     equal?
 

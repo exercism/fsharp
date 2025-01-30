@@ -4,48 +4,48 @@ with: test
 9 tests
 
 test_that("Basic", {
-    expect_equal(abbreviate "Portable Network Graphics"
+    ( "Portable Network Graphics" abbreviate )
     "PNG"
     equal?
 
 SKIP-REST-OF-TESTS
 
 test_that("Lowercase words", {
-    expect_equal(abbreviate "Ruby on Rails"
+    ( "Ruby on Rails" abbreviate )
     "ROR"
     equal?
 
 test_that("Punctuation", {
-    expect_equal(abbreviate "First In, First Out"
+    ( "First In, First Out" abbreviate )
     "FIFO"
     equal?
 
 test_that("All caps word", {
-    expect_equal(abbreviate "GNU Image Manipulation Program"
+    ( "GNU Image Manipulation Program" abbreviate )
     "GIMP"
     equal?
 
 test_that("Punctuation without whitespace", {
-    expect_equal(abbreviate "Complementary metal-oxide semiconductor"
+    ( "Complementary metal-oxide semiconductor" abbreviate )
     "CMOS"
     equal?
 
 test_that("Very long abbreviation", {
-    expect_equal(abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me"
+    ( "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" abbreviate )
     "ROTFLSHTMDCOALM"
     equal?
 
 test_that("Consecutive delimiters", {
-    expect_equal(abbreviate "Something - I made up from thin air"
+    ( "Something - I made up from thin air" abbreviate )
     "SIMUFTA"
     equal?
 
 test_that("Apostrophes", {
-    expect_equal(abbreviate "Halley's Comet"
+    ( "Halley's Comet" abbreviate )
     "HC"
     equal?
 
 test_that("Underscore emphasis", {
-    expect_equal(abbreviate "The Road _Not_ Taken"
+    ( "The Road _Not_ Taken" abbreviate )
     "TRNT"
     equal?

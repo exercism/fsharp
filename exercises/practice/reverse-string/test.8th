@@ -19,7 +19,7 @@ test_that("A capitalized word", {
     equal?)
 
 test_that("A sentence with punctuation", {
-    expect_equal(reverse "I'm hungry!"
+    ( "I'm hungry!" reverse )
     "!yrgnuh m'I"
     equal?
 

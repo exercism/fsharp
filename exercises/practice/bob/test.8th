@@ -4,89 +4,89 @@ with: test
 25 tests
 
 test_that("Stating something", {
-    expect_equal(response "Tom-ay-to, tom-aaaah-to."
+    ( "Tom-ay-to, tom-aaaah-to." response )
     "Whatever."
     equal?
 
 SKIP-REST-OF-TESTS
 
 test_that("Shouting", {
-    expect_equal(response "WATCH OUT!"
+    ( "WATCH OUT!" response )
     "Whoa, chill out!"
     equal?
 
 test_that("Shouting gibberish", {
-    expect_equal(response "FCECDFCAAB"
+    ( "FCECDFCAAB" response )
     "Whoa, chill out!"
     equal?
 
 test_that("Asking a question", {
-    expect_equal(response "Does this cryogenic chamber make me look fat?"
+    ( "Does this cryogenic chamber make me look fat?" response )
     "Sure."
     equal?
 
 test_that("Asking a numeric question", {
-    expect_equal(response "You are, what, like 15?"
+    ( "You are, what, like 15?" response )
     "Sure."
     equal?
 
 test_that("Asking gibberish", {
-    expect_equal(response "fffbbcbeab?"
+    ( "fffbbcbeab?" response )
     "Sure."
     equal?
 
 test_that("Talking forcefully", {
-    expect_equal(response "Hi there!"
+    ( "Hi there!" response )
     "Whatever."
     equal?
 
 test_that("Using acronyms in regular speech", {
-    expect_equal(response "It's OK if you don't want to go work for NASA."
+    ( "It's OK if you don't want to go work for NASA." response )
     "Whatever."
     equal?
 
 test_that("Forceful question", {
-    expect_equal(response "WHAT'S GOING ON?"
+    ( "WHAT'S GOING ON?" response )
     "Calm down, I know what I'm doing!"
     equal?
 
 test_that("Shouting numbers", {
-    expect_equal(response "1, 2, 3 GO!"
+    ( "1, 2, 3 GO!" response )
     "Whoa, chill out!"
     equal?
 
 test_that("No letters", {
-    expect_equal(response "1, 2, 3"
+    ( "1, 2, 3" response )
     "Whatever."
     equal?
 
 test_that("Question with no letters", {
-    expect_equal(response "4?"
+    ( "4?" response )
     "Sure."
     equal?
 
 test_that("Shouting with special characters", {
-    expect_equal(response "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!"
+    ( "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!" response )
     "Whoa, chill out!"
     equal?
 
 test_that("Shouting with no exclamation mark", {
-    expect_equal(response "I HATE THE DENTIST"
+    ( "I HATE THE DENTIST" response )
     "Whoa, chill out!"
     equal?
 
 test_that("Statement containing question mark", {
-    expect_equal(response "Ending with ? means a question."
+    ( "Ending with ? means a question." response )
     "Whatever."
     equal?
 
 test_that("Non-letters with question", {
-    expect_equal(response ":) ?"
+    ( ":) ?" response )
     "Sure."
     equal?
 
 test_that("Prattling on", {
-    expect_equal(response "Wait! Hang on. Are you going to be OK?"
+    ( "Wait! Hang on. Are you going to be OK?" response )
     "Sure."
     equal?
 
@@ -96,36 +96,36 @@ test_that("Silence", {
     equal?
 
 test_that("Prolonged silence", {
-    expect_equal(response "          "
+    ( "          " response )
     "Fine. Be that way!"
     equal?
 
 test_that("Alternate silence", {
-    expect_equal(response "\t\t\t\t\t\t\t\t\t\t"
+    ( "\t\t\t\t\t\t\t\t\t\t" response )
     "Fine. Be that way!"
     equal?
 
 test_that("Multiple line question", {
-    expect_equal(response "\nDoes this cryogenic chamber make me look fat?\nNo."
+    ( "\nDoes this cryogenic chamber make me look fat?\nNo." response )
     "Whatever."
     equal?
 
 test_that("Starting with whitespace", {
-    expect_equal(response "         hmmmmmmm..."
+    ( "         hmmmmmmm..." response )
     "Whatever."
     equal?
 
 test_that("Ending with whitespace", {
-    expect_equal(response "Okay if like my  spacebar  quite a bit?   "
+    ( "Okay if like my  spacebar  quite a bit?   " response )
     "Sure."
     equal?
 
 test_that("Other whitespace", {
-    expect_equal(response "\n\r \t"
+    ( "\n\r \t" response )
     "Fine. Be that way!"
     equal?
 
 test_that("Non-question ending with whitespace", {
-    expect_equal(response "This is a statement ending with whitespace      "
+    ( "This is a statement ending with whitespace      " response )
     "Whatever."
     equal?

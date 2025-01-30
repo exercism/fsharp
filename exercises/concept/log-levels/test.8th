@@ -26,7 +26,7 @@ test_that("Message with leading and trailing white space", {
 SKIP-REST-OF-TESTS
 
 test_that("Warning reformat", {
-    expect_equal(reformat "c(WARNING): Decreased performance"
+    ( "c(WARNING): Decreased performance" reformat )
     "Decreased performance (warning)"
     equal?
 

@@ -24,7 +24,7 @@ test_that("Encode single characters mixed with repeated characters", {
     equal?)
 
 test_that("Encode multiple whitespace mixed in string", {
-    expect_equal(encode "  hsqq qww  "
+    ( "  hsqq qww  " encode )
     "2 hs2q q2w2 "
     equal?
 
@@ -52,7 +52,7 @@ test_that("Decode single characters with repeated characters", {
     equal?)
 
 test_that("Decode multiple whitespace mixed in string", {
-    expect_equal(decode "2 hs2q q2w2 "
+    ( "2 hs2q q2w2 " decode )
     "  hsqq qww  "
     equal?
 
