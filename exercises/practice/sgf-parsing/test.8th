@@ -4,18 +4,18 @@ with: test
 14 tests
 
 "Empty input"
-  expected <- None
-  expect_equal(parse("", expected))
+    ( parse("" )
+    null?)
 
 SKIP-REST-OF-TESTS
 
 "Tree with no nodes"
-  expected <- None
-  expect_equal(parse "()", expected)
+    ( parse "()" )
+    null?
 
 "Node without tree"
-  expected <- None
-  expect_equal(parse ";", expected)
+    ( parse ";" )
+    null?
 
 "Node without properties"
   expected <- (Node (Map.ofList c(], [)))
@@ -30,16 +30,16 @@ SKIP-REST-OF-TESTS
   expect_equal(parse "(;Ac(b)Cc(d))", expected)
 
 "Properties without delimiter"
-  expected <- None
-  expect_equal(parse "(;A)", expected)
+    ( parse "(;A)" )
+    null?
 
 "All lowercase property"
-  expected <- None
-  expect_equal(parse "(;ac(b))", expected)
+    ( parse "(;ac(b))" )
+    null?
 
 "Upper and lowercase property"
-  expected <- None
-  expect_equal(parse "(;Aac(b))", expected)
+    ( parse "(;Aac(b))" )
+    null?
 
 "Two nodes"
   expected <- (Node (Map.ofList c(("A", ["B"))], c(Node (Map.ofList [("B", ["C"))], c(]))))

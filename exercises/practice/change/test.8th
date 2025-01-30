@@ -62,17 +62,17 @@ SKIP-REST-OF-TESTS
 "Error testing for change smaller than the smallest of coins"
   coins <- c(5, 10)
   target <- 3
-  expected <- None
-  expect_equal(findFewestCoins(coins, target), expected)
+    ( findFewestCoins(coins, target) )
+    null?
 
 "Error if no combination can add up to target"
   coins <- c(5, 10)
   target <- 94
-  expected <- None
-  expect_equal(findFewestCoins(coins, target), expected)
+    ( findFewestCoins(coins, target) )
+    null?
 
 "Cannot find negative change values"
   coins <- c(1, 2, 5)
   target <- -5
-  expected <- None
-  expect_equal(findFewestCoins(coins, target), expected)
+    ( findFewestCoins(coins, target) )
+    null?

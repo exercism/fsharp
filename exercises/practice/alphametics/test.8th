@@ -17,13 +17,13 @@ SKIP-REST-OF-TESTS
 
 "Solution must have unique value for each letter"
   puzzle <- "A == B"
-  expected <- None
-  expect_equal(solve(puzzle), expected)
+    ( solve(puzzle) )
+    null?
 
 "Leading zero solution is invalid"
   puzzle <- "ACA + DD == BD"
-  expected <- None
-  expect_equal(solve(puzzle), expected)
+    ( solve(puzzle) )
+    null?
 
 "Puzzle with two digits final carry"
   puzzle <- "A + A + A + A + A + A + A + A + A + A + A + B == BCC"

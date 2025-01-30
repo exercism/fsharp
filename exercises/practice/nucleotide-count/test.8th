@@ -51,5 +51,5 @@ SKIP-REST-OF-TESTS
 
 "Strand with invalid nucleotides"
   strand <- "AGXXACT"
-  expected <- None
-  expect_equal(nucleotideCounts(strand), expected)
+    ( nucleotideCounts(strand) )
+    null?

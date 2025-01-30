@@ -93,61 +93,61 @@ SKIP-REST-OF-TESTS
   digits <- c(0)
   inputBase <- 1
   outputBase <- 10
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Input base is zero"
   digits <- c()
   inputBase <- 0
   outputBase <- 10
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Input base is negative"
   digits <- c(1)
   inputBase <- -2
   outputBase <- 10
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Negative digit"
   digits <- c(1, -1, 1, 0, 1, 0)
   inputBase <- 2
   outputBase <- 10
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Invalid positive digit"
   digits <- c(1, 2, 1, 0, 1, 0)
   inputBase <- 2
   outputBase <- 10
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Output base is one"
   digits <- c(1, 0, 1, 0, 1, 0)
   inputBase <- 2
   outputBase <- 1
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Output base is zero"
   digits <- c(7)
   inputBase <- 10
   outputBase <- 0
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Output base is negative"
   digits <- c(1)
   inputBase <- 2
   outputBase <- -7
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
 
 "Both bases are negative"
   digits <- c(1)
   inputBase <- -2
   outputBase <- -7
-  expected <- None
-  expect_equal(rebase(digits, inputBase, outputBase), expected)
+    ( rebase(digits, inputBase, outputBase) )
+    null?
