@@ -7,7 +7,6 @@ test_that("Empty matrix", {
   matrix: intc(,) = array2D []
   expected: intc(,) = array2D []
   expect_equal(tick(matrix), expected)
-})
 
 SKIP-REST-OF-TESTS
 
@@ -21,7 +20,6 @@ test_that("Live cells with zero live neighbors die", {
                   c(0, 0, 0);
                   c(0, 0, 0) ]
   expect_equal(tick(matrix), expected)
-})
 
 test_that("Live cells with only one live neighbor die", {
   matrix <- 
@@ -33,7 +31,6 @@ test_that("Live cells with only one live neighbor die", {
                   c(0, 0, 0);
                   c(0, 0, 0) ]
   expect_equal(tick(matrix), expected)
-})
 
 test_that("Live cells with two live neighbors stay alive", {
   matrix <- 
@@ -45,7 +42,6 @@ test_that("Live cells with two live neighbors stay alive", {
                   c(1, 0, 1);
                   c(0, 0, 0) ]
   expect_equal(tick(matrix), expected)
-})
 
 test_that("Live cells with three live neighbors stay alive", {
   matrix <- 
@@ -57,7 +53,6 @@ test_that("Live cells with three live neighbors stay alive", {
                   c(1, 0, 0);
                   c(1, 1, 0) ]
   expect_equal(tick(matrix), expected)
-})
 
 test_that("Dead cells with three live neighbors become alive", {
   matrix <- 
@@ -69,7 +64,6 @@ test_that("Dead cells with three live neighbors become alive", {
                   c(1, 1, 0);
                   c(0, 0, 0) ]
   expect_equal(tick(matrix), expected)
-})
 
 test_that("Live cells with four or more neighbors die", {
   matrix <- 
@@ -81,7 +75,6 @@ test_that("Live cells with four or more neighbors die", {
                   c(0, 0, 0);
                   c(1, 0, 1) ]
   expect_equal(tick(matrix), expected)
-})
 
 test_that("Bigger matrix", {
   matrix <- 
@@ -103,4 +96,3 @@ test_that("Bigger matrix", {
                   c(1, 0, 0, 0, 0, 0, 0, 0);
                   c(0, 0, 0, 0, 0, 0, 1, 1) ]
   expect_equal(tick(matrix), expected)
-})

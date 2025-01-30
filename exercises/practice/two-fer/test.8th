@@ -7,7 +7,6 @@ test_that("No name given", {
     expect_equal(twoFer(None)
     "One for you, one for me."
     equal?
-})
 
 SKIP-REST-OF-TESTS
 
@@ -15,10 +14,8 @@ test_that("A name given", {
     expect_equal(twoFer (Some "Alice")
     "One for Alice, one for me."
     equal?
-})
 
 test_that("Another name given", {
     expect_equal(twoFer (Some "Bob")
     "One for Bob, one for me."
     equal?
-})

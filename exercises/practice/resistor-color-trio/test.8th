@@ -7,7 +7,6 @@ test_that("Orange and orange and black", {
     expect_equal(label c("orange", "orange", "black")
     "33 ohms"
     equal?
-})
 
 SKIP-REST-OF-TESTS
 
@@ -15,52 +14,43 @@ test_that("Blue and grey and brown", {
     expect_equal(label c("blue", "grey", "brown")
     "680 ohms"
     equal?
-})
 
 test_that("Red and black and red", {
     expect_equal(label c("red", "black", "red")
     "2 kiloohms"
     equal?
-})
 
 test_that("Green and brown and orange", {
     expect_equal(label c("green", "brown", "orange")
     "51 kiloohms"
     equal?
-})
 
 test_that("Yellow and violet and yellow", {
     expect_equal(label c("yellow", "violet", "yellow")
     "470 kiloohms"
     equal?
-})
 
 test_that("Blue and violet and blue", {
     expect_equal(label c("blue", "violet", "blue")
     "67 megaohms"
     equal?
-})
 
 test_that("Minimum possible value", {
     expect_equal(label c("black", "black", "black")
     "0 ohms"
     equal?
-})
 
 test_that("Maximum possible value", {
     expect_equal(label c("white", "white", "white")
     "99 gigaohms"
     equal?
-})
 
 test_that("First two colors make an invalid octal number", {
     expect_equal(label c("black", "grey", "black")
     "8 ohms"
     equal?
-})
 
 test_that("Ignore extra colors", {
     expect_equal(label c("blue", "green", "yellow", "orange")
     "650 kiloohms"
     equal?
-})

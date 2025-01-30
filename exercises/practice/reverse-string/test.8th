@@ -5,7 +5,6 @@ with: test
 
 test_that("An empty string", {
   expect_equal(reverse("", ""))
-})
 
 SKIP-REST-OF-TESTS
 
@@ -13,28 +12,23 @@ test_that("A word", {
     expect_equal(reverse("robot"
     "tobor"
     equal?)
-})
 
 test_that("A capitalized word", {
     expect_equal(reverse("Ramen"
     "nemaR"
     equal?)
-})
 
 test_that("A sentence with punctuation", {
     expect_equal(reverse "I'm hungry!"
     "!yrgnuh m'I"
     equal?
-})
 
 test_that("A palindrome", {
     expect_equal(reverse("racecar"
     "racecar"
     equal?)
-})
 
 test_that("An even-sized word", {
     expect_equal(reverse("drawer"
     "reward"
     equal?)
-})

@@ -10,7 +10,6 @@ SKIP-REST-OF-TESTS
 
 test_that("Trivial spiral", {
   expect_equal(spiralMatrix(1), c([1)])
-})
 
 test_that("Spiral of size 2", {
     spiralMatrix 2 |> should equal 
