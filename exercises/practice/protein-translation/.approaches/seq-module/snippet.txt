@@ -1,7 +1,0 @@
-let proteins (rna: string): string list =
-    rna
-    |> Seq.chunkBySize 3
-    |> Seq.map System.String
-    |> Seq.map codonToProtein
-    |> Seq.takeWhile (fun protein -> protein <> "STOP")
-    |> Seq.toList

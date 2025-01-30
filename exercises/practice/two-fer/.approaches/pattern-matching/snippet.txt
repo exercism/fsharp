@@ -1,7 +1,0 @@
-let twoFer (nameOpt: string option): string =
-    let name =
-        match nameOpt with
-        | Some name -> name
-        | None -> "you"
-        
-    $"One for {name}, one for me."

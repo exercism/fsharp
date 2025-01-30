@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+jq -r '.exercises.practice[].slug' ~/exercism/tracks/8th/config.json | sort | xargs -I{} rm -rf exercises/practice/{} 

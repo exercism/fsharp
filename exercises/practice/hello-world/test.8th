@@ -1,9 +1,0 @@
-"hello-world.8th" f:include
-needs exercism/test
-with: test
-17 tests
-
-"Say Hi!"
-    expect_equal(hello
-    "Hello, World!"
-    equal?
