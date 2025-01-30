@@ -1,11 +1,13 @@
 "variable-length-quantity.8th" f:include
 needs exercism/test
 with: test
-17 tests
+26 tests
 
 test_that("Zero", {
   expect_equal(encode c(0x0u), c(0x0uy))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Arbitrary single byte", {
   expect_equal(encode c(0x40u), c(0x40uy))

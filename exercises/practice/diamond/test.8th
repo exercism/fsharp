@@ -1,7 +1,7 @@
 "diamond-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 let split (x: string) = x.Split(c(| '\n' |), StringSplitOptions.None)
 
@@ -28,6 +28,8 @@ test_that("First row contains 'A'", {
   expect_equal(firstRowCharacters, "A")
 
 c(<DiamondProperty(Skip = "Remove this Skip property to run this test")>)
+SKIP-REST-OF-TESTS
+
 test_that("All rows must have symmetric contour", {
   actual <- make letter
   rows <- actual |> split

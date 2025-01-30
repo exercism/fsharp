@@ -1,12 +1,14 @@
 "forth.8th" f:include
 needs exercism/test
 with: test
-17 tests
+49 tests
 
 test_that("Parsing and numbers - numbers just get pushed onto the stack", {
   expected <- c(1, 2, 3, 4, 5)
   expect_equal(evaluate c("1 2 3 4 5"), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Parsing and numbers - pushes negative numbers onto the stack", {
   expected <- c(-1, -2, -3, -4, -5)

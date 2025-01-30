@@ -1,7 +1,7 @@
 "linked-list-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 test_that("Push and pop are first in last out order", {
   linkedList <- mkLinkedList ()
@@ -14,6 +14,8 @@ test_that("Push and pop are first in last out order", {
   expect_equal(val1, 20)
   expect_equal(val2, 10)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Push and shift are first in first out order", {
   linkedList <- mkLinkedList ()

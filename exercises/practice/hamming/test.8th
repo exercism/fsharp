@@ -1,11 +1,13 @@
 "hamming.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("Empty strands", {
   expect_equal(distance "" "", (Some 0))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Single letter identical strands", {
   expect_equal(distance "A" "A", (Some 0))

@@ -1,10 +1,12 @@
 "prime-factors.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("No factors", {
     factors 1L |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Prime number", {
   expect_equal(factors(2L), c(2))

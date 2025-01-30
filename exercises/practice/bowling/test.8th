@@ -1,7 +1,7 @@
 "bowling.8th" f:include
 needs exercism/test
 with: test
-17 tests
+31 tests
 
 let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls
 
@@ -10,6 +10,8 @@ test_that("Should be able to score a game with all zeros", {
   game <- rollMany rolls (newGame())
   expect_equal(score(game), (Some 0))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Should be able to score a game with no strikes or spares", {
   rolls <- c(3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6)

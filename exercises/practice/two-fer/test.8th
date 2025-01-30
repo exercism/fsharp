@@ -1,11 +1,13 @@
 "two-fer.8th" f:include
 needs exercism/test
 with: test
-17 tests
+3 tests
 
 test_that("No name given", {
   expect_equal(twoFer(None), "One for you, one for me.")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("A name given", {
   expect_equal(twoFer (Some "Alice"), "One for Alice, one for me.")

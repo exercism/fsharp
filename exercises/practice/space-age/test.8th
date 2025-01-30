@@ -1,10 +1,12 @@
 "space-age.8th" f:include
 needs exercism/test
 with: test
-17 tests
+8 tests
 
 test_that("Age on Earth", {
     age Earth 1000000000L |> should (equalWithin 0.01) 31.69
+
+SKIP-REST-OF-TESTS
 
 test_that("Age on Mercury", {
     age Mercury 2134835688L |> should (equalWithin 0.01) 280.88

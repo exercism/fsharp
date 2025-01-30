@@ -1,11 +1,13 @@
 "high-scores.8th" f:include
 needs exercism/test
 with: test
-17 tests
+8 tests
 
 test_that("List of scores", {
   expect_equal(scores c(30, 50, 20, 70), c(30, 50, 20, 70))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Latest score", {
   expect_equal(latest c(100, 0, 90, 30), 30)

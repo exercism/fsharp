@@ -1,11 +1,13 @@
 "binary-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+15 tests
 
 test_that("Binary_0_is_decimal_0", {
   expect_equal(toDecimal("0", 0))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Binary_1_is_decimal_1", {
   expect_equal(toDecimal("1", 1))

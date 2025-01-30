@@ -1,11 +1,13 @@
 "queen-attack.8th" f:include
 needs exercism/test
 with: test
-17 tests
+13 tests
 
 test_that("Queen with a valid position", {
   expect_true(create (2, 2))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Queen must have positive row", {
   expect_false(create (-2, 2))

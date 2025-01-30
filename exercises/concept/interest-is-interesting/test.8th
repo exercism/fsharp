@@ -1,9 +1,11 @@
 "interest-is-interesting.8th" f:include
 needs exercism/test
 with: test
-17 tests
+25 tests
 
 test_that("Minimal first interest rate", {
+
+SKIP-REST-OF-TESTS
 
 test_that("Tiny first interest rate", {
 

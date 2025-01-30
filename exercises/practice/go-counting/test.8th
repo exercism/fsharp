@@ -1,7 +1,7 @@
 "go-counting.8th" f:include
 needs exercism/test
 with: test
-17 tests
+11 tests
 
 test_that("Black corner territory on 5x5 board", {
   board <- 
@@ -14,6 +14,8 @@ test_that("Black corner territory on 5x5 board", {
   expected <- Option.Some (Owner.Black, c((0, 0), (0, 1), (1, 0)))
   expect_equal(territory(board, position), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("White center territory on 5x5 board", {
   board <- 

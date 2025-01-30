@@ -1,13 +1,15 @@
 "transpose.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("Empty string", {
   lines = c()
   expected = c()
   expect_equal(transpose(lines), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Two characters in a row", {
   lines <- c("A1")

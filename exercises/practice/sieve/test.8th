@@ -1,10 +1,12 @@
 "sieve.8th" f:include
 needs exercism/test
 with: test
-17 tests
+5 tests
 
 test_that("No primes under two", {
     primes 1 |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Find first prime", {
   expect_equal(primes(2), c(2))

@@ -1,7 +1,7 @@
 "diffie-hellman.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Private key is greater than 1 and less than p", {
   p <- 7919I
@@ -9,6 +9,8 @@ test_that("Private key is greater than 1 and less than p", {
     privateKeys |> List.iter (fun x -> x |> should be (greaterThan 1I))
     privateKeys |> List.iter (fun x -> x |> should be (lessThan p))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Private key is random", {
   p <- 7919I

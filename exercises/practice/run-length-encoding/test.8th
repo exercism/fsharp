@@ -1,11 +1,13 @@
 "run-length-encoding.8th" f:include
 needs exercism/test
 with: test
-17 tests
+13 tests
 
 test_that("Encode empty string", {
   expect_equal(encode("", ""))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Encode single characters only are encoded without count", {
   expect_equal(encode("XYZ", "XYZ"))

@@ -12,6 +12,8 @@ test_that("Recognizes 0", {
   expect_equal(convert(rows), (Some "0"))
 })
 
+SKIP-REST-OF-TESTS
+
 test_that("Recognizes 1", {
   rows <- 
         [ "   ";

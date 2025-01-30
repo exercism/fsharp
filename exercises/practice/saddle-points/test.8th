@@ -1,7 +1,7 @@
 "saddle-points.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("Can identify single saddle point", {
   matrix <- 
@@ -10,6 +10,8 @@ test_that("Can identify single saddle point", {
           c(6, 6, 7) ]
   expect_equal(saddlePoints(matrix), c((2, 1)))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Can identify that empty matrix has no saddle points", {
   matrix <- c([)]

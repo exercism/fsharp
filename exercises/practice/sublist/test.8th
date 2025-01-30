@@ -1,13 +1,15 @@
 "sublist.8th" f:include
 needs exercism/test
 with: test
-17 tests
+18 tests
 
 test_that("Empty lists", {
   listOne <- c()
   listTwo <- c()
   expect_equal(sublist(listOne, listTwo), SublistType.Equal)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Empty list within non empty list", {
   listOne <- c()

@@ -1,11 +1,13 @@
 "secret-handshake.8th" f:include
 needs exercism/test
 with: test
-17 tests
+11 tests
 
 test_that("Wink for 1", {
   expect_equal(commands(1), c("wink"))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Double blink for 10", {
   expect_equal(commands(2), c("double blink"))

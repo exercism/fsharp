@@ -1,13 +1,15 @@
 "poker.8th" f:include
 needs exercism/test
 with: test
-17 tests
+30 tests
 
 test_that("Single hand always wins", {
   hands <- c("4S 5S 7H 8D JC")
   expected <- c("4S 5S 7H 8D JC")
   expect_equal(bestHands(hands), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Highest card out of all hands wins", {
   hands <- c("4D 5S 6S 8D 3C", "2S 4C 7S 9H 10H", "3S 4S 5D 6H JH")

@@ -1,11 +1,13 @@
 "crypto-square.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 test_that("Empty plaintext results in an empty ciphertext", {
   expect_equal(ciphertext("", ""))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Lowercase", {
   expect_equal(ciphertext("A", "a"))

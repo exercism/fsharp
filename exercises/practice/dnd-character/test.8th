@@ -1,11 +1,13 @@
 "dnd-character.8th" f:include
 needs exercism/test
 with: test
-17 tests
+19 tests
 
 test_that("Ability modifier for score 3 is -4", {
   expect_equal(modifier(3), -4)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Ability modifier for score 4 is -3", {
   expect_equal(modifier(4), -3)

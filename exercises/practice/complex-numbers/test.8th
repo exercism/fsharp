@@ -1,11 +1,13 @@
 "complex-numbers.8th" f:include
 needs exercism/test
 with: test
-17 tests
+32 tests
 
 test_that("Real part of a purely real number", {
   expect_equal(real (create 1.0 0.0), 1.0)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Real part of a purely imaginary number", {
   expect_equal(real (create 0.0 1.0), 0.0)

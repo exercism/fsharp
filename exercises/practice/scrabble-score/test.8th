@@ -1,11 +1,13 @@
 "scrabble-score.8th" f:include
 needs exercism/test
 with: test
-17 tests
+11 tests
 
 test_that("Lowercase letter", {
   expect_equal(score("a", 1))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Uppercase letter", {
   expect_equal(score("A", 1))

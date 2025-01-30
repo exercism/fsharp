@@ -1,13 +1,15 @@
 "accumulate-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
 })
 
 test_that("Empty accumulation produces empty accumulation", {
     accumulate (fun x -> x + 1) List.empty |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Identity accumulation returns unmodified list", {
   expect_equal(accumulate id c(1, 2, 3), c(1, 2, 3))

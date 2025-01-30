@@ -1,10 +1,12 @@
 "protein-translation.8th" f:include
 needs exercism/test
 with: test
-17 tests
+26 tests
 
 test_that("Empty RNA sequence results in no proteins", {
     proteins "" |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Methionine RNA sequence", {
   expect_equal(proteins "AUG", c("Methionine"))

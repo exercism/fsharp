@@ -1,13 +1,15 @@
 "tournament.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("Just the header if no input", {
   rows <- c()
   expected <- c("Team                           | MP |  W |  D |  L |  P")
   expect_equal(tally(rows), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("A win is three points, a loss is zero points", {
   rows <- c("Allegoric Alaskans;Blithering Badgers;win")

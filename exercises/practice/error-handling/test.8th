@@ -1,7 +1,7 @@
 "error-handling-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+5 tests
 
 // Custom class that implements IDisposable
 type Resource() = 
@@ -23,6 +23,8 @@ test_that("Throwing exception", {
 // Upon failure, None is returned. The caller can then pattern match on the
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
+SKIP-REST-OF-TESTS
+
 test_that("Returning Option<'T>", {
   successResult <- handleErrorByReturningOption "1"
   expect_equal(successResult, <| Some 1)

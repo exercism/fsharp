@@ -1,7 +1,7 @@
 "tracks-on-tracks-on-tracks.8th" f:include
 needs exercism/test
 with: test
-17 tests
+11 tests
 
 test_that("New list", {
   expected = c()
@@ -10,6 +10,8 @@ test_that("New list", {
   expect_equal(test_that("Existing list", {
 
   expect_equal(test_that("Add language to new list", {
+
+SKIP-REST-OF-TESTS
 
 test_that("Add language to existing list", {
   expect_equal(addLanguage "Common Lisp" existingList, c( "Common Lisp", "F#", "Clojure", "Haskell" ))

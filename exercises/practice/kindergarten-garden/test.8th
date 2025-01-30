@@ -10,6 +10,8 @@ test_that("Partial garden - garden with single student", {
   expect_equal(plants(diagram, student), expected)
 })
 
+SKIP-REST-OF-TESTS
+
 test_that("Partial garden - different garden with single student", {
   student <- "Alice"
   diagram <- "VC\nRC"

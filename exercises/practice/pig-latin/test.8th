@@ -1,11 +1,13 @@
 "pig-latin.8th" f:include
 needs exercism/test
 with: test
-17 tests
+22 tests
 
 test_that("Word beginning with a", {
   expect_equal(translate("apple", "appleay"))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Word beginning with e", {
   expect_equal(translate("ear", "earay"))

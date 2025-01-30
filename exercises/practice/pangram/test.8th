@@ -1,11 +1,13 @@
 "pangram.8th" f:include
 needs exercism/test
 with: test
-17 tests
+10 tests
 
 test_that("Empty sentence", {
   expect_false(isPangram "")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Perfect lower case", {
   expect_true(isPangram "abcdefghijklmnopqrstuvwxyz")

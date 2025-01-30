@@ -1,13 +1,15 @@
 "bank-account-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+5 tests
 
 test_that("Returns empty balance after opening", {
   account <- mkBankAccount() |> openAccount
 
   expect_equal(getBalance(account), (Some 0.0m))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Check basic balance", {
   account <- mkBankAccount() |> openAccount

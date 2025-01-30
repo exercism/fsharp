@@ -1,11 +1,13 @@
 "isogram.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("Empty string", {
   expect_true(isIsogram "")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Isogram with only lower case characters", {
   expect_true(isIsogram "isogram")

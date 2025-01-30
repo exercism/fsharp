@@ -1,7 +1,7 @@
 "satellite.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Empty tree", {
   expected: Result<Tree,string> = Ok (
@@ -9,6 +9,8 @@ test_that("Empty tree", {
     )
   expect_equal(treeFromTraversals c(] [), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Tree with one item", {
   expected: Result<Tree,string> = Ok (

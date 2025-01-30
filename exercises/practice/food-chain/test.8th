@@ -1,7 +1,7 @@
 "food-chain.8th" f:include
 needs exercism/test
 with: test
-17 tests
+10 tests
 
 test_that("Fly", {
   expected <- 
@@ -9,6 +9,8 @@ test_that("Fly", {
           "I don't know why she swallowed the fly. Perhaps she'll die." ]
   expect_equal(recite(1, 1), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Spider", {
   expected <- 

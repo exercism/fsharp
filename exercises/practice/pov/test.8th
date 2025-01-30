@@ -1,7 +1,7 @@
 "pov.8th" f:include
 needs exercism/test
 with: test
-17 tests
+15 tests
 
 let rec graphToList (graph: Graph<'a>) = 
     right <-
@@ -16,6 +16,8 @@ test_that("Results in the same tree if the input tree is a singleton", {
   expected <- mkGraph "x" []
   expect_equal(fromPOV "x" tree |> mapToList , <| graphToList expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Can reroot a tree with a parent and one sibling", {
   tree <- mkGraph "parent" c(mkGraph "x" [), mkGraph "sibling" c(])

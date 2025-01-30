@@ -1,11 +1,13 @@
 "series.8th" f:include
 needs exercism/test
 with: test
-17 tests
+11 tests
 
 test_that("Slices of one from one", {
   expect_equal(slices "1" 1, (Some c("1")))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Slices of one from two", {
   expect_equal(slices "12" 1, (Some c("1", "2")))

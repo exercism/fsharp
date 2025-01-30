@@ -1,12 +1,14 @@
 "robot-name-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+5 tests
 
 test_that("Robot has a name", {
   robot <- mkRobot()
   expect_true(Regex.IsMatch(name robot, @"^c(A-Z){2}\d{3}$"))
     
+SKIP-REST-OF-TESTS
+
 test_that("Name is the same each time", {
   robot <- mkRobot()
   expect_equal(name(robot), (name robot))

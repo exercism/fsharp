@@ -1,12 +1,14 @@
 "rectangles.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("No rows", {
   strings <- c()
   expect_equal(rectangles(strings), 0)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("No columns", {
   strings <- c("")

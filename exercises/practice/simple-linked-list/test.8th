@@ -1,12 +1,14 @@
 "simple-linked-list-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+16 tests
 
 test_that("Empty list", {
   list <- nil
   expect_true(isNil list)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Single item list value", {
   list <- create 1 nil

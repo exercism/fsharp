@@ -1,11 +1,13 @@
 "resistor-color.8th" f:include
 needs exercism/test
 with: test
-17 tests
+4 tests
 
 test_that("Black", {
   expect_equal(colorCode("black", 0))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("White", {
   expect_equal(colorCode("white", 9))

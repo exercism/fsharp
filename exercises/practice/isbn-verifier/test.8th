@@ -1,11 +1,13 @@
 "isbn-verifier.8th" f:include
 needs exercism/test
 with: test
-17 tests
+19 tests
 
 test_that("Valid isbn", {
   expect_true(isValid "3-598-21508-8")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Invalid isbn check digit", {
   expect_false(isValid "3-598-21508-9")

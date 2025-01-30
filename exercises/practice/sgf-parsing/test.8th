@@ -1,12 +1,14 @@
 "sgf-parsing.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("Empty input", {
   expected <- None
   expect_equal(parse("", expected))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Tree with no nodes", {
   expected <- None

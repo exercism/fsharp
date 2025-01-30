@@ -1,12 +1,14 @@
 "grains.8th" f:include
 needs exercism/test
 with: test
-17 tests
+11 tests
 
 test_that("Grains on square 1", {
   expected: Result<uint64,string> = Ok 1UL
   expect_equal(square(1), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Grains on square 2", {
   expected: Result<uint64,string> = Ok 2UL

@@ -1,11 +1,13 @@
 "bob.8th" f:include
 needs exercism/test
 with: test
-17 tests
+25 tests
 
 test_that("Stating something", {
   expect_equal(response "Tom-ay-to, tom-aaaah-to.", "Whatever.")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Shouting", {
   expect_equal(response "WATCH OUT!", "Whoa, chill out!")

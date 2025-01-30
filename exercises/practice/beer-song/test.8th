@@ -1,7 +1,7 @@
 "beer-song.8th" f:include
 needs exercism/test
 with: test
-17 tests
+8 tests
 
 test_that("First generic verse", {
   expected <- 
@@ -9,6 +9,8 @@ test_that("First generic verse", {
           "Take one down and pass it around, 98 bottles of beer on the wall." ]
   expect_equal(recite(99, 1), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Last generic verse", {
   expected <- 

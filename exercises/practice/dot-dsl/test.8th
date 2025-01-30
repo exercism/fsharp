@@ -1,7 +1,7 @@
 "dot-dsl-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Empty graph", {
   g <- graph []
@@ -10,6 +10,8 @@ test_that("Empty graph", {
     edges g |> should be Empty
     attrs g |> should be Empty
     
+SKIP-REST-OF-TESTS
+
 test_that("Graph with one node", {
   g <- graph [
                 node "a" []

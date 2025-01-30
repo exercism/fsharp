@@ -1,12 +1,14 @@
 "house.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("Verse one - the house that jack built", {
   expected <- c("This is the house that Jack built.")
   expect_equal(recite(1, 1), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Verse two - the malt that lay", {
   expected <- c("This is the malt that lay in the house that Jack built.")

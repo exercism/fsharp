@@ -1,7 +1,7 @@
 "all-your-base.8th" f:include
 needs exercism/test
 with: test
-17 tests
+21 tests
 
 test_that("Single bit one to decimal", {
   digits <- c(1)
@@ -10,6 +10,8 @@ test_that("Single bit one to decimal", {
   expected <- c(1)
   expect_equal(rebase(digits, inputBase, outputBase), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Binary to single decimal", {
   digits <- c(1, 0, 1)

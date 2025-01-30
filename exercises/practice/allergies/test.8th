@@ -1,11 +1,13 @@
 "allergies.8th" f:include
 needs exercism/test
 with: test
-17 tests
+50 tests
 
 test_that("Testing for eggs allergy - not allergic to anything", {
   expect_false(allergicTo 0 Allergen.Eggs)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Testing for eggs allergy - allergic only to eggs", {
   expect_true(allergicTo 1 Allergen.Eggs)

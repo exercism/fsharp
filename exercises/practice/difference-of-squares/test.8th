@@ -1,11 +1,13 @@
 "difference-of-squares.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("Square of sum 1", {
   expect_equal(squareOfSum(1), 1)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Square of sum 5", {
   expect_equal(squareOfSum(5), 225)

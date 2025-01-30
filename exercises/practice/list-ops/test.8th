@@ -1,10 +1,12 @@
 "list-ops.8th" f:include
 needs exercism/test
 with: test
-17 tests
+20 tests
 
 test_that("append empty lists", {
     append c(] [) |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("append list to empty list", {
   expect_equal(append c(] [1, 2, 3, 4), c(1, 2, 3, 4))

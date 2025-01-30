@@ -1,7 +1,7 @@
 "state-of-tic-tac-toe.8th" f:include
 needs exercism/test
 with: test
-17 tests
+27 tests
 
 test_that("Finished game where X won via left column victory", {
   board <- 
@@ -11,6 +11,8 @@ test_that("Finished game where X won via left column victory", {
   expected: Result<EndGameState, GameError> = Ok EndGameState.Win
   expect_equal(gamestate(board), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Finished game where X won via middle column victory", {
   board <- 

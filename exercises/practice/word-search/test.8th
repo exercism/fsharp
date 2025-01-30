@@ -1,7 +1,7 @@
 "word-search.8th" f:include
 needs exercism/test
 with: test
-17 tests
+24 tests
 
 test_that("Should accept an initial game grid and a target search word", {
   grid <- c("jefblpepre")
@@ -9,6 +9,8 @@ test_that("Should accept an initial game grid and a target search word", {
   expected <- c(("clojure", Option<((int * int) * (int * int))>.None)) |> Map.ofList
   expect_equal(search(grid, wordsToSearchFor), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Should locate one word written left to right", {
   grid <- c("clojurermt")

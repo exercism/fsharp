@@ -1,13 +1,15 @@
 "proverb.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Zero pieces", {
   strings = c()
   expected = c()
   expect_equal(recite(strings), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("One piece", {
   strings <- c("nail")

@@ -1,7 +1,7 @@
 "change.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("Change for 1 cent", {
   coins <- c(1, 5, 10, 25)
@@ -9,6 +9,8 @@ test_that("Change for 1 cent", {
   expected <- c(1)
   expect_equal(findFewestCoins(coins, target), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Single coin change", {
   coins <- c(1, 5, 10, 25, 100)

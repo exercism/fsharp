@@ -1,11 +1,13 @@
 "rational-numbers.8th" f:include
 needs exercism/test
 with: test
-17 tests
+43 tests
 
 test_that("Add two positive rational numbers", {
   expect_equal(add (create 1 2) (create 2 3), (create 7 6))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Add a positive rational number and a negative rational number", {
   expect_equal(add (create 1 2) (create -2 3), (create -1 6))

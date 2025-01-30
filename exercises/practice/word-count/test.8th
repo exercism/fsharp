@@ -1,12 +1,14 @@
 "word-count.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("Count one word", {
   expected <- c(("word", 1)) |> Map.ofList
   expect_equal(countWords("word", expected))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Count one of each word", {
   expected <- 

@@ -1,7 +1,7 @@
 "binary-search-tree.8th" f:include
 needs exercism/test
 with: test
-17 tests
+10 tests
 
 test_that("Data is retained", {
   treeData <- create c(4)
@@ -9,6 +9,8 @@ test_that("Data is retained", {
   expect_equal(treeData |> left, None)
   expect_equal(treeData |> right, None)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Smaller number at left node", {
   treeData <- create c(4, 2)

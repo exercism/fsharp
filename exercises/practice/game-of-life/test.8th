@@ -1,13 +1,15 @@
 "game-of-life.8th" f:include
 needs exercism/test
 with: test
-17 tests
+8 tests
 
 test_that("Empty matrix", {
   matrix: intc(,) = array2D []
   expected: intc(,) = array2D []
   expect_equal(tick(matrix), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Live cells with zero live neighbors die", {
   matrix <- 

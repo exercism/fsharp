@@ -1,7 +1,7 @@
 "booking-up-for-beauty.8th" f:include
 needs exercism/test
 with: test
-17 tests
+25 tests
 
 c(<UseCulture("en-US")>)
 test_that("Schedule date using only numbers", {
@@ -9,6 +9,8 @@ test_that("Schedule date using only numbers", {
   expect_equal( , (DateTime(2019, 7, 25, 13, 45, 0)))
 
 c(<UseCulture("en-US")>)
+SKIP-REST-OF-TESTS
+
 test_that("Schedule date with textual month", {
     schedule "June 3, 2019 11:30:00"
   expect_equal( , (DateTime(2019, 6, 3, 11, 30, 0)))

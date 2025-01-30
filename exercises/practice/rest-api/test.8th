@@ -1,7 +1,7 @@
 "rest-api.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("No users", {
   database <- """{"users":[]}"""
@@ -10,6 +10,8 @@ test_that("No users", {
   api <- RestApi(database)
   expect_equal(api.Get url, expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Add user", {
   database <- """{"users":[]}"""

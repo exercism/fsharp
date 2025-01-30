@@ -1,11 +1,13 @@
 "reverse-string.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("An empty string", {
   expect_equal(reverse("", ""))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("A word", {
   expect_equal(reverse("robot", "tobor"))

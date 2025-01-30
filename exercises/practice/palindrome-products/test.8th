@@ -1,12 +1,14 @@
 "palindrome-products.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("Find the smallest palindrome from single digit factors", {
   expected: int option * (int * int) list = (Some 1, c((1, 1)))
   expect_equal(smallest(1, 9), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Find the largest palindrome from single digit factors", {
   expected: int option * (int * int) list = (Some 9, c((1, 9), (3, 3)))

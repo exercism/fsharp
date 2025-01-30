@@ -1,11 +1,13 @@
 "armstrong-numbers.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("Zero is an Armstrong number", {
   expect_true(isArmstrongNumber 0)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Single-digit numbers are Armstrong numbers", {
   expect_true(isArmstrongNumber 5)

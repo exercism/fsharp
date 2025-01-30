@@ -1,12 +1,14 @@
 "clock.8th" f:include
 needs exercism/test
 with: test
-17 tests
+52 tests
 
 test_that("On the hour", {
   clock <- create 8 0
   expect_equal(display(clock), "08:00")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Past the hour", {
   clock <- create 11 9

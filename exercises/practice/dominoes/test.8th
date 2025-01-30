@@ -1,12 +1,14 @@
 "dominoes.8th" f:include
 needs exercism/test
 with: test
-17 tests
+13 tests
 
 test_that("Empty input = empty output", {
   dominoes <- c()
   expect_true(canChain dominoes)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Singleton input = singleton output", {
   dominoes <- c((1, 1))

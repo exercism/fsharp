@@ -1,11 +1,13 @@
 "zebra-puzzle.8th" f:include
 needs exercism/test
 with: test
-17 tests
+2 tests
 
 test_that("Resident who drinks water", {
   expect_equal(drinksWater, Norwegian)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Resident who owns zebra", {
   expect_equal(ownsZebra, Japanese)

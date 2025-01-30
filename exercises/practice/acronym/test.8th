@@ -1,11 +1,13 @@
 "acronym.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("Basic", {
   expect_equal(abbreviate "Portable Network Graphics", "PNG")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Lowercase words", {
   expect_equal(abbreviate "Ruby on Rails", "ROR")

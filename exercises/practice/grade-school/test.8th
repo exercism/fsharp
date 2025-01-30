@@ -1,11 +1,13 @@
 "grade-school.8th" f:include
 needs exercism/test
 with: test
-17 tests
+15 tests
 
 test_that("Roster is empty when no student is added", {
   school <- empty
     roster school |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Student is added to the roster", {
   school <- 

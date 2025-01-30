@@ -1,11 +1,13 @@
 "atbash-cipher.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("Encode yes", {
   expect_equal(encode("yes", "bvh"))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Encode no", {
   expect_equal(encode("no", "ml"))

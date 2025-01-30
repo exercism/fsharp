@@ -1,11 +1,13 @@
 "say.8th" f:include
 needs exercism/test
 with: test
-17 tests
+19 tests
 
 test_that("Zero", {
   expect_equal(say(0L), (Some "zero"))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("One", {
   expect_equal(say(1L), (Some "one"))

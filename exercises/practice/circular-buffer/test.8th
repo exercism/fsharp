@@ -1,11 +1,13 @@
 "circular-buffer.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 test_that("Reading empty buffer should fail", {
   buffer1 <- mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>
+
+SKIP-REST-OF-TESTS
 
 test_that("Can read an item just written", {
   buffer1 <- mkCircularBuffer 1

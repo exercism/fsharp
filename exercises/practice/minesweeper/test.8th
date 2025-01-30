@@ -1,13 +1,15 @@
 "minesweeper.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("No rows", {
   minefield = c()
   expected = c()
   expect_equal(annotate(minefield), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("No columns", {
   minefield <- c("")

@@ -1,11 +1,13 @@
 "darts.8th" f:include
 needs exercism/test
 with: test
-17 tests
+13 tests
 
 test_that("Missed target", {
   expect_equal(score -9.0 9.0, 0)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("On the outer circle", {
   expect_equal(score 0.0 10.0, 1)

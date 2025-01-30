@@ -1,11 +1,13 @@
 "collatz-conjecture.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Zero steps for one", {
   expect_equal(steps(1), (Some 0))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Divide if even", {
   expect_equal(steps(16), (Some 4))

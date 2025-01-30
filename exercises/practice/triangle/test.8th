@@ -1,11 +1,13 @@
 "triangle.8th" f:include
 needs exercism/test
 with: test
-17 tests
+21 tests
 
 test_that("Equilateral returns all sides are equal", {
   expect_true(equilateral c(2.0, 2.0, 2.0))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Equilateral returns any side is unequal", {
   expect_false(equilateral c(2.0, 3.0, 2.0))

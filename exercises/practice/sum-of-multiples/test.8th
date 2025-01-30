@@ -1,11 +1,13 @@
 "sum-of-multiples.8th" f:include
 needs exercism/test
 with: test
-17 tests
+16 tests
 
 test_that("No multiples within limit", {
   expect_equal(sum c(3, 5) 1, 0)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("One factor has multiples within limit", {
   expect_equal(sum c(3, 5) 4, 3)

@@ -1,12 +1,14 @@
 "custom-set.8th" f:include
 needs exercism/test
 with: test
-17 tests
+38 tests
 
 test_that("Sets with no elements are empty", {
   actual <- CustomSet.isEmpty (CustomSet.fromList [])
   expect_true(actual)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Sets with elements are not empty", {
   actual <- CustomSet.isEmpty (CustomSet.fromList c(1))

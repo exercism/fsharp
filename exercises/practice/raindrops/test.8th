@@ -1,11 +1,13 @@
 "raindrops.8th" f:include
 needs exercism/test
 with: test
-17 tests
+18 tests
 
 test_that("The sound for 1 is 1", {
   expect_equal(convert(1), "1")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("The sound for 3 is Pling", {
   expect_equal(convert(3), "Pling")

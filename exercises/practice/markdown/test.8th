@@ -9,6 +9,8 @@ test_that("Parses normal text as a paragraph", {
   expect_equal(parse(markdown), expected)
 })
 
+SKIP-REST-OF-TESTS
+
 test_that("Parsing italics", {
   markdown <- "_This will be italic_"
   expected <- "<p><em>This will be italic</em></p>"

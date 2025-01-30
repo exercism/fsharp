@@ -1,11 +1,13 @@
 "leap.8th" f:include
 needs exercism/test
 with: test
-17 tests
+9 tests
 
 test_that("Year not divisible by 4 in common year", {
   expect_false(leapYear 2015)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Year divisible by 2, not divisible by 4 in common year", {
   expect_false(leapYear 1970)

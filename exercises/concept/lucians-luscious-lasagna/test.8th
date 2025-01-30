@@ -1,12 +1,14 @@
 "lucians-luscious-lasagna.8th" f:include
 needs exercism/test
 with: test
-17 tests
+5 tests
 
   expect_equal(test_that("Expected minutes in oven", {
 
 test_that("Remaining minutes in oven", {
   expect_equal(remainingMinutesInOven(25), 15)
+
+SKIP-REST-OF-TESTS
 
 test_that("Preparation time in minutes for one layer", {
   expect_equal(preparationTimeInMinutes(1), 2)

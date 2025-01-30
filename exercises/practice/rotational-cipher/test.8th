@@ -1,11 +1,13 @@
 "rotational-cipher.8th" f:include
 needs exercism/test
 with: test
-17 tests
+10 tests
 
 test_that("Rotate a by 0, same output as input", {
   expect_equal(rotate 0 "a", "a")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Rotate a by 1", {
   expect_equal(rotate 1 "a", "b")

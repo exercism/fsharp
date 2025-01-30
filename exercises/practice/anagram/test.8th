@@ -1,11 +1,13 @@
 "anagram.8th" f:include
 needs exercism/test
 with: test
-17 tests
+16 tests
 
 test_that("No matches", {
   candidates <- c("hello", "world", "zombies", "pants")
     findAnagrams candidates "diaper" |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Detects two anagrams", {
   candidates <- c("lemons", "cherry", "melons")

@@ -1,11 +1,13 @@
 "book-store.8th" f:include
 needs exercism/test
 with: test
-17 tests
+18 tests
 
 test_that("Only a single book", {
   expect_equal(total c(1), 8.00m)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Two of the same book", {
   expect_equal(total c(2, 2), 16.00m)

@@ -1,10 +1,12 @@
 "spiral-matrix.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Empty spiral", {
     spiralMatrix 0 |> should be Empty
+
+SKIP-REST-OF-TESTS
 
 test_that("Trivial spiral", {
   expect_equal(spiralMatrix(1), c([1)])

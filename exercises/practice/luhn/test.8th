@@ -1,11 +1,13 @@
 "luhn.8th" f:include
 needs exercism/test
 with: test
-17 tests
+22 tests
 
 test_that("Single digit strings can not be valid", {
   expect_false(valid "1")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("A single zero is invalid", {
   expect_false(valid "0")

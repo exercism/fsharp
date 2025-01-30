@@ -1,11 +1,13 @@
 "perfect-numbers.8th" f:include
 needs exercism/test
 with: test
-17 tests
+13 tests
 
 test_that("Smallest perfect number is classified correctly", {
   expect_equal(classify(6), (Some Classification.Perfect))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Medium perfect number is classified correctly", {
   expect_equal(classify(28), (Some Classification.Perfect))

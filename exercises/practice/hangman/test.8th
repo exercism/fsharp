@@ -1,7 +1,7 @@
 "hangman-test.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Initially 9 failures are allowed", {
   game <- createGame "foo"
@@ -14,6 +14,8 @@ test_that("Initially 9 failures are allowed", {
 
   expect_equal(lastProgress, <| Busy 9)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Initially no letters are guessed", {
   game <- createGame "foo"

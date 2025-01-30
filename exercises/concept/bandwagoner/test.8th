@@ -1,13 +1,15 @@
 "bandwagoner.8th" f:include
 needs exercism/test
 with: test
-17 tests
+25 tests
 
 test_that("Create coach that was a former player", {
     createCoach "Steve Kerr" true
     |> should equal
            { Name = "Steve Kerr"
              FormerPlayer = true }
+
+SKIP-REST-OF-TESTS
 
 test_that("Create coach that wasn't a former player", {
     createCoach "Erik Spoelstra" false

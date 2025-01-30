@@ -1,11 +1,13 @@
 "resistor-color-duo.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 test_that("Brown and black", {
   expect_equal(value c("brown", "black"), 10)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Blue and grey", {
   expect_equal(value c("blue", "grey"), 68)

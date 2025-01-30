@@ -1,7 +1,7 @@
 "log-levels.8th" f:include
 needs exercism/test
 with: test
-17 tests
+3 tests
 
   expect_equal(test_that("Error message", {
 
@@ -20,6 +20,8 @@ test_that("Message with leading and trailing white space", {
   expect_equal(test_that("Info log level", {
 
   expect_equal(test_that("Error reformat", {
+
+SKIP-REST-OF-TESTS
 
 test_that("Warning reformat", {
   expect_equal(reformat "c(WARNING): Decreased performance", "Decreased performance (warning)")

@@ -1,12 +1,14 @@
 "pascals-triangle.8th" f:include
 needs exercism/test
 with: test
-17 tests
+8 tests
 
 test_that("Zero rows", {
   expected = c()
   expect_equal(rows(0), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Single row", {
   expected <- c([1)]

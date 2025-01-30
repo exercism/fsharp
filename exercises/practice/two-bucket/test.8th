@@ -1,7 +1,7 @@
 "two-bucket.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 test_that("Measure using bucket one of size 3 and bucket two of size 5 - start with bucket one", {
   bucketOne <- 3
@@ -11,6 +11,8 @@ test_that("Measure using bucket one of size 3 and bucket two of size 5 - start w
   expected <- { Moves = 4, GoalBucket = Bucket.One, OtherBucket = 5 }
   expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Measure using bucket one of size 3 and bucket two of size 5 - start with bucket two", {
   bucketOne <- 3

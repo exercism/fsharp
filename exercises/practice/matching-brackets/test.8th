@@ -1,11 +1,13 @@
 "matching-brackets.8th" f:include
 needs exercism/test
 with: test
-17 tests
+20 tests
 
 test_that("Paired square brackets", {
   expect_true(isPaired "[]")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Empty string", {
   expect_true(isPaired "")

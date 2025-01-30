@@ -1,12 +1,14 @@
 "knapsack.8th" f:include
 needs exercism/test
 with: test
-17 tests
+7 tests
 
 test_that("No items", {
   items <- c()
   expect_equal(maximumValue(items, 100), 0)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("One item, too heavy", {
   items <- c({ weight = 100, value = 1 })

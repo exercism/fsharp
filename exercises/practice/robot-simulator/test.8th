@@ -1,12 +1,14 @@
 "robot-simulator.8th" f:include
 needs exercism/test
 with: test
-17 tests
+18 tests
 
 test_that("At origin facing north", {
   expected <- create Direction.North (0, 0)
   expect_equal(create Direction.North (0, 0), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("At negative position facing south", {
   expected <- create Direction.South (-1, -1)

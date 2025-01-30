@@ -1,7 +1,7 @@
 "rail-fence-cipher.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Encode with two rails", {
   rails <- 2
@@ -9,6 +9,8 @@ test_that("Encode with two rails", {
   expected <- "XXXXXXXXXOOOOOOOOO"
   expect_equal(encode(rails, msg), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Encode with three rails", {
   rails <- 3

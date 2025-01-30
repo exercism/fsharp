@@ -1,12 +1,14 @@
 "phone-number.8th" f:include
 needs exercism/test
 with: test
-17 tests
+18 tests
 
 test_that("Cleans the number", {
   expected: Result<uint64,string> = Ok 2234567890UL
   expect_equal(clean "(223) 456-7890", expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Cleans numbers with dots", {
   expected: Result<uint64,string> = Ok 2234567890UL

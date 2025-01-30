@@ -1,11 +1,13 @@
 "meetup.8th" f:include
 needs exercism/test
 with: test
-17 tests
+95 tests
 
 test_that("When teenth Monday is the 13th, the first day of the teenth week", {
   expect_equal(meetup 2013 5 Week.Teenth DayOfWeek.Monday, (DateTime(2013, 5, 13)))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("When teenth Monday is the 19th, the last day of the teenth week", {
   expect_equal(meetup 2013 8 Week.Teenth DayOfWeek.Monday, (DateTime(2013, 8, 19)))

@@ -1,7 +1,7 @@
 "zipper.8th" f:include
 needs exercism/test
 with: test
-17 tests
+14 tests
 
 let subTree value left right = Some (tree value left right)
 let leaf value = subTree value None None
@@ -12,6 +12,8 @@ test_that("Data is retained", {
   actual <- zipper |> toTree
   expect_equal(actual, expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Left, right and value", {
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))

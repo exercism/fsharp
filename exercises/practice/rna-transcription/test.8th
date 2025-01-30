@@ -1,11 +1,13 @@
 "rna-transcription.8th" f:include
 needs exercism/test
 with: test
-17 tests
+6 tests
 
 test_that("Empty RNA sequence", {
   expect_equal(toRna("", ""))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("RNA complement of cytosine is guanine", {
   expect_equal(toRna("C", "G"))

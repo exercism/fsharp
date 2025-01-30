@@ -1,11 +1,13 @@
 "yacht.8th" f:include
 needs exercism/test
 with: test
-17 tests
+29 tests
 
 test_that("Yacht", {
   expect_equal(score Category.Yacht c(Die.Five, Die.Five, Die.Five, Die.Five, Die.Five), 50)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Not Yacht", {
   expect_equal(score Category.Yacht c(Die.One, Die.Three, Die.Three, Die.Two, Die.Five), 0)

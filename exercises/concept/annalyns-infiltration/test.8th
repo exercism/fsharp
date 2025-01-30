@@ -1,8 +1,10 @@
 module annalynsInfiltrationTests
 
 test_that("Cannot execute fast attack if knight is awake", {
-  knightIsAwake <- true
+30 tests
   expect_false(canFastAttack knightIsAwake)
+
+SKIP-REST-OF-TESTS
 
 test_that("Can execute fast attack if knight is sleeping", {
   knightIsAwake <- false

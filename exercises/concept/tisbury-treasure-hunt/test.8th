@@ -1,10 +1,12 @@
 "tisbury-treasure-hunt.8th" f:include
 needs exercism/test
 with: test
-17 tests
+23 tests
 
 test_that("Get coordinate for Scrimshaw Whale's Tooth", {
   expect_equal(getCoordinate ("Scrimshaw Whale's Tooth", "2A"), "2A")
+
+SKIP-REST-OF-TESTS
 
 test_that("Get coordinate for Brass Spyglass", {
   expect_equal(getCoordinate ("Brass Spyglass", "4B"), "4B")

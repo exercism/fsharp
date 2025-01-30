@@ -1,11 +1,13 @@
 "roman-numerals.8th" f:include
 needs exercism/test
 with: test
-17 tests
+26 tests
 
 test_that("1 is I", {
   expect_equal(roman(1), "I")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("2 is II", {
   expect_equal(roman(2), "II")

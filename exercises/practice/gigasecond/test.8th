@@ -1,11 +1,13 @@
 "gigasecond.8th" f:include
 needs exercism/test
 with: test
-17 tests
+5 tests
 
 test_that("Date only specification of time", {
   expect_equal(add (DateTime(2011, 4, 25)), (DateTime(2043, 1, 1, 1, 46, 40)))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Second test for date only specification of time", {
   expect_equal(add (DateTime(1977, 6, 13)), (DateTime(2009, 2, 19, 1, 46, 40)))

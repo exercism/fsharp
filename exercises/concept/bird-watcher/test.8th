@@ -1,10 +1,12 @@
 "bird-watcher.8th" f:include
 needs exercism/test
 with: test
-17 tests
+19 tests
 
 test_that("Last week", {
   expect_equal(lastWeek, c(| 0, 2, 5, 3, 7, 8, 4 |))
+
+SKIP-REST-OF-TESTS
 
 test_that("Yesterday's bird count of disappointing week", {
     yesterday c(| 0, 0, 2, 0, 0, 1, 0 |)

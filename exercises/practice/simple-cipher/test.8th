@@ -1,12 +1,14 @@
 "simple-cipher.8th" f:include
 needs exercism/test
 with: test
-17 tests
+12 tests
 
 test_that("Random key cipher - Can encode", {
   sut <- SimpleCipher()
   expect_equal(sut.Encode("aaaaaaaaaa"), sut.Key.c(0..9))
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Random key cipher - Can decode", {
   sut <- SimpleCipher()

@@ -1,13 +1,15 @@
 "etl.8th" f:include
 needs exercism/test
 with: test
-17 tests
+4 tests
 
 test_that("Single letter", {
   lettersByScore <- c((1, ['A'))] |> Map.ofList
   expected <- c(('a', 1)) |> Map.ofList
   expect_equal(transform(lettersByScore), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Single score with multiple letters", {
   lettersByScore <- c((1, ['A', 'E', 'I', 'O', 'U'))] |> Map.ofList

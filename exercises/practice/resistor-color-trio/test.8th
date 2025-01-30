@@ -1,11 +1,13 @@
 "resistor-color-trio.8th" f:include
 needs exercism/test
 with: test
-17 tests
+10 tests
 
 test_that("Orange and orange and black", {
   expect_equal(label c("orange", "orange", "black"), "33 ohms")
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Blue and grey and brown", {
   expect_equal(label c("blue", "grey", "brown"), "680 ohms")

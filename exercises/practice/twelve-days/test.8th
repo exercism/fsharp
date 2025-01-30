@@ -1,12 +1,14 @@
 "twelve-days.8th" f:include
 needs exercism/test
 with: test
-17 tests
+15 tests
 
 test_that("First day a partridge in a pear tree", {
   expected <- c("On the first day of Christmas my true love gave to me: a Partridge in a Pear Tree.")
   expect_equal(recite(1, 1), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Second day two turtle doves", {
   expected <- c("On the second day of Christmas my true love gave to me: two Turtle Doves, and a Partridge in a Pear Tree.")

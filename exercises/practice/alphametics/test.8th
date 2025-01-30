@@ -1,7 +1,7 @@
 "alphametics.8th" f:include
 needs exercism/test
 with: test
-17 tests
+10 tests
 
 test_that("Puzzle with three letters", {
   puzzle <- "I + BB == ILL"
@@ -13,6 +13,8 @@ test_that("Puzzle with three letters", {
         |> Some
   expect_equal(solve(puzzle), expected)
 })
+
+SKIP-REST-OF-TESTS
 
 test_that("Solution must have unique value for each letter", {
   puzzle <- "A == B"
