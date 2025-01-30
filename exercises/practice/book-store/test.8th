@@ -58,3 +58,6 @@ SKIP-REST-OF-TESTS
 
 "One group of one and two plus three groups of four is cheaper than one group of each size"
   expect_equal(total [1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5], 100.00m)
+
+end-of-tests
+;with

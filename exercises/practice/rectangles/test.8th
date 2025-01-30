@@ -110,3 +110,6 @@ SKIP-REST-OF-TESTS
           "| | | |";
           "+-+ +-+" ]
   expect_equal(rectangles(strings), 5)
+
+end-of-tests
+;with

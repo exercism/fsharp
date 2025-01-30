@@ -75,3 +75,6 @@ SKIP-REST-OF-TESTS
   expected <- """{"users":[{"name":"Adam","owes":{},"owed_by":{},"balance":0.0},{"name":"Bob","owes":{},"owed_by":{},"balance":0.0}]}"""
   api <- RestApi(database)
   expect_equal(api.Post (url, payload), expected)
+
+end-of-tests
+;with

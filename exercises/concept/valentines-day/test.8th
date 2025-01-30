@@ -30,3 +30,6 @@ with: test
   expect_equal("Rate walk of 5 kilometers"
 
   expect_equal("Rate walk over 5 kilometers"
+
+end-of-tests
+;with

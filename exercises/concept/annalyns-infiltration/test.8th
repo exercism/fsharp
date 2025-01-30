@@ -191,3 +191,6 @@ SKIP-REST-OF-TESTS
   prisonerIsAwake <- false
   petDogIsPresent <- false
   expect_false(canFreePrisoner knightIsAwake archerIsAwake prisonerIsAwake petDogIsPresent)
+
+end-of-tests
+;with

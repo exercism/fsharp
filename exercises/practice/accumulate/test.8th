@@ -35,3 +35,6 @@ SKIP-REST-OF-TESTS
 "Accumulate large data set without stack overflow"
     accumulate id [1..100000]
   expect_equal( , [1..100000])
+
+end-of-tests
+;with

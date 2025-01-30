@@ -228,3 +228,6 @@ SKIP-REST-OF-TESTS
 
     rootForTeam team
   expect_false( )
+
+end-of-tests
+;with

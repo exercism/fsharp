@@ -39,3 +39,5 @@ SKIP-REST-OF-TESTS
 
 "Set birth month"
   expect_equal(Optic.set birthMonth 9 testPerson |> Optic.get bornOn, <| DateTime(1984, 9, 12))
+end-of-tests
+;with

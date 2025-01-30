@@ -80,3 +80,6 @@ SKIP-REST-OF-TESTS
 "Unusual week for fourth week that does not match odd pattern"
     unusualWeek [| 5, 0, 5, 1, 4, 0, 6 |]
   expect_false( )
+
+end-of-tests
+;with

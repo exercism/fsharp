@@ -60,3 +60,6 @@ SKIP-REST-OF-TESTS
 "Parentheses in property value don't need to be escaped"
   expected <- (Node (Map.ofList [("A", ["x(y]z", "foo")), ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], []])))
   expect_equal(parse "(;A[x(y]z)[foo]B[bar];C[baz])", expected)
+
+end-of-tests
+;with

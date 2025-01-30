@@ -79,3 +79,6 @@ SKIP-REST-OF-TESTS
 "Input is too long but contains a valid isbn"
     ( "98245726788" isValid )
     false?
+
+end-of-tests
+;with

@@ -138,3 +138,5 @@ SKIP-REST-OF-TESTS
         "03/12/2015 | Buy present               |     ($123.45)"
 
   expect_equal(formatLedger(currency, locale, entries), expected)
+end-of-tests
+;with

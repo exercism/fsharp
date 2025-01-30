@@ -89,3 +89,6 @@ SKIP-REST-OF-TESTS
   markdown <- "# Start a list\n* Item 1\n* Item 2\nEnd a list"
   expected <- "<h1>Start a list</h1><ul><li>Item 1</li><li>Item 2</li></ul><p>End a list</p>"
   expect_equal(parse(markdown), expected)
+
+end-of-tests
+;with

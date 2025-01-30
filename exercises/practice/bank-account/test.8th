@@ -68,3 +68,6 @@ SKIP-REST-OF-TESTS
     |> ignore
 
   expect_equal(getBalance(account), 1000.0m)
+
+end-of-tests
+;with

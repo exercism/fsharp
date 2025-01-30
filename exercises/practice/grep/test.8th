@@ -335,3 +335,6 @@ type GrepTests() =
         
         createFiles() |> ignore
   expect_equal(grep(files, flags, pattern), expected)
+
+end-of-tests
+;with

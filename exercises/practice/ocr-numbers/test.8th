@@ -147,3 +147,6 @@ SKIP-REST-OF-TESTS
           "  ||_| _|";
           "         " ]
   expect_equal(convert(rows), "123,456,789")
+
+end-of-tests
+;with

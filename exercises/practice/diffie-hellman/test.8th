@@ -44,3 +44,6 @@ SKIP-REST-OF-TESTS
   secretA <- secret p bobPublicKey alicePrivateKey
   secretB <- secret p alicePublicKey bobPrivateKey
   expect_equal(secretA, secretB)
+
+end-of-tests
+;with

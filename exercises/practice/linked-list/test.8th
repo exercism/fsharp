@@ -101,3 +101,5 @@ SKIP-REST-OF-TESTS
   expect_equal(val3, 40)
   expect_equal(val4, 50)
   expect_equal(val5, 30)
+end-of-tests
+;with

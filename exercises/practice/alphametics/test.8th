@@ -121,3 +121,6 @@ SKIP-REST-OF-TESTS
         |> Map.ofList
         |> Some
   expect_equal(solve(puzzle), expected)
+
+end-of-tests
+;with

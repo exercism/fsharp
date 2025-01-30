@@ -40,3 +40,6 @@ SKIP-REST-OF-TESTS
   expect_equal("Working items per minute for speed 9"
 
   expect_equal("Working items per minute for speed 10"
+
+end-of-tests
+;with

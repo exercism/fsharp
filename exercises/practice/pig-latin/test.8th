@@ -114,3 +114,6 @@ SKIP-REST-OF-TESTS
     ( "quick fast run" translate )
     "ickquay astfay unray"
     equal?
+
+end-of-tests
+;with

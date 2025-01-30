@@ -65,3 +65,6 @@ SKIP-REST-OF-TESTS
 
 "Four-item list with F# as fourth item is not exciting"
   expect_false(excitingList ["Julia", "Assembly", "Crystal", "F#"])
+
+end-of-tests
+;with

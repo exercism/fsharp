@@ -39,3 +39,6 @@ SKIP-REST-OF-TESTS
     expect_equal(value c("black"
     "brown"
     equal?, 1)
+
+end-of-tests
+;with

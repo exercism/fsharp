@@ -32,3 +32,6 @@ SKIP-REST-OF-TESTS
   originalName <- name robot
   resetRobot <- reset robot
     originalName |> should not' (equal (name resetRobot))
+
+end-of-tests
+;with

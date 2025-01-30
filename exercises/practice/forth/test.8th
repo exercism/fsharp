@@ -220,3 +220,6 @@ SKIP-REST-OF-TESTS
     expect_equal(evaluate c(": SWAP DUP Dup dup ;"
     "1 swap"
     equal?, expected)
+
+end-of-tests
+;with

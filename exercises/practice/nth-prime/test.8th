@@ -29,3 +29,6 @@ SKIP-REST-OF-TESTS
     ( 0 prime )
     None
     equal
+
+end-of-tests
+;with

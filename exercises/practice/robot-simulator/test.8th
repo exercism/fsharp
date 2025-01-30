@@ -92,3 +92,6 @@ SKIP-REST-OF-TESTS
   robot <- create Direction.South (8, 4)
   expected <- create Direction.North (11, 5)
   expect_equal(move "LAAARRRALLLL" robot, expected)
+
+end-of-tests
+;with

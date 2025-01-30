@@ -85,3 +85,6 @@ SKIP-REST-OF-TESTS
   values <- [1..100]
   listValues <- fromList values
   expect_equal(listValues |> toList, values)
+
+end-of-tests
+;with

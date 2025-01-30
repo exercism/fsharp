@@ -47,3 +47,6 @@ SKIP-REST-OF-TESTS
   expect_equal( , 82)
 
   expect_equal("Order price for gigantic order"
+
+end-of-tests
+;with

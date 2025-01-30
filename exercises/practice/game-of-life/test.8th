@@ -96,3 +96,6 @@ SKIP-REST-OF-TESTS
                   [1, 0, 0, 0, 0, 0, 0, 0];
                   [0, 0, 0, 0, 0, 0, 1, 1] ]
   expect_equal(tick(matrix), expected)
+
+end-of-tests
+;with

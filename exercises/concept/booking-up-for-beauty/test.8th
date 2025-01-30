@@ -110,3 +110,6 @@ SKIP-REST-OF-TESTS
 "Anniversary date this year"
     anniversaryDate ()
   expect_equal( , (DateTime(DateTime.Now.Year, 9, 15)))
+
+end-of-tests
+;with

@@ -10,3 +10,6 @@ SKIP-REST-OF-TESTS
 
 "Resident who owns zebra"
   expect_equal(ownsZebra, Japanese)
+
+end-of-tests
+;with

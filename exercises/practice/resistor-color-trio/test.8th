@@ -54,3 +54,6 @@ SKIP-REST-OF-TESTS
     expect_equal(label ["blue", "green", "yellow", "orange"]
     "650 kiloohms"
     equal?
+
+end-of-tests
+;with

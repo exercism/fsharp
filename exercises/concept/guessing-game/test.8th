@@ -16,3 +16,6 @@ with: test
   expect_equal("Give hint for 44"
 
   expect_equal("Give hint for 100"
+
+end-of-tests
+;with

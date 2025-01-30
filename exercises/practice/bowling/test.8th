@@ -171,3 +171,6 @@ SKIP-REST-OF-TESTS
   startingRolls <- rollMany rolls (newGame())
   game <- roll 2 startingRolls
   expect_equal(score(game), None)
+
+end-of-tests
+;with

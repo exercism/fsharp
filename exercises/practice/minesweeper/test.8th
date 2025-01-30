@@ -130,3 +130,6 @@ SKIP-REST-OF-TESTS
           "1*22*2";
           "111111" ]
   expect_equal(annotate(minefield), expected)
+
+end-of-tests
+;with

@@ -37,3 +37,6 @@ SKIP-REST-OF-TESTS
     expect_equal( 
     "Corrupt disk (error)"
     equal?
+
+end-of-tests
+;with

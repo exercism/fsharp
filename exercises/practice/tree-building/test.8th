@@ -221,3 +221,6 @@ SKIP-REST-OF-TESTS
             { RecordId = 1, ParentId = 2 }
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
+
+end-of-tests
+;with

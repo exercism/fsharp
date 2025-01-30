@@ -188,3 +188,6 @@ SKIP-REST-OF-TESTS
           "    56";
           "    5" ]
   expect_equal(transpose(lines), expected)
+
+end-of-tests
+;with

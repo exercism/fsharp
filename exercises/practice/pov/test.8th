@@ -88,3 +88,6 @@ SKIP-REST-OF-TESTS
 "Errors if source does not exist"
   tree <- mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [], mkGraph "kid-1" []], mkGraph "sibling-0" [], mkGraph "sibling-1" []]
   expect_equal(tracePathBetween "nonexistent" "x" tree, None)
+
+end-of-tests
+;with

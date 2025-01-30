@@ -72,3 +72,6 @@ SKIP-REST-OF-TESTS
     expect_equal(sut.Decode("iboaqcnecbfcr")
     "iamapandabear"
     equal?
+
+end-of-tests
+;with

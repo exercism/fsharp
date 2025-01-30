@@ -61,3 +61,6 @@ SKIP-REST-OF-TESTS
 
 "Numbers above 999,999,999,999 are out of range"
   expect_equal(say(1000000000000L), None)
+
+end-of-tests
+;with

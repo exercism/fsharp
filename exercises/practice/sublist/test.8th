@@ -94,3 +94,6 @@ SKIP-REST-OF-TESTS
   listOne <- [1, 0, 1]
   listTwo <- [10, 1]
   expect_equal(sublist(listOne, listTwo), SublistType.Unequal)
+
+end-of-tests
+;with

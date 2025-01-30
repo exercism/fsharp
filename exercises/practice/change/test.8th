@@ -76,3 +76,6 @@ SKIP-REST-OF-TESTS
   target <- -5
     ( findFewestCoins(coins, target) )
     null?
+
+end-of-tests
+;with

@@ -27,3 +27,6 @@ SKIP-REST-OF-TESTS
 
 "Elapsed time in minutes for multiple layers"
   expect_equal(elapsedTimeInMinutes(4, 8), 16)
+
+end-of-tests
+;with

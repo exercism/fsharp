@@ -60,3 +60,6 @@ SKIP-REST-OF-TESTS
   startBucket <- Bucket.One
   expected <- { Moves = 10, GoalBucket = Bucket.Two, OtherBucket = 0 }
   expect_equal(measure bucketOne bucketTwo goal startBucket, expected)
+
+end-of-tests
+;with

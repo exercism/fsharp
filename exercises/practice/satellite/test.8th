@@ -50,3 +50,6 @@ SKIP-REST-OF-TESTS
     expect_equal(treeFromTraversals ["b", "a", "a"] c("a", "b"
     "a"
     equal?, expected)
+
+end-of-tests
+;with

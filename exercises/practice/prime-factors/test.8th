@@ -40,3 +40,6 @@ SKIP-REST-OF-TESTS
 
 "Factors include a large prime"
   expect_equal(factors(93819012551L), [11, 9539, 894119])
+
+end-of-tests
+;with

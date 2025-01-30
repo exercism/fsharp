@@ -43,3 +43,6 @@ SKIP-REST-OF-TESTS
 
 "Cage with several combinations that is restricted"
   expect_equal(combinations [1, 4] 2 10, [[2, 8], [3, 7]])
+
+end-of-tests
+;with

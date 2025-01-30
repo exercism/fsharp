@@ -132,3 +132,6 @@ SKIP-REST-OF-TESTS
           "Devastating Donkeys            |  5 |  4 |  0 |  1 | 12";
           "Blithering Badgers             |  5 |  1 |  0 |  4 |  3" ]
   expect_equal(tally(rows), expected)
+
+end-of-tests
+;with

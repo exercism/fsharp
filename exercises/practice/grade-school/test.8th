@@ -143,3 +143,6 @@ SKIP-REST-OF-TESTS
     expect_equal(grade(5, school), c("Bradley"
     "Franklin"
     equal?)
+
+end-of-tests
+;with

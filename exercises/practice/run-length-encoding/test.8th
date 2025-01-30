@@ -65,3 +65,6 @@ SKIP-REST-OF-TESTS
     expect_equal("zzz ZZ  zZ" |> encode |> decode
     "zzz ZZ  zZ"
     equal?
+
+end-of-tests
+;with

@@ -120,3 +120,6 @@ SKIP-REST-OF-TESTS
           "And if one green bottle should accidentally fall,";
           "There'll be no green bottles hanging on the wall." ]
   expect_equal(recite(10, 10), expected)
+
+end-of-tests
+;with

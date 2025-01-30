@@ -220,3 +220,6 @@ SKIP-REST-OF-TESTS
                   ['X', 'O', 'X'] ]
   expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
   expect_equal(gamestate(board), expected)
+
+end-of-tests
+;with

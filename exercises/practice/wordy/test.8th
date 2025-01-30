@@ -73,3 +73,6 @@ SKIP-REST-OF-TESTS
 
 "Reject prefix notation"
   expect_equal(answer "What is plus 1 2?", None)
+
+end-of-tests
+;with

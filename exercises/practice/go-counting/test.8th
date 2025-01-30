@@ -121,3 +121,6 @@ SKIP-REST-OF-TESTS
           (Owner.None, []] )
         |> Map.ofList
   expect_equal(territories(board), expected)
+
+end-of-tests
+;with

@@ -344,3 +344,6 @@ SKIP-REST-OF-TESTS
   wordsToSearchFor <- ["rust"]
   expected <- [("rust", Option<((int * int] * (int * int))>.None)) |> Map.ofList
   expect_equal(search(grid, wordsToSearchFor), expected)
+
+end-of-tests
+;with

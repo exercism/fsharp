@@ -89,3 +89,6 @@ SKIP-REST-OF-TESTS
     expect_equal(interval "mAMMMmm" "G", c("G", "G#", "B", "C#", "D#", "F", "F#"
     "G"
     equal?)
+
+end-of-tests
+;with

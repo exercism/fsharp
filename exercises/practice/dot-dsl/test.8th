@@ -69,3 +69,5 @@ SKIP-REST-OF-TESTS
     "blue"
     equal?), edge "b" "c" []])
   expect_equal(attrs(g), [attr "bar" "true", attr "foo" "1", attr "title" "Testing Attrs"])
+end-of-tests
+;with

@@ -51,3 +51,6 @@ SKIP-REST-OF-TESTS
 "Error result for largest if min is more than max"
     (fun () -> largest 2 1 |> ignore) |> should throw typeof<System.ArgumentException>
 
+
+end-of-tests
+;with

@@ -73,3 +73,6 @@ SKIP-REST-OF-TESTS
   expect_equal("Amount to donate for small negative start balance"
 
   expect_equal("Amount to donate for large negative start balance"
+
+end-of-tests
+;with

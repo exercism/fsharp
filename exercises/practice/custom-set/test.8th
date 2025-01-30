@@ -260,3 +260,6 @@ SKIP-REST-OF-TESTS
   expectedSet <- CustomSet.fromList [3, 2, 1]
   actualBool <- CustomSet.isEqualTo actual expectedSet
   expect_true(actualBool)
+
+end-of-tests
+;with

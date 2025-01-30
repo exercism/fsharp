@@ -87,3 +87,6 @@ SKIP-REST-OF-TESTS
           "       O O O O O O O X O ";
           "        X X X X X X X X O" ]
   expect_equal(winner(board), Black)
+
+end-of-tests
+;with

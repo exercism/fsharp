@@ -300,3 +300,6 @@ SKIP-REST-OF-TESTS
   clock1 <- create 24 0
   clock2 <- create 0 0
   expect_equal(clock1 = clock2, true)
+
+end-of-tests
+;with

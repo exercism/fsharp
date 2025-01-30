@@ -61,3 +61,6 @@ SKIP-REST-OF-TESTS
 "Can identify that saddle points in a single row matrix are those with the maximum value"
   matrix <- [[2, 5, 3, 5]]
   expect_equal(saddlePoints(matrix), [(1, 2], (1, 4)))
+
+end-of-tests
+;with

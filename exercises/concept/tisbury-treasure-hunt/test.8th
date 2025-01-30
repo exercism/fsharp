@@ -120,3 +120,6 @@ SKIP-REST-OF-TESTS
   ruisData <- ("Aqua Lagoon (Island of Mystery)", (1, 'F'), "Yellow")
   expected <- ("", "", "", "")
   expect_equal(createRecord(azarasData, ruisData), expected)
+
+end-of-tests
+;with

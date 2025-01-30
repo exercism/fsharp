@@ -37,3 +37,6 @@ SKIP-REST-OF-TESTS
     ( "If man was meant to stay on the ground, god would have given us roots." ciphertext )
     "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau "
     equal?
+
+end-of-tests
+;with

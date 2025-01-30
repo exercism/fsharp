@@ -24,3 +24,6 @@ with: test
   expect_equal("Clean_string_with_leading_and_trailing_spaces"
 
   expect_equal("Combine_conversions"
+
+end-of-tests
+;with
