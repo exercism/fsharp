@@ -1,5 +1,7 @@
-source("./generators..R")
-library(testthat)
+"generators..8th" f:include
+needs exercism/test
+with: test
+17 tests
 
 type TestCase = 
     { Uuid: string
