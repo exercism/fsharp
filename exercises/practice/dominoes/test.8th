@@ -3,69 +3,69 @@ needs exercism/test
 with: test
 13 tests
 
-test_that("Empty input = empty output", {
+"Empty input = empty output"
   dominoes <- c()
     ( dominoes canChain )
     true?
 
 SKIP-REST-OF-TESTS
 
-test_that("Singleton input = singleton output", {
+"Singleton input = singleton output"
   dominoes <- c((1, 1))
     ( dominoes canChain )
     true?
 
-test_that("Singleton that can't be chained", {
+"Singleton that can't be chained"
   dominoes <- c((1, 2))
     ( dominoes canChain )
     false?
 
-test_that("Three elements", {
+"Three elements"
   dominoes <- c((1, 2), (3, 1), (2, 3))
     ( dominoes canChain )
     true?
 
-test_that("Can reverse dominoes", {
+"Can reverse dominoes"
   dominoes <- c((1, 2), (1, 3), (2, 3))
     ( dominoes canChain )
     true?
 
-test_that("Can't be chained", {
+"Can't be chained"
   dominoes <- c((1, 2), (4, 1), (2, 3))
     ( dominoes canChain )
     false?
 
-test_that("Disconnected - simple", {
+"Disconnected - simple"
   dominoes <- c((1, 1), (2, 2))
     ( dominoes canChain )
     false?
 
-test_that("Disconnected - double loop", {
+"Disconnected - double loop"
   dominoes <- c((1, 2), (2, 1), (3, 4), (4, 3))
     ( dominoes canChain )
     false?
 
-test_that("Disconnected - single isolated", {
+"Disconnected - single isolated"
   dominoes <- c((1, 2), (2, 3), (3, 1), (4, 4))
     ( dominoes canChain )
     false?
 
-test_that("Need backtrack", {
+"Need backtrack"
   dominoes <- c((1, 2), (2, 3), (3, 1), (2, 4), (2, 4))
     ( dominoes canChain )
     true?
 
-test_that("Separate loops", {
+"Separate loops"
   dominoes <- c((1, 2), (2, 3), (3, 1), (1, 1), (2, 2), (3, 3))
     ( dominoes canChain )
     true?
 
-test_that("Nine elements", {
+"Nine elements"
   dominoes <- c((1, 2), (5, 3), (3, 1), (1, 2), (2, 4), (1, 6), (2, 3), (3, 4), (5, 6))
     ( dominoes canChain )
     true?
 
-test_that("Separate three-domino loops", {
+"Separate three-domino loops"
   dominoes <- c((1, 2), (2, 3), (3, 1), (4, 5), (5, 6), (6, 4))
     ( dominoes canChain )
     false?

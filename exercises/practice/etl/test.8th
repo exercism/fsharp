@@ -3,14 +3,14 @@ needs exercism/test
 with: test
 4 tests
 
-test_that("Single letter", {
+"Single letter"
   lettersByScore <- c((1, ['A'))] |> Map.ofList
   expected <- c(('a', 1)) |> Map.ofList
   expect_equal(transform(lettersByScore), expected)
 
 SKIP-REST-OF-TESTS
 
-test_that("Single score with multiple letters", {
+"Single score with multiple letters"
   lettersByScore <- c((1, ['A', 'E', 'I', 'O', 'U'))] |> Map.ofList
   expected <- 
         [ ('a', 1);
@@ -21,7 +21,7 @@ test_that("Single score with multiple letters", {
         |> Map.ofList
   expect_equal(transform(lettersByScore), expected)
 
-test_that("Multiple scores with multiple letters", {
+"Multiple scores with multiple letters"
   lettersByScore <- 
         c( (1, ['A', 'E'));
           (2, c('D', 'G')) ]
@@ -34,7 +34,7 @@ test_that("Multiple scores with multiple letters", {
         |> Map.ofList
   expect_equal(transform(lettersByScore), expected)
 
-test_that("Multiple scores with differing numbers of letters", {
+"Multiple scores with differing numbers of letters"
   lettersByScore <- 
         c( (1, ['A', 'E', 'I', 'O', 'U', 'L', 'N', 'R', 'S', 'T'));
           (2, c('D', 'G'));

@@ -3,17 +3,17 @@ needs exercism/test
 with: test
 7 tests
 
-test_that("No items", {
+"No items"
   items <- c()
   expect_equal(maximumValue(items, 100), 0)
 
 SKIP-REST-OF-TESTS
 
-test_that("One item, too heavy", {
+"One item, too heavy"
   items <- c({ weight = 100, value = 1 })
   expect_equal(maximumValue(items, 10), 0)
 
-test_that("Five items (cannot be greedy by weight)", {
+"Five items (cannot be greedy by weight)"
   items <- 
         [ { weight = 2, value = 5 };
           { weight = 2, value = 5 };
@@ -22,7 +22,7 @@ test_that("Five items (cannot be greedy by weight)", {
           { weight = 10, value = 21 } ]
   expect_equal(maximumValue(items, 10), 21)
 
-test_that("Five items (cannot be greedy by value)", {
+"Five items (cannot be greedy by value)"
   items <- 
         [ { weight = 2, value = 20 };
           { weight = 2, value = 20 };
@@ -31,7 +31,7 @@ test_that("Five items (cannot be greedy by value)", {
           { weight = 10, value = 50 } ]
   expect_equal(maximumValue(items, 10), 80)
 
-test_that("Example knapsack", {
+"Example knapsack"
   items <- 
         [ { weight = 5, value = 10 };
           { weight = 4, value = 40 };
@@ -39,7 +39,7 @@ test_that("Example knapsack", {
           { weight = 4, value = 50 } ]
   expect_equal(maximumValue(items, 10), 90)
 
-test_that("8 items", {
+"8 items"
   items <- 
         [ { weight = 25, value = 350 };
           { weight = 35, value = 400 };
@@ -51,7 +51,7 @@ test_that("8 items", {
           { weight = 2, value = 5 } ]
   expect_equal(maximumValue(items, 104), 900)
 
-test_that("15 items", {
+"15 items"
   items <- 
         [ { weight = 70, value = 135 };
           { weight = 73, value = 139 };

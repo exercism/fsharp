@@ -3,16 +3,16 @@ needs exercism/test
 with: test
 4 tests
 
-test_that("0 eggs", {
+"0 eggs"
   expect_equal(eggCount(0), 0)
 
 SKIP-REST-OF-TESTS
 
-test_that("1 egg", {
+"1 egg"
   expect_equal(eggCount(16), 1)
 
-test_that("4 eggs", {
+"4 eggs"
   expect_equal(eggCount(89), 4)
 
-test_that("13 eggs", {
+"13 eggs"
   expect_equal(eggCount(2000000000), 13)

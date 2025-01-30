@@ -3,10 +3,10 @@ needs exercism/test
 with: test
 2 tests
 
-test_that("Resident who drinks water", {
+"Resident who drinks water"
   expect_equal(drinksWater, Norwegian)
 
 SKIP-REST-OF-TESTS
 
-test_that("Resident who owns zebra", {
+"Resident who owns zebra"
   expect_equal(ownsZebra, Japanese)

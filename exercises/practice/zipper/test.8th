@@ -6,7 +6,7 @@ with: test
 let subTree value left right = Some (tree value left right)
 let leaf value = subTree value None None
 
-test_that("Data is retained", {
+"Data is retained"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 2 None (leaf 3)) (leaf 4)
   actual <- zipper |> toTree
@@ -14,79 +14,79 @@ test_that("Data is retained", {
 
 SKIP-REST-OF-TESTS
 
-test_that("Left, right and value", {
+"Left, right and value"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- 3
   actual <- zipper |> left |> Option.get |> right |> Option.get |> value
   expect_equal(actual, expected)
 
-test_that("Dead end", {
+"Dead end"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- None
   actual <- zipper |> left |> Option.get |> left
   expect_equal(actual, expected)
 
-test_that("Tree from deep focus", {
+"Tree from deep focus"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 2 None (leaf 3)) (leaf 4)
   actual <- zipper |> left |> Option.get |> right |> Option.get |> toTree
   expect_equal(actual, expected)
 
-test_that("Traversing up from top", {
+"Traversing up from top"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- None
   actual <- zipper |> up
   expect_equal(actual, expected)
 
-test_that("Left, right, and up", {
+"Left, right, and up"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- 3
   actual <- zipper |> left |> Option.get |> up |> Option.get |> right |> Option.get |> up |> Option.get |> left |> Option.get |> right |> Option.get |> value
   expect_equal(actual, expected)
 
-test_that("Test ability to descend multiple levels and return", {
+"Test ability to descend multiple levels and return"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- 1
   actual <- zipper |> left |> Option.get |> right |> Option.get |> up |> Option.get |> up |> Option.get |> value
   expect_equal(actual, expected)
 
-test_that("Set value", {
+"Set value"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 5 None (leaf 3)) (leaf 4)
   actual <- zipper |> left |> Option.get |> setValue 5 |> toTree
   expect_equal(actual, expected)
 
-test_that("Set value after traversing up", {
+"Set value after traversing up"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 5 None (leaf 3)) (leaf 4)
   actual <- zipper |> left |> Option.get |> right |> Option.get |> up |> Option.get |> setValue 5 |> toTree
   expect_equal(actual, expected)
 
-test_that("Set left with leaf", {
+"Set left with leaf"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 2 (leaf 5) (leaf 3)) (leaf 4)
   actual <- zipper |> left |> Option.get |> setLeft (Some (tree 5 None None)) |> toTree
   expect_equal(actual, expected)
 
-test_that("Set right with null", {
+"Set right with null"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (leaf 2) (leaf 4)
   actual <- zipper |> left |> Option.get |> setRight None |> toTree
   expect_equal(actual, expected)
 
-test_that("Set right with subtree", {
+"Set right with subtree"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 2 None (leaf 3)) (subTree 6 (leaf 7) (leaf 8))
   actual <- zipper |> setRight (Some (tree 6 (leaf 7) (leaf 8))) |> toTree
   expect_equal(actual, expected)
 
-test_that("Set value on deep focus", {
+"Set value on deep focus"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- tree 1 (subTree 2 None (leaf 5)) (leaf 4)
   actual <- zipper |> left |> Option.get |> right |> Option.get |> setValue 5 |> toTree
   expect_equal(actual, expected)
 
-test_that("Different paths to same zipper", {
+"Different paths to same zipper"
   zipper <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
   expected <- fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4)) |> right
   actual <- zipper |> left |> Option.get |> up |> Option.get |> right

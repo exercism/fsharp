@@ -3,36 +3,36 @@ needs exercism/test
 with: test
 3 tests
 
-  expect_equal(test_that("Error message", {
+  expect_equal("Error message"
 
-  expect_equal(test_that("Warning message", {
+  expect_equal("Warning message"
 
-  expect_equal(test_that("Info message", {
+  expect_equal("Info message"
 
-test_that("Message with leading and trailing white space", {
+"Message with leading and trailing white space"
     message "c(WARNING):   \tTimezone not set  \r\n"
     expect_equal( 
     "Timezone not set"
     equal?
 
-  expect_equal(test_that("Error log level", {
+  expect_equal("Error log level"
 
-  expect_equal(test_that("Warning log level", {
+  expect_equal("Warning log level"
 
-  expect_equal(test_that("Info log level", {
+  expect_equal("Info log level"
 
-  expect_equal(test_that("Error reformat", {
+  expect_equal("Error reformat"
 
 SKIP-REST-OF-TESTS
 
-test_that("Warning reformat", {
+"Warning reformat"
     ( "c(WARNING): Decreased performance" reformat )
     "Decreased performance (warning)"
     equal?
 
-  expect_equal(test_that("Info reformat", {
+  expect_equal("Info reformat"
 
-test_that("Reformat with leading and trailing white space", {
+"Reformat with leading and trailing white space"
     reformat "c(ERROR): \t Corrupt disk\t \t \r\n"
     expect_equal( 
     "Corrupt disk (error)"

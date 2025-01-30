@@ -3,14 +3,14 @@ needs exercism/test
 with: test
 5 tests
 
-test_that("Returns empty balance after opening", {
+"Returns empty balance after opening"
   account <- mkBankAccount() |> openAccount
 
   expect_equal(getBalance(account), (Some 0.0m))
 
 SKIP-REST-OF-TESTS
 
-test_that("Check basic balance", {
+"Check basic balance"
   account <- mkBankAccount() |> openAccount
   openingBalance <- account |> getBalance 
 
@@ -22,7 +22,7 @@ test_that("Check basic balance", {
   expect_equal(openingBalance, (Some 0.0m))
   expect_equal(updatedBalance, (Some 10.0m))
 
-test_that("Balance can increment or decrement", {
+"Balance can increment or decrement"
   account <- mkBankAccount() |> openAccount
   openingBalance <- account |> getBalance 
 
@@ -40,7 +40,7 @@ test_that("Balance can increment or decrement", {
   expect_equal(addedBalance, (Some 10.0m))
   expect_equal(subtractedBalance, (Some -5.0m))
 
-test_that("Account can be closed", {
+"Account can be closed"
   account <- 
         mkBankAccount()
         |> openAccount
@@ -49,7 +49,7 @@ test_that("Account can be closed", {
   expect_equal(getBalance(account), None)
     account |> should not' (equal None)
     
-test_that("Account can be updated from multiple threads", {
+"Account can be updated from multiple threads"
   account <- 
         mkBankAccount()
         |> openAccount

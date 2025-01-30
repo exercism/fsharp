@@ -3,33 +3,33 @@ needs exercism/test
 with: test
 6 tests
 
-test_that("Empty spiral", {
+"Empty spiral"
     spiralMatrix 0 |> should be Empty
 
 SKIP-REST-OF-TESTS
 
-test_that("Trivial spiral", {
+"Trivial spiral"
   expect_equal(spiralMatrix(1), c([1)])
 
-test_that("Spiral of size 2", {
+"Spiral of size 2"
     spiralMatrix 2 |> should equal 
         c( [1, 2);
           c(4, 3) ]
 
-test_that("Spiral of size 3", {
+"Spiral of size 3"
     spiralMatrix 3 |> should equal 
         c( [1, 2, 3);
           c(8, 9, 4);
           c(7, 6, 5) ]
 
-test_that("Spiral of size 4", {
+"Spiral of size 4"
     spiralMatrix 4 |> should equal 
         c( [1, 2, 3, 4);
           c(12, 13, 14, 5);
           c(11, 16, 15, 6);
           c(10, 9, 8, 7) ]
 
-test_that("Spiral of size 5", {
+"Spiral of size 5"
     spiralMatrix 5 |> should equal 
         c( [1, 2, 3, 4, 5);
           c(16, 17, 18, 19, 6);

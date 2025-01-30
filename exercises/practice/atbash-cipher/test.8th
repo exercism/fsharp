@@ -3,74 +3,74 @@ needs exercism/test
 with: test
 14 tests
 
-test_that("Encode yes", {
+"Encode yes"
     expect_equal(encode("yes"
     "bvh"
     equal?)
 
 SKIP-REST-OF-TESTS
 
-test_that("Encode no", {
+"Encode no"
     expect_equal(encode("no"
     "ml"
     equal?)
 
-test_that("Encode OMG", {
+"Encode OMG"
     expect_equal(encode("OMG"
     "lnt"
     equal?)
 
-test_that("Encode spaces", {
+"Encode spaces"
     ( "O M G" encode )
     "lnt"
     equal?
 
-test_that("Encode mindblowingly", {
+"Encode mindblowingly"
     ( "mindblowingly" encode )
     "nrmwy oldrm tob"
     equal?
 
-test_that("Encode numbers", {
+"Encode numbers"
     ( "Testing,1 2 3, testing." encode )
     "gvhgr mt123 gvhgr mt"
     equal?
 
-test_that("Encode deep thought", {
+"Encode deep thought"
     ( "Truth is fiction." encode )
     "gifgs rhurx grlm"
     equal?
 
-test_that("Encode all the letters", {
+"Encode all the letters"
     ( "The quick brown fox jumps over the lazy dog." encode )
     "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
     equal?
 
-test_that("Decode exercism", {
+"Decode exercism"
     ( "vcvix rhn" decode )
     "exercism"
     equal?
 
-test_that("Decode a sentence", {
+"Decode a sentence"
     ( "zmlyh gzxov rhlug vmzhg vkkrm thglm v" decode )
     "anobstacleisoftenasteppingstone"
     equal?
 
-test_that("Decode numbers", {
+"Decode numbers"
     ( "gvhgr mt123 gvhgr mt" decode )
     "testing123testing"
     equal?
 
-test_that("Decode all the letters", {
+"Decode all the letters"
     ( "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" decode )
     "thequickbrownfoxjumpsoverthelazydog"
     equal?
 
-test_that("Decode with too many spaces", {
+"Decode with too many spaces"
     ( "vc vix    r hn" decode )
     "exercism"
     equal?
 
-test_that("Decode with no spaces", {
+"Decode with no spaces"
     expect_equal(decode("zmlyhgzxovrhlugvmzhgvkkrmthglmv"
     "anobstacleisoftenasteppingstone"
     equal?)

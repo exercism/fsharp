@@ -3,37 +3,37 @@ needs exercism/test
 with: test
 7 tests
 
-test_that("Empty plaintext results in an empty ciphertext", {
+"Empty plaintext results in an empty ciphertext"
   expect_equal(ciphertext("", ""))
 
 SKIP-REST-OF-TESTS
 
-test_that("Lowercase", {
+"Lowercase"
     expect_equal(ciphertext("A"
     "a"
     equal?)
 
-test_that("Remove spaces", {
+"Remove spaces"
     ( "  b " ciphertext )
     "b"
     equal?
 
-test_that("Remove punctuation", {
+"Remove punctuation"
     ( "@1,%!" ciphertext )
     "1"
     equal?
 
-test_that("9 character plaintext results in 3 chunks of 3 characters", {
+"9 character plaintext results in 3 chunks of 3 characters"
     ( "This is fun!" ciphertext )
     "tsf hiu isn"
     equal?
 
-test_that("8 character plaintext results in 3 chunks, the last one with a trailing space", {
+"8 character plaintext results in 3 chunks, the last one with a trailing space"
     ( "Chill out." ciphertext )
     "clu hlt io "
     equal?
 
-test_that("54 character plaintext results in 7 chunks, the last two with trailing spaces", {
+"54 character plaintext results in 7 chunks, the last two with trailing spaces"
     ( "If man was meant to stay on the ground, god would have given us roots." ciphertext )
     "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau "
     equal?

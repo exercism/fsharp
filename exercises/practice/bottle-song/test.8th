@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 7 tests
 
-test_that("First generic verse", {
+"First generic verse"
   expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
@@ -13,7 +13,7 @@ test_that("First generic verse", {
 
 SKIP-REST-OF-TESTS
 
-test_that("Last generic verse", {
+"Last generic verse"
   expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
@@ -21,7 +21,7 @@ test_that("Last generic verse", {
           "There'll be two green bottles hanging on the wall." ]
   expect_equal(recite(3, 1), expected)
 
-test_that("Verse with 2 bottles", {
+"Verse with 2 bottles"
   expected <- 
         [ "Two green bottles hanging on the wall,";
           "Two green bottles hanging on the wall,";
@@ -29,7 +29,7 @@ test_that("Verse with 2 bottles", {
           "There'll be one green bottle hanging on the wall." ]
   expect_equal(recite(2, 1), expected)
 
-test_that("Verse with 1 bottle", {
+"Verse with 1 bottle"
   expected <- 
         [ "One green bottle hanging on the wall,";
           "One green bottle hanging on the wall,";
@@ -37,7 +37,7 @@ test_that("Verse with 1 bottle", {
           "There'll be no green bottles hanging on the wall." ]
   expect_equal(recite(1, 1), expected)
 
-test_that("First two verses", {
+"First two verses"
   expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";
@@ -50,7 +50,7 @@ test_that("First two verses", {
           "There'll be eight green bottles hanging on the wall." ]
   expect_equal(recite(10, 2), expected)
 
-test_that("Last three verses", {
+"Last three verses"
   expected <- 
         [ "Three green bottles hanging on the wall,";
           "Three green bottles hanging on the wall,";
@@ -68,7 +68,7 @@ test_that("Last three verses", {
           "There'll be no green bottles hanging on the wall." ]
   expect_equal(recite(3, 3), expected)
 
-test_that("All verses", {
+"All verses"
   expected <- 
         [ "Ten green bottles hanging on the wall,";
           "Ten green bottles hanging on the wall,";

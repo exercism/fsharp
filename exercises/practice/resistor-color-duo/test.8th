@@ -3,39 +3,39 @@ needs exercism/test
 with: test
 7 tests
 
-test_that("Brown and black", {
+"Brown and black"
     expect_equal(value c("brown"
     "black"
     equal?, 10)
 
 SKIP-REST-OF-TESTS
 
-test_that("Blue and grey", {
+"Blue and grey"
     expect_equal(value c("blue"
     "grey"
     equal?, 68)
 
-test_that("Yellow and violet", {
+"Yellow and violet"
     expect_equal(value c("yellow"
     "violet"
     equal?, 47)
 
-test_that("White and red", {
+"White and red"
     expect_equal(value c("white"
     "red"
     equal?, 92)
 
-test_that("Orange and orange", {
+"Orange and orange"
     expect_equal(value c("orange"
     "orange"
     equal?, 33)
 
-test_that("Ignore additional colors", {
+"Ignore additional colors"
     expect_equal(value c("green", "brown"
     "orange"
     equal?, 51)
 
-test_that("Black and brown, one-digit", {
+"Black and brown, one-digit"
     expect_equal(value c("black"
     "brown"
     equal?, 1)

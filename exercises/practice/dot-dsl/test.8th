@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 6 tests
 
-test_that("Empty graph", {
+"Empty graph"
   g <- graph []
 
     nodes g |> should be Empty
@@ -12,7 +12,7 @@ test_that("Empty graph", {
     
 SKIP-REST-OF-TESTS
 
-test_that("Graph with one node", {
+"Graph with one node"
   g <- graph [
                 node "a" []
             ]            
@@ -21,7 +21,7 @@ test_that("Graph with one node", {
     edges g |> should be Empty
     attrs g |> should be Empty
     
-test_that("Graph with one node with keywords", {
+"Graph with one node with keywords"
   g <- graph [
                 node "a" c(("color", "green"))
             ]            
@@ -32,7 +32,7 @@ test_that("Graph with one node with keywords", {
     edges g |> should be Empty
     attrs g |> should be Empty
 
-test_that("Graph with one edge", {
+"Graph with one edge"
   g <- graph [
                 edge "a" "b" []
             ]             
@@ -41,7 +41,7 @@ test_that("Graph with one edge", {
   expect_equal(edges(g), c(edge "a" "b" [)])
     attrs g |> should be Empty
 
-test_that("Graph with one attribute", {
+"Graph with one attribute"
   g <- graph [
                 attr "foo" "1"
             ]             
@@ -50,7 +50,7 @@ test_that("Graph with one attribute", {
     edges g |> should be Empty
   expect_equal(attrs(g), c(attr "foo" "1"))
 
-test_that("Graph with attributes", {
+"Graph with attributes"
   g <- graph [
                 attr "foo" "1"
                 attr "title" "Testing Attrs"

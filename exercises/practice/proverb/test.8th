@@ -3,26 +3,26 @@ needs exercism/test
 with: test
 6 tests
 
-test_that("Zero pieces", {
+"Zero pieces"
   strings = c()
   expected = c()
   expect_equal(recite(strings), expected)
 
 SKIP-REST-OF-TESTS
 
-test_that("One piece", {
+"One piece"
   strings <- c("nail")
   expected <- c("And all for the want of a nail.")
   expect_equal(recite(strings), expected)
 
-test_that("Two pieces", {
+"Two pieces"
   strings <- c("nail", "shoe")
   expected <- 
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
   expect_equal(recite(strings), expected)
 
-test_that("Three pieces", {
+"Three pieces"
   strings <- c("nail", "shoe", "horse")
   expected <- 
         [ "For want of a nail the shoe was lost.";
@@ -30,7 +30,7 @@ test_that("Three pieces", {
           "And all for the want of a nail." ]
   expect_equal(recite(strings), expected)
 
-test_that("Full proverb", {
+"Full proverb"
   strings <- c("nail", "shoe", "horse", "rider", "message", "battle", "kingdom")
   expected <- 
         [ "For want of a nail the shoe was lost.";
@@ -42,7 +42,7 @@ test_that("Full proverb", {
           "And all for the want of a nail." ]
   expect_equal(recite(strings), expected)
 
-test_that("Four pieces modernized", {
+"Four pieces modernized"
   strings <- c("pin", "gun", "soldier", "battle")
   expected <- 
         [ "For want of a pin the gun was lost.";

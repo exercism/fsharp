@@ -3,37 +3,37 @@ needs exercism/test
 with: test
 11 tests
 
-test_that("Lowercase letter", {
+"Lowercase letter"
   expect_equal(score("a", 1))
 
 SKIP-REST-OF-TESTS
 
-test_that("Uppercase letter", {
+"Uppercase letter"
   expect_equal(score("A", 1))
 
-test_that("Valuable letter", {
+"Valuable letter"
   expect_equal(score("f", 4))
 
-test_that("Short word", {
+"Short word"
   expect_equal(score("at", 2))
 
-test_that("Short, valuable word", {
+"Short, valuable word"
   expect_equal(score("zoo", 12))
 
-test_that("Medium word", {
+"Medium word"
   expect_equal(score("street", 6))
 
-test_that("Medium, valuable word", {
+"Medium, valuable word"
   expect_equal(score("quirky", 22))
 
-test_that("Long, mixed-case word", {
+"Long, mixed-case word"
   expect_equal(score("OxyphenButazone", 41))
 
-test_that("English-like word", {
+"English-like word"
   expect_equal(score("pinata", 8))
 
-test_that("Empty input", {
+"Empty input"
   expect_equal(score("", 0))
 
-test_that("Entire alphabet available", {
+"Entire alphabet available"
   expect_equal(score("abcdefghijklmnopqrstuvwxyz", 87))

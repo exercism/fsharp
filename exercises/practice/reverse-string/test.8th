@@ -3,32 +3,32 @@ needs exercism/test
 with: test
 6 tests
 
-test_that("An empty string", {
+"An empty string"
   expect_equal(reverse("", ""))
 
 SKIP-REST-OF-TESTS
 
-test_that("A word", {
+"A word"
     expect_equal(reverse("robot"
     "tobor"
     equal?)
 
-test_that("A capitalized word", {
+"A capitalized word"
     expect_equal(reverse("Ramen"
     "nemaR"
     equal?)
 
-test_that("A sentence with punctuation", {
+"A sentence with punctuation"
     ( "I'm hungry!" reverse )
     "!yrgnuh m'I"
     equal?
 
-test_that("A palindrome", {
+"A palindrome"
     expect_equal(reverse("racecar"
     "racecar"
     equal?)
 
-test_that("An even-sized word", {
+"An even-sized word"
     expect_equal(reverse("drawer"
     "reward"
     equal?)

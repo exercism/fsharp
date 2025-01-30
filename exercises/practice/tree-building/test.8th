@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 13 tests
 
-test_that("One node", {
+"One node"
     input <-
         [
             { RecordId = 0, ParentId = 0 }
@@ -18,7 +18,7 @@ test_that("One node", {
 
 SKIP-REST-OF-TESTS
 
-test_that("Three nodes in order", {
+"Three nodes in order"
     input <-
         [
             { RecordId = 0, ParentId = 0 };
@@ -39,7 +39,7 @@ test_that("Three nodes in order", {
   expect_false(children tree |> List.item 1 |> isBranch)
   expect_equal(children tree |> List.item 1 |> recordId, 2)
 
-test_that("Three nodes in reverse order", {
+"Three nodes in reverse order"
     input <-
         [
             { RecordId = 2, ParentId = 0 };
@@ -60,7 +60,7 @@ test_that("Three nodes in reverse order", {
   expect_false(children tree |> List.item 1 |> isBranch)
   expect_equal(children tree |> List.item 1 |> recordId, 2)
 
-test_that("More than two children", {
+"More than two children"
     input <-
         [
             { RecordId = 3, ParentId = 0 };
@@ -85,7 +85,7 @@ test_that("More than two children", {
   expect_false(children tree |> List.item 2 |> isBranch)
   expect_equal(children tree |> List.item 2 |> recordId, 3)
 
-test_that("Binary tree", {
+"Binary tree"
     input <-
         [
             { RecordId = 5, ParentId = 1 };
@@ -124,7 +124,7 @@ test_that("Binary tree", {
   expect_false(children tree |> List.item 1 |> children |> List.item 1 |> isBranch)
   expect_equal(children tree |> List.item 1 |> children |> List.item 1 |> recordId, 6)
 
-test_that("Unbalanced tree", {
+"Unbalanced tree"
     input <-
         [
             { RecordId = 5, ParentId = 2 };
@@ -163,21 +163,21 @@ test_that("Unbalanced tree", {
   expect_false(children tree |> List.item 1 |> children |> List.item 2 |> isBranch)
   expect_equal(children tree |> List.item 1 |> children |> List.item 2 |> recordId, 6)
 
-test_that("Empty input", {
+"Empty input"
   input <- c()
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
-test_that("Root node has parent", {
+"Root node has parent"
     input <-
         [ { RecordId = 0, ParentId = 1 };
           { RecordId = 1, ParentId = 0 } ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
-test_that("No root node", {
+"No root node"
   input <- c( { RecordId = 1, ParentId = 0 } )
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
-test_that("Out of bounds record id", {
+"Out of bounds record id"
     input <-
         [
             { RecordId = 2, ParentId = 0 };
@@ -187,7 +187,7 @@ test_that("Out of bounds record id", {
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
-test_that("Cycle directly", {
+"Cycle directly"
     input <-
         [
             { RecordId = 5, ParentId = 2 };
@@ -200,7 +200,7 @@ test_that("Cycle directly", {
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
-test_that("Cycle indirectly", {
+"Cycle indirectly"
     input <-
         [
             { RecordId = 5, ParentId = 2 };
@@ -213,7 +213,7 @@ test_that("Cycle indirectly", {
         ]
     (fun () -> buildTree input |> ignore) |> should throw typeof<Exception>
 
-test_that("Higher id parent of lower id", {
+"Higher id parent of lower id"
     input <-
         [
             { RecordId = 0, ParentId = 0 };

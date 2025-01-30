@@ -3,28 +3,28 @@ needs exercism/test
 with: test
 12 tests
 
-test_that("Empty string", {
+"Empty string"
   lines = c()
   expected = c()
   expect_equal(transpose(lines), expected)
 
 SKIP-REST-OF-TESTS
 
-test_that("Two characters in a row", {
+"Two characters in a row"
   lines <- c("A1")
   expected <- 
         [ "A";
           "1" ]
   expect_equal(transpose(lines), expected)
 
-test_that("Two characters in a column", {
+"Two characters in a column"
   lines <- 
         [ "A";
           "1" ]
   expected <- c("A1")
   expect_equal(transpose(lines), expected)
 
-test_that("Simple", {
+"Simple"
   lines <- 
         [ "ABC";
           "123" ]
@@ -34,7 +34,7 @@ test_that("Simple", {
           "C3" ]
   expect_equal(transpose(lines), expected)
 
-test_that("Single line", {
+"Single line"
   lines <- c("Single line.")
   expected <- 
         [ "S";
@@ -51,7 +51,7 @@ test_that("Single line", {
           "." ]
   expect_equal(transpose(lines), expected)
 
-test_that("First line longer than second line", {
+"First line longer than second line"
   lines <- 
         [ "The fourth line.";
           "The fifth line." ]
@@ -74,7 +74,7 @@ test_that("First line longer than second line", {
           "." ]
   expect_equal(transpose(lines), expected)
 
-test_that("Second line longer than first line", {
+"Second line longer than first line"
   lines <- 
         [ "The first line.";
           "The second line." ]
@@ -97,7 +97,7 @@ test_that("Second line longer than first line", {
           " ." ]
   expect_equal(transpose(lines), expected)
 
-test_that("Mixed line length", {
+"Mixed line length"
   lines <- 
         [ "The longest line.";
           "A long line.";
@@ -123,7 +123,7 @@ test_that("Mixed line length", {
           "." ]
   expect_equal(transpose(lines), expected)
 
-test_that("Square", {
+"Square"
   lines <- 
         [ "HEART";
           "EMBER";
@@ -138,7 +138,7 @@ test_that("Square", {
           "TREND" ]
   expect_equal(transpose(lines), expected)
 
-test_that("Rectangle", {
+"Rectangle"
   lines <- 
         [ "FRACTURE";
           "OUTLINED";
@@ -155,7 +155,7 @@ test_that("Rectangle", {
           "EDGE" ]
   expect_equal(transpose(lines), expected)
 
-test_that("Triangle", {
+"Triangle"
   lines <- 
         [ "T";
           "EE";
@@ -172,7 +172,7 @@ test_that("Triangle", {
           "     R" ]
   expect_equal(transpose(lines), expected)
 
-test_that("Jagged triangle", {
+"Jagged triangle"
   lines <- 
         [ "11";
           "2";

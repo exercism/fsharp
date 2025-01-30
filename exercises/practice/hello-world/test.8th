@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 17 tests
 
-test_that("Say Hi!", {
+"Say Hi!"
     expect_equal(hello
     "Hello, World!"
     equal?

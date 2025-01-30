@@ -3,26 +3,26 @@ needs exercism/test
 with: test
 14 tests
 
-test_that("Reading empty buffer should fail", {
+"Reading empty buffer should fail"
   buffer1 <- mkCircularBuffer 1
     (fun () -> read buffer1 |> ignore) |> should throw typeof<Exception>
 
 SKIP-REST-OF-TESTS
 
-test_that("Can read an item just written", {
+"Can read an item just written"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- write 1 buffer1
   (val3, _) = read buffer2
   expect_equal(val3, 1)
 
-test_that("Each item may only be read once", {
+"Each item may only be read once"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- write 1 buffer1
   (val3, buffer3) = read buffer2
   expect_equal(val3, 1)
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
-test_that("Items are read in the order they are written", {
+"Items are read in the order they are written"
   buffer1 <- mkCircularBuffer 2
   buffer2 <- write 1 buffer1
   buffer3 <- write 2 buffer2
@@ -31,12 +31,12 @@ test_that("Items are read in the order they are written", {
   (val5, _) = read buffer4
   expect_equal(val5, 2)
 
-test_that("Full buffer can't be written to", {
+"Full buffer can't be written to"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- write 1 buffer1
     (fun () -> write 2 buffer2 |> ignore) |> should throw typeof<Exception>
 
-test_that("A read frees up capacity for another write", {
+"A read frees up capacity for another write"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- write 1 buffer1
   (val3, buffer3) = read buffer2
@@ -45,7 +45,7 @@ test_that("A read frees up capacity for another write", {
   (val5, _) = read buffer4
   expect_equal(val5, 2)
 
-test_that("Read position is maintained even across multiple writes", {
+"Read position is maintained even across multiple writes"
   buffer1 <- mkCircularBuffer 3
   buffer2 <- write 1 buffer1
   buffer3 <- write 2 buffer2
@@ -57,13 +57,13 @@ test_that("Read position is maintained even across multiple writes", {
   (val7, _) = read buffer6
   expect_equal(val7, 3)
 
-test_that("Items cleared out of buffer can't be read", {
+"Items cleared out of buffer can't be read"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- write 1 buffer1
   buffer3 <- clear buffer2
     (fun () -> read buffer3 |> ignore) |> should throw typeof<Exception>
 
-test_that("Clear frees up capacity for another write", {
+"Clear frees up capacity for another write"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- write 1 buffer1
   buffer3 <- clear buffer2
@@ -71,14 +71,14 @@ test_that("Clear frees up capacity for another write", {
   (val5, _) = read buffer4
   expect_equal(val5, 2)
 
-test_that("Clear does nothing on empty buffer", {
+"Clear does nothing on empty buffer"
   buffer1 <- mkCircularBuffer 1
   buffer2 <- clear buffer1
   buffer3 <- write 1 buffer2
   (val4, _) = read buffer3
   expect_equal(val4, 1)
 
-test_that("Overwrite acts like write on non-full buffer", {
+"Overwrite acts like write on non-full buffer"
   buffer1 <- mkCircularBuffer 2
   buffer2 <- write 1 buffer1
   buffer3 <- forceWrite 2 buffer2
@@ -87,7 +87,7 @@ test_that("Overwrite acts like write on non-full buffer", {
   (val5, _) = read buffer4
   expect_equal(val5, 2)
 
-test_that("Overwrite replaces the oldest item on full buffer", {
+"Overwrite replaces the oldest item on full buffer"
   buffer1 <- mkCircularBuffer 2
   buffer2 <- write 1 buffer1
   buffer3 <- write 2 buffer2
@@ -97,7 +97,7 @@ test_that("Overwrite replaces the oldest item on full buffer", {
   (val6, _) = read buffer5
   expect_equal(val6, 3)
 
-test_that("Overwrite replaces the oldest item remaining in buffer following a read", {
+"Overwrite replaces the oldest item remaining in buffer following a read"
   buffer1 <- mkCircularBuffer 3
   buffer2 <- write 1 buffer1
   buffer3 <- write 2 buffer2
@@ -113,7 +113,7 @@ test_that("Overwrite replaces the oldest item remaining in buffer following a re
   (val10, _) = read buffer9
   expect_equal(val10, 5)
 
-test_that("Initial clear does not affect wrapping around", {
+"Initial clear does not affect wrapping around"
   buffer1 <- mkCircularBuffer 2
   buffer2 <- clear buffer1
   buffer3 <- write 1 buffer2

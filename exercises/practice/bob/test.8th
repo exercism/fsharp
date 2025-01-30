@@ -3,129 +3,129 @@ needs exercism/test
 with: test
 25 tests
 
-test_that("Stating something", {
+"Stating something"
     ( "Tom-ay-to, tom-aaaah-to." response )
     "Whatever."
     equal?
 
 SKIP-REST-OF-TESTS
 
-test_that("Shouting", {
+"Shouting"
     ( "WATCH OUT!" response )
     "Whoa, chill out!"
     equal?
 
-test_that("Shouting gibberish", {
+"Shouting gibberish"
     ( "FCECDFCAAB" response )
     "Whoa, chill out!"
     equal?
 
-test_that("Asking a question", {
+"Asking a question"
     ( "Does this cryogenic chamber make me look fat?" response )
     "Sure."
     equal?
 
-test_that("Asking a numeric question", {
+"Asking a numeric question"
     ( "You are, what, like 15?" response )
     "Sure."
     equal?
 
-test_that("Asking gibberish", {
+"Asking gibberish"
     ( "fffbbcbeab?" response )
     "Sure."
     equal?
 
-test_that("Talking forcefully", {
+"Talking forcefully"
     ( "Hi there!" response )
     "Whatever."
     equal?
 
-test_that("Using acronyms in regular speech", {
+"Using acronyms in regular speech"
     ( "It's OK if you don't want to go work for NASA." response )
     "Whatever."
     equal?
 
-test_that("Forceful question", {
+"Forceful question"
     ( "WHAT'S GOING ON?" response )
     "Calm down, I know what I'm doing!"
     equal?
 
-test_that("Shouting numbers", {
+"Shouting numbers"
     ( "1, 2, 3 GO!" response )
     "Whoa, chill out!"
     equal?
 
-test_that("No letters", {
+"No letters"
     ( "1, 2, 3" response )
     "Whatever."
     equal?
 
-test_that("Question with no letters", {
+"Question with no letters"
     ( "4?" response )
     "Sure."
     equal?
 
-test_that("Shouting with special characters", {
+"Shouting with special characters"
     ( "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!" response )
     "Whoa, chill out!"
     equal?
 
-test_that("Shouting with no exclamation mark", {
+"Shouting with no exclamation mark"
     ( "I HATE THE DENTIST" response )
     "Whoa, chill out!"
     equal?
 
-test_that("Statement containing question mark", {
+"Statement containing question mark"
     ( "Ending with ? means a question." response )
     "Whatever."
     equal?
 
-test_that("Non-letters with question", {
+"Non-letters with question"
     ( ":) ?" response )
     "Sure."
     equal?
 
-test_that("Prattling on", {
+"Prattling on"
     ( "Wait! Hang on. Are you going to be OK?" response )
     "Sure."
     equal?
 
-test_that("Silence", {
+"Silence"
     expect_equal(response ""
     "Fine. Be that way!"
     equal?
 
-test_that("Prolonged silence", {
+"Prolonged silence"
     ( "          " response )
     "Fine. Be that way!"
     equal?
 
-test_that("Alternate silence", {
+"Alternate silence"
     ( "\t\t\t\t\t\t\t\t\t\t" response )
     "Fine. Be that way!"
     equal?
 
-test_that("Multiple line question", {
+"Multiple line question"
     ( "\nDoes this cryogenic chamber make me look fat?\nNo." response )
     "Whatever."
     equal?
 
-test_that("Starting with whitespace", {
+"Starting with whitespace"
     ( "         hmmmmmmm..." response )
     "Whatever."
     equal?
 
-test_that("Ending with whitespace", {
+"Ending with whitespace"
     ( "Okay if like my  spacebar  quite a bit?   " response )
     "Sure."
     equal?
 
-test_that("Other whitespace", {
+"Other whitespace"
     ( "\n\r \t" response )
     "Fine. Be that way!"
     equal?
 
-test_that("Non-question ending with whitespace", {
+"Non-question ending with whitespace"
     ( "This is a statement ending with whitespace      " response )
     "Whatever."
     equal?

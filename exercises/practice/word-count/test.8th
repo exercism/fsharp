@@ -3,13 +3,13 @@ needs exercism/test
 with: test
 14 tests
 
-test_that("Count one word", {
+"Count one word"
   expected <- c(("word", 1)) |> Map.ofList
   expect_equal(countWords("word", expected))
 
 SKIP-REST-OF-TESTS
 
-test_that("Count one of each word", {
+"Count one of each word"
   expected <- 
         [ ("one", 1);
           ("of", 1);
@@ -17,7 +17,7 @@ test_that("Count one of each word", {
         |> Map.ofList
   expect_equal(countWords "one of each", expected)
 
-test_that("Multiple occurrences of a word", {
+"Multiple occurrences of a word"
   expected <- 
         [ ("one", 1);
           ("fish", 4);
@@ -27,7 +27,7 @@ test_that("Multiple occurrences of a word", {
         |> Map.ofList
   expect_equal(countWords "one fish two fish red fish blue fish", expected)
 
-test_that("Handles cramped lists", {
+"Handles cramped lists"
   expected <- 
         [ ("one", 1);
           ("two", 1);
@@ -35,7 +35,7 @@ test_that("Handles cramped lists", {
         |> Map.ofList
   expect_equal(countWords "one,two,three", expected)
 
-test_that("Handles expanded lists", {
+"Handles expanded lists"
   expected <- 
         [ ("one", 1);
           ("two", 1);
@@ -43,7 +43,7 @@ test_that("Handles expanded lists", {
         |> Map.ofList
   expect_equal(countWords "one,\ntwo,\nthree", expected)
 
-test_that("Ignore punctuation", {
+"Ignore punctuation"
   expected <- 
         [ ("car", 1);
           ("carpet", 1);
@@ -53,7 +53,7 @@ test_that("Ignore punctuation", {
         |> Map.ofList
   expect_equal(countWords "car: carpet as java: javascript!!&@$%^&", expected)
 
-test_that("Include numbers", {
+"Include numbers"
   expected <- 
         [ ("testing", 2);
           ("1", 1);
@@ -61,14 +61,14 @@ test_that("Include numbers", {
         |> Map.ofList
   expect_equal(countWords "testing, 1, 2 testing", expected)
 
-test_that("Normalize case", {
+"Normalize case"
   expected <- 
         [ ("go", 3);
           ("stop", 2) ]
         |> Map.ofList
   expect_equal(countWords "go Go GO Stop stop", expected)
 
-test_that("With apostrophes", {
+"With apostrophes"
   expected <- 
         [ ("first", 1);
           ("don't", 2);
@@ -81,7 +81,7 @@ test_that("With apostrophes", {
         |> Map.ofList
   expect_equal(countWords "'First: don't laugh. Then: don't cry. You're getting it.'", expected)
 
-test_that("With quotations", {
+"With quotations"
   expected <- 
         [ ("joe", 1);
           ("can't", 1);
@@ -92,7 +92,7 @@ test_that("With quotations", {
         |> Map.ofList
   expect_equal(countWords "Joe can't tell between 'large' and large.", expected)
 
-test_that("Substrings from the beginning", {
+"Substrings from the beginning"
   expected <- 
         [ ("joe", 1);
           ("can't", 1);
@@ -105,14 +105,14 @@ test_that("Substrings from the beginning", {
         |> Map.ofList
   expect_equal(countWords "Joe can't tell between app, apple and a.", expected)
 
-test_that("Multiple spaces not detected as a word", {
+"Multiple spaces not detected as a word"
   expected <- 
         [ ("multiple", 1);
           ("whitespaces", 1) ]
         |> Map.ofList
   expect_equal(countWords " multiple   whitespaces", expected)
 
-test_that("Alternating word separators not detected as a word", {
+"Alternating word separators not detected as a word"
   expected <- 
         [ ("one", 1);
           ("two", 1);
@@ -120,7 +120,7 @@ test_that("Alternating word separators not detected as a word", {
         |> Map.ofList
   expect_equal(countWords ",\n,one,\n ,two \n 'three'", expected)
 
-test_that("Quotation for word with apostrophe", {
+"Quotation for word with apostrophe"
   expected <- 
         [ ("can", 1);
           ("can't", 2) ]

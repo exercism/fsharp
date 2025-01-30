@@ -3,19 +3,19 @@ needs exercism/test
 with: test
 5 tests
 
-test_that("First prime", {
+"First prime"
   expect_equal(prime(1), (Some 2))
 
 SKIP-REST-OF-TESTS
 
-test_that("Second prime", {
+"Second prime"
   expect_equal(prime(2), (Some 3))
 
-test_that("Sixth prime", {
+"Sixth prime"
   expect_equal(prime(6), (Some 13))
 
-test_that("Big prime", {
+"Big prime"
   expect_equal(prime(10001), (Some 104743))
 
-test_that("There is no zeroth prime", {
+"There is no zeroth prime"
   expect_equal(prime(0), None)

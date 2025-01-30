@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 10 tests
 
-test_that("Empty ledger", {
+"Empty ledger"
   currency <- "USD"
   locale <- "en-US"
   entries <- c()
@@ -14,7 +14,7 @@ test_that("Empty ledger", {
 
 SKIP-REST-OF-TESTS
 
-test_that("One entry", {
+"One entry"
   currency <- "USD"
   locale <- "en-US"
     entries <-
@@ -27,7 +27,7 @@ test_that("One entry", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
 
-test_that("Credit and debit", {
+"Credit and debit"
   currency <- "USD"
   locale <- "en-US"
     entries <-
@@ -42,7 +42,7 @@ test_that("Credit and debit", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
  
-test_that("Multiple entries on same date ordered by description", {
+"Multiple entries on same date ordered by description"
   currency <- "USD"
   locale <- "en-US"
     entries <-
@@ -57,7 +57,7 @@ test_that("Multiple entries on same date ordered by description", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
    
-test_that("Final order tie breaker is change", {
+"Final order tie breaker is change"
   currency <- "USD"
   locale <- "en-US"
     entries <-
@@ -74,7 +74,7 @@ test_that("Final order tie breaker is change", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
   
-test_that("Overlong descriptions", {
+"Overlong descriptions"
   currency <- "USD"
   locale <- "en-US"
     entries <-
@@ -87,7 +87,7 @@ test_that("Overlong descriptions", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
   
-test_that("Euros", {
+"Euros"
   currency <- "EUR"
   locale <- "en-US"
     entries <-
@@ -100,7 +100,7 @@ test_that("Euros", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
    
-test_that("Dutch locale", {
+"Dutch locale"
   currency <- "USD"
   locale <- "nl-NL"
     entries <-
@@ -113,7 +113,7 @@ test_that("Dutch locale", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
  
-test_that("Dutch negative number with 3 digits before decimal point", {
+"Dutch negative number with 3 digits before decimal point"
   currency <- "USD"
   locale <- "nl-NL"
     entries <-
@@ -126,7 +126,7 @@ test_that("Dutch negative number with 3 digits before decimal point", {
 
   expect_equal(formatLedger(currency, locale, entries), expected)
    
-test_that("American negative number with 3 digits before decimal point", {
+"American negative number with 3 digits before decimal point"
   currency <- "USD"
   locale <- "en-US"
     entries <-

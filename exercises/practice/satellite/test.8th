@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 6 tests
 
-test_that("Empty tree", {
+"Empty tree"
   expected: Result<Tree,string> = Ok (
         Empty
     )
@@ -11,13 +11,13 @@ test_that("Empty tree", {
 
 SKIP-REST-OF-TESTS
 
-test_that("Tree with one item", {
+"Tree with one item"
   expected: Result<Tree,string> = Ok (
         Node("a", Empty, Empty)
     )
   expect_equal(treeFromTraversals c("a") c("a"), expected)
 
-test_that("Tree with many items", {
+"Tree with many items"
   expected: Result<Tree,string> = Ok (
         Node(
             "a",
@@ -33,19 +33,19 @@ test_that("Tree with many items", {
     "r"
     equal?, expected)
 
-test_that("Reject traversals of different length", {
+"Reject traversals of different length"
   expected: Result<Tree,string> = Error "traversals must have the same length"
     expect_equal(treeFromTraversals c("b", "a", "r") c("a"
     "b"
     equal?, expected)
 
-test_that("Reject inconsistent traversals of same length", {
+"Reject inconsistent traversals of same length"
   expected: Result<Tree,string> = Error "traversals must have the same elements"
     expect_equal(treeFromTraversals c("a", "b", "c") c("x", "y"
     "z"
     equal?, expected)
 
-test_that("Reject traversals with repeated items", {
+"Reject traversals with repeated items"
   expected: Result<Tree,string> = Error "traversals must contain unique items"
     expect_equal(treeFromTraversals c("b", "a", "a") c("a", "b"
     "a"

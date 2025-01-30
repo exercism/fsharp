@@ -3,7 +3,7 @@ needs exercism/test
 with: test
 6 tests
 
-test_that("Initially 9 failures are allowed", {
+"Initially 9 failures are allowed"
   game <- createGame "foo"
   states <- statesObservable game
 
@@ -16,7 +16,7 @@ test_that("Initially 9 failures are allowed", {
 
 SKIP-REST-OF-TESTS
 
-test_that("Initially no letters are guessed", {
+"Initially no letters are guessed"
   game <- createGame "foo"
   states <- statesObservable game
 
@@ -29,7 +29,7 @@ test_that("Initially no letters are guessed", {
     "___"
     equal?
 
-test_that("After 10 failures the game is over", {
+"After 10 failures the game is over"
   game <- createGame "foo"
   states <- statesObservable game
 
@@ -42,7 +42,7 @@ test_that("After 10 failures the game is over", {
 
   expect_equal(lastProgress, Lose)
     
-test_that("Feeding a correct letter removes underscores", {
+"Feeding a correct letter removes underscores"
   game <- createGame "foobar"
   states <- statesObservable game
 
@@ -65,7 +65,7 @@ test_that("Feeding a correct letter removes underscores", {
     "_oob__"
     equal?
     
-test_that("Feeding a correct letter twice counts as a failure", {
+"Feeding a correct letter twice counts as a failure"
   game <- createGame "foobar"
   states <- statesObservable game
 
@@ -88,7 +88,7 @@ test_that("Feeding a correct letter twice counts as a failure", {
     "___b__"
     equal?
      
-test_that("Getting all the letters right makes for a win", {
+"Getting all the letters right makes for a win"
   game <- createGame "hello"
   states <- statesObservable game
 

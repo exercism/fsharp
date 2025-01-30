@@ -3,49 +3,49 @@ needs exercism/test
 with: test
 9 tests
 
-test_that("Basic", {
+"Basic"
     ( "Portable Network Graphics" abbreviate )
     "PNG"
     equal?
 
 SKIP-REST-OF-TESTS
 
-test_that("Lowercase words", {
+"Lowercase words"
     ( "Ruby on Rails" abbreviate )
     "ROR"
     equal?
 
-test_that("Punctuation", {
+"Punctuation"
     ( "First In, First Out" abbreviate )
     "FIFO"
     equal?
 
-test_that("All caps word", {
+"All caps word"
     ( "GNU Image Manipulation Program" abbreviate )
     "GIMP"
     equal?
 
-test_that("Punctuation without whitespace", {
+"Punctuation without whitespace"
     ( "Complementary metal-oxide semiconductor" abbreviate )
     "CMOS"
     equal?
 
-test_that("Very long abbreviation", {
+"Very long abbreviation"
     ( "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" abbreviate )
     "ROTFLSHTMDCOALM"
     equal?
 
-test_that("Consecutive delimiters", {
+"Consecutive delimiters"
     ( "Something - I made up from thin air" abbreviate )
     "SIMUFTA"
     equal?
 
-test_that("Apostrophes", {
+"Apostrophes"
     ( "Halley's Comet" abbreviate )
     "HC"
     equal?
 
-test_that("Underscore emphasis", {
+"Underscore emphasis"
     ( "The Road _Not_ Taken" abbreviate )
     "TRNT"
     equal?
