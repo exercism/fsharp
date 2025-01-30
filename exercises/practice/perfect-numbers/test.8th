@@ -4,42 +4,66 @@ with: test
 13 tests
 
 "Smallest perfect number is classified correctly"
-  expect_equal(classify(6), Classification.Perfect)
+    ( 6 classify )
+    Classification.Perfect
+    equal
 
 SKIP-REST-OF-TESTS
 
 "Medium perfect number is classified correctly"
-  expect_equal(classify(28), Classification.Perfect)
+    ( 28 classify )
+    Classification.Perfect
+    equal
 
 "Large perfect number is classified correctly"
-  expect_equal(classify(33550336), Classification.Perfect)
+    ( 33550336 classify )
+    Classification.Perfect
+    equal
 
 "Smallest abundant number is classified correctly"
-  expect_equal(classify(12), Classification.Abundant)
+    ( 12 classify )
+    Classification.Abundant
+    equal
 
 "Medium abundant number is classified correctly"
-  expect_equal(classify(30), Classification.Abundant)
+    ( 30 classify )
+    Classification.Abundant
+    equal
 
 "Large abundant number is classified correctly"
-  expect_equal(classify(33550335), Classification.Abundant)
+    ( 33550335 classify )
+    Classification.Abundant
+    equal
 
 "Smallest prime deficient number is classified correctly"
-  expect_equal(classify(2), Classification.Deficient)
+    ( 2 classify )
+    Classification.Deficient
+    equal
 
 "Smallest non-prime deficient number is classified correctly"
-  expect_equal(classify(4), Classification.Deficient)
+    ( 4 classify )
+    Classification.Deficient
+    equal
 
 "Medium deficient number is classified correctly"
-  expect_equal(classify(32), Classification.Deficient)
+    ( 32 classify )
+    Classification.Deficient
+    equal
 
 "Large deficient number is classified correctly"
-  expect_equal(classify(33550337), Classification.Deficient)
+    ( 33550337 classify )
+    Classification.Deficient
+    equal
 
 "Edge case (no factors other than itself) is classified correctly"
-  expect_equal(classify(1), Classification.Deficient)
+    ( 1 classify )
+    Classification.Deficient
+    equal
 
 "Zero is rejected (as it is not a positive integer)"
-  expect_equal(classify(0), None)
+    ( 0 classify )
+    None
+    equal
 
 "Negative integer is rejected (as it is not a positive integer)"
   expect_equal(classify -1, None)

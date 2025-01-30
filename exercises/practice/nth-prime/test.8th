@@ -4,18 +4,28 @@ with: test
 5 tests
 
 "First prime"
-  expect_equal(prime(1), 2)
+    ( 1 prime )
+    2
+    equal
 
 SKIP-REST-OF-TESTS
 
 "Second prime"
-  expect_equal(prime(2), 3)
+    ( 2 prime )
+    3
+    equal
 
 "Sixth prime"
-  expect_equal(prime(6), 13)
+    ( 6 prime )
+    13
+    equal
 
 "Big prime"
-  expect_equal(prime(10001), 104743)
+    ( 10001 prime )
+    104743
+    equal
 
 "There is no zeroth prime"
-  expect_equal(prime(0), None)
+    ( 0 prime )
+    None
+    equal

@@ -4,21 +4,33 @@ with: test
 6 tests
 
 "Root of 1"
-  expect_equal(squareRoot(1), 1)
+    ( 1 squareRoot )
+    1
+    equal
 
 SKIP-REST-OF-TESTS
 
 "Root of 4"
-  expect_equal(squareRoot(4), 2)
+    ( 4 squareRoot )
+    2
+    equal
 
 "Root of 25"
-  expect_equal(squareRoot(25), 5)
+    ( 25 squareRoot )
+    5
+    equal
 
 "Root of 81"
-  expect_equal(squareRoot(81), 9)
+    ( 81 squareRoot )
+    9
+    equal
 
 "Root of 196"
-  expect_equal(squareRoot(196), 14)
+    ( 196 squareRoot )
+    14
+    equal
 
 "Root of 65025"
-  expect_equal(squareRoot(65025), 255)
+    ( 65025 squareRoot )
+    255
+    equal

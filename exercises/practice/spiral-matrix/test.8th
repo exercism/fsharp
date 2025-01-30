@@ -9,7 +9,9 @@ with: test
 SKIP-REST-OF-TESTS
 
 "Trivial spiral"
-  expect_equal(spiralMatrix(1), c([1)])
+    ( 1 spiralMatrix )
+    c([1
+    equal])
 
 "Spiral of size 2"
     spiralMatrix 2 |> should equal 

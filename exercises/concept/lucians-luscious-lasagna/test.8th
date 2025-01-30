@@ -6,15 +6,21 @@ with: test
   expect_equal("Expected minutes in oven"
 
 "Remaining minutes in oven"
-  expect_equal(remainingMinutesInOven(25), 15)
+    ( 25 remainingMinutesInOven )
+    15
+    equal
 
 SKIP-REST-OF-TESTS
 
 "Preparation time in minutes for one layer"
-  expect_equal(preparationTimeInMinutes(1), 2)
+    ( 1 preparationTimeInMinutes )
+    2
+    equal
 
 "Preparation time in minutes for multiple layers"
-  expect_equal(preparationTimeInMinutes(4), 8)
+    ( 4 preparationTimeInMinutes )
+    8
+    equal
 
 "Elapsed time in minutes for one layer"
   expect_equal(elapsedTimeInMinutes(1, 30), 32)

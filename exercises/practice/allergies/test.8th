@@ -129,28 +129,46 @@ SKIP-REST-OF-TESTS
     list 0 |> should be Empty
 
 "List - just eggs"
-  expect_equal(list(1), c(Allergen.Eggs))
+    ( 1 list )
+    c(Allergen.Eggs
+    equal)
 
 "List - just peanuts"
-  expect_equal(list(2), c(Allergen.Peanuts))
+    ( 2 list )
+    c(Allergen.Peanuts
+    equal)
 
 "List - just strawberries"
-  expect_equal(list(8), c(Allergen.Strawberries))
+    ( 8 list )
+    c(Allergen.Strawberries
+    equal)
 
 "List - eggs and peanuts"
-  expect_equal(list(3), c(Allergen.Eggs, Allergen.Peanuts))
+    ( 3 list )
+    c(Allergen.Eggs, Allergen.Peanuts
+    equal)
 
 "List - more than eggs but not peanuts"
-  expect_equal(list(5), c(Allergen.Eggs, Allergen.Shellfish))
+    ( 5 list )
+    c(Allergen.Eggs, Allergen.Shellfish
+    equal)
 
 "List - lots of stuff"
-  expect_equal(list(248), c(Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
+    ( 248 list )
+    c(Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats
+    equal)
 
 "List - everything"
-  expect_equal(list(255), c(Allergen.Eggs, Allergen.Peanuts, Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
+    ( 255 list )
+    c(Allergen.Eggs, Allergen.Peanuts, Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats
+    equal)
 
 "List - no allergen score parts"
-  expect_equal(list(509), c(Allergen.Eggs, Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
+    ( 509 list )
+    c(Allergen.Eggs, Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes, Allergen.Chocolate, Allergen.Pollen, Allergen.Cats
+    equal)
 
 "List - no allergen score parts without highest valid score"
-  expect_equal(list(257), c(Allergen.Eggs))
+    ( 257 list )
+    c(Allergen.Eggs
+    equal)

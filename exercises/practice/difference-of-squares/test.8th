@@ -4,30 +4,48 @@ with: test
 9 tests
 
 "Square of sum 1"
-  expect_equal(squareOfSum(1), 1)
+    ( 1 squareOfSum )
+    1
+    equal
 
 SKIP-REST-OF-TESTS
 
 "Square of sum 5"
-  expect_equal(squareOfSum(5), 225)
+    ( 5 squareOfSum )
+    225
+    equal
 
 "Square of sum 100"
-  expect_equal(squareOfSum(100), 25502500)
+    ( 100 squareOfSum )
+    25502500
+    equal
 
 "Sum of squares 1"
-  expect_equal(sumOfSquares(1), 1)
+    ( 1 sumOfSquares )
+    1
+    equal
 
 "Sum of squares 5"
-  expect_equal(sumOfSquares(5), 55)
+    ( 5 sumOfSquares )
+    55
+    equal
 
 "Sum of squares 100"
-  expect_equal(sumOfSquares(100), 338350)
+    ( 100 sumOfSquares )
+    338350
+    equal
 
 "Difference of squares 1"
-  expect_equal(differenceOfSquares(1), 0)
+    ( 1 differenceOfSquares )
+    0
+    equal
 
 "Difference of squares 5"
-  expect_equal(differenceOfSquares(5), 170)
+    ( 5 differenceOfSquares )
+    170
+    equal
 
 "Difference of squares 100"
-  expect_equal(differenceOfSquares(100), 25164150)
+    ( 100 differenceOfSquares )
+    25164150
+    equal
