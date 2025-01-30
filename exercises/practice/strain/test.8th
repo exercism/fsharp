@@ -6,13 +6,11 @@ with: test
 "Empty keep"
     [] |> Seq.keep (fun x -> x < 10) |> should be Empty
 
-[<Fact(Skip = "Remove this Skip property to run this test"]>)  
 SKIP-REST-OF-TESTS
 
 "Keep everything"
   expect_equal(set [1, 2, 3] |> Seq.keep (fun x -> x < 10) |> Seq.toList, <| [1, 2, 3])
 
-[<Fact(Skip = "Remove this Skip property to run this test"]>) 
 "Keep first and last"
   expect_equal([|1, 2, 3|] |> Seq.keep (fun x -> x % 2 <> 0) |> Seq.toList, [1, 3])
 
