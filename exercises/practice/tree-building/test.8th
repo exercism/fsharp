@@ -11,7 +11,8 @@ test_that("One node", {
 
   tree <- buildTree input
 
-  expect_false(isBranch tree)
+    ( tree isBranch )
+    false?
   expect_equal(recordId(tree), 0)
     children tree |> should be Empty
 
@@ -27,7 +28,8 @@ test_that("Three nodes in order", {
 
   tree <- buildTree input
 
-  expect_true(isBranch tree)
+    ( tree isBranch )
+    true?
   expect_equal(recordId(tree), 0)
   expect_equal(children tree |> List.length, 2)
 
@@ -47,7 +49,8 @@ test_that("Three nodes in reverse order", {
 
   tree <- buildTree input
 
-  expect_true(isBranch tree)
+    ( tree isBranch )
+    true?
   expect_equal(recordId(tree), 0)
   expect_equal(children tree |> List.length, 2)
 
@@ -68,7 +71,8 @@ test_that("More than two children", {
 
   tree <- buildTree input
 
-  expect_true(isBranch tree)
+    ( tree isBranch )
+    true?
   expect_equal(recordId(tree), 0)
   expect_equal(children tree |> List.length, 3)
 
@@ -95,7 +99,8 @@ test_that("Binary tree", {
 
   tree <- buildTree input
 
-  expect_true(isBranch tree)
+    ( tree isBranch )
+    true?
   expect_equal(recordId(tree), 0)
   expect_equal(children tree |> List.length, 2)
 
@@ -133,7 +138,8 @@ test_that("Unbalanced tree", {
 
   tree <- buildTree input
 
-  expect_true(isBranch tree)
+    ( tree isBranch )
+    true?
   expect_equal(recordId(tree), 0)
   expect_equal(children tree |> List.length, 2)
 
