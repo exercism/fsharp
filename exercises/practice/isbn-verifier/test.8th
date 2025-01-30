@@ -4,60 +4,78 @@ with: test
 19 tests
 
 "Valid isbn"
-  expect_true(isValid "3-598-21508-8")
+    ( "3-598-21508-8" isValid )
+    true?
 
 SKIP-REST-OF-TESTS
 
 "Invalid isbn check digit"
-  expect_false(isValid "3-598-21508-9")
+    ( "3-598-21508-9" isValid )
+    false?
 
 "Valid isbn with a check digit of 10"
-  expect_true(isValid "3-598-21507-X")
+    ( "3-598-21507-X" isValid )
+    true?
 
 "Check digit is a character other than X"
-  expect_false(isValid "3-598-21507-A")
+    ( "3-598-21507-A" isValid )
+    false?
 
 "Invalid check digit in isbn is not treated as zero"
-  expect_false(isValid "4-598-21507-B")
+    ( "4-598-21507-B" isValid )
+    false?
 
 "Invalid character in isbn is not treated as zero"
-  expect_false(isValid "3-598-P1581-X")
+    ( "3-598-P1581-X" isValid )
+    false?
 
 "X is only valid as a check digit"
-  expect_false(isValid "3-598-2X507-9")
+    ( "3-598-2X507-9" isValid )
+    false?
 
 "Valid isbn without separating dashes"
-  expect_true(isValid "3598215088")
+    ( "3598215088" isValid )
+    true?
 
 "Isbn without separating dashes and X as check digit"
-  expect_true(isValid "359821507X")
+    ( "359821507X" isValid )
+    true?
 
 "Isbn without check digit and dashes"
-  expect_false(isValid "359821507")
+    ( "359821507" isValid )
+    false?
 
 "Too long isbn and no dashes"
-  expect_false(isValid "3598215078X")
+    ( "3598215078X" isValid )
+    false?
 
 "Too short isbn"
-  expect_false(isValid "00")
+    ( "00" isValid )
+    false?
 
 "Isbn without check digit"
-  expect_false(isValid "3-598-21507")
+    ( "3-598-21507" isValid )
+    false?
 
 "Check digit of X should not be used for 0"
-  expect_false(isValid "3-598-21515-X")
+    ( "3-598-21515-X" isValid )
+    false?
 
 "Empty isbn"
   expect_false(isValid "")
 
 "Input is 9 characters"
-  expect_false(isValid "134456729")
+    ( "134456729" isValid )
+    false?
 
 "Invalid characters are not ignored after checking length"
-  expect_false(isValid "3132P34035")
+    ( "3132P34035" isValid )
+    false?
 
 "Invalid characters are not ignored before checking length"
-  expect_false(isValid "3598P215088")
+    ( "3598P215088" isValid )
+    false?
 
 "Input is too long but contains a valid isbn"
-  expect_false(isValid "98245726788")
+    ( "98245726788" isValid )
+    false?
