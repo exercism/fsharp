@@ -23,7 +23,7 @@ SKIP-REST-OF-TESTS
         |> add "Paul" 2
     expect_equal(roster(school), c("Blair", "James"
     "Paul"
-    equal?)
+    equal?
 
 "Student not added to same grade in the roster more than once"
   school <- 
@@ -34,7 +34,7 @@ SKIP-REST-OF-TESTS
         |> add "Paul" 2
     expect_equal(roster(school), c("Blair", "James"
     "Paul"
-    equal?)
+    equal?
 
 "Students in multiple grades are added to the roster"
   school <- 
@@ -43,7 +43,7 @@ SKIP-REST-OF-TESTS
         |> add "Logan" 7
     expect_equal(roster(school), c("Chelsea"
     "Logan"
-    equal?)
+    equal?
 
 "Student not added to multiple grades in the roster"
   school <- 
@@ -54,7 +54,7 @@ SKIP-REST-OF-TESTS
         |> add "Paul" 3
     expect_equal(roster(school), c("Blair", "James"
     "Paul"
-    equal?)
+    equal?
 
 "Students are sorted by grades in the roster"
   school <- 
@@ -64,7 +64,7 @@ SKIP-REST-OF-TESTS
         |> add "Anna" 1
     expect_equal(roster(school), c("Anna", "Peter"
     "Jim"
-    equal?)
+    equal?
 
 "Students are sorted by name in the roster"
   school <- 
@@ -74,7 +74,7 @@ SKIP-REST-OF-TESTS
         |> add "Alex" 2
     expect_equal(roster(school), c("Alex", "Peter"
     "Zoe"
-    equal?)
+    equal?
 
 "Students are sorted by grades and then by name in the roster"
   school <- 
@@ -88,7 +88,7 @@ SKIP-REST-OF-TESTS
         |> add "Charlie" 1
     expect_equal(roster(school), c("Anna", "Barb", "Charlie", "Alex", "Peter", "Zoe"
     "Jim"
-    equal?)
+    equal?
 
 "Grade is empty if no students in the roster"
   school <- empty
@@ -112,7 +112,7 @@ SKIP-REST-OF-TESTS
         |> add "Paul" 2
     expect_equal(grade(2, school), c("Blair", "James"
     "Paul"
-    equal?)
+    equal?
 
 "Student not added to multiple grades"
   school <- 
@@ -123,7 +123,7 @@ SKIP-REST-OF-TESTS
         |> add "Paul" 3
     expect_equal(grade(2, school), c("Blair"
     "James"
-    equal?)
+    equal?
 
 "Student not added to other grade for multiple grades"
   school <- 
@@ -142,7 +142,7 @@ SKIP-REST-OF-TESTS
         |> add "Jeff" 1
     expect_equal(grade(5, school), c("Bradley"
     "Franklin"
-    equal?)
+    equal?
 
 end-of-tests
 ;with

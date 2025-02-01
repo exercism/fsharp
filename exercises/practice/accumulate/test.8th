@@ -20,7 +20,7 @@ SKIP-REST-OF-TESTS
     accumulate (fun (x:string) -> x.ToUpper()) ["hello", "world"]
     expect_equal( , c("HELLO"
     "WORLD"
-    equal?)
+    equal?
 
 "Accumulate reversed strings"
     accumulate reverse (List.ofArray ("the quick brown fox etc".Split(' ')))
@@ -30,7 +30,7 @@ SKIP-REST-OF-TESTS
     accumulate (fun (x:string) -> String.concat " " (accumulate (fun y -> x + y) ["1", "2", "3"])) ["a", "b", "c"]
     expect_equal( , c("a1 a2 a3", "b1 b2 b3"
     "c1 c2 c3"
-    equal?)
+    equal?
 
 "Accumulate large data set without stack overflow"
     accumulate id [1..100000]

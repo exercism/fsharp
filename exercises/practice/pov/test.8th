@@ -55,31 +55,31 @@ SKIP-REST-OF-TESTS
   tree <- mkGraph "parent" [mkGraph "x" [], mkGraph "sibling" []]
     expect_equal(tracePathBetween "x" "parent" tree, <| Some c("x"
     "parent"
-    equal?)
+    equal?
 
 "Can find path to sibling"
   tree <- mkGraph "parent" [mkGraph "a" [], mkGraph "x" [], mkGraph "b" [], mkGraph "c" []]
     expect_equal(tracePathBetween "x" "b" tree, <| Some c("x", "parent"
     "b"
-    equal?)
+    equal?
 
 "Can find path to cousin"
   tree <- mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [], mkGraph "kid-1" []], mkGraph "sibling-0" [], mkGraph "sibling-1" []], mkGraph "uncle" [mkGraph "cousin-0" [], mkGraph "cousin-1" []]]
     expect_equal(tracePathBetween "x" "cousin-1" tree, <| Some c("x", "parent", "grandparent", "uncle"
     "cousin-1"
-    equal?)
+    equal?
 
 "Can find path not involving root"
   tree <- mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [], mkGraph "sibling-0" [], mkGraph "sibling-1" []]]
     expect_equal(tracePathBetween "x" "sibling-1" tree, <| Some c("x", "parent"
     "sibling-1"
-    equal?)
+    equal?
 
 "Can find path from nodes other than x"
   tree <- mkGraph "parent" [mkGraph "a" [], mkGraph "x" [], mkGraph "b" [], mkGraph "c" []]
     expect_equal(tracePathBetween "a" "c" tree, <| Some c("a", "parent"
     "c"
-    equal?)
+    equal?
 
 "Errors if destination does not exist"
   tree <- mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" [], mkGraph "kid-1" []], mkGraph "sibling-0" [], mkGraph "sibling-1" []]

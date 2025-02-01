@@ -11,7 +11,7 @@ SKIP-REST-OF-TESTS
 "Lowercase"
     ( "A" ciphertext )
     "a"
-    equal?)
+    equal?
 
 "Remove spaces"
     ( "  b " ciphertext )

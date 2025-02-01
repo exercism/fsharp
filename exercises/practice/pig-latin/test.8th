@@ -6,109 +6,109 @@ with: test
 "Word beginning with a"
     ( "apple" translate )
     "appleay"
-    equal?)
+    equal?
 
 SKIP-REST-OF-TESTS
 
 "Word beginning with e"
     ( "ear" translate )
     "earay"
-    equal?)
+    equal?
 
 "Word beginning with i"
     ( "igloo" translate )
     "iglooay"
-    equal?)
+    equal?
 
 "Word beginning with o"
     ( "object" translate )
     "objectay"
-    equal?)
+    equal?
 
 "Word beginning with u"
     ( "under" translate )
     "underay"
-    equal?)
+    equal?
 
 "Word beginning with a vowel and followed by a qu"
     ( "equal" translate )
     "equalay"
-    equal?)
+    equal?
 
 "Word beginning with p"
     ( "pig" translate )
     "igpay"
-    equal?)
+    equal?
 
 "Word beginning with k"
     ( "koala" translate )
     "oalakay"
-    equal?)
+    equal?
 
 "Word beginning with x"
     ( "xenon" translate )
     "enonxay"
-    equal?)
+    equal?
 
 "Word beginning with q without a following u"
     ( "qat" translate )
     "atqay"
-    equal?)
+    equal?
 
 "Word beginning with ch"
     ( "chair" translate )
     "airchay"
-    equal?)
+    equal?
 
 "Word beginning with qu"
     ( "queen" translate )
     "eenquay"
-    equal?)
+    equal?
 
 "Word beginning with qu and a preceding consonant"
     ( "square" translate )
     "aresquay"
-    equal?)
+    equal?
 
 "Word beginning with th"
     ( "therapy" translate )
     "erapythay"
-    equal?)
+    equal?
 
 "Word beginning with thr"
     ( "thrush" translate )
     "ushthray"
-    equal?)
+    equal?
 
 "Word beginning with sch"
     ( "school" translate )
     "oolschay"
-    equal?)
+    equal?
 
 "Word beginning with yt"
     ( "yttria" translate )
     "yttriaay"
-    equal?)
+    equal?
 
 "Word beginning with xr"
     ( "xray" translate )
     "xrayay"
-    equal?)
+    equal?
 
 "Y is treated like a consonant at the beginning of a word"
     ( "yellow" translate )
     "ellowyay"
-    equal?)
+    equal?
 
 "Y is treated like a vowel at the end of a consonant cluster"
     ( "rhythm" translate )
     "ythmrhay"
-    equal?)
+    equal?
 
 "Y as second letter in two letter word"
     ( "my" translate )
     "ymay"
-    equal?)
+    equal?
 
 "A whole phrase"
     ( "quick fast run" translate )

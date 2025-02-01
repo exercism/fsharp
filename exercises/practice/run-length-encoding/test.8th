@@ -11,17 +11,17 @@ SKIP-REST-OF-TESTS
 "Encode single characters only are encoded without count"
     ( "XYZ" encode )
     "XYZ"
-    equal?)
+    equal?
 
 "Encode string with no single characters"
     ( "AABBBCCCC" encode )
     "2A3B4C"
-    equal?)
+    equal?
 
 "Encode single characters mixed with repeated characters"
     ( "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB" encode )
     "12WB12W3B24WB"
-    equal?)
+    equal?
 
 "Encode multiple whitespace mixed in string"
     ( "  hsqq qww  " encode )
@@ -31,7 +31,7 @@ SKIP-REST-OF-TESTS
 "Encode lowercase characters"
     ( "aabbbcccc" encode )
     "2a3b4c"
-    equal?)
+    equal?
 
 "Decode empty string"
   expect_equal(decode("", ""))
@@ -39,17 +39,17 @@ SKIP-REST-OF-TESTS
 "Decode single characters only"
     ( "XYZ" decode )
     "XYZ"
-    equal?)
+    equal?
 
 "Decode string with no single characters"
     ( "2A3B4C" decode )
     "AABBBCCCC"
-    equal?)
+    equal?
 
 "Decode single characters with repeated characters"
     ( "12WB12W3B24WB" decode )
     "WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"
-    equal?)
+    equal?
 
 "Decode multiple whitespace mixed in string"
     ( "2 hs2q q2w2 " decode )
@@ -59,7 +59,7 @@ SKIP-REST-OF-TESTS
 "Decode lowercase string"
     ( "2a3b4c" decode )
     "aabbbcccc"
-    equal?)
+    equal?
 
 "Encode followed by decode gives original string"
     expect_equal("zzz ZZ  zZ" |> encode |> decode
