@@ -61,9 +61,9 @@ let (|LineItem|_|) (list: bool) (markdown: string) =
 
 let (|Paragraph|_|) (list: bool) (markdown: string) = 
     if list then 
-        Some (false, closingTag listTag + parseText list markdown)
+        Some (false, closingTag listTag + parseText false markdown)
     else 
-        Some (false, parseText list markdown)
+        Some (false, parseText false markdown)
 
 let parseLine (list, html) (markdown: string) = 
     match markdown with
