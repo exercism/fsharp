@@ -8,8 +8,8 @@ let rec parse (markdown: string) =
    let lines = remainder.Split('\n')
 
    for i = 0 to lines.Length - 1 do
-       
-       if lines.[i].[0] = '*' then
+        
+       if lines.[i].[0] = '*' && lines.[i].[1] = ' ' then
            if not isList then  
                html <- html + "<ul>"
                isList <- true
@@ -54,6 +54,10 @@ let rec parse (markdown: string) =
            html <- html + "</li>"          
 
        elif lines.[i].[0] = '#' then
+           if isList then  
+               html <- html + "</ul>"
+               isList <- false
+           
            if lines.[i].[0..6] = "###### " then
                html <- html + "<h6>" + lines.[i].[7..] + "</h6>"
            elif lines.[i].[0..5] = "##### " then
