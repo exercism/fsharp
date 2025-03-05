@@ -1,6 +1,7 @@
 module TreeBuilding
 
-type Record = { RecordId: int; ParentId: int }
+open TreeBuildingTypes
+
 type Tree = 
     | Branch of int * Tree list
     | Leaf of int
