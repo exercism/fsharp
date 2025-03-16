@@ -45,7 +45,7 @@ type ExerciseGenerator() =
     member this.ExerciseDir = Path.Combine("..", "exercises", "practice", this.Name)    
     member this.TestFilePath = Path.Combine(this.ExerciseDir, $"%s{this.TestModuleName}.fs")     
 
-    member this.WriteToFile contents =
+    member this.WriteToFile (contents: string) =
         Directory.CreateDirectory(Path.GetDirectoryName(this.TestFilePath)) |> ignore
         File.WriteAllText(this.TestFilePath, contents)
 
