@@ -1562,11 +1562,9 @@
         "name": "Scale Generator",
         "uuid": "02a8e767-7449-48a9-8d6b-f2cac708de50",
         "practices": [],
-        "prerequisites": [
-          "for-loops",
-          "strings"
-        ],
-        "difficulty": 5
+        "prerequisites": [],
+        "difficulty": 5,
+        "status": "deprecated"
       },
       {
         "slug": "spiral-matrix",
