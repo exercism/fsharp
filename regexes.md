@@ -44,6 +44,17 @@ find . -name '\*.fsproj' -execdir rm -f {} \;
 -- output { $5 }
 ```
 
+# Three arguments
+
+` let\s*``(.+?)``\s*\(\)\s*=\s*\n\s*(\w+) (-?\d+(?:\.\d+)?|"[^"]*") (-?\d+(?:\.\d+)?|"[^"]*") (-?\d+(?:\.\d+)?|"[^"]*") \|> should equal (.+) `
+
+```
+-- $1
+-- ==
+-- input { $3 $4 }
+-- output { $5 }
+```
+
 # Remove comment
 
 // This file was created manually(.+)\n\nmodule(.+)\n+
