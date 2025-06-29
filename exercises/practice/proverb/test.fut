@@ -11,14 +11,14 @@ let ``One piece`` () =
     recite strings |> should equal expected
 
 let ``Two pieces`` () =
-    let strings = ["nail"; "shoe"]
+    let strings = ["nail", "shoe"]
     let expected = 
         [ "For want of a nail the shoe was lost.";
           "And all for the want of a nail." ]
     recite strings |> should equal expected
 
 let ``Three pieces`` () =
-    let strings = ["nail"; "shoe"; "horse"]
+    let strings = ["nail", "shoe", "horse"]
     let expected = 
         [ "For want of a nail the shoe was lost.";
           "For want of a shoe the horse was lost.";
@@ -26,7 +26,7 @@ let ``Three pieces`` () =
     recite strings |> should equal expected
 
 let ``Full proverb`` () =
-    let strings = ["nail"; "shoe"; "horse"; "rider"; "message"; "battle"; "kingdom"]
+    let strings = ["nail", "shoe", "horse", "rider", "message", "battle", "kingdom"]
     let expected = 
         [ "For want of a nail the shoe was lost.";
           "For want of a shoe the horse was lost.";
@@ -38,7 +38,7 @@ let ``Full proverb`` () =
     recite strings |> should equal expected
 
 let ``Four pieces modernized`` () =
-    let strings = ["pin"; "gun"; "soldier"; "battle"]
+    let strings = ["pin", "gun", "soldier", "battle"]
     let expected = 
         [ "For want of a pin the gun was lost.";
           "For want of a gun the soldier was lost.";

@@ -10,5 +10,5 @@ let ``Orange`` () =
     colorCode "orange" |> should equal 3
 
 let ``Colors`` () =
-    colors |> should equal ["black"; "brown"; "red"; "orange"; "yellow"; "green"; "blue"; "violet"; "grey"; "white"]
+    colors |> should equal ["black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey", "white"]
 

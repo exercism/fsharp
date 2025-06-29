@@ -88,3 +88,9 @@ Dir.glob("**/*Tests.fs") {|dir| FileUtils.mv(dir, dir.split("/")[0] + "/test.fut
 ```ruby
 Dir.glob("**/*Tests.fs") {|dir| File.write(dir, File.readlines(dir).prepend(['import "' + dir.split("/")[0].tr("-", "\_") + '"' + "\n\n" ]).join)}
 ```
+
+# Fixup arrays
+
+(["\d]); (["\d])
+
+$1, $2

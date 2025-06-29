@@ -28,14 +28,14 @@ let ``9`` () =
     combinations [] 1 9 |> should equal [[9]]
 
 let ``Cage with sum 45 contains all digits 1:9`` () =
-    combinations [] 9 45 |> should equal [[1; 2; 3; 4; 5; 6; 7; 8; 9]]
+    combinations [] 9 45 |> should equal [[1, 2, 3, 4, 5, 6, 7, 8, 9]]
 
 let ``Cage with only 1 possible combination`` () =
-    combinations [] 3 7 |> should equal [[1; 2; 4]]
+    combinations [] 3 7 |> should equal [[1, 2, 4]]
 
 let ``Cage with several combinations`` () =
-    combinations [] 2 10 |> should equal [[1; 9]; [2; 8]; [3; 7]; [4; 6]]
+    combinations [] 2 10 |> should equal [[1, 9]; [2, 8]; [3, 7]; [4, 6]]
 
 let ``Cage with several combinations that is restricted`` () =
-    combinations [1; 4] 2 10 |> should equal [[2; 8]; [3; 7]]
+    combinations [1, 4] 2 10 |> should equal [[2, 8]; [3, 7]]
 

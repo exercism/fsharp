@@ -48,23 +48,23 @@ let ``Errors if target does not exist in a large tree`` () =
 
 let ``Can find path to parent`` () =
     let tree = mkGraph "parent" [mkGraph "x" []; mkGraph "sibling" []]
-    tracePathBetween "x" "parent" tree |> should equal <| Some ["x"; "parent"]
+    tracePathBetween "x" "parent" tree |> should equal <| Some ["x", "parent"]
 
 let ``Can find path to sibling`` () =
     let tree = mkGraph "parent" [mkGraph "a" []; mkGraph "x" []; mkGraph "b" []; mkGraph "c" []]
-    tracePathBetween "x" "b" tree |> should equal <| Some ["x"; "parent"; "b"]
+    tracePathBetween "x" "b" tree |> should equal <| Some ["x", "parent", "b"]
 
 let ``Can find path to cousin`` () =
     let tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]; mkGraph "uncle" [mkGraph "cousin-0" []; mkGraph "cousin-1" []]]
-    tracePathBetween "x" "cousin-1" tree |> should equal <| Some ["x"; "parent"; "grandparent"; "uncle"; "cousin-1"]
+    tracePathBetween "x" "cousin-1" tree |> should equal <| Some ["x", "parent", "grandparent", "uncle", "cousin-1"]
 
 let ``Can find path not involving root`` () =
     let tree = mkGraph "grandparent" [mkGraph "parent" [mkGraph "x" []; mkGraph "sibling-0" []; mkGraph "sibling-1" []]]
-    tracePathBetween "x" "sibling-1" tree |> should equal <| Some ["x"; "parent"; "sibling-1"]
+    tracePathBetween "x" "sibling-1" tree |> should equal <| Some ["x", "parent", "sibling-1"]
 
 let ``Can find path from nodes other than x`` () =
     let tree = mkGraph "parent" [mkGraph "a" []; mkGraph "x" []; mkGraph "b" []; mkGraph "c" []]
-    tracePathBetween "a" "c" tree |> should equal <| Some ["a"; "parent"; "c"]
+    tracePathBetween "a" "c" tree |> should equal <| Some ["a", "parent", "c"]
 
 let ``Errors if destination does not exist`` () =
     let tree = mkGraph "parent" [mkGraph "x" [mkGraph "kid-0" []; mkGraph "kid-1" []]; mkGraph "sibling-0" []; mkGraph "sibling-1" []]

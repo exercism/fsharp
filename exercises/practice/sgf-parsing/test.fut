@@ -45,14 +45,14 @@ let ``Two child trees`` () =
     parse "(;A[B](;B[C])(;C[D]))" |> should equal expected
 
 let ``Multiple property values`` () =
-    let expected = Some (Node (Map.ofList [("A", ["b"; "c"; "d"])], []))
+    let expected = Some (Node (Map.ofList [("A", ["b", "c", "d"])], []))
     parse "(;A[b][c][d])" |> should equal expected
 
 let ``Semicolon in property value doesn't need to be escaped`` () =
-    let expected = Some (Node (Map.ofList [("A", ["a;b"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    let expected = Some (Node (Map.ofList [("A", ["a;b", "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
     parse "(;A[a;b][foo]B[bar];C[baz])" |> should equal expected
 
 let ``Parentheses in property value don't need to be escaped`` () =
-    let expected = Some (Node (Map.ofList [("A", ["x(y)z"; "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
+    let expected = Some (Node (Map.ofList [("A", ["x(y)z", "foo"]); ("B", ["bar"])], [Node (Map.ofList [("C", ["baz"])], [])]))
     parse "(;A[x(y)z][foo]B[bar];C[baz])" |> should equal expected
 
