@@ -1,3 +1,19 @@
+# Remove fact attributes
+
+\[<Fact>(.+)?\]\n
+
+# Remove open modules
+
+```
+\n*open (.+)\n
+```
+
+# Remove modules
+
+```
+module (.+)\n
+```
+
 # Double numeric argument - single numeric output
 
 -- $1
@@ -8,7 +24,7 @@
 let `(.+?)` \(\) =
 \s+(\w+) (-?\d+(\.\d+)?) (-?\d+(\.\d+)?) \|> should equal (-?\d+(\.\d+)?)
 
-# Single numeric argument - single output
+# Single argument - single output
 
 let `(.+?)` \(\) =
 \s+(\w+) (-?\d+(\.\d+)?) \|> should equal (.+)

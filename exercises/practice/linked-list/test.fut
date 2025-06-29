@@ -1,10 +1,4 @@
 import "linked_list"
-
-open Xunit
-open FsUnit.Xunit
-open LinkedList
-
-[<Fact>]
 let ``Push and pop are first in last out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10
@@ -16,7 +10,6 @@ let ``Push and pop are first in last out order`` () =
     val1 |> should equal 20
     val2 |> should equal 10
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Push and shift are first in first out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10
@@ -28,7 +21,6 @@ let ``Push and shift are first in first out order`` () =
     val1 |> should equal 10
     val2 |> should equal 20
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Unshift and shift are last in first out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> unshift 10
@@ -40,7 +32,6 @@ let ``Unshift and shift are last in first out order`` () =
     val1 |> should equal 20
     val2 |> should equal 10
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Unshift and pop are last in last out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> unshift 10
@@ -52,7 +43,6 @@ let ``Unshift and pop are last in last out order`` () =
     val1 |> should equal 10
     val2 |> should equal 20
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Push and pop can handle multiple values`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10
@@ -67,7 +57,6 @@ let ``Push and pop can handle multiple values`` () =
     val2 |> should equal 20
     val3 |> should equal 10
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Unshift and shift can handle multiple values`` () =
     let linkedList = mkLinkedList ()
     linkedList |> unshift 10
@@ -82,7 +71,6 @@ let ``Unshift and shift can handle multiple values`` () =
     val2 |> should equal 20
     val3 |> should equal 10
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``All methods of manipulating the linkedList can be used together`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10

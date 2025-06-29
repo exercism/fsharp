@@ -1,16 +1,9 @@
 import "bank_account"
-
-open Xunit
-open FsUnit.Xunit
-open BankAccount
-
-[<Fact>]
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount
 
     getBalance account |> should equal (Some 0.0m)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Check basic balance`` () =
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
@@ -23,7 +16,6 @@ let ``Check basic balance`` () =
     openingBalance |> should equal (Some 0.0m)
     updatedBalance |> should equal (Some 10.0m)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Balance can increment or decrement`` () =    
     let account = mkBankAccount() |> openAccount
     let openingBalance = account |> getBalance 
@@ -42,7 +34,6 @@ let ``Balance can increment or decrement`` () =
     addedBalance |> should equal (Some 10.0m)
     subtractedBalance |> should equal (Some -5.0m)
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Account can be closed`` () =
     let account = 
         mkBankAccount()
@@ -52,7 +43,6 @@ let ``Account can be closed`` () =
     getBalance account |> should equal None
     account |> should not' (equal None)
     
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Account can be updated from multiple threads`` () =
     let account = 
         mkBankAccount()

@@ -1,12 +1,5 @@
 import "rest_api"
 
-module RestApiTests
-
-open FsUnit.Xunit
-open Xunit
-open RestApi
-
-[<Fact>]
 let ``No users`` () =
     let database = "{\"users\":[]}"
     let url = "/users"
@@ -14,7 +7,6 @@ let ``No users`` () =
     let api = RestApi(database)
     api.Get url |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Add user`` () =
     let database = "{\"users\":[]}"
     let payload = "{\"user\":\"Adam\"}"
@@ -23,7 +15,6 @@ let ``Add user`` () =
     let api = RestApi(database)
     api.Post(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Get single user`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{},\"owed_by\":{},\"balance\":0.0},{\"name\":\"Bob\",\"owes\":{},\"owed_by\":{},\"balance\":0.0}]}"
     let payload = "{\"users\":[\"Bob\"]}"
@@ -32,7 +23,6 @@ let ``Get single user`` () =
     let api = RestApi(database)
     api.Get(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Both users have 0 balance`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{},\"owed_by\":{},\"balance\":0.0},{\"name\":\"Bob\",\"owes\":{},\"owed_by\":{},\"balance\":0.0}]}"
     let payload = "{\"lender\":\"Adam\",\"borrower\":\"Bob\",\"amount\":3.0}"
@@ -41,7 +31,6 @@ let ``Both users have 0 balance`` () =
     let api = RestApi(database)
     api.Post(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Borrower has negative balance`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{},\"owed_by\":{},\"balance\":0.0},{\"name\":\"Bob\",\"owes\":{\"Chuck\":3.0},\"owed_by\":{},\"balance\":-3.0},{\"name\":\"Chuck\",\"owes\":{},\"owed_by\":{\"Bob\":3.0},\"balance\":3.0}]}"
     let payload = "{\"lender\":\"Adam\",\"borrower\":\"Bob\",\"amount\":3.0}"
@@ -50,7 +39,6 @@ let ``Borrower has negative balance`` () =
     let api = RestApi(database)
     api.Post(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Lender has negative balance`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{},\"owed_by\":{},\"balance\":0.0},{\"name\":\"Bob\",\"owes\":{\"Chuck\":3.0},\"owed_by\":{},\"balance\":-3.0},{\"name\":\"Chuck\",\"owes\":{},\"owed_by\":{\"Bob\":3.0},\"balance\":3.0}]}"
     let payload = "{\"lender\":\"Bob\",\"borrower\":\"Adam\",\"amount\":3.0}"
@@ -59,7 +47,6 @@ let ``Lender has negative balance`` () =
     let api = RestApi(database)
     api.Post(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Lender owes borrower`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{\"Bob\":3.0},\"owed_by\":{},\"balance\":-3.0},{\"name\":\"Bob\",\"owes\":{},\"owed_by\":{\"Adam\":3.0},\"balance\":3.0}]}"
     let payload = "{\"lender\":\"Adam\",\"borrower\":\"Bob\",\"amount\":2.0}"
@@ -68,7 +55,6 @@ let ``Lender owes borrower`` () =
     let api = RestApi(database)
     api.Post(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Lender owes borrower less than new loan`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{\"Bob\":3.0},\"owed_by\":{},\"balance\":-3.0},{\"name\":\"Bob\",\"owes\":{},\"owed_by\":{\"Adam\":3.0},\"balance\":3.0}]}"
     let payload = "{\"lender\":\"Adam\",\"borrower\":\"Bob\",\"amount\":4.0}"
@@ -77,7 +63,6 @@ let ``Lender owes borrower less than new loan`` () =
     let api = RestApi(database)
     api.Post(url, payload) |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Lender owes borrower same as new loan`` () =
     let database = "{\"users\":[{\"name\":\"Adam\",\"owes\":{\"Bob\":3.0},\"owed_by\":{},\"balance\":-3.0},{\"name\":\"Bob\",\"owes\":{},\"owed_by\":{\"Adam\":3.0},\"balance\":3.0}]}"
     let payload = "{\"lender\":\"Adam\",\"borrower\":\"Bob\",\"amount\":3.0}"

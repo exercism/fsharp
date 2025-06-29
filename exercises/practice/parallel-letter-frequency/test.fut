@@ -1,10 +1,4 @@
 import "parallel_letter_frequency"
-
-open Xunit
-open FsUnit.Xunit
-
-open ParallelLetterFrequency
-
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
 let odeAnDieFreude = 
     "Freude schöner Götterfunken\n" +
@@ -38,49 +32,39 @@ let starSpangledBanner =
     "O say does that star-spangled banner yet wave,\n" +
     "O'er the land of the free and the home of the brave?\n"
  
-[<Fact>]
 let ``No texts mean no letters`` () =
     frequency [] |> should be Empty
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One letter`` () =
     frequency ["a"] |> should equal (Map.ofList [('a', 1)])
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Case insensitivity`` () =
     frequency ["aA"] |> should equal (Map.ofList [('a', 2)])
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Many empty texts still mean no letters`` () =
     frequency (List.replicate 10000 "  ") |> should be Empty
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Many times the same text gives a predictable result`` () =
     frequency (List.replicate 1000 "abc") |> should equal (Map.ofList [('a', 1000); ('b', 1000); ('c', 1000)])
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Punctuation doesn't count`` () =
     let freqs = frequency [odeAnDieFreude]
     Map.tryFind ',' freqs |> should equal None
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Numbers don't count`` () =
     let freqs = frequency ["Testing, 1, 2, 3"]
     Map.tryFind '1' freqs |> should equal None
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Letters with and without diacritics are not the same letter`` () =
     let freqs = frequency ["aä"]
     freqs |> should equal (Map.ofList [('a', 1); ('ä', 1)])
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``All three anthems, together`` () =
     let freqs = frequency [odeAnDieFreude; wilhelmus; starSpangledBanner]
     Map.tryFind 'a' freqs |> should equal <| Some 49
     Map.tryFind 't' freqs |> should equal <| Some 56
     Map.tryFind 'o' freqs |> should equal <| Some 34
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Can handle large texts`` () =
     let freqs = frequency (List.replicate 1000 [odeAnDieFreude; wilhelmus; starSpangledBanner] |> List.concat)
     Map.tryFind 'a' freqs |> should equal <| Some 49000

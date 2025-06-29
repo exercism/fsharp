@@ -1,25 +1,15 @@
 import "flower_field"
 
-module FlowerFieldTests
-
-open FsUnit.Xunit
-open Xunit
-
-open FlowerField
-
-[<Fact>]
 let ``No rows`` () =
     let garden: string list = []
     let expected: string list = []
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``No columns`` () =
     let garden = [""]
     let expected = [""]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``No flowers`` () =
     let garden = 
         [ "   ";
@@ -31,7 +21,6 @@ let ``No flowers`` () =
           "   " ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``garden full of flowers`` () =
     let garden = 
         [ "***";
@@ -43,7 +32,6 @@ let ``garden full of flowers`` () =
           "***" ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Flower surrounded by spaces`` () =
     let garden = 
         [ "   ";
@@ -55,7 +43,6 @@ let ``Flower surrounded by spaces`` () =
           "111" ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Space surrounded by flowers`` () =
     let garden = 
         [ "***";
@@ -67,19 +54,16 @@ let ``Space surrounded by flowers`` () =
           "***" ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Horizontal line`` () =
     let garden = [" * * "]
     let expected = ["1*2*1"]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Horizontal line, flowers at edges`` () =
     let garden = ["*   *"]
     let expected = ["*1 1*"]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Vertical line`` () =
     let garden = 
         [ " ";
@@ -95,7 +79,6 @@ let ``Vertical line`` () =
           "1" ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Vertical line, flowers at edges`` () =
     let garden = 
         [ "*";
@@ -111,7 +94,6 @@ let ``Vertical line, flowers at edges`` () =
           "*" ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Cross`` () =
     let garden = 
         [ "  *  ";
@@ -127,7 +109,6 @@ let ``Cross`` () =
           " 2*2 " ]
     annotate garden |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Large garden`` () =
     let garden = 
         [ " *  * ";

@@ -1,18 +1,9 @@
 import "word_count"
 
-module WordCountTests
-
-open FsUnit.Xunit
-open Xunit
-
-open WordCount
-
-[<Fact>]
 let ``Count one word`` () =
     let expected = [("word", 1)] |> Map.ofList
     countWords "word" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Count one of each word`` () =
     let expected = 
         [ ("one", 1);
@@ -21,7 +12,6 @@ let ``Count one of each word`` () =
         |> Map.ofList
     countWords "one of each" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Multiple occurrences of a word`` () =
     let expected = 
         [ ("one", 1);
@@ -32,7 +22,6 @@ let ``Multiple occurrences of a word`` () =
         |> Map.ofList
     countWords "one fish two fish red fish blue fish" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Handles cramped lists`` () =
     let expected = 
         [ ("one", 1);
@@ -41,7 +30,6 @@ let ``Handles cramped lists`` () =
         |> Map.ofList
     countWords "one,two,three" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Handles expanded lists`` () =
     let expected = 
         [ ("one", 1);
@@ -50,7 +38,6 @@ let ``Handles expanded lists`` () =
         |> Map.ofList
     countWords "one,\ntwo,\nthree" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Ignore punctuation`` () =
     let expected = 
         [ ("car", 1);
@@ -61,7 +48,6 @@ let ``Ignore punctuation`` () =
         |> Map.ofList
     countWords "car: carpet as java: javascript!!&@$%^&" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Include numbers`` () =
     let expected = 
         [ ("testing", 2);
@@ -70,7 +56,6 @@ let ``Include numbers`` () =
         |> Map.ofList
     countWords "testing, 1, 2 testing" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Normalize case`` () =
     let expected = 
         [ ("go", 3);
@@ -78,7 +63,6 @@ let ``Normalize case`` () =
         |> Map.ofList
     countWords "go Go GO Stop stop" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``With apostrophes`` () =
     let expected = 
         [ ("first", 1);
@@ -92,7 +76,6 @@ let ``With apostrophes`` () =
         |> Map.ofList
     countWords "'First: don't laugh. Then: don't cry. You're getting it.'" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``With quotations`` () =
     let expected = 
         [ ("joe", 1);
@@ -104,7 +87,6 @@ let ``With quotations`` () =
         |> Map.ofList
     countWords "Joe can't tell between 'large' and large." |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Substrings from the beginning`` () =
     let expected = 
         [ ("joe", 1);
@@ -118,7 +100,6 @@ let ``Substrings from the beginning`` () =
         |> Map.ofList
     countWords "Joe can't tell between app, apple and a." |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Multiple spaces not detected as a word`` () =
     let expected = 
         [ ("multiple", 1);
@@ -126,7 +107,6 @@ let ``Multiple spaces not detected as a word`` () =
         |> Map.ofList
     countWords " multiple   whitespaces" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Alternating word separators not detected as a word`` () =
     let expected = 
         [ ("one", 1);
@@ -135,7 +115,6 @@ let ``Alternating word separators not detected as a word`` () =
         |> Map.ofList
     countWords ",\n,one,\n ,two \n 'three'" |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Quotation for word with apostrophe`` () =
     let expected = 
         [ ("can", 1);

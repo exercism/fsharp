@@ -1,13 +1,5 @@
 import "bottle_song"
 
-module BottleSongTests
-
-open FsUnit.Xunit
-open Xunit
-
-open BottleSong
-
-[<Fact>]
 let ``First generic verse`` () =
     let expected = 
         [ "Ten green bottles hanging on the wall,";
@@ -16,7 +8,6 @@ let ``First generic verse`` () =
           "There'll be nine green bottles hanging on the wall." ]
     recite 10 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Last generic verse`` () =
     let expected = 
         [ "Three green bottles hanging on the wall,";
@@ -25,7 +16,6 @@ let ``Last generic verse`` () =
           "There'll be two green bottles hanging on the wall." ]
     recite 3 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Verse with 2 bottles`` () =
     let expected = 
         [ "Two green bottles hanging on the wall,";
@@ -34,7 +24,6 @@ let ``Verse with 2 bottles`` () =
           "There'll be one green bottle hanging on the wall." ]
     recite 2 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Verse with 1 bottle`` () =
     let expected = 
         [ "One green bottle hanging on the wall,";
@@ -43,7 +32,6 @@ let ``Verse with 1 bottle`` () =
           "There'll be no green bottles hanging on the wall." ]
     recite 1 1 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``First two verses`` () =
     let expected = 
         [ "Ten green bottles hanging on the wall,";
@@ -57,7 +45,6 @@ let ``First two verses`` () =
           "There'll be eight green bottles hanging on the wall." ]
     recite 10 2 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Last three verses`` () =
     let expected = 
         [ "Three green bottles hanging on the wall,";
@@ -76,7 +63,6 @@ let ``Last three verses`` () =
           "There'll be no green bottles hanging on the wall." ]
     recite 3 3 |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``All verses`` () =
     let expected = 
         [ "Ten green bottles hanging on the wall,";
