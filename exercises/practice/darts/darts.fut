@@ -1,1 +1,1 @@
-let score (x: double) (y: double): int = failwith "You need to implement this function."
+let score (x: f64) (y: f64): int = failwith "You need to implement this function."
