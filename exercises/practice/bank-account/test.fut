@@ -2,7 +2,7 @@ import "bank_account"
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount
 
-    getBalance account |> should equal (Some 0.0m)
+    getBalance account |> should equal (Some 0.0)
 
 let ``Check basic balance`` () =
     let account = mkBankAccount() |> openAccount
@@ -10,11 +10,11 @@ let ``Check basic balance`` () =
 
     let updatedBalance = 
         account
-        |> updateBalance 10.0m
+        |> updateBalance 10.0
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0m)
-    updatedBalance |> should equal (Some 10.0m)
+    openingBalance |> should equal (Some 0.0)
+    updatedBalance |> should equal (Some 10.0)
 
 let ``Balance can increment or decrement`` () =    
     let account = mkBankAccount() |> openAccount
@@ -22,17 +22,17 @@ let ``Balance can increment or decrement`` () =
 
     let addedBalance = 
         account 
-        |> updateBalance 10.0m
+        |> updateBalance 10.0
         |> getBalance
 
     let subtractedBalance = 
         account 
-        |> updateBalance -15.0m
+        |> updateBalance -15.0
         |> getBalance
 
-    openingBalance |> should equal (Some 0.0m)
-    addedBalance |> should equal (Some 10.0m)
-    subtractedBalance |> should equal (Some -5.0m)
+    openingBalance |> should equal (Some 0.0)
+    addedBalance |> should equal (Some 10.0)
+    subtractedBalance |> should equal (Some -5.0)
 
 let ``Account can be closed`` () =
     let account = 
@@ -51,7 +51,7 @@ let ``Account can be updated from multiple threads`` () =
     let updateAccountAsync =        
         async {                             
             account 
-            |> updateBalance 1.0m
+            |> updateBalance 1.0
             |> ignore
         }
 
@@ -61,4 +61,4 @@ let ``Account can be updated from multiple threads`` () =
     |> Async.RunSynchronously
     |> ignore
 
-    getBalance account |> should equal (Some 1000.0m)
+    getBalance account |> should equal (Some 1000.0)

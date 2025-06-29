@@ -94,3 +94,13 @@ Dir.glob("**/*Tests.fs") {|dir| File.write(dir, File.readlines(dir).prepend(['im
 (["\d]); (["\d])
 
 $1, $2
+
+# Fixup decimal
+
+```
+(\d+)\.(\d+)m
+```
+
+```
+$1.$2
+```
