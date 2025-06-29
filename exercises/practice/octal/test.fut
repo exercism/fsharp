@@ -1,9 +1,5 @@
 import "octal"
 
-// This file was created manually and its version is 1.0.0.
-
-module OctalTest
-
 open FsUnit.Xunit
 open Xunit
 

@@ -1,9 +1,5 @@
 import "parallel_letter_frequency"
 
-// This file was created manually and its version is 1.0.0.
-
-module ParallelLetterFrequencyTest
-
 open Xunit
 open FsUnit.Xunit
 

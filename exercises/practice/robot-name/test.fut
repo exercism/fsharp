@@ -1,9 +1,5 @@
 import "robot_name"
 
-// This file was created manually and its version is 1.0.0.
-
-module RobotNameTest
-
 open Xunit
 open FsUnit.Xunit
 open System.Text.RegularExpressions

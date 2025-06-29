@@ -1,9 +1,5 @@
 import "linked_list"
 
-// This file was created manually and its version is 1.0.0.
-
-module LinkedListTest
-
 open Xunit
 open FsUnit.Xunit
 open LinkedList
