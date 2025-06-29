@@ -80,6 +80,7 @@ let `(.+?)` \(\) =
 
 ```ruby
 Dir.glob("**/*Tests.fs") {|dir| FileUtils.mv(dir, dir.split("/")[0] + "/test.fut")}
+ Dir.glob("**/*.fs") {|dir| FileUtils.mv(dir, dir.split("/")[0] + "/" + dir.split("/")[0].tr("-","_") + ".fut")}
 ```
 
 # Add import
