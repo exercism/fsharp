@@ -1583,6 +1583,23 @@
         "difficulty": 5
       },
       {
+        "slug": "flower-field",
+        "name": "Flower Field",
+        "uuid": "3ff1f4e8-0749-4e57-8228-e42b8d073f3f",
+        "practices": [
+          "string-formatting"
+        ],
+        "prerequisites": [
+          "chars",
+          "if-then-else-expressions",
+          "lists",
+          "records",
+          "string-formatting",
+          "strings"
+        ],
+        "difficulty": 7
+      },
+      {
         "slug": "matching-brackets",
         "name": "Matching Brackets",
         "uuid": "677ca063-70fe-4cfc-8112-c5d78bd1ea44",
@@ -1602,18 +1619,10 @@
         "slug": "minesweeper",
         "name": "Minesweeper",
         "uuid": "9e3fc78d-ac3b-4195-ad4c-9f99b0ee2678",
-        "practices": [
-          "string-formatting"
-        ],
-        "prerequisites": [
-          "chars",
-          "if-then-else-expressions",
-          "lists",
-          "records",
-          "string-formatting",
-          "strings"
-        ],
-        "difficulty": 7
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 7,
+        "status": "deprecated"
       },
       {
         "slug": "rectangles",

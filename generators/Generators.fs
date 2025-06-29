@@ -617,6 +617,20 @@ type Etl() =
 
     override this.PropertiesWithIdentifier testCase = this.Properties testCase
 
+type FlowerField() =
+    inherit ExerciseGenerator()
+
+    override _.RenderInput(_, _, value) = List.renderMultiLine value
+
+    override _.RenderExpected(_, _, value) = List.renderMultiLine value
+
+    override this.PropertiesWithIdentifier testCase = this.Properties testCase
+
+    override _.IdentifierTypeAnnotation(_, _, value) =
+        match Seq.isEmpty value with
+        | true -> Some "string list"
+        | false -> None
+
 type FoodChain() =
     inherit ExerciseGenerator()
 
