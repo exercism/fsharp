@@ -1,3 +1,5 @@
+import "rational_numbers"
+
 module RationalNumbersTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "beer_song"
+
 module BeerSongTests
 
 open FsUnit.Xunit

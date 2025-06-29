@@ -1,3 +1,5 @@
+import "killer_sudoku_helper"
+
 module KillerSudokuHelperTests
 
 open FsUnit.Xunit

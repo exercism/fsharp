@@ -1,3 +1,5 @@
+import "transpose"
+
 module TransposeTests
 
 open FsUnit.Xunit

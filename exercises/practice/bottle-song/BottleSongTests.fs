@@ -1,3 +1,5 @@
+import "bottle_song"
+
 module BottleSongTests
 
 open FsUnit.Xunit

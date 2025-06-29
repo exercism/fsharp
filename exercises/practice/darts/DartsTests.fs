@@ -1,3 +1,5 @@
+import "darts"
+
 module DartsTests
 
 open FsUnit.Xunit

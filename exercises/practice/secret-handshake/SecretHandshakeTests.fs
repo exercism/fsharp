@@ -1,3 +1,5 @@
+import "secret_handshake"
+
 module SecretHandshakeTests
 
 open FsUnit.Xunit

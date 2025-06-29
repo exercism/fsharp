@@ -1,3 +1,5 @@
+import "pangram"
+
 module PangramTests
 
 open FsUnit.Xunit

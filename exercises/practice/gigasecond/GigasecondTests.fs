@@ -1,3 +1,5 @@
+import "gigasecond"
+
 module GigasecondTests
 
 open FsUnit.Xunit

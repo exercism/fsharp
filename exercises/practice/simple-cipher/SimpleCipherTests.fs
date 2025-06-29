@@ -1,3 +1,5 @@
+import "simple_cipher"
+
 module SimpleCipherTests
 
 open FsUnit.Xunit

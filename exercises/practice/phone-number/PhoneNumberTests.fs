@@ -1,3 +1,5 @@
+import "phone_number"
+
 module PhoneNumberTests
 
 open FsUnit.Xunit

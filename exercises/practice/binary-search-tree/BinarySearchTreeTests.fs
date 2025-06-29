@@ -1,3 +1,5 @@
+import "binary_search_tree"
+
 module BinarySearchTreeTests
 
 open FsUnit.Xunit

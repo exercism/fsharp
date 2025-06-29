@@ -1,3 +1,5 @@
+import "spiral_matrix"
+
 module SpiralMatrixTests
 
 open FsUnit.Xunit

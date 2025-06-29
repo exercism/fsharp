@@ -1,3 +1,5 @@
+import "rest_api"
+
 module RestApiTests
 
 open FsUnit.Xunit

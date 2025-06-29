@@ -1,3 +1,5 @@
+import "luhn"
+
 module LuhnTests
 
 open FsUnit.Xunit

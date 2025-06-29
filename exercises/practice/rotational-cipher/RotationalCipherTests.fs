@@ -1,3 +1,5 @@
+import "rotational_cipher"
+
 module RotationalCipherTests
 
 open FsUnit.Xunit

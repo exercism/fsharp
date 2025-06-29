@@ -1,3 +1,5 @@
+import "scale_generator"
+
 module ScaleGeneratorTests
 
 open FsUnit.Xunit

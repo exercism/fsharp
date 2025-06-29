@@ -1,3 +1,5 @@
+import "alphametics"
+
 module AlphameticsTests
 
 open FsUnit.Xunit

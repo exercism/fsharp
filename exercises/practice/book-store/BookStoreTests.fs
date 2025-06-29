@@ -1,3 +1,5 @@
+import "book_store"
+
 module BookStoreTests
 
 open FsUnit.Xunit

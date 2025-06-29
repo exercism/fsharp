@@ -1,3 +1,5 @@
+import "dnd_character"
+
 module DndCharacterTests
 
 open FsUnit.Xunit

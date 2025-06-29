@@ -1,3 +1,5 @@
+import "isbn_verifier"
+
 module IsbnVerifierTests
 
 open FsUnit.Xunit

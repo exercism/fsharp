@@ -1,3 +1,5 @@
+import "pov"
+
 module PovTests
 
 open FsUnit.Xunit

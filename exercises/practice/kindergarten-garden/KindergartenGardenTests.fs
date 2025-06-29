@@ -1,3 +1,5 @@
+import "kindergarten_garden"
+
 module KindergartenGardenTests
 
 open FsUnit.Xunit

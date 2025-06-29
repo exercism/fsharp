@@ -1,3 +1,5 @@
+import "queen_attack"
+
 module QueenAttackTests
 
 open FsUnit.Xunit

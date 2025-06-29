@@ -1,3 +1,5 @@
+import "variable_length_quantity"
+
 module VariableLengthQuantityTests
 
 open FsUnit.Xunit

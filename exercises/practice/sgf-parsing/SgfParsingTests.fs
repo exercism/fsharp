@@ -1,3 +1,5 @@
+import "sgf_parsing"
+
 module SgfParsingTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "connect"
+
 module ConnectTests
 
 open FsUnit.Xunit

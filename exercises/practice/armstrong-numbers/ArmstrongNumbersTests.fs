@@ -1,3 +1,5 @@
+import "armstrong_numbers"
+
 module ArmstrongNumbersTests
 
 open FsUnit.Xunit

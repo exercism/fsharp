@@ -1,3 +1,5 @@
+import "allergies"
+
 module AllergiesTests
 
 open FsUnit.Xunit

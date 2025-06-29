@@ -1,3 +1,5 @@
+import "roman_numerals"
+
 module RomanNumeralsTests
 
 open FsUnit.Xunit

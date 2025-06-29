@@ -1,3 +1,5 @@
+import "leap"
+
 module LeapTests
 
 open FsUnit.Xunit

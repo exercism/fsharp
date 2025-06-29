@@ -1,3 +1,5 @@
+import "anagram"
+
 module AnagramTests
 
 open FsUnit.Xunit

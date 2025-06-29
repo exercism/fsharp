@@ -1,3 +1,5 @@
+import "palindrome_products"
+
 module PalindromeProductsTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "acronym"
+
 module AcronymTests
 
 open FsUnit.Xunit

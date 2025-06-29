@@ -1,3 +1,5 @@
+import "forth"
+
 module ForthTests
 
 open FsUnit.Xunit

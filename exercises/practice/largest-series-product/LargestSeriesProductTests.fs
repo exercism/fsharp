@@ -1,3 +1,5 @@
+import "largest_series_product"
+
 module LargestSeriesProductTests
 
 open FsUnit.Xunit

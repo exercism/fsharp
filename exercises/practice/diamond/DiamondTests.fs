@@ -1,3 +1,5 @@
+import "diamond"
+
 module DiamondTest
 
 open Diamond

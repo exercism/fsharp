@@ -1,3 +1,5 @@
+import "hamming"
+
 module HammingTests
 
 open FsUnit.Xunit

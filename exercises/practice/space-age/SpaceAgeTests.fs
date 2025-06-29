@@ -1,3 +1,5 @@
+import "space_age"
+
 module SpaceAgeTests
 
 open FsUnit.Xunit

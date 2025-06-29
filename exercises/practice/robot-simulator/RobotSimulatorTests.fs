@@ -1,3 +1,5 @@
+import "robot_simulator"
+
 module RobotSimulatorTests
 
 open FsUnit.Xunit

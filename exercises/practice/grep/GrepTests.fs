@@ -1,3 +1,5 @@
+import "grep"
+
 module GrepTests
 
 open FsUnit.Xunit

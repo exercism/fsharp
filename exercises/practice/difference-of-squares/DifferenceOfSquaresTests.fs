@@ -1,3 +1,5 @@
+import "difference_of_squares"
+
 module DifferenceOfSquaresTests
 
 open FsUnit.Xunit

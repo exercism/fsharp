@@ -1,3 +1,5 @@
+import "two_fer"
+
 module TwoFerTests
 
 open FsUnit.Xunit

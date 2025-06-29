@@ -1,3 +1,5 @@
+import "matching_brackets"
+
 module MatchingBracketsTests
 
 open FsUnit.Xunit

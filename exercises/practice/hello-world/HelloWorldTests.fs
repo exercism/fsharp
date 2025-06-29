@@ -1,3 +1,5 @@
+import "hello_world"
+
 module HelloWorldTests
 
 open FsUnit.Xunit

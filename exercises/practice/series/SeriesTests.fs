@@ -1,3 +1,5 @@
+import "series"
+
 module SeriesTests
 
 open FsUnit.Xunit

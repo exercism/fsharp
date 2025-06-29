@@ -1,3 +1,5 @@
+import "zebra_puzzle"
+
 module ZebraPuzzleTests
 
 open FsUnit.Xunit

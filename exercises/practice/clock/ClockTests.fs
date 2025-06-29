@@ -1,3 +1,5 @@
+import "clock"
+
 module ClockTests
 
 open FsUnit.Xunit

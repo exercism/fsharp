@@ -1,3 +1,5 @@
+import "triangle"
+
 module TriangleTests
 
 open FsUnit.Xunit

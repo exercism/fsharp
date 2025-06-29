@@ -1,3 +1,5 @@
+import "square_root"
+
 module SquareRootTests
 
 open FsUnit.Xunit

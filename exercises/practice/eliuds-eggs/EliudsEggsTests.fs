@@ -1,3 +1,5 @@
+import "eliuds_eggs"
+
 module EliudsEggsTests
 
 open FsUnit.Xunit

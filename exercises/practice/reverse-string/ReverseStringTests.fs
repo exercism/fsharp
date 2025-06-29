@@ -1,3 +1,5 @@
+import "reverse_string"
+
 module ReverseStringTests
 
 open FsUnit.Xunit

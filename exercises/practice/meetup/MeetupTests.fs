@@ -1,3 +1,5 @@
+import "meetup"
+
 module MeetupTests
 
 open FsUnit.Xunit

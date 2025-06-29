@@ -1,3 +1,5 @@
+import "perfect_numbers"
+
 module PerfectNumbersTests
 
 open FsUnit.Xunit

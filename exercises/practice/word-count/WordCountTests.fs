@@ -1,3 +1,5 @@
+import "word_count"
+
 module WordCountTests
 
 open FsUnit.Xunit

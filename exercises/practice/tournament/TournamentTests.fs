@@ -1,3 +1,5 @@
+import "tournament"
+
 module TournamentTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "all_your_base"
+
 module AllYourBaseTests
 
 open FsUnit.Xunit

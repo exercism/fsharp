@@ -1,3 +1,5 @@
+import "house"
+
 module HouseTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "nth_prime"
+
 module NthPrimeTests
 
 open FsUnit.Xunit

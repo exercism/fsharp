@@ -1,3 +1,5 @@
+import "satellite"
+
 module SatelliteTests
 
 open FsUnit.Xunit

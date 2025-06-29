@@ -1,3 +1,5 @@
+import "rna_transcription"
+
 module RnaTranscriptionTests
 
 open FsUnit.Xunit

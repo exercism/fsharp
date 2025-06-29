@@ -1,3 +1,5 @@
+import "twelve_days"
+
 module TwelveDaysTests
 
 open FsUnit.Xunit

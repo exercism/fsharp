@@ -1,3 +1,5 @@
+import "run_length_encoding"
+
 module RunLengthEncodingTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "grade_school"
+
 module GradeSchoolTests
 
 open FsUnit.Xunit

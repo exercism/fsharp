@@ -1,3 +1,5 @@
+import "proverb"
+
 module ProverbTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "rectangles"
+
 module RectanglesTests
 
 open FsUnit.Xunit

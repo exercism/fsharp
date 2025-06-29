@@ -1,3 +1,5 @@
+import "isogram"
+
 module IsogramTests
 
 open FsUnit.Xunit

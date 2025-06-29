@@ -1,3 +1,5 @@
+import "custom_set"
+
 module CustomSetTests
 
 open FsUnit.Xunit

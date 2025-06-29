@@ -1,3 +1,5 @@
+import "complex_numbers"
+
 module ComplexNumbersTests
 
 open FsUnit.Xunit

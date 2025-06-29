@@ -1,3 +1,5 @@
+import "react"
+
 module ReactTests
 
 open FsUnit.Xunit

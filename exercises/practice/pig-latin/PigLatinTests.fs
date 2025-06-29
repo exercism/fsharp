@@ -1,3 +1,5 @@
+import "pig_latin"
+
 module PigLatinTests
 
 open FsUnit.Xunit

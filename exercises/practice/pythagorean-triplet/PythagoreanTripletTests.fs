@@ -1,3 +1,5 @@
+import "pythagorean_triplet"
+
 module PythagoreanTripletTests
 
 open FsUnit.Xunit

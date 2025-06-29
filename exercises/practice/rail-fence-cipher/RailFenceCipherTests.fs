@@ -1,3 +1,5 @@
+import "rail_fence_cipher"
+
 module RailFenceCipherTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "poker"
+
 module PokerTests
 
 open FsUnit.Xunit

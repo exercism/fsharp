@@ -1,3 +1,5 @@
+import "say"
+
 module SayTests
 
 open FsUnit.Xunit

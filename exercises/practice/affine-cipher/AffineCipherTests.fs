@@ -1,3 +1,5 @@
+import "affine_cipher"
+
 module AffineCipherTests
 
 open FsUnit.Xunit

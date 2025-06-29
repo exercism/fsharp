@@ -1,3 +1,5 @@
+import "binary_search"
+
 module BinarySearchTests
 
 open FsUnit.Xunit

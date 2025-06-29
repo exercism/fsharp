@@ -1,3 +1,5 @@
+import "go_counting"
+
 module GoCountingTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "matrix"
+
 module MatrixTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "game_of_life"
+
 module GameOfLifeTests
 
 open FsUnit.Xunit

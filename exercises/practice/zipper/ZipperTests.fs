@@ -1,3 +1,5 @@
+import "zipper"
+
 module ZipperTests
 
 open FsUnit.Xunit

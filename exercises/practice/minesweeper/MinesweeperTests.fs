@@ -1,3 +1,5 @@
+import "minesweeper"
+
 module MinesweeperTests
 
 open FsUnit.Xunit

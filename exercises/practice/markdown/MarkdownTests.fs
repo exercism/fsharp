@@ -1,3 +1,5 @@
+import "markdown"
+
 module MarkdownTests
 
 open FsUnit.Xunit

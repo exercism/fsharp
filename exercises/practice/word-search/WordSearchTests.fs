@@ -1,3 +1,5 @@
+import "word_search"
+
 module WordSearchTests
 
 open FsUnit.Xunit

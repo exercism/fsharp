@@ -1,3 +1,5 @@
+import "sum_of_multiples"
+
 module SumOfMultiplesTests
 
 open FsUnit.Xunit

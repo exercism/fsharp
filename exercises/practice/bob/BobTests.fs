@@ -1,3 +1,5 @@
+import "bob"
+
 module BobTests
 
 open FsUnit.Xunit

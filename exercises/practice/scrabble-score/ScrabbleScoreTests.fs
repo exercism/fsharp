@@ -1,3 +1,5 @@
+import "scrabble_score"
+
 module ScrabbleScoreTests
 
 open FsUnit.Xunit

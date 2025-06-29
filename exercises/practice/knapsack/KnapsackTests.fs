@@ -1,3 +1,5 @@
+import "knapsack"
+
 module KnapsackTests
 
 open FsUnit.Xunit

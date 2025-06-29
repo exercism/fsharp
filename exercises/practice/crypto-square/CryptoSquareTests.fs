@@ -1,3 +1,5 @@
+import "crypto_square"
+
 module CryptoSquareTests
 
 open FsUnit.Xunit

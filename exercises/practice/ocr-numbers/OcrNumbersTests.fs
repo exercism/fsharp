@@ -1,3 +1,5 @@
+import "ocr_numbers"
+
 module OcrNumbersTests
 
 open FsUnit.Xunit

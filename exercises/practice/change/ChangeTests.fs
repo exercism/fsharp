@@ -1,3 +1,5 @@
+import "change"
+
 module ChangeTests
 
 open FsUnit.Xunit

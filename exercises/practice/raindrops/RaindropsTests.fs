@@ -1,3 +1,5 @@
+import "raindrops"
+
 module RaindropsTests
 
 open FsUnit.Xunit

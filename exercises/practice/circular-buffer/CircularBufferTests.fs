@@ -1,3 +1,5 @@
+import "circular_buffer"
+
 module CircularBufferTests
 
 open FsUnit.Xunit

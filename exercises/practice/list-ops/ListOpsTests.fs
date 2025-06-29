@@ -1,3 +1,5 @@
+import "list_ops"
+
 module ListOpsTests
 
 open FsUnit.Xunit

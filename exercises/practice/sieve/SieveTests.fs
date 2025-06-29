@@ -1,3 +1,5 @@
+import "sieve"
+
 module SieveTests
 
 open FsUnit.Xunit

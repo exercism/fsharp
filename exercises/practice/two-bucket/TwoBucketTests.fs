@@ -1,3 +1,5 @@
+import "two_bucket"
+
 module TwoBucketTests
 
 open FsUnit.Xunit

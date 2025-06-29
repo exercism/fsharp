@@ -1,3 +1,5 @@
+import "wordy"
+
 module WordyTests
 
 open FsUnit.Xunit

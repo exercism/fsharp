@@ -1,3 +1,5 @@
+import "collatz_conjecture"
+
 module CollatzConjectureTests
 
 open FsUnit.Xunit

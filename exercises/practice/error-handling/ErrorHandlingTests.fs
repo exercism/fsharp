@@ -1,3 +1,5 @@
+import "error_handling"
+
 // This file was created manually and its version is 1.0.0.
 
 module ErrorHandlingTest

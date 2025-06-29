@@ -1,3 +1,5 @@
+import "dominoes"
+
 module DominoesTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "etl"
+
 module EtlTests
 
 open FsUnit.Xunit

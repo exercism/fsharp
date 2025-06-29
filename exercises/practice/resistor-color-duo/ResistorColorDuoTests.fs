@@ -1,3 +1,5 @@
+import "resistor_color_duo"
+
 module ResistorColorDuoTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "state_of_tic_tac_toe"
+
 module StateOfTicTacToeTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "protein_translation"
+
 module ProteinTranslationTests
 
 open FsUnit.Xunit

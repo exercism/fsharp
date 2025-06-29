@@ -1,3 +1,5 @@
+import "nucleotide_count"
+
 module NucleotideCountTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "yacht"
+
 module YachtTests
 
 open FsUnit.Xunit

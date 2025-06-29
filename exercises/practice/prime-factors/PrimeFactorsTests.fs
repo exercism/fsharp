@@ -1,3 +1,5 @@
+import "prime_factors"
+
 module PrimeFactorsTests
 
 open FsUnit.Xunit

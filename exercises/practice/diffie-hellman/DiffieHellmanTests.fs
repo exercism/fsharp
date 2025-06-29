@@ -1,3 +1,5 @@
+import "diffie_hellman"
+
 module DiffieHellmanTests
 
 open FsUnit.Xunit

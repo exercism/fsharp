@@ -1,3 +1,5 @@
+import "sublist"
+
 module SublistTests
 
 open FsUnit.Xunit

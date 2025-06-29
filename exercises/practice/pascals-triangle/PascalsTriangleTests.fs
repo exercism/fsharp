@@ -1,3 +1,5 @@
+import "pascals_triangle"
+
 module PascalsTriangleTests
 
 open FsUnit.Xunit

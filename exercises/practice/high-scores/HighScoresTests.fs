@@ -1,3 +1,5 @@
+import "high_scores"
+
 module HighScoresTests
 
 open FsUnit.Xunit

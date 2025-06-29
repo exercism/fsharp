@@ -1,3 +1,5 @@
+import "saddle_points"
+
 module SaddlePointsTests
 
 open FsUnit.Xunit

@@ -1,3 +1,5 @@
+import "atbash_cipher"
+
 module AtbashCipherTests
 
 open FsUnit.Xunit

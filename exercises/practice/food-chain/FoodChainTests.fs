@@ -1,3 +1,5 @@
+import "food_chain"
+
 module FoodChainTests
 
 open FsUnit.Xunit

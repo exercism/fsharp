@@ -1,3 +1,5 @@
+import "resistor_color_trio"
+
 module ResistorColorTrioTests
 
 open FsUnit.Xunit
