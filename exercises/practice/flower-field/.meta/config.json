@@ -1,0 +1,25 @@
+{
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "BNAndras",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
+  "files": {
+    "solution": [
+      "FlowerField.fs"
+    ],
+    "test": [
+      "FlowerFieldTests.fs"
+    ],
+    "example": [
+      ".meta/Example.fs"
+    ]
+  },
+  "blurb": "Mark all the flowers in a garden."
+}
