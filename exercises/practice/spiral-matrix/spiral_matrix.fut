@@ -1,1 +1,1 @@
-let spiralMatrix size = ???
+let spiral_matrix size = ???

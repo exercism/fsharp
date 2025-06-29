@@ -20,10 +20,10 @@ let ``Throwing exception`` () =
 // returned value. As Option<'T> is a discriminated union, the user is forced to
 // consider both possible outputs: success and failure.
 let ``Returning Option<'T>`` () =
-    let successResult = handleErrorByReturningOption "1"
+    let success_result = handleErrorByReturningOption "1"
     successResult |> should equal <| Some 1
     
-    let failureResult = handleErrorByReturningOption "a"
+    let failure_result = handleErrorByReturningOption "a"
     failureResult |> should equal None
 
 // If the caller is also interested what error occured, the Option<'T> type does not suffice.
@@ -32,10 +32,10 @@ let ``Returning Option<'T>`` () =
 // of type 'TSuccess and 'TError respectively. Note that these types can be different, so
 // you are free to return an integer upon success and a string upon failure.
 let ``Returning Result<'TSuccess, 'TError>`` () =
-    let successResult = handleErrorByReturningResult "1"
+    let success_result = handleErrorByReturningResult "1"
     (successResult = Ok 1) |> should equal true
     
-    let failureResult = handleErrorByReturningResult "a"
+    let failure_result = handleErrorByReturningResult "a"
     (failureResult = Error "Could not convert input to integer") |> should equal true
 
 // In the previous test, we defined a Result<'TSuccess, 'TError> type. The next step is
@@ -60,21 +60,21 @@ let ``Using railway-oriented programming`` () =
     
     // Combine the validations. The result should be a function that takes an int parameter
     // and returns a Result<int, string> value
-    let combinedValidation =
+    let combined_validation =
         validate1
         >> bind validate2
         >> bind validate3
 
-    let firstValidationFailureResult = combinedValidation 1            
+    let first_validation_failure_result = combinedValidation 1            
     (firstValidationFailureResult = Error "Input less than or equal to five") |> should equal true
 
-    let secondValidationFailureResult = combinedValidation 23          
+    let second_validation_failure_result = combinedValidation 23          
     (secondValidationFailureResult = Error "Input greater than or equal to ten") |> should equal true
 
-    let thirdValidationFailureResult = combinedValidation 8        
+    let third_validation_failure_result = combinedValidation 8        
     (thirdValidationFailureResult = Error "Input is not odd") |> should equal true
 
-    let successResult = combinedValidation 7        
+    let success_result = combinedValidation 7        
     (successResult = Ok 7) |> should equal true
     
 // If you are dealing with code that throws exceptions, you should ensure that any

@@ -3,9 +3,9 @@ open System.Globalization
 
 type Entry = { dat: DateTime; des: []u8; chg: i32 }
 
-let mkEntry (date: []u8) description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
+let mk_entry (date: []u8) description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
         
-let formatLedger currency locale entries =
+let format_ledger currency locale entries =
     
     let mutable res = ""
 

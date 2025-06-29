@@ -1,1 +1,1 @@
-let leapYear (year: i32): bool = ???
+let leap_year (year: i32): bool = ???

@@ -1,1 +1,1 @@
-let largestProduct input seriesLength : i32 = ???
+let largest_product input seriesLength : i32 = ???

@@ -8,5 +8,5 @@ let ability() =
 
 // TODO: define the Character type
 
-let createCharacter() =
+let create_character() =
     ???

@@ -1,1 +1,1 @@
-let tripletsWithSum sum = ???
+let triplets_with_sum sum = ???

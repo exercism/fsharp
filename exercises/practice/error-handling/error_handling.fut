@@ -1,9 +1,9 @@
-let handleErrorByThrowingException() = ()
+let handle_error_by_throwing_exception() = ()
 
-let handleErrorByReturningOption input = ???
+let handle_error_by_returning_option input = ???
 
-let handleErrorByReturningResult input = ???
+let handle_error_by_returning_result input = ???
 
 let bind switchFunction twoTrackInput = ???
 
-let cleanupDisposablesWhenThrowingException resource = ???
+let cleanup_disposables_when_throwing_exception resource = ???

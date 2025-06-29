@@ -1,1 +1,1 @@
-let twoFer (input: []u8 option): []u8 = ???
+let two_fer (input: []u8 option): []u8 = ???

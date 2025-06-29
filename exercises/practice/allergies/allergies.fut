@@ -2,6 +2,6 @@ open System
 
 // TODO: define the Allergen type
 
-let allergicTo codedAllergies allergen = ???
+let allergic_to codedAllergies allergen = ???
 
 let list codedAllergies = ???

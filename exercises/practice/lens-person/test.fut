@@ -1,6 +1,6 @@
 import "lens_person"
 
-let testPerson =
+let test_person =
     { name = 
         { name = "Jane Joanna"
           surName = "Doe" }

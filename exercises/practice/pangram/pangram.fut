@@ -1,1 +1,1 @@
-let isPangram (input: []u8): bool = ???
+let is_pangram (input: []u8): bool = ???

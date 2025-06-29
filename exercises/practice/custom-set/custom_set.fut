@@ -4,13 +4,13 @@ let empty = ???
 
 let singleton value = ???
 
-let isEmpty set = ???
+let is_empty set = ???
 
 let size set = ???
 
-let fromList list = ???
+let from_list list = ???
 
-let toList set = ???
+let to_list set = ???
 
 let contains value set = ???
 
@@ -22,6 +22,6 @@ let intersection left right = ???
 
 let difference left right = ???
 
-let isSubsetOf left right = ???
+let is_subset_of left right = ???
 
-let isDisjointFrom left right = ???
+let is_disjoint_from left right = ???

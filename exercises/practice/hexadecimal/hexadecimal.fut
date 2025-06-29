@@ -1,1 +1,1 @@
-let toDecimal (input: []u8): i32 = ???
+let to_decimal (input: []u8): i32 = ???

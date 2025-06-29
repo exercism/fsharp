@@ -1,6 +1,6 @@
 import "parallel_letter_frequency"
 // Poem by Friedrich Schiller. The corresponding music is the European Anthem.
-let odeAnDieFreude = 
+let ode_an_die_freude = 
     "Freude schöner Götterfunken\n" +
     "Tochter aus Elysium,\n" +
     "Wir betreten feuertrunken,\n" +
@@ -22,7 +22,7 @@ let wilhelmus =
     "heb ik altijd geëerd."
 
 // American national anthem
-let starSpangledBanner = 
+let star_spangled_banner = 
     "O say can you see by the dawn's early light,\n" +
     "What so proudly we hailed at the twilight's last gleaming,\n" +
     "Whose broad stripes and bright stars through the perilous fight,\n" +

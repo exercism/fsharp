@@ -1,1 +1,1 @@
-let toRna (dna: []u8): []u8 = ???
+let to_rna (dna: []u8): []u8 = ???

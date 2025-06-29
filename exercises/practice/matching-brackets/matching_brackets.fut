@@ -1,1 +1,1 @@
-let isPaired input = ???
+let is_paired input = ???

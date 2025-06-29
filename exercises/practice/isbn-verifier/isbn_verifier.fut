@@ -1,1 +1,1 @@
-let isValid isbn = ???
+let is_valid isbn = ???

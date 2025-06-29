@@ -1,1 +1,1 @@
-let nucleotideCounts (strand: []u8): Option<Map<char, int>> =  ???
+let nucleotide_counts (strand: []u8): Option<Map<char, int>> =  ???

@@ -4,9 +4,9 @@ let split (x: []u8) = x.Split([| '\n' |], StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()
 
-let leadingSpaces (x:string) = x.Substring(0, x.IndexOfAny [|'A'..'Z'|])
+let leading_spaces (x:string) = x.Substring(0, x.IndexOfAny [|'A'..'Z'|])
 
-let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
+let trailing_spaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
 
 type Letters =
     static member Chars () =
@@ -20,7 +20,7 @@ type DiamondPropertyAttribute () =
 let ``First row contains 'A'`` (letter:char) =
     let actual = make letter
     let rows = actual |> split
-    let firstRowCharacters = rows |> Seq.head |> trim
+    let first_row_characters = rows |> Seq.head |> trim
 
     firstRowCharacters |> should equal "A"
 
@@ -38,7 +38,7 @@ let ``Top of figure has letters in correct order`` (letter:char) =
 
     let expected = ['A'..letter]
     let rows = actual |> split
-    let firstNonSpaceLetters =
+    let first_non_space_letters =
         rows 
         |> Seq.take expected.Length
         |> Seq.map (trim >> Seq.head)
@@ -70,7 +70,7 @@ let ``Diamond has square shape`` (letter:char) =
 
     let rows = actual |> split
     let expected = rows.Length
-    let correctWidth (x:string) = x.Length = expected
+    let correct_width (x:string) = x.Length = expected
 
     rows |> Array.iter (fun x -> correctWidth x |> should equal true)
 
@@ -83,9 +83,9 @@ let ``All rows except top and bottom have two identical letters`` (letter:char) 
         |> split 
         |> Array.filter (fun x -> not (x.Contains("A")))
 
-    let twoIdenticalLetters (row:string) = 
-        let twoCharacters = row.Replace(" ", "").Length = 2
-        let identicalCharacters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
+    let two_identical_letters (row:string) = 
+        let two_characters = row.Replace(" ", "").Length = 2
+        let identical_characters = row.Replace(" ", "") |> Seq.distinct |> Seq.length = 1
         twoCharacters && identicalCharacters
 
     rows |> Array.iter (fun x -> twoIdenticalLetters x |> should equal true)
@@ -96,14 +96,14 @@ let ``Bottom left corner spaces are triangle`` (letter:char) =
 
     let rows = actual |> split
     
-    let cornerSpaces = 
+    let corner_spaces = 
         rows 
         |> Array.rev
         |> Seq.skipWhile (fun x -> not (x.Contains(string letter)))
         |> Seq.map leadingSpaces
         |> Seq.toList
 
-    let spaceCounts = 
+    let space_counts = 
         cornerSpaces 
         |> List.map (fun x -> x.Length)
 

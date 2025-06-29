@@ -1,4 +1,4 @@
-let newGame() = ???
+let new_game() = ???
 
 let roll pins rolls = ???
 

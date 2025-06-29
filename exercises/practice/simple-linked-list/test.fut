@@ -62,20 +62,20 @@ let ``Reverse length 100`` () =
 
 let ``Roundtrip length 1`` () =
     let values = [1..1]
-    let listValues = fromList values
+    let list_values = fromList values
     listValues |> toList |> should equal values
 
 let ``Roundtrip length 2`` () =
     let values = [1..2]
-    let listValues = fromList values
+    let list_values = fromList values
     listValues |> toList |> should equal values
 
 let ``Roundtrip length 10`` () =
     let values = [1..10]
-    let listValues = fromList values
+    let list_values = fromList values
     listValues |> toList |> should equal values
 
 let ``Roundtrip length 100`` () =
     let values = [1..100]
-    let listValues = fromList values
+    let list_values = fromList values
     listValues |> toList |> should equal values

@@ -1,1 +1,1 @@
-let isArmstrongNumber (number: i32): bool = ???
+let is_armstrong_number (number: i32): bool = ???

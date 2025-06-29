@@ -1,7 +1,7 @@
 import "grep"
 
-let iliadFileName = "iliad.txt"
-let iliadContents = 
+let iliad_file_name = "iliad.txt"
+let iliad_contents = 
     """Achilles sing, O Goddess! Peleus' son;
 His wrath pernicious, who ten thousand woes
 Caused to Achaia's host, sent many a soul
@@ -12,8 +12,8 @@ When fierce dispute had separated once
 The noble Chief Achilles from the son
 Of Atreus, Agamemnon, King of men."""
 
-let midsummerNightFileName = "midsummer-night.txt"
-let midsummerNightContents = 
+let midsummer_night_file_name = "midsummer-night.txt"
+let midsummer_night_contents = 
     """I do entreat your grace to pardon me.
 I know not by what power I am made bold,
 Nor how it may concern my modesty,
@@ -22,8 +22,8 @@ But I beseech your grace that I may know
 The worst that may befall me in this case,
 If I refuse to wed Demetrius."""
 
-let paradiseLostFileName = "paradise-lost.txt"
-let paradiseLostContents = 
+let paradise_lost_file_name = "paradise-lost.txt"
+let paradise_lost_contents = 
     """Of Mans First Disobedience, and the Fruit
 Of that Forbidden Tree, whose mortal tast
 Brought Death into the World, and all our woe,
@@ -33,7 +33,7 @@ Sing Heav'nly Muse, that on the secret top
 Of Oreb, or of Sinai, didst inspire
 That Shepherd, who first taught the chosen Seed"""
 
-let createFiles() =
+let create_files() =
     File.WriteAllText(iliadFileName, iliadContents)
     File.WriteAllText(midsummerNightFileName, midsummerNightContents)
     File.WriteAllText(paradiseLostFileName, paradiseLostContents)

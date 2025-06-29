@@ -1,1 +1,1 @@
-let findAnagrams sources target = ???
+let find_anagrams sources target = ???

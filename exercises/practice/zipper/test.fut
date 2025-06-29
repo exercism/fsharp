@@ -1,6 +1,6 @@
 import "zipper"
 
-let subTree value left right = Some (tree value left right)
+let sub_tree value left right = Some (tree value left right)
 let leaf value = subTree value None None
 
 let ``Data is retained`` () =

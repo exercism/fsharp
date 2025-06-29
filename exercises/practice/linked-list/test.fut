@@ -1,7 +1,7 @@
 import "linked_list"
 
 let ``Push and pop are first in last out order`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
 
@@ -12,7 +12,7 @@ let ``Push and pop are first in last out order`` () =
     val2 |> should equal 10
 
 let ``Push and shift are first in first out order`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
 
@@ -23,7 +23,7 @@ let ``Push and shift are first in first out order`` () =
     val2 |> should equal 20
 
 let ``Unshift and shift are last in first out order`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
 
@@ -34,7 +34,7 @@ let ``Unshift and shift are last in first out order`` () =
     val2 |> should equal 10
 
 let ``Unshift and pop are last in last out order`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
 
@@ -45,7 +45,7 @@ let ``Unshift and pop are last in last out order`` () =
     val2 |> should equal 20
 
 let ``Push and pop can handle multiple values`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
     linkedList |> push 30
@@ -59,7 +59,7 @@ let ``Push and pop can handle multiple values`` () =
     val3 |> should equal 10
 
 let ``Unshift and shift can handle multiple values`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> unshift 10
     linkedList |> unshift 20
     linkedList |> unshift 30
@@ -73,7 +73,7 @@ let ``Unshift and shift can handle multiple values`` () =
     val3 |> should equal 10
 
 let ``All methods of manipulating the linkedList can be used together`` () =
-    let linkedList = mkLinkedList ()
+    let linked_list = mkLinkedList ()
     linkedList |> push 10
     linkedList |> push 20
 

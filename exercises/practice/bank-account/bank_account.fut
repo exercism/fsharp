@@ -1,9 +1,9 @@
-let mkBankAccount() = ???
+let mk_bank_account() = ???
 
-let openAccount account = ???
+let open_account account = ???
 
-let closeAccount account = ???
+let close_account account = ???
 
-let getBalance account = ???
+let get_balance account = ???
 
-let updateBalance change account = ???
+let update_balance change account = ???

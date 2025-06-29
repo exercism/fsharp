@@ -7,9 +7,9 @@ let ``Returns empty balance after opening`` () =
 
 let ``Check basic balance`` () =
     let account = mkBankAccount() |> openAccount
-    let openingBalance = account |> getBalance 
+    let opening_balance = account |> getBalance 
 
-    let updatedBalance = 
+    let updated_balance = 
         account
         |> updateBalance 10.0
         |> getBalance
@@ -19,14 +19,14 @@ let ``Check basic balance`` () =
 
 let ``Balance can increment or decrement`` () =    
     let account = mkBankAccount() |> openAccount
-    let openingBalance = account |> getBalance 
+    let opening_balance = account |> getBalance 
 
-    let addedBalance = 
+    let added_balance = 
         account 
         |> updateBalance 10.0
         |> getBalance
 
-    let subtractedBalance = 
+    let subtracted_balance = 
         account 
         |> updateBalance -15.0
         |> getBalance
@@ -49,7 +49,7 @@ let ``Account can be updated from multiple threads`` () =
         mkBankAccount()
         |> openAccount
 
-    let updateAccountAsync =        
+    let update_account_async =        
         async {                             
             account 
             |> updateBalance 1.0

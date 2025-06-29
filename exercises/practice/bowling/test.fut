@@ -1,6 +1,6 @@
 import "bowling"
 
-let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls
+let roll_many rolls game = List.fold (fun game pins -> roll pins game) game rolls
 
 let ``Should be able to score a game with all zeros`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -79,31 +79,31 @@ let ``All strikes is a perfect game`` () =
 
 let ``Rolls cannot score negative points`` () =
     let rolls = []
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll -1 startingRolls
     score game |> should equal None
 
 let ``A roll cannot score more than 10 points`` () =
     let rolls = []
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 11 startingRolls
     score game |> should equal None
 
 let ``Two rolls in a frame cannot score more than 10 points`` () =
     let rolls = [5]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 6 startingRolls
     score game |> should equal None
 
 let ``Bonus roll after a strike in the last frame cannot score more than 10 points`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 11 startingRolls
     score game |> should equal None
 
 let ``Two bonus rolls after a strike in the last frame cannot score more than 10 points`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 6 startingRolls
     score game |> should equal None
 
@@ -114,13 +114,13 @@ let ``Two bonus rolls after a strike in the last frame can score more than 10 po
 
 let ``The second bonus rolls after a strike in the last frame cannot be a strike if the first one is not a strike`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 10 startingRolls
     score game |> should equal None
 
 let ``Second bonus roll after a strike in the last frame cannot score more than 10 points`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 11 startingRolls
     score game |> should equal None
 
@@ -136,7 +136,7 @@ let ``An incomplete game cannot be scored`` () =
 
 let ``Cannot roll if game already has ten frames`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 0 startingRolls
     score game |> should equal None
 
@@ -157,13 +157,13 @@ let ``Bonus roll for a spare in the last frame must be rolled before score can b
 
 let ``Cannot roll after bonus roll for spare`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 2]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 2 startingRolls
     score game |> should equal None
 
 let ``Cannot roll after bonus rolls for strike`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 3, 2]
-    let startingRolls = rollMany rolls (newGame())
+    let starting_rolls = rollMany rolls (newGame())
     let game = roll 2 startingRolls
     score game |> should equal None
 

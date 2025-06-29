@@ -1,4 +1,4 @@
-let mkLinkedList () = ???
+let mk_linked_list () = ???
 
 let pop linkedList = ???
 

@@ -1,1 +1,1 @@
-let isIsogram (str: []u8): bool = ???
+let is_isogram (str: []u8): bool = ???

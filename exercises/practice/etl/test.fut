@@ -1,12 +1,12 @@
 import "etl"
 
 let ``Single letter`` () =
-    let lettersByScore = [(1, ['A'])] |> Map.ofList
+    let letters_by_score = [(1, ['A'])] |> Map.ofList
     let expected = [('a', 1)] |> Map.ofList
     transform lettersByScore |> should equal expected
 
 let ``Single score with multiple letters`` () =
-    let lettersByScore = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
+    let letters_by_score = [(1, ['A'; 'E'; 'I'; 'O'; 'U'])] |> Map.ofList
     let expected = 
         [ ('a', 1);
           ('e', 1);
@@ -17,7 +17,7 @@ let ``Single score with multiple letters`` () =
     transform lettersByScore |> should equal expected
 
 let ``Multiple scores with multiple letters`` () =
-    let lettersByScore = 
+    let letters_by_score = 
         [ (1, ['A'; 'E']);
           (2, ['D'; 'G']) ]
         |> Map.ofList
@@ -30,7 +30,7 @@ let ``Multiple scores with multiple letters`` () =
     transform lettersByScore |> should equal expected
 
 let ``Multiple scores with differing numbers of letters`` () =
-    let lettersByScore = 
+    let letters_by_score = 
         [ (1, ['A'; 'E'; 'I'; 'O'; 'U'; 'L'; 'N'; 'R'; 'S'; 'T']);
           (2, ['D'; 'G']);
           (3, ['B'; 'C'; 'M'; 'P']);

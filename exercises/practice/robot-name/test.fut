@@ -15,7 +15,7 @@ let ``2 Different robots have different names`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>] 
 let ``2500 Different robots have different names``() =
-    let robotCount = 2500
+    let robot_count = 2500
     seq { 1 .. robotCount }
     |> Seq.map (fun _ -> mkRobot())
     |> Seq.map (fun robot -> name robot)
@@ -25,6 +25,6 @@ let ``2500 Different robots have different names``() =
     
 let ``Can reset the name`` () =  
     let robot = mkRobot()
-    let originalName = name robot
-    let resetRobot = reset robot
+    let original_name = name robot
+    let reset_robot = reset robot
     originalName |> should not' (equal (name resetRobot))
