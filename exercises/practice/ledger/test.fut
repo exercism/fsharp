@@ -1,4 +1,5 @@
 import "ledger"
+
 let ``Empty ledger`` () =
     let currency = "USD"
     let locale = "en-US"

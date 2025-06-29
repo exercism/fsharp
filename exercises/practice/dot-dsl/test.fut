@@ -1,4 +1,5 @@
 import "dot_dsl"
+
 let ``Empty graph`` () =
     let g = graph []
 

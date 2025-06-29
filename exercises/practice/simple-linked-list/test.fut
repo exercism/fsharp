@@ -1,4 +1,5 @@
 import "simple_linked_list"
+
 let ``Empty list`` () =
     let list = nil
     isNil list |> should equal true

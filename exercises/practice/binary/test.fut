@@ -1,4 +1,5 @@
 import "binary"
+
 let ``Binary_0_is_decimal_0`` () =
     toDecimal "0" |> should equal 0
 

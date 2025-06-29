@@ -1,4 +1,5 @@
 import "accumulate"
+
 let reverse (str:string) = new string(str.ToCharArray() |> Array.rev)
 
 let ``Empty accumulation produces empty accumulation`` () =

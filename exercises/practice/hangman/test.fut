@@ -1,4 +1,5 @@
 import "hangman"
+
 let ``Initially 9 failures are allowed`` () =
     let game = createGame "foo"
     let states = statesObservable game

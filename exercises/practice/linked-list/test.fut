@@ -1,4 +1,5 @@
 import "linked_list"
+
 let ``Push and pop are first in last out order`` () =
     let linkedList = mkLinkedList ()
     linkedList |> push 10

@@ -1,4 +1,5 @@
 import "bank_account"
+
 let ``Returns empty balance after opening`` () =
     let account = mkBankAccount() |> openAccount
 

@@ -110,3 +110,11 @@ $1.$2
 \(Some (.+?)\)
 
 $1
+
+# Newline after import
+
+import (.+)\nlet
+
+import $1
+
+let
