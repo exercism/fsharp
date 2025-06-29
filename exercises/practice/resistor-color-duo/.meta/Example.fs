@@ -1,5 +1,3 @@
-module ResistorColorDuo
-
 let private colors =
     [ "black"
       "brown"

@@ -1,5 +1,3 @@
-module ComplexNumbers
-
 let create real imaginary = failwith "You need to implement this function."
 
 let mul z1 z2 = failwith "You need to implement this function."

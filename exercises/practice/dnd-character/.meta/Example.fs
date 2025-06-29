@@ -1,5 +1,3 @@
-module DndCharacter
-
 open System
 
 let modifier score =

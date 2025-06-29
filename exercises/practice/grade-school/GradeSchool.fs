@@ -1,5 +1,3 @@
-module GradeSchool
-
 type School = Map<int, string list>
 
 let empty: School = failwith "You need to implement this function."

@@ -1,5 +1,3 @@
-module PigLatin
-
 open System.Text.RegularExpressions
 
 let vowelPattern = @"(?<begin>^|\s+)(?<vowel>a|e|i|o|u|yt|xr)(?<rest>\w+)"

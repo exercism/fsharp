@@ -1,5 +1,3 @@
-module Raindrops
-
 open System
 open System.Globalization
 

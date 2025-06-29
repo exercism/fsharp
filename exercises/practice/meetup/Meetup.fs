@@ -1,5 +1,3 @@
-module Meetup
-
 open System
 
 type Week = First | Second | Third | Fourth | Last | Teenth

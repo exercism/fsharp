@@ -1,5 +1,3 @@
-module ComplexNumbers
-
 open System
 
 type ComplexNumber = { real: float; imaginary: float }

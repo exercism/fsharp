@@ -1,5 +1,3 @@
-module Connect
-
 type Color = Black | White
 type Coordinate = int * int
 

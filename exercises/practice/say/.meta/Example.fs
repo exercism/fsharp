@@ -1,5 +1,3 @@
-module Say
-
 let quotRem (x: int64) (y: int64) =
     let div = x / y
     let rem = x % y

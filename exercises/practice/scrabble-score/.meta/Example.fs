@@ -1,5 +1,3 @@
-module ScrabbleScore
-
 open System
 
 let letterScores = 

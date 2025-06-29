@@ -1,5 +1,3 @@
-module AtbashCipher
-
 open System
 
 let rec mapMaybe f list = 

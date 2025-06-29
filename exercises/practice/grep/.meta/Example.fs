@@ -1,5 +1,3 @@
-module Grep
-
 open System
 open System.IO
 open System.Text.RegularExpressions

@@ -1,5 +1,3 @@
-module LargestSeriesProduct
-
 open System
 
 let digits (str: string) = 

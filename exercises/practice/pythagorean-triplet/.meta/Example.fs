@@ -1,5 +1,3 @@
-module PythagoreanTriplet
-
 open System
 
 let tripletsWithSum sum = 

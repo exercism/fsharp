@@ -1,5 +1,3 @@
-module CustomSet
-
 type Set<'T> = { items: 'T list }
 
 let empty = { items = [] }

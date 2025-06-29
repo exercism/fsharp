@@ -1,5 +1,3 @@
-module MatchingBrackets
-
 open System
 
 let isPaired (input: string) =

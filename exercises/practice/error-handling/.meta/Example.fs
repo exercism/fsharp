@@ -1,5 +1,3 @@
-module ErrorHandling
-
 open System
 
 type Result<'TSuccess, 'TError> =

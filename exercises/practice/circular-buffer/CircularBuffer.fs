@@ -1,5 +1,3 @@
-module CircularBuffer
-
 let mkCircularBuffer size = failwith "You need to implement this function."
 
 let clear buffer = failwith "You need to implement this function."

@@ -1,4 +1,3 @@
-module SpiralMatrix
  
 let array2DToList array = 
   [ for x in Array2D.base1 array .. Array2D.length1 array - 1 ->

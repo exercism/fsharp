@@ -1,5 +1,3 @@
-module SecretHandshake
-
 let commandsMapping = 
     [(1 <<< 0, (fun acc -> acc @ ["wink"]));
      (1 <<< 1, (fun acc -> acc @ ["double blink"]));

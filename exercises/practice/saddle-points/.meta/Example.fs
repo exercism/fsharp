@@ -1,5 +1,3 @@
-module SaddlePoints
-
 let saddlePoints (matrix: int list list) = 
     match matrix with
     | []   -> []

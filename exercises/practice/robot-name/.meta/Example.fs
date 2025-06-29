@@ -1,5 +1,3 @@
-module RobotName
-
 let random = System.Random()
 
 type Robot = { name: string }

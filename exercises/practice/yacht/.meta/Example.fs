@@ -1,5 +1,3 @@
-module Yacht
-
 type Category = 
     | Ones
     | Twos

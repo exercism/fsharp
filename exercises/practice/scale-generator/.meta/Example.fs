@@ -1,5 +1,3 @@
-module ScaleGenerator
-
 open System
 
 let chromaticScale = ["C"; "C#"; "D"; "D#"; "E"; "F"; "F#"; "G"; "G#"; "A"; "A#"; "B"]

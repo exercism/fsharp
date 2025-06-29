@@ -1,5 +1,3 @@
-module Zipper
-
 type BinTree<'a> = { btValue: 'a; btLeft: BinTree<'a> option; btRight: BinTree<'a> option }
 
 type Crumb<'a> = 

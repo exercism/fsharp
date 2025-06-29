@@ -1,5 +1,3 @@
-module PascalsTriangle
-
 let rows numberOfRows : int list list =
     match numberOfRows with 
     | r when r < 0 -> []

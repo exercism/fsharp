@@ -1,5 +1,3 @@
-module IsbnVerifier
-
 open System.Text.RegularExpressions
 
 let private digitToInt digit = if digit = 'X' then 10 else int digit - int '0'

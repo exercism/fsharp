@@ -1,5 +1,3 @@
-module Diamond
-
 let make letter =     
         
     let makeLine letterCount (row, letter) = 

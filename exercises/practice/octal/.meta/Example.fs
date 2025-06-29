@@ -1,5 +1,3 @@
-module Octal
-
 let isValid char = char >= '0' && char <= '7'
 
 let charToDecimal char = (int)char - (int)'0'

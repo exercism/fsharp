@@ -1,5 +1,3 @@
-module GoCounting
-
 type Owner = None | Black | White
 type Coord = int * int
 type Board = Owner [,]

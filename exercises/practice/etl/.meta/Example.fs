@@ -1,5 +1,3 @@
-module Etl
-
 open System
 
 let normalizeLetter letter = Char.ToLowerInvariant(letter)

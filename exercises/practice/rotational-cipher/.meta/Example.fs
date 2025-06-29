@@ -1,5 +1,3 @@
-module RotationalCipher
-
 open System
 
 let private alphabet = ['a' .. 'z']

@@ -1,5 +1,3 @@
-module PrimeFactors
-
 open System
 
 let factors number =

@@ -1,5 +1,3 @@
-module Isogram
-
 open System
 
 let normalize str = str |> Seq.filter Char.IsLetter |> Seq.map Char.ToLower |> Seq.toList

@@ -1,5 +1,3 @@
-module RnaTranscription
-
 let private dnaToRna = 
     function
     | 'G' -> 'C'

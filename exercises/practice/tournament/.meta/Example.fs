@@ -1,5 +1,3 @@
-module Tournament
-
 open System.Text.RegularExpressions
 
 type Team = string

@@ -1,5 +1,3 @@
-module BinarySearchTree
-
 let left node  = failwith "You need to implement this function."
 
 let right node = failwith "You need to implement this function."

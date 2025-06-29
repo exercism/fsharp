@@ -1,5 +1,3 @@
-module LinkedList
-
 let mkLinkedList () = failwith "You need to implement this function."
 
 let pop linkedList = failwith "You need to implement this function."

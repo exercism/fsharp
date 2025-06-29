@@ -1,5 +1,3 @@
-module ListOps
-
 let rec foldl folder state list =
     match list with
     | [] -> state

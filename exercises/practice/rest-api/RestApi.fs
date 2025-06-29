@@ -1,5 +1,3 @@
-module RestApi
-
 type RestApi(database : string) =
 
     member this.Get(url: string) =

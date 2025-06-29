@@ -1,5 +1,3 @@
-module WordCount
-
 open System.Text.RegularExpressions
 
 let countWords (phrase: string) = 

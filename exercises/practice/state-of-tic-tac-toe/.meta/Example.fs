@@ -1,5 +1,3 @@
-module StateOfTicTacToe
-
 type EndGameState =
     | Win
     | Draw

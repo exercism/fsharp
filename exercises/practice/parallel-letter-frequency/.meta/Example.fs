@@ -1,5 +1,3 @@
-module ParallelLetterFrequency
-
 open System
 
 let merge x y = 

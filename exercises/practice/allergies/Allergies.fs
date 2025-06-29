@@ -1,5 +1,3 @@
-module Allergies
-
 open System
 
 // TODO: define the Allergen type

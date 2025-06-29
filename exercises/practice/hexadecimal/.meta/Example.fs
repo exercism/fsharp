@@ -1,5 +1,3 @@
-module Hexadecimal
-
 open System
 
 let private isValid char = "0123456789ABCDEF".Contains(string char)

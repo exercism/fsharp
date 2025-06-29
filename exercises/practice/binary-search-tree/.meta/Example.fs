@@ -1,5 +1,3 @@
-module BinarySearchTree
-
 type Node = { left: Node option; value: int; right: Node option }
 
 let left node  = node.left

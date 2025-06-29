@@ -1,5 +1,3 @@
-module DiffieHellman
-
 open System
 open System.Numerics
 

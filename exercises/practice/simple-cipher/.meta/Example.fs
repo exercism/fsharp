@@ -1,5 +1,3 @@
-module SimpleCipher
-
 open System
 
 let private letters = ['a'..'z']

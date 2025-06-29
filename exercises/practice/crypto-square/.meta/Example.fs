@@ -1,5 +1,3 @@
-module CryptoSquare
-
 open System
 
 let private charsToString chars = String(Array.ofSeq chars)

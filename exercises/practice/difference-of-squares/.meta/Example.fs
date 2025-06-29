@@ -1,5 +1,3 @@
-module DifferenceOfSquares
-
 let square x = x * x
 
 let squareOfSum (number: int) = [1..number] |> List.sum |> square

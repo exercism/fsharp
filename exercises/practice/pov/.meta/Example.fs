@@ -1,5 +1,3 @@
-module Pov
-
 type Graph<'a> = { value: 'a; children: Graph<'a> list }
 type Crumb<'a> = Crumb of 'a * Graph<'a> list * Graph<'a> list
 type Zipper<'a> = Graph<'a> * Crumb<'a> list

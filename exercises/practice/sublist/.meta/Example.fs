@@ -1,5 +1,3 @@
-module Sublist
-
 type SublistType = Equal | Sublist | Superlist | Unequal
 
 let rec isSublist xs ys lx ly = 

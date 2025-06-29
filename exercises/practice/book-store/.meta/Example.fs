@@ -1,5 +1,3 @@
-module BookStore
-
 let private costPerGroup groupSize =
     let discountPercentage =
         match groupSize with

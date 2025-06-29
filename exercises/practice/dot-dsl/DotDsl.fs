@@ -1,5 +1,3 @@
-module DotDsl
-
 let graph children = failwith "You need to implement this function."
 
 let attr key value = failwith "You need to implement this function."

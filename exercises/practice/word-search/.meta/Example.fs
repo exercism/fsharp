@@ -1,5 +1,3 @@
-module WordSearch
-
 let private directions =
     [( 1,  0);
      ( 0,  1);

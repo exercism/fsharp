@@ -1,5 +1,3 @@
-module Markdown
-
 let rec parse (markdown: string) =
    let mutable html = ""
    let mutable remainder = markdown

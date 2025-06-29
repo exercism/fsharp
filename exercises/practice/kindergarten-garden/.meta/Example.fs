@@ -1,5 +1,3 @@
-module KindergartenGarden
-
 type Plant = Violets | Radishes | Clover | Grass
 
 let plantsPerChildPerRow = 2

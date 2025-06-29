@@ -1,5 +1,3 @@
-module Grains
-
 open System.Numerics
 
 let square (n:int) = 

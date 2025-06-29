@@ -1,5 +1,3 @@
-module SpaceAge
-
 open System
 
 type Planet = 

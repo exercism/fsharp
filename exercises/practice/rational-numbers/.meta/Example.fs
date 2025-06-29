@@ -1,5 +1,3 @@
-module RationalNumbers
-
 open System
 
 type RationalNumber = { numerator: int; denominator: int }

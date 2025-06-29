@@ -1,5 +1,3 @@
-module React
-
 open System
 
 type Cell(ord: int, initialValue: int, changed: (Cell -> int -> unit)) = 

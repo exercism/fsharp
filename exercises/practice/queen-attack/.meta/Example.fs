@@ -1,5 +1,3 @@
-module QueenAttack
-
 open System
 
 let abs (x:int) = Math.Abs x

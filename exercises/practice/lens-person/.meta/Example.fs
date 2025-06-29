@@ -1,5 +1,3 @@
-module LensPerson
-
 open Aether
 open Aether.Operators
 open System

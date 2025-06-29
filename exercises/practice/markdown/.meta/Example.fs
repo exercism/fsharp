@@ -1,5 +1,3 @@
-module Markdown
-
 open System.Text.RegularExpressions
 
 let openingTag tag = sprintf "<%s>" tag

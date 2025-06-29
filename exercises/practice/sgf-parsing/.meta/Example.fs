@@ -1,5 +1,3 @@
-module SgfParsing
-
 open FParsec
 
 type Data = Map<string, string list>

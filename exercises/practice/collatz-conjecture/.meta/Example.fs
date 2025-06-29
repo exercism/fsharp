@@ -1,5 +1,3 @@
-module CollatzConjecture
-
 let steps (number: int): int option =  
     let rec helper count current =
         match current with 

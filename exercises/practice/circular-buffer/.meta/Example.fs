@@ -1,5 +1,3 @@
-module CircularBuffer
-
 type CircularBuffer<'a> = { items: 'a list; size: int }
 
 let mkCircularBuffer size = { items = []; size = size }

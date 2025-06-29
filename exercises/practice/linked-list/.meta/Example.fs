@@ -1,5 +1,3 @@
-module LinkedList
-
 type Element<'a> = { value: 'a; mutable prev: Element<'a> option; mutable next: Element<'a> option }
 type LinkedList<'a> = { mutable first: Element<'a> option; mutable last: Element<'a> option }
 

@@ -1,6 +1,4 @@
-﻿module Program
-
-open System
+﻿open System
 
 open BenchmarkDotNet.Attributes
 open BenchmarkDotNet.Running
@@ -21,8 +19,7 @@ type Benchmarks() =
         rna <- Seq.init this.NumberOfCodons (fun _ -> codons[Random.Shared.Next(codons.Length)]) |> String.concat ""
 
     [<Benchmark>] member _.Recursion () = recursionApproach rna
-    [<Benchmark>] member _.SeqModule () = seqModuleApproach rna
-    [<Benchmark>] member _.Span () = spanApproach rna    
+    [<Benchmark>] member _.Seq    [<Benchmark>] member _.Span () = spanApproach rna    
     [<Benchmark>] member _.Unfold () = unfoldApproach rna
 
 let summary = BenchmarkRunner.Run<Benchmarks>()

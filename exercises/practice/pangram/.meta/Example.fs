@@ -1,5 +1,3 @@
-module Pangram
-
 let isPangram (input: string) = 
     let normalized = input.ToLowerInvariant()
     

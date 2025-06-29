@@ -1,5 +1,3 @@
-module ProteinTranslation
-
 open System
 
 let codonToProtein = 

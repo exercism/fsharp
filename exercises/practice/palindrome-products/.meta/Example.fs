@@ -1,5 +1,3 @@
-module PalindromeProducts
-
 let isPalindrome n = 
     let mutable current = n / 10
     let mutable result = n % 10

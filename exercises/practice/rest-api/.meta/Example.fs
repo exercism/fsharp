@@ -1,5 +1,3 @@
-module RestApi
-
 open Newtonsoft.Json
 open System.Collections.Generic
 open Newtonsoft.Json.Linq

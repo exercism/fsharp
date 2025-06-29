@@ -1,5 +1,3 @@
-module Anagram
-
 open System
 
 let normalize (str:string) = new string(str.ToLowerInvariant().ToCharArray() |> Array.sort)    

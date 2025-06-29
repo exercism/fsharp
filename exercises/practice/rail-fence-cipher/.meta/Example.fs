@@ -1,5 +1,3 @@
-module RailFenceCipher
-
 open System
 
 let track rails index = 

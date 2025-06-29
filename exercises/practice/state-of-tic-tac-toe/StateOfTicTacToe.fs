@@ -1,5 +1,3 @@
-module StateOfTicTacToe
-
 // TODO: define the 'EndGameState' type
 // TODO: define the 'GameError' type
 

@@ -1,5 +1,3 @@
-module DotDsl
-
 type Attribute = string * string
 
 type Element =

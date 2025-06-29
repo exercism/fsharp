@@ -1,5 +1,3 @@
-module ZebraPuzzle
-
 type Color = Red | Green | Ivory | Yellow | Blue 
 type Nationality = Englishman | Spaniard | Ukrainian | Japanese | Norwegian
 type Pet = Dog | Snails | Fox | Horse | Zebra

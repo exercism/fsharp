@@ -1,5 +1,3 @@
-module FlowerField
-
 open System
     
 type Cell = Flower | Empty

@@ -1,5 +1,3 @@
-module Binary
-
 let isValid char = 
     match char with
     | '0' | '1' -> true

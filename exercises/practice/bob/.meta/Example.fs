@@ -1,5 +1,3 @@
-module Bob
-
 open System
 
 let response (input: string) = 

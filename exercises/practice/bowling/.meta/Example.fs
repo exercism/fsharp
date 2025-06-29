@@ -1,5 +1,3 @@
-module Bowling
-
 let map2 f opt1 opt2 = 
     match opt1, opt2 with
     | Some x, Some y -> Some (f x y)

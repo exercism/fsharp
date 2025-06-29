@@ -1,5 +1,3 @@
-module FoodChain
-
 let joinBy str = List.reduce (fun x y -> x + str + y)
 
 let subjects = 

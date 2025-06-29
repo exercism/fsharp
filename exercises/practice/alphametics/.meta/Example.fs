@@ -1,6 +1,4 @@
 // Learn more about F# at http://fsharp.org
-module Alphametics
-
 open System
 
 let private permutations n r =

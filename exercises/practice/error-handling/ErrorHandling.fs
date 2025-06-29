@@ -1,5 +1,3 @@
-module ErrorHandling
-
 let handleErrorByThrowingException() = ()
 
 let handleErrorByReturningOption input = failwith "You need to implement this function."

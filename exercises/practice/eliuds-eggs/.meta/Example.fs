@@ -1,5 +1,3 @@
-module EliudsEggs
-
 let eggCount n =
     let rec loop m count =
         match m with

@@ -1,5 +1,3 @@
-module Wordy
-
 open System.Text.RegularExpressions
 
 let private equationRegex = Regex(@"^What is (?<left>-?\d+)(?<operations> (?<operand>plus|minus|multiplied by|divided by) (?<right>-?\d+))*\?$", RegexOptions.Compiled)

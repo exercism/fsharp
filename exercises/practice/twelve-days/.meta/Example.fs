@@ -1,5 +1,3 @@
-module TwelveDays
-
 let numberToStr = 
     function
     | 0  -> "a"

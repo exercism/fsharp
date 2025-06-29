@@ -1,5 +1,3 @@
-module NthPrime
-
 open System
 
 let isPrime (n: int) = 

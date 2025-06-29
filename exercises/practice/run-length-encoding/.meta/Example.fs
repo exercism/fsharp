@@ -1,5 +1,3 @@
-module RunLengthEncoding
-
 open System
 
 let digitToInt c = int c - int '0'

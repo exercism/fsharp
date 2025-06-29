@@ -1,5 +1,3 @@
-module TreeBuilding
-
 open TreeBuildingTypes
 
 type Tree = 

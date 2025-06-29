@@ -1,5 +1,3 @@
-module SimpleLinkedList
-
 type LinkedList<'a> = 
     | Nil 
     | Element of datum:'a * next:LinkedList<'a>

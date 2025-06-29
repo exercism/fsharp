@@ -1,5 +1,3 @@
-module Poker
-
 type Suit = 
     | Hearts 
     | Diamonds 

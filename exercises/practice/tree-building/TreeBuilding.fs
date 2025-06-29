@@ -6,8 +6,6 @@
 // benchmark tests using `dotnet run -c Release`.
 // Please refer to the instructions for more information about the benchmark tests.
 
-module TreeBuilding
-
 open TreeBuildingTypes
 
 type Tree =

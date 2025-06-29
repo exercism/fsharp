@@ -1,5 +1,3 @@
-module SimpleCipher
-
 type SimpleCipher(key: string) =
     
     member __.Key with get() = failwith "You need to implement this function."

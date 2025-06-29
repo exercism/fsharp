@@ -1,5 +1,3 @@
-module BinarySearch
-
 let rec binarySearchAux index value =
     function
     | [||] -> 

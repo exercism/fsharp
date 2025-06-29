@@ -1,5 +1,3 @@
-module Darts
-
 open System
 
 let score (x: double) (y: double): int = 

@@ -1,5 +1,3 @@
-module BankAccount
-
 open System
 
 type BankAccount() = 

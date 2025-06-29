@@ -1,5 +1,3 @@
-module BankAccount
-
 let mkBankAccount() = failwith "You need to implement this function."
 
 let openAccount account = failwith "You need to implement this function."

@@ -1,6 +1,4 @@
-﻿module Approaches
-
-open System
+﻿open System
 
 let recursionApproach (rna: string): string list =
     let rec doProteins (rna: string) (proteins: string list): string list =

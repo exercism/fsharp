@@ -1,5 +1,3 @@
-module Triangle
-
 let private isValid triangle = 
     let nonZero = List.sum triangle <> 0.0
     let equality =

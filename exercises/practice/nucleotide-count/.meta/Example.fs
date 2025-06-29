@@ -1,5 +1,3 @@
-module NucleotideCount
-
 let private validNucleotides = ['A'; 'T'; 'C'; 'G']
 
 let private isValid nucleotide = List.contains nucleotide validNucleotides

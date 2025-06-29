@@ -1,5 +1,3 @@
-module Change
-
 let minimalCoins coins map target =
     coins
     |> List.filter (fun x -> x <= target) 

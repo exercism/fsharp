@@ -1,5 +1,3 @@
-module GameOfLife
-
 let tick (input: int[,]) =
     input
     |> Array2D.mapi (fun row col cell ->

@@ -1,5 +1,3 @@
-module ResistorColor
-
 let colors =
     [ "black"
       "brown"

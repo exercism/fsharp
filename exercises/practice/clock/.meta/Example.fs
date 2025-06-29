@@ -1,5 +1,3 @@
-module Clock
-
 open System
 
 type Clock = { hours: int; minutes: int }

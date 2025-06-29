@@ -1,5 +1,3 @@
-module BottleSong
-
 let private counts =
     [| "no"
        "one"

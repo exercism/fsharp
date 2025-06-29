@@ -1,5 +1,3 @@
-module TwoFer
-
 let twoFer input =
     input 
     |> Option.defaultValue  "you"

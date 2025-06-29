@@ -1,5 +1,3 @@
-module Matrix
-
 let private parseRow (row: string) =
     row.Split(' ')
     |> Seq.map int

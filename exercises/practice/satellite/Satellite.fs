@@ -1,5 +1,3 @@
-module Satellite
-
 type Tree =
     | Empty
     | Node of value: string * left: Tree * right: Tree

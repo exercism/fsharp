@@ -1,5 +1,3 @@
-module Dominoes
-
 let rotate xs =
     let length = xs |> List.length
     let perm n = xs |> List.permute (fun index -> (index + n) % length) 

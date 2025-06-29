@@ -1,5 +1,3 @@
-module AllYourBase
-
 let toBase b n =
     let rec loop n acc =
         if n = 0 then acc else

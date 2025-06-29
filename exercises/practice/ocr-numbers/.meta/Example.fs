@@ -1,5 +1,3 @@
-module OcrNumbers
-
 let characterWidth = 3
 let characterHeight = 4
 

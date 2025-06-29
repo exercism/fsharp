@@ -1,5 +1,3 @@
-module RationalNumbers
-
 let create numerator denominator = failwith "You need to implement this function."
 
 let add r1 r2 = failwith "You need to implement this function."

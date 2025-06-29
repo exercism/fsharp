@@ -1,5 +1,3 @@
-module Forth
-
 open System
 open System.Text.RegularExpressions
 

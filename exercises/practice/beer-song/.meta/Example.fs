@@ -1,5 +1,3 @@
-module BeerSong
-
 let private verse n = 
     match n with
     | 0 -> 

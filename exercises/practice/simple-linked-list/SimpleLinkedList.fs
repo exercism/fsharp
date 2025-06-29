@@ -1,5 +1,3 @@
-module SimpleLinkedList
-
 //TODO: define LinkedList type
 
 let nil = failwith "You need to implement this function."

@@ -1,5 +1,3 @@
-module PhoneNumber
-
 open System
 
 let private deleteFillers (input: string):string = 

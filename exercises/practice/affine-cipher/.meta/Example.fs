@@ -1,4 +1,3 @@
-module AffineCipher
 let m = 26
 
 let findInverse u v =

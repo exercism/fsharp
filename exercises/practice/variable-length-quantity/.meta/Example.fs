@@ -1,5 +1,3 @@
-module VariableLengthQuantity
-
 let sevenBitsMask = 0x7fu
 let eightBitMask = 0x80u
 

@@ -1,5 +1,3 @@
-module Trinary
-
 let isValid char = 
     match char with
     | '0' | '1' | '2' -> true

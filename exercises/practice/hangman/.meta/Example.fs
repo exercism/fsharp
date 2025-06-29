@@ -1,5 +1,3 @@
-module Hangman
-
 open System
 
 let allowedFailures = 9

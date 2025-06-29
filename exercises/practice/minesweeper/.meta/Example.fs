@@ -1,5 +1,3 @@
-module Minesweeper
-
 open System
     
 type Cell = Mine | Empty

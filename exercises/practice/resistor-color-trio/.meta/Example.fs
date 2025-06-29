@@ -1,5 +1,3 @@
-module ResistorColorTrio
-
 let private allColors =
     [ "black"
       "brown"

@@ -1,5 +1,3 @@
-module CustomSet
-
 // TODO: define the Set type
 
 let empty = failwith "You need to implement this function."
