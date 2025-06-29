@@ -1,5 +1,0 @@
-{
-  "blurb": "F# is a statically-typed, functional-first language. Values are immutable by default. Most values' type can automatically be inferred by F#'s advanced type inference.",
-  "authors": ["ErikSchierboom"],
-  "contributors": []
-}

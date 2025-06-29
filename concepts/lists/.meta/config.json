@@ -1,5 +1,0 @@
-{
-  "blurb": "Lists in F# are immutable collections of primitive values or instances of structs or classes.",
-  "authors": ["ErikSchierboom"],
-  "contributors": []
-}

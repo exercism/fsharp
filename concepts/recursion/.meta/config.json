@@ -1,5 +1,0 @@
-{
-  "blurb": "The ability for something to be defined in terms of itself is called recursion. In F#, recursion is most commonly found in recursive functions, which are functions that call themselves. F# also supports recursive types.",
-  "authors": ["ErikSchierboom"],
-  "contributors": []
-}

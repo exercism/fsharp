@@ -1,5 +1,0 @@
-{
-  "blurb": "Functions taking functions as arguments and functions returning functions are collectively known as higher-order functions.",
-  "authors": ["ErikSchierboom"],
-  "contributors": []
-}

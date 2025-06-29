@@ -1,5 +1,0 @@
-{
-  "blurb": "The most common way to conditionally execute code in F# is via if/then/else expressions.",
-  "authors": ["ErikSchierboom"],
-  "contributors": []
-}

@@ -1,5 +1,0 @@
-{
-  "blurb": "Strings are immutable objects representing text as a sequence of Unicode characters.",
-  "authors": ["ErikSchierboom"],
-  "contributors": []
-}
