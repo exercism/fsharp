@@ -1,1 +1,1 @@
-let sum (numbers: i32 list) (upperBound: i32): i32 = ???
+let sum (numbers: []i32) (upperBound: i32): i32 = ???

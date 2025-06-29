@@ -85,7 +85,7 @@ let ``Dup - errors if there is nothing on the stack`` () =
     evaluate ["dup"] |> should equal expected
 
 let ``Drop - removes the top value on the stack if it is the only one`` () =
-    let expected: i32 list = Some []
+    let expected: []i32 = Some []
     evaluate ["1 drop"] |> should equal expected
 
 let ``Drop - removes the top value on the stack if it is not the only one`` () =

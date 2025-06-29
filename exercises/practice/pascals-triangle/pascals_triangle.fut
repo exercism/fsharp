@@ -1,1 +1,1 @@
-let rows numberOfRows : i32 list list = ???
+let rows numberOfRows : []i32 list = ???
