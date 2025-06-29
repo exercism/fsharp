@@ -1,2 +1,2 @@
     
-let tally input = failwith "You need to implement this function."
+let tally input = ???

@@ -1,9 +1,9 @@
-let mkBankAccount() = failwith "You need to implement this function."
+let mkBankAccount() = ???
 
-let openAccount account = failwith "You need to implement this function."
+let openAccount account = ???
 
-let closeAccount account = failwith "You need to implement this function."
+let closeAccount account = ???
 
-let getBalance account = failwith "You need to implement this function."
+let getBalance account = ???
 
-let updateBalance change account = failwith "You need to implement this function."
+let updateBalance change account = ???

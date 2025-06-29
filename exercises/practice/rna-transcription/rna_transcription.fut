@@ -1,1 +1,1 @@
-let toRna (dna: []u8): []u8 = failwith "You need to implement this function."
+let toRna (dna: []u8): []u8 = ???

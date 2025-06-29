@@ -1,1 +1,1 @@
-let translate input = failwith "You need to implement this function."
+let translate input = ???

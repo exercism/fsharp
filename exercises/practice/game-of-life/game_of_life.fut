@@ -1,1 +1,1 @@
-let tick (input: int[,]) = failwith "You need to implement this function."
+let tick (input: int[,]) = ???

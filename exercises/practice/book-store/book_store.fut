@@ -1,1 +1,1 @@
-let total books = failwith "You need to implement this function."
+let total books = ???

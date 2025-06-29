@@ -1,19 +1,19 @@
-let create real imaginary = failwith "You need to implement this function."
+let create real imaginary = ???
 
-let mul z1 z2 = failwith "You need to implement this function."
+let mul z1 z2 = ???
 
-let add z1 z2 = failwith "You need to implement this function."
+let add z1 z2 = ???
 
-let sub z1 z2 = failwith "You need to implement this function."
+let sub z1 z2 = ???
 
-let div z1 z2 = failwith "You need to implement this function."
+let div z1 z2 = ???
 
-let abs z = failwith "You need to implement this function."
+let abs z = ???
 
-let conjugate z = failwith "You need to implement this function."
+let conjugate z = ???
 
-let real z = failwith "You need to implement this function."
+let real z = ???
 
-let imaginary z = failwith "You need to implement this function."
+let imaginary z = ???
 
-let exp z = failwith "You need to implement this function."
+let exp z = ???

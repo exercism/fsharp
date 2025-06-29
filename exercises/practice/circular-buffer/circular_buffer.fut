@@ -1,9 +1,9 @@
-let mkCircularBuffer size = failwith "You need to implement this function."
+let mkCircularBuffer size = ???
 
-let clear buffer = failwith "You need to implement this function."
+let clear buffer = ???
 
-let write value buffer = failwith "You need to implement this function."
+let write value buffer = ???
         
-let forceWrite value buffer = failwith "You need to implement this function."
+let forceWrite value buffer = ???
 
-let read buffer = failwith "You need to implement this function."
+let read buffer = ???

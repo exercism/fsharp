@@ -20,4 +20,4 @@ type Die =
     | Five 
     | Six
 
-let score category dice = failwith "You need to implement this function."
+let score category dice = ???

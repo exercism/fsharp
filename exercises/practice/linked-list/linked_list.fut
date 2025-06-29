@@ -1,9 +1,9 @@
-let mkLinkedList () = failwith "You need to implement this function."
+let mkLinkedList () = ???
 
-let pop linkedList = failwith "You need to implement this function."
+let pop linkedList = ???
 
-let shift linkedList = failwith "You need to implement this function."
+let shift linkedList = ???
 
-let push newValue linkedList = failwith "You need to implement this function."
+let push newValue linkedList = ???
 
-let unshift newValue linkedList = failwith "You need to implement this function."
+let unshift newValue linkedList = ???

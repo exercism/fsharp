@@ -1,13 +1,13 @@
-let graph children = failwith "You need to implement this function."
+let graph children = ???
 
-let attr key value = failwith "You need to implement this function."
+let attr key value = ???
 
-let node key attrs = failwith "You need to implement this function."
+let node key attrs = ???
 
-let edge left right attrs = failwith "You need to implement this function."
+let edge left right attrs = ???
 
-let attrs graph = failwith "You need to implement this function."
+let attrs graph = ???
 
-let nodes graph = failwith "You need to implement this function."
+let nodes graph = ???
 
-let edges graph = failwith "You need to implement this function."
+let edges graph = ???

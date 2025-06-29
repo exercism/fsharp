@@ -1,1 +1,1 @@
-let rows numberOfRows : i32 list list = failwith "You need to implement this function."
+let rows numberOfRows : i32 list list = ???

@@ -1,3 +1,3 @@
-let row index matrix = failwith "You need to implement this function."
+let row index matrix = ???
 
-let column index matrix = failwith "You need to implement this function."
+let column index matrix = ???

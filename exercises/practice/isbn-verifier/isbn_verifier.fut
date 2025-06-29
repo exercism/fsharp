@@ -1,1 +1,1 @@
-let isValid isbn = failwith "You need to implement this function."
+let isValid isbn = ???

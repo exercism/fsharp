@@ -1,1 +1,1 @@
-let make letter = failwith "You need to implement this function."
+let make letter = ???

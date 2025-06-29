@@ -1,7 +1,7 @@
-let create hours minutes = failwith "You need to implement this function."
+let create hours minutes = ???
 
-let add minutes clock = failwith "You need to implement this function."
+let add minutes clock = ???
 
-let subtract minutes clock = failwith "You need to implement this function."
+let subtract minutes clock = ???
 
-let display clock = failwith "You need to implement this function."
+let display clock = ???

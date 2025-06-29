@@ -1,1 +1,1 @@
-let clean input = failwith "You need to implement this function."
+let clean input = ???

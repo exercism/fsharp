@@ -1,1 +1,1 @@
-let twoFer (input: []u8 option): []u8 = failwith "You need to implement this function."
+let twoFer (input: []u8 option): []u8 = ???

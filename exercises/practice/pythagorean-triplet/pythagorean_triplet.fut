@@ -1,1 +1,1 @@
-let tripletsWithSum sum = failwith "You need to implement this function."
+let tripletsWithSum sum = ???
