@@ -1,1 +1,1 @@
-let distance (strand1: string) (strand2: string): i32 = failwith "You need to implement this function."
+let distance (strand1: []u8) (strand2: []u8): i32 = failwith "You need to implement this function."

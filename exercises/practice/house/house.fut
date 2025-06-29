@@ -1,1 +1,1 @@
-let recite startVerse endVerse: string list = failwith "You need to implement this function."
+let recite startVerse endVerse: [][]u8 = failwith "You need to implement this function."

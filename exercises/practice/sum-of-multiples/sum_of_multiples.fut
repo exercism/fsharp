@@ -1,1 +1,1 @@
-let sum (numbers: i32 list) (upperBound: int): i32 = failwith "You need to implement this function."
+let sum (numbers: i32 list) (upperBound: i32): i32 = failwith "You need to implement this function."

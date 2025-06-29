@@ -1,8 +1,8 @@
 import "proverb"
 
 let ``Zero pieces`` () =
-    let strings: string list = []
-    let expected: string list = []
+    let strings: [][]u8 = []
+    let expected: [][]u8 = []
     recite strings |> should equal expected
 
 let ``One piece`` () =

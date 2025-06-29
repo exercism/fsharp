@@ -1,1 +1,1 @@
-let isPangram (input: string): bool = failwith "You need to implement this function."
+let isPangram (input: []u8): bool = failwith "You need to implement this function."

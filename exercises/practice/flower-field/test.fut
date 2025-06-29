@@ -1,8 +1,8 @@
 import "flower_field"
 
 let ``No rows`` () =
-    let garden: string list = []
-    let expected: string list = []
+    let garden: [][]u8 = []
+    let expected: [][]u8 = []
     annotate garden |> should equal expected
 
 let ``No columns`` () =

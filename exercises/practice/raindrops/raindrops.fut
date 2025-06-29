@@ -1,1 +1,1 @@
-let convert (number: int): string = failwith "You need to implement this function."
+let convert (number: i32): []u8 = failwith "You need to implement this function."

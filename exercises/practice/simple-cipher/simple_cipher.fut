@@ -1,4 +1,4 @@
-type SimpleCipher(key: string) =
+type SimpleCipher(key: []u8) =
     
     member __.Key with get() = failwith "You need to implement this function."
     

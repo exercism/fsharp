@@ -1,8 +1,8 @@
 import "transpose"
 
 let ``Empty string`` () =
-    let lines: string list = []
-    let expected: string list = []
+    let lines: [][]u8 = []
+    let expected: [][]u8 = []
     transpose lines |> should equal expected
 
 let ``Two characters in a row`` () =

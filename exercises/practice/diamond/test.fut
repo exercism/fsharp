@@ -1,6 +1,6 @@
 import "diamond"
 
-let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
+let split (x: []u8) = x.Split([| '\n' |], StringSplitOptions.None)
 
 let trim (x:string) = x.Trim()
 

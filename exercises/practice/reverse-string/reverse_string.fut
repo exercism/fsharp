@@ -1,1 +1,1 @@
-let reverse (input: string): string = failwith "You need to implement this function."
+let reverse (input: []u8): []u8 = failwith "You need to implement this function."

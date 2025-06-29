@@ -1,1 +1,1 @@
-let recite (startBottles: int) (takeDown: int) = failwith "You need to implement this function."
+let recite (startBottles: i32) (takeDown: i32) = failwith "You need to implement this function."

@@ -122,7 +122,7 @@ type GrepTests() =
         let files = ["midsummer-night.txt"]
         let flags = ["-x"]
         let pattern = "may"
-        let expected: string list = []
+        let expected: [][]u8 = []
         
         createFiles() |> ignore
         grep files flags pattern |> should equal expected
@@ -156,7 +156,7 @@ type GrepTests() =
         let files = ["iliad.txt"]
         let flags = ["-n", "-l", "-x", "-i"]
         let pattern = "Gandalf"
-        let expected: string list = []
+        let expected: [][]u8 = []
         
         createFiles() |> ignore
         grep files flags pattern |> should equal expected
@@ -285,7 +285,7 @@ type GrepTests() =
         let files = ["iliad.txt", "midsummer-night.txt", "paradise-lost.txt"]
         let flags = ["-n", "-l", "-x", "-i"]
         let pattern = "Frodo"
-        let expected: string list = []
+        let expected: [][]u8 = []
         
         createFiles() |> ignore
         grep files flags pattern |> should equal expected

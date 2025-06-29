@@ -1,8 +1,8 @@
 import "minesweeper"
 
 let ``No rows`` () =
-    let minefield: string list = []
-    let expected: string list = []
+    let minefield: [][]u8 = []
+    let expected: [][]u8 = []
     annotate minefield |> should equal expected
 
 let ``No columns`` () =

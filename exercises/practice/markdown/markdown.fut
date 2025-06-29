@@ -1,4 +1,4 @@
-let rec parse (markdown: string) =
+let rec parse (markdown: []u8) =
    let mutable html = ""
    let mutable remainder = markdown
    let mutable isList = false
