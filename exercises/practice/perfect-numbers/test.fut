@@ -3,57 +3,57 @@ import "perfect_numbers"
 -- Smallest perfect number is classified correctly
 -- ==
 -- input { 6 }
--- output { Classification.Perfect }
+-- output { "Perfect" }
 
 -- Medium perfect number is classified correctly
 -- ==
 -- input { 28 }
--- output { Classification.Perfect }
+-- output { "Perfect" }
 
 -- Large perfect number is classified correctly
 -- ==
 -- input { 33550336 }
--- output { Classification.Perfect }
+-- output { "Perfect" }
 
 -- Smallest abundant number is classified correctly
 -- ==
 -- input { 12 }
--- output { Classification.Abundant }
+-- output { "Abundant" }
 
 -- Medium abundant number is classified correctly
 -- ==
 -- input { 30 }
--- output { Classification.Abundant }
+-- output { "Abundant" }
 
 -- Large abundant number is classified correctly
 -- ==
 -- input { 33550335 }
--- output { Classification.Abundant }
+-- output { "Abundant" }
 
 -- Smallest prime deficient number is classified correctly
 -- ==
 -- input { 2 }
--- output { Classification.Deficient }
+-- output { "Deficient" }
 
 -- Smallest non-prime deficient number is classified correctly
 -- ==
 -- input { 4 }
--- output { Classification.Deficient }
+-- output { "Deficient" }
 
 -- Medium deficient number is classified correctly
 -- ==
 -- input { 32 }
--- output { Classification.Deficient }
+-- output { "Deficient" }
 
 -- Large deficient number is classified correctly
 -- ==
 -- input { 33550337 }
--- output { Classification.Deficient }
+-- output { "Deficient" }
 
 -- Edge case (no factors other than itself) is classified correctly
 -- ==
 -- input { 1 }
--- output { Classification.Deficient }
+-- output { "Deficient" }
 
 -- Zero is rejected (as it is not a positive integer)
 -- ==
