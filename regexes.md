@@ -118,3 +118,9 @@ import (.+)\nlet
 import $1
 
 let
+
+# Fixup underscores in test name
+
+``(\w+)\_
+
+``$1

@@ -1,47 +1,47 @@
 import "binary"
 
-let ``Binary_0_is_decimal_0`` () =
+let ``Binary 0 is decimal 0`` () =
     toDecimal "0" |> should equal 0
 
-let ``Binary_1_is_decimal_1`` () =
+let ``Binary 1 is decimal 1`` () =
     toDecimal "1" |> should equal 1
 
-let ``Binary_10_is_decimal_2`` () =
+let ``Binary 10 is decimal 2`` () =
     toDecimal "10" |> should equal 2
 
-let ``Binary_11_is_decimal_3`` () =
+let ``Binary 11 is decimal 3`` () =
     toDecimal "11" |> should equal 3
 
-let ``Binary_100_is_decimal_4`` () =
+let ``Binary 100 is decimal 4`` () =
     toDecimal "100" |> should equal 4
 
-let ``Binary_1001_is_decimal_9`` () =
+let ``Binary 1001 is decimal 9`` () =
     toDecimal "1001" |> should equal 9
 
-let ``Binary_11010_is_decimal_26`` () =
+let ``Binary 11010 is decimal 26`` () =
     toDecimal "11010" |> should equal 26
 
-let ``Binary_10001101000_is_decimal_1128`` () =
+let ``Binary 10001101000 is decimal 1128`` () =
     toDecimal "10001101000" |> should equal 1128
 
-let ``Binary_ignores_leading_zeros`` () =
+let ``Binary ignores leading zeros`` () =
     toDecimal "000011111" |> should equal 31
 
-let ``2_is_not_a_valid_binary_digit`` () =
+let ``2 is not a valid binary digit`` () =
     toDecimal "2" |> should equal 0
 
-let ``A_number_containing_a_non_binary_digit_is_invalid`` () =
+let ``A number containing a non binary digit is invalid`` () =
     toDecimal "01201" |> should equal 0
 
-let ``A_number_with_trailing_non_binary_characters_is_invalid`` () =
+let ``A number with trailing non binary characters is invalid`` () =
     toDecimal "10nope" |> should equal 0
 
-let ``A_number_with_leading_non_binary_characters_is_invalid`` () =
+let ``A number with leading non binary characters is invalid`` () =
     toDecimal "nope10" |> should equal 0
 
-let ``A_number_with_internal_non_binary_characters_is_invalid`` () =
+let ``A number with internal non binary characters is invalid`` () =
     toDecimal "10nope10" |> should equal 0
 
-let ``A_number_and_a_word_whitespace_separated_is_invalid`` () =
+let ``A number and a word whitespace separated is invalid`` () =
     toDecimal "001 nope" |> should equal 0
 
