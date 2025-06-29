@@ -22,55 +22,27 @@ find . -name '.docs' -execdir rm -rf {} \;
 find . -name '.meta' -execdir rm -rf {} \;
 find . -name '\*.fsproj' -execdir rm -f {} \;
 
-# Double numeric argument - single numeric output
+# One arguments
 
+` let\s*``(.+?)``\s*\(\)\s*=\s*\n\s*(\w+) (-?\d+(?:\.\d+)?|"[^"]*") \|> should equal (.+) `
+
+```
+-- $1
+-- ==
+-- input { $3 }
+-- output { $4 }
+```
+
+# Two arguments
+
+` let\s*``(.+?)``\s*\(\)\s*=\s*\n\s*(\w+) (-?\d+(?:\.\d+)?|"[^"]*") (-?\d+(?:\.\d+)?|"[^"]*") \|> should equal (.+) `
+
+```
 -- $1
 -- ==
 -- input { $3 $4 }
 -- output { $5 }
-
-let `(.+?)` \(\) =
-\s+(\w+) (-?\d+(\.\d+)?) (-?\d+(\.\d+)?) \|> should equal (-?\d+(\.\d+)?)
-
-# Single argument - single output
-
-let `(.+?)` \(\) =
-\s+(\w+) (-?\d+(\.\d+)?) \|> should equal (.+)
-
--- $1
--- ==
--- input { $3 }
--- output { $4 }
-
-# Single string argument - single numeric output
-
-let `(.+?)` \(\) =
-\s+(\w+) ("[^"]+") \|> should equal (-?\d+(\.\d+)?)
-
--- $1
--- ==
--- input { $3 }
--- output { $4 }
-
-# Single string argument - single string output
-
-let `(.+?)` \(\) =
-\s+(\w+) ("[^"]+") \|> should equal ("[^"]+")
-
--- $1
--- ==
--- input { $3 }
--- output { $4 }
-
-# Double string argument - single output
-
-let `(.+?)` \(\) =
-\s+(\w+) ("[^"]+") ("[^"]+") \|> should equal (.+)
-
--- $1
--- ==
--- input { $3 $4 }
--- output { $5 }
+```
 
 # Remove comment
 

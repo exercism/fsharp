@@ -1,41 +1,67 @@
 import "darts"
 
-let ``Missed target`` () =
-    score -9.0 9.0 |> should equal 0
+-- Missed target
+-- ==
+-- input { -9.0 9.0 }
+-- output { 0 }
 
-let ``On the outer circle`` () =
-    score 0.0 10.0 |> should equal 1
+-- On the outer circle
+-- ==
+-- input { 0.0 10.0 }
+-- output { 1 }
 
-let ``On the middle circle`` () =
-    score -5.0 0.0 |> should equal 5
+-- On the middle circle
+-- ==
+-- input { -5.0 0.0 }
+-- output { 5 }
 
-let ``On the inner circle`` () =
-    score 0.0 -1.0 |> should equal 10
+-- On the inner circle
+-- ==
+-- input { 0.0 -1.0 }
+-- output { 10 }
 
-let ``Exactly on center`` () =
-    score 0.0 0.0 |> should equal 10
+-- Exactly on center
+-- ==
+-- input { 0.0 0.0 }
+-- output { 10 }
 
-let ``Near the center`` () =
-    score -0.1 -0.1 |> should equal 10
+-- Near the center
+-- ==
+-- input { -0.1 -0.1 }
+-- output { 10 }
 
-let ``Just within the inner circle`` () =
-    score 0.7 0.7 |> should equal 10
+-- Just within the inner circle
+-- ==
+-- input { 0.7 0.7 }
+-- output { 10 }
 
-let ``Just outside the inner circle`` () =
-    score 0.8 -0.8 |> should equal 5
+-- Just outside the inner circle
+-- ==
+-- input { 0.8 -0.8 }
+-- output { 5 }
 
-let ``Just within the middle circle`` () =
-    score -3.5 3.5 |> should equal 5
+-- Just within the middle circle
+-- ==
+-- input { -3.5 3.5 }
+-- output { 5 }
 
-let ``Just outside the middle circle`` () =
-    score -3.6 -3.6 |> should equal 1
+-- Just outside the middle circle
+-- ==
+-- input { -3.6 -3.6 }
+-- output { 1 }
 
-let ``Just within the outer circle`` () =
-    score -7.0 7.0 |> should equal 1
+-- Just within the outer circle
+-- ==
+-- input { -7.0 7.0 }
+-- output { 1 }
 
-let ``Just outside the outer circle`` () =
-    score 7.1 -7.1 |> should equal 0
+-- Just outside the outer circle
+-- ==
+-- input { 7.1 -7.1 }
+-- output { 0 }
 
-let ``Asymmetric position between the inner and middle circles`` () =
-    score 0.5 -4.0 |> should equal 5
+-- Asymmetric position between the inner and middle circles
+-- ==
+-- input { 0.5 -4.0 }
+-- output { 5 }
 

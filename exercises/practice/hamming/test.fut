@@ -1,29 +1,47 @@
 import "hamming"
 
-let ``Empty strands`` () =
-    distance "" "" |> should equal 0
+-- Empty strands
+-- ==
+-- input { "" "" }
+-- output { 0 }
 
-let ``Single letter identical strands`` () =
-    distance "A" "A" |> should equal 0
+-- Single letter identical strands
+-- ==
+-- input { "A" "A" }
+-- output { 0 }
 
-let ``Single letter different strands`` () =
-    distance "G" "T" |> should equal 1
+-- Single letter different strands
+-- ==
+-- input { "G" "T" }
+-- output { 1 }
 
-let ``Long identical strands`` () =
-    distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> should equal 0
+-- Long identical strands
+-- ==
+-- input { "GGACTGAAATCTG" "GGACTGAAATCTG" }
+-- output { 0 }
 
-let ``Long different strands`` () =
-    distance "GGACGGATTCTG" "AGGACGGATTCT" |> should equal 9
+-- Long different strands
+-- ==
+-- input { "GGACGGATTCTG" "AGGACGGATTCT" }
+-- output { 9 }
 
-let ``Disallow first strand longer`` () =
-    distance "AATG" "AAA" |> should equal None
+-- Disallow first strand longer
+-- ==
+-- input { "AATG" "AAA" }
+-- output { None }
 
-let ``Disallow second strand longer`` () =
-    distance "ATA" "AGTG" |> should equal None
+-- Disallow second strand longer
+-- ==
+-- input { "ATA" "AGTG" }
+-- output { None }
 
-let ``Disallow empty first strand`` () =
-    distance "" "G" |> should equal None
+-- Disallow empty first strand
+-- ==
+-- input { "" "G" }
+-- output { None }
 
-let ``Disallow empty second strand`` () =
-    distance "G" "" |> should equal None
+-- Disallow empty second strand
+-- ==
+-- input { "G" "" }
+-- output { None }
 

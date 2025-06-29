@@ -1,32 +1,52 @@
 import "rotational_cipher"
 
-let ``Rotate a by 0, same output as input`` () =
-    rotate 0 "a" |> should equal "a"
+-- Rotate a by 0, same output as input
+-- ==
+-- input { 0 "a" }
+-- output { "a" }
 
-let ``Rotate a by 1`` () =
-    rotate 1 "a" |> should equal "b"
+-- Rotate a by 1
+-- ==
+-- input { 1 "a" }
+-- output { "b" }
 
-let ``Rotate a by 26, same output as input`` () =
-    rotate 26 "a" |> should equal "a"
+-- Rotate a by 26, same output as input
+-- ==
+-- input { 26 "a" }
+-- output { "a" }
 
-let ``Rotate m by 13`` () =
-    rotate 13 "m" |> should equal "z"
+-- Rotate m by 13
+-- ==
+-- input { 13 "m" }
+-- output { "z" }
 
-let ``Rotate n by 13 with wrap around alphabet`` () =
-    rotate 13 "n" |> should equal "a"
+-- Rotate n by 13 with wrap around alphabet
+-- ==
+-- input { 13 "n" }
+-- output { "a" }
 
-let ``Rotate capital letters`` () =
-    rotate 5 "OMG" |> should equal "TRL"
+-- Rotate capital letters
+-- ==
+-- input { 5 "OMG" }
+-- output { "TRL" }
 
-let ``Rotate spaces`` () =
-    rotate 5 "O M G" |> should equal "T R L"
+-- Rotate spaces
+-- ==
+-- input { 5 "O M G" }
+-- output { "T R L" }
 
-let ``Rotate numbers`` () =
-    rotate 4 "Testing 1 2 3 testing" |> should equal "Xiwxmrk 1 2 3 xiwxmrk"
+-- Rotate numbers
+-- ==
+-- input { 4 "Testing 1 2 3 testing" }
+-- output { "Xiwxmrk 1 2 3 xiwxmrk" }
 
-let ``Rotate punctuation`` () =
-    rotate 21 "Let's eat, Grandma!" |> should equal "Gzo'n zvo, Bmviyhv!"
+-- Rotate punctuation
+-- ==
+-- input { 21 "Let's eat, Grandma!" }
+-- output { "Gzo'n zvo, Bmviyhv!" }
 
-let ``Rotate all letters`` () =
-    rotate 13 "The quick brown fox jumps over the lazy dog." |> should equal "Gur dhvpx oebja sbk whzcf bire gur ynml qbt."
+-- Rotate all letters
+-- ==
+-- input { 13 "The quick brown fox jumps over the lazy dog." }
+-- output { "Gur dhvpx oebja sbk whzcf bire gur ynml qbt." }
 
