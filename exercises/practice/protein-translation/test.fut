@@ -3,47 +3,75 @@ import "protein_translation"
 let ``Empty RNA sequence results in no proteins`` () =
     proteins "" |> should be Empty
 
-let ``Methionine RNA sequence`` () =
-    proteins "AUG" |> should equal ["Methionine"]
+-- Methionine RNA sequence
+-- ==
+-- input { "AUG" }
+-- output { ["Methionine"] }
 
-let ``Phenylalanine RNA sequence 1`` () =
-    proteins "UUU" |> should equal ["Phenylalanine"]
+-- Phenylalanine RNA sequence 1
+-- ==
+-- input { "UUU" }
+-- output { ["Phenylalanine"] }
 
-let ``Phenylalanine RNA sequence 2`` () =
-    proteins "UUC" |> should equal ["Phenylalanine"]
+-- Phenylalanine RNA sequence 2
+-- ==
+-- input { "UUC" }
+-- output { ["Phenylalanine"] }
 
-let ``Leucine RNA sequence 1`` () =
-    proteins "UUA" |> should equal ["Leucine"]
+-- Leucine RNA sequence 1
+-- ==
+-- input { "UUA" }
+-- output { ["Leucine"] }
 
-let ``Leucine RNA sequence 2`` () =
-    proteins "UUG" |> should equal ["Leucine"]
+-- Leucine RNA sequence 2
+-- ==
+-- input { "UUG" }
+-- output { ["Leucine"] }
 
-let ``Serine RNA sequence 1`` () =
-    proteins "UCU" |> should equal ["Serine"]
+-- Serine RNA sequence 1
+-- ==
+-- input { "UCU" }
+-- output { ["Serine"] }
 
-let ``Serine RNA sequence 2`` () =
-    proteins "UCC" |> should equal ["Serine"]
+-- Serine RNA sequence 2
+-- ==
+-- input { "UCC" }
+-- output { ["Serine"] }
 
-let ``Serine RNA sequence 3`` () =
-    proteins "UCA" |> should equal ["Serine"]
+-- Serine RNA sequence 3
+-- ==
+-- input { "UCA" }
+-- output { ["Serine"] }
 
-let ``Serine RNA sequence 4`` () =
-    proteins "UCG" |> should equal ["Serine"]
+-- Serine RNA sequence 4
+-- ==
+-- input { "UCG" }
+-- output { ["Serine"] }
 
-let ``Tyrosine RNA sequence 1`` () =
-    proteins "UAU" |> should equal ["Tyrosine"]
+-- Tyrosine RNA sequence 1
+-- ==
+-- input { "UAU" }
+-- output { ["Tyrosine"] }
 
-let ``Tyrosine RNA sequence 2`` () =
-    proteins "UAC" |> should equal ["Tyrosine"]
+-- Tyrosine RNA sequence 2
+-- ==
+-- input { "UAC" }
+-- output { ["Tyrosine"] }
 
-let ``Cysteine RNA sequence 1`` () =
-    proteins "UGU" |> should equal ["Cysteine"]
+-- Cysteine RNA sequence 1
+-- ==
+-- input { "UGU" }
+-- output { ["Cysteine"] }
 
-let ``Cysteine RNA sequence 2`` () =
-    proteins "UGC" |> should equal ["Cysteine"]
+-- Cysteine RNA sequence 2
+-- ==
+-- input { "UGC" }
+-- output { ["Cysteine"] }
 
-let ``Tryptophan RNA sequence`` () =
-    proteins "UGG" |> should equal ["Tryptophan"]
+-- Tryptophan RNA sequence
+-- ==
+-- input { "UGG" }
+-- output { ["Tryptophan"] }
 
 let ``STOP codon RNA sequence 1`` () =
     proteins "UAA" |> should be Empty
@@ -54,27 +82,41 @@ let ``STOP codon RNA sequence 2`` () =
 let ``STOP codon RNA sequence 3`` () =
     proteins "UGA" |> should be Empty
 
-let ``Sequence of two protein codons translates into proteins`` () =
-    proteins "UUUUUU" |> should equal ["Phenylalanine", "Phenylalanine"]
+-- Sequence of two protein codons translates into proteins
+-- ==
+-- input { "UUUUUU" }
+-- output { ["Phenylalanine", "Phenylalanine"] }
 
-let ``Sequence of two different protein codons translates into proteins`` () =
-    proteins "UUAUUG" |> should equal ["Leucine", "Leucine"]
+-- Sequence of two different protein codons translates into proteins
+-- ==
+-- input { "UUAUUG" }
+-- output { ["Leucine", "Leucine"] }
 
-let ``Translate RNA strand into correct protein list`` () =
-    proteins "AUGUUUUGG" |> should equal ["Methionine", "Phenylalanine", "Tryptophan"]
+-- Translate RNA strand into correct protein list
+-- ==
+-- input { "AUGUUUUGG" }
+-- output { ["Methionine", "Phenylalanine", "Tryptophan"] }
 
 let ``Translation stops if STOP codon at beginning of sequence`` () =
     proteins "UAGUGG" |> should be Empty
 
-let ``Translation stops if STOP codon at end of two-codon sequence`` () =
-    proteins "UGGUAG" |> should equal ["Tryptophan"]
+-- Translation stops if STOP codon at end of two-codon sequence
+-- ==
+-- input { "UGGUAG" }
+-- output { ["Tryptophan"] }
 
-let ``Translation stops if STOP codon at end of three-codon sequence`` () =
-    proteins "AUGUUUUAA" |> should equal ["Methionine", "Phenylalanine"]
+-- Translation stops if STOP codon at end of three-codon sequence
+-- ==
+-- input { "AUGUUUUAA" }
+-- output { ["Methionine", "Phenylalanine"] }
 
-let ``Translation stops if STOP codon in middle of three-codon sequence`` () =
-    proteins "UGGUAGUGG" |> should equal ["Tryptophan"]
+-- Translation stops if STOP codon in middle of three-codon sequence
+-- ==
+-- input { "UGGUAGUGG" }
+-- output { ["Tryptophan"] }
 
-let ``Translation stops if STOP codon in middle of six-codon sequence`` () =
-    proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan", "Cysteine", "Tyrosine"]
+-- Translation stops if STOP codon in middle of six-codon sequence
+-- ==
+-- input { "UGGUGUUAUUAAUGGUUU" }
+-- output { ["Tryptophan", "Cysteine", "Tyrosine"] }
 

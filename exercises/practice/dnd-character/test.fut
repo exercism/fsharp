@@ -1,52 +1,84 @@
 import "dnd_character"
 
-let ``Ability modifier for score 3 is -4`` () =
-    modifier 3 |> should equal -4
+-- Ability modifier for score 3 is -4
+-- ==
+-- input { 3 }
+-- output { -4 }
 
-let ``Ability modifier for score 4 is -3`` () =
-    modifier 4 |> should equal -3
+-- Ability modifier for score 4 is -3
+-- ==
+-- input { 4 }
+-- output { -3 }
 
-let ``Ability modifier for score 5 is -3`` () =
-    modifier 5 |> should equal -3
+-- Ability modifier for score 5 is -3
+-- ==
+-- input { 5 }
+-- output { -3 }
 
-let ``Ability modifier for score 6 is -2`` () =
-    modifier 6 |> should equal -2
+-- Ability modifier for score 6 is -2
+-- ==
+-- input { 6 }
+-- output { -2 }
 
-let ``Ability modifier for score 7 is -2`` () =
-    modifier 7 |> should equal -2
+-- Ability modifier for score 7 is -2
+-- ==
+-- input { 7 }
+-- output { -2 }
 
-let ``Ability modifier for score 8 is -1`` () =
-    modifier 8 |> should equal -1
+-- Ability modifier for score 8 is -1
+-- ==
+-- input { 8 }
+-- output { -1 }
 
-let ``Ability modifier for score 9 is -1`` () =
-    modifier 9 |> should equal -1
+-- Ability modifier for score 9 is -1
+-- ==
+-- input { 9 }
+-- output { -1 }
 
-let ``Ability modifier for score 10 is 0`` () =
-    modifier 10 |> should equal 0
+-- Ability modifier for score 10 is 0
+-- ==
+-- input { 10 }
+-- output { 0 }
 
-let ``Ability modifier for score 11 is 0`` () =
-    modifier 11 |> should equal 0
+-- Ability modifier for score 11 is 0
+-- ==
+-- input { 11 }
+-- output { 0 }
 
-let ``Ability modifier for score 12 is +1`` () =
-    modifier 12 |> should equal 1
+-- Ability modifier for score 12 is +1
+-- ==
+-- input { 12 }
+-- output { 1 }
 
-let ``Ability modifier for score 13 is +1`` () =
-    modifier 13 |> should equal 1
+-- Ability modifier for score 13 is +1
+-- ==
+-- input { 13 }
+-- output { 1 }
 
-let ``Ability modifier for score 14 is +2`` () =
-    modifier 14 |> should equal 2
+-- Ability modifier for score 14 is +2
+-- ==
+-- input { 14 }
+-- output { 2 }
 
-let ``Ability modifier for score 15 is +2`` () =
-    modifier 15 |> should equal 2
+-- Ability modifier for score 15 is +2
+-- ==
+-- input { 15 }
+-- output { 2 }
 
-let ``Ability modifier for score 16 is +3`` () =
-    modifier 16 |> should equal 3
+-- Ability modifier for score 16 is +3
+-- ==
+-- input { 16 }
+-- output { 3 }
 
-let ``Ability modifier for score 17 is +3`` () =
-    modifier 17 |> should equal 3
+-- Ability modifier for score 17 is +3
+-- ==
+-- input { 17 }
+-- output { 3 }
 
-let ``Ability modifier for score 18 is +4`` () =
-    modifier 18 |> should equal 4
+-- Ability modifier for score 18 is +4
+-- ==
+-- input { 18 }
+-- output { 4 }
 
 let ``Random ability is within range`` () =
     for i in 1 .. 10 do

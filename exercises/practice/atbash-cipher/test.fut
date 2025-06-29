@@ -1,44 +1,72 @@
 import "atbash_cipher"
 
-let ``Encode yes`` () =
-    encode "yes" |> should equal "bvh"
+-- Encode yes
+-- ==
+-- input { "yes" }
+-- output { "bvh" }
 
-let ``Encode no`` () =
-    encode "no" |> should equal "ml"
+-- Encode no
+-- ==
+-- input { "no" }
+-- output { "ml" }
 
-let ``Encode OMG`` () =
-    encode "OMG" |> should equal "lnt"
+-- Encode OMG
+-- ==
+-- input { "OMG" }
+-- output { "lnt" }
 
-let ``Encode spaces`` () =
-    encode "O M G" |> should equal "lnt"
+-- Encode spaces
+-- ==
+-- input { "O M G" }
+-- output { "lnt" }
 
-let ``Encode mindblowingly`` () =
-    encode "mindblowingly" |> should equal "nrmwy oldrm tob"
+-- Encode mindblowingly
+-- ==
+-- input { "mindblowingly" }
+-- output { "nrmwy oldrm tob" }
 
-let ``Encode numbers`` () =
-    encode "Testing,1 2 3, testing." |> should equal "gvhgr mt123 gvhgr mt"
+-- Encode numbers
+-- ==
+-- input { "Testing,1 2 3, testing." }
+-- output { "gvhgr mt123 gvhgr mt" }
 
-let ``Encode deep thought`` () =
-    encode "Truth is fiction." |> should equal "gifgs rhurx grlm"
+-- Encode deep thought
+-- ==
+-- input { "Truth is fiction." }
+-- output { "gifgs rhurx grlm" }
 
-let ``Encode all the letters`` () =
-    encode "The quick brown fox jumps over the lazy dog." |> should equal "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt"
+-- Encode all the letters
+-- ==
+-- input { "The quick brown fox jumps over the lazy dog." }
+-- output { "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" }
 
-let ``Decode exercism`` () =
-    decode "vcvix rhn" |> should equal "exercism"
+-- Decode exercism
+-- ==
+-- input { "vcvix rhn" }
+-- output { "exercism" }
 
-let ``Decode a sentence`` () =
-    decode "zmlyh gzxov rhlug vmzhg vkkrm thglm v" |> should equal "anobstacleisoftenasteppingstone"
+-- Decode a sentence
+-- ==
+-- input { "zmlyh gzxov rhlug vmzhg vkkrm thglm v" }
+-- output { "anobstacleisoftenasteppingstone" }
 
-let ``Decode numbers`` () =
-    decode "gvhgr mt123 gvhgr mt" |> should equal "testing123testing"
+-- Decode numbers
+-- ==
+-- input { "gvhgr mt123 gvhgr mt" }
+-- output { "testing123testing" }
 
-let ``Decode all the letters`` () =
-    decode "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" |> should equal "thequickbrownfoxjumpsoverthelazydog"
+-- Decode all the letters
+-- ==
+-- input { "gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt" }
+-- output { "thequickbrownfoxjumpsoverthelazydog" }
 
-let ``Decode with too many spaces`` () =
-    decode "vc vix    r hn" |> should equal "exercism"
+-- Decode with too many spaces
+-- ==
+-- input { "vc vix    r hn" }
+-- output { "exercism" }
 
-let ``Decode with no spaces`` () =
-    decode "zmlyhgzxovrhlugvmzhgvkkrmthglmv" |> should equal "anobstacleisoftenasteppingstone"
+-- Decode with no spaces
+-- ==
+-- input { "zmlyhgzxovrhlugvmzhgvkkrmthglmv" }
+-- output { "anobstacleisoftenasteppingstone" }
 

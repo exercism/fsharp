@@ -1,34 +1,52 @@
 import "secret_handshake"
 
-let ``Wink for 1`` () =
-    commands 1 |> should equal ["wink"]
+-- Wink for 1
+-- ==
+-- input { 1 }
+-- output { ["wink"] }
 
-let ``Double blink for 10`` () =
-    commands 2 |> should equal ["double blink"]
+-- Double blink for 10
+-- ==
+-- input { 2 }
+-- output { ["double blink"] }
 
-let ``Close your eyes for 100`` () =
-    commands 4 |> should equal ["close your eyes"]
+-- Close your eyes for 100
+-- ==
+-- input { 4 }
+-- output { ["close your eyes"] }
 
-let ``Jump for 1000`` () =
-    commands 8 |> should equal ["jump"]
+-- Jump for 1000
+-- ==
+-- input { 8 }
+-- output { ["jump"] }
 
-let ``Combine two actions`` () =
-    commands 3 |> should equal ["wink", "double blink"]
+-- Combine two actions
+-- ==
+-- input { 3 }
+-- output { ["wink", "double blink"] }
 
-let ``Reverse two actions`` () =
-    commands 19 |> should equal ["double blink", "wink"]
+-- Reverse two actions
+-- ==
+-- input { 19 }
+-- output { ["double blink", "wink"] }
 
-let ``Reversing one action gives the same action`` () =
-    commands 24 |> should equal ["jump"]
+-- Reversing one action gives the same action
+-- ==
+-- input { 24 }
+-- output { ["jump"] }
 
 let ``Reversing no actions still gives no actions`` () =
     commands 16 |> should be Empty
 
-let ``All possible actions`` () =
-    commands 15 |> should equal ["wink", "double blink", "close your eyes", "jump"]
+-- All possible actions
+-- ==
+-- input { 15 }
+-- output { ["wink", "double blink", "close your eyes", "jump"] }
 
-let ``Reverse all possible actions`` () =
-    commands 31 |> should equal ["jump", "close your eyes", "double blink", "wink"]
+-- Reverse all possible actions
+-- ==
+-- input { 31 }
+-- output { ["jump", "close your eyes", "double blink", "wink"] }
 
 let ``Do nothing for zero`` () =
     commands 0 |> should be Empty

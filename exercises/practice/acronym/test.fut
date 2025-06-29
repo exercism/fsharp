@@ -1,29 +1,47 @@
 import "acronym"
 
-let ``Basic`` () =
-    abbreviate "Portable Network Graphics" |> should equal "PNG"
+-- Basic
+-- ==
+-- input { "Portable Network Graphics" }
+-- output { "PNG" }
 
-let ``Lowercase words`` () =
-    abbreviate "Ruby on Rails" |> should equal "ROR"
+-- Lowercase words
+-- ==
+-- input { "Ruby on Rails" }
+-- output { "ROR" }
 
-let ``Punctuation`` () =
-    abbreviate "First In, First Out" |> should equal "FIFO"
+-- Punctuation
+-- ==
+-- input { "First In, First Out" }
+-- output { "FIFO" }
 
-let ``All caps word`` () =
-    abbreviate "GNU Image Manipulation Program" |> should equal "GIMP"
+-- All caps word
+-- ==
+-- input { "GNU Image Manipulation Program" }
+-- output { "GIMP" }
 
-let ``Punctuation without whitespace`` () =
-    abbreviate "Complementary metal-oxide semiconductor" |> should equal "CMOS"
+-- Punctuation without whitespace
+-- ==
+-- input { "Complementary metal-oxide semiconductor" }
+-- output { "CMOS" }
 
-let ``Very long abbreviation`` () =
-    abbreviate "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" |> should equal "ROTFLSHTMDCOALM"
+-- Very long abbreviation
+-- ==
+-- input { "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me" }
+-- output { "ROTFLSHTMDCOALM" }
 
-let ``Consecutive delimiters`` () =
-    abbreviate "Something - I made up from thin air" |> should equal "SIMUFTA"
+-- Consecutive delimiters
+-- ==
+-- input { "Something - I made up from thin air" }
+-- output { "SIMUFTA" }
 
-let ``Apostrophes`` () =
-    abbreviate "Halley's Comet" |> should equal "HC"
+-- Apostrophes
+-- ==
+-- input { "Halley's Comet" }
+-- output { "HC" }
 
-let ``Underscore emphasis`` () =
-    abbreviate "The Road _Not_ Taken" |> should equal "TRNT"
+-- Underscore emphasis
+-- ==
+-- input { "The Road _Not_ Taken" }
+-- output { "TRNT" }
 

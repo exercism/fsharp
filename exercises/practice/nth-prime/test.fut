@@ -1,17 +1,27 @@
 import "nth_prime"
 
-let ``First prime`` () =
-    prime 1 |> should equal 2
+-- First prime
+-- ==
+-- input { 1 }
+-- output { 2 }
 
-let ``Second prime`` () =
-    prime 2 |> should equal 3
+-- Second prime
+-- ==
+-- input { 2 }
+-- output { 3 }
 
-let ``Sixth prime`` () =
-    prime 6 |> should equal 13
+-- Sixth prime
+-- ==
+-- input { 6 }
+-- output { 13 }
 
-let ``Big prime`` () =
-    prime 10001 |> should equal 104743
+-- Big prime
+-- ==
+-- input { 10001 }
+-- output { 104743 }
 
-let ``There is no zeroth prime`` () =
-    prime 0 |> should equal None
+-- There is no zeroth prime
+-- ==
+-- input { 0 }
+-- output { None }
 

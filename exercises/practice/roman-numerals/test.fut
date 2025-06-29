@@ -1,80 +1,132 @@
 import "roman_numerals"
 
-let ``1 is I`` () =
-    roman 1 |> should equal "I"
+-- 1 is I
+-- ==
+-- input { 1 }
+-- output { "I" }
 
-let ``2 is II`` () =
-    roman 2 |> should equal "II"
+-- 2 is II
+-- ==
+-- input { 2 }
+-- output { "II" }
 
-let ``3 is III`` () =
-    roman 3 |> should equal "III"
+-- 3 is III
+-- ==
+-- input { 3 }
+-- output { "III" }
 
-let ``4 is IV`` () =
-    roman 4 |> should equal "IV"
+-- 4 is IV
+-- ==
+-- input { 4 }
+-- output { "IV" }
 
-let ``5 is V`` () =
-    roman 5 |> should equal "V"
+-- 5 is V
+-- ==
+-- input { 5 }
+-- output { "V" }
 
-let ``6 is VI`` () =
-    roman 6 |> should equal "VI"
+-- 6 is VI
+-- ==
+-- input { 6 }
+-- output { "VI" }
 
-let ``9 is IX`` () =
-    roman 9 |> should equal "IX"
+-- 9 is IX
+-- ==
+-- input { 9 }
+-- output { "IX" }
 
-let ``16 is XVI`` () =
-    roman 16 |> should equal "XVI"
+-- 16 is XVI
+-- ==
+-- input { 16 }
+-- output { "XVI" }
 
-let ``27 is XXVII`` () =
-    roman 27 |> should equal "XXVII"
+-- 27 is XXVII
+-- ==
+-- input { 27 }
+-- output { "XXVII" }
 
-let ``48 is XLVIII`` () =
-    roman 48 |> should equal "XLVIII"
+-- 48 is XLVIII
+-- ==
+-- input { 48 }
+-- output { "XLVIII" }
 
-let ``49 is XLIX`` () =
-    roman 49 |> should equal "XLIX"
+-- 49 is XLIX
+-- ==
+-- input { 49 }
+-- output { "XLIX" }
 
-let ``59 is LIX`` () =
-    roman 59 |> should equal "LIX"
+-- 59 is LIX
+-- ==
+-- input { 59 }
+-- output { "LIX" }
 
-let ``66 is LXVI`` () =
-    roman 66 |> should equal "LXVI"
+-- 66 is LXVI
+-- ==
+-- input { 66 }
+-- output { "LXVI" }
 
-let ``93 is XCIII`` () =
-    roman 93 |> should equal "XCIII"
+-- 93 is XCIII
+-- ==
+-- input { 93 }
+-- output { "XCIII" }
 
-let ``141 is CXLI`` () =
-    roman 141 |> should equal "CXLI"
+-- 141 is CXLI
+-- ==
+-- input { 141 }
+-- output { "CXLI" }
 
-let ``163 is CLXIII`` () =
-    roman 163 |> should equal "CLXIII"
+-- 163 is CLXIII
+-- ==
+-- input { 163 }
+-- output { "CLXIII" }
 
-let ``166 is CLXVI`` () =
-    roman 166 |> should equal "CLXVI"
+-- 166 is CLXVI
+-- ==
+-- input { 166 }
+-- output { "CLXVI" }
 
-let ``402 is CDII`` () =
-    roman 402 |> should equal "CDII"
+-- 402 is CDII
+-- ==
+-- input { 402 }
+-- output { "CDII" }
 
-let ``575 is DLXXV`` () =
-    roman 575 |> should equal "DLXXV"
+-- 575 is DLXXV
+-- ==
+-- input { 575 }
+-- output { "DLXXV" }
 
-let ``666 is DCLXVI`` () =
-    roman 666 |> should equal "DCLXVI"
+-- 666 is DCLXVI
+-- ==
+-- input { 666 }
+-- output { "DCLXVI" }
 
-let ``911 is CMXI`` () =
-    roman 911 |> should equal "CMXI"
+-- 911 is CMXI
+-- ==
+-- input { 911 }
+-- output { "CMXI" }
 
-let ``1024 is MXXIV`` () =
-    roman 1024 |> should equal "MXXIV"
+-- 1024 is MXXIV
+-- ==
+-- input { 1024 }
+-- output { "MXXIV" }
 
-let ``1666 is MDCLXVI`` () =
-    roman 1666 |> should equal "MDCLXVI"
+-- 1666 is MDCLXVI
+-- ==
+-- input { 1666 }
+-- output { "MDCLXVI" }
 
-let ``3000 is MMM`` () =
-    roman 3000 |> should equal "MMM"
+-- 3000 is MMM
+-- ==
+-- input { 3000 }
+-- output { "MMM" }
 
-let ``3001 is MMMI`` () =
-    roman 3001 |> should equal "MMMI"
+-- 3001 is MMMI
+-- ==
+-- input { 3001 }
+-- output { "MMMI" }
 
-let ``3999 is MMMCMXCIX`` () =
-    roman 3999 |> should equal "MMMCMXCIX"
+-- 3999 is MMMCMXCIX
+-- ==
+-- input { 3999 }
+-- output { "MMMCMXCIX" }
 

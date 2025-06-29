@@ -1,35 +1,57 @@
 import "trinary"
 
-let ``Trinary 1 is decimal 1`` () =
-    toDecimal "1" |> should equal 1
+-- Trinary 1 is decimal 1
+-- ==
+-- input { "1" }
+-- output { 1 }
 
-let ``Trinary 2 is decimal 2`` () =
-    toDecimal "2" |> should equal 2
+-- Trinary 2 is decimal 2
+-- ==
+-- input { "2" }
+-- output { 2 }
 
-let ``Trinary 10 is decimal 3`` () =
-    toDecimal "10" |> should equal 3
+-- Trinary 10 is decimal 3
+-- ==
+-- input { "10" }
+-- output { 3 }
 
-let ``Trinary 11 is decimal 4`` () =
-    toDecimal "11" |> should equal 4
+-- Trinary 11 is decimal 4
+-- ==
+-- input { "11" }
+-- output { 4 }
 
-let ``Trinary 100 is decimal 9`` () =
-    toDecimal "100" |> should equal 9
+-- Trinary 100 is decimal 9
+-- ==
+-- input { "100" }
+-- output { 9 }
 
-let ``Trinary 112 is decimal 14`` () =
-    toDecimal "112" |> should equal 14
+-- Trinary 112 is decimal 14
+-- ==
+-- input { "112" }
+-- output { 14 }
 
-let ``Trinary 222 is decimal 26`` () =
-    toDecimal "222" |> should equal 26
+-- Trinary 222 is decimal 26
+-- ==
+-- input { "222" }
+-- output { 26 }
 
-let ``Trinary 1122000120 is decimal 32091`` () =
-    toDecimal "1122000120" |> should equal 32091
+-- Trinary 1122000120 is decimal 32091
+-- ==
+-- input { "1122000120" }
+-- output { 32091 }
 
-let ``Invalid trinary digits returns 0`` () =
-    toDecimal "1234" |> should equal 0
+-- Invalid trinary digits returns 0
+-- ==
+-- input { "1234" }
+-- output { 0 }
 
-let ``Invalid word as input returns 0`` () =
-    toDecimal "carrot" |> should equal 0
+-- Invalid word as input returns 0
+-- ==
+-- input { "carrot" }
+-- output { 0 }
 
-let ``Invalid numbers with letters as input returns 0`` () =
-    toDecimal "0a1b2c" |> should equal 0
+-- Invalid numbers with letters as input returns 0
+-- ==
+-- input { "0a1b2c" }
+-- output { 0 }
 

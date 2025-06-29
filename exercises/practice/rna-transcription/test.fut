@@ -1,20 +1,32 @@
 import "rna_transcription"
 
-let ``Empty RNA sequence`` () =
-    toRna "" |> should equal ""
+-- Empty RNA sequence
+-- ==
+-- input { "" }
+-- output { "" }
 
-let ``RNA complement of cytosine is guanine`` () =
-    toRna "C" |> should equal "G"
+-- RNA complement of cytosine is guanine
+-- ==
+-- input { "C" }
+-- output { "G" }
 
-let ``RNA complement of guanine is cytosine`` () =
-    toRna "G" |> should equal "C"
+-- RNA complement of guanine is cytosine
+-- ==
+-- input { "G" }
+-- output { "C" }
 
-let ``RNA complement of thymine is adenine`` () =
-    toRna "T" |> should equal "A"
+-- RNA complement of thymine is adenine
+-- ==
+-- input { "T" }
+-- output { "A" }
 
-let ``RNA complement of adenine is uracil`` () =
-    toRna "A" |> should equal "U"
+-- RNA complement of adenine is uracil
+-- ==
+-- input { "A" }
+-- output { "U" }
 
-let ``RNA complement`` () =
-    toRna "ACGTGGTCTTAA" |> should equal "UGCACCAGAAUU"
+-- RNA complement
+-- ==
+-- input { "ACGTGGTCTTAA" }
+-- output { "UGCACCAGAAUU" }
 

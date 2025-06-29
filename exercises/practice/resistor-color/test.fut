@@ -1,13 +1,19 @@
 import "resistor_color"
 
-let ``Black`` () =
-    colorCode "black" |> should equal 0
+-- Black
+-- ==
+-- input { "black" }
+-- output { 0 }
 
-let ``White`` () =
-    colorCode "white" |> should equal 9
+-- White
+-- ==
+-- input { "white" }
+-- output { 9 }
 
-let ``Orange`` () =
-    colorCode "orange" |> should equal 3
+-- Orange
+-- ==
+-- input { "orange" }
+-- output { 3 }
 
 let ``Colors`` () =
     colors |> should equal ["black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey", "white"]

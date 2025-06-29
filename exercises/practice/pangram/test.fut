@@ -1,32 +1,50 @@
 import "pangram"
 
-let ``Empty sentence`` () =
-    isPangram "" |> should equal false
+-- Empty sentence
+-- ==
+-- input { "" }
+-- output { false }
 
-let ``Perfect lower case`` () =
-    isPangram "abcdefghijklmnopqrstuvwxyz" |> should equal true
+-- Perfect lower case
+-- ==
+-- input { "abcdefghijklmnopqrstuvwxyz" }
+-- output { true }
 
-let ``Only lower case`` () =
-    isPangram "the quick brown fox jumps over the lazy dog" |> should equal true
+-- Only lower case
+-- ==
+-- input { "the quick brown fox jumps over the lazy dog" }
+-- output { true }
 
-let ``Missing the letter 'x'`` () =
-    isPangram "a quick movement of the enemy will jeopardize five gunboats" |> should equal false
+-- Missing the letter 'x'
+-- ==
+-- input { "a quick movement of the enemy will jeopardize five gunboats" }
+-- output { false }
 
-let ``Missing the letter 'h'`` () =
-    isPangram "five boxing wizards jump quickly at it" |> should equal false
+-- Missing the letter 'h'
+-- ==
+-- input { "five boxing wizards jump quickly at it" }
+-- output { false }
 
-let ``With underscores`` () =
-    isPangram "the_quick_brown_fox_jumps_over_the_lazy_dog" |> should equal true
+-- With underscores
+-- ==
+-- input { "the_quick_brown_fox_jumps_over_the_lazy_dog" }
+-- output { true }
 
-let ``With numbers`` () =
-    isPangram "the 1 quick brown fox jumps over the 2 lazy dogs" |> should equal true
+-- With numbers
+-- ==
+-- input { "the 1 quick brown fox jumps over the 2 lazy dogs" }
+-- output { true }
 
-let ``Missing letters replaced by numbers`` () =
-    isPangram "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog" |> should equal false
+-- Missing letters replaced by numbers
+-- ==
+-- input { "7h3 qu1ck brown fox jumps ov3r 7h3 lazy dog" }
+-- output { false }
 
 let ``Mixed case and punctuation`` () =
     isPangram "\"Five quacking Zephyrs jolt my wax bed.\"" |> should equal true
 
-let ``A-m and A-M are 26 different characters but not a pangram`` () =
-    isPangram "abcdefghijklm ABCDEFGHIJKLM" |> should equal false
+-- A-m and A-M are 26 different characters but not a pangram
+-- ==
+-- input { "abcdefghijklm ABCDEFGHIJKLM" }
+-- output { false }
 

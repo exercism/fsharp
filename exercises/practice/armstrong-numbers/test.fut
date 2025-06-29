@@ -1,29 +1,47 @@
 import "armstrong_numbers"
 
-let ``Zero is an Armstrong number`` () =
-    isArmstrongNumber 0 |> should equal true
+-- Zero is an Armstrong number
+-- ==
+-- input { 0 }
+-- output { true }
 
-let ``Single-digit numbers are Armstrong numbers`` () =
-    isArmstrongNumber 5 |> should equal true
+-- Single-digit numbers are Armstrong numbers
+-- ==
+-- input { 5 }
+-- output { true }
 
-let ``There are no two-digit Armstrong numbers`` () =
-    isArmstrongNumber 10 |> should equal false
+-- There are no two-digit Armstrong numbers
+-- ==
+-- input { 10 }
+-- output { false }
 
-let ``Three-digit number that is an Armstrong number`` () =
-    isArmstrongNumber 153 |> should equal true
+-- Three-digit number that is an Armstrong number
+-- ==
+-- input { 153 }
+-- output { true }
 
-let ``Three-digit number that is not an Armstrong number`` () =
-    isArmstrongNumber 100 |> should equal false
+-- Three-digit number that is not an Armstrong number
+-- ==
+-- input { 100 }
+-- output { false }
 
-let ``Four-digit number that is an Armstrong number`` () =
-    isArmstrongNumber 9474 |> should equal true
+-- Four-digit number that is an Armstrong number
+-- ==
+-- input { 9474 }
+-- output { true }
 
-let ``Four-digit number that is not an Armstrong number`` () =
-    isArmstrongNumber 9475 |> should equal false
+-- Four-digit number that is not an Armstrong number
+-- ==
+-- input { 9475 }
+-- output { false }
 
-let ``Seven-digit number that is an Armstrong number`` () =
-    isArmstrongNumber 9926315 |> should equal true
+-- Seven-digit number that is an Armstrong number
+-- ==
+-- input { 9926315 }
+-- output { true }
 
-let ``Seven-digit number that is not an Armstrong number`` () =
-    isArmstrongNumber 9926314 |> should equal false
+-- Seven-digit number that is not an Armstrong number
+-- ==
+-- input { 9926314 }
+-- output { false }
 

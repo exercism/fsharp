@@ -1,77 +1,127 @@
 import "bob"
 
-let ``Stating something`` () =
-    response "Tom-ay-to, tom-aaaah-to." |> should equal "Whatever."
+-- Stating something
+-- ==
+-- input { "Tom-ay-to, tom-aaaah-to." }
+-- output { "Whatever." }
 
-let ``Shouting`` () =
-    response "WATCH OUT!" |> should equal "Whoa, chill out!"
+-- Shouting
+-- ==
+-- input { "WATCH OUT!" }
+-- output { "Whoa, chill out!" }
 
-let ``Shouting gibberish`` () =
-    response "FCECDFCAAB" |> should equal "Whoa, chill out!"
+-- Shouting gibberish
+-- ==
+-- input { "FCECDFCAAB" }
+-- output { "Whoa, chill out!" }
 
-let ``Asking a question`` () =
-    response "Does this cryogenic chamber make me look fat?" |> should equal "Sure."
+-- Asking a question
+-- ==
+-- input { "Does this cryogenic chamber make me look fat?" }
+-- output { "Sure." }
 
-let ``Asking a numeric question`` () =
-    response "You are, what, like 15?" |> should equal "Sure."
+-- Asking a numeric question
+-- ==
+-- input { "You are, what, like 15?" }
+-- output { "Sure." }
 
-let ``Asking gibberish`` () =
-    response "fffbbcbeab?" |> should equal "Sure."
+-- Asking gibberish
+-- ==
+-- input { "fffbbcbeab?" }
+-- output { "Sure." }
 
-let ``Talking forcefully`` () =
-    response "Hi there!" |> should equal "Whatever."
+-- Talking forcefully
+-- ==
+-- input { "Hi there!" }
+-- output { "Whatever." }
 
-let ``Using acronyms in regular speech`` () =
-    response "It's OK if you don't want to go work for NASA." |> should equal "Whatever."
+-- Using acronyms in regular speech
+-- ==
+-- input { "It's OK if you don't want to go work for NASA." }
+-- output { "Whatever." }
 
-let ``Forceful question`` () =
-    response "WHAT'S GOING ON?" |> should equal "Calm down, I know what I'm doing!"
+-- Forceful question
+-- ==
+-- input { "WHAT'S GOING ON?" }
+-- output { "Calm down, I know what I'm doing!" }
 
-let ``Shouting numbers`` () =
-    response "1, 2, 3 GO!" |> should equal "Whoa, chill out!"
+-- Shouting numbers
+-- ==
+-- input { "1, 2, 3 GO!" }
+-- output { "Whoa, chill out!" }
 
-let ``No letters`` () =
-    response "1, 2, 3" |> should equal "Whatever."
+-- No letters
+-- ==
+-- input { "1, 2, 3" }
+-- output { "Whatever." }
 
-let ``Question with no letters`` () =
-    response "4?" |> should equal "Sure."
+-- Question with no letters
+-- ==
+-- input { "4?" }
+-- output { "Sure." }
 
-let ``Shouting with special characters`` () =
-    response "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!" |> should equal "Whoa, chill out!"
+-- Shouting with special characters
+-- ==
+-- input { "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!" }
+-- output { "Whoa, chill out!" }
 
-let ``Shouting with no exclamation mark`` () =
-    response "I HATE THE DENTIST" |> should equal "Whoa, chill out!"
+-- Shouting with no exclamation mark
+-- ==
+-- input { "I HATE THE DENTIST" }
+-- output { "Whoa, chill out!" }
 
-let ``Statement containing question mark`` () =
-    response "Ending with ? means a question." |> should equal "Whatever."
+-- Statement containing question mark
+-- ==
+-- input { "Ending with ? means a question." }
+-- output { "Whatever." }
 
-let ``Non-letters with question`` () =
-    response ":) ?" |> should equal "Sure."
+-- Non-letters with question
+-- ==
+-- input { ":) ?" }
+-- output { "Sure." }
 
-let ``Prattling on`` () =
-    response "Wait! Hang on. Are you going to be OK?" |> should equal "Sure."
+-- Prattling on
+-- ==
+-- input { "Wait! Hang on. Are you going to be OK?" }
+-- output { "Sure." }
 
-let ``Silence`` () =
-    response "" |> should equal "Fine. Be that way!"
+-- Silence
+-- ==
+-- input { "" }
+-- output { "Fine. Be that way!" }
 
-let ``Prolonged silence`` () =
-    response "          " |> should equal "Fine. Be that way!"
+-- Prolonged silence
+-- ==
+-- input { "          " }
+-- output { "Fine. Be that way!" }
 
-let ``Alternate silence`` () =
-    response "\t\t\t\t\t\t\t\t\t\t" |> should equal "Fine. Be that way!"
+-- Alternate silence
+-- ==
+-- input { "\t\t\t\t\t\t\t\t\t\t" }
+-- output { "Fine. Be that way!" }
 
-let ``Multiple line question`` () =
-    response "\nDoes this cryogenic chamber make me look fat?\nNo." |> should equal "Whatever."
+-- Multiple line question
+-- ==
+-- input { "\nDoes this cryogenic chamber make me look fat?\nNo." }
+-- output { "Whatever." }
 
-let ``Starting with whitespace`` () =
-    response "         hmmmmmmm..." |> should equal "Whatever."
+-- Starting with whitespace
+-- ==
+-- input { "         hmmmmmmm..." }
+-- output { "Whatever." }
 
-let ``Ending with whitespace`` () =
-    response "Okay if like my  spacebar  quite a bit?   " |> should equal "Sure."
+-- Ending with whitespace
+-- ==
+-- input { "Okay if like my  spacebar  quite a bit?   " }
+-- output { "Sure." }
 
-let ``Other whitespace`` () =
-    response "\n\r \t" |> should equal "Fine. Be that way!"
+-- Other whitespace
+-- ==
+-- input { "\n\r \t" }
+-- output { "Fine. Be that way!" }
 
-let ``Non-question ending with whitespace`` () =
-    response "This is a statement ending with whitespace      " |> should equal "Whatever."
+-- Non-question ending with whitespace
+-- ==
+-- input { "This is a statement ending with whitespace      " }
+-- output { "Whatever." }
 

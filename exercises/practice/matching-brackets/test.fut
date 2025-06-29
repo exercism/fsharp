@@ -1,62 +1,102 @@
 import "matching_brackets"
 
-let ``Paired square brackets`` () =
-    isPaired "[]" |> should equal true
+-- Paired square brackets
+-- ==
+-- input { "[]" }
+-- output { true }
 
-let ``Empty string`` () =
-    isPaired "" |> should equal true
+-- Empty string
+-- ==
+-- input { "" }
+-- output { true }
 
-let ``Unpaired brackets`` () =
-    isPaired "[[" |> should equal false
+-- Unpaired brackets
+-- ==
+-- input { "[[" }
+-- output { false }
 
-let ``Wrong ordered brackets`` () =
-    isPaired "}{" |> should equal false
+-- Wrong ordered brackets
+-- ==
+-- input { "}{" }
+-- output { false }
 
-let ``Wrong closing bracket`` () =
-    isPaired "{]" |> should equal false
+-- Wrong closing bracket
+-- ==
+-- input { "{]" }
+-- output { false }
 
-let ``Paired with whitespace`` () =
-    isPaired "{ }" |> should equal true
+-- Paired with whitespace
+-- ==
+-- input { "{ }" }
+-- output { true }
 
-let ``Partially paired brackets`` () =
-    isPaired "{[])" |> should equal false
+-- Partially paired brackets
+-- ==
+-- input { "{[])" }
+-- output { false }
 
-let ``Simple nested brackets`` () =
-    isPaired "{[]}" |> should equal true
+-- Simple nested brackets
+-- ==
+-- input { "{[]}" }
+-- output { true }
 
-let ``Several paired brackets`` () =
-    isPaired "{}[]" |> should equal true
+-- Several paired brackets
+-- ==
+-- input { "{}[]" }
+-- output { true }
 
-let ``Paired and nested brackets`` () =
-    isPaired "([{}({}[])])" |> should equal true
+-- Paired and nested brackets
+-- ==
+-- input { "([{}({}[])])" }
+-- output { true }
 
-let ``Unopened closing brackets`` () =
-    isPaired "{[)][]}" |> should equal false
+-- Unopened closing brackets
+-- ==
+-- input { "{[)][]}" }
+-- output { false }
 
-let ``Unpaired and nested brackets`` () =
-    isPaired "([{])" |> should equal false
+-- Unpaired and nested brackets
+-- ==
+-- input { "([{])" }
+-- output { false }
 
-let ``Paired and wrong nested brackets`` () =
-    isPaired "[({]})" |> should equal false
+-- Paired and wrong nested brackets
+-- ==
+-- input { "[({]})" }
+-- output { false }
 
-let ``Paired and wrong nested brackets but innermost are correct`` () =
-    isPaired "[({}])" |> should equal false
+-- Paired and wrong nested brackets but innermost are correct
+-- ==
+-- input { "[({}])" }
+-- output { false }
 
-let ``Paired and incomplete brackets`` () =
-    isPaired "{}[" |> should equal false
+-- Paired and incomplete brackets
+-- ==
+-- input { "{}[" }
+-- output { false }
 
-let ``Too many closing brackets`` () =
-    isPaired "[]]" |> should equal false
+-- Too many closing brackets
+-- ==
+-- input { "[]]" }
+-- output { false }
 
-let ``Early unexpected brackets`` () =
-    isPaired ")()" |> should equal false
+-- Early unexpected brackets
+-- ==
+-- input { ")()" }
+-- output { false }
 
-let ``Early mismatched brackets`` () =
-    isPaired "{)()" |> should equal false
+-- Early mismatched brackets
+-- ==
+-- input { "{)()" }
+-- output { false }
 
-let ``Math expression`` () =
-    isPaired "(((185 + 223.85) * 15) - 543)/2" |> should equal true
+-- Math expression
+-- ==
+-- input { "(((185 + 223.85) * 15) - 543)/2" }
+-- output { true }
 
-let ``Complex latex expression`` () =
-    isPaired "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)" |> should equal true
+-- Complex latex expression
+-- ==
+-- input { "\left(\begin{array}{cc} \frac{1}{3} & x\\ \mathrm{e}^{x} &... x^2 \end{array}\right)" }
+-- output { true }
 

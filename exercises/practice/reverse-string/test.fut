@@ -1,20 +1,32 @@
 import "reverse_string"
 
-let ``An empty string`` () =
-    reverse "" |> should equal ""
+-- An empty string
+-- ==
+-- input { "" }
+-- output { "" }
 
-let ``A word`` () =
-    reverse "robot" |> should equal "tobor"
+-- A word
+-- ==
+-- input { "robot" }
+-- output { "tobor" }
 
-let ``A capitalized word`` () =
-    reverse "Ramen" |> should equal "nemaR"
+-- A capitalized word
+-- ==
+-- input { "Ramen" }
+-- output { "nemaR" }
 
-let ``A sentence with punctuation`` () =
-    reverse "I'm hungry!" |> should equal "!yrgnuh m'I"
+-- A sentence with punctuation
+-- ==
+-- input { "I'm hungry!" }
+-- output { "!yrgnuh m'I" }
 
-let ``A palindrome`` () =
-    reverse "racecar" |> should equal "racecar"
+-- A palindrome
+-- ==
+-- input { "racecar" }
+-- output { "racecar" }
 
-let ``An even-sized word`` () =
-    reverse "drawer" |> should equal "reward"
+-- An even-sized word
+-- ==
+-- input { "drawer" }
+-- output { "reward" }
 

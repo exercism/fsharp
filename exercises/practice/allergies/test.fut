@@ -123,30 +123,48 @@ let ``Testing for cats allergy - allergic to everything`` () =
 let ``List - no allergies`` () =
     list 0 |> should be Empty
 
-let ``List - just eggs`` () =
-    list 1 |> should equal [Allergen.Eggs]
+-- List - just eggs
+-- ==
+-- input { 1 }
+-- output { [Allergen.Eggs] }
 
-let ``List - just peanuts`` () =
-    list 2 |> should equal [Allergen.Peanuts]
+-- List - just peanuts
+-- ==
+-- input { 2 }
+-- output { [Allergen.Peanuts] }
 
-let ``List - just strawberries`` () =
-    list 8 |> should equal [Allergen.Strawberries]
+-- List - just strawberries
+-- ==
+-- input { 8 }
+-- output { [Allergen.Strawberries] }
 
-let ``List - eggs and peanuts`` () =
-    list 3 |> should equal [Allergen.Eggs; Allergen.Peanuts]
+-- List - eggs and peanuts
+-- ==
+-- input { 3 }
+-- output { [Allergen.Eggs; Allergen.Peanuts] }
 
-let ``List - more than eggs but not peanuts`` () =
-    list 5 |> should equal [Allergen.Eggs; Allergen.Shellfish]
+-- List - more than eggs but not peanuts
+-- ==
+-- input { 5 }
+-- output { [Allergen.Eggs; Allergen.Shellfish] }
 
-let ``List - lots of stuff`` () =
-    list 248 |> should equal [Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
+-- List - lots of stuff
+-- ==
+-- input { 248 }
+-- output { [Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats] }
 
-let ``List - everything`` () =
-    list 255 |> should equal [Allergen.Eggs; Allergen.Peanuts; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
+-- List - everything
+-- ==
+-- input { 255 }
+-- output { [Allergen.Eggs; Allergen.Peanuts; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats] }
 
-let ``List - no allergen score parts`` () =
-    list 509 |> should equal [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats]
+-- List - no allergen score parts
+-- ==
+-- input { 509 }
+-- output { [Allergen.Eggs; Allergen.Shellfish; Allergen.Strawberries; Allergen.Tomatoes; Allergen.Chocolate; Allergen.Pollen; Allergen.Cats] }
 
-let ``List - no allergen score parts without highest valid score`` () =
-    list 257 |> should equal [Allergen.Eggs]
+-- List - no allergen score parts without highest valid score
+-- ==
+-- input { 257 }
+-- output { [Allergen.Eggs] }
 

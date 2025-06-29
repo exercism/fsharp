@@ -1,14 +1,22 @@
 import "eliuds_eggs"
 
-let ``0 eggs`` () =
-    eggCount 0 |> should equal 0
+-- 0 eggs
+-- ==
+-- input { 0 }
+-- output { 0 }
 
-let ``1 egg`` () =
-    eggCount 16 |> should equal 1
+-- 1 egg
+-- ==
+-- input { 16 }
+-- output { 1 }
 
-let ``4 eggs`` () =
-    eggCount 89 |> should equal 4
+-- 4 eggs
+-- ==
+-- input { 89 }
+-- output { 4 }
 
-let ``13 eggs`` () =
-    eggCount 2000000000 |> should equal 13
+-- 13 eggs
+-- ==
+-- input { 2000000000 }
+-- output { 13 }
 

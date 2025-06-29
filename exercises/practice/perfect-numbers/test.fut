@@ -1,41 +1,67 @@
 import "perfect_numbers"
 
-let ``Smallest perfect number is classified correctly`` () =
-    classify 6 |> should equal Classification.Perfect
+-- Smallest perfect number is classified correctly
+-- ==
+-- input { 6 }
+-- output { Classification.Perfect }
 
-let ``Medium perfect number is classified correctly`` () =
-    classify 28 |> should equal Classification.Perfect
+-- Medium perfect number is classified correctly
+-- ==
+-- input { 28 }
+-- output { Classification.Perfect }
 
-let ``Large perfect number is classified correctly`` () =
-    classify 33550336 |> should equal Classification.Perfect
+-- Large perfect number is classified correctly
+-- ==
+-- input { 33550336 }
+-- output { Classification.Perfect }
 
-let ``Smallest abundant number is classified correctly`` () =
-    classify 12 |> should equal Classification.Abundant
+-- Smallest abundant number is classified correctly
+-- ==
+-- input { 12 }
+-- output { Classification.Abundant }
 
-let ``Medium abundant number is classified correctly`` () =
-    classify 30 |> should equal Classification.Abundant
+-- Medium abundant number is classified correctly
+-- ==
+-- input { 30 }
+-- output { Classification.Abundant }
 
-let ``Large abundant number is classified correctly`` () =
-    classify 33550335 |> should equal Classification.Abundant
+-- Large abundant number is classified correctly
+-- ==
+-- input { 33550335 }
+-- output { Classification.Abundant }
 
-let ``Smallest prime deficient number is classified correctly`` () =
-    classify 2 |> should equal Classification.Deficient
+-- Smallest prime deficient number is classified correctly
+-- ==
+-- input { 2 }
+-- output { Classification.Deficient }
 
-let ``Smallest non-prime deficient number is classified correctly`` () =
-    classify 4 |> should equal Classification.Deficient
+-- Smallest non-prime deficient number is classified correctly
+-- ==
+-- input { 4 }
+-- output { Classification.Deficient }
 
-let ``Medium deficient number is classified correctly`` () =
-    classify 32 |> should equal Classification.Deficient
+-- Medium deficient number is classified correctly
+-- ==
+-- input { 32 }
+-- output { Classification.Deficient }
 
-let ``Large deficient number is classified correctly`` () =
-    classify 33550337 |> should equal Classification.Deficient
+-- Large deficient number is classified correctly
+-- ==
+-- input { 33550337 }
+-- output { Classification.Deficient }
 
-let ``Edge case (no factors other than itself) is classified correctly`` () =
-    classify 1 |> should equal Classification.Deficient
+-- Edge case (no factors other than itself) is classified correctly
+-- ==
+-- input { 1 }
+-- output { Classification.Deficient }
 
-let ``Zero is rejected (as it is not a positive integer)`` () =
-    classify 0 |> should equal None
+-- Zero is rejected (as it is not a positive integer)
+-- ==
+-- input { 0 }
+-- output { None }
 
-let ``Negative integer is rejected (as it is not a positive integer)`` () =
-    classify -1 |> should equal None
+-- Negative integer is rejected (as it is not a positive integer)
+-- ==
+-- input { -1 }
+-- output { None }
 

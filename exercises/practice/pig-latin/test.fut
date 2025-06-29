@@ -1,68 +1,112 @@
 import "pig_latin"
 
-let ``Word beginning with a`` () =
-    translate "apple" |> should equal "appleay"
+-- Word beginning with a
+-- ==
+-- input { "apple" }
+-- output { "appleay" }
 
-let ``Word beginning with e`` () =
-    translate "ear" |> should equal "earay"
+-- Word beginning with e
+-- ==
+-- input { "ear" }
+-- output { "earay" }
 
-let ``Word beginning with i`` () =
-    translate "igloo" |> should equal "iglooay"
+-- Word beginning with i
+-- ==
+-- input { "igloo" }
+-- output { "iglooay" }
 
-let ``Word beginning with o`` () =
-    translate "object" |> should equal "objectay"
+-- Word beginning with o
+-- ==
+-- input { "object" }
+-- output { "objectay" }
 
-let ``Word beginning with u`` () =
-    translate "under" |> should equal "underay"
+-- Word beginning with u
+-- ==
+-- input { "under" }
+-- output { "underay" }
 
-let ``Word beginning with a vowel and followed by a qu`` () =
-    translate "equal" |> should equal "equalay"
+-- Word beginning with a vowel and followed by a qu
+-- ==
+-- input { "equal" }
+-- output { "equalay" }
 
-let ``Word beginning with p`` () =
-    translate "pig" |> should equal "igpay"
+-- Word beginning with p
+-- ==
+-- input { "pig" }
+-- output { "igpay" }
 
-let ``Word beginning with k`` () =
-    translate "koala" |> should equal "oalakay"
+-- Word beginning with k
+-- ==
+-- input { "koala" }
+-- output { "oalakay" }
 
-let ``Word beginning with x`` () =
-    translate "xenon" |> should equal "enonxay"
+-- Word beginning with x
+-- ==
+-- input { "xenon" }
+-- output { "enonxay" }
 
-let ``Word beginning with q without a following u`` () =
-    translate "qat" |> should equal "atqay"
+-- Word beginning with q without a following u
+-- ==
+-- input { "qat" }
+-- output { "atqay" }
 
-let ``Word beginning with ch`` () =
-    translate "chair" |> should equal "airchay"
+-- Word beginning with ch
+-- ==
+-- input { "chair" }
+-- output { "airchay" }
 
-let ``Word beginning with qu`` () =
-    translate "queen" |> should equal "eenquay"
+-- Word beginning with qu
+-- ==
+-- input { "queen" }
+-- output { "eenquay" }
 
-let ``Word beginning with qu and a preceding consonant`` () =
-    translate "square" |> should equal "aresquay"
+-- Word beginning with qu and a preceding consonant
+-- ==
+-- input { "square" }
+-- output { "aresquay" }
 
-let ``Word beginning with th`` () =
-    translate "therapy" |> should equal "erapythay"
+-- Word beginning with th
+-- ==
+-- input { "therapy" }
+-- output { "erapythay" }
 
-let ``Word beginning with thr`` () =
-    translate "thrush" |> should equal "ushthray"
+-- Word beginning with thr
+-- ==
+-- input { "thrush" }
+-- output { "ushthray" }
 
-let ``Word beginning with sch`` () =
-    translate "school" |> should equal "oolschay"
+-- Word beginning with sch
+-- ==
+-- input { "school" }
+-- output { "oolschay" }
 
-let ``Word beginning with yt`` () =
-    translate "yttria" |> should equal "yttriaay"
+-- Word beginning with yt
+-- ==
+-- input { "yttria" }
+-- output { "yttriaay" }
 
-let ``Word beginning with xr`` () =
-    translate "xray" |> should equal "xrayay"
+-- Word beginning with xr
+-- ==
+-- input { "xray" }
+-- output { "xrayay" }
 
-let ``Y is treated like a consonant at the beginning of a word`` () =
-    translate "yellow" |> should equal "ellowyay"
+-- Y is treated like a consonant at the beginning of a word
+-- ==
+-- input { "yellow" }
+-- output { "ellowyay" }
 
-let ``Y is treated like a vowel at the end of a consonant cluster`` () =
-    translate "rhythm" |> should equal "ythmrhay"
+-- Y is treated like a vowel at the end of a consonant cluster
+-- ==
+-- input { "rhythm" }
+-- output { "ythmrhay" }
 
-let ``Y as second letter in two letter word`` () =
-    translate "my" |> should equal "ymay"
+-- Y as second letter in two letter word
+-- ==
+-- input { "my" }
+-- output { "ymay" }
 
-let ``A whole phrase`` () =
-    translate "quick fast run" |> should equal "ickquay astfay unray"
+-- A whole phrase
+-- ==
+-- input { "quick fast run" }
+-- output { "ickquay astfay unray" }
 

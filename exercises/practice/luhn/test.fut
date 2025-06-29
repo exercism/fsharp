@@ -1,68 +1,112 @@
 import "luhn"
 
-let ``Single digit strings can not be valid`` () =
-    valid "1" |> should equal false
+-- Single digit strings can not be valid
+-- ==
+-- input { "1" }
+-- output { false }
 
-let ``A single zero is invalid`` () =
-    valid "0" |> should equal false
+-- A single zero is invalid
+-- ==
+-- input { "0" }
+-- output { false }
 
-let ``A simple valid SIN that remains valid if reversed`` () =
-    valid "059" |> should equal true
+-- A simple valid SIN that remains valid if reversed
+-- ==
+-- input { "059" }
+-- output { true }
 
-let ``A simple valid SIN that becomes invalid if reversed`` () =
-    valid "59" |> should equal true
+-- A simple valid SIN that becomes invalid if reversed
+-- ==
+-- input { "59" }
+-- output { true }
 
-let ``A valid Canadian SIN`` () =
-    valid "055 444 285" |> should equal true
+-- A valid Canadian SIN
+-- ==
+-- input { "055 444 285" }
+-- output { true }
 
-let ``Invalid Canadian SIN`` () =
-    valid "055 444 286" |> should equal false
+-- Invalid Canadian SIN
+-- ==
+-- input { "055 444 286" }
+-- output { false }
 
-let ``Invalid credit card`` () =
-    valid "8273 1232 7352 0569" |> should equal false
+-- Invalid credit card
+-- ==
+-- input { "8273 1232 7352 0569" }
+-- output { false }
 
-let ``Invalid long number with an even remainder`` () =
-    valid "1 2345 6789 1234 5678 9012" |> should equal false
+-- Invalid long number with an even remainder
+-- ==
+-- input { "1 2345 6789 1234 5678 9012" }
+-- output { false }
 
-let ``Invalid long number with a remainder divisible by 5`` () =
-    valid "1 2345 6789 1234 5678 9013" |> should equal false
+-- Invalid long number with a remainder divisible by 5
+-- ==
+-- input { "1 2345 6789 1234 5678 9013" }
+-- output { false }
 
-let ``Valid number with an even number of digits`` () =
-    valid "095 245 88" |> should equal true
+-- Valid number with an even number of digits
+-- ==
+-- input { "095 245 88" }
+-- output { true }
 
-let ``Valid number with an odd number of spaces`` () =
-    valid "234 567 891 234" |> should equal true
+-- Valid number with an odd number of spaces
+-- ==
+-- input { "234 567 891 234" }
+-- output { true }
 
-let ``Valid strings with a non-digit added at the end become invalid`` () =
-    valid "059a" |> should equal false
+-- Valid strings with a non-digit added at the end become invalid
+-- ==
+-- input { "059a" }
+-- output { false }
 
-let ``Valid strings with punctuation included become invalid`` () =
-    valid "055-444-285" |> should equal false
+-- Valid strings with punctuation included become invalid
+-- ==
+-- input { "055-444-285" }
+-- output { false }
 
-let ``Valid strings with symbols included become invalid`` () =
-    valid "055# 444$ 285" |> should equal false
+-- Valid strings with symbols included become invalid
+-- ==
+-- input { "055# 444$ 285" }
+-- output { false }
 
-let ``Single zero with space is invalid`` () =
-    valid " 0" |> should equal false
+-- Single zero with space is invalid
+-- ==
+-- input { " 0" }
+-- output { false }
 
-let ``More than a single zero is valid`` () =
-    valid "0000 0" |> should equal true
+-- More than a single zero is valid
+-- ==
+-- input { "0000 0" }
+-- output { true }
 
-let ``Input digit 9 is correctly converted to output digit 9`` () =
-    valid "091" |> should equal true
+-- Input digit 9 is correctly converted to output digit 9
+-- ==
+-- input { "091" }
+-- output { true }
 
-let ``Very long input is valid`` () =
-    valid "9999999999 9999999999 9999999999 9999999999" |> should equal true
+-- Very long input is valid
+-- ==
+-- input { "9999999999 9999999999 9999999999 9999999999" }
+-- output { true }
 
-let ``Valid luhn with an odd number of digits and non zero first digit`` () =
-    valid "109" |> should equal true
+-- Valid luhn with an odd number of digits and non zero first digit
+-- ==
+-- input { "109" }
+-- output { true }
 
-let ``Using ascii value for non-doubled non-digit isn't allowed`` () =
-    valid "055b 444 285" |> should equal false
+-- Using ascii value for non-doubled non-digit isn't allowed
+-- ==
+-- input { "055b 444 285" }
+-- output { false }
 
-let ``Using ascii value for doubled non-digit isn't allowed`` () =
-    valid ":9" |> should equal false
+-- Using ascii value for doubled non-digit isn't allowed
+-- ==
+-- input { ":9" }
+-- output { false }
 
-let ``Non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed`` () =
-    valid "59%59" |> should equal false
+-- Non-numeric, non-space char in the middle with a sum that's divisible by 10 isn't allowed
+-- ==
+-- input { "59%59" }
+-- output { false }
 

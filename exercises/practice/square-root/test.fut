@@ -1,20 +1,32 @@
 import "square_root"
 
-let ``Root of 1`` () =
-    squareRoot 1 |> should equal 1
+-- Root of 1
+-- ==
+-- input { 1 }
+-- output { 1 }
 
-let ``Root of 4`` () =
-    squareRoot 4 |> should equal 2
+-- Root of 4
+-- ==
+-- input { 4 }
+-- output { 2 }
 
-let ``Root of 25`` () =
-    squareRoot 25 |> should equal 5
+-- Root of 25
+-- ==
+-- input { 25 }
+-- output { 5 }
 
-let ``Root of 81`` () =
-    squareRoot 81 |> should equal 9
+-- Root of 81
+-- ==
+-- input { 81 }
+-- output { 9 }
 
-let ``Root of 196`` () =
-    squareRoot 196 |> should equal 14
+-- Root of 196
+-- ==
+-- input { 196 }
+-- output { 14 }
 
-let ``Root of 65025`` () =
-    squareRoot 65025 |> should equal 255
+-- Root of 65025
+-- ==
+-- input { 65025 }
+-- output { 255 }
 

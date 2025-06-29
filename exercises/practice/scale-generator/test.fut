@@ -1,10 +1,14 @@
 import "scale_generator"
 
-let ``Chromatic scale with sharps`` () =
-    chromatic "C" |> should equal ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+-- Chromatic scale with sharps
+-- ==
+-- input { "C" }
+-- output { ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"] }
 
-let ``Chromatic scale with flats`` () =
-    chromatic "F" |> should equal ["F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E"]
+-- Chromatic scale with flats
+-- ==
+-- input { "F" }
+-- output { ["F", "Gb", "G", "Ab", "A", "Bb", "B", "C", "Db", "D", "Eb", "E"] }
 
 -- Simple major scale
 -- ==
