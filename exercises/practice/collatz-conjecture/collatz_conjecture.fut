@@ -1,1 +1,1 @@
-let steps (number: int): int option = failwith "You need to implement this function."
+let steps (number: int): i32 = failwith "You need to implement this function."

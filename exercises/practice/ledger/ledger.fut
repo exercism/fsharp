@@ -1,7 +1,7 @@
 open System
 open System.Globalization
 
-type Entry = { dat: DateTime; des: string; chg: int }
+type Entry = { dat: DateTime; des: string; chg: i32 }
 
 let mkEntry (date: string) description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
         

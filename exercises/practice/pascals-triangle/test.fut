@@ -1,7 +1,7 @@
 import "pascals_triangle"
 
 let ``Zero rows`` () =
-    let expected: int list list = []
+    let expected: i32 list list = []
     rows 0 |> should equal expected
 
 let ``Single row`` () =

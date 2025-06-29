@@ -1,1 +1,1 @@
-let largestProduct input seriesLength : int option = failwith "You need to implement this function."
+let largestProduct input seriesLength : i32 = failwith "You need to implement this function."

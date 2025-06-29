@@ -51,7 +51,7 @@ let ``Another possible change without unit coins available`` () =
 let ``No coins make 0 change`` () =
     let coins = [1, 5, 10, 21, 25]
     let target = 0
-    let expected: int list option = Some []
+    let expected: i32 list = Some []
     findFewestCoins coins target |> should equal expected
 
 let ``Error testing for change smaller than the smallest of coins`` () =

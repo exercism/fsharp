@@ -40,7 +40,7 @@ let ``A stone and not a territory on 5x5 board`` () =
           " W W ";
           "  W  " ]
     let position = (1, 1)
-    let expected: (Owner * (int * int) list) option = Option.Some (Owner.None, [])
+    let expected: (Owner * (int * int) list) = Option.Some (Owner.None, [])
     territory board position |> should equal expected
 
 let ``Invalid because X is too low for 5x5 board`` () =
