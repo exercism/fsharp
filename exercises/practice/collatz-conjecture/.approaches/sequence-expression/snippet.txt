@@ -1,8 +1,0 @@
-seq {
-    if current > 1 then
-        yield current
-        if current % 2 = 0 then            
-            yield! collatzSequence (current / 2)
-        else
-            yield! collatzSequence (current * 3 + 1)
-}

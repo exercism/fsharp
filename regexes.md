@@ -14,6 +14,14 @@
 module (.+)\n
 ```
 
+# Remove dirs
+
+find . -name '.approaches' -execdir rm -rf {} \;
+find . -name '.config' -execdir rm -rf {} \;
+find . -name '.docs' -execdir rm -rf {} \;
+find . -name '.meta' -execdir rm -rf {} \;
+find . -name '\*.fsproj' -execdir rm -f {} \;
+
 # Double numeric argument - single numeric output
 
 -- $1
