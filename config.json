@@ -2085,6 +2085,19 @@
         "difficulty": 3
       },
       {
+        "slug": "relative-distance",
+        "name": "Relative Distance",
+        "uuid": "bc7561ce-c738-46ef-a749-68c352728aee",
+        "practices": [
+          "lists"
+        ],
+        "prerequisites": [
+          "if-then-else-expressions",
+          "lists"
+        ],
+        "difficulty": 5
+      },
+      {
         "slug": "tree-building",
         "name": "Tree Building",
         "uuid": "a53fa908-f983-4da5-b1c1-3989bd2ea2f9",
