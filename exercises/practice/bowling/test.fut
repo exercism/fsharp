@@ -5,77 +5,77 @@ let rollMany rolls game = List.fold (fun game pins -> roll pins game) game rolls
 let ``Should be able to score a game with all zeros`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 0)
+    score game |> should equal 0
 
 let ``Should be able to score a game with no strikes or spares`` () =
     let rolls = [3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 90)
+    score game |> should equal 90
 
 let ``A spare followed by zeros is worth ten points`` () =
     let rolls = [6, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 10)
+    score game |> should equal 10
 
 let ``Points scored in the roll after a spare are counted twice`` () =
     let rolls = [6, 4, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 16)
+    score game |> should equal 16
 
 let ``Consecutive spares each get a one roll bonus`` () =
     let rolls = [5, 5, 3, 7, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 31)
+    score game |> should equal 31
 
 let ``A spare in the last frame gets a one roll bonus that is counted once`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 7]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 17)
+    score game |> should equal 17
 
 let ``A strike earns ten points in a frame with a single roll`` () =
     let rolls = [10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 10)
+    score game |> should equal 10
 
 let ``Points scored in the two rolls after a strike are counted twice as a bonus`` () =
     let rolls = [10, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 26)
+    score game |> should equal 26
 
 let ``Consecutive strikes each get the two roll bonus`` () =
     let rolls = [10, 10, 10, 5, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 81)
+    score game |> should equal 81
 
 let ``A strike in the last frame gets a two roll bonus that is counted once`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 7, 1]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 18)
+    score game |> should equal 18
 
 let ``Rolling a spare with the two roll bonus does not get a bonus roll`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 7, 3]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 20)
+    score game |> should equal 20
 
 let ``Strikes with the two roll bonus do not get bonus rolls`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 10]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 30)
+    score game |> should equal 30
 
 let ``Last two strikes followed by only last bonus with non strike points`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 0, 1]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 31)
+    score game |> should equal 31
 
 let ``A strike with the one roll bonus after a spare in the last frame does not get a bonus`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 3, 10]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 20)
+    score game |> should equal 20
 
 let ``All strikes is a perfect game`` () =
     let rolls = [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 300)
+    score game |> should equal 300
 
 let ``Rolls cannot score negative points`` () =
     let rolls = []
@@ -110,7 +110,7 @@ let ``Two bonus rolls after a strike in the last frame cannot score more than 10
 let ``Two bonus rolls after a strike in the last frame can score more than 10 points if one is a strike`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 6]
     let game = rollMany rolls (newGame())
-    score game |> should equal (Some 26)
+    score game |> should equal 26
 
 let ``The second bonus rolls after a strike in the last frame cannot be a strike if the first one is not a strike`` () =
     let rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6]

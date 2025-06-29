@@ -1,19 +1,19 @@
 import "hamming"
 
 let ``Empty strands`` () =
-    distance "" "" |> should equal (Some 0)
+    distance "" "" |> should equal 0
 
 let ``Single letter identical strands`` () =
-    distance "A" "A" |> should equal (Some 0)
+    distance "A" "A" |> should equal 0
 
 let ``Single letter different strands`` () =
-    distance "G" "T" |> should equal (Some 1)
+    distance "G" "T" |> should equal 1
 
 let ``Long identical strands`` () =
-    distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> should equal (Some 0)
+    distance "GGACTGAAATCTG" "GGACTGAAATCTG" |> should equal 0
 
 let ``Long different strands`` () =
-    distance "GGACGGATTCTG" "AGGACGGATTCT" |> should equal (Some 9)
+    distance "GGACGGATTCTG" "AGGACGGATTCT" |> should equal 9
 
 let ``Disallow first strand longer`` () =
     distance "AATG" "AAA" |> should equal None

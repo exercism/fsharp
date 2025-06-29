@@ -60,7 +60,7 @@ let ``Set value after traversing up`` () =
 let ``Set left with leaf`` () =
     let zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
     let expected = tree 1 (subTree 2 (leaf 5) (leaf 3)) (leaf 4)
-    let actual = zipper |> left |> Option.get |> setLeft (Some (tree 5 None None)) |> toTree
+    let actual = zipper |> left |> Option.get |> setLeft (tree 5 None None) |> toTree
     actual |> should equal expected
 
 let ``Set right with null`` () =
@@ -72,7 +72,7 @@ let ``Set right with null`` () =
 let ``Set right with subtree`` () =
     let zipper = fromTree (tree 1 (subTree 2 None (leaf 3)) (leaf 4))
     let expected = tree 1 (subTree 2 None (leaf 3)) (subTree 6 (leaf 7) (leaf 8))
-    let actual = zipper |> setRight (Some (tree 6 (leaf 7) (leaf 8))) |> toTree
+    let actual = zipper |> setRight (tree 6 (leaf 7 (leaf 8))) |> toTree
     actual |> should equal expected
 
 let ``Set value on deep focus`` () =

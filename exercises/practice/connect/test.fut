@@ -11,11 +11,11 @@ let ``An empty board has no winner`` () =
 
 let ``X can win on a 1x1 board`` () =
     let board = ["X"]
-    winner board |> should equal (Some Black)
+    winner board |> should equal Black
 
 let ``O can win on a 1x1 board`` () =
     let board = ["O"]
-    winner board |> should equal (Some White)
+    winner board |> should equal White
 
 let ``Only edges does not make a winner`` () =
     let board = 
@@ -50,7 +50,7 @@ let ``X wins crossing from left to right`` () =
           "  O X O .  ";
           "   X X O X ";
           "    . O X ." ]
-    winner board |> should equal (Some Black)
+    winner board |> should equal Black
 
 let ``O wins crossing from top to bottom`` () =
     let board = 
@@ -59,7 +59,7 @@ let ``O wins crossing from top to bottom`` () =
           "  O O O .  ";
           "   X X O X ";
           "    . O X ." ]
-    winner board |> should equal (Some White)
+    winner board |> should equal White
 
 let ``X wins using a convoluted path`` () =
     let board = 
@@ -68,7 +68,7 @@ let ``X wins using a convoluted path`` () =
           "  . X . X .  ";
           "   . X X . . ";
           "    O O O O O" ]
-    winner board |> should equal (Some Black)
+    winner board |> should equal Black
 
 let ``X wins using a spiral path`` () =
     let board = 
@@ -81,5 +81,5 @@ let ``X wins using a spiral path`` () =
           "      O X X X X X O X O  ";
           "       O O O O O O O X O ";
           "        X X X X X X X X O" ]
-    winner board |> should equal (Some Black)
+    winner board |> should equal Black
 

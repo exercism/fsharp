@@ -169,8 +169,8 @@ let ``User-defined words - errors if executing a non-existent word`` () =
     evaluate ["foo"] |> should equal expected
 
 let ``User-defined words - only defines locally`` () =
-    evaluate [": + - ;", "1 1 +"] |> should equal (Some [0])
-    evaluate ["1 1 +"] |> should equal (Some [2])
+    evaluate [": + - ;", "1 1 +"] |> should equal [0]
+    evaluate ["1 1 +"] |> should equal [2]
 
 let ``Case-insensitivity - DUP is case-insensitive`` () =
     let expected = Some [1, 1, 1, 1]

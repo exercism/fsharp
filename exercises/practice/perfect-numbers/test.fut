@@ -1,37 +1,37 @@
 import "perfect_numbers"
 
 let ``Smallest perfect number is classified correctly`` () =
-    classify 6 |> should equal (Some Classification.Perfect)
+    classify 6 |> should equal Classification.Perfect
 
 let ``Medium perfect number is classified correctly`` () =
-    classify 28 |> should equal (Some Classification.Perfect)
+    classify 28 |> should equal Classification.Perfect
 
 let ``Large perfect number is classified correctly`` () =
-    classify 33550336 |> should equal (Some Classification.Perfect)
+    classify 33550336 |> should equal Classification.Perfect
 
 let ``Smallest abundant number is classified correctly`` () =
-    classify 12 |> should equal (Some Classification.Abundant)
+    classify 12 |> should equal Classification.Abundant
 
 let ``Medium abundant number is classified correctly`` () =
-    classify 30 |> should equal (Some Classification.Abundant)
+    classify 30 |> should equal Classification.Abundant
 
 let ``Large abundant number is classified correctly`` () =
-    classify 33550335 |> should equal (Some Classification.Abundant)
+    classify 33550335 |> should equal Classification.Abundant
 
 let ``Smallest prime deficient number is classified correctly`` () =
-    classify 2 |> should equal (Some Classification.Deficient)
+    classify 2 |> should equal Classification.Deficient
 
 let ``Smallest non-prime deficient number is classified correctly`` () =
-    classify 4 |> should equal (Some Classification.Deficient)
+    classify 4 |> should equal Classification.Deficient
 
 let ``Medium deficient number is classified correctly`` () =
-    classify 32 |> should equal (Some Classification.Deficient)
+    classify 32 |> should equal Classification.Deficient
 
 let ``Large deficient number is classified correctly`` () =
-    classify 33550337 |> should equal (Some Classification.Deficient)
+    classify 33550337 |> should equal Classification.Deficient
 
 let ``Edge case (no factors other than itself) is classified correctly`` () =
-    classify 1 |> should equal (Some Classification.Deficient)
+    classify 1 |> should equal Classification.Deficient
 
 let ``Zero is rejected (as it is not a positive integer)`` () =
     classify 0 |> should equal None

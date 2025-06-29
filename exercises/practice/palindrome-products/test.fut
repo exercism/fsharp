@@ -1,35 +1,35 @@
 import "palindrome_products"
 
 let ``Find the smallest palindrome from single digit factors`` () =
-    let expected: int option * (int * int) list = (Some 1, [(1, 1)])
+    let expected: int option * (int * int) list = 1, [(1, 1])
     smallest 1 9 |> should equal expected
 
 let ``Find the largest palindrome from single digit factors`` () =
-    let expected: int option * (int * int) list = (Some 9, [(1, 9); (3, 3)])
+    let expected: int option * (int * int) list = 9, [(1, 9; (3, 3)])
     largest 1 9 |> should equal expected
 
 let ``Find the smallest palindrome from double digit factors`` () =
-    let expected: int option * (int * int) list = (Some 121, [(11, 11)])
+    let expected: int option * (int * int) list = 121, [(11, 11])
     smallest 10 99 |> should equal expected
 
 let ``Find the largest palindrome from double digit factors`` () =
-    let expected: int option * (int * int) list = (Some 9009, [(91, 99)])
+    let expected: int option * (int * int) list = 9009, [(91, 99])
     largest 10 99 |> should equal expected
 
 let ``Find the smallest palindrome from triple digit factors`` () =
-    let expected: int option * (int * int) list = (Some 10201, [(101, 101)])
+    let expected: int option * (int * int) list = 10201, [(101, 101])
     smallest 100 999 |> should equal expected
 
 let ``Find the largest palindrome from triple digit factors`` () =
-    let expected: int option * (int * int) list = (Some 906609, [(913, 993)])
+    let expected: int option * (int * int) list = 906609, [(913, 993])
     largest 100 999 |> should equal expected
 
 let ``Find the smallest palindrome from four digit factors`` () =
-    let expected: int option * (int * int) list = (Some 1002001, [(1001, 1001)])
+    let expected: int option * (int * int) list = 1002001, [(1001, 1001])
     smallest 1000 9999 |> should equal expected
 
 let ``Find the largest palindrome from four digit factors`` () =
-    let expected: int option * (int * int) list = (Some 99000099, [(9901, 9999)])
+    let expected: int option * (int * int) list = 99000099, [(9901, 9999])
     largest 1000 9999 |> should equal expected
 
 let ``Empty result for smallest if no palindrome in the range`` () =
