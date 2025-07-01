@@ -23,5 +23,5 @@ import "nth_prime"
 -- There is no zeroth prime
 -- ==
 -- input { 0 }
--- output { None }
+-- error: Error*
 

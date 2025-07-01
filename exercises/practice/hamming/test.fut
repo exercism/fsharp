@@ -28,20 +28,20 @@ import "hamming"
 -- Disallow first strand longer
 -- ==
 -- input { "AATG" "AAA" }
--- output { None }
+-- error: Error*
 
 -- Disallow second strand longer
 -- ==
 -- input { "ATA" "AGTG" }
--- output { None }
+-- error: Error*
 
 -- Disallow empty first strand
 -- ==
 -- input { "" "G" }
--- output { None }
+-- error: Error*
 
 -- Disallow empty second strand
 -- ==
 -- input { "G" "" }
--- output { None }
+-- error: Error*
 

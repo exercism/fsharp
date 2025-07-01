@@ -78,40 +78,40 @@ import "wordy"
 -- Unknown operation
 -- ==
 -- input { "What is 52 cubed?" }
--- output { None }
+-- error: Error*
 
 -- Non math question
 -- ==
 -- input { "Who is the President of the United States?" }
--- output { None }
+-- error: Error*
 
 -- Reject problem missing an operand
 -- ==
 -- input { "What is 1 plus?" }
--- output { None }
+-- error: Error*
 
 -- Reject problem with no operands or operators
 -- ==
 -- input { "What is?" }
--- output { None }
+-- error: Error*
 
 -- Reject two operations in a row
 -- ==
 -- input { "What is 1 plus plus 2?" }
--- output { None }
+-- error: Error*
 
 -- Reject two numbers in a row
 -- ==
 -- input { "What is 1 plus 2 1?" }
--- output { None }
+-- error: Error*
 
 -- Reject postfix notation
 -- ==
 -- input { "What is 1 2 plus?" }
--- output { None }
+-- error: Error*
 
 -- Reject prefix notation
 -- ==
 -- input { "What is plus 1 2?" }
--- output { None }
+-- error: Error*
 

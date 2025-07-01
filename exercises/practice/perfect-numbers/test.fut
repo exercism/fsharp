@@ -58,10 +58,10 @@ import "perfect_numbers"
 -- Zero is rejected (as it is not a positive integer)
 -- ==
 -- input { 0 }
--- output { None }
+-- error: Error*
 
 -- Negative integer is rejected (as it is not a positive integer)
 -- ==
 -- input { -1 }
--- output { None }
+-- error: Error*
 

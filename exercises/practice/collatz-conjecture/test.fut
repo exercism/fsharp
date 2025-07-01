@@ -23,10 +23,10 @@ import "collatz_conjecture"
 -- Zero is an error
 -- ==
 -- input { 0 }
--- output { None }
+-- error: Error*
 
 -- Negative value is an error
 -- ==
 -- input { -15 }
--- output { None }
+-- error: Error*
 

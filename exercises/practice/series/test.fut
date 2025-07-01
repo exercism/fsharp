@@ -33,25 +33,25 @@ import "series"
 -- Slice length is too large
 -- ==
 -- input { "12345" 6 }
--- output { None }
+-- error: Error*
 
 -- Slice length is way too large
 -- ==
 -- input { "12345" 42 }
--- output { None }
+-- error: Error*
 
 -- Slice length cannot be zero
 -- ==
 -- input { "12345" 0 }
--- output { None }
+-- error: Error*
 
 -- Slice length cannot be negative
 -- ==
 -- input { "123" -1 }
--- output { None }
+-- error: Error*
 
 -- Empty series is invalid
 -- ==
 -- input { "" 1 }
--- output { None }
+-- error: Error*
 
