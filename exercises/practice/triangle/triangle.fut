@@ -1,5 +1,0 @@
-let equilateral triangle = ???
-
-let isosceles triangle = ???
-
-let scalene triangle = ???
