@@ -17,9 +17,9 @@ jobs:
         uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9
+        uses: actions/setup-dotnet@bf4cd79173c0290c09af17cf9003ca2f32edea40
         with:
-          dotnet-version: "8.0.403"
+          dotnet-version: "9.0.101"
 
       - name: Validate Code Snippets
         run: pwsh ./bin/check-code-snippets.ps1
