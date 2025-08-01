@@ -12,7 +12,7 @@ let ``Finished game where X won via left column victory`` () =
                   ['X'; ' '; ' '];
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via middle column victory`` () =
@@ -21,7 +21,7 @@ let ``Finished game where X won via middle column victory`` () =
                   [' '; 'X'; ' '];
                   [' '; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via right column victory`` () =
@@ -30,7 +30,7 @@ let ``Finished game where X won via right column victory`` () =
                   [' '; ' '; 'X'];
                   [' '; ' '; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via left column victory`` () =
@@ -39,7 +39,7 @@ let ``Finished game where O won via left column victory`` () =
                   ['O'; 'X'; ' '];
                   ['O'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via middle column victory`` () =
@@ -48,7 +48,7 @@ let ``Finished game where O won via middle column victory`` () =
                   [' '; 'O'; 'X'];
                   [' '; 'O'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via right column victory`` () =
@@ -57,7 +57,7 @@ let ``Finished game where O won via right column victory`` () =
                   [' '; 'X'; 'O'];
                   [' '; ' '; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via top row victory`` () =
@@ -66,7 +66,7 @@ let ``Finished game where X won via top row victory`` () =
                   ['X'; 'O'; 'O'];
                   ['O'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via middle row victory`` () =
@@ -75,7 +75,7 @@ let ``Finished game where X won via middle row victory`` () =
                   ['X'; 'X'; 'X'];
                   [' '; 'O'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via bottom row victory`` () =
@@ -84,7 +84,7 @@ let ``Finished game where X won via bottom row victory`` () =
                   ['O'; ' '; 'X'];
                   ['X'; 'X'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via top row victory`` () =
@@ -93,7 +93,7 @@ let ``Finished game where O won via top row victory`` () =
                   ['X'; 'X'; 'O'];
                   ['X'; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via middle row victory`` () =
@@ -102,7 +102,7 @@ let ``Finished game where O won via middle row victory`` () =
                   ['O'; 'O'; 'O'];
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via bottom row victory`` () =
@@ -111,7 +111,7 @@ let ``Finished game where O won via bottom row victory`` () =
                   [' '; 'X'; 'X'];
                   ['O'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via falling diagonal victory`` () =
@@ -120,7 +120,7 @@ let ``Finished game where X won via falling diagonal victory`` () =
                   [' '; 'X'; ' '];
                   [' '; ' '; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via rising diagonal victory`` () =
@@ -129,7 +129,7 @@ let ``Finished game where X won via rising diagonal victory`` () =
                   ['O'; 'X'; ' '];
                   ['X'; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via falling diagonal victory`` () =
@@ -138,7 +138,7 @@ let ``Finished game where O won via falling diagonal victory`` () =
                   ['O'; 'O'; 'X'];
                   ['X'; ' '; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where O won via rising diagonal victory`` () =
@@ -147,7 +147,7 @@ let ``Finished game where O won via rising diagonal victory`` () =
                   [' '; 'O'; 'X'];
                   ['O'; 'X'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via a row and a column victory`` () =
@@ -156,7 +156,7 @@ let ``Finished game where X won via a row and a column victory`` () =
                   ['X'; 'O'; 'O'];
                   ['X'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Finished game where X won via two diagonal victories`` () =
@@ -165,7 +165,7 @@ let ``Finished game where X won via two diagonal victories`` () =
                   ['O'; 'X'; 'O'];
                   ['X'; 'O'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Win
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Draw`` () =
@@ -174,7 +174,7 @@ let ``Draw`` () =
                   ['X'; 'X'; 'O'];
                   ['O'; 'X'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Another draw`` () =
@@ -183,7 +183,7 @@ let ``Another draw`` () =
                   ['O'; 'X'; 'X'];
                   ['X'; 'O'; 'O'] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Draw
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Ongoing game: one move in`` () =
@@ -192,7 +192,7 @@ let ``Ongoing game: one move in`` () =
                   ['X'; ' '; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Ongoing game: two moves in`` () =
@@ -201,7 +201,7 @@ let ``Ongoing game: two moves in`` () =
                   [' '; 'X'; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Ongoing game: five moves in`` () =
@@ -210,7 +210,7 @@ let ``Ongoing game: five moves in`` () =
                   [' '; 'X'; 'O'];
                   ['O'; 'X'; ' '] ]
     let expected: Result<EndGameState, GameError> = Ok EndGameState.Ongoing
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid board: X went twice`` () =
@@ -219,7 +219,7 @@ let ``Invalid board: X went twice`` () =
                   [' '; ' '; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error ConsecutiveMovesBySamePlayer
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid board: O started`` () =
@@ -228,7 +228,7 @@ let ``Invalid board: O started`` () =
                   [' '; ' '; ' '];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error WrongPlayerStarted
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid board: X won and O kept playing`` () =
@@ -237,7 +237,7 @@ let ``Invalid board: X won and O kept playing`` () =
                   ['O'; 'O'; 'O'];
                   [' '; ' '; ' '] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid board: players kept playing after a win`` () =
@@ -246,5 +246,5 @@ let ``Invalid board: players kept playing after a win`` () =
                   ['O'; 'O'; 'O'];
                   ['X'; 'O'; 'X'] ]
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
-    gamestate board |> should equal expected
+    gameState board |> should equal expected
 
