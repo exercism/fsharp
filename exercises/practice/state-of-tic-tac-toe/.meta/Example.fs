@@ -23,7 +23,7 @@ let won (player: Cell) (board: Board) =
     || Array.init 3 (fun i -> board[*, i])
        |> Array.contains winning
 
-let gamestate (board: Board) =
+let gameState (board: Board) =
     let numCells cell =
         board
         |> Seq.cast
