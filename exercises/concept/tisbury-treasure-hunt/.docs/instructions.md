@@ -88,8 +88,8 @@ Re-format coordinates as needed for accurate comparison.
 
 ```fsharp
 createRecord ("Brass Spyglass", "4B") ("Abandoned Lighthouse", (4, 'B'), "Blue")
-("4B", "Abandoned Lighthouse", "Blue", "Brass Spyglass")
+// ("4B", "Abandoned Lighthouse", "Blue", "Brass Spyglass")
 
 createRecord ("Brass Spyglass", "4B") ("Seaside Cottages", (1, 'C'), "Blue")
-("", "", "", "")
+// ("", "", "", "")
 ```
