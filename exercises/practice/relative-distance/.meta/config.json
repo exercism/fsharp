@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "RelativeDistance.fsproj"
     ]
   },
   "blurb": "Given a family tree, calculate the degree of separation.",

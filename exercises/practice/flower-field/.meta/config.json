@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "FlowerField.fsproj"
     ]
   },
   "blurb": "Mark all the flowers in a garden."
