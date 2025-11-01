@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@5c125af7da1b2700edf7106be3a4f8a60f495f59
+        uses: actions/setup-dotnet@21e81f65ddb80069d5591297dcd4703c0d9824d2
         with:
           dotnet-version: "9.0.101"
 
