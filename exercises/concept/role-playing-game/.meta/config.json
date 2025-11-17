@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "blackk-foxx"
+  ],
+  "contributors": [
+    "mpizenberg",
+    "ceddlyburge"
+  ],
+  "files": {
+    "solution": [
+      "RolePlayingGame.fs"
+    ],
+    "test": [
+      "RolePlayingGameTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
+  },
+  "blurb": "Learn how to use optional values with the Option type"
+}
