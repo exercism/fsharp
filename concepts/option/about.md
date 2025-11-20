@@ -22,7 +22,7 @@ The `Option` type is a generic type (having an underlying type).
 The following function demonstrates how to create an `Option` value:
 
 ```fsharp
-let keepIfPositive (a: int) : Option<int> = if a > 0 then Some(a) else None
+let keepIfPositive (a: int) : Option<int> = if a > 0 then Some a else None
 ```
 
 A typical use case for an `Option` is search functions. 
