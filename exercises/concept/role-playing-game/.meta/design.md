@@ -23,6 +23,5 @@ The goal of this exercise is to teach students about optional values enabled by 
 
 ## Prerequisites
 
-- `basics`
 - `records`
 - `tuples`

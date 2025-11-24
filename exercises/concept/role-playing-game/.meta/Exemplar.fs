@@ -7,10 +7,8 @@ type Player = {
     Mana: Option<int>
 }
 
-
 let introduce (player: Player): string = 
     Option.defaultValue "Mighty Magician" player.Name
-
 
 let revive (player: Player): Option<Player> = 
     if player.Health > 0 then
@@ -21,7 +19,6 @@ let revive (player: Player): Option<Player> =
 
     else
         Some { player with Health = 100; Mana = None }
-
 
 let castSpell (manaCost: int) (player: Player): Player * int =
     match player.Mana with

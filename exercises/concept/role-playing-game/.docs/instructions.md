@@ -18,7 +18,8 @@ You'll be working on two pieces of functionality in this game: the revive mechan
 ## 1. Introduce yourself
 
 Write the content of the `introduce` function.
-Stealthy players may be hiding their name and will be introduced as `"Mighty Magician"`.
+Note that the `Name` field of the `Player` record is an `Option`.
+Stealthy players might want to hide their name by leaving it set to `None` -- such players will be introduced as `"Mighty Magician"`.
 Otherwise, just use your name to introduce yourself.
 
 ```fsharp
