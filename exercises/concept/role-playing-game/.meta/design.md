@@ -19,7 +19,7 @@ The goal of this exercise is to teach students about optional values enabled by 
 
 ## Concepts
 
-- `option`
+- `options`
 
 ## Prerequisites
 
