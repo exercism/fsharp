@@ -206,8 +206,8 @@
         "slug": "role-playing-game",
         "name": "role-playing-game",
         "uuid": "73ea79c2-0d10-4f12-b32f-8f2fb1ef46e0",
-        "concepts": ["option"],
-        "prerequisites": ["record", "tuple"]
+        "concepts": ["options"],
+        "prerequisites": ["records", "tuples"]
       }
     ],
     "practice": [
@@ -2343,8 +2343,8 @@
     },
     {
       "uuid": "a951d5b1-0d0b-4690-9f77-c08dae22b902",
-      "slug": "option",
-      "name": "Option"
+      "slug": "options",
+      "name": "Options"
     },
     {
       "uuid": "3439b5d6-6e1b-486b-989d-9f7e8f9eb732",
