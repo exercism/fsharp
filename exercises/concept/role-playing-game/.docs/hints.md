@@ -1,10 +1,23 @@
 # Hints
 
-- See the [F# language reference on Options][options] for more usage examples.
+## 1. Introduce yourself
+
+The `introduce` function must "unwrap" the value contained in `player.Name`.
+Consider using the [`Options.defaultValue` function][defaultvalue] to convert `player.Name` to its "wrapped" value when it is `Some` or the required default value when it is `None`.
+
+## 2. Implement the revive mechanic
+
+The `revive` function must return either `Some <player>` or `None`, where `<player>` is a `Player` record possibly with some modified fields.
 
 ## 3. Implement the spell casting mechanic
 
-- The [`max` function][max] can be used to ensure the health value does not go below 0.
+Consider using a match expression to cover both the `Some` and `None` cases, as in the following example:
 
-[options]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/options
-[max]: https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#max
+```
+let exists (x: Option<int>) =
+    match x with
+    | Some n -> true
+    | None -> false
+```
+
+[defaultvalue]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/options#converting-options-with-default-values
