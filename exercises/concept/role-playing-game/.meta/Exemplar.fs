@@ -1,16 +1,16 @@
 module RolePlayingGame
 
 type Player = { 
-    Name: Option<string>
+    Name: string option
     Level: int
     Health: int
-    Mana: Option<int>
+    Mana: int option
 }
 
 let introduce (player: Player): string = 
     Option.defaultValue "Mighty Magician" player.Name
 
-let revive (player: Player): Option<Player> = 
+let revive (player: Player): Player option = 
     if player.Health > 0 then
         None
 

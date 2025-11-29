@@ -14,7 +14,7 @@ The `revive` function must return either `Some <player>` or `None`, where `<play
 Consider using a match expression to cover both the `Some` and `None` cases, as in the following example:
 
 ```fsharp
-let exists (x: Option<int>) =
+let exists (x: int option) =
     match x with
     | Some n -> true
     | None -> false
