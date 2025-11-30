@@ -1,7 +1,7 @@
 # About
 
 The `Option` type is the F# language mechanism for dealing with values that may or may not exist.
-It provides a type-safe alternative to the use of `mull`, which is common in other languages for dealing with such values.
+It provides a type-safe alternative to the use of `null`, which is common in other languages for dealing with such values.
 It is used in many standard F# library functions, so understanding it is essential for effective use of the standard F# library.
 
 ## Benefits of using the `Option` type
@@ -22,8 +22,13 @@ The `Option` type is a generic type (having an underlying type).
 The following function demonstrates how to create an `Option` value:
 
 ```fsharp
-let keepIfPositive (a: int) : Option<int> = if a > 0 then Some a else None
+let keepIfPositive (a: int) : int option = if a > 0 then Some a else None
 ```
+
+~~~~exercism/note
+`T option` is the postfix syntax equivalent for `Option<T>`; the two syntax forms can be used interchangeably.
+However, according to the F# Style Guide, the postfix notation is preferred for Option types (see [F# Style Guide section on Formatting Types and Type Annotations][fsharp-style-guide-generic-types-syntax]). 
+~~~~
 
 A typical use case for an `Option` is search functions. 
 For example, the `List.tryFind` function returns `Some index` when the item is in the list (where `index` is the position of the requested value in the list), or `None` when the item is not in the list.
@@ -34,7 +39,7 @@ The idiomatic way to read an `Option` value is via pattern matching, as shown in
 
 ```fsharp
 // Returns "Hello, <name>!" if the name is provided; otherwise returns "Hello, you!"
-let sayHello (optionalName: Option<string>): string = 
+let sayHello (optionalName: string option): string = 
     match optionalName with
     | Some name -> "Hello, " + name + "!"
     | None -> "Hello, you!"
@@ -48,11 +53,12 @@ sayHello None
 
 ## Unwrapping Options with default values
 
-`Option`s can be "unwrapped" (converted to their contained type) by providing default values using the `Option.defaultValue` function. This is particularly useful when you want to ensure that the value is not `None`. 
+`Option`s can be "unwrapped" (converted to their contained type) by providing default values with the `Option.defaultValue` function. 
+This is particularly useful when you want to ensure that the value is not `None`.
 For example:
 
 ```fsharp
-Option.defaultValue "" Some "F#"
+Option.defaultValue "" (Some "F#")
 // --> "F#"
 
 Option.defaultValue 0 None
@@ -63,3 +69,5 @@ Option.defaultValue 0 None
 
 The `Option` module also includes functions that correspond to the functions that are available for lists, arrays, sequences, and other collection types, such as `Option.map`, `Option.iter`, `Option.forall`, `Option.count`. 
 These functions enable `Option`s to be treated like a collection of zero or one elements. 
+
+[fsharp-style-guide-generic-types-syntax]: https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#for-types-prefer-prefix-syntax-for-generics-foot-with-some-specific-exceptions

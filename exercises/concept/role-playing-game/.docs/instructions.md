@@ -5,10 +5,10 @@ A player's character is represented by the following type:
 
 ```fsharp
 type Player = {
-    Name: Option<string>
+    Name: string option
     Level: int
     Health: int
-    Mana: Option<int>
+    Mana: int option
 }
 ```
 

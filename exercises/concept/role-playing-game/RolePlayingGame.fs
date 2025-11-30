@@ -1,16 +1,16 @@
 module RolePlayingGame
 
 type Player = { 
-    Name: Option<string>
+    Name: string option
     Level: int
     Health: int
-    Mana: Option<int>
+    Mana: int option
 }
 
 let introduce (player: Player): string = 
     failwith "Please implement this function"
 
-let revive (player: Player): Option<Player> = 
+let revive (player: Player): Player option = 
     failwith "Please implement this function"
 
 let castSpell (manaCost: int) (player: Player): Player * int =
