@@ -17,7 +17,7 @@ let keepIfPositive (a: int) : int option = if a > 0 then Some a else None
 
 ~~~~exercism/note
 `T option` is the postfix syntax equivalent for `Option<T>`; the two syntax forms can be used interchangeably.
-However, according to the F# Style Guide, the postfix notation is preferred for Option types (see [F# Style Guide section on Formatting Types and Type Annotations][fsharp-style-guide-generic-types-syntax]). 
+However, according to the F# Style Guide, the postfix notation is preferred for Option types (see [F# Style Guide section on Formatting Types and Type Annotations](https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#for-types-prefer-prefix-syntax-for-generics-foot-with-some-specific-exceptions)). 
 ~~~~
 
 ## Reading the content of an Option value
@@ -51,5 +51,3 @@ Option.defaultValue "" (Some "F#")
 Option.defaultValue 0 None
 // --> 0
 ```
-
-[fsharp-style-guide-generic-types-syntax]: https://learn.microsoft.com/en-us/dotnet/fsharp/style-guide/formatting#for-types-prefer-prefix-syntax-for-generics-foot-with-some-specific-exceptions
