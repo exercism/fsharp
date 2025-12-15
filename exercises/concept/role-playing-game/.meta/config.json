@@ -15,6 +15,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "RolePlayingGame.fsproj"
     ]
   },
   "blurb": "Learn how to use optional values with the Option type"
