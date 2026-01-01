@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
 
-      - uses: actions/setup-dotnet@5c125af7da1b2700edf7106be3a4f8a60f495f59
+      - uses: actions/setup-dotnet@25328d894dc34d01d191df4849cb7f5402e3f142
         with:
           dotnet-version: "9.0.101"
 
