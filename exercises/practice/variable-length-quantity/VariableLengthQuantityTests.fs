@@ -14,6 +14,10 @@ let ``Arbitrary single byte`` () =
     encode [0x40u] |> should equal [0x40uy]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Asymmetric single byte`` () =
+    encode [0x53u] |> should equal [0x53uy]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Largest single byte`` () =
     encode [0x7fu] |> should equal [0x7fuy]
 
@@ -24,6 +28,10 @@ let ``Smallest double byte`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Arbitrary double byte`` () =
     encode [0x2000u] |> should equal [0xc0uy; 0x0uy]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Asymmetric double byte`` () =
+    encode [0xadu] |> should equal [0x81uy; 0x2duy]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Largest double byte`` () =
@@ -38,6 +46,10 @@ let ``Arbitrary triple byte`` () =
     encode [0x100000u] |> should equal [0xc0uy; 0x80uy; 0x0uy]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Asymmetric triple byte`` () =
+    encode [0x1d59cu] |> should equal [0x87uy; 0xabuy; 0x1cuy]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Largest triple byte`` () =
     encode [0x1fffffu] |> should equal [0xffuy; 0xffuy; 0x7fuy]
 
@@ -50,6 +62,10 @@ let ``Arbitrary quadruple byte`` () =
     encode [0x8000000u] |> should equal [0xc0uy; 0x80uy; 0x80uy; 0x0uy]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Asymmetric quadruple byte`` () =
+    encode [0x357704u] |> should equal [0x81uy; 0xd5uy; 0xeeuy; 0x4uy]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Largest quadruple byte`` () =
     encode [0xfffffffu] |> should equal [0xffuy; 0xffuy; 0xffuy; 0x7fuy]
 
@@ -60,6 +76,10 @@ let ``Smallest quintuple byte`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Arbitrary quintuple byte`` () =
     encode [0xff000000u] |> should equal [0x8fuy; 0xf8uy; 0x80uy; 0x80uy; 0x0uy]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Asymmetric quintuple byte`` () =
+    encode [0x86656105u] |> should equal [0x88uy; 0xb3uy; 0x95uy; 0xc2uy; 0x5uy]
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Maximum 32-bit integer input`` () =
