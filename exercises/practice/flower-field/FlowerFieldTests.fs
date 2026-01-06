@@ -30,7 +30,7 @@ let ``No flowers`` () =
     annotate garden |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``garden full of flowers`` () =
+let ``Garden full of flowers`` () =
     let garden = 
         [ "***";
           "***";
@@ -141,5 +141,11 @@ let ``Large garden`` () =
           "112*4*";
           "1*22*2";
           "111111" ]
+    annotate garden |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Multiple adjacent flowers`` () =
+    let garden = [" ** "]
+    let expected = ["1**1"]
     annotate garden |> should equal expected
 
