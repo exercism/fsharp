@@ -12,8 +12,8 @@ let private checkNumberLength (input:string): Result<string, string> =
     | 10 -> Ok input
     | 11 when input.[0] = '1'-> Ok (input.Substring 1)
     | 11 -> Error "11 digits must start with 1"
-    | a when a > 11 -> Error "more than 11 digits"
-    | _ -> Error "incorrect number of digits"
+    | a when a > 11 -> Error "must not be greater than 11 digits"
+    | _ -> Error "must not be fewer than 10 digits"
 
 let private checkNoneNumericChars (input:string): Result<string, string> =
     match input with
