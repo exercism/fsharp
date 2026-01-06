@@ -109,3 +109,7 @@ let ``Translation stops if STOP codon in middle of three-codon sequence`` () =
 let ``Translation stops if STOP codon in middle of six-codon sequence`` () =
     proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Sequence of two non-STOP codons does not translate to a STOP codon`` () =
+    proteins "AUGAUG" |> should equal ["Methionine"; "Methionine"]
+
