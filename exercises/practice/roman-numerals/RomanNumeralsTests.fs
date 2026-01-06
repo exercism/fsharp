@@ -106,6 +106,10 @@ let ``3001 is MMMI`` () =
     roman 3001 |> should equal "MMMI"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``3888 is MMMDCCCLXXXVIII`` () =
+    roman 3888 |> should equal "MMMDCCCLXXXVIII"
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``3999 is MMMCMXCIX`` () =
     roman 3999 |> should equal "MMMCMXCIX"
 
