@@ -22,7 +22,7 @@ let ``Cleans numbers with multiple spaces`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid when 9 digits`` () =
-    let expected: Result<uint64,string> = Error "incorrect number of digits"
+    let expected: Result<uint64,string> = Error "must not be fewer than 10 digits"
     clean "123456789" |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -42,7 +42,7 @@ let ``Valid when 11 digits and starting with 1 even with punctuation`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Invalid when more than 11 digits`` () =
-    let expected: Result<uint64,string> = Error "more than 11 digits"
+    let expected: Result<uint64,string> = Error "must not be greater than 11 digits"
     clean "321234567890" |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
