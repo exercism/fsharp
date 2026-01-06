@@ -10,8 +10,24 @@ let ``Just a number`` () =
     answer "What is 5?" |> should equal (Some 5)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Just a zero`` () =
+    answer "What is 0?" |> should equal (Some 0)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Just a negative number`` () =
+    answer "What is -123?" |> should equal (Some -123)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Addition`` () =
     answer "What is 1 plus 1?" |> should equal (Some 2)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Addition with a left hand zero`` () =
+    answer "What is 0 plus 2?" |> should equal (Some 2)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Addition with a right hand zero`` () =
+    answer "What is 3 plus 0?" |> should equal (Some 3)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``More addition`` () =
