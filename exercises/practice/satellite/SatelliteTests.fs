@@ -49,3 +49,68 @@ let ``Reject traversals with repeated items`` () =
     let expected: Result<Tree,string> = Error "traversals must contain unique items"
     treeFromTraversals ["b"; "a"; "a"] ["a"; "b"; "a"] |> should equal expected
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``A degenerate binary tree`` () =
+    let expected: Result<Tree,string> = Ok (
+        Node(
+            "a",
+            Node(
+                "b",
+                Node(
+                    "c",
+                    Node("d", Empty, Empty),
+                    Empty
+                ),
+                Empty
+            ),
+            Empty
+        )
+    )
+    treeFromTraversals ["d"; "c"; "b"; "a"] ["a"; "b"; "c"; "d"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Another degenerate binary tree`` () =
+    let expected: Result<Tree,string> = Ok (
+        Node(
+            "a",
+            Empty,
+            Node(
+                "b",
+                Empty,
+                Node(
+                    "c",
+                    Empty,
+                    Node("d", Empty, Empty)
+                )
+            )
+        )
+    )
+    treeFromTraversals ["a"; "b"; "c"; "d"] ["a"; "b"; "c"; "d"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Tree with many more items`` () =
+    let expected: Result<Tree,string> = Ok (
+        Node(
+            "a",
+            Node(
+                "b",
+                Node(
+                    "d",
+                    Node("g", Empty, Empty),
+                    Node("h", Empty, Empty)
+                ),
+                Empty
+            ),
+            Node(
+                "c",
+                Node("e", Empty, Empty),
+                Node(
+                    "f",
+                    Node("i", Empty, Empty),
+                    Empty
+                )
+            )
+        )
+    )
+    treeFromTraversals ["g"; "d"; "h"; "b"; "a"; "e"; "c"; "i"; "f"] ["a"; "b"; "d"; "g"; "h"; "c"; "e"; "f"; "i"] |> should equal expected
+
