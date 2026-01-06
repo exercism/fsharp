@@ -60,6 +60,24 @@ let ``Measure using bucket one of size 2 and bucket two of size 3 - start with b
     measure bucketOne bucketTwo goal startBucket |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Measure using bucket one much bigger than bucket two`` () =
+    let bucketOne = 5
+    let bucketTwo = 1
+    let goal = 2
+    let startBucket = Bucket.One
+    let expected = { Moves = 6; GoalBucket = Bucket.One; OtherBucket = 1 }
+    measure bucketOne bucketTwo goal startBucket |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Measure using bucket one much smaller than bucket two`` () =
+    let bucketOne = 3
+    let bucketTwo = 15
+    let goal = 9
+    let startBucket = Bucket.One
+    let expected = { Moves = 6; GoalBucket = Bucket.Two; OtherBucket = 0 }
+    measure bucketOne bucketTwo goal startBucket |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``With the same buckets but a different goal, then it is possible`` () =
     let bucketOne = 6
     let bucketTwo = 15
