@@ -63,3 +63,8 @@ let ``Error result for smallest if min is more than max`` () =
 let ``Error result for largest if min is more than max`` () =
     (fun () -> largest 2 1 |> ignore) |> should throw typeof<System.ArgumentException>
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Smallest product does not use the smallest factor`` () =
+    let expected: int option * (int * int) list = (Some 10988901, [(3297, 3333)])
+    smallest 3215 4000 |> should equal expected
+
