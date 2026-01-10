@@ -10,6 +10,10 @@ let ``Empty plaintext results in an empty ciphertext`` () =
     ciphertext "" |> should equal ""
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Normalization results in empty plaintext`` () =
+    ciphertext "... --- ..." |> should equal ""
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Lowercase`` () =
     ciphertext "A" |> should equal "a"
 
@@ -30,6 +34,6 @@ let ``8 character plaintext results in 3 chunks, the last one with a trailing sp
     ciphertext "Chill out." |> should equal "clu hlt io "
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``54 character plaintext results in 7 chunks, the last two with trailing spaces`` () =
+let ``54 character plaintext results in 8 chunks, the last two with trailing spaces`` () =
     ciphertext "If man was meant to stay on the ground, god would have given us roots." |> should equal "imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau "
 
