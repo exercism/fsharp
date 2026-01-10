@@ -62,6 +62,13 @@ let ``Another possible change without unit coins available`` () =
     findFewestCoins coins target |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``A greedy approach is not optimal`` () =
+    let coins = [1; 10; 11]
+    let target = 20
+    let expected = Some [10; 10]
+    findFewestCoins coins target |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``No coins make 0 change`` () =
     let coins = [1; 5; 10; 21; 25]
     let target = 0
