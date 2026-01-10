@@ -57,7 +57,7 @@ let ``Detects anagrams using case-insensitive possible matches`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Does not detect an anagram if the original word is repeated`` () =
-    let candidates = ["go Go GO"]
+    let candidates = ["goGoGO"]
     findAnagrams candidates "go" |> should be Empty
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -84,4 +84,14 @@ let ``Words are not anagrams of themselves even if letter case is completely dif
 let ``Words other than themselves can be anagrams`` () =
     let candidates = ["LISTEN"; "Silent"]
     findAnagrams candidates "LISTEN" |> should equal ["Silent"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Handles case of greek letters`` () =
+    let candidates = ["ΒΓΑ"; "ΒΓΔ"; "γβα"; "αβγ"]
+    findAnagrams candidates "ΑΒΓ" |> should equal ["ΒΓΑ"; "γβα"]
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Different characters may have the same bytes`` () =
+    let candidates = ["€a"]
+    findAnagrams candidates "a⬂" |> should be Empty
 
