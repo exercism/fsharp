@@ -31,6 +31,11 @@ let ``Addition - errors if there is only one value on the stack`` () =
     evaluate ["1 +"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Addition - more than two values on the stack`` () =
+    let expected = Some [1; 5]
+    evaluate ["1 2 3 +"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Subtraction - can subtract two numbers`` () =
     let expected = Some [-1]
     evaluate ["3 4 -"] |> should equal expected
@@ -46,6 +51,11 @@ let ``Subtraction - errors if there is only one value on the stack`` () =
     evaluate ["1 -"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Subtraction - more than two values on the stack`` () =
+    let expected = Some [1; 9]
+    evaluate ["1 12 3 -"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Multiplication - can multiply two numbers`` () =
     let expected = Some [8]
     evaluate ["2 4 *"] |> should equal expected
@@ -59,6 +69,11 @@ let ``Multiplication - errors if there is nothing on the stack`` () =
 let ``Multiplication - errors if there is only one value on the stack`` () =
     let expected = None
     evaluate ["1 *"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Multiplication - more than two values on the stack`` () =
+    let expected = Some [1; 6]
+    evaluate ["1 2 3 *"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Division - can divide two numbers`` () =
@@ -86,6 +101,11 @@ let ``Division - errors if there is only one value on the stack`` () =
     evaluate ["1 /"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Division - more than two values on the stack`` () =
+    let expected = Some [1; 4]
+    evaluate ["1 12 3 /"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Combined arithmetic - addition and subtraction`` () =
     let expected = Some [-1]
     evaluate ["1 2 + 4 -"] |> should equal expected
@@ -94,6 +114,16 @@ let ``Combined arithmetic - addition and subtraction`` () =
 let ``Combined arithmetic - multiplication and division`` () =
     let expected = Some [2]
     evaluate ["2 4 * 3 /"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Combined arithmetic - multiplication and addition`` () =
+    let expected = Some [13]
+    evaluate ["1 3 4 * +"] |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Combined arithmetic - addition and multiplication`` () =
+    let expected = Some [7]
+    evaluate ["1 3 4 + *"] |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Dup - copies a value on the stack`` () =
