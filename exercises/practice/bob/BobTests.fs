@@ -86,10 +86,6 @@ let ``Alternate silence`` () =
     response "\t\t\t\t\t\t\t\t\t\t" |> should equal "Fine. Be that way!"
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
-let ``Multiple line question`` () =
-    response "\nDoes this cryogenic chamber make me look fat?\nNo." |> should equal "Whatever."
-
-[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Starting with whitespace`` () =
     response "         hmmmmmmm..." |> should equal "Whatever."
 
@@ -104,4 +100,8 @@ let ``Other whitespace`` () =
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Non-question ending with whitespace`` () =
     response "This is a statement ending with whitespace      " |> should equal "Whatever."
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Multiple line question`` () =
+    response "\nDoes this cryogenic chamber make\n me look fat?" |> should equal "Sure."
 
