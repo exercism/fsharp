@@ -156,6 +156,13 @@ let ``Set is not equal to larger set with same elements`` () =
     actual |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Set is equal to a set constructed from an array with duplicates`` () =
+    let set1 = CustomSet.fromList [1]
+    let set2 = CustomSet.fromList [1; 1]
+    let actual = CustomSet.isEqualTo set1 set2
+    actual |> should equal true
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Add to empty set`` () =
     let setValue = CustomSet.fromList []
     let element = 3
@@ -260,6 +267,15 @@ let ``Difference of two non-empty sets is a set of elements that are only in the
     let set2 = CustomSet.fromList [2; 4]
     let actual = CustomSet.difference set1 set2
     let expectedSet = CustomSet.fromList [1; 3]
+    let actualBool = CustomSet.isEqualTo actual expectedSet
+    actualBool |> should equal true
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Difference removes all duplicates in the first set`` () =
+    let set1 = CustomSet.fromList [1; 1]
+    let set2 = CustomSet.fromList [1]
+    let actual = CustomSet.difference set1 set2
+    let expectedSet = CustomSet.fromList []
     let actualBool = CustomSet.isEqualTo actual expectedSet
     actualBool |> should equal true
 
