@@ -34,6 +34,14 @@ let ``X is only valid as a check digit`` () =
     isValid "3-598-2X507-9" |> should equal false
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Only one check digit is allowed`` () =
+    isValid "3-598-21508-96" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``X is not substituted by the value 10`` () =
+    isValid "3-598-2X507-5" |> should equal false
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Valid isbn without separating dashes`` () =
     isValid "3598215088" |> should equal true
 
