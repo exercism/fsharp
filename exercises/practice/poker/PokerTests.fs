@@ -30,6 +30,12 @@ let ``Multiple hands with the same high cards, tie compares next highest ranked,
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Winning high card hand also has the lowest card`` () =
+    let hands = ["2S 5H 6S 8D 7H"; "3S 4D 6D 8C 7S"]
+    let expected = ["2S 5H 6S 8D 7H"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``One pair beats high card`` () =
     let hands = ["4S 5H 6C 8D KH"; "2S 4H 6S 4D JH"]
     let expected = ["2S 4H 6S 4D JH"]
@@ -39,6 +45,12 @@ let ``One pair beats high card`` () =
 let ``Highest pair wins`` () =
     let hands = ["4S 2H 6S 2D JH"; "2S 4H 6C 4D JD"]
     let expected = ["2S 4H 6C 4D JD"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Both hands have the same pair, high card wins`` () =
+    let hands = ["4H 4S AH JC 3D"; "4C 4D AS 5D 6C"]
+    let expected = ["4H 4S AH JC 3D"]
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -91,7 +103,7 @@ let ``Both hands have three of a kind, tie goes to highest ranked triplet`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``With multiple decks, two players can have same three of a kind, ties go to highest remaining cards`` () =
-    let hands = ["4S AH AS 7C AD"; "4S AH AS 8C AD"]
+    let hands = ["5S AH AS 7C AD"; "4S AH AS 8C AD"]
     let expected = ["4S AH AS 8C AD"]
     bestHands hands |> should equal expected
 
@@ -114,6 +126,12 @@ let ``Aces can start a straight (A 2 3 4 5)`` () =
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Aces cannot be in the middle of a straight (Q K A 2 3)`` () =
+    let hands = ["2C 3D 7H 5H 2S"; "QS KH AC 2D 3S"]
+    let expected = ["2C 3D 7H 5H 2S"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Both hands with a straight, tie goes to highest ranked card`` () =
     let hands = ["4S 6C 7S 8D 5H"; "5S 7H 8S 9D 6H"]
     let expected = ["5S 7H 8S 9D 6H"]
@@ -133,8 +151,8 @@ let ``Flush beats a straight`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Both hands have a flush, tie goes to high card, down to the last one if necessary`` () =
-    let hands = ["4H 7H 8H 9H 6H"; "2S 4S 5S 6S 7S"]
-    let expected = ["4H 7H 8H 9H 6H"]
+    let hands = ["2H 7H 8H 9H 6H"; "3S 5S 6S 7S 8S"]
+    let expected = ["2H 7H 8H 9H 6H"]
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
@@ -180,8 +198,32 @@ let ``Straight flush beats four of a kind`` () =
     bestHands hands |> should equal expected
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Aces can end a straight flush (10 J Q K A)`` () =
+    let hands = ["KC AH AS AD AC"; "10C JC QC KC AC"]
+    let expected = ["10C JC QC KC AC"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Aces can start a straight flush (A 2 3 4 5)`` () =
+    let hands = ["KS AH AS AD AC"; "4H AH 3H 2H 5H"]
+    let expected = ["4H AH 3H 2H 5H"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Aces cannot be in the middle of a straight flush (Q K A 2 3)`` () =
+    let hands = ["2C AC QC 10C KC"; "QH KH AH 2H 3H"]
+    let expected = ["2C AC QC 10C KC"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Both hands have a straight flush, tie goes to highest-ranked card`` () =
     let hands = ["4H 6H 7H 8H 5H"; "5S 7S 8S 9S 6S"]
     let expected = ["5S 7S 8S 9S 6S"]
+    bestHands hands |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Even though an ace is usually high, a 5-high straight flush is the lowest-scoring straight flush`` () =
+    let hands = ["2H 3H 4H 5H 6H"; "4D AD 3D 2D 5D"]
+    let expected = ["2H 3H 4H 5H 6H"]
     bestHands hands |> should equal expected
 

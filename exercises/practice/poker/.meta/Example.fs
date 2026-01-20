@@ -124,7 +124,7 @@ let (|Straight|_|) hand =
 
 let (|StraightFlush|_|) hand =
     match hand with
-    | Flush _ & Straight _ -> ranks hand |> List.head |> PokerHand.StraightFlush |> Some
+    | Flush _ & Straight (PokerHand.Straight rank) -> PokerHand.StraightFlush rank |> Some
     | _ -> None
     
 let (|FourOfAKind|_|) hand =
