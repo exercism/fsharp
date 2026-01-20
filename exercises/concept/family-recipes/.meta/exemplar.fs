@@ -26,20 +26,14 @@ type ParseState =
 | ReadingInstructions
 
 
-let removeTrailingNewline (text: string): string =
-    if text[text.Length - 1] = '\n' then
-        text[0..text.Length - 2]
-    else
-        text
-
 let splitOnce (text: string) (separator: char): (string * string) option = 
     match text.IndexOf(separator) with
     | -1 -> None
-    | index -> Some((text.Substring(0, index), text.Substring(index + 1)))
+    | index -> Some (text.Substring(0, index), text.Substring(index + 1))
 
 let parseIngredient (text: string): Result<Ingredient, ParseError> =
     match splitOnce text ' ' with
-    | Some(head, tail) -> 
+    | Some (head, tail) -> 
         let success, quantity = System.Int32.TryParse head
         if success then
             Ok {
@@ -72,16 +66,12 @@ and parseIngredientsHeading lines recipe =
         parseLines lines[1..] nextState recipe
 
 and parseIngredientsList lines recipe =
-    if lines.Length = 0 then
-        if recipe.Ingredients.Length = 0 then
-            Error MissingIngredients
-        else
-            Error MissingInstructions
+    if recipe.Ingredients.Length = 0 && (lines.Length = 0 || lines[0].Length = 0) then
+        Error MissingIngredients
+    elif lines.Length = 0 then
+        Error MissingInstructions
     elif lines[0].Length = 0 then
-        if recipe.Ingredients.Length = 0 then
-            Error MissingIngredients
-        else
-            parseLines lines[1..] SeekingInstructionsHeading recipe
+        parseLines lines[1..] SeekingInstructionsHeading recipe
     else
         match parseIngredient lines[0] with
         | Ok ingredient -> parseLines lines[1..]  ReadingIngredientsList {
@@ -101,9 +91,12 @@ and parseReadingInstructions lines recipe =
         if recipe.Instructions.Length = 0 then
             Error MissingInstructions
         else
-            Ok { recipe with Instructions = recipe.Instructions |> removeTrailingNewline }
+            Ok { recipe with Instructions = recipe.Instructions }
     else
-        parseLines lines[1..] ReadingInstructions { recipe with Instructions = recipe.Instructions + lines[0] + "\n" }
+        let separator = if recipe.Instructions.Length = 0 then "" else "\n"
+        parseLines lines[1..] ReadingInstructions { 
+            recipe with Instructions = recipe.Instructions + separator + lines[0] 
+        }
 
 let parse (input: string) : Result<Recipe, ParseError> = 
     parseLines (input.Split('\n')) ReadingTitle { Title = ""; Ingredients = []; Instructions = "" }
