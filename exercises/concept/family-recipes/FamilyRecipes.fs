@@ -4,10 +4,17 @@ type ParseError =
 | MissingTitle
 | MissingIngredients
 | MissingInstructions
+| InvalidIngredientQuantity
+| MissingIngredientItem
+
+type Ingredient = {
+    Quantity: int
+    Item: string
+}
 
 type Recipe = {
     Title: string
-    Ingredients: string
+    Ingredients: Ingredient list
     Instructions: string 
 }
 

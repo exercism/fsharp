@@ -23,7 +23,7 @@ let ``Error on title and ingredients heading without ingredients list`` () =
 [<Fact>]
 let ``Error on title and ingredients without instructions`` () =
     let expected: Result<Recipe, ParseError> = Error MissingInstructions
-    parse "A Title\n\nIngredients:\nsome ingredient" |> should equal expected
+    parse "A Title\n\nIngredients:\n1 ingredient" |> should equal expected
 
 [<Fact>]
 let ``Error on all required sections but with empty ingredients list`` () = 
@@ -33,26 +33,65 @@ let ``Error on all required sections but with empty ingredients list`` () =
 [<Fact>]
 let ``Error on all required sections but missing instructions`` () =
     let expected: Result<Recipe, ParseError> = Error MissingInstructions
-    parse "A Title\n\nIngredients:\nSome ingredient\n\nInstructions:" |> should equal expected
+    parse "A Title\n\nIngredients:\n1 ingredient\n\nInstructions:" |> should equal expected
 
 [<Fact>]
-let ``Success on minimal recipe`` () =
+let ``Error on non-numeric ingredient quantity`` () =
+    let expected: Result<Recipe, ParseError> = Error InvalidIngredientQuantity
+    parse "A Title\n\nIngredients:\nfoo bar\n\nInstructions:\nbuzz" |> should equal expected
+
+[<Fact>]
+let ``Error on missing ingredient item`` () =
+    let expected: Result<Recipe, ParseError> = Error MissingIngredientItem
+    parse "A Title\n\nIngredients:\n24\n\nInstructions:\nbuzz" |> should equal expected
+
+
+[<Fact>]
+let ``Minimal valid recipe`` () =
     let expected: Result<Recipe, ParseError> = Ok {
             Title = "Glass of Wine"
-            Ingredients = "1 cup wine"
-            Instructions = "Pour wine into wine glass."
+            Ingredients = [
+                { Quantity = 1; Item = "cup of wine" }
+            ]
+            Instructions = "Pour wine into wine glass.\n"
         }
     let input = """Glass of Wine
 
 Ingredients:
-1 cup wine
+1 cup of wine
 
 Instructions:
 Pour wine into wine glass.
 """
     parse input |> should equal expected
 
-// TODO: Make Ingredients a list of Ingredient records, with quantity, units, and substance
-// TODO: Add Ingredients tests for missing/bad quantities, missing/bad units, missing substance
-// TODO: Test the ability to parse fractional quantities
+[<Fact>]
+let ``Valid recipe with multiple ingredients, integer quantities and varying units`` () =
+    let expected: Result<Recipe, ParseError> = Ok {
+            Title = "Gin and Tonic"
+            Ingredients = [
+                { Quantity = 1; Item = "cup tonic water" };
+                { Quantity = 2; Item = "shots of gin" };
+                { Quantity = 5; Item = "cubes of ice" };
+            ]
+            Instructions = """Put ice cubes into a glass.
+Stir tonic water and gin in another glass.
+Pour tonic water and gin mixture into glass with ice.
+"""
+        }
+    let input = """Gin and Tonic
+
+Ingredients:
+1 cup tonic water
+2 shots of gin
+5 cubes of ice
+
+Instructions:
+Put ice cubes into a glass.
+Stir tonic water and gin in another glass.
+Pour tonic water and gin mixture into glass with ice.
+"""
+    parse input |> should equal expected
+
+// TODO: (maybe) Test the ability to parse fractional quantities
 // TODO: Organize into tasks
