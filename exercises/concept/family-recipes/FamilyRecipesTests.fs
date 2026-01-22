@@ -49,49 +49,50 @@ let ``Error on missing ingredient item`` () =
 [<Fact>]
 let ``Minimal valid recipe`` () =
     let expected: Result<Recipe, ParseError> = Ok {
-            Title = "Glass of Wine"
+            Title = "Glass of Apple Juice"
             Ingredients = [
-                { Quantity = 1; Item = "cup of wine" }
+                { Quantity = 1; Item = "cup of apple juice" }
             ]
-            Instructions = "Pour wine into wine glass.\n"
+            Instructions = "Pour apple juice into tumbler.\n"
         }
-    let input = """Glass of Wine
+    let input = """Glass of Apple Juice
 
 Ingredients:
-1 cup of wine
+1 cup of apple juice
 
 Instructions:
-Pour wine into wine glass.
+Pour apple juice into tumbler.
 """
     parse input |> should equal expected
 
 [<Fact>]
 let ``Valid recipe with multiple ingredients, integer quantities and varying units`` () =
     let expected: Result<Recipe, ParseError> = Ok {
-            Title = "Gin and Tonic"
+            Title = "Bowl of Oatmeal"
             Ingredients = [
-                { Quantity = 1; Item = "cup tonic water" };
-                { Quantity = 2; Item = "shots of gin" };
-                { Quantity = 5; Item = "cubes of ice" };
+                { Quantity = 4; Item = "ounces of oatmeal" };
+                { Quantity = 12; Item = "ounces of water" };
+                { Quantity = 1; Item = "tablespoon of honey" };
             ]
-            Instructions = """Put ice cubes into a glass.
-Stir tonic water and gin in another glass.
-Pour tonic water and gin mixture into glass with ice.
+            Instructions = """Bring water to boil in a small pot.
+Stir oatmeal into boiling water.
+Reduce heat and cook for 10 minutes.
+Pour cooked oatmeal into a bowl.
+Serve with honey.
 """
         }
-    let input = """Gin and Tonic
+    let input = """Bowl of Oatmeal
 
 Ingredients:
-1 cup tonic water
-2 shots of gin
-5 cubes of ice
+4 ounces of oatmeal
+12 ounces of water
+1 tablespoon of honey
 
 Instructions:
-Put ice cubes into a glass.
-Stir tonic water and gin in another glass.
-Pour tonic water and gin mixture into glass with ice.
+Bring water to boil in a small pot.
+Stir oatmeal into boiling water.
+Reduce heat and cook for 10 minutes.
+Pour cooked oatmeal into a bowl.
+Serve with honey.
 """
     parse input |> should equal expected
-
-// TODO: (maybe) Test the ability to parse fractional quantities
-// TODO: Organize into tasks
