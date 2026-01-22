@@ -36,19 +36,13 @@ let parseIngredient (text: string): Result<Ingredient, ParseError> =
     | Some (head, tail) -> 
         let success, quantity = System.Int32.TryParse head
         if success then
-            Ok {
-                Quantity = quantity
-                Item = tail
-            }
+            Ok { Quantity = quantity; Item = tail }
         else
             Error InvalidIngredientQuantity
     | _ -> Error MissingIngredientItem
 
 let parseTitle (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    if line.Length = 0 then
-        Error MissingTitle
-    else
-        Ok (SeekingIngredientsHeading, { recipe with Title = line })
+    Ok (SeekingIngredientsHeading, { recipe with Title = line })
 
 let parseIngredientsHeading (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
     let nextState = if line = "Ingredients:" then ReadingIngredientsList else SeekingIngredientsHeading
@@ -70,14 +64,14 @@ let parseInstructionsHeading (line: string) (recipe: Recipe) : Result<ParseState
     let nextState = if line = "Instructions:" then ReadingInstructions else SeekingInstructionsHeading
     Ok (nextState, recipe)
 
-let parseReadingInstructions (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
+let parseInstructions (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
     let separator = if recipe.Instructions.Length = 0 then "" else "\n"
     Ok (ReadingInstructions, { 
         recipe with Instructions = recipe.Instructions + separator + line
     })
 
-let parseLine (stateRecipe: Result<ParseState * Recipe, ParseError>) (line: string) : Result<ParseState * Recipe, ParseError> =
-    match stateRecipe with
+let parseLine (prevResult: Result<ParseState * Recipe, ParseError>) (line: string) : Result<ParseState * Recipe, ParseError> =
+    match prevResult with
     | Ok (state, recipe) ->
         let lineParser = 
             match state with
@@ -85,13 +79,13 @@ let parseLine (stateRecipe: Result<ParseState * Recipe, ParseError>) (line: stri
             | SeekingIngredientsHeading -> parseIngredientsHeading
             | ReadingIngredientsList -> parseIngredientsList
             | SeekingInstructionsHeading -> parseInstructionsHeading
-            | ReadingInstructions -> parseReadingInstructions
+            | ReadingInstructions -> parseInstructions
         lineParser line recipe
     | Error e -> Error e
 
 let parseLines (lines: string array): Result<Recipe, ParseError> = 
-    let initialState: ParseState = ReadingTitle
-    let initialRecipe: Recipe = { Title = ""; Ingredients = []; Instructions = "" }
+    let initialState = ReadingTitle
+    let initialRecipe = { Title = ""; Ingredients = []; Instructions = "" }
     let result = lines |> Array.fold parseLine (Ok (initialState, initialRecipe))
     match result with 
     | Ok (_, recipe) -> Ok recipe
@@ -99,8 +93,7 @@ let parseLines (lines: string array): Result<Recipe, ParseError> =
 
 let parse (input: string) : Result<Recipe, ParseError> = 
     match parseLines (input.Split('\n')) with
-    | Ok recipe ->
-        if recipe.Ingredients.Length = 0 then Error MissingIngredients
-        elif recipe.Instructions.Length = 0 then Error MissingInstructions
-        else Ok recipe
-    | Error e -> Error e
+    | Ok recipe when recipe.Title.Length = 0 -> Error MissingTitle
+    | Ok recipe when recipe.Ingredients.Length = 0 -> Error MissingIngredients
+    | Ok recipe when recipe.Instructions.Length = 0 -> Error MissingInstructions
+    | result -> result
