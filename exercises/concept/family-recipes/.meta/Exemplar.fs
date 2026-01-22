@@ -49,9 +49,7 @@ let parseIngredientsHeading (line: string) (recipe: Recipe) : Result<ParseState 
     Ok (nextState, recipe)
 
 let parseIngredientsList (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    if recipe.Ingredients.Length = 0 && line.Length = 0 then
-        Error MissingIngredients
-    elif line.Length = 0 then
+    if line.Length = 0 then
         Ok (SeekingInstructionsHeading, recipe)
     else
         match parseIngredient line with
