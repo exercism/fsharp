@@ -1,97 +1,41 @@
 module FamilyRecipes
 
-type ParseError = 
-| MissingTitle
-| MissingIngredients
-| MissingInstructions
+type ValidationError = 
+| EmptyList
 | InvalidIngredientQuantity
 | MissingIngredientItem
 
-type Ingredient = {
-    Quantity: int
-    Item: string
-}
+let parseInt (text: string) : Result<int, unit> =
+    let success, value = System.Int32.TryParse text
+    if success then Ok value else Error ()
 
-type Recipe = {
-    Title: string
-    Ingredients: Ingredient list
-    Instructions: string 
-}
-
-type ParseState = 
-| ReadingTitle
-| SeekingIngredientsHeading
-| ReadingIngredientsList
-| SeekingInstructionsHeading
-| ReadingInstructions
-
-
-let splitOnce (text: string) (separator: char): (string * string) option = 
+let splitOnce (text: string) (separator: char) : (string * string) option = 
     match text.IndexOf(separator) with
     | -1 -> None
     | index -> Some (text.Substring(0, index), text.Substring(index + 1))
 
-let parseIngredient (text: string): Result<Ingredient, ParseError> =
+let validateIngredient (text: string): Result<unit, ValidationError> =
     match splitOnce text ' ' with
-    | Some (head, tail) -> 
-        let success, quantity = System.Int32.TryParse head
-        if success then
-            Ok { Quantity = quantity; Item = tail }
-        else
-            Error InvalidIngredientQuantity
+    | Some (quantity, item) -> 
+        match parseInt quantity with
+        | Ok _ -> 
+            if item.Length = 0 then 
+                Error MissingIngredientItem
+            else
+                Ok ()
+        | Error _ -> Error InvalidIngredientQuantity
     | _ -> Error MissingIngredientItem
 
-let parseTitle (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    Ok (SeekingIngredientsHeading, { recipe with Title = line })
-
-let parseIngredientsHeading (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    let nextState = if line = "Ingredients:" then ReadingIngredientsList else SeekingIngredientsHeading
-    Ok (nextState, recipe)
-
-let parseIngredientsList (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    if line.Length = 0 then
-        Ok (SeekingInstructionsHeading, recipe)
+let validate (input: string) : Result<string, ValidationError> = 
+    let nonblankLines =
+        input.Split('\n')
+        |> Array.filter (fun l -> l.Length > 0)
+    if nonblankLines.Length = 0 then Error EmptyList
     else
-        match parseIngredient line with
-        | Ok ingredient -> Ok (ReadingIngredientsList, {
-                recipe with Ingredients = recipe.Ingredients @ [ingredient]
-            })
-        | Error e -> Error e
-
-let parseInstructionsHeading (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    let nextState = if line = "Instructions:" then ReadingInstructions else SeekingInstructionsHeading
-    Ok (nextState, recipe)
-
-let parseInstructions (line: string) (recipe: Recipe) : Result<ParseState * Recipe, ParseError> = 
-    let separator = if recipe.Instructions.Length = 0 then "" else "\n"
-    Ok (ReadingInstructions, { 
-        recipe with Instructions = recipe.Instructions + separator + line
-    })
-
-let parseLine (prevResult: Result<ParseState * Recipe, ParseError>) (line: string) : Result<ParseState * Recipe, ParseError> =
-    match prevResult with
-    | Ok (state, recipe) ->
-        let lineParser = 
-            match state with
-            | ReadingTitle -> parseTitle
-            | SeekingIngredientsHeading -> parseIngredientsHeading
-            | ReadingIngredientsList -> parseIngredientsList
-            | SeekingInstructionsHeading -> parseInstructionsHeading
-            | ReadingInstructions -> parseInstructions
-        lineParser line recipe
-    | Error e -> Error e
-
-let parseLines (lines: string array): Result<Recipe, ParseError> = 
-    let initialState = ReadingTitle
-    let initialRecipe = { Title = ""; Ingredients = []; Instructions = "" }
-    let result = lines |> Array.fold parseLine (Ok (initialState, initialRecipe))
-    match result with 
-    | Ok (_, recipe) -> Ok recipe
-    | Error e -> Error e
-
-let parse (input: string) : Result<Recipe, ParseError> = 
-    match parseLines (input.Split('\n')) with
-    | Ok recipe when recipe.Title.Length = 0 -> Error MissingTitle
-    | Ok recipe when recipe.Ingredients.Length = 0 -> Error MissingIngredients
-    | Ok recipe when recipe.Instructions.Length = 0 -> Error MissingInstructions
-    | result -> result
+        let firstError = 
+            nonblankLines
+            |> Array.map validateIngredient
+            |> Array.tryFind (fun r -> r.IsError)
+        match firstError with
+        | Some (Error error) -> Error error
+        | _ -> Ok input

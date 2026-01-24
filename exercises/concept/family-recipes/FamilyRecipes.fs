@@ -1,22 +1,13 @@
 ﻿module FamilyRecipes
 
-type ParseError = 
-| MissingTitle
-| MissingIngredients
-| MissingInstructions
+type ValidationError = 
+| EmptyList
 | InvalidIngredientQuantity
 | MissingIngredientItem
 
-type Ingredient = {
-    Quantity: int
-    Item: string
-}
+let parseInt (text: string) : Result<int, unit> =
+    let success, value = System.Int32.TryParse text
+    if success then Ok value else Error ()
 
-type Recipe = {
-    Title: string
-    Ingredients: Ingredient list
-    Instructions: string 
-}
-
-let parse input = 
+let validate input = 
     failwith "Please implement this function"
