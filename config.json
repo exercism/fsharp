@@ -239,6 +239,19 @@
         "difficulty": 1
       },
       {
+        "slug": "line-up",
+        "name": "Line Up",
+        "uuid": "734b83c6-e72d-47f2-830c-8ade1dc93662",
+        "practices": [
+          "numbers"
+        ],
+        "prerequisites": [
+          "if-then-else-expressions",
+          "strings"
+        ],
+        "difficulty": 1
+      },
+      {
         "slug": "leap",
         "name": "Leap",
         "uuid": "66d974b5-18fc-4993-b5f2-7beda4f4afa3",
