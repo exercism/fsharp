@@ -7,6 +7,9 @@ type PasswordRule =
     | AtLeastOneDigit
     | AtLeastOneSymbol
 
+/// Validate the given password against the rules defined in `PasswordRule`. If it meets all
+/// of the rules, return a result indicating success; otherwise return a result indicating
+/// failure and the rule that was violated.
 let checkPassword (password: string) : Result<string, PasswordRule> =
     if password.Length < 12 then
         Error AtLeast12Characters
@@ -20,6 +23,7 @@ let checkPassword (password: string) : Result<string, PasswordRule> =
         Error AtLeastOneSymbol
     else Ok password
 
+/// Return a human-readable message indicating the meaning of the given result value.
 let getStatusMessage (result: Result<string, PasswordRule>) : string =
     let preamble = "Error: does not have at least "
     match result with

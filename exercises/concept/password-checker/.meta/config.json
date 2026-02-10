@@ -1,0 +1,20 @@
+{
+  "authors": [
+    "blackk-foxx"
+  ],
+  "files": {
+    "solution": [
+      "PasswordChecker.fs"
+    ],
+    "test": [
+      "PasswordCheckerTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "PasswordChecker.fsproj"
+    ]
+  },
+  "blurb": "Learn how to use the Result type to convey success/failure results"
+}
