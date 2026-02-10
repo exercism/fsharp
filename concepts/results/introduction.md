@@ -25,7 +25,7 @@ let validateName (name: string) : Result<string, string> =
 
 ## Reading the content of a `Result` value
 
-Consider the following function signature:
+Consider the following type definition and function signature:
 
 ```fsharp
 type FileOpenError = 
@@ -33,7 +33,7 @@ type FileOpenError =
 | AccessDenied
 | FileLocked
 
-let openFile (filename: string) : Result<int, FileOpenError>
+let openFile (filename: string) : Result<int, FileOpenError> =
 ```
 
 Code that calls the `openFile` function can use pattern matching to handle the success and failure cases, as in the following example:
