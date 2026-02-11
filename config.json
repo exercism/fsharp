@@ -219,11 +219,11 @@
         "name": "Password Checker",
         "uuid": "a5a67ac7-df9f-48ea-aeb8-2af3738f0577",
         "concepts": [
-            "results"
+          "results"
         ],
         "prerequisites": [
-            "basics",
-            "pattern-matching"
+          "basics",
+          "pattern-matching"
         ]
       }
     ],
