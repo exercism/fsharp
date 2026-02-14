@@ -23,6 +23,16 @@ A subsequent exercise will explore a more realistic password checker that can in
 
 The `checkPassword` function checks the given password against the aforementioned rules.  On failure, it indicates the rule that was violated by encapsulating one of the `PasswordRule` values within the result value.
 
+```fsharp
+checkPassword "abcdefghij5#"
+// => Error MissingUppercaseLetter
+```
+
 ## 2. Implement the ``getStatusMessage` function
 
 The `getStatusMessage` function returns a string containing a human-readable message indicating the meaning of the result returned from `checkPassword`.
+
+```fsharp
+getStatusMessage (Error MissingDigit)
+// => "Error: does not have at least one digit"
+```

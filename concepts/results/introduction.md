@@ -8,10 +8,12 @@ The `Result` type makes it possible for a function to return a single value indi
 ## Usage
 
 The `Result` type is a generic type containing two underlying types:
-- The type of the result on a successful operation
-- The type of error on a failure
+- The type of the resultant value on a successful operation
+- The type representing the reason for the failure on a failure
 
-A `Result` value is either `Ok <value>` representing a successful result, or `Error <reason>` representing a failure.
+The `Result` type is also a [discriminated union][discriminated-union] with the following possible cases:
+* `Ok <value>` representing a successful result
+* `Error <reason>` representing a failure
 
 The following function demonstrates how to create a `Result` value:
 
@@ -23,11 +25,13 @@ let validateName (name: string) : Result<string, string> =
     | _ -> Ok name
 ```
 
+In this example, the `Ok` value is a string (the given name), and the `Error` value is also a string (the cause of the error, in human-readable form).
+
 ## Reading the content of a `Result` value
 
 Consider the following type definition and function signature:
 
-```fsharp
+```
 type FileOpenError = 
 | NotFound
 | AccessDenied

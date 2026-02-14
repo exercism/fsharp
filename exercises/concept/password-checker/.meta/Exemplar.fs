@@ -1,35 +1,35 @@
 module PasswordChecker
 
-type PasswordRule =
-    | AtLeast12Characters
-    | AtLeastOneUppercaseLetter
-    | AtLeastOneLowercaseLetter
-    | AtLeastOneDigit
-    | AtLeastOneSymbol
+type PasswordError =
+    | LessThan12Characters
+    | MissingUppercaseLetter
+    | MissingLowercaseLetter
+    | MissingDigit
+    | MissingSymbol
 
-/// Validate the given password against the rules defined in `PasswordRule`. If it meets all
+/// Validate the given password against the rules defined in the instructions. If it meets all
 /// of the rules, return a result indicating success; otherwise return a result indicating
-/// failure and the rule that was violated.
-let checkPassword (password: string) : Result<string, PasswordRule> =
+/// failure and an error indicating which rule was violated.
+let checkPassword (password: string) : Result<string, PasswordError> =
     if password.Length < 12 then
-        Error AtLeast12Characters
+        Error LessThan12Characters
     elif password |> String.exists System.Char.IsUpper |> not then
-        Error AtLeastOneUppercaseLetter
+        Error MissingUppercaseLetter
     elif password |> String.exists System.Char.IsLower |> not then
-        Error AtLeastOneLowercaseLetter
+        Error MissingLowercaseLetter
     elif password |> String.exists System.Char.IsDigit |> not then
-        Error AtLeastOneDigit
+        Error MissingDigit
     elif password |> String.exists (fun c -> "!@#$%^&*".Contains c) |> not then
-        Error AtLeastOneSymbol
+        Error MissingSymbol
     else Ok password
 
 /// Return a human-readable message indicating the meaning of the given result value.
-let getStatusMessage (result: Result<string, PasswordRule>) : string =
+let getStatusMessage (result: Result<string, PasswordError>) : string =
     let preamble = "Error: does not have at least "
     match result with
-    | Error AtLeast12Characters -> preamble + "12 characters"
-    | Error AtLeastOneUppercaseLetter -> preamble + "one uppercase letter"
-    | Error AtLeastOneLowercaseLetter -> preamble + "one lowercase letter"
-    | Error AtLeastOneDigit -> preamble + "one digit"
-    | Error AtLeastOneSymbol -> preamble + "one symbol"
+    | Error LessThan12Characters -> preamble + "12 characters"
+    | Error MissingUppercaseLetter -> preamble + "one uppercase letter"
+    | Error MissingLowercaseLetter -> preamble + "one lowercase letter"
+    | Error MissingDigit -> preamble + "one digit"
+    | Error MissingSymbol -> preamble + "one symbol"
     | Ok _ -> "OK"
