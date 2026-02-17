@@ -1,24 +1,27 @@
 # Introduction
 
 The `Result` type makes it possible for a function to return a single value indicating all of the following things:
+
 - Whether the operation succeeded or failed
 - On success, the resulting value of the operation
 - On failure, the reason for the failure
 
 ## Usage
 
-The `Result` type is a generic type containing two underlying types:
+`Result` is a generic type containing two underlying types:
+
 - The type of the resultant value on a successful operation
 - The type representing the reason for the failure on a failure
 
 The `Result` type is also a [discriminated union][discriminated-union] with the following possible cases:
-* `Ok <value>` representing a successful result
-* `Error <reason>` representing a failure
+
+- `Ok <value>` representing a successful result
+- `Error <reason>` representing a failure
 
 The following function demonstrates how to create a `Result` value:
 
 ```fsharp
-let validateName (name: string) : Result<string, string> = 
+let validateName (name: string) : Result<string, string> =
     match name with
     | null -> Error "Name not found."
     | "" -> Error "Name is empty."
@@ -32,7 +35,7 @@ In this example, the `Ok` value is a string (the given name), and the `Error` va
 Consider the following type definition and function signature:
 
 ```
-type FileOpenError = 
+type FileOpenError =
 | NotFound
 | AccessDenied
 | FileLocked
@@ -49,3 +52,5 @@ match openFile(filename) with
 | Error AccessDenied -> printfn $"Error: you do not have permission to open the file {filename}."
 | Error FileLocked -> printfn $"Error: file {filename} is already in use."
 ```
+
+[discriminated-union]: https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/discriminated-unions
