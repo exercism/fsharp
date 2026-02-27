@@ -36,13 +36,31 @@ let ``Error when password has no symbols`` () =
     let expected: Result<string, PasswordError> = Error MissingSymbol
     checkPassword "abcd3fghijkL" |> should equal expected
 
-[<Theory>]
-[<InlineData("!1abcdefghiJ")>]
-[<InlineData("@2KLMNOPQRSt")>]
-[<InlineData("$4abcdefghiJ")>]
-[<InlineData("&7KLMNOPQRSt")>]
+[<Fact>]
 [<Task(1)>]
-let ``Ok when password is good`` (password: string) =
+let ``Ok when password is good with exclamation mark`` () =
+    let password = "!1abcdefghiJ"
+    let expected: Result<string, PasswordError> = Ok password
+    checkPassword password |> should equal expected
+
+[<Fact>]
+[<Task(1)>]
+let ``Ok when password is good with at symbol`` () =
+    let password = "@2KLMNOPQRSt"
+    let expected: Result<string, PasswordError> = Ok password
+    checkPassword password |> should equal expected
+
+[<Fact>]
+[<Task(1)>]
+let ``Ok when password is good with dollar sign`` () =
+    let password = "$4abcdefghiJ"
+    let expected: Result<string, PasswordError> = Ok password
+    checkPassword password |> should equal expected
+
+[<Fact>]
+[<Task(1)>]
+let ``Ok when password is good with ampersand`` () =
+    let password = "&7KLMNOPQRSt"
     let expected: Result<string, PasswordError> = Ok password
     checkPassword password |> should equal expected
 
