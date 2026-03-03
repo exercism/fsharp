@@ -911,6 +911,9 @@ type LargestSeriesProduct() =
 type Leap() =
     inherit ExerciseGenerator()
 
+type LineUp() =
+    inherit ExerciseGenerator()
+
 type ListOps() =
     inherit ExerciseGenerator()
 
