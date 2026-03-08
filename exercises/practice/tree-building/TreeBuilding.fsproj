@@ -2,21 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <RootNamespace>Exercism</RootNamespace>
-
     <IsPackable>false</IsPackable>
-
-    <OutputType>Exe</OutputType>
-    <GenerateProgramFile>false</GenerateProgramFile>
+    <RootNamespace>Exercism</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Include="TreeBuildingTypes.fs" />
-    <Compile Include="TreeBuildingBaseline.fs" />
     <Compile Include="TreeBuilding.fs" />
     <Compile Include="TreeBuildingTests.fs" />
-    <Compile Include="Benchmark.fs" />
-    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
