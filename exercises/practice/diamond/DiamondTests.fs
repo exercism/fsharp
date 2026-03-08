@@ -5,6 +5,7 @@ open System
 open FsUnit.Xunit
 open Xunit
 open FsCheck
+open FsCheck.FSharp
 open FsCheck.Xunit
 
 let split (x: string) = x.Split([| '\n' |], StringSplitOptions.None)
@@ -17,8 +18,9 @@ let trailingSpaces (x:string) = x.Substring(x.LastIndexOfAny [|'A'..'Z'|] + 1)
 
 type Letters =
     static member Chars () =
-        Arb.Default.Char()
-        |> Arb.filter (fun c -> 'A' <= c && c <= 'Z')
+        ArbMap.defaults
+        |> ArbMap.arbitrary<char>
+        |> Arb.mapFilter id (fun c -> 'A' <= c && c <= 'Z')
 
 type DiamondPropertyAttribute () =
     inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
