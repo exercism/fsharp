@@ -33,7 +33,7 @@ $exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $exerciseDir = "exercises/practice/${Exercise}"
 $project = "${exerciseDir}/${ExerciseName}.fsproj"
 & dotnet new xunit --force -lang "F#" --target-framework-override net10.0 -o $exerciseDir -n $ExerciseName
-& dotnet sln exercises/Exercises.sln add $project
+& dotnet sln exercises/Exercises.slnx add $project
 
 # Update project packages
 & dotnet remove $project package coverlet.collector
