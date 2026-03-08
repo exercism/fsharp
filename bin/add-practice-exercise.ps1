@@ -33,7 +33,7 @@ $exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $exerciseDir = "exercises/practice/${Exercise}"
 $project = "${exerciseDir}/${ExerciseName}.fsproj"
 & dotnet new xunit --force -lang "F#" --target-framework-override net10.0 -o $exerciseDir -n $ExerciseName
-& dotnet sln exercises/Exercises.slnx add $project
+& dotnet sln exercises/Exercises.slnx add --solution-folder "/practice/" $project
 
 # Update project packages
 & dotnet remove $project package coverlet.collector
@@ -48,7 +48,6 @@ $project = "${exerciseDir}/${ExerciseName}.fsproj"
 & dotnet tool install --tool-manifest "${exerciseDir}/.config/dotnet-tools.json" fantomas-tool
 
 # Remove and update files
-Remove-Item -Path "${exerciseDir}/Program.fs"
 Remove-Item -Path "${exerciseDir}/Tests.fs"
 Set-Content -Path "${exerciseDir}/${exerciseName}.fs" -Value "module ${exerciseName}"
 Set-Content -Path "${exerciseDir}/.meta/Example.fs" -Value "module ${exerciseName}"
