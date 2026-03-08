@@ -32,16 +32,16 @@ $PSNativeCommandUseErrorActionPreference = $true
 $exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $exerciseDir = "exercises/practice/${Exercise}"
 $project = "${exerciseDir}/${ExerciseName}.fsproj"
-& dotnet new xunit --force -lang "F#" --target-framework-override net9.0 -o $exerciseDir -n $ExerciseName
+& dotnet new xunit --force -lang "F#" --target-framework-override net10.0 -o $exerciseDir -n $ExerciseName
 & dotnet sln exercises/Exercises.sln add $project
 
 # Update project packages
 & dotnet remove $project package coverlet.collector
-& dotnet add $project package Exercism.Tests --version 0.1.0-beta1
-& dotnet add $project package xunit.runner.visualstudio --version 2.4.3
-& dotnet add $project package xunit --version 2.4.1
-& dotnet add $project package Microsoft.NET.Test.Sdk --version 16.8.3
-& dotnet add $project package FsUnit.xUnit --version 4.0.4
+& dotnet add $project package Exercism.Tests.xunit.v3 --version 0.1.0-beta1
+& dotnet add $project package xunit.runner.visualstudio --version 3.1.5
+& dotnet add $project package xunit.v3 --version 3.2.2
+& dotnet add $project package Microsoft.NET.Test.Sdk --version 18.3.0
+& dotnet add $project package FsUnit.xUnit --version 7.1.1
 
 # Add tools
 & dotnet new tool-manifest -o $exerciseDir
@@ -58,6 +58,9 @@ Set-Content -Path "${exerciseDir}/.meta/Example.fs" -Value "module ${exerciseNam
 $proj.Project.ItemGroup[0].Compile[0].Include = "${exerciseName}.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Tests.fs"
 $proj.Project.PropertyGroup.RemoveChild($proj.Project.PropertyGroup.SelectSingleNode("//GenerateProgramFile"))
+$rootNamespace = $xml.CreateElement("RootNamespace")
+$rootNamespace.InnerText="Exercism"
+$proj.Project.PropertyGroup.AddChild($rootNamespace)
 $proj.Save($project)
 
 # Add and run generator (this will update the tests file)
