@@ -113,7 +113,7 @@ function Test-Single-Exercise($Exercise, $Exercises) {
 function Test-All-Exercises($Exercises) {
     try {
         Prepare-Exercises $Exercises
-        Run-Tests "exercises/Exercises.slnx
+        Run-Tests "exercises/Exercises.slnx"
     } finally {
         Restore-Exercises $Exercises
     }
