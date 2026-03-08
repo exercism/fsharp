@@ -32,32 +32,42 @@ $PSNativeCommandUseErrorActionPreference = $true
 $exerciseName = (Get-Culture).TextInfo.ToTitleCase($Exercise).Replace("-", "")
 $exerciseDir = "exercises/practice/${Exercise}"
 $project = "${exerciseDir}/${ExerciseName}.fsproj"
-& dotnet new xunit --force -lang "F#" --target-framework-override net9.0 -o $exerciseDir -n $ExerciseName
-& dotnet sln exercises/Exercises.sln add $project
+& dotnet new xunit --force -lang "F#" --target-framework-override net10.0 -o $exerciseDir -n $ExerciseName
+& dotnet sln exercises/Exercises.slnx add --solution-folder "/practice/" $project
 
 # Update project packages
 & dotnet remove $project package coverlet.collector
-& dotnet add $project package Exercism.Tests --version 0.1.0-beta1
-& dotnet add $project package xunit.runner.visualstudio --version 2.4.3
-& dotnet add $project package xunit --version 2.4.1
-& dotnet add $project package Microsoft.NET.Test.Sdk --version 16.8.3
-& dotnet add $project package FsUnit.xUnit --version 4.0.4
+& dotnet remove $project package xunit
+& dotnet add $project package Microsoft.NET.Test.Sdk --version 18.3.0
+& dotnet add $project package xunit.v3 --version 3.2.2
+& dotnet add $project package xunit.runner.visualstudio --version 3.1.5
+& dotnet add $project package FsUnit.xUnit --version 7.1.1
+& dotnet add $project package Exercism.Tests.xunit.v3 --version 0.1.0-beta1
 
 # Add tools
 & dotnet new tool-manifest -o $exerciseDir
 & dotnet tool install --tool-manifest "${exerciseDir}/.config/dotnet-tools.json" fantomas-tool
 
 # Remove and update files
-Remove-Item -Path "${exerciseDir}/Program.fs"
 Remove-Item -Path "${exerciseDir}/Tests.fs"
 Set-Content -Path "${exerciseDir}/${exerciseName}.fs" -Value "module ${exerciseName}"
 Set-Content -Path "${exerciseDir}/.meta/Example.fs" -Value "module ${exerciseName}"
 
 # Fix the project
-[xml]$proj = Get-Content $project
+$proj = [xml]::new()
+$proj.PreserveWhitespace = $true
+$proj.Load($project)
+
+$proj.Project.ItemGroup[0].AppendChild($proj.CreateTextNode("  "))
+$proj.Project.ItemGroup[0].AppendChild($proj.Project.ItemGroup[0].Compile.CloneNode($true))
+$proj.Project.ItemGroup[0].AppendChild($proj.CreateTextNode("`n  "))
 $proj.Project.ItemGroup[0].Compile[0].Include = "${exerciseName}.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Tests.fs"
-$proj.Project.PropertyGroup.RemoveChild($proj.Project.PropertyGroup.SelectSingleNode("//GenerateProgramFile"))
+$rootNamespace = $proj.CreateElement("RootNamespace")
+$rootNamespace.InnerText="Exercism"
+$proj.Project.PropertyGroup.AppendChild($proj.CreateTextNode("  "))
+$proj.Project.PropertyGroup.AppendChild($rootNamespace)
+$proj.Project.PropertyGroup.AppendChild($proj.CreateTextNode("`n  "))
 $proj.Save($project)
 
 # Add and run generator (this will update the tests file)
