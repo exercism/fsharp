@@ -37,11 +37,12 @@ $project = "${exerciseDir}/${ExerciseName}.fsproj"
 
 # Update project packages
 & dotnet remove $project package coverlet.collector
-& dotnet add $project package Exercism.Tests.xunit.v3 --version 0.1.0-beta1
-& dotnet add $project package xunit.runner.visualstudio --version 3.1.5
-& dotnet add $project package xunit.v3 --version 3.2.2
+& dotnet remove $project package xunit
 & dotnet add $project package Microsoft.NET.Test.Sdk --version 18.3.0
+& dotnet add $project package xunit.v3 --version 3.2.2
+& dotnet add $project package xunit.runner.visualstudio --version 3.1.5
 & dotnet add $project package FsUnit.xUnit --version 7.1.1
+& dotnet add $project package Exercism.Tests.xunit.v3 --version 0.1.0-beta1
 
 # Add tools
 & dotnet new tool-manifest -o $exerciseDir
@@ -53,13 +54,20 @@ Set-Content -Path "${exerciseDir}/${exerciseName}.fs" -Value "module ${exerciseN
 Set-Content -Path "${exerciseDir}/.meta/Example.fs" -Value "module ${exerciseName}"
 
 # Fix the project
-[xml]$proj = Get-Content $project
+$proj = [xml]::new()
+$proj.PreserveWhitespace = $true
+$proj.Load($project)
+
+$proj.Project.ItemGroup[0].AppendChild($proj.CreateTextNode("  "))
+$proj.Project.ItemGroup[0].AppendChild($proj.Project.ItemGroup[0].Compile.CloneNode($true))
+$proj.Project.ItemGroup[0].AppendChild($proj.CreateTextNode("`n  "))
 $proj.Project.ItemGroup[0].Compile[0].Include = "${exerciseName}.fs"
 $proj.Project.ItemGroup[0].Compile[1].Include = "${exerciseName}Tests.fs"
-$proj.Project.PropertyGroup.RemoveChild($proj.Project.PropertyGroup.SelectSingleNode("//GenerateProgramFile"))
-$rootNamespace = $xml.CreateElement("RootNamespace")
+$rootNamespace = $proj.CreateElement("RootNamespace")
 $rootNamespace.InnerText="Exercism"
-$proj.Project.PropertyGroup.AddChild($rootNamespace)
+$proj.Project.PropertyGroup.AppendChild($proj.CreateTextNode("  "))
+$proj.Project.PropertyGroup.AppendChild($rootNamespace)
+$proj.Project.PropertyGroup.AppendChild($proj.CreateTextNode("`n  "))
 $proj.Save($project)
 
 # Add and run generator (this will update the tests file)
