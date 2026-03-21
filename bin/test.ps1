@@ -153,6 +153,44 @@ function Test-Exercise-Example-Implementations($Exercise) {
     }
 }
 
+function Gather-Exercise-Slugs-From-Config($Category, $OutFile) {
+    jq ".exercises.$Category[] | .slug" config.json | sed 's/"//g' | sort > $OutFile
+}
+
+function Gather-Exercise-Slugs-From-Sln($Category, $OutFile) {
+    xmllint --xpath "//Solution/Folder[@Name='/$Category/']/Project/@Path" exercises/Exercises.slnx | cut -d / -f 2 | sort > $OutFile
+}
+
+function Assert-Exercise-List-Agreement {
+    Gather-Exercise-Slugs-From-Config "concept" "config-concept-slugs"
+    Gather-Exercise-Slugs-From-Sln "concept" "sln-concept-slugs"
+    Gather-Exercise-Slugs-From-Config "practice" "config-practice-slugs"
+    Gather-Exercise-Slugs-From-Sln "practice" "sln-practice-slugs"
+
+    $OriginalErrorActionPreference = $ErrorActionPreference
+    $ErrorActionPreference = "SilentlyContinue"
+    $ConceptDiff = diff -u config-concept-slugs sln-concept-slugs
+    $PracticeDiff = diff -u config-practice-slugs sln-practice-slugs
+    $ErrorActionPreference = $OriginalErrorActionPreference
+    Remove-Item config-*-slugs
+    Remove-Item sln-*-slugs
+
+    if ($ConceptDiff || $PracticeDiff) {
+        $MessageCore = "exercise sets in config.json and exercises/Exercises.sln differ"
+        if ($ConceptDiff) {
+            Write-Output "Error: concept ${MessageCore}:"
+            Write-Output $ConceptDiff
+        }
+        if ($PracticeDiff) {
+            Write-Output "Error: practice ${MessageCore}:"
+            Write-Output $PracticeDiff
+        }
+        exit 1
+    }
+}
+
+Assert-Exercise-List-Agreement
+
 if (!$Exercise) {
     Test-Refactoring-Exercise-Default-Implementations
     Build-Generators
