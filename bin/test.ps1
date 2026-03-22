@@ -154,7 +154,8 @@ function Test-Exercise-Example-Implementations($Exercise) {
 }
 
 function Gather-Exercise-Slugs-From-Config($Category, $OutFile) {
-    jq ".exercises.$Category[] | .slug" config.json | sed 's/"//g' | sort > $OutFile
+    $config = Get-Content -Raw config.json | ConvertFrom-Json
+    $config.exercises.$Category.slug | sort > $OutFile
 }
 
 function Gather-Exercise-Slugs-From-Sln($Category, $OutFile) {
