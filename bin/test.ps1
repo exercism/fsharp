@@ -158,7 +158,7 @@ function Gather-Exercise-Slugs-From-Config($Category, $OutFile) {
 }
 
 function Gather-Exercise-Slugs-From-Sln($Category, $OutFile) {
-    xmllint --xpath "//Solution/Folder[@Name='/$Category/']/Project/@Path" exercises/Exercises.slnx | cut -d / -f 2 | sort > $OutFile
+    (Select-Xml -Path exercises/Exercises.slnx -XPath "//Solution/Folder[@Name='/$Category/']/Project/@Path").Node | Format-Table -HideTableHeaders | cut -d / -f 2 | sort > $OutFile
 }
 
 function Assert-Exercise-List-Agreement {
@@ -169,8 +169,8 @@ function Assert-Exercise-List-Agreement {
 
     $OriginalErrorActionPreference = $ErrorActionPreference
     $ErrorActionPreference = "SilentlyContinue"
-    $ConceptDiff = diff -u config-concept-slugs sln-concept-slugs
-    $PracticeDiff = diff -u config-practice-slugs sln-practice-slugs
+    $ConceptDiff = diff -uB config-concept-slugs sln-concept-slugs
+    $PracticeDiff = diff -uB config-practice-slugs sln-practice-slugs
     $ErrorActionPreference = $OriginalErrorActionPreference
     Remove-Item config-*-slugs
     Remove-Item sln-*-slugs
