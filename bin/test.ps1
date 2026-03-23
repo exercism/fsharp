@@ -153,39 +153,46 @@ function Test-Exercise-Example-Implementations($Exercise) {
     }
 }
 
-function Gather-Exercise-Slugs-From-Config($Category, $OutFile) {
+function Gather-Exercise-Slugs-From-Config($Category) {
     $config = Get-Content -Raw config.json | ConvertFrom-Json
-    $config.exercises.$Category.slug | sort > $OutFile
+    $config.exercises.$Category.slug
 }
 
-function Gather-Exercise-Slugs-From-Sln($Category, $OutFile) {
-    (Select-Xml -Path exercises/Exercises.slnx -XPath "//Solution/Folder[@Name='/$Category/']/Project/@Path").Node | Format-Table -HideTableHeaders | cut -d / -f 2 | sort > $OutFile
+function Gather-Exercise-Slugs-From-Sln($Category) {
+    $xpath = "//Solution/Folder[@Name='/$Category/']/Project/@Path"
+    $raw_paths = (Select-Xml -Path exercises/Exercises.slnx -XPath $xpath)
+    $raw_paths | ForEach-Object {($_.Node.Value -split '/')[-2]}
+}
+
+function Set-Difference($set1, $set2) {
+    $set1 | Where-Object {$set2 -notcontains $_}
+}
+
+function Report-Diff($category, $source, $target, $diff) {
+    if ($diff) {
+        Write-Output ""
+        Write-Output "$category exercise slugs in $source but not in ${target}:"
+        Write-Output $diff
+    }
 }
 
 function Assert-Exercise-List-Agreement {
-    Gather-Exercise-Slugs-From-Config "concept" "config-concept-slugs"
-    Gather-Exercise-Slugs-From-Sln "concept" "sln-concept-slugs"
-    Gather-Exercise-Slugs-From-Config "practice" "config-practice-slugs"
-    Gather-Exercise-Slugs-From-Sln "practice" "sln-practice-slugs"
+    $config_concept_slugs = Gather-Exercise-Slugs-From-Config "concept"
+    $sln_concept_slugs = Gather-Exercise-Slugs-From-Sln "concept"
+    $config_practice_slugs = Gather-Exercise-Slugs-From-Config "practice"
+    $sln_practice_slugs = Gather-Exercise-Slugs-From-Sln "practice"
 
-    $OriginalErrorActionPreference = $ErrorActionPreference
-    $ErrorActionPreference = "SilentlyContinue"
-    $ConceptDiff = diff -uB config-concept-slugs sln-concept-slugs
-    $PracticeDiff = diff -uB config-practice-slugs sln-practice-slugs
-    $ErrorActionPreference = $OriginalErrorActionPreference
-    Remove-Item config-*-slugs
-    Remove-Item sln-*-slugs
+    $concept_config_sln_diff = Set-Difference $config_concept_slugs $sln_concept_slugs
+    $concept_sln_config_diff = Set-Difference $sln_concept_slugs $config_concept_slugs
+    $practice_config_sln_diff = Set-Difference $config_practice_slugs $sln_practice_slugs
+    $practice_sln_config_diff = Set-Difference $sln_practice_slugs $config_practice_slugs
 
-    if ($ConceptDiff || $PracticeDiff) {
-        $MessageCore = "exercise sets in config.json and exercises/Exercises.sln differ"
-        if ($ConceptDiff) {
-            Write-Output "Error: concept ${MessageCore}:"
-            Write-Output $ConceptDiff
-        }
-        if ($PracticeDiff) {
-            Write-Output "Error: practice ${MessageCore}:"
-            Write-Output $PracticeDiff
-        }
+    if ($concept_config_sln_diff || $concept_sln_config_diff || $practice_config_sln_diff || $practice_sln_config_diff) {
+        Write-Output "Error: exercise sets in config.json and exercises/Exercises.sln differ."
+        Report-Diff "Concept" "config.json" "exercises/Exercises.sln" $concept_config_sln_diff
+        Report-Diff "Concept" "exercises/Exercises.sln" "config.json" $concept_sln_config_diff
+        Report-Diff "Practice" "config.json" "exercises/Exercises.sln" $practice_config_sln_diff
+        Report-Diff "Practice" "exercises/Exercises.sln" "config.json" $practice_sln_config_diff
         exit 1
     }
 }
