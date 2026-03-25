@@ -187,12 +187,15 @@ function Assert-Exercise-List-Agreement {
     $practice_config_sln_diff = Set-Difference $config_practice_slugs $sln_practice_slugs
     $practice_sln_config_diff = Set-Difference $sln_practice_slugs $config_practice_slugs
 
+    $config_filename = "config.json"
+    $sln_filename = "exercises/Exercises.slnx"
+
     if ($concept_config_sln_diff || $concept_sln_config_diff || $practice_config_sln_diff || $practice_sln_config_diff) {
-        Write-Output "Error: exercise sets in config.json and exercises/Exercises.sln differ."
-        Report-Diff "Concept" "config.json" "exercises/Exercises.sln" $concept_config_sln_diff
-        Report-Diff "Concept" "exercises/Exercises.sln" "config.json" $concept_sln_config_diff
-        Report-Diff "Practice" "config.json" "exercises/Exercises.sln" $practice_config_sln_diff
-        Report-Diff "Practice" "exercises/Exercises.sln" "config.json" $practice_sln_config_diff
+        Write-Output "Error: exercise sets in $config_filename and $sln_filename differ."
+        Report-Diff "Concept" $config_filename $sln_filename $concept_config_sln_diff
+        Report-Diff "Concept" $sln_filename $config_filename $concept_sln_config_diff
+        Report-Diff "Practice" $config_filename $sln_filename $practice_config_sln_diff
+        Report-Diff "Practice" $sln_filename $config_filename $practice_sln_config_diff
         exit 1
     }
 }
