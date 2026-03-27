@@ -9,7 +9,9 @@
     <Project Path="concept/interest-is-interesting/InterestIsInteresting.fsproj" />
     <Project Path="concept/log-levels/LogLevels.fsproj" />
     <Project Path="concept/lucians-luscious-lasagna/LuciansLusciousLasagna.fsproj" />
+    <Project Path="concept/password-checker/PasswordChecker.fsproj" />
     <Project Path="concept/pizza-pricing/PizzaPricing.fsproj" />
+    <Project Path="concept/role-playing-game/RolePlayingGame.fsproj" />
     <Project Path="concept/squeaky-clean/SqueakyClean.fsproj" />
     <Project Path="concept/tisbury-treasure-hunt/TisburyTreasureHunt.fsproj" />
     <Project Path="concept/tracks-on-tracks-on-tracks/TracksOnTracksOnTracks.fsproj" />
