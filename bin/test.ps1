@@ -190,7 +190,7 @@ function Assert-Exercise-List-Agreement {
     $config_filename = "config.json"
     $sln_filename = "exercises/Exercises.slnx"
 
-    if ($concept_config_sln_diff || $concept_sln_config_diff || $practice_config_sln_diff || $practice_sln_config_diff) {
+    if ($concept_config_sln_diff -or $concept_sln_config_diff -or $practice_config_sln_diff -or $practice_sln_config_diff) {
         Write-Output "Error: exercise sets in $config_filename and $sln_filename differ."
         Report-Diff "Concept" $config_filename $sln_filename $concept_config_sln_diff
         Report-Diff "Concept" $sln_filename $config_filename $concept_sln_config_diff
