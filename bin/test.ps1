@@ -153,6 +153,55 @@ function Test-Exercise-Example-Implementations($Exercise) {
     }
 }
 
+function Gather-Exercise-Slugs-From-Config($Category) {
+    $config = Get-Content -Raw config.json | ConvertFrom-Json
+    $config.exercises.$Category.slug
+}
+
+function Gather-Exercise-Slugs-From-Sln($Category) {
+    $xpath = "//Solution/Folder[@Name='/$Category/']/Project/@Path"
+    $raw_paths = (Select-Xml -Path exercises/Exercises.slnx -XPath $xpath)
+    $raw_paths | ForEach-Object {($_.Node.Value -split '/')[-2]}
+}
+
+function Set-Difference($set1, $set2) {
+    $set1 | Where-Object {$set2 -notcontains $_}
+}
+
+function Report-Diff($category, $source, $target, $diff) {
+    if ($diff) {
+        Write-Output ""
+        Write-Output "$category exercise slugs in $source but not in ${target}:"
+        Write-Output $diff
+    }
+}
+
+function Assert-Exercise-List-Agreement {
+    $config_concept_slugs = Gather-Exercise-Slugs-From-Config "concept"
+    $sln_concept_slugs = Gather-Exercise-Slugs-From-Sln "concept"
+    $config_practice_slugs = Gather-Exercise-Slugs-From-Config "practice"
+    $sln_practice_slugs = Gather-Exercise-Slugs-From-Sln "practice"
+
+    $concept_config_sln_diff = Set-Difference $config_concept_slugs $sln_concept_slugs
+    $concept_sln_config_diff = Set-Difference $sln_concept_slugs $config_concept_slugs
+    $practice_config_sln_diff = Set-Difference $config_practice_slugs $sln_practice_slugs
+    $practice_sln_config_diff = Set-Difference $sln_practice_slugs $config_practice_slugs
+
+    $config_filename = "config.json"
+    $sln_filename = "exercises/Exercises.slnx"
+
+    if ($concept_config_sln_diff -or $concept_sln_config_diff -or $practice_config_sln_diff -or $practice_sln_config_diff) {
+        Write-Output "Error: exercise sets in $config_filename and $sln_filename differ."
+        Report-Diff "Concept" $config_filename $sln_filename $concept_config_sln_diff
+        Report-Diff "Concept" $sln_filename $config_filename $concept_sln_config_diff
+        Report-Diff "Practice" $config_filename $sln_filename $practice_config_sln_diff
+        Report-Diff "Practice" $sln_filename $config_filename $practice_sln_config_diff
+        exit 1
+    }
+}
+
+Assert-Exercise-List-Agreement
+
 if (!$Exercise) {
     Test-Refactoring-Exercise-Default-Implementations
     Build-Generators
