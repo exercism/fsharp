@@ -1,4 +1,6 @@
-# Hints
+# Instructions append
+
+## Hints
 
 - To parse the text, you could try to use the [FParsec](http://www.quanttec.com/fparsec/tutorial.html) library.
 - You can solve this exercise with a brute force algorithm, but this will possibly have a poor runtime performance.

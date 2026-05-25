@@ -1,4 +1,6 @@
-# Hints
+# Instructions append
+
+## Hints
 
 For this exercise the following F# features come in handy:
 
