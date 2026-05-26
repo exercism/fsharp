@@ -1,4 +1,6 @@
-# Hints
+# Instructions append
+
+## Hints
 
 For this exercise the following F# features come in handy:
 - [(..) start finish](https://fsharp.github.io/fsharp-core-docs/reference/fsharp-core-operators.html#(..)) allows you to succinctly create a range of values.

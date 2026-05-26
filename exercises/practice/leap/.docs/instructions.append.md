@@ -1,4 +1,6 @@
-# Notes
+# Instructions append
+
+## Notes
 
 The [DateTime class][datetime] provides a built-in [IsLeapYear][datetime.isleapyear] method
 which you should pretend doesn't exist for the purposes of implementing this exercise.
