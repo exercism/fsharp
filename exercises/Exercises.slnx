@@ -78,6 +78,7 @@
     <Project Path="practice/leap/Leap.fsproj" />
     <Project Path="practice/ledger/Ledger.fsproj" />
     <Project Path="practice/lens-person/LensPerson.fsproj" />
+    <Project Path="practice/line-up/LineUp.fsproj" />
     <Project Path="practice/linked-list/LinkedList.fsproj" />
     <Project Path="practice/list-ops/ListOps.fsproj" />
     <Project Path="practice/luhn/Luhn.fsproj" />
