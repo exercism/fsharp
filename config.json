@@ -1929,6 +1929,30 @@
         "difficulty": 6
       },
       {
+        "slug": "save-the-cow",
+        "name": "Save the Cow",
+        "uuid": "b98a31d9-9c75-44c7-9eee-ed7be29bd52a",
+        "practices": [
+          "immutability",
+          "inheritance",
+          "members",
+          "sets"
+        ],
+        "prerequisites": [
+          "chars",
+          "constructors",
+          "immutability",
+          "inheritance",
+          "members",
+          "numbers",
+          "observables",
+          "options",
+          "records",
+          "sets"
+        ],
+        "difficulty": 8
+      },
+      {
         "slug": "sublist",
         "name": "Sublist",
         "uuid": "d17b0c35-49a7-4ea6-b68c-7b2b56dc5968",
@@ -1951,25 +1975,10 @@
         "slug": "hangman",
         "name": "Hangman",
         "uuid": "ab0f1b66-011f-4aa3-89c5-c89427121279",
-        "practices": [
-          "immutability",
-          "inheritance",
-          "members",
-          "sets"
-        ],
-        "prerequisites": [
-          "chars",
-          "constructors",
-          "immutability",
-          "inheritance",
-          "members",
-          "numbers",
-          "observables",
-          "options",
-          "records",
-          "sets"
-        ],
-        "difficulty": 8
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 8,
+        "status": "deprecated"
       },
       {
         "slug": "lens-person",
