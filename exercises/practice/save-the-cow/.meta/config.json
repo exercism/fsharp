@@ -1,0 +1,28 @@
+{
+  "authors": [
+    "ErikSchierboom"
+  ],
+  "contributors": [
+    "BNAndras",
+    "jrr",
+    "lestephane",
+    "robkeim",
+    "valentin-p",
+    "wolf99"
+  ],
+  "files": {
+    "solution": [
+      "SaveTheCow.fs"
+    ],
+    "test": [
+      "SaveTheCowTests.fs"
+    ],
+    "example": [
+      ".meta/Example.fs"
+    ],
+    "invalidator": [
+      "SaveTheCow.fsproj"
+    ]
+  },
+  "blurb": "Implement a word-guessing game."
+}

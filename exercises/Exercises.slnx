@@ -124,6 +124,7 @@
     <Project Path="practice/run-length-encoding/RunLengthEncoding.fsproj" />
     <Project Path="practice/saddle-points/SaddlePoints.fsproj" />
     <Project Path="practice/satellite/Satellite.fsproj" />
+    <Project Path="practice/save-the-cow/SaveTheCow.fsproj" />
     <Project Path="practice/say/Say.fsproj" />
     <Project Path="practice/scale-generator/ScaleGenerator.fsproj" />
     <Project Path="practice/scrabble-score/ScrabbleScore.fsproj" />
