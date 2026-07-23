@@ -1,0 +1,15 @@
+{
+  "authors": [],
+  "files": {
+    "solution": [
+      "ImprovedPasswordChecker.fs"
+    ],
+    "test": [
+      "ImprovedPasswordCheckerTests.fs"
+    ],
+    "exemplar": [
+      ".meta/Exemplar.fs"
+    ]
+  },
+  "blurb": "Learn how to use the Flags attribute to combine values within a discriminated union"
+}
