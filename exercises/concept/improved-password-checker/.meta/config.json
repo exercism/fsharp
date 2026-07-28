@@ -1,5 +1,7 @@
 {
-  "authors": ["blackk-foxx"],
+  "authors": [
+    "blackk-foxx"
+  ],
   "files": {
     "solution": [
       "ImprovedPasswordChecker.fs"

@@ -231,12 +231,12 @@
         "name": "Improved Password Checker",
         "uuid": "094e458d-14bc-43db-af9c-3fd951a6c635",
         "concepts": [
-            "flag-discriminated-unions"
+          "flag-discriminated-unions"
         ],
         "prerequisites": [
-            "basics",
-            "pattern-matching",
-            "results"
+          "basics",
+          "pattern-matching",
+          "results"
         ]
       }
     ],
