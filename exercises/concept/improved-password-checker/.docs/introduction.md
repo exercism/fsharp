@@ -17,16 +17,6 @@ type PhoneFeaturesBinary =
 | Text = 0b00000010
 ```
 
-A discriminated union's cases can refer to other cases' values:
-
-```fsharp
-[<Flags>]
-type PhoneFeatures =
-| Call = 0b00000001
-| Text = 0b00000010
-| All  = Call ||| Text
-```
-
 Setting a flag can be done with the bitwise OR operator (`|||`); unsetting a flag can be done with a combination of the bitwise AND operator (`&&&`) and the bitwise negation operator (`~~~`).
 While checking flag's state can be done with the bitwise AND operator, one can also use the HasFlag() method.
 
