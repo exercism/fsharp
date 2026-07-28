@@ -231,7 +231,7 @@
         "name": "Improved Password Checker",
         "uuid": "094e458d-14bc-43db-af9c-3fd951a6c635",
         "concepts": [
-            "flags-attribute"
+            "flag-discriminated-unions"
         ],
         "prerequisites": [
             "basics",
@@ -2375,8 +2375,8 @@
     },
     {
       "uuid": "174f8c5e-e947-4e92-a0a5-1530f32b90ce",
-      "slug": "flags-attribute",
-      "name": "Flags Attribute"
+      "slug": "flag-discriminated-unions",
+      "name": "Flag Discriminated Unions"
     },
     {
       "uuid": "1327d780-3263-4a22-b363-684d775241b8",
