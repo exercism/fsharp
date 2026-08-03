@@ -36,6 +36,7 @@
     <Project Path="practice/book-store/BookStore.fsproj" />
     <Project Path="practice/bottle-song/BottleSong.fsproj" />
     <Project Path="practice/bowling/Bowling.fsproj" />
+    <Project Path="practice/camicia/Camicia.fsproj" />
     <Project Path="practice/change/Change.fsproj" />
     <Project Path="practice/circular-buffer/CircularBuffer.fsproj" />
     <Project Path="practice/clock/Clock.fsproj" />
