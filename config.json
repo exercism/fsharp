@@ -2301,6 +2301,22 @@
         "difficulty": 5
       },
       {
+        "slug": "camicia",
+        "name": "Camicia",
+        "uuid": "949a708f-4379-4c96-9fec-71885e8164d9",
+        "practices": [
+          "discriminated-unions",
+          "records",
+          "recursion"
+        ],
+        "prerequisites": [
+          "discriminated-unions",
+          "records",
+          "recursion"
+        ],
+        "difficulty": 5
+      },
+      {
         "slug": "satellite",
         "name": "Satellite",
         "uuid": "bcfeb5b7-08d3-4039-95b2-ebda6b7288aa",

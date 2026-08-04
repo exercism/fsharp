@@ -240,6 +240,54 @@ type Change() =
             | _ -> None
         | _ -> None
 
+type Camicia() =
+    inherit ExerciseGenerator()
+
+    let cardsPerLine = 8
+    let continuationIndent = String.replicate 18 " "
+
+    let renderHandRows rows =
+        let lastRow = (List.length rows) - 1
+
+        rows
+        |> List.mapi (fun index row ->
+            let prefix =
+                if index = 0 then "[| " else continuationIndent
+
+            let suffix =
+                if index = lastRow then " |]" else ";"
+
+            $"%s{prefix}%s{row}%s{suffix}")
+        |> String.concat "\n"
+
+    let renderHand value =
+        let cards =
+            value
+            |> Seq.map Obj.render
+            |> Seq.toList
+
+        if cards.Length <= cardsPerLine then
+            Array.renderStrings cards
+        else
+            cards
+            |> List.chunkBySize cardsPerLine
+            |> List.map (String.concat "; ")
+            |> renderHandRows
+
+    override _.RenderExpected(_, _, value) =
+        let status =
+            value.["status"].ToObject<string>()
+            |> String.upperCaseFirst
+
+        let tricks = value.["tricks"].ToObject<int>()
+        let cards = value.["cards"].ToObject<int>()
+
+        $"{{ Status = %s{status}; Tricks = %i{tricks}; Cards = %i{cards} }}"
+
+    override _.RenderInput(_, _, value) = renderHand value
+
+    override this.PropertiesWithIdentifier testCase = this.Properties testCase
+
 type CircularBuffer() =
     inherit ExerciseGenerator()
 
