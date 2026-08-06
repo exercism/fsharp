@@ -20,7 +20,9 @@ Note that the tests will not compile until this essential step is complete.
 
 ## 2. Implement the `checkPassword` function
 
-The `checkPassword` function checks the given password against the aforementioned rules. On failure, it indicates the rule(s) that was/were violated by encapsulating one or more of the `PasswordError` values within the result value.
+The `checkPassword` function checks the given password against the aforementioned rules.
+The function should return a `Result` value, where `Ok` is returned when the password satisfies all rules, and an `Error` value when it fails one or more rules.
+If multiple rules fail, the `PasswordError` value should represent all those failing rules.
 
 ```fsharp
 checkPassword "abcdefghijk5"

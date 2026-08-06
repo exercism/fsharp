@@ -18,7 +18,7 @@ type PhoneFeaturesBinary =
 ```
 
 Setting a flag can be done with the bitwise OR operator (`|||`); unsetting a flag can be done with a combination of the bitwise AND operator (`&&&`) and the bitwise negation operator (`~~~`).
-While checking flag's state can be done with the bitwise AND operator, one can also use the HasFlag() method.
+While checking a flag's state can be done with the bitwise AND operator, one can also use the `HasFlag()` method.
 
 ```fsharp
 let features = PhoneFeatures.Call
@@ -28,12 +28,6 @@ let moreFeatures = features ||| PhoneFeatures.Text
 
 moreFeatures.HasFlag(PhoneFeatures.Call) // => true
 moreFeatures.HasFlag(PhoneFeatures.Text) // => true
-
-// Unset the Call flag
-let lessFeatures = features &&& ~~~PhoneFeatures.Call
-
-lessFeatures.HasFlag(PhoneFeatures.Call) // => false
-lessFeatures.HasFlag(PhoneFeatures.Text) // => true
 ```
 
 See [Summary of Bitwise Operators][bitwise-operators] for a complete list of the bitwise operators available in the F# language.

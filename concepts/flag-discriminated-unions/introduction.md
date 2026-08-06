@@ -15,4 +15,4 @@ type PhoneFeatures =
 | Text = 0b00000010
 ```
 
-A `PhoneFeatures` instance with the value 0b00000011 has both its Call and Text flags set.
+A `PhoneFeatures` instance with the value `0b00000011` has both its `Call` and `Text` flags set.
