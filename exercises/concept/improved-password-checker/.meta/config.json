@@ -2,6 +2,9 @@
   "authors": [
     "blackk-foxx"
   ],
+  "contributors": [
+    "ErikSchierboom"
+  ],
   "files": {
     "solution": [
       "ImprovedPasswordChecker.fs"
