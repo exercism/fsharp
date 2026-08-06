@@ -13,6 +13,6 @@ type PasswordError =
 let checkPassword (password: string) : Result<string, PasswordError> =
     failwith "Please implement this function"
 
-/// Return a set of human-readable phrases indicating the meaning of the given result value.
-let getStatusPhrases (result: Result<string, PasswordError>) : Set<string> =
+/// Return a list of human-readable phrases indicating the meaning of the given result value.
+let getStatusPhrases (result: Result<string, PasswordError>) : string list =
     failwith "Please implement this function"

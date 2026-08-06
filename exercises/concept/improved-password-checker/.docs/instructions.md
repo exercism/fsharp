@@ -10,10 +10,6 @@ The rules for this password checker are the same as in the previous Password Che
 - Must have at least one digit
 - Must have at least one symbol in the set !@#$%^&\*
 
-Your solution must use a `Result` to encapsulate the success or failure status.
-For the success case, the `Result` must convey the validated password as a string.
-For the failure case, the `Result` must indicate all of the violated rules.
-
 ## 1. Modify the `PasswordError` discriminated union to allow the individual values to be treated as flags
 
 Note that the tests will not compile until this essential step is complete.
@@ -22,7 +18,7 @@ Note that the tests will not compile until this essential step is complete.
 
 The `checkPassword` function checks the given password against the aforementioned rules.
 The function should return a `Result` value, where `Ok` is returned when the password satisfies all rules, and an `Error` value when it fails one or more rules.
-If multiple rules fail, the `PasswordError` value should represent all those failing rules.
+If the given password fails multiple rules, the `PasswordError` value should represent all of the failing rules.
 
 ```fsharp
 checkPassword "abcdefghijk5"

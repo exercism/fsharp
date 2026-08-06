@@ -8,26 +8,41 @@ open ImprovedPasswordChecker
 
 [<Fact>]
 [<Task(2)>]
-let ``Error on all rules with blank password`` () =
-    let expected: Result<string, PasswordError> = Error (
-        PasswordError.LessThan12Characters ||| 
-        PasswordError.MissingUppercaseLetter ||| 
-        PasswordError.MissingLowercaseLetter ||| 
-        PasswordError.MissingDigit ||| 
-        PasswordError.MissingSymbol
-    )
-    checkPassword "" |> should equal expected
+let ``Ok with valid password`` () =
+    let password = "ABCdef123@&$"
+    let expected: Result<string, PasswordError> = Ok password
+    checkPassword password |> should equal expected
 
 [<Fact>]
 [<Task(2)>]
-let ``Error on most of the rules with single uppercase letter`` () =
+let ``Missing digit error with twelve mixed-case letters and symbols`` () =
+    let expected: Result<string, PasswordError> = Error PasswordError.MissingDigit
+    checkPassword "ABCDEF$&*ghi" |> should equal expected
+
+[<Fact>]
+[<Task(2)>]
+let ``Missing symbol error with twelve mixed-case letters and digits`` () =
+    let expected: Result<string, PasswordError> = Error PasswordError.MissingSymbol
+    checkPassword "ABCDEF123ghi" |> should equal expected
+
+[<Fact>]
+[<Task(2)>]
+let ``Error on two rules with thirteen mixed-case letters`` () =
     let expected: Result<string, PasswordError> = Error (
-        PasswordError.LessThan12Characters ||| 
+        PasswordError.MissingDigit ||| 
+        PasswordError.MissingSymbol
+    )
+    checkPassword "AbCdEfGhIjKlM" |> should equal expected
+
+[<Fact>]
+[<Task(2)>]
+let ``Error on some of the rules with twelve uppercase letters`` () =
+    let expected: Result<string, PasswordError> = Error (
         PasswordError.MissingLowercaseLetter ||| 
         PasswordError.MissingDigit ||| 
         PasswordError.MissingSymbol
     )
-    checkPassword "A" |> should equal expected
+    checkPassword "ABCDEFGHIJKL" |> should equal expected
 
 [<Fact>]
 [<Task(2)>]
@@ -42,80 +57,71 @@ let ``Error on most of the rules with eleven uppercase letters`` () =
 
 [<Fact>]
 [<Task(2)>]
-let ``Error on some of the rules with twelve uppercase letters`` () =
+let ``Error on most of the rules with single uppercase letter`` () =
     let expected: Result<string, PasswordError> = Error (
+        PasswordError.LessThan12Characters ||| 
         PasswordError.MissingLowercaseLetter ||| 
         PasswordError.MissingDigit ||| 
         PasswordError.MissingSymbol
     )
-    checkPassword "ABCDEFGHIJKL" |> should equal expected
+    checkPassword "A" |> should equal expected
 
 [<Fact>]
 [<Task(2)>]
-let ``Error on two rules with thirteen mixed-case letters`` () =
+let ``Error on all rules with blank password`` () =
     let expected: Result<string, PasswordError> = Error (
+        PasswordError.LessThan12Characters ||| 
+        PasswordError.MissingUppercaseLetter ||| 
+        PasswordError.MissingLowercaseLetter ||| 
         PasswordError.MissingDigit ||| 
         PasswordError.MissingSymbol
     )
-    checkPassword "AbCdEfGhIjKlM" |> should equal expected
-
-[<Fact>]
-[<Task(2)>]
-let ``Missing symbol error with twelve mixed-case letters and digits`` () =
-    let expected: Result<string, PasswordError> = Error PasswordError.MissingSymbol
-    checkPassword "ABCDEF123ghi" |> should equal expected
-
-[<Fact>]
-[<Task(2)>]
-let ``Missing digit error with twelve mixed-case letters and symbols`` () =
-    let expected: Result<string, PasswordError> = Error PasswordError.MissingDigit
-    checkPassword "ABCDEF$&*ghi" |> should equal expected
-
-[<Fact>]
-[<Task(2)>]
-let ``Ok with valid password`` () =
-    let password = "ABCdef123@&$"
-    let expected: Result<string, PasswordError> = Ok password
-    checkPassword password |> should equal expected
+    checkPassword "" |> should equal expected
 
 [<Fact>]
 [<Task(3)>]
-let ``Insufficient length`` () =
-    getStatusPhrases (Error PasswordError.LessThan12Characters) |> should equal (Set ["12 characters"])
+let ``No phrases for Ok result`` () =
+    getStatusPhrases (Ok "") |> should equal ([]: string list)
 
 [<Fact>]
 [<Task(3)>]
-let ``Insufficient length + missing uppercase letter`` () =
+let ``One phrase for insufficient length`` () =
+    let actual = getStatusPhrases (Error PasswordError.LessThan12Characters)
+    set actual |> should equal (set ["12 characters"])
+
+[<Fact>]
+[<Task(3)>]
+let ``Two phrases for insufficient length + missing uppercase letter`` () =
     let givenResult = Error (PasswordError.LessThan12Characters ||| PasswordError.MissingUppercaseLetter)
-    let expected = Set ["12 characters"; "uppercase letter"]
-    getStatusPhrases givenResult |> should equal expected
+    let expected = ["12 characters"; "uppercase letter"]
+    set (getStatusPhrases givenResult) |> should equal (set expected)
 
 [<Fact>]
 [<Task(3)>]
-let ``Insufficient length + missing uppercase letter + missing lowercase letter`` () =
+let ``Three phrases for insufficient length + missing uppercase letter + missing lowercase letter`` () =
     let givenResult = Error (
         PasswordError.LessThan12Characters |||
         PasswordError.MissingUppercaseLetter |||
         PasswordError.MissingLowercaseLetter
     )
-    let expected = Set ["12 characters"; "uppercase letter"; "lowercase letter"]
-    getStatusPhrases givenResult |> should equal expected
+    let expected = ["12 characters"; "uppercase letter"; "lowercase letter"]
+    set (getStatusPhrases givenResult) |> should equal (set expected)
 
 [<Fact>]
 [<Task(3)>]
-let ``All errors except missing symbol`` () =
+let ``Four phrases for all errors except missing symbol`` () =
     let givenResult = Error (
         PasswordError.LessThan12Characters |||
         PasswordError.MissingUppercaseLetter |||
         PasswordError.MissingLowercaseLetter |||
         PasswordError.MissingDigit
     )
-    let expected = Set ["12 characters"; "uppercase letter"; "lowercase letter"; "digit"]
-    getStatusPhrases givenResult |> should equal expected
+    let expected = ["12 characters"; "uppercase letter"; "lowercase letter"; "digit"]
+    set (getStatusPhrases givenResult) |> should equal (set expected)
 
 [<Fact>]
 [<Task(3)>]
-let ``All errors`` () =
+let ``All phrases for all errors`` () =
     let givenResult = Error (
         PasswordError.LessThan12Characters |||
         PasswordError.MissingUppercaseLetter |||
@@ -124,4 +130,4 @@ let ``All errors`` () =
         PasswordError.MissingSymbol
     )
     let expected = Set ["12 characters"; "uppercase letter"; "lowercase letter"; "digit"; "symbol"]
-    getStatusPhrases givenResult |> should equal expected
+    set (getStatusPhrases givenResult) |> should equal (set expected)

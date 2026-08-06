@@ -4,6 +4,7 @@ open System
 
 [<Flags>]
 type PasswordError =
+    | None = 0
     | LessThan12Characters = 1
     | MissingUppercaseLetter = 2
     | MissingLowercaseLetter = 4
@@ -14,42 +15,35 @@ type PasswordError =
 /// of the rules, return a result indicating success; otherwise return a result indicating
 /// failure with an error value indicating all of the rules that were violated.
 let checkPassword (password: string) : Result<string, PasswordError> =
-    let mutable errors = (
-        PasswordError.LessThan12Characters |||
-        PasswordError.MissingUppercaseLetter |||
-        PasswordError.MissingLowercaseLetter |||
-        PasswordError.MissingDigit |||
-        PasswordError.MissingSymbol
+    let errors = (
+        [
+            ((fun (s: string) -> s.Length >= 12), PasswordError.LessThan12Characters);
+            (String.exists System.Char.IsDigit, PasswordError.MissingDigit);
+            (String.exists System.Char.IsLower, PasswordError.MissingLowercaseLetter);
+            (String.exists System.Char.IsUpper, PasswordError.MissingUppercaseLetter);
+            (String.exists (fun c -> "!@#$%^&*".Contains c), PasswordError.MissingSymbol)
+        ]
+        |> List.filter (fun (test, _) -> password |> test |> not)
+        |> List.map snd
+        |> List.fold (|||) PasswordError.None 
     )
-    if password.Length >= 12 then
-        errors <- errors &&& ~~~PasswordError.LessThan12Characters
-    for (charTest, flag) in [
-        (System.Char.IsUpper, PasswordError.MissingUppercaseLetter);
-        (System.Char.IsLower, PasswordError.MissingLowercaseLetter);
-        (System.Char.IsDigit, PasswordError.MissingDigit);
-        ((fun c -> "!@#$%^&*".Contains c), PasswordError.MissingSymbol)
-    ] do
-        if password |> String.exists charTest then
-            errors <- errors &&& ~~~flag
-
-    if int errors = 0 then
+    if errors = PasswordError.None then
         Ok password
     else
         Error errors
 
-/// Return a set of human-readable phrases indicating the meaning of the given result value.
-let getStatusPhrases (result: Result<string, PasswordError>) : Set<string> =
-    let mutable phrases: Set<string> = Set [ ]
+/// Return a list of human-readable phrases indicating the meaning of the given result value.
+let getStatusPhrases (result: Result<string, PasswordError>) : string list =
     match result with
-    | Error errors ->
-        for (flag, phrase) in [
-            (PasswordError.LessThan12Characters, "12 characters");
-            (PasswordError.MissingUppercaseLetter, "uppercase letter");
-            (PasswordError.MissingLowercaseLetter, "lowercase letter");
-            (PasswordError.MissingDigit, "digit");
-            (PasswordError.MissingSymbol, "symbol")
-        ] do
-            if errors.HasFlag(flag) then
-                phrases <- phrases.Add(phrase)
-    | Ok _ -> ()
-    phrases
+    | Error e -> (
+            [
+                (PasswordError.LessThan12Characters, "12 characters");
+                (PasswordError.MissingUppercaseLetter, "uppercase letter");
+                (PasswordError.MissingLowercaseLetter, "lowercase letter");
+                (PasswordError.MissingDigit, "digit");
+                (PasswordError.MissingSymbol, "symbol")
+            ] 
+            |> List.filter (fun (flag, _) -> e.HasFlag(flag))
+            |> List.map snd
+        )
+    | _ -> []
