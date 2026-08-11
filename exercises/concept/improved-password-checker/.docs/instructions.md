@@ -31,5 +31,5 @@ The `getStatusPhrases` function returns a set of strings each containing a human
 
 ```fsharp
 getStatusPhrases (Error PasswordError.MissingDigit ||| PasswordError.LessThan12Characters)
-// => Set ["12 characters"; "digit"]
+// => List ["12 characters"; "digit"]
 ```
