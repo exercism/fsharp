@@ -6,6 +6,7 @@
     <Project Path="concept/booking-up-for-beauty/BookingUpForBeauty.fsproj" />
     <Project Path="concept/cars-assemble/CarsAssemble.fsproj" />
     <Project Path="concept/guessing-game/GuessingGame.fsproj" />
+    <Project Path="concept/improved-password-checker/ImprovedPasswordChecker.fsproj" />
     <Project Path="concept/interest-is-interesting/InterestIsInteresting.fsproj" />
     <Project Path="concept/log-levels/LogLevels.fsproj" />
     <Project Path="concept/lucians-luscious-lasagna/LuciansLusciousLasagna.fsproj" />
