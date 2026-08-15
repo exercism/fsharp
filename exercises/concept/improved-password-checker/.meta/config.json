@@ -14,6 +14,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.fs"
+    ],
+    "invalidator": [
+      "ImprovedPasswordChecker.fsproj"
     ]
   },
   "blurb": "Learn how to use the Flags attribute to combine values within a discriminated union"
