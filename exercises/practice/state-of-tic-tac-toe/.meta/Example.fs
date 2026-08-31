@@ -37,7 +37,8 @@ let gameState (board: Board) =
         Error ConsecutiveMovesBySamePlayer
     elif numNaughts > numCrosses then
         Error WrongPlayerStarted
-    elif won 'X' board && won 'O' board then
+    elif (won 'X' board && numCrosses <> numNaughts + 1)
+         || (won 'O' board && numCrosses <> numNaughts) then
         Error MoveMadeAfterGameWasDone
     elif won 'X' board || won 'O' board then
         Ok Win
