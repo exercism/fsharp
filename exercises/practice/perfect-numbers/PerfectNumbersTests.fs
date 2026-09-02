@@ -30,6 +30,10 @@ let ``Large abundant number is classified correctly`` () =
     classify 33550335 |> should equal (Some Classification.Abundant)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Perfect square abundant number is classified correctly`` () =
+    classify 196 |> should equal (Some Classification.Abundant)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``Smallest prime deficient number is classified correctly`` () =
     classify 2 |> should equal (Some Classification.Deficient)
 

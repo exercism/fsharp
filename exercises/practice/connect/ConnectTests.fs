@@ -65,6 +65,24 @@ let ``X wins crossing from left to right`` () =
     winner board |> should equal (Some Black)
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``X wins with left-hand dead end fork`` () =
+    let board = 
+        [ ". . X .   ";
+          " X X . .  ";
+          "  . X X X ";
+          "   O O O O" ]
+    winner board |> should equal (Some Black)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``X wins with right-hand dead end fork`` () =
+    let board = 
+        [ ". . X X   ";
+          " X X . .  ";
+          "  . X X . ";
+          "   O O O O" ]
+    winner board |> should equal (Some Black)
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``O wins crossing from top to bottom`` () =
     let board = 
         [ ". O . .    ";
