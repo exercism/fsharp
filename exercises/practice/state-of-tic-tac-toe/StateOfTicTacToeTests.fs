@@ -248,3 +248,21 @@ let ``Invalid board: players kept playing after a win`` () =
     let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
     gameState board |> should equal expected
 
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Invalid board: O kept playing after X wins`` () =
+    let board = 
+        array2D [ ['O'; 'O'; ' '];
+                  ['X'; 'X'; 'X'];
+                  [' '; 'O'; ' '] ]
+    let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
+    gameState board |> should equal expected
+
+[<Fact(Skip = "Remove this Skip property to run this test")>]
+let ``Invalid board: X kept playing after O wins`` () =
+    let board = 
+        array2D [ ['X'; 'X'; ' '];
+                  ['O'; 'O'; 'O'];
+                  [' '; 'X'; 'X'] ]
+    let expected: Result<EndGameState, GameError> = Error MoveMadeAfterGameWasDone
+    gameState board |> should equal expected
+

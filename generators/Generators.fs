@@ -2145,6 +2145,10 @@ type KillerSudokuHelper() =
 type StateOfTicTacToe() =
     inherit ExerciseGenerator()
 
+    override this.RenderSut testCase =
+        let parameters = this.RenderSutParameters testCase |> String.concat " "
+        $"gameState %s{parameters}"
+
     override _.PropertiesWithIdentifier _ = [ "board"; "expected" ]
 
     override _.IdentifierTypeAnnotation(_, key, _) =
