@@ -25,7 +25,7 @@ checkPassword "abcdefghijk5"
 // => Error (PasswordError.MissingUppercaseLetter ||| PasswordError.MissingSymbol)
 ```
 
-## 3. Implement the ``getStatusPhrases` function
+## 3. Implement the `getStatusPhrases` function
 
 The `getStatusPhrases` function returns a set of strings each containing a human-readable phrase corresponding to one of the erorrs in the result returned from `checkPassword`.
 
