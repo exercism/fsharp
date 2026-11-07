@@ -1,0 +1,11 @@
+let mostCommonWord (text: string) =
+    let mutable counts = Map.empty
+    let mutable best = ""
+    let mutable bestCount = 0
+    for word in text.ToLower().Split(' ') do
+        let count = (Map.tryFind word counts |> Option.defaultValue 0) + 1
+        counts <- Map.add word count counts
+        if count > bestCount then
+            best <- word
+            bestCount <- count
+    $"\"{best}\" appears {bestCount} times"
