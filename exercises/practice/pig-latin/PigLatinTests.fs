@@ -95,5 +95,5 @@ let ``Y as second letter in two letter word`` () =
 
 [<Fact(Skip = "Remove this Skip property to run this test")>]
 let ``A whole phrase`` () =
-    translate "quick fast run" |> should equal "ickquay astfay unray"
+    translate "why do squids enjoy xrays" |> should equal "ywhay oday idssquay enjoyay xraysay"
 
