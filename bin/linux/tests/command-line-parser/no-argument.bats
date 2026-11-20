@@ -1,13 +1,15 @@
 #!/usr/bin/env bats
 
+set -euo pipefail
+
 setup() {
-  set -euo pipefail
-  PARSER="$BATS_TEST_DIRNAME/../../lib/command-line-parser/no-arguments.sh"
+  SUBJECT="$BATS_TEST_DIRNAME/../../lib/command-line-parser/no-arguments.sh"
 }
 
 usage() {
   local PRELUDE
-  if [ -z "${1:-}" ]; then
+  if [ -z "${1:-}" ]
+  then
     PRELUDE="Prelude"
   else
     PRELUDE="$1"
@@ -24,6 +26,13 @@ HELP
 
   [ "$status" -eq 0 ]
   [ -z "$output" ]
+}
+
+@test "rejects empty option" {
+  run parse -
+
+  [ "$status" -eq 2 ]
+  [ "${lines[0]}" = "'-' is not a valid argument" ]
 }
 
 @test "accepts -h option" {
@@ -54,7 +63,7 @@ HELP
   [ "${lines[0]}" = "Unknown option: --unknown" ]
 }
 
-@test "rejects unexpected positional argument" {
+@test "rejects unexpected argument" {
   run parse filename.txt
 
   [ "$status" -eq 2 ]
@@ -65,6 +74,6 @@ HELP
 parse() {
   (
     set -- "$@"
-    source "$PARSER"
+    source "$SUBJECT"
   )
 }

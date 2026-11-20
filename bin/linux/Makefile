@@ -1,6 +1,6 @@
 .PHONY: test lint
 
 test:
-	bats tests/ tests/command-line-parser
+	bats tests/ tests/command-line-parser/
 lint:
-	shellcheck lib/command-line-parser/*.sh
+	shellcheck bin/*.sh lib/command-line-parser/*.sh

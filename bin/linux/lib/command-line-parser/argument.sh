@@ -3,14 +3,17 @@
 function next_argument() {
   local -n ARGUMENT="$1"
   shift
-  
   case "${1:-}" in
+    '')
+      return 111
+      ;;
+    -)
+      usage "'-' is not a valid argument" >&2
+      exit 2
+      ;;
     -h|--help)
       usage
       exit 0
-      ;;
-    '')
-      return 255
       ;;
     -*)
       if [[ "$1" =~ ^-[0-9]+$ ]]

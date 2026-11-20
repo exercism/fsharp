@@ -17,4 +17,5 @@ BenchmarkDotNet.Artifacts/
 BenchmarkDotNet.Bin/
 !/bin
 /bin/configlet
+!/bin/linux/bin
 msbuild.log

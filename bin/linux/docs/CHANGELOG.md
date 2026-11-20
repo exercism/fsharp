@@ -23,3 +23,12 @@ We need and alternative in bash. So here is version 0.1.0:
 - Prepared folders for documentation and tests and wrote a few files to those folders.
 
 In short, version 0.1.0 forms a skeleton of future project and adds a simple command line parser implementation, but does not contain any actual work on translating the Powershell scripts yet.
+
+## Nov 18, 2026
+
+Version 0.1.1
+
+- Added implementation of code snippet checker.
+- Added implementation of exercise tools updater.
+
+Translation of other Powershell scripts is more complex. Their translations are just stubbed for now. They will be translated one at time.

@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 case "${1:-}" in
+  '')
+    ;;
+  -)
+    usage "'-' is not a valid argument" >&2
+    exit 2
+    ;;
   -h|--help)
     usage
     exit 0
-    ;;
-  '')
     ;;
   -*)
     usage "Unknown option: $1" >&2
