@@ -48,14 +48,14 @@ main() {
   local SCRIPT_DIRECTORY
   local ROOT
   local LIBRARY
-  local WINDOWS_BINARIES
+  local BINARIES
   local REPOSITORY_ROOT
 
   SCRIPT_DIRECTORY="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
   ROOT="$(dirname -- "$SCRIPT_DIRECTORY")"
   LIBRARY="$ROOT/lib"
-  WINDOWS_BINARIES="$(dirname -- "$ROOT")"
-  REPOSITORY_ROOT="$(dirname -- "$WINDOWS_BINARIES")"
+  BINARIES="$(dirname -- "$ROOT")"
+  REPOSITORY_ROOT="$(dirname -- "$BINARIES")"
 
   # shellcheck source=/dev/null  # dynamic path
   source "$LIBRARY/command-line-parser/no-arguments.sh"
@@ -65,5 +65,5 @@ main() {
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]
 then
-    main "$@"
+  main "$@"
 fi

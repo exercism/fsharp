@@ -32,3 +32,9 @@ Version 0.1.1
 - Added implementation of exercise tools updater.
 
 Translation of other Powershell scripts is more complex. Their translations are just stubbed for now. They will be translated one at time.
+
+## Nov 19, 2026
+
+Version 0.1.2
+
+- Added implementation of exercise updater.

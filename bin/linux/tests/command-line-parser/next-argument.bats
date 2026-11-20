@@ -22,94 +22,94 @@ HELP
 }
 
 @test "assigns valid argument to variable" {
-  local ANSWER
-  next_argument ANSWER "hello"
+  local VALUE
+  next_argument VALUE "hello"
 
-  [ "$ANSWER" = "hello" ]
+  [ "$VALUE" = "hello" ]
 }
 
 @test "assigns numeric argument to variable" {
-  local ANSWER
-  next_argument ANSWER 123
+  local VALUE
+  next_argument VALUE 123
 
-  [ "$ANSWER" = "123" ]
+  [ "$VALUE" = "123" ]
 }
 
 @test "assigns argument containing spaces" {
-  local ANSWER
-  next_argument ANSWER "hello world"
+  local VALUE
+  next_argument VALUE "hello world"
 
-  [ "$ANSWER" = "hello world" ]
+  [ "$VALUE" = "hello world" ]
 }
 
-@test "returns 111 when argument is missing" {
+@test "returns 77 when argument is missing" {
+  local VALUE="original"
   local RETURN_CODE=0
-  local ANSWER="original"
-  next_argument ANSWER || RETURN_CODE=$?
+  next_argument VALUE || RETURN_CODE=$?
 
-  [ "$RETURN_CODE" -eq 111 ]
-  [ "$ANSWER" = "original" ]
+  [ "$RETURN_CODE" -eq 77 ]
+  [ "$VALUE" = "original" ]
 }
 
-@test "returns 111 for empty argument" {
+@test "returns 77 for empty argument" {
+  local VALUE="original"
   local RETURN_CODE=0
-  local ANSWER="original"
-  next_argument ANSWER "" || RETURN_CODE=$?
+  next_argument VALUE "" || RETURN_CODE=$?
 
-  [ "$RETURN_CODE" -eq 111 ]
-  [ "$ANSWER" = "original" ]
+  [ "$RETURN_CODE" -eq 77 ]
+  [ "$VALUE" = "original" ]
 }
 
 @test "rejects empty option" {
-  local ANSWER
-  run next_argument ANSWER -
+  local VALUE
+  run next_argument VALUE -
 
   [ "$status" -eq 2 ]
   [ "${lines[0]}" = "'-' is not a valid argument" ]
 }
 
 @test "accepts -h option" {
-  local ANSWER
-  run next_argument ANSWER -h
+  local VALUE
+  run next_argument VALUE -h
 
   [ "$status" -eq 0 ]
   [ "${lines[0]}" = "Prelude" ]
 }
 
 @test "accepts --help option" {
-  local ANSWER
-  run next_argument ANSWER --help
+  local VALUE
+  run next_argument VALUE --help
 
   [ "$status" -eq 0 ]
   [ "${lines[0]}" = "Prelude" ]
 }
 
 @test "rejects unknown short option" {
-  local ANSWER
-  run next_argument ANSWER -x
+  local VALUE
+  run next_argument VALUE -x
 
   [ "$status" -eq 2 ]
   [ "${lines[0]}" = "Unknown option: -x" ]
 }
 
 @test "rejects unknown long option" {
-  local ANSWER
-  run next_argument ANSWER --unknown
+  local VALUE
+  run next_argument VALUE --unknown
 
   [ "$status" -eq 2 ]
   [ "${lines[0]}" = "Unknown option: --unknown" ]
 }
 
 @test "accepts negative numbers" {
-  local ANSWER
-  next_argument ANSWER -123
+  local VALUE
+  next_argument VALUE -123
 
-  [ "$ANSWER" = "-123" ]
+  [ "$VALUE" = "-123" ]
 }
 
 @test "rejects option starting with digits" {
-  local ANSWER
-  run next_argument ANSWER -123abc
+  local VALUE
+  run next_argument VALUE -123abc
 
   [ "$status" -eq 2 ]
   [ "${lines[0]}" = "Unknown option: -123abc" ]

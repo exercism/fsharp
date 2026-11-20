@@ -1,6 +1,6 @@
 # Exercism tooling for FSharp track (Linux)
 
-Welcome to the Linux-oriented subdirectory of FSharp track tooling.
+Welcome to the subdirectory of FSharp track tooling with tools that works on Linux.
 
 - [Architectural overview](docs/ARCHITECTURE.md)
 - [Journal of changes](docs/CHANGELOG.md)
@@ -37,3 +37,19 @@ Looks for `dotnet tool` manifest in exercises and updates the version of `fantom
 ```bash
 update-exercise-tools.sh
 ```
+
+### Exercise updater
+
+Updates all exercises or a single exercise to the latest specification and generates tests that matches the updated specification.
+
+1. **Updating all exercises**
+
+    ```bash
+    update-exercises.sh
+    ```
+
+2. **Updating a single exercise**
+
+    ```bash
+    update-exercises.sh <exercise-slug>
+    ```

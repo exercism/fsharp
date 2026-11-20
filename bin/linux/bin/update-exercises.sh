@@ -40,19 +40,31 @@ Exit codes:
   0        success
   1        general error
   2        usage error
-  3        missing dependency
   others   general error
 HELP
+}
+
+sync() {
+  local BINARIES
+  declare -a CONFIGLET_OPTIONS
+
+  BINARIES=$1
+  CONFIGLET_OPTIONS=( "${@:2}" )
+  
+  "$BINARIES/configlet" sync "${CONFIGLET_OPTIONS[@]}"
 }
 
 main() {
   local SCRIPT_DIRECTORY
   local ROOT
   local LIBRARY
+  local BINARIES
 
   SCRIPT_DIRECTORY="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
   ROOT="$(dirname -- "$SCRIPT_DIRECTORY")"
   LIBRARY="$ROOT/lib"
+  BINARIES="$(dirname -- "$ROOT")"
+  REPOSITORY_ROOT="$(dirname -- "$BINARIES")"
 
   # shellcheck source=/dev/null  # dynamic path
   source "$LIBRARY/command-line-parser/argument.sh"
@@ -64,21 +76,30 @@ main() {
     source "$LIBRARY/command-line-parser/no-arguments.sh"
   fi
 
-  echo "TODO: remove debug output"
+  local CONFIGLET_OPTIONS
+  local DOTNET_OPTIONS
 
-  if [ -z "${EXERCISE:-}" ]
+  CONFIGLET_OPTIONS=(
+    --docs
+    --metadata
+    --filepaths
+    --update
+    --yes)
+  DOTNET_OPTIONS=(--project "$REPOSITORY_ROOT/generators")
+
+  if [ -n "${EXERCISE:-}" ]
   then
-    echo "Exercise is not specified."
-  else
-    echo "Exercise: $EXERCISE"
+    local EXTRA_OPTION
+    EXTRA_OPTION=(--exercise "$EXERCISE")
+    CONFIGLET_OPTIONS+=( "${EXTRA_OPTION[@]}" )
+    DOTNET_OPTIONS+=( "${EXTRA_OPTION[@]}" )
   fi
 
-  echo "TODO: implement actual code"
-
-  exit 255
+  sync "$BINARIES" "${CONFIGLET_OPTIONS[@]}"
+  dotnet run "${DOTNET_OPTIONS[@]}"
 }
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]
 then
-    main "$@"
+  main "$@"
 fi

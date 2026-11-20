@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-function next_argument() {
+next_argument() {
   local -n ARGUMENT="$1"
   shift
   case "${1:-}" in
     '')
-      return 111
+      return 77
       ;;
     -)
       usage "'-' is not a valid argument" >&2

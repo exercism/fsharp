@@ -42,7 +42,7 @@ Exit codes:
   0        success
   1        general error
   2        usage error
-  111      missing argument
+  77       missing argument
   others   general error
 HELP
 }
@@ -101,5 +101,5 @@ main() {
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]
 then
-    main "$@"
+  main "$@"
 fi

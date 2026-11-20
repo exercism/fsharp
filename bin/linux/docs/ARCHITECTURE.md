@@ -66,13 +66,13 @@ Since there are no direct equivalent of Powershell's comment-based help, decided
 
 The template of `usage` function is taken from [Bash coding standard][bash-coding-standard].
 
-### check-code-snippets translation
+### Translation of check-code-snippets
 
 `$ErrorActionPreference = "Stop"`, `$PSNativeCommandUseErrorActionPreference` - in bash, native command exit codes are checked automatically when `set -e` is on.
 
 In this project, a decision is to use `set -euo pipefail`, which is even more strictier.
 
-### update-exercise-tools translation
+### Translation of update-exercise-tools
 
 - `Get-ChildItem ... -Recurse` is replaced by Linux `find` command.
 - `ForEach-Object` is replaced with `while read -r ... do ... done` block.
@@ -84,3 +84,34 @@ In this project, a decision is to use `set -euo pipefail`, which is even more st
   backslashes in path are common.
 
 - Process substitution `<(...)` to used to keep the `while` loop body execution in the current shell.
+
+## Nov 19, 2026
+
+### Translation of update-exercises
+
+#### Dependency management
+In the original code there is a line:
+
+```powershell
+& bin/fetch-configlet
+```
+
+But wait, isn't it a caller's job to install all required dependencies up front? And if not, why we don't add lines to install dotnet and more?
+
+You may accuse me of being lazy, but I decided to remove this line. Implementing well polished dependency management for all current and future dependencies and for all scripts that use extra dependencies is out of scope of this work.
+
+#### Branching on processing a single exercise
+
+In the original code...
+
+```powershell
+if ($Exercise) {
+    & configlet sync --docs --metadata --filepaths --update --yes --exercise $Exercise
+    & dotnet run --project generators --exercise $Exercise
+} else {
+    & configlet sync --docs --metadata --filepaths --update --yes
+    & dotnet run --project generators
+}
+```
+
+...branches differ only by an extra option in case of processing a single exercise. Seeing that, my decision is to not duplicate the command invocation between branches, but rather append this extra option to the array of options. The resulting code is longer, but more maintainable.
